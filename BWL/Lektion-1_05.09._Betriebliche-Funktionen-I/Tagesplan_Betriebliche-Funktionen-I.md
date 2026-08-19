@@ -22,11 +22,11 @@ Die Teilnehmenden können am Ende der Lektion …
 | Zeit | Block | Inhalt | Methode |
 |------|-------|--------|---------|
 | 08:15–08:35 | Begrüßung & Einstieg | Rückblick VWL-Block, Start BWL (Zugangscode `bwl`), funktionale Gliederung des Betriebs, Zielsystem (Sach-/Formalziele, Zielbeziehungen) | Plenum + Präsentation |
-| 08:35–09:50 | Block 1: Produktion | Produktionsfaktoren nach Gutenberg (Elementarfaktoren, dispositiver Faktor), Abgrenzung VWL/BWL, Roh-/Hilfs-/Betriebsstoffe, Fertigungstypen, Produktionsplanung (PPS), Kennzahlen Wirtschaftlichkeit/Produktivität | Präsentation + Übungsphase (eigene Aufgaben mit Lösungen) |
+| 08:35–09:50 | Block 1: Produktion | Produktionsfaktoren nach Gutenberg (Elementarfaktoren, dispositiver Faktor), Abgrenzung VWL/BWL, Roh-/Hilfs-/Betriebsstoffe, Fertigungstypen, Produktionsplanung (PPS), Kennzahlen Wirtschaftlichkeit/Produktivität | Präsentation + Prüfungsaufgaben-Training (interaktiv, mit Lösungshinweisen) |
 | 09:50–10:05 | **Pause** | | |
-| 10:05–11:20 | Block 2: Logistik | Logistikbegriff & 6 R, Beschaffungs-/Produktions-/Distributions-/Entsorgungslogistik, Lagerfunktionen, Supply Chain Management, Zielbereiche der Logistik | Präsentation + Übungsphase (eigene Aufgaben mit Lösungen) |
+| 10:05–11:20 | Block 2: Logistik | Logistikbegriff & 6 R, Beschaffungs-/Produktions-/Distributions-/Entsorgungslogistik, Lagerfunktionen, Supply Chain Management, Zielbereiche der Logistik | Präsentation + Prüfungsaufgaben-Training (interaktiv, mit Lösungshinweisen) |
 | 11:20–11:35 | **Pause** | | |
-| 11:35–12:50 | Block 3: Absatz & Marketing | Marketingbegriff (Kundenorientierung), Marktforschung (Primär-/Sekundärforschung), ökonomische vs. psychografische Marketingziele, Marketingstrategien, Marketing-Mix: Produkt-, Preis-(Kontrahierungs-), Distributions-, Kommunikationspolitik | Präsentation + Übungsphase (eigene Aufgaben mit Lösungen) + Fallbeispiel |
+| 11:35–12:50 | Block 3: Absatz & Marketing | Marketingbegriff (Kundenorientierung), Marktforschung (Primär-/Sekundärforschung), ökonomische vs. psychografische Marketingziele, Marketingstrategien, Marketing-Mix: Produkt-, Preis-(Kontrahierungs-), Distributions-, Kommunikationspolitik | Präsentation + Prüfungsaufgaben-Training (interaktiv, mit Lösungshinweisen) + Fallbeispiel |
 | 12:50–13:15 | Abschluss | Zusammenfassung, Übungsaufgaben zur Vertiefung (Selbstlernmaterialien der Plattform), Ausblick Lektion 2 (12.09.: Betriebliche Funktionen II — ReWe, Finanzierung, Controlling, Personal) | Plenum |
 
 ## Material
@@ -43,8 +43,9 @@ Freiwillige Selbstlernangebote auf der Lernplattform:
 
 1. **Quiz** (60 Fragen) mit sofortiger Selbstkontrolle bearbeiten.
 2. **Lernbereich** nutzen — 18 offene Aufgaben mit Lösungshinweisen.
-3. **Aufgabenheft mit Musterlösungen** durcharbeiten, z. B. die Marketing-Mix-Fallaufgabe; Handout Abschnitte 2–4 lesen.
-4. **Karteikarten & Lernspiele** (Wordle, Hängemann, Memory) für die Begriffe.
-5. **Prüfungstraining BWL** auf dem Dashboard — Aufgaben im IHK-Klausurformat.
+3. **Prüfungsaufgaben** (`Pruefungsaufgaben_Betriebliche-Funktionen-I.html`) — neue interaktive Seite mit 14 prüfungsnahen Aufgaben im IHK-Stil: schriftlich lösen, dann mit den Lösungshinweisen vergleichen.
+4. **Aufgabenheft mit Musterlösungen** durcharbeiten, z. B. die Marketing-Mix-Fallaufgabe; Handout Abschnitte 2–4 lesen.
+5. **Karteikarten & Lernspiele** (Wordle, Hängemann, Memory) für die Begriffe.
+6. **Prüfungstraining BWL** auf dem Dashboard — Aufgaben im IHK-Klausurformat.
 
 Weitere Übungen: Übungsband (mit Lösungsteil).

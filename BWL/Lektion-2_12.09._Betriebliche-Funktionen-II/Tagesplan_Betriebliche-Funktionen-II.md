@@ -25,7 +25,7 @@ Die Teilnehmenden können am Ende der Lektion …
 | 08:15–08:35 | Begrüßung & Wiederholung | Kurzwiederholung Lektion 1 (Ziele, Beschaffung, Produktion, Absatz/Marketing) — Blitzquiz | Plenum |
 | 08:35–09:25 | Block 1: Rechnungswesen | Aufgaben (Dokumentation, Information, Kontrolle, Disposition), vier Teilgebiete (FiBu, KLR, Statistik, Planungsrechnung), internes vs. externes ReWe | Präsentation + Aktivierung |
 | 09:25–09:35 | **Pause** | | |
-| 09:35–10:45 | Block 2: Finanzierung & Investition | Investitionsbegriff und -arten, Ablauf einer Investitionsentscheidung, Finanzierungsmatrix (Innen/Außen × Eigen/Fremd), EK vs. FK, Leasing/Factoring, goldene Finanzierungsregel | Präsentation + Übungsphase (eigene Aufgaben mit Lösungen) |
+| 09:35–10:45 | Block 2: Finanzierung & Investition | Investitionsbegriff und -arten, Ablauf einer Investitionsentscheidung, Finanzierungsmatrix (Innen/Außen × Eigen/Fremd), EK vs. FK, Leasing/Factoring, goldene Finanzierungsregel | Präsentation + Prüfungsaufgaben-Training (interaktiv, mit Lösungshinweisen) |
 | 10:45–11:00 | **Pause** | | |
 | 11:00–12:00 | Block 3: Controlling & Personal | Controlling vs. Kontrolle, Controlling-Kreislauf, strategisch/operativ, Kennzahlen (kurz); Personalaufgaben und -ziele, demografischer Wandel | Präsentation + Aktivierungsfragen |
 | 12:00–12:10 | **Pause** | | |
@@ -47,9 +47,10 @@ Freiwillige Selbstlernangebote auf der Lernplattform:
 
 1. **Quiz** (60 Fragen) mit sofortiger Selbstkontrolle bearbeiten.
 2. **Lernbereich** nutzen — 18 offene Aufgaben mit Lösungshinweisen.
-3. **Aufgabenheft mit Musterlösungen** durcharbeiten — z. B. Zuordnungsaufgabe Finanzierungsarten (Aufgabe 4) und Fallaufgabe Zielkonflikte (Aufgabe 9); Handout lesen.
-4. **Karteikarten & Lernspiele** (Wordle, Hängemann, Memory) für die Begriffe.
-5. **Prüfungstraining BWL** auf dem Dashboard — Aufgaben im IHK-Klausurformat.
-6. Fragen für Lektion 3 (Existenzgründung & Rechtsformen) notieren.
+3. **Prüfungsaufgaben** (`Pruefungsaufgaben_Betriebliche-Funktionen-II.html`) — neue interaktive Seite mit 13 prüfungsnahen Aufgaben im IHK-Stil: schriftlich lösen, dann mit den Lösungshinweisen vergleichen.
+4. **Aufgabenheft mit Musterlösungen** durcharbeiten — z. B. Zuordnungsaufgabe Finanzierungsarten (Aufgabe 4) und Fallaufgabe Zielkonflikte (Aufgabe 9); Handout lesen.
+5. **Karteikarten & Lernspiele** (Wordle, Hängemann, Memory) für die Begriffe.
+6. **Prüfungstraining BWL** auf dem Dashboard — Aufgaben im IHK-Klausurformat.
+7. Fragen für Lektion 3 (Existenzgründung & Rechtsformen) notieren.
 
 Weitere Übungen: Übungsband (mit Lösungsteil).

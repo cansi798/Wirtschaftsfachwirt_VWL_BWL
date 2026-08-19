@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Lektion 3 · Prüfungsaufgaben — Konjunktur, Wirtschaftspolitik & Außenwirtschaft</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:#0EA5A4; --bfw-primary-dark:#0F766E;
+  --bfw-accent:#F59E0B; --bfw-warn:#F97316;
+  --bfw-success:#10B981; --bfw-danger:#EF4444;
+  --bfw-ink:#0F172A; --bfw-ink-soft:#475569;
+  --bfw-bg:#FAFAFA; --bfw-bg-soft:#F8FAFC;
+  --bfw-bg-teal:#ECFEFF; --bfw-bg-amber:#FEF3C7;
+  --bfw-bg-rose:#FFE4E6; --bfw-border:#E2E8F0;
+  --bfw-bg-green:#D1FAE5;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, var(--bfw-bg-teal) 0%, var(--bfw-bg) 50%, var(--bfw-bg-amber) 100%);
+  min-height: 100vh; color: var(--bfw-ink); -webkit-font-smoothing: antialiased;
+  padding: 2rem 1rem 4rem;
+}
+.container { max-width: 900px; margin: 0 auto; }
+header { text-align: center; margin-bottom: 1.6rem; }
+.tag-pill {
+  display: inline-block; background: var(--bfw-bg-teal); color: var(--bfw-primary-dark);
+  font-weight: 700; font-size: 0.82rem; padding: 0.3rem 0.9rem; border-radius: 999px;
+  letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.8rem;
+}
+h1 { font-size: 1.7rem; color: var(--bfw-primary-dark); margin-bottom: 0.4rem; }
+.subtitle { color: var(--bfw-ink-soft); font-size: 1.02rem; line-height: 1.5; }
+
+.progress-wrap {
+  background: white; border: 1px solid var(--bfw-border); border-radius: 14px;
+  padding: 1rem 1.3rem; margin-bottom: 1.6rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.progress-bar { flex: 1; min-width: 200px; height: 12px; background: var(--bfw-bg-soft); border: 1px solid var(--bfw-border); border-radius: 999px; overflow: hidden; display: flex; }
+.progress-bar .seg-ok { background: var(--bfw-success); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-teil { background: var(--bfw-accent); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-nein { background: var(--bfw-danger); height: 100%; transition: width 0.3s; }
+.progress-label { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; white-space: nowrap; }
+.btn-reset {
+  padding: 0.45rem 0.9rem; background: transparent; color: var(--bfw-ink-soft);
+  border: 1.5px solid var(--bfw-border); border-radius: 8px; font-family: inherit;
+  font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.15s;
+}
+.btn-reset:hover { color: var(--bfw-danger); border-color: var(--bfw-danger); }
+
+.task {
+  background: white; border: 1px solid var(--bfw-border); border-left: 5px solid var(--bfw-border);
+  border-radius: 14px; padding: 1.4rem 1.5rem; margin-bottom: 1.2rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04); transition: border-color 0.2s;
+}
+.task.ok { border-left-color: var(--bfw-success); }
+.task.teil { border-left-color: var(--bfw-accent); }
+.task.nein { border-left-color: var(--bfw-danger); }
+.task-head { display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
+.task-num { font-weight: 800; color: var(--bfw-primary-dark); font-size: 1.05rem; white-space: nowrap; }
+.task-topic {
+  display: inline-block; background: var(--bfw-bg-amber); color: #92400E;
+  font-weight: 700; font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 999px;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.task-punkte { margin-left: auto; color: var(--bfw-ink-soft); font-size: 0.82rem; font-weight: 600; white-space: nowrap; }
+.task-frage { font-size: 1.02rem; line-height: 1.55; margin-bottom: 0.9rem; white-space: pre-line; }
+.task-hinweis { margin-bottom: 0.9rem; }
+.task-hinweis summary { cursor: pointer; color: var(--bfw-primary-dark); font-weight: 600; font-size: 0.9rem; }
+.task-hinweis p { margin-top: 0.5rem; padding: 0.7rem 0.9rem; background: var(--bfw-bg-teal); border-radius: 8px; font-size: 0.92rem; color: var(--bfw-ink-soft); line-height: 1.5; }
+textarea {
+  width: 100%; min-height: 110px; padding: 0.8rem 0.9rem;
+  border: 1.5px solid var(--bfw-border); border-radius: 10px;
+  font-family: inherit; font-size: 0.98rem; line-height: 1.5; resize: vertical;
+  background: var(--bfw-bg-soft); transition: all 0.15s;
+}
+textarea:focus { outline: none; border-color: var(--bfw-primary); background: white; box-shadow: 0 0 0 3px rgba(14,165,164,0.12); }
+.task-actions { margin-top: 0.8rem; display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+.btn {
+  padding: 0.55rem 1.1rem; border: none; border-radius: 9px; cursor: pointer;
+  font-family: inherit; font-size: 0.92rem; font-weight: 700; transition: all 0.15s;
+}
+.btn-loesung { background: var(--bfw-primary); color: white; }
+.btn-loesung:hover { background: var(--bfw-primary-dark); }
+.loesung {
+  display: none; margin-top: 1rem; padding: 1rem 1.1rem;
+  background: var(--bfw-bg-green); border: 1px solid #A7F3D0; border-radius: 10px;
+}
+.loesung.show { display: block; }
+.loesung-label { font-weight: 800; color: #047857; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+.loesung-text { font-size: 0.97rem; line-height: 1.6; white-space: pre-line; }
+.self-check { display: none; margin-top: 0.9rem; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.self-check.show { display: flex; }
+.self-check span { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; }
+.btn-ok { background: var(--bfw-bg-green); color: #047857; border: 1.5px solid #A7F3D0; }
+.btn-teil { background: var(--bfw-bg-amber); color: #92400E; border: 1.5px solid #FDE68A; }
+.btn-nein { background: var(--bfw-bg-rose); color: #B91C1C; border: 1.5px solid #FECACA; }
+.btn-ok.active, .btn-ok:hover { background: var(--bfw-success); color: white; }
+.btn-teil.active, .btn-teil:hover { background: var(--bfw-accent); color: white; }
+.btn-nein.active, .btn-nein:hover { background: var(--bfw-danger); color: white; }
+.saved-note { font-size: 0.78rem; color: var(--bfw-ink-soft); margin-left: auto; }
+
+footer { text-align: center; margin-top: 2.5rem; color: var(--bfw-ink-soft); font-size: 0.85rem; }
+@media print { .btn, .btn-reset, .self-check { display: none !important; } .loesung { display: block; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <span class="tag-pill">Lektion 3 · Prüfungsaufgaben</span>
+    <h1>Prüfungsaufgaben: Konjunktur, Wirtschaftspolitik & Außenwirtschaft</h1>
+    <p class="subtitle">Beantworten Sie die Aufgaben in eigenen Worten im Antwortfeld — Ihre Eingaben werden lokal im Browser gespeichert. Prüfen Sie sich danach mit dem <strong>Lösungshinweis</strong> und bewerten Sie sich selbst. In der IHK-Prüfung zählen ausformulierte Begründungen!</p>
+  </header>
+
+  <div class="progress-wrap">
+    <div class="progress-bar" id="progressBar"><div class="seg-ok"></div><div class="seg-teil"></div><div class="seg-nein"></div></div>
+    <span class="progress-label" id="progressLabel"></span>
+    <button class="btn-reset" onclick="resetAll()">Zurücksetzen</button>
+  </div>
+
+  <div id="tasks"></div>
+
+  <footer>© Can Siebert · 2026 · Wirtschaftsfachwirt — VWL — Volkswirtschaftliche Grundlagen</footer>
+</div>
+
+<script>
+const DAY_ID = 'vwl-3-pa';
+const TASKS = [{"topic":"Wachstumsrate","punkte":5,"frage":"Das reale BIP eines Landes steigt von 3.150 Mrd. € auf 3.213 Mrd. €.\na) Berechnen Sie die Wachstumsrate.\nb) Beurteilen Sie das Ergebnis im Hinblick auf das Ziel „stetiges und angemessenes Wirtschaftswachstum“ des Stabilitätsgesetzes.","hinweis":"Wachstumsrate = (BIP neu − BIP alt) ÷ BIP alt × 100.","loesung":"a) Schritt 1: Zuwachs = 3.213 − 3.150 = 63 Mrd. €. Schritt 2: 63 ÷ 3.150 = 0,02. Schritt 3: × 100 = 2,0 %.\nb) Als angemessen gilt ein Wachstum des realen BIP von rund 2 % pro Jahr — das Ziel des Stabilitätsgesetzes ist damit erreicht. Wichtig: Die Rechnung muss mit dem realen BIP erfolgen; beim nominalen BIP würde die Preissteigerung fälschlich als Wachstum mitgemessen."},{"topic":"Inflationsrate","punkte":6,"frage":"Der Verbraucherpreisindex eines Landes steigt von 108 auf 113,4 Punkte.\na) Berechnen Sie die Inflationsrate.\nb) Beurteilen Sie das Ergebnis anhand des Ziels der EZB und geben Sie an, welche geldpolitische Grundausrichtung zu erwarten ist.","hinweis":"Durch den alten Indexwert teilen — nicht durch 100!","loesung":"a) Schritt 1: Anstieg = 113,4 − 108 = 5,4 Punkte. Schritt 2: 5,4 ÷ 108 = 0,05. Schritt 3: × 100 = 5,0 %.\nb) Das Ziel der EZB ist Preisniveaustabilität bei mittelfristig 2 % HVPI-Anstieg. Mit 5,0 % ist das Ziel deutlich verfehlt — es herrscht zu hohe Inflation. Zu erwarten ist eine restriktive Geldpolitik: Die EZB erhöht die Leitzinsen und verknappt die Liquidität, um Kreditnachfrage und gesamtwirtschaftliche Nachfrage zu dämpfen und so den Preisauftrieb zu bremsen."},{"topic":"Arbeitslosenquote","punkte":6,"frage":"In einem Land sind 39,9 Mio. Menschen erwerbstätig, 2,1 Mio. sind als arbeitslos registriert.\na) Berechnen Sie die Arbeitslosenquote.\nb) Beurteilen Sie das Ergebnis im Hinblick auf das Ziel „hoher Beschäftigungsstand“.\nc) Begründen Sie, warum die Arbeitslosenquote als Spätindikator gilt.","hinweis":"Erwerbspersonen = Erwerbstätige + registrierte Arbeitslose.","loesung":"a) Schritt 1: Erwerbspersonen = 39,9 + 2,1 = 42 Mio. Schritt 2: 2,1 ÷ 42 = 0,05. Schritt 3: × 100 = 5,0 %.\nb) Das Ziel des hohen Beschäftigungsstands gilt als erreicht bei einer Arbeitslosenquote von etwa 3 bis 4 %. Mit 5,0 % ist das Ziel (knapp) verfehlt.\nc) Die Arbeitslosenquote hinkt der konjunkturellen Entwicklung hinterher: Unternehmen entlassen erst, wenn der Abschwung bereits eingetreten ist (Kündigungsfristen, zunächst Kurzarbeit), und stellen im Aufschwung erst mit Verzögerung wieder ein — sie zeigt die Konjunkturlage also verspätet an (Spätindikator)."},{"topic":"Konvergenzkriterien","punkte":6,"frage":"Ein EU-Staat mit einem BIP von 400 Mrd. € weist eine jährliche Neuverschuldung von 10 Mrd. € und einen Gesamtschuldenstand von 260 Mrd. € auf. Prüfen Sie rechnerisch, ob die beiden fiskalischen Konvergenzkriterien (Maastricht) erfüllt sind.","hinweis":"Referenzwerte: Neuverschuldung max. 3 % des BIP, Gesamtschuldenstand max. 60 % des BIP.","loesung":"Neuverschuldung: 10 ÷ 400 × 100 = 2,5 % — der Referenzwert von 3 % ist eingehalten, das Kriterium ist erfüllt.\nGesamtschuldenstand: 260 ÷ 400 × 100 = 65,0 % — der Referenzwert von 60 % ist überschritten, das Kriterium ist verletzt.\nErgebnis: Der Staat erfüllt nur eines der beiden fiskalischen Kriterien. Für den Euro-Beitritt müssten zusätzlich Inflationsrate, langfristiger Zins und Wechselkursstabilität (zwei Jahre im WKM II) geprüft werden."},{"topic":"Geldpolitik (Transfer)","punkte":6,"frage":"Ein mittelständischer Maschinenbauer plant eine kreditfinanzierte Erweiterungsinvestition von 5 Mio. €. Kurz vor Vertragsabschluss erhöht die EZB die Leitzinsen kräftig. Beurteilen Sie die Folgen dieser Zinserhöhung für die Investitionsentscheidung des Unternehmens und erläutern Sie, welche gesamtwirtschaftliche Wirkung die EZB mit vielen solcher Einzelentscheidungen erreichen will.","hinweis":"Vom Leitzins über den Kreditzins zur Investitionsrechnung — und von dort zur gesamtwirtschaftlichen Nachfrage.","loesung":"Unternehmensebene: Die Geschäftsbanken refinanzieren sich jetzt teurer bei der EZB und geben die höheren Zinsen weiter — der Kreditzins für die 5-Mio.-€-Finanzierung steigt. Damit steigen die Finanzierungskosten der Investition, ihre Rentabilität sinkt; im Grenzfall wird die Erweiterung unrentabel und wird verschoben oder aufgegeben.\nGesamtwirtschaftlich: Genau diese Reaktion ist beabsichtigt. Wenn viele Unternehmen Investitionen und viele Haushalte kreditfinanzierten Konsum zurückstellen, sinkt die gesamtwirtschaftliche Nachfrage — der Preisauftrieb lässt nach (restriktive Geldpolitik zur Inflationsbekämpfung). Nebenwirkung: Wachstum und Beschäftigung werden gedämpft — der klassische Zielkonflikt im magischen Viereck."},{"topic":"Fiskalpolitik","punkte":5,"frage":"Erklären Sie den Begriff Deficit Spending und erläutern Sie, in welchem Spannungsverhältnis dieses Konzept zur Schuldenbremse des Grundgesetzes steht.","hinweis":"Keynes empfiehlt Defizite in der Rezession — was erlaubt das Grundgesetz seit 2009?","loesung":"Deficit Spending (nach Keynes): Der Staat erhöht in der Rezession seine Ausgaben (Konjunkturprogramme, öffentliche Aufträge) über die laufenden Einnahmen hinaus und finanziert das Defizit über Kredite. Die zusätzliche staatliche Nachfrage soll die Konjunktur ankurbeln; im folgenden Boom sollen Überschüsse die Schulden wieder tilgen.\nSpannungsverhältnis zur Schuldenbremse (Art. 109 GG, 2009): Sie begrenzt die strukturelle Neuverschuldung von Bund (max. 0,35 % des BIP) und Ländern grundsätzlich sehr eng und schränkt damit den Spielraum für kreditfinanzierte Konjunkturprogramme deutlich ein. Für Rezessionen und Notlagen (z. B. schwere Konjunktureinbrüche, Katastrophen) sind zwar Ausnahmen vorgesehen, doch die Rückführungspflicht der Kredite bindet künftige Haushalte — antizyklische Politik nach Keynes ist dadurch nur noch begrenzt möglich."},{"topic":"Wachstumspolitik","punkte":5,"frage":"Unterscheiden Sie quantitatives und qualitatives Wachstum und nennen Sie zwei Ansätze, mit denen Wohlstand jenseits des BIP gemessen werden soll.","hinweis":"Wächst nur die Menge — oder auch die Lebensqualität?","loesung":"Quantitatives Wachstum: Zunahme des realen BIP bzw. des Pro-Kopf-Einkommens — die reine Mengenausweitung der Produktion. Es wird zunehmend kritisch gesehen, weil es Umweltbelastung und Verteilung ausblendet (Wohlstand ist nicht gleich BIP).\nQualitatives Wachstum: Wirtschaftswachstum, das zugleich die Umwelt schont und die Lebensqualität erhöht — Wachstum und gesellschaftliche Ziele werden zusammen betrachtet.\nMesskonzepte jenseits des BIP: die Sozialindikatoren der OECD (z. B. Bildung, Gesundheit, Umweltqualität) und der Net Economic Welfare (NEW), der wohlstandsmindernde Faktoren vom BIP abzieht und unbezahlte Leistungen hinzurechnet."},{"topic":"Geldpolitik (EZB)","punkte":4,"frage":"Erläutern Sie die Zwei-Säulen-Strategie, mit der die EZB Risiken für die Preisniveaustabilität beurteilt.","hinweis":"Eine Säule blickt auf die Preise, die andere auf die Geldmenge.","loesung":"Die EZB stützt ihre geldpolitischen Entscheidungen auf zwei Analysesäulen: 1. Die wirtschaftliche Analyse (Preisentwicklung): Beobachtung der aktuellen Preis- und Konjunkturentwicklung und ihrer kurz- bis mittelfristigen Bestimmungsfaktoren (z. B. Löhne, Energiepreise, Wechselkurse, Nachfrage). 2. Die monetäre Analyse (Geldmengenentwicklung): Beobachtung des Wachstums der Geldmenge und der Kreditvergabe, da eine dauerhaft zu stark wachsende Geldmenge mittel- bis langfristig Inflation erzeugt. Beide Säulen zusammen liefern das Gesamtbild, auf dessen Basis der EZB-Rat über die Leitzinsen entscheidet."},{"topic":"Konjunkturdiagnose","punkte":6,"frage":"Für eine Volkswirtschaft melden die Statistiker: Die Auftragseingänge der Industrie sinken seit zwei Quartalen, der ifo-Geschäftsklimaindex fällt deutlich, das reale BIP stagniert, die Arbeitslosenquote ist bisher unverändert niedrig. Beurteilen Sie die konjunkturelle Lage und begründen Sie Ihre Diagnose mit den Indikatorarten.","hinweis":"F-P-S: Früh kündigt an, Präsenz zeigt an, Spät hinkt nach.","loesung":"Diagnose: Die Volkswirtschaft steht am Übergang vom Boom bzw. der Stagnation in den Abschwung (beginnende Rezession).\nBegründung: Auftragseingänge und ifo-Geschäftsklimaindex sind Frühindikatoren — sie laufen der Entwicklung voraus und kündigen mit ihrem Rückgang eine sinkende Produktion an. Das stagnierende reale BIP ist ein Präsenzindikator — es zeigt, dass der Aufschwung bereits zum Stillstand gekommen ist. Die noch unveränderte Arbeitslosenquote widerspricht dem nicht, denn sie ist ein Spätindikator: Unternehmen entlassen erst mit Verzögerung (Kündigungsfristen, zunächst Kurzarbeit). Ihr Anstieg ist erst in den kommenden Quartalen zu erwarten."},{"topic":"Arbeitsmarktpolitik","punkte":5,"frage":"Ein Automobilzulieferer verzeichnet in der Rezession einen Auftragsrückgang von 30 %, erwartet aber mittelfristig wieder volle Auslastung. Statt Entlassungen beantragt er für einen Teil der Belegschaft eine staatliche Leistung.\na) Benennen Sie das Instrument und ordnen Sie es der aktiven oder passiven Arbeitsmarktpolitik zu.\nb) Erläutern Sie je einen Vorteil für den Betrieb und für die Beschäftigten.","hinweis":"Die Arbeitszeit wird vorübergehend verkürzt, der Lohnausfall teilweise ersetzt.","loesung":"a) Es handelt sich um Kurzarbeit mit Kurzarbeitergeld (Lohnersatzleistung der Bundesagentur für Arbeit). Kurzarbeitergeld ist ein Instrument der passiven Arbeitsmarktpolitik: Es mildert die wirtschaftlichen Folgen des Arbeitsausfalls, statt vorbeugend einzugliedern.\nb) Vorteil für den Betrieb: Er hält seine eingearbeiteten Fachkräfte und spart Entlassungs- und spätere Wiederbeschaffungs- und Einarbeitungskosten — beim Aufschwung kann er sofort wieder voll produzieren. Vorteil für die Beschäftigten: Sie behalten ihren Arbeitsplatz und erhalten für die ausgefallene Arbeitszeit einen erheblichen Teil des Nettoentgelts ersetzt — Arbeitslosigkeit wird vermieden."},{"topic":"Außenwirtschaft","punkte":6,"frage":"Ein großes Industrieland führt einen Importzoll von 25 % auf Stahl ein, um seine heimischen Stahlwerke zu schützen.\na) Ordnen Sie die Maßnahme ein (Freihandel/Protektionismus, tarifäres/nichttarifäres Handelshemmnis).\nb) Erläutern Sie die beabsichtigte Wirkung.\nc) Beurteilen Sie die Maßnahme, indem Sie zwei Nachteile bzw. Risiken darlegen.","hinweis":"Wer zahlt den Zoll am Ende — und wie könnten Handelspartner reagieren?","loesung":"a) Es handelt sich um Protektionismus; der Importzoll ist ein tarifäres Handelshemmnis, da er über den Preis der Einfuhrgüter wirkt.\nb) Beabsichtigte Wirkung: Importierter Stahl verteuert sich um den Zoll — die heimischen Stahlwerke werden gegenüber ausländischen Anbietern wettbewerbsfähiger, ihre Absatzmengen und Arbeitsplätze sollen gesichert werden; zugleich erzielt der Staat Zolleinnahmen.\nc) Nachteile/Risiken: 1. Die stahlverarbeitende Industrie und die Verbraucher zahlen höhere Preise — die Kostenvorteile der internationalen Arbeitsteilung gehen verloren, geschützte Anbieter stehen unter geringerem Innovationsdruck. 2. Die Handelspartner reagieren erfahrungsgemäß mit Vergeltungszöllen — es droht ein Handelskonflikt, der die Exportwirtschaft des Landes trifft. (Auch möglich: Fehlallokation zugunsten einer nicht wettbewerbsfähigen Branche.)"},{"topic":"Außenwirtschaft & Euro","punkte":6,"frage":"Der Euro wertet gegenüber dem US-Dollar deutlich ab.\na) Erläutern Sie die Folgen der Abwertung für einen deutschen Maschinenexporteur und für einen deutschen Importeur von US-Rohstoffen.\nb) Erklären Sie vor diesem Hintergrund, warum der Verzicht auf eine eigene Wechselkurspolitik als Nachteil der Gemeinschaftswährung gilt.","hinweis":"Abwertung: Für einen Dollar müssen mehr Euro gezahlt werden — deutsche Waren werden für US-Kunden billiger.","loesung":"a) Exporteur: Deutsche Maschinen werden für Kunden im Dollarraum billiger — die preisliche Wettbewerbsfähigkeit steigt, Absatz und Exporterlöse nehmen tendenziell zu. Importeur: In Dollar fakturierte Rohstoffe werden in Euro teurer — die Beschaffungskosten steigen und drücken die Marge bzw. werden über höhere Preise weitergegeben (importierte Inflation).\nb) In der Währungsunion gibt es keine nationalen Wechselkurse mehr: Ein einzelnes Euro-Land kann seine Währung nicht mehr gezielt abwerten, um in einer Krise die eigene Wettbewerbsfähigkeit zu verbessern — die Wechselkursentwicklung des Euro betrifft alle Mitglieder gemeinsam, obwohl ihre Volkswirtschaften unterschiedlich entwickelt sind. Dieser Verzicht auf ein eigenständiges Anpassungsinstrument ist neben dem einheitlichen Leitzins ein zentraler Nachteil des Euro."},{"topic":"Wirtschaftspolitische Konzeptionen","punkte":8,"frage":"Nach mehreren Boomjahren ist die Inflationsrate auf 5 % gestiegen, es herrscht Fachkräftemangel und die Kapazitäten sind voll ausgelastet. Im Bundestag stehen sich zwei Positionen gegenüber: Partei A fordert, die staatlichen Ausgabenprogramme zu beenden, Steuern vorübergehend zu erhöhen und Haushaltsüberschüsse als Rücklage zu bilden. Partei B fordert dauerhafte Unternehmenssteuersenkungen und Deregulierung, um die Produktionskapazitäten langfristig auszuweiten.\na) Ordnen Sie beide Positionen der jeweiligen wirtschaftspolitischen Konzeption zu und begründen Sie.\nb) Beurteilen Sie, welche Position zur beschriebenen konjunkturellen Lage passt.","hinweis":"Antizyklische Nachfragesteuerung wirkt in beide Richtungen — auch im Boom.","loesung":"a) Partei A vertritt die nachfrageorientierte, antizyklische Fiskalpolitik nach Keynes — hier in ihrer restriktiven Variante für den Boom: Der Staat dämpft die überhitzte Gesamtnachfrage (Ausgaben senken, Steuern erhöhen) und bildet Überschüsse als Rücklage für die nächste Rezession. Partei B vertritt die angebotsorientierte Konzeption (Neoklassik, Vertreter: Milton Friedman): Nicht die Nachfrage, sondern die Angebotsbedingungen sollen dauerhaft verbessert werden (Steuersenkung, Deregulierung), um mittel- bis langfristig Wachstum zu schaffen — der Staat bleibt ansonsten passiv.\nb) Zur akuten Lage (Überhitzung, 5 % Inflation, volle Auslastung) passt Position A: Sie entzieht der Wirtschaft antizyklisch Nachfrage und dämpft den Preisauftrieb. Position B würde kurzfristig sogar prozyklisch wirken — Steuersenkungen erhöhen die verfügbaren Einkommen und Gewinne und heizen die ohnehin ausgelastete Wirtschaft weiter an; ihre kapazitätserweiternde Wirkung entfaltet sich erst mittel- bis langfristig. Denkbar ist eine Kombination: kurzfristig restriktiv stabilisieren (A), langfristig Angebotsbedingungen pflegen (B)."}];
+const KEY = 'wfw_lernbereich_' + DAY_ID;
+
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { state = {}; }
+function save() { localStorage.setItem(KEY, JSON.stringify(state)); }
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function render() {
+  const wrap = document.getElementById('tasks');
+  wrap.innerHTML = TASKS.map((t, i) => {
+    const st = state[i] || {};
+    return `
+    <div class="task ${st.check || ''}" id="task-${i}">
+      <div class="task-head">
+        <span class="task-num">Aufgabe ${i + 1}</span>
+        <span class="task-topic">${esc(t.topic)}</span>
+        ${t.punkte ? `<span class="task-punkte">${t.punkte} Punkte</span>` : ''}
+      </div>
+      <div class="task-frage">${esc(t.frage)}</div>
+      ${t.hinweis ? `<details class="task-hinweis"><summary>💡 Tipp anzeigen</summary><p>${esc(t.hinweis)}</p></details>` : ''}
+      <textarea id="answer-${i}" placeholder="Ihre Antwort — in vollständigen Sätzen, wie in der Prüfung …">${esc(st.answer || '')}</textarea>
+      <div class="task-actions">
+        <button class="btn btn-loesung" onclick="toggleLoesung(${i})">Lösungshinweis anzeigen</button>
+        <span class="saved-note" id="saved-${i}"></span>
+      </div>
+      <div class="loesung ${st.open ? 'show' : ''}" id="loesung-${i}">
+        <div class="loesung-label">✓ Lösungshinweis</div>
+        <div class="loesung-text">${esc(t.loesung)}</div>
+      </div>
+      <div class="self-check ${st.open ? 'show' : ''}" id="check-${i}">
+        <span>Selbsteinschätzung:</span>
+        <button class="btn btn-ok ${st.check === 'ok' ? 'active' : ''}" onclick="setCheck(${i}, 'ok')">✓ Gewusst</button>
+        <button class="btn btn-teil ${st.check === 'teil' ? 'active' : ''}" onclick="setCheck(${i}, 'teil')">≈ Teilweise</button>
+        <button class="btn btn-nein ${st.check === 'nein' ? 'active' : ''}" onclick="setCheck(${i}, 'nein')">✗ Nochmal üben</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  TASKS.forEach((t, i) => {
+    const ta = document.getElementById('answer-' + i);
+    let timer = null;
+    ta.addEventListener('input', () => {
+      state[i] = state[i] || {};
+      state[i].answer = ta.value;
+      save();
+      const note = document.getElementById('saved-' + i);
+      note.textContent = 'gespeichert ✓';
+      clearTimeout(timer);
+      timer = setTimeout(() => { note.textContent = ''; }, 1500);
+    });
+  });
+  updateProgress();
+}
+
+function toggleLoesung(i) {
+  state[i] = state[i] || {};
+  state[i].open = !state[i].open;
+  save();
+  document.getElementById('loesung-' + i).classList.toggle('show', state[i].open);
+  document.getElementById('check-' + i).classList.toggle('show', state[i].open);
+}
+
+function setCheck(i, val) {
+  state[i] = state[i] || {};
+  state[i].check = state[i].check === val ? null : val;
+  save();
+  const card = document.getElementById('task-' + i);
+  card.classList.remove('ok', 'teil', 'nein');
+  if (state[i].check) card.classList.add(state[i].check);
+  document.querySelectorAll(`#check-${i} .btn`).forEach(b => b.classList.remove('active'));
+  if (state[i].check) {
+    const cls = { ok: 'btn-ok', teil: 'btn-teil', nein: 'btn-nein' }[state[i].check];
+    document.querySelector(`#check-${i} .${cls}`).classList.add('active');
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const counts = { ok: 0, teil: 0, nein: 0 };
+  TASKS.forEach((t, i) => { const c = (state[i] || {}).check; if (counts[c] !== undefined) counts[c]++; });
+  const n = TASKS.length;
+  const bar = document.getElementById('progressBar');
+  bar.querySelector('.seg-ok').style.width = (counts.ok / n * 100) + '%';
+  bar.querySelector('.seg-teil').style.width = (counts.teil / n * 100) + '%';
+  bar.querySelector('.seg-nein').style.width = (counts.nein / n * 100) + '%';
+  const done = counts.ok + counts.teil + counts.nein;
+  document.getElementById('progressLabel').textContent =
+    `${done}/${n} bearbeitet · ${counts.ok} gewusst · ${counts.teil} teilweise · ${counts.nein} üben`;
+}
+
+function resetAll() {
+  if (!confirm('Alle Antworten und Bewertungen dieser Lektion löschen?')) return;
+  state = {};
+  save();
+  render();
+}
+
+render();
+</script>
+</body>
+</html>

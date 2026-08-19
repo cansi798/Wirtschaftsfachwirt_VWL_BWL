@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Lektion 1 · Prüfungsaufgaben — Volkswirtschaftliche Grundbegriffe & Preisbildung am Markt</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:#0EA5A4; --bfw-primary-dark:#0F766E;
+  --bfw-accent:#F59E0B; --bfw-warn:#F97316;
+  --bfw-success:#10B981; --bfw-danger:#EF4444;
+  --bfw-ink:#0F172A; --bfw-ink-soft:#475569;
+  --bfw-bg:#FAFAFA; --bfw-bg-soft:#F8FAFC;
+  --bfw-bg-teal:#ECFEFF; --bfw-bg-amber:#FEF3C7;
+  --bfw-bg-rose:#FFE4E6; --bfw-border:#E2E8F0;
+  --bfw-bg-green:#D1FAE5;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, var(--bfw-bg-teal) 0%, var(--bfw-bg) 50%, var(--bfw-bg-amber) 100%);
+  min-height: 100vh; color: var(--bfw-ink); -webkit-font-smoothing: antialiased;
+  padding: 2rem 1rem 4rem;
+}
+.container { max-width: 900px; margin: 0 auto; }
+header { text-align: center; margin-bottom: 1.6rem; }
+.tag-pill {
+  display: inline-block; background: var(--bfw-bg-teal); color: var(--bfw-primary-dark);
+  font-weight: 700; font-size: 0.82rem; padding: 0.3rem 0.9rem; border-radius: 999px;
+  letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.8rem;
+}
+h1 { font-size: 1.7rem; color: var(--bfw-primary-dark); margin-bottom: 0.4rem; }
+.subtitle { color: var(--bfw-ink-soft); font-size: 1.02rem; line-height: 1.5; }
+
+.progress-wrap {
+  background: white; border: 1px solid var(--bfw-border); border-radius: 14px;
+  padding: 1rem 1.3rem; margin-bottom: 1.6rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.progress-bar { flex: 1; min-width: 200px; height: 12px; background: var(--bfw-bg-soft); border: 1px solid var(--bfw-border); border-radius: 999px; overflow: hidden; display: flex; }
+.progress-bar .seg-ok { background: var(--bfw-success); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-teil { background: var(--bfw-accent); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-nein { background: var(--bfw-danger); height: 100%; transition: width 0.3s; }
+.progress-label { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; white-space: nowrap; }
+.btn-reset {
+  padding: 0.45rem 0.9rem; background: transparent; color: var(--bfw-ink-soft);
+  border: 1.5px solid var(--bfw-border); border-radius: 8px; font-family: inherit;
+  font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.15s;
+}
+.btn-reset:hover { color: var(--bfw-danger); border-color: var(--bfw-danger); }
+
+.task {
+  background: white; border: 1px solid var(--bfw-border); border-left: 5px solid var(--bfw-border);
+  border-radius: 14px; padding: 1.4rem 1.5rem; margin-bottom: 1.2rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04); transition: border-color 0.2s;
+}
+.task.ok { border-left-color: var(--bfw-success); }
+.task.teil { border-left-color: var(--bfw-accent); }
+.task.nein { border-left-color: var(--bfw-danger); }
+.task-head { display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
+.task-num { font-weight: 800; color: var(--bfw-primary-dark); font-size: 1.05rem; white-space: nowrap; }
+.task-topic {
+  display: inline-block; background: var(--bfw-bg-amber); color: #92400E;
+  font-weight: 700; font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 999px;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.task-punkte { margin-left: auto; color: var(--bfw-ink-soft); font-size: 0.82rem; font-weight: 600; white-space: nowrap; }
+.task-frage { font-size: 1.02rem; line-height: 1.55; margin-bottom: 0.9rem; white-space: pre-line; }
+.task-hinweis { margin-bottom: 0.9rem; }
+.task-hinweis summary { cursor: pointer; color: var(--bfw-primary-dark); font-weight: 600; font-size: 0.9rem; }
+.task-hinweis p { margin-top: 0.5rem; padding: 0.7rem 0.9rem; background: var(--bfw-bg-teal); border-radius: 8px; font-size: 0.92rem; color: var(--bfw-ink-soft); line-height: 1.5; }
+textarea {
+  width: 100%; min-height: 110px; padding: 0.8rem 0.9rem;
+  border: 1.5px solid var(--bfw-border); border-radius: 10px;
+  font-family: inherit; font-size: 0.98rem; line-height: 1.5; resize: vertical;
+  background: var(--bfw-bg-soft); transition: all 0.15s;
+}
+textarea:focus { outline: none; border-color: var(--bfw-primary); background: white; box-shadow: 0 0 0 3px rgba(14,165,164,0.12); }
+.task-actions { margin-top: 0.8rem; display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+.btn {
+  padding: 0.55rem 1.1rem; border: none; border-radius: 9px; cursor: pointer;
+  font-family: inherit; font-size: 0.92rem; font-weight: 700; transition: all 0.15s;
+}
+.btn-loesung { background: var(--bfw-primary); color: white; }
+.btn-loesung:hover { background: var(--bfw-primary-dark); }
+.loesung {
+  display: none; margin-top: 1rem; padding: 1rem 1.1rem;
+  background: var(--bfw-bg-green); border: 1px solid #A7F3D0; border-radius: 10px;
+}
+.loesung.show { display: block; }
+.loesung-label { font-weight: 800; color: #047857; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+.loesung-text { font-size: 0.97rem; line-height: 1.6; white-space: pre-line; }
+.self-check { display: none; margin-top: 0.9rem; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.self-check.show { display: flex; }
+.self-check span { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; }
+.btn-ok { background: var(--bfw-bg-green); color: #047857; border: 1.5px solid #A7F3D0; }
+.btn-teil { background: var(--bfw-bg-amber); color: #92400E; border: 1.5px solid #FDE68A; }
+.btn-nein { background: var(--bfw-bg-rose); color: #B91C1C; border: 1.5px solid #FECACA; }
+.btn-ok.active, .btn-ok:hover { background: var(--bfw-success); color: white; }
+.btn-teil.active, .btn-teil:hover { background: var(--bfw-accent); color: white; }
+.btn-nein.active, .btn-nein:hover { background: var(--bfw-danger); color: white; }
+.saved-note { font-size: 0.78rem; color: var(--bfw-ink-soft); margin-left: auto; }
+
+footer { text-align: center; margin-top: 2.5rem; color: var(--bfw-ink-soft); font-size: 0.85rem; }
+@media print { .btn, .btn-reset, .self-check { display: none !important; } .loesung { display: block; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <span class="tag-pill">Lektion 1 · Prüfungsaufgaben</span>
+    <h1>Prüfungsaufgaben: Volkswirtschaftliche Grundbegriffe & Preisbildung am Markt</h1>
+    <p class="subtitle">Beantworten Sie die Aufgaben in eigenen Worten im Antwortfeld — Ihre Eingaben werden lokal im Browser gespeichert. Prüfen Sie sich danach mit dem <strong>Lösungshinweis</strong> und bewerten Sie sich selbst. In der IHK-Prüfung zählen ausformulierte Begründungen!</p>
+  </header>
+
+  <div class="progress-wrap">
+    <div class="progress-bar" id="progressBar"><div class="seg-ok"></div><div class="seg-teil"></div><div class="seg-nein"></div></div>
+    <span class="progress-label" id="progressLabel"></span>
+    <button class="btn-reset" onclick="resetAll()">Zurücksetzen</button>
+  </div>
+
+  <div id="tasks"></div>
+
+  <footer>© Can Siebert · 2026 · Wirtschaftsfachwirt — VWL — Volkswirtschaftliche Grundlagen</footer>
+</div>
+
+<script>
+const DAY_ID = 'vwl-1-pa';
+const TASKS = [{"topic":"Ziele am Markt","punkte":2,"frage":"Nennen Sie das Ziel, das Nachfrager am Markt verfolgen, und das Ziel der Anbieter.","hinweis":"Beide Seiten wollen etwas maximieren — aber nicht dasselbe.","loesung":"Nachfrager wollen ihren Nutzen maximieren (möglichst hohe Bedürfnisbefriedigung mit ihrem Budget), Anbieter wollen ihren Gewinn maximieren."},{"topic":"Ökonomisches Prinzip","punkte":3,"frage":"Eine Spedition soll 500 Paletten mit möglichst wenigen Fahrten ausliefern. Ordnen Sie diesen Fall dem Maximal- oder dem Minimalprinzip zu und begründen Sie Ihre Entscheidung.","hinweis":"Prüfen Sie: Was ist fest vorgegeben — das Ziel oder die Mittel?","loesung":"Minimalprinzip — das Ziel (Auslieferung von 500 Paletten) ist fest vorgegeben, der Mitteleinsatz (Zahl der Fahrten und damit Kosten, Zeit, Kraftstoff) soll so gering wie möglich sein. Das Maximalprinzip läge vor, wenn mit einer gegebenen Zahl von Fahrten möglichst viele Paletten ausgeliefert werden sollten."},{"topic":"Marktformen","punkte":6,"frage":"Beurteilen Sie, ob die folgenden Aussagen richtig oder falsch sind, und begründen Sie jeweils kurz:\na) „Im Polypol treffen viele Anbieter auf viele Nachfrager.“\nb) „Der örtliche Wasserversorger ist ein Angebotsmonopol.“\nc) „Wenige Molkereien gegenüber vielen Milchbauern bilden ein Angebotsoligopol.“","hinweis":"Benennung immer aus Sicht der „knappen“ Marktseite — zählen Sie Anbieter und Nachfrager.","loesung":"a) Richtig — Polypol bedeutet: viele Anbieter treffen auf viele Nachfrager (z. B. Wochenmarkt).\nb) Richtig — ein Anbieter (Wasserversorger) steht vielen Nachfragern (Haushalten) gegenüber: Angebotsmonopol.\nc) Falsch — hier sind die Molkereien die Nachfrager der Milch. Wenige Nachfrager (Molkereien) treffen auf viele Anbieter (Milchbauern): Es handelt sich um ein Nachfrageoligopol."},{"topic":"Marktformen","punkte":6,"frage":"Ordnen Sie den folgenden Situationen die zutreffende Marktform zu und begründen Sie kurz:\na) Tankstellenmarkt,\nb) Wochenmarkt,\nc) die Bundeswehr als einziger Käufer bei wenigen Rüstungsherstellern.","hinweis":"Zählen Sie jeweils Anbieter und Nachfrager (viele — wenige — einer).","loesung":"a) Angebotsoligopol — wenige Anbieter (Mineralölkonzerne) stehen vielen Nachfragern (Autofahrern) gegenüber.\nb) Polypol — viele Anbieter treffen auf viele Nachfrager.\nc) Beschränktes Nachfragemonopol — ein Nachfrager (Bundeswehr) steht wenigen Anbietern (Rüstungsherstellern) gegenüber."},{"topic":"Vollkommener Markt","punkte":6,"frage":"Vergleichen Sie Börse und Gebrauchtwagenmarkt: Erläutern Sie, warum die Börse dem Idealtyp des vollkommenen Marktes nahekommt, während der Gebrauchtwagenmarkt die Bedingungen nicht erfüllt.","hinweis":"Prüfen Sie die fünf Bedingungen: Homogenität, Präferenzen, Transparenz, Reaktionsgeschwindigkeit (Punktmarkt), Marktstruktur.","loesung":"Börse: Die gehandelten Güter sind homogen (z. B. Aktien derselben Gesellschaft), es bestehen keine persönlichen, räumlichen oder zeitlichen Präferenzen, es herrscht hohe Markttransparenz, die Bedingungen des Punktmarktes (gleicher Ort, gleiche Zeit, unendlich schnelle Reaktion) sind erfüllt und es gibt viele Teilnehmer — die Börse kommt dem vollkommenen Markt daher sehr nahe.\nGebrauchtwagenmarkt: Die Güter sind heterogen (Zustand, Laufleistung, Ausstattung jedes Fahrzeugs unterschiedlich), Käufer haben persönliche und räumliche Präferenzen (Vertrauen zum Händler, Nähe), und es fehlt die Markttransparenz (verborgene Mängel, unübersichtliche Preise) — der Gebrauchtwagenmarkt ist ein unvollkommener Markt."},{"topic":"Preiselastizität","punkte":8,"frage":"Ein Fitnessstudio erhöht den Monatsbeitrag von 40 € auf 44 €. Daraufhin sinkt die Mitgliederzahl von 800 auf 680.\na) Berechnen Sie die Preiselastizität der Nachfrage und interpretieren Sie das Ergebnis.\nb) Berechnen Sie den Umsatz vor und nach der Preiserhöhung und beurteilen Sie, ob die Preiserhöhung aus Sicht des Studios sinnvoll war.","hinweis":"ε = prozentuale Mengenänderung ÷ prozentuale Preisänderung. Umsatz = Preis × Menge.","loesung":"a) Preisänderung: 4 ÷ 40 = +10 %. Mengenänderung: −120 ÷ 800 = −15 %. ε = −15 % ÷ +10 % = −1,5, Betrag |ε| = 1,5 > 1 → elastische Nachfrage: Die Kunden reagieren stark, weil sie leicht ausweichen können (andere Studios, Sport im Freien) oder verzichten.\nb) Umsatz vorher: 800 × 40 € = 32.000 €. Umsatz nachher: 680 × 44 € = 29.920 €. Der Umsatz sinkt um 2.080 € — bei elastischer Nachfrage wiegt der Mengenverlust schwerer als der höhere Preis. Die Preiserhöhung war aus Umsatzsicht nicht sinnvoll."},{"topic":"Preiselastizität","punkte":4,"frage":"Ein Diabetiker benötigt täglich Insulin, für das es keinen Ersatz gibt. Erläutern Sie, welche Preiselastizität der Nachfrage hier vorliegt, und erklären Sie, wie sich eine Preiserhöhung auf die nachgefragte Menge und den Umsatz des Anbieters auswirkt.","hinweis":"Was passiert mit der Menge, wenn die Kunden gar nicht ausweichen können?","loesung":"Es liegt (nahezu) vollkommen unelastische Nachfrage vor: ε = 0. Das Gut ist lebensnotwendig und es gibt keine Substitute — die nachgefragte Menge bleibt bei einer Preisänderung praktisch unverändert. Bei einer Preiserhöhung kaufen die Nachfrager dieselbe Menge zum höheren Preis; der Umsatz (Preis × Menge) steigt daher in vollem Umfang der Preiserhöhung. Genau deshalb sind solche Märkte (z. B. Medikamente) häufig staatlich reguliert."},{"topic":"Kreuzpreiselastizität","punkte":6,"frage":"a) Der Butterpreis steigt um 10 %, daraufhin steigt die Nachfrage nach Margarine um 5 %. Berechnen Sie die Kreuzpreiselastizität und benennen Sie die Güterbeziehung.\nb) Der Preis für Drucker steigt um 20 %, die Nachfrage nach Druckerpatronen sinkt um 8 %. Berechnen Sie auch hier die Kreuzpreiselastizität und benennen Sie die Güterbeziehung.","hinweis":"Kreuzpreiselastizität = Mengenänderung bei Gut A ÷ Preisänderung bei Gut B. Achten Sie auf das Vorzeichen!","loesung":"a) εK = +5 % ÷ +10 % = +0,5. Positives Vorzeichen → Substitutionsgüter: Wird Butter teurer, weichen die Käufer auf Margarine aus.\nb) εK = −8 % ÷ +20 % = −0,4. Negatives Vorzeichen → Komplementärgüter: Werden Drucker teurer, werden weniger Drucker gekauft — und damit sinkt auch die Nachfrage nach den ergänzenden Patronen.\nMerke: Das Vorzeichen verrät die Güterbeziehung — positiv = Substitute, negativ = Komplemente."},{"topic":"Güterbeziehungen","punkte":4,"frage":"Die Preise für Elektroautos sinken durch neue Förderprämien deutlich. Erläutern Sie die Wirkung auf die Nachfragekurve für private Ladestationen (Wallboxen) und begründen Sie mit der zugrunde liegenden Güterbeziehung.","hinweis":"E-Auto und Wallbox werden gemeinsam genutzt.","loesung":"Elektroauto und Wallbox sind Komplementärgüter — sie ergänzen sich in der Nutzung. Sinkt der Preis des Komplements (E-Auto), werden mehr E-Autos gekauft, und damit steigt auch die Nachfrage nach Wallboxen, obwohl deren Preis unverändert ist: Die Nachfragekurve für Wallboxen verschiebt sich nach rechts (Rechtsverschiebung). Es handelt sich um eine Verschiebung der Kurve, nicht um eine Bewegung auf der Kurve, weil sich nicht der Preis der Wallbox selbst, sondern eine andere Einflussgröße geändert hat."},{"topic":"Preisbildung","punkte":5,"frage":"Nach einem verregneten Frühjahr fällt die Erdbeerernte deutlich kleiner aus als üblich. Erläutern Sie mithilfe des Marktmodells, wie sich Angebotskurve, Gleichgewichtspreis und Gleichgewichtsmenge verändern.","hinweis":"Ändert sich hier der Preis des Gutes selbst oder eine andere Einflussgröße des Angebots?","loesung":"Der Ernteausfall verringert das Angebot bei jedem Preis: Die Angebotskurve verschiebt sich nach links (Linksverschiebung — Ursache ist nicht der Erdbeerpreis selbst, sondern die verringerte Produktionsmenge bzw. gestiegene Kosten je Einheit). Bei unveränderter Nachfragekurve entsteht ein neuer Schnittpunkt: Der Gleichgewichtspreis steigt, die Gleichgewichtsmenge sinkt. Der höhere Preis erfüllt dabei seine Signalfunktion — er zeigt die Knappheit der Erdbeeren an."},{"topic":"Preisbildung","punkte":6,"frage":"Auf einem Markt gelten folgende Zusammenhänge (x = Menge in Stück, p = Preis in €):\nNachfrage: x = 1.000 − 100 · p\nAngebot: x = 200 + 100 · p\na) Berechnen Sie Gleichgewichtspreis, Gleichgewichtsmenge und den Umsatz im Gleichgewicht.\nb) Beschreiben Sie die Marktsituation bei einem Preis von 6 € mit den passenden Fachbegriffen.","hinweis":"Im Gleichgewicht gilt: nachgefragte Menge = angebotene Menge. Setzen Sie beide Gleichungen gleich.","loesung":"a) Gleichsetzen: 1.000 − 100p = 200 + 100p → 800 = 200p → p* = 4 €. Einsetzen: x* = 1.000 − 100 × 4 = 600 Stück (Kontrolle: 200 + 100 × 4 = 600 ✓). Umsatz im Gleichgewicht = p* × x* = 4 € × 600 = 2.400 €.\nb) Bei 6 €: Nachfrage = 1.000 − 600 = 400 Stück, Angebot = 200 + 600 = 800 Stück. Das Angebot übersteigt die Nachfrage um 400 Stück → Angebotsüberschuss (Nachfragedefizit), also ein Käufermarkt: Die Anbieter senken die Preise und drosseln die Produktion, bis der Markt zum Gleichgewicht bei 4 € zurückfindet (Preismechanismus)."},{"topic":"Grundbegriffe","punkte":3,"frage":"Unterscheiden Sie freie und knappe (wirtschaftliche) Güter anhand je eines Beispiels und begründen Sie, warum sich die VWL nur mit knappen Gütern beschäftigt.","hinweis":"Für welche Güter bildet sich ein Preis?","loesung":"Freie Güter stehen unbegrenzt und ohne Gegenleistung zur Verfügung (z. B. Atemluft, Sonnenlicht) — sie haben keinen Preis. Knappe (wirtschaftliche) Güter sind im Verhältnis zu den Bedürfnissen begrenzt und müssen produziert bzw. bewirtschaftet werden (z. B. Trinkwasser aus der Leitung, Lebensmittel) — für sie bildet sich am Markt ein Preis. Nur bei knappen Gütern stellt sich die Frage des planvollen Umgangs (Wirtschaften); freie Güter erfordern keine ökonomischen Entscheidungen."},{"topic":"Preisfunktionen","punkte":5,"frage":"Nach einer Missernte in Brasilien steigen die Weltmarktpreise für Kaffee stark an. In der Folge investieren Anbauländer wie Vietnam in zusätzliche Anbauflächen. Erläutern Sie anhand dieses Falls die Signalfunktion und die Allokationsfunktion des Marktpreises.","hinweis":"Was „meldet“ der gestiegene Preis — und wohin lenkt er die Produktionsfaktoren?","loesung":"Signalfunktion: Der stark gestiegene Kaffeepreis zeigt allen Marktteilnehmern die Knappheit des Gutes an — er informiert Anbieter und Nachfrager über die veränderte Marktlage (Informationsfunktion).\nAllokationsfunktion (Lenkungsfunktion): Der hohe Preis verspricht höhere Gewinne und lenkt dadurch Produktionsfaktoren in die Kaffeeproduktion — andere Anbauländer weiten ihre Flächen aus, Kapital und Arbeit fließen in dieses Marktsegment. So sorgt der Preis dafür, dass knappe Faktoren dort eingesetzt werden, wo die Nachfrage am dringendsten ist."}];
+const KEY = 'wfw_lernbereich_' + DAY_ID;
+
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { state = {}; }
+function save() { localStorage.setItem(KEY, JSON.stringify(state)); }
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function render() {
+  const wrap = document.getElementById('tasks');
+  wrap.innerHTML = TASKS.map((t, i) => {
+    const st = state[i] || {};
+    return `
+    <div class="task ${st.check || ''}" id="task-${i}">
+      <div class="task-head">
+        <span class="task-num">Aufgabe ${i + 1}</span>
+        <span class="task-topic">${esc(t.topic)}</span>
+        ${t.punkte ? `<span class="task-punkte">${t.punkte} Punkte</span>` : ''}
+      </div>
+      <div class="task-frage">${esc(t.frage)}</div>
+      ${t.hinweis ? `<details class="task-hinweis"><summary>💡 Tipp anzeigen</summary><p>${esc(t.hinweis)}</p></details>` : ''}
+      <textarea id="answer-${i}" placeholder="Ihre Antwort — in vollständigen Sätzen, wie in der Prüfung …">${esc(st.answer || '')}</textarea>
+      <div class="task-actions">
+        <button class="btn btn-loesung" onclick="toggleLoesung(${i})">Lösungshinweis anzeigen</button>
+        <span class="saved-note" id="saved-${i}"></span>
+      </div>
+      <div class="loesung ${st.open ? 'show' : ''}" id="loesung-${i}">
+        <div class="loesung-label">✓ Lösungshinweis</div>
+        <div class="loesung-text">${esc(t.loesung)}</div>
+      </div>
+      <div class="self-check ${st.open ? 'show' : ''}" id="check-${i}">
+        <span>Selbsteinschätzung:</span>
+        <button class="btn btn-ok ${st.check === 'ok' ? 'active' : ''}" onclick="setCheck(${i}, 'ok')">✓ Gewusst</button>
+        <button class="btn btn-teil ${st.check === 'teil' ? 'active' : ''}" onclick="setCheck(${i}, 'teil')">≈ Teilweise</button>
+        <button class="btn btn-nein ${st.check === 'nein' ? 'active' : ''}" onclick="setCheck(${i}, 'nein')">✗ Nochmal üben</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  TASKS.forEach((t, i) => {
+    const ta = document.getElementById('answer-' + i);
+    let timer = null;
+    ta.addEventListener('input', () => {
+      state[i] = state[i] || {};
+      state[i].answer = ta.value;
+      save();
+      const note = document.getElementById('saved-' + i);
+      note.textContent = 'gespeichert ✓';
+      clearTimeout(timer);
+      timer = setTimeout(() => { note.textContent = ''; }, 1500);
+    });
+  });
+  updateProgress();
+}
+
+function toggleLoesung(i) {
+  state[i] = state[i] || {};
+  state[i].open = !state[i].open;
+  save();
+  document.getElementById('loesung-' + i).classList.toggle('show', state[i].open);
+  document.getElementById('check-' + i).classList.toggle('show', state[i].open);
+}
+
+function setCheck(i, val) {
+  state[i] = state[i] || {};
+  state[i].check = state[i].check === val ? null : val;
+  save();
+  const card = document.getElementById('task-' + i);
+  card.classList.remove('ok', 'teil', 'nein');
+  if (state[i].check) card.classList.add(state[i].check);
+  document.querySelectorAll(`#check-${i} .btn`).forEach(b => b.classList.remove('active'));
+  if (state[i].check) {
+    const cls = { ok: 'btn-ok', teil: 'btn-teil', nein: 'btn-nein' }[state[i].check];
+    document.querySelector(`#check-${i} .${cls}`).classList.add('active');
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const counts = { ok: 0, teil: 0, nein: 0 };
+  TASKS.forEach((t, i) => { const c = (state[i] || {}).check; if (counts[c] !== undefined) counts[c]++; });
+  const n = TASKS.length;
+  const bar = document.getElementById('progressBar');
+  bar.querySelector('.seg-ok').style.width = (counts.ok / n * 100) + '%';
+  bar.querySelector('.seg-teil').style.width = (counts.teil / n * 100) + '%';
+  bar.querySelector('.seg-nein').style.width = (counts.nein / n * 100) + '%';
+  const done = counts.ok + counts.teil + counts.nein;
+  document.getElementById('progressLabel').textContent =
+    `${done}/${n} bearbeitet · ${counts.ok} gewusst · ${counts.teil} teilweise · ${counts.nein} üben`;
+}
+
+function resetAll() {
+  if (!confirm('Alle Antworten und Bewertungen dieser Lektion löschen?')) return;
+  state = {};
+  save();
+  render();
+}
+
+render();
+</script>
+</body>
+</html>

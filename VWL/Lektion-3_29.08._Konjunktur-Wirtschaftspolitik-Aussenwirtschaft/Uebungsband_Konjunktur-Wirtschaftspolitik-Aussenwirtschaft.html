@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Lektion 3 · Übungsband — Konjunktur, Wirtschaftspolitik & Außenwirtschaft</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:#0EA5A4; --bfw-primary-dark:#0F766E;
+  --bfw-accent:#F59E0B; --bfw-warn:#F97316;
+  --bfw-success:#10B981; --bfw-danger:#EF4444;
+  --bfw-ink:#0F172A; --bfw-ink-soft:#475569;
+  --bfw-bg:#FAFAFA; --bfw-bg-soft:#F8FAFC;
+  --bfw-bg-teal:#ECFEFF; --bfw-bg-amber:#FEF3C7;
+  --bfw-bg-rose:#FFE4E6; --bfw-border:#E2E8F0;
+  --bfw-bg-green:#D1FAE5;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, var(--bfw-bg-teal) 0%, var(--bfw-bg) 50%, var(--bfw-bg-amber) 100%);
+  min-height: 100vh; color: var(--bfw-ink); -webkit-font-smoothing: antialiased;
+  padding: 2rem 1rem 4rem;
+}
+.container { max-width: 900px; margin: 0 auto; }
+header { text-align: center; margin-bottom: 1.6rem; }
+.tag-pill {
+  display: inline-block; background: var(--bfw-bg-teal); color: var(--bfw-primary-dark);
+  font-weight: 700; font-size: 0.82rem; padding: 0.3rem 0.9rem; border-radius: 999px;
+  letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.8rem;
+}
+h1 { font-size: 1.7rem; color: var(--bfw-primary-dark); margin-bottom: 0.4rem; }
+.subtitle { color: var(--bfw-ink-soft); font-size: 1.02rem; line-height: 1.5; }
+
+.progress-wrap {
+  background: white; border: 1px solid var(--bfw-border); border-radius: 14px;
+  padding: 1rem 1.3rem; margin-bottom: 1.6rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.progress-bar { flex: 1; min-width: 200px; height: 12px; background: var(--bfw-bg-soft); border: 1px solid var(--bfw-border); border-radius: 999px; overflow: hidden; display: flex; }
+.progress-bar .seg-ok { background: var(--bfw-success); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-teil { background: var(--bfw-accent); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-nein { background: var(--bfw-danger); height: 100%; transition: width 0.3s; }
+.progress-label { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; white-space: nowrap; }
+.btn-reset {
+  padding: 0.45rem 0.9rem; background: transparent; color: var(--bfw-ink-soft);
+  border: 1.5px solid var(--bfw-border); border-radius: 8px; font-family: inherit;
+  font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.15s;
+}
+.btn-reset:hover { color: var(--bfw-danger); border-color: var(--bfw-danger); }
+
+.task {
+  background: white; border: 1px solid var(--bfw-border); border-left: 5px solid var(--bfw-border);
+  border-radius: 14px; padding: 1.4rem 1.5rem; margin-bottom: 1.2rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04); transition: border-color 0.2s;
+}
+.task.ok { border-left-color: var(--bfw-success); }
+.task.teil { border-left-color: var(--bfw-accent); }
+.task.nein { border-left-color: var(--bfw-danger); }
+.task-head { display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
+.task-num { font-weight: 800; color: var(--bfw-primary-dark); font-size: 1.05rem; white-space: nowrap; }
+.task-topic {
+  display: inline-block; background: var(--bfw-bg-amber); color: #92400E;
+  font-weight: 700; font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 999px;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.task-punkte { margin-left: auto; color: var(--bfw-ink-soft); font-size: 0.82rem; font-weight: 600; white-space: nowrap; }
+.task-frage { font-size: 1.02rem; line-height: 1.55; margin-bottom: 0.9rem; white-space: pre-line; }
+.task-hinweis { margin-bottom: 0.9rem; }
+.task-hinweis summary { cursor: pointer; color: var(--bfw-primary-dark); font-weight: 600; font-size: 0.9rem; }
+.task-hinweis p { margin-top: 0.5rem; padding: 0.7rem 0.9rem; background: var(--bfw-bg-teal); border-radius: 8px; font-size: 0.92rem; color: var(--bfw-ink-soft); line-height: 1.5; }
+textarea {
+  width: 100%; min-height: 110px; padding: 0.8rem 0.9rem;
+  border: 1.5px solid var(--bfw-border); border-radius: 10px;
+  font-family: inherit; font-size: 0.98rem; line-height: 1.5; resize: vertical;
+  background: var(--bfw-bg-soft); transition: all 0.15s;
+}
+textarea:focus { outline: none; border-color: var(--bfw-primary); background: white; box-shadow: 0 0 0 3px rgba(14,165,164,0.12); }
+.task-actions { margin-top: 0.8rem; display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+.btn {
+  padding: 0.55rem 1.1rem; border: none; border-radius: 9px; cursor: pointer;
+  font-family: inherit; font-size: 0.92rem; font-weight: 700; transition: all 0.15s;
+}
+.btn-loesung { background: var(--bfw-primary); color: white; }
+.btn-loesung:hover { background: var(--bfw-primary-dark); }
+.loesung {
+  display: none; margin-top: 1rem; padding: 1rem 1.1rem;
+  background: var(--bfw-bg-green); border: 1px solid #A7F3D0; border-radius: 10px;
+}
+.loesung.show { display: block; }
+.loesung-label { font-weight: 800; color: #047857; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+.loesung-text { font-size: 0.97rem; line-height: 1.6; white-space: pre-line; }
+.self-check { display: none; margin-top: 0.9rem; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.self-check.show { display: flex; }
+.self-check span { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; }
+.btn-ok { background: var(--bfw-bg-green); color: #047857; border: 1.5px solid #A7F3D0; }
+.btn-teil { background: var(--bfw-bg-amber); color: #92400E; border: 1.5px solid #FDE68A; }
+.btn-nein { background: var(--bfw-bg-rose); color: #B91C1C; border: 1.5px solid #FECACA; }
+.btn-ok.active, .btn-ok:hover { background: var(--bfw-success); color: white; }
+.btn-teil.active, .btn-teil:hover { background: var(--bfw-accent); color: white; }
+.btn-nein.active, .btn-nein:hover { background: var(--bfw-danger); color: white; }
+.saved-note { font-size: 0.78rem; color: var(--bfw-ink-soft); margin-left: auto; }
+
+footer { text-align: center; margin-top: 2.5rem; color: var(--bfw-ink-soft); font-size: 0.85rem; }
+@media print { .btn, .btn-reset, .self-check { display: none !important; } .loesung { display: block; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <span class="tag-pill">Lektion 3 · Übungsband</span>
+    <h1>Übungsband: Konjunktur, Wirtschaftspolitik & Außenwirtschaft</h1>
+    <p class="subtitle">Beantworten Sie die Aufgaben in eigenen Worten im Antwortfeld — Ihre Eingaben werden lokal im Browser gespeichert. Prüfen Sie sich danach mit dem <strong>Lösungshinweis</strong> und bewerten Sie sich selbst. In der IHK-Prüfung zählen ausformulierte Begründungen!</p>
+  </header>
+
+  <div class="progress-wrap">
+    <div class="progress-bar" id="progressBar"><div class="seg-ok"></div><div class="seg-teil"></div><div class="seg-nein"></div></div>
+    <span class="progress-label" id="progressLabel"></span>
+    <button class="btn-reset" onclick="resetAll()">Zurücksetzen</button>
+  </div>
+
+  <div id="tasks"></div>
+
+  <footer>© Can Siebert · 2026 · Wirtschaftsfachwirt — VWL — Volkswirtschaftliche Grundlagen</footer>
+</div>
+
+<script>
+const DAY_ID = 'vwl-3-ub';
+const TASKS = [{"topic":"Kap. 3 — Geldpolitik der EZB","punkte":5,"frage":"Die EZB hat als vorrangiges Ziel die Preisniveaustabilität im Euroraum.\na) Erklären Sie, was unter der Offenmarktpolitik der EZB zu verstehen ist.\nb) Erklären Sie, was im Rahmen der Offenmarktpolitik unter dem Hauptrefinanzierungsinstrument verstanden wird. (angelehnt an Übungsband Übung 38)","hinweis":"Stichworte: Wertpapierpensionsgeschäfte, Leitzins, Laufzeit eine Woche.","loesung":"a) Offenmarktpolitik: Die EZB steuert die Liquidität der Geschäftsbanken und das Zinsniveau, indem sie am offenen Markt Geschäfte mit den Banken abschließt — vor allem befristete Wertpapierpensionsgeschäfte, bei denen die Banken Wertpapiere als Sicherheit hinterlegen und dafür Zentralbankgeld erhalten. Kauft die EZB (bzw. teilt sie mehr Geld zu), steigt die Geldmenge; umgekehrt wird Liquidität abgeschöpft.\nb) Das Hauptrefinanzierungsinstrument ist das wichtigste Offenmarktgeschäft: wöchentlich angebotene Wertpapierpensionsgeschäfte mit in der Regel einwöchiger Laufzeit, über die sich die Geschäftsbanken den Großteil ihres Zentralbankgeldes beschaffen. Der zugehörige Hauptrefinanzierungssatz ist der maßgebliche Leitzins der EZB."},{"topic":"Kap. 3 — Geldpolitik der EZB","punkte":6,"frage":"Beurteilen Sie, ob die folgenden Aussagen zum geldpolitischen Instrumentarium der EZB richtig oder falsch sind:\na) Die Geschäftsbanken müssen ihre Mindestreservepflicht im Monatsdurchschnitt erfüllen.\nb) Die Mindestreserve bindet die Geschäftsbanken an die Zentralbank.\nc) Der Leitzins für die Wertpapierpensionsgeschäfte liegt unter dem Zinssatz der Einlagefazilität.\nd) Der Hauptrefinanzierungssatz ist identisch mit dem Zinssatz der Spitzenrefinanzierungsfazilität.\ne) In Zeiten hoher Inflation wird der Hauptrefinanzierungssatz angehoben.\nf) Die Feinsteuerung des Geldmarktes erfolgt über die ständigen Fazilitäten. (angelehnt an Übungsband Übung 42)","hinweis":"Zinskorridor: Einlagefazilität < Hauptrefinanzierungssatz < Spitzenrefinanzierungsfazilität.","loesung":"a) Richtig — maßgeblich ist der Durchschnitt der Erfüllungsperiode, nicht der tägliche Bestand.\nb) Richtig — über die Pflichteinlagen sind die Geschäftsbanken an die Zentralbank angebunden.\nc) Falsch — der Hauptrefinanzierungssatz liegt über dem Satz der Einlagefazilität; die Einlagefazilität bildet die Untergrenze des Zinskorridors.\nd) Falsch — die Spitzenrefinanzierungsfazilität (Übernachtkredit) ist teurer als die Hauptrefinanzierung und bildet die Obergrenze des Korridors.\ne) Richtig — höhere Leitzinsen verteuern die Refinanzierung, dämpfen Kreditvergabe und Nachfrage und wirken so der Inflation entgegen.\nf) Falsch — zur Feinsteuerung dienen gesonderte Feinsteuerungsoperationen der EZB; die ständigen Fazilitäten nutzen die Banken auf eigene Initiative für Übernachtliquidität."},{"topic":"Kap. 3 — Restriktive Geldpolitik","punkte":3,"frage":"Mit welchen drei geldpolitischen Maßnahmen kann die EZB einer zu hohen Inflation entgegenwirken (restriktive Geldpolitik)? (angelehnt an Übungsband Übung 43)","loesung":"1. Erhöhung der Mindestreservesätze — den Banken wird Liquidität entzogen.\n2. Verringerung des Zuteilungsvolumens bei den Refinanzierungsgeschäften — weniger Zentralbankgeld fließt in den Bankensektor.\n3. Erhöhung des Leitzinses — Kredite verteuern sich, die Geldnachfrage und damit die gesamtwirtschaftliche Nachfrage werden gedämpft."},{"topic":"Kap. 3 — EZB-Grundwissen","punkte":5,"frage":"Beschreiben Sie die Stellung der Europäischen Zentralbank: Seit wann besitzt sie die geldpolitische Kompetenz, wo hat sie ihren Sitz, mit wem bildet sie ein System, was ist ihre Hauptaufgabe und wie ist ihre Unabhängigkeit ausgestaltet? (angelehnt an Übungsband Übung 44)","loesung":"Mit der Einführung des Euro ging die geldpolitische Kompetenz von den nationalen Notenbanken auf die EZB über. Sie hat ihren Sitz in Frankfurt am Main und bildet gemeinsam mit den nationalen Zentralbanken das Europäische System der Zentralbanken (ESZB). Ihre Hauptaufgabe ist die Gewährleistung der Preisniveaustabilität im Euroraum. Beim Einsatz ihres geldpolitischen Instrumentariums ist die EZB unabhängig von Weisungen der Mitgliedstaaten und ihrer Regierungen."},{"topic":"Kap. 3 — Grenzen der Geldpolitik","punkte":3,"frage":"Nennen Sie drei Gründe, warum die Geldpolitik der EZB ihr Ziel verfehlen kann bzw. an Grenzen stößt. (angelehnt an Übungsband Übung 45)","hinweis":"Denken Sie an Kapitalströme, Tarifparteien und Erwartungen.","loesung":"1. Internationale Finanzströme können Inflation in den Euroraum importieren und die Wirkung der Geldpolitik überlagern.\n2. Überhöhte Lohnabschlüsse der Tarifparteien können die Inflation anheizen — auf die Lohnpolitik hat die EZB keinen Einfluss.\n3. Bei pessimistischer Grundstimmung der Wirtschaftssubjekte regen selbst niedrige Zinsen die Investitions- und Konsumbereitschaft nicht an (die Geldpolitik wirkt dann wie ein „Ziehen an einem Seil“)."},{"topic":"Kap. 3 — Fiskalpolitik und Staatshaushalt","punkte":8,"frage":"Bearbeiten Sie die folgenden Teilaufgaben zum Staatshaushalt:\na) Nennen Sie die wichtigsten Einnahmequellen und Ausgabearten des Staates.\nb) Erläutern Sie drei Probleme, die eine hohe Staatsverschuldung mit sich bringt. (angelehnt an Übungsband Übung 46)","hinweis":"Einnahmen: Abgaben sind mehr als nur Steuern. Probleme: Schuldendienst, Handlungsspielraum, EU-Regeln.","loesung":"a) Einnahmen: Erhebung von Abgaben (Steuern, Gebühren, Beiträge), Aufnahme von Krediten, Erlöse aus Privatisierungen sowie Einnahmen aus eigener wirtschaftlicher Betätigung.\nAusgaben: Bereitstellung öffentlicher Güter (z. B. Infrastruktur, innere Sicherheit, Bildung), Zahlung von Transferleistungen (z. B. Renten, Sozialleistungen) und Zahlung von Subventionen.\nb) Probleme hoher Staatsverschuldung: 1. Ein wachsender Teil der Steuereinnahmen wird durch den Schuldendienst (Zins und Tilgung) gebunden — der Spielraum künftiger Wirtschaftspolitik wird stark eingeengt. 2. Verliert der Staat dadurch Handlungsmöglichkeiten, drohen steigende Steuer- und Abgabenlasten für die Bürger. 3. Die Maastricht-Kriterien sind einzuhalten — eine zu hohe Verschuldung kann Sanktionen der EU nach sich ziehen."},{"topic":"Kap. 3 — Innovation und Wachstum","punkte":2,"frage":"Grenzen Sie Produktinnovation und Prozessinnovation voneinander ab. (angelehnt an Übungsband Übung 47)","loesung":"Produktinnovation: Neue, bisher unbekannte Produkte werden auf den Markt gebracht (z. B. ein völlig neuartiges Gerät). Prozessinnovation: Neuartige Produktions- und Verfahrenstechniken werden angewendet — das Produkt bleibt, aber es wird anders (z. B. kostengünstiger, schneller, umweltschonender) hergestellt."},{"topic":"Kap. 3 — Arbeitsmarktpolitik","punkte":8,"frage":"Der deutsche Arbeitsmarkt hat sich zuletzt erfreulich entwickelt; die Erwerbstätigkeit ist so hoch wie nie.\na) Diese Erfolge werden auf einen Strategiewechsel der Arbeitsmarktpolitik zurückgeführt — nennen Sie vier Elemente dieses Strategiewechsels.\nb) Die Kritik richtet sich vor allem auf die Qualität der Beschäftigungsverhältnisse — nennen Sie vier Kritikpunkte. (angelehnt an Übungsband Übung 53)","hinweis":"a) Stichwort „Fördern und Fordern“. b) Stichwort prekäre Beschäftigung.","loesung":"a) Elemente des Strategiewechsels: 1. mehr Flexibilität am Arbeitsmarkt durch Abbau von Rigiditäten, 2. eine Wirtschaftspolitik, die gezielt die Entstehung neuer Arbeitsplätze fördert, 3. Stärkung der Eigenverantwortung der Arbeitsuchenden nach der Leitidee „Fördern und Fordern“, 4. Aufbau spezieller Integrationsprogramme, etwa für Jugendliche.\nb) Kritikpunkte: 1. Zunahme befristeter Arbeitsverhältnisse, 2. Ausweitung der Leiharbeit (Arbeitnehmerüberlassung), 3. Zunahme der Scheinselbstständigkeit, 4. Tendenz, den gesetzlichen Mindestlohn durch besondere Gestaltung der Arbeitsverhältnisse zu umgehen."},{"topic":"Kap. 3 — Arbeitsmarktpolitik","punkte":5,"frage":"Erörtern Sie aktuelle Probleme auf dem deutschen Arbeitsmarkt (mindestens vier Aspekte). (angelehnt an Übungsband Übung 54)","loesung":"Individuelle Lösung — mögliche Diskussionspunkte: schwierige Integration besonderer Personengruppen in den Arbeitsmarkt (Langzeitarbeitslose, Gering- oder Fehlqualifizierte, Jugendliche ohne Schulabschluss); Fachkräftemangel, etwa bei Facharbeitern und Ingenieuren in Industrie und Handwerk; unbesetzte Ausbildungsplätze im Handwerk; Integration von Menschen mit Migrationshintergrund (Sprach-, Bildungs- und Qualifikationshürden); Finanzierbarkeit von Qualifizierungs- und Integrationsmaßnahmen."},{"topic":"Kap. 3 — Umweltpolitik","punkte":5,"frage":"Grundlage der Umweltpolitik sind Verursacher- und Gemeinlastprinzip. Mit welchen fünf Maßnahmenarten kann der Staat auf die privaten Wirtschaftssubjekte in der Umweltpolitik Einfluss nehmen? (angelehnt an Übungsband Übung 55)","hinweis":"Von der weichen Information bis zum harten Verbot.","loesung":"1. Aufklärung, 2. Information, 3. Anreize (z. B. Förderprogramme, Steuervorteile), 4. Verbote (ordnungsrechtliche Auflagen) und 5. Umweltzertifikate (handelbare Verschmutzungsrechte)."},{"topic":"Kap. 3 — Umweltzertifikate","punkte":5,"frage":"Erklären Sie das umweltpolitische Instrument der Umweltzertifikate: Was berechtigen sie, wie steuern sie das Verhalten der Unternehmen, und was geschieht bei Unter- bzw. Überschreitung der zugeteilten Menge? (angelehnt an Übungsband Übung 56)","hinweis":"Zertifikat = handelbare Verschmutzungserlaubnis mit Obergrenze.","loesung":"Umweltzertifikate erlauben eine Umweltbelastung nur gegen eine entsprechende Berechtigung: Ein Zertifikat gestattet dem Unternehmen einen bestimmten Schadstoffausstoß pro Jahr. Es liegt damit im eigenen Interesse des Unternehmens, innerhalb dieser Höchstverschmutzungsgrenze möglichst effizient zu produzieren. Bleibt das Unternehmen unter der Grenze seines Zertifikats, kann es einen Teil seiner Verschmutzungserlaubnis gewinnbringend weiterverkaufen. Unternehmen, die ihre zugeteilten Rechte überschreiten, müssen zusätzliche Zertifikate zukaufen — ihre Kosten und Preise steigen, sodass sie auf Dauer vom Markt verdrängt werden. So wird Umweltschutz über den Marktmechanismus gesteuert."},{"topic":"Kap. 3 — Nachhaltigkeit","punkte":4,"frage":"Erläutern Sie das Prinzip der Nachhaltigkeit in der Umweltpolitik: Herkunft des Gedankens und drei Regeln für nachhaltiges Wirtschaften. (angelehnt an Übungsband Übung 57)","hinweis":"Der Grundgedanke stammt aus der Forstwirtschaft.","loesung":"Das Nachhaltigkeitsprinzip sichert die natürlichen Lebensgrundlagen und erlaubt zugleich angemessenes Wirtschaftswachstum. Ursprünglich stammt das Handlungsprinzip aus der Forstwirtschaft (nicht mehr Holz schlagen, als nachwächst) und wurde später auf die Nutzung aller Ressourcen (Rohstoffe, Energie, Nahrungsmittel) übertragen.\nRegeln für nachhaltiges Wirtschaften: 1. Bei erneuerbaren Ressourcen darf die Abbaurate die Regenerationsrate nicht übersteigen. 2. Abfallmengen und Schadstoffemissionen dürfen die Aufnahmefähigkeit der Natur nicht überschreiten. 3. Der Verbrauch nicht erneuerbarer Ressourcen muss ausgeglichen werden, z. B. durch Steigerung der Ressourceneffizienz bzw. Ersatz durch erneuerbare Ressourcen."},{"topic":"Kap. 3 — Konjunktur","punkte":6,"frage":"Wichtige wirtschaftliche Größen wie Produktion, Beschäftigung, Außenhandel und Preise steigen und fallen im Zeitablauf. Definieren Sie den Begriff Konjunktur und beschreiben Sie die typischen Phasen eines Konjunkturzyklus. (angelehnt an Übungsband Übung 58)","hinweis":"Vier Phasen von der Erholung bis zur Talsohle.","loesung":"Konjunktur bezeichnet die mittelfristigen Schwankungen der wirtschaftlichen Aktivität in der Gesamtwirtschaft.\nTypische Phasen des Konjunkturzyklus: 1. Aufschwung (Expansion): steigende Produktion, Auftragseingänge und Beschäftigung, wachsende Zuversicht. 2. Hochkonjunktur (Boom): Vollauslastung der Kapazitäten, Überstunden, steigende Löhne und Preise, Zinsanstieg. 3. Abschwung (Rezession): sinkende Nachfrage, Auftragsrückgänge, Kurzarbeit, zunehmende Arbeitslosigkeit, Investitionszurückhaltung. 4. Tiefphase (Depression): niedrige Produktion und Kapazitätsauslastung, hohe Arbeitslosigkeit, gedrückte Preise und Zinsen — bis eine neue Erholung einsetzt."},{"topic":"Kap. 3 — Nachfrage- vs. Angebotspolitik","punkte":6,"frage":"Stellen Sie in einer Tabelle typische Maßnahmen der nachfrageorientierten Wirtschaftspolitik den typischen Maßnahmen der angebotsorientierten Wirtschaftspolitik gegenüber (je mindestens vier). (angelehnt an Übungsband Übung 59)","hinweis":"Nachfragepolitik setzt beim Konsum an, Angebotspolitik bei den Produktionsbedingungen.","loesung":"Nachfrageorientierte Politik (keynesianisch): antizyklische Fiskalpolitik; staatliche Ausgaben- und Beschäftigungsprogramme (z. B. öffentliche Investitionen); Steuersenkungen und höhere Transferzahlungen zur Stärkung der Kaufkraft privater Haushalte; kreditfinanzierte Mehrausgaben im Abschwung (deficit spending) und Rücklagenbildung im Boom.\nAngebotsorientierte Politik: Senkung von Unternehmenssteuern und Abgaben; Abbau von Bürokratie und Regulierung (Deregulierung, Privatisierung); Flexibilisierung des Arbeitsmarktes und moderate Lohnpolitik; Förderung von Investitionen, Forschung und Innovation zur Verbesserung der Standort- und Investitionsbedingungen."},{"topic":"Kap. 3 — Nachfrage- vs. Angebotspolitik","punkte":6,"frage":"Bearbeiten Sie die folgenden Teilaufgaben:\na) Vergleichen Sie die Rolle des Staates bei der Konjunktursteuerung aus Sicht der nachfrageorientierten mit der Sicht der angebotsorientierten Wirtschaftspolitik.\nb) Nennen Sie drei Kritikpunkte an der Beschäftigungspolitik nach John Maynard Keynes. (angelehnt an Übungsband Übung 60)","hinweis":"b) Stichworte: timelags, crowding-out, deficit spending.","loesung":"a) Nachfrageorientierte Wirtschaftspolitik: Der Staat übernimmt eine aktive Rolle in der Konjunktursteuerung und beeinflusst die gesamtwirtschaftliche Nachfrage direkt über Steuer- und Ausgabenpolitik. Angebotsorientierte Wirtschaftspolitik: Der Staat verhält sich passiv und neutral gegenüber der Konjunktur und beschränkt sich darauf, die wirtschaftlichen Rahmenbedingungen — also die Angebots- und Investitionsbedingungen — zu verbessern.\nb) Kritikpunkte an Keynes: 1. Zeitliche Verzögerungen (timelags) zwischen Erkenntnis, Entscheidung und Wirkung der Maßnahmen — die Wirkung kommt oft zu spät. 2. Verdrängung privater Investitionen durch staatliche Investitionen (crowding-out). 3. Steigende Staatsausgaben führen zu höherer Abgaben- und Steuerbelastung sowie wachsender Staatsverschuldung (Gefahr des dauerhaften deficit spending)."},{"topic":"Kap. 4 — Freihandel und Protektionismus","punkte":5,"frage":"Bearbeiten Sie:\na) Grenzen Sie Freihandel und Protektionismus voneinander ab.\nb) Welche zwei Gruppen von Handelshemmnissen werden unterschieden? Nennen Sie je zwei Beispiele. (angelehnt an Übungsband Übung 61)","hinweis":"tarifär = über Preise/Abgaben; nichttarifär = über Mengen und Vorschriften.","loesung":"a) Freihandel: völlig unbehinderter internationaler Güteraustausch ohne staatliche Beschränkungen. Protektionismus: Politik der Einfuhrbeschränkung und Exportförderung mit dem Ziel, die einheimische Produktion zu schützen bzw. zu unterstützen.\nb) Tarifäre Handelshemmnisse: z. B. Zölle, Steuern und Subventionen. Nichttarifäre Handelshemmnisse: z. B. Kontingente (Mengenbeschränkungen), technische Normen, Gesundheits- und Sicherheitsstandards sowie erschwerte Abfertigungs- und Genehmigungsverfahren."},{"topic":"Kap. 4 — Zölle und Kontingente","punkte":5,"frage":"Erklären Sie die Begriffe Zoll (mit den beiden Zielsetzungen Finanzzoll und Schutzzoll) und Kontingent. Begründen Sie, warum Kontingente als nicht marktkonforme Mittel gelten. (angelehnt an Übungsband Übung 62)","loesung":"Zölle sind Abgaben, die der Staat beim grenzüberschreitenden Warenverkehr erhebt — heute praktisch nur noch als Einfuhrzölle (Importzölle). Sie dienen entweder dazu, dem Staat Einnahmen zu verschaffen (Finanzzoll), oder dazu, einen einheimischen Wirtschaftszweig vor ausländischer Konkurrenz zu schützen (Schutzzoll).\nKontingente sind mengenmäßige Beschränkungen des grenzüberschreitenden Warenverkehrs, fast immer Importkontingente, ebenfalls zum Schutz heimischer Wirtschaftszweige. Sie gelten als nicht marktkonform, weil sie den Preismechanismus außer Kraft setzen: Nicht mehr Preis und Wettbewerb, sondern die staatlich festgelegte Menge bestimmt das Marktergebnis."},{"topic":"Kap. 4 — Europäische Union","punkte":6,"frage":"Zum Erscheinen des Übungsbands hatte die EU 28 Mitgliedstaaten.\na) Nennen Sie mindestens zwölf EU-Mitgliedstaaten.\nb) Erläutern Sie am Beispiel der Gründungsmitglieder der Währungsunion und eines später beigetretenen Landes, wann der Euro jeweils als Buchgeld und als Bargeld eingeführt wurde. (angelehnt an Übungsband Übung 63)","loesung":"a) EU-Staaten (Stand des Übungsbands, 28 inkl. Vereinigtes Königreich vor dem Brexit): Belgien, Bulgarien, Dänemark, Deutschland, Estland, Finnland, Frankreich, Griechenland, Irland, Italien, Kroatien, Lettland, Litauen, Luxemburg, Malta, Niederlande, Österreich, Polen, Portugal, Rumänien, Schweden, Slowakei, Slowenien, Spanien, Tschechien, Ungarn, Vereinigtes Königreich, Zypern.\nb) Die Gründungsmitglieder der Währungsunion (z. B. Belgien, Deutschland, Finnland, Frankreich) führten den Euro 1999 als Buchgeld und 2002 als Bargeld ein. Später beigetretene Länder folgten in einem Schritt bzw. zeitversetzt — Estland etwa führte den Euro 2010 als Buchgeld und 2011 als Bargeld ein."},{"topic":"Kap. 4 — EU-Binnenmarkt","punkte":8,"frage":"Der EU-Binnenmarkt beruht auf vier Grundfreiheiten. Nennen Sie die vier Freiheiten und ordnen Sie ihnen jeweils typische Voraussetzungen zu (z. B. Abbau von Grenzkontrollen, Anerkennung von Berufsabschlüssen, Harmonisierung der Mehrwertsteuer, Niederlassungsfreiheit, Öffnung der Finanzmärkte). (angelehnt an Übungsband Übung 65)","hinweis":"Personen — Waren — Dienstleistungen — Kapital.","loesung":"Freier Personenverkehr: Abbau der Grenzkontrollen; gemeinsame Asyl- und Einwanderungspolitik sowie Zusammenarbeit bei der Verbrechensbekämpfung; gegenseitige Anerkennung von Berufsabschlüssen und Befähigungsnachweisen; Niederlassungsfreiheit für Unternehmen.\nFreier Warenverkehr: Abbau der Grenzkontrollen; Harmonisierung von Mehrwert- und Verbrauchsteuern; Angleichung bzw. Anerkennung von Lebensmittel- und Arzneirecht, Gesundheits- und Pflanzenschutzvorschriften sowie technischen Normen und Zulassungsverfahren.\nFreier Dienstleistungsverkehr: Niederlassungsfreiheit; Öffnung der nationalen Märkte für ausländische Anbieter bei Banken, Versicherungen, Energie und Verkehr; einheitliche Sicherheitsbestimmungen im Verkehrsbereich.\nFreier Kapitalverkehr: Öffnung der Finanzmärkte; Aufhebung von Beschränkungen im Kapitalverkehr."},{"topic":"Kap. 4 — Konvergenzkriterien","punkte":5,"frage":"An der Europäischen Wirtschafts- und Währungsunion dürfen nach dem Maastrichter Vertrag nur Staaten teilnehmen, die ihre Stabilität durch Erfüllung der Konvergenzkriterien nachgewiesen haben. Erläutern Sie die fünf Konvergenzkriterien. (angelehnt an Übungsband Übung 66)","hinweis":"Inflation — Neuverschuldung — Schuldenstand — Zinsen — Wechselkurs.","loesung":"1. Preisstabilität: Die Inflationsrate darf im Jahr vor dem Beitritt höchstens 1,5 Prozentpunkte über der Rate der drei preisstabilsten EU-Staaten liegen.\n2. Neuverschuldung: Das jährliche Haushaltsdefizit soll — von Ausnahmen abgesehen — nicht deutlich und andauernd über drei Prozent des BIP liegen.\n3. Gesamtschuldenstand: Die Staatsschulden dürfen in der Regel 60 Prozent des BIP nicht überschreiten; Ausnahmen sind möglich, wenn der Schuldenstand hinreichend rückläufig ist und sich dem Referenzwert rasch nähert.\n4. Zinsniveau: Der Zinssatz für langfristige Kredite darf höchstens zwei Prozentpunkte über dem der drei preisstabilsten EU-Staaten liegen.\n5. Wechselkursstabilität: Die nationale Währung muss zwei Jahre lang ohne Abwertung und spannungsfrei am Wechselkursmechanismus des EWS innerhalb der vorgesehenen Bandbreite (ursprünglich maximal +/− 2,25 %) teilgenommen haben."},{"topic":"Kap. 4 — Freihandelsabkommen","punkte":3,"frage":"Was verbirgt sich hinter den Freihandelsabkommen TTIP und TPP? Erläutern Sie beide Kürzel. (angelehnt an Übungsband Übung 67)","loesung":"TTIP (Transatlantische Handels- und Investitionspartnerschaft): geplantes Freihandelsabkommen zwischen den USA und der Europäischen Union — die Verhandlungen wurden nicht abgeschlossen.\nTPP (Transpazifische Partnerschaft): geplantes Freihandelsabkommen zwischen den USA, Australien, Japan, Mexiko und weiteren Pazifik-Anrainerstaaten; nach dem Rückzug der USA wurde es von den übrigen Staaten in veränderter Form (CPTPP) fortgeführt."},{"topic":"Kap. 4 — Sachverständigenrat","punkte":6,"frage":"Der Sachverständigenrat („fünf Wirtschaftsweise“) prognostizierte im Jahresgutachten 2015/16 unter anderem: Wirtschaftswachstum 2015 +1,7 %, 2016 +1,6 %; privater Konsum 2015 +1,9 %, 2016 +1,8 %; Verbraucherpreise 2015 +0,3 %, 2016 +1,2 %; Arbeitslose rückläufig von 2,90 auf 2,69 Mio.; Finanzierungssaldo des Staates 2015 +0,7 % und 2016 +0,2 % des BIP. Interpretieren Sie diese Zahlen im Zusammenhang. (angelehnt an Übungsband Übung 68)","hinweis":"Wovon wird der Aufschwung getragen? Was bedeuten positive Finanzierungssalden für die Maastricht-Kriterien?","loesung":"Individuelle Lösung — Kernaussagen: Das Gutachten zeichnet ein positives Bild der deutschen Konjunktur. Nach +1,7 % Wachstum 2015 wird für 2016 mit +1,6 % ein ähnlich solides Plus erwartet. Getragen wird der Aufschwung vor allem von der Binnennachfrage: Die Konsumausgaben der Verbraucher wachsen kräftig, begünstigt durch stabile (sehr niedrig steigende) Preise und die gute Arbeitsmarktlage mit sinkenden Arbeitslosenzahlen. Zudem erholen sich die Staatsfinanzen: Die positiven Finanzierungssalden (Überschüsse) bedeuten, dass keine Neuverschuldung nötig ist — die Staatsverschuldung sinkt, und Deutschland bewegt sich auf die Einhaltung des Maastricht-Kriteriums einer maximalen Schuldenquote von 60 % des BIP zu."}];
+const KEY = 'wfw_lernbereich_' + DAY_ID;
+
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { state = {}; }
+function save() { localStorage.setItem(KEY, JSON.stringify(state)); }
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function render() {
+  const wrap = document.getElementById('tasks');
+  wrap.innerHTML = TASKS.map((t, i) => {
+    const st = state[i] || {};
+    return `
+    <div class="task ${st.check || ''}" id="task-${i}">
+      <div class="task-head">
+        <span class="task-num">Aufgabe ${i + 1}</span>
+        <span class="task-topic">${esc(t.topic)}</span>
+        ${t.punkte ? `<span class="task-punkte">${t.punkte} Punkte</span>` : ''}
+      </div>
+      <div class="task-frage">${esc(t.frage)}</div>
+      ${t.hinweis ? `<details class="task-hinweis"><summary>💡 Tipp anzeigen</summary><p>${esc(t.hinweis)}</p></details>` : ''}
+      <textarea id="answer-${i}" placeholder="Ihre Antwort — in vollständigen Sätzen, wie in der Prüfung …">${esc(st.answer || '')}</textarea>
+      <div class="task-actions">
+        <button class="btn btn-loesung" onclick="toggleLoesung(${i})">Lösungshinweis anzeigen</button>
+        <span class="saved-note" id="saved-${i}"></span>
+      </div>
+      <div class="loesung ${st.open ? 'show' : ''}" id="loesung-${i}">
+        <div class="loesung-label">✓ Lösungshinweis</div>
+        <div class="loesung-text">${esc(t.loesung)}</div>
+      </div>
+      <div class="self-check ${st.open ? 'show' : ''}" id="check-${i}">
+        <span>Selbsteinschätzung:</span>
+        <button class="btn btn-ok ${st.check === 'ok' ? 'active' : ''}" onclick="setCheck(${i}, 'ok')">✓ Gewusst</button>
+        <button class="btn btn-teil ${st.check === 'teil' ? 'active' : ''}" onclick="setCheck(${i}, 'teil')">≈ Teilweise</button>
+        <button class="btn btn-nein ${st.check === 'nein' ? 'active' : ''}" onclick="setCheck(${i}, 'nein')">✗ Nochmal üben</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  TASKS.forEach((t, i) => {
+    const ta = document.getElementById('answer-' + i);
+    let timer = null;
+    ta.addEventListener('input', () => {
+      state[i] = state[i] || {};
+      state[i].answer = ta.value;
+      save();
+      const note = document.getElementById('saved-' + i);
+      note.textContent = 'gespeichert ✓';
+      clearTimeout(timer);
+      timer = setTimeout(() => { note.textContent = ''; }, 1500);
+    });
+  });
+  updateProgress();
+}
+
+function toggleLoesung(i) {
+  state[i] = state[i] || {};
+  state[i].open = !state[i].open;
+  save();
+  document.getElementById('loesung-' + i).classList.toggle('show', state[i].open);
+  document.getElementById('check-' + i).classList.toggle('show', state[i].open);
+}
+
+function setCheck(i, val) {
+  state[i] = state[i] || {};
+  state[i].check = state[i].check === val ? null : val;
+  save();
+  const card = document.getElementById('task-' + i);
+  card.classList.remove('ok', 'teil', 'nein');
+  if (state[i].check) card.classList.add(state[i].check);
+  document.querySelectorAll(`#check-${i} .btn`).forEach(b => b.classList.remove('active'));
+  if (state[i].check) {
+    const cls = { ok: 'btn-ok', teil: 'btn-teil', nein: 'btn-nein' }[state[i].check];
+    document.querySelector(`#check-${i} .${cls}`).classList.add('active');
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const counts = { ok: 0, teil: 0, nein: 0 };
+  TASKS.forEach((t, i) => { const c = (state[i] || {}).check; if (counts[c] !== undefined) counts[c]++; });
+  const n = TASKS.length;
+  const bar = document.getElementById('progressBar');
+  bar.querySelector('.seg-ok').style.width = (counts.ok / n * 100) + '%';
+  bar.querySelector('.seg-teil').style.width = (counts.teil / n * 100) + '%';
+  bar.querySelector('.seg-nein').style.width = (counts.nein / n * 100) + '%';
+  const done = counts.ok + counts.teil + counts.nein;
+  document.getElementById('progressLabel').textContent =
+    `${done}/${n} bearbeitet · ${counts.ok} gewusst · ${counts.teil} teilweise · ${counts.nein} üben`;
+}
+
+function resetAll() {
+  if (!confirm('Alle Antworten und Bewertungen dieser Lektion löschen?')) return;
+  state = {};
+  save();
+  render();
+}
+
+render();
+</script>
+</body>
+</html>

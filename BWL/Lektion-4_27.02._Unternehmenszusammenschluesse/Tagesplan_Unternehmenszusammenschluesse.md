@@ -30,7 +30,7 @@ Die Teilnehmenden können am Ende der Lektion …
 | 08:25–08:50 | **Block 0: Reaktivierung Rechtsformen** (~25 Min.) | Blitz-Quiz Lektion 3: Einzelunternehmen, GbR/OHG/KG, GmbH/UG/AG — Haftung, Organe, Kapital; Brücke: „Was passiert, wenn sich solche Unternehmen verbinden?" | Aktivierung + Abfrage |
 | 08:50–09:45 | Block 1: Gründe, Ziele & Grundunterscheidung | Motive von Zusammenschlüssen; Schlüsselkriterium Selbstständigkeit: Kooperation (bleibt erhalten) vs. Konzentration (geht verloren); Überblicksschema | Präsentation + Diskussion |
 | 09:45–09:55 | **Pause** | | |
-| 09:55–10:55 | Block 2: Formen der Kooperation | Arbeitsgemeinschaft/Konsortium, Interessengemeinschaft, Joint Venture/Gemeinschaftsunternehmen, strategische Allianz, Verband; Kartell mit kartellrechtlicher Einordnung (§ 1 GWB, Verweis VWL-Lektion 2) | Präsentation + Übungsphase (eigene Aufgaben mit Lösungen) |
+| 09:55–10:55 | Block 2: Formen der Kooperation | Arbeitsgemeinschaft/Konsortium, Interessengemeinschaft, Joint Venture/Gemeinschaftsunternehmen, strategische Allianz, Verband; Kartell mit kartellrechtlicher Einordnung (§ 1 GWB, Verweis VWL-Lektion 2) | Präsentation + Prüfungsaufgaben-Training (interaktiv, mit Lösungshinweisen) |
 | 10:55–11:05 | **Pause** | | |
 | 11:05–12:00 | Block 3: Formen der Konzentration & Richtungen | Konzern (Mutter/Tochter, Beherrschungsvertrag, § 18 AktG), Fusion/Verschmelzung (Aufnahme/Neugründung), Trust; horizontal/vertikal/diagonal mit Beispielen | Präsentation + Zuordnungsübungen |
 | 12:00–12:40 | Block 4: Ziele im Vergleich & Fusionskontrolle | Ziele Kooperation vs. Konzentration; Grenzen: Fusionskontrolle Bundeskartellamt (§§ 35 ff. GWB) und EU-Kommission (FKVO); Fallbesprechung Verlagsfusion | Präsentation + Fallarbeit |
@@ -51,8 +51,9 @@ Freiwillige Selbstlernangebote auf der Lernplattform:
 
 1. **Quiz** (60 Fragen) mit sofortiger Selbstkontrolle bearbeiten — Schwerpunkt Abgrenzung Kooperation/Konzentration.
 2. **Lernbereich** nutzen — 18 offene Aufgaben mit Lösungshinweisen.
-3. **Aufgabenheft mit Musterlösungen** durcharbeiten, insbesondere die Zuordnungsaufgabe (horizontal/vertikal/diagonal) und die Fallaufgabe Kartell vs. Konzern.
-4. **Karteikarten & Lernspiele** (Wordle, Hängemann, Memory) für die Begriffe.
-5. **Prüfungstraining BWL** auf dem Dashboard — für die IHK-Prüfung alle Lektionen wiederholen (Rahmenplan 1.1 bis 1.4).
+3. **Prüfungsaufgaben** (`Pruefungsaufgaben_Unternehmenszusammenschluesse.html`) — neue interaktive Seite mit 13 prüfungsnahen Aufgaben im IHK-Stil: schriftlich lösen, dann mit den Lösungshinweisen vergleichen.
+4. **Aufgabenheft mit Musterlösungen** durcharbeiten, insbesondere die Zuordnungsaufgabe (horizontal/vertikal/diagonal) und die Fallaufgabe Kartell vs. Konzern.
+5. **Karteikarten & Lernspiele** (Wordle, Hängemann, Memory) für die Begriffe.
+6. **Prüfungstraining BWL** auf dem Dashboard — für die IHK-Prüfung alle Lektionen wiederholen (Rahmenplan 1.1 bis 1.4).
 
 Weitere Übungen: Übungsband (mit Lösungsteil).

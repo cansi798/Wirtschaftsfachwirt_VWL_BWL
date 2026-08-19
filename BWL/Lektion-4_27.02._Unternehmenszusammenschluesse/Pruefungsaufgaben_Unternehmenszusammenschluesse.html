@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Lektion 4 · Prüfungsaufgaben — Unternehmenszusammenschlüsse</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:#0EA5A4; --bfw-primary-dark:#0F766E;
+  --bfw-accent:#F59E0B; --bfw-warn:#F97316;
+  --bfw-success:#10B981; --bfw-danger:#EF4444;
+  --bfw-ink:#0F172A; --bfw-ink-soft:#475569;
+  --bfw-bg:#FAFAFA; --bfw-bg-soft:#F8FAFC;
+  --bfw-bg-teal:#ECFEFF; --bfw-bg-amber:#FEF3C7;
+  --bfw-bg-rose:#FFE4E6; --bfw-border:#E2E8F0;
+  --bfw-bg-green:#D1FAE5;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, var(--bfw-bg-teal) 0%, var(--bfw-bg) 50%, var(--bfw-bg-amber) 100%);
+  min-height: 100vh; color: var(--bfw-ink); -webkit-font-smoothing: antialiased;
+  padding: 2rem 1rem 4rem;
+}
+.container { max-width: 900px; margin: 0 auto; }
+header { text-align: center; margin-bottom: 1.6rem; }
+.tag-pill {
+  display: inline-block; background: var(--bfw-bg-teal); color: var(--bfw-primary-dark);
+  font-weight: 700; font-size: 0.82rem; padding: 0.3rem 0.9rem; border-radius: 999px;
+  letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.8rem;
+}
+h1 { font-size: 1.7rem; color: var(--bfw-primary-dark); margin-bottom: 0.4rem; }
+.subtitle { color: var(--bfw-ink-soft); font-size: 1.02rem; line-height: 1.5; }
+
+.progress-wrap {
+  background: white; border: 1px solid var(--bfw-border); border-radius: 14px;
+  padding: 1rem 1.3rem; margin-bottom: 1.6rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.progress-bar { flex: 1; min-width: 200px; height: 12px; background: var(--bfw-bg-soft); border: 1px solid var(--bfw-border); border-radius: 999px; overflow: hidden; display: flex; }
+.progress-bar .seg-ok { background: var(--bfw-success); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-teil { background: var(--bfw-accent); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-nein { background: var(--bfw-danger); height: 100%; transition: width 0.3s; }
+.progress-label { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; white-space: nowrap; }
+.btn-reset {
+  padding: 0.45rem 0.9rem; background: transparent; color: var(--bfw-ink-soft);
+  border: 1.5px solid var(--bfw-border); border-radius: 8px; font-family: inherit;
+  font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.15s;
+}
+.btn-reset:hover { color: var(--bfw-danger); border-color: var(--bfw-danger); }
+
+.task {
+  background: white; border: 1px solid var(--bfw-border); border-left: 5px solid var(--bfw-border);
+  border-radius: 14px; padding: 1.4rem 1.5rem; margin-bottom: 1.2rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04); transition: border-color 0.2s;
+}
+.task.ok { border-left-color: var(--bfw-success); }
+.task.teil { border-left-color: var(--bfw-accent); }
+.task.nein { border-left-color: var(--bfw-danger); }
+.task-head { display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
+.task-num { font-weight: 800; color: var(--bfw-primary-dark); font-size: 1.05rem; white-space: nowrap; }
+.task-topic {
+  display: inline-block; background: var(--bfw-bg-amber); color: #92400E;
+  font-weight: 700; font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 999px;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.task-punkte { margin-left: auto; color: var(--bfw-ink-soft); font-size: 0.82rem; font-weight: 600; white-space: nowrap; }
+.task-frage { font-size: 1.02rem; line-height: 1.55; margin-bottom: 0.9rem; white-space: pre-line; }
+.task-hinweis { margin-bottom: 0.9rem; }
+.task-hinweis summary { cursor: pointer; color: var(--bfw-primary-dark); font-weight: 600; font-size: 0.9rem; }
+.task-hinweis p { margin-top: 0.5rem; padding: 0.7rem 0.9rem; background: var(--bfw-bg-teal); border-radius: 8px; font-size: 0.92rem; color: var(--bfw-ink-soft); line-height: 1.5; }
+textarea {
+  width: 100%; min-height: 110px; padding: 0.8rem 0.9rem;
+  border: 1.5px solid var(--bfw-border); border-radius: 10px;
+  font-family: inherit; font-size: 0.98rem; line-height: 1.5; resize: vertical;
+  background: var(--bfw-bg-soft); transition: all 0.15s;
+}
+textarea:focus { outline: none; border-color: var(--bfw-primary); background: white; box-shadow: 0 0 0 3px rgba(14,165,164,0.12); }
+.task-actions { margin-top: 0.8rem; display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+.btn {
+  padding: 0.55rem 1.1rem; border: none; border-radius: 9px; cursor: pointer;
+  font-family: inherit; font-size: 0.92rem; font-weight: 700; transition: all 0.15s;
+}
+.btn-loesung { background: var(--bfw-primary); color: white; }
+.btn-loesung:hover { background: var(--bfw-primary-dark); }
+.loesung {
+  display: none; margin-top: 1rem; padding: 1rem 1.1rem;
+  background: var(--bfw-bg-green); border: 1px solid #A7F3D0; border-radius: 10px;
+}
+.loesung.show { display: block; }
+.loesung-label { font-weight: 800; color: #047857; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+.loesung-text { font-size: 0.97rem; line-height: 1.6; white-space: pre-line; }
+.self-check { display: none; margin-top: 0.9rem; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.self-check.show { display: flex; }
+.self-check span { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; }
+.btn-ok { background: var(--bfw-bg-green); color: #047857; border: 1.5px solid #A7F3D0; }
+.btn-teil { background: var(--bfw-bg-amber); color: #92400E; border: 1.5px solid #FDE68A; }
+.btn-nein { background: var(--bfw-bg-rose); color: #B91C1C; border: 1.5px solid #FECACA; }
+.btn-ok.active, .btn-ok:hover { background: var(--bfw-success); color: white; }
+.btn-teil.active, .btn-teil:hover { background: var(--bfw-accent); color: white; }
+.btn-nein.active, .btn-nein:hover { background: var(--bfw-danger); color: white; }
+.saved-note { font-size: 0.78rem; color: var(--bfw-ink-soft); margin-left: auto; }
+
+footer { text-align: center; margin-top: 2.5rem; color: var(--bfw-ink-soft); font-size: 0.85rem; }
+@media print { .btn, .btn-reset, .self-check { display: none !important; } .loesung { display: block; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <span class="tag-pill">Lektion 4 · Prüfungsaufgaben</span>
+    <h1>Prüfungsaufgaben: Unternehmenszusammenschlüsse</h1>
+    <p class="subtitle">Beantworten Sie die Aufgaben in eigenen Worten im Antwortfeld — Ihre Eingaben werden lokal im Browser gespeichert. Prüfen Sie sich danach mit dem <strong>Lösungshinweis</strong> und bewerten Sie sich selbst. In der IHK-Prüfung zählen ausformulierte Begründungen!</p>
+  </header>
+
+  <div class="progress-wrap">
+    <div class="progress-bar" id="progressBar"><div class="seg-ok"></div><div class="seg-teil"></div><div class="seg-nein"></div></div>
+    <span class="progress-label" id="progressLabel"></span>
+    <button class="btn-reset" onclick="resetAll()">Zurücksetzen</button>
+  </div>
+
+  <div id="tasks"></div>
+
+  <footer>© Can Siebert · 2026 · Wirtschaftsfachwirt — BWL — Betriebswirtschaftliche Grundlagen</footer>
+</div>
+
+<script>
+const DAY_ID = 'bwl-4-pa';
+const TASKS = [{"topic":"Richtig oder falsch: Kooperation","punkte":5,"frage":"Beurteilen Sie die folgenden Aussagen (richtig/falsch) mit kurzer Begründung:\na) Bei der Fusion durch Aufnahme erlöschen beide beteiligten Unternehmen.\nb) Ein Konsortium ist in der Regel befristet und als GbR organisiert.\nc) Eine strategische Allianz gründet stets ein gemeinsames Tochterunternehmen.\nd) Beim Joint Venture entsteht ein rechtlich selbstständiges Gemeinschaftsunternehmen.\ne) Der Trust ist die intensivste Form der Unternehmenskonzentration.","loesung":"a) Falsch — bei der Verschmelzung durch Aufnahme (A + B → A) erlischt nur der übertragende Rechtsträger (B); das aufnehmende Unternehmen (A) besteht fort. Beide erlöschen nur bei der Verschmelzung durch Neugründung (A + B → C).\nb) Richtig — Konsortien (wie Arbeitsgemeinschaften) sind projektbezogene, befristete Zusammenschlüsse, meist in der Rechtsform der GbR.\nc) Falsch — gerade das Fehlen eines gemeinsamen Tochterunternehmens unterscheidet die strategische Allianz vom Joint Venture; die Partner arbeiten nur in einzelnen Geschäftsfeldern zusammen.\nd) Richtig — die Partner gründen eine neue, rechtlich selbstständige Gesellschaft und tragen Kapital, Führung und Risiko gemeinsam (oft 50:50).\ne) Richtig — beim Trust verschmelzen die Unternehmen vollständig zu einer wirtschaftlichen und rechtlichen Einheit mit marktbeherrschender Stellung."},{"topic":"Kooperationsformen bestimmen","punkte":5,"frage":"Bestimmen Sie für die folgenden Fälle jeweils die Form des Zusammenschlusses und begründen Sie kurz; beurteilen Sie Fall e) zusätzlich kartellrechtlich:\na) Zwei Bauunternehmen errichten gemeinsam einen Tunnel und trennen sich nach Projektende.\nb) Mehrere Banken emittieren gemeinsam eine Unternehmensanleihe.\nc) Zwei Airlines vereinbaren Codesharing und gemeinsame Vielfliegerprogramme — ohne gemeinsame Tochtergesellschaft.\nd) Ein Autohersteller gründet mit einem chinesischen Partner eine gemeinsame Vertriebs-GmbH (je 50 %).\ne) Drei Hersteller vereinbaren einheitliche Mindestpreise.","hinweis":"Fragen Sie: befristet oder dauerhaft? Gemeinsame Tochter oder nicht? Wettbewerbsbeschränkung?","loesung":"a) Arbeitsgemeinschaft (ARGE) — befristeter, projektbezogener Zusammenschluss in der Bauwirtschaft, i. d. R. als GbR.\nb) Konsortium — projektbezogener Zusammenschluss im Bank- und Finanzwesen (Emissionskonsortium).\nc) Strategische Allianz — Zusammenarbeit in einzelnen Geschäftsfeldern ohne gemeinsames Tochterunternehmen; außerhalb bleiben die Partner Wettbewerber.\nd) Joint Venture (Gemeinschaftsunternehmen) — rechtlich selbstständige Gemeinschaftsgesellschaft mit geteiltem Kapital, Führung und Risiko; typisch für die Erschließung von Auslandsmärkten.\ne) Preiskartell — vertragliche Absprache über Mindestpreise auf derselben Wirtschaftsstufe; nach Paragraf 1 GWB verboten, die Vereinbarung ist nichtig, es drohen Bußgelder."},{"topic":"Kooperation oder Konzentration?","punkte":4,"frage":"Ordnen Sie die folgenden Vorgänge der Kooperation oder der Konzentration zu, benennen Sie die konkrete Form und begründen Sie mit dem Kriterium der Selbstständigkeit:\na) Ein Unternehmen erwirbt 75 % der Anteile eines Wettbewerbers.\nb) Zwei selbstständige Unternehmen betreiben dauerhaft ein gemeinsames Forschungslabor.\nc) Zwei Sparkassen übertragen ihr Vermögen auf ein neu gegründetes Institut; beide erlöschen.\nd) Drei Hersteller organisieren einen gemeinsamen Messestand für eine Fachmesse.","loesung":"a) Konzentration — Konzernbildung: Die Mehrheitsbeteiligung ermöglicht einheitliche Leitung; die wirtschaftliche Selbstständigkeit des Wettbewerbers geht verloren, die rechtliche bleibt.\nb) Kooperation — Interessengemeinschaft: dauerhafte Zusammenarbeit in einem Teilbereich (F&E); rechtliche und wirtschaftliche Selbstständigkeit bleiben erhalten.\nc) Konzentration — Fusion (Verschmelzung durch Neugründung): Beide verlieren zusätzlich ihre rechtliche Selbstständigkeit.\nd) Kooperation — befristete, projektbezogene Zusammenarbeit (arbeitsgemeinschaftsähnlich); die Selbstständigkeit wird nur freiwillig und punktuell eingeschränkt."},{"topic":"Marktanteil & Fusionskontrolle","punkte":6,"frage":"Auf dem relevanten Markt (Gesamtumsatz 800 Mio. €) erzielt die U-AG 240 Mio. € und die W-GmbH 120 Mio. € Umsatz. Beide planen einen Zusammenschluss.\na) Berechnen Sie die Marktanteile beider Unternehmen sowie den gemeinsamen Marktanteil nach dem Zusammenschluss (Rechenweg angeben).\nb) Beurteilen Sie das Vorhaben im Hinblick auf die Marktbeherrschungsvermutung des GWB.\nc) Nennen Sie drei mögliche Entscheidungen des Bundeskartellamts im Fusionskontrollverfahren.","hinweis":"Marktanteil = eigener Umsatz ÷ Gesamtumsatz des Marktes × 100. Vermutungsschwelle: 40 %.","loesung":"a) U-AG: 240 ÷ 800 × 100 = 30 %. W-GmbH: 120 ÷ 800 × 100 = 15 %. Gemeinsam: 30 % + 15 % = 45 %.\nb) Mit 45 % überschreitet der gemeinsame Marktanteil die Schwelle von 40 %, ab der das GWB eine marktbeherrschende Stellung vermutet. Das Bundeskartellamt wird den Zusammenschluss daher kritisch prüfen; eine erhebliche Behinderung wirksamen Wettbewerbs droht.\nc) Freigabe, Freigabe unter Auflagen bzw. Bedingungen (z. B. Verkauf von Unternehmensteilen) oder Untersagung. (Nach einer Untersagung bleibt ausnahmsweise die Ministererlaubnis aus Gemeinwohlgründen möglich.)"},{"topic":"Beteiligungsquote","punkte":4,"frage":"Die M-AG hält 120.000 von insgesamt 200.000 Stimmrechten der T-GmbH.\na) Berechnen Sie die Beteiligungsquote (Rechenweg angeben).\nb) Beurteilen Sie, ob eine Mehrheitsbeteiligung vorliegt und welche Bedeutung sie für die Konzernbildung hat.\nc) Erläutern Sie, welche Bedeutung die Schwellen von 75 % und 100 % haben.","loesung":"a) Beteiligungsquote = 120.000 ÷ 200.000 = 0,60 → 60 %.\nb) Ja — mit mehr als 50 % der Stimmrechte liegt eine Mehrheitsbeteiligung vor. Die M-AG kann die Beschlüsse der T-GmbH bestimmen und sie unter ihre einheitliche Leitung stellen — der typische Weg in den (Unterordnungs-)Konzern; die T-GmbH bleibt rechtlich selbstständig, verliert aber ihre wirtschaftliche Selbstständigkeit.\nc) Ab 75 % besteht eine qualifizierte Mehrheit, mit der auch Grundlagenentscheidungen (z. B. Satzungsänderungen) durchgesetzt werden können; bei 100 % handelt es sich um eine hundertprozentige Tochtergesellschaft."},{"topic":"Synergieeffekt","punkte":5,"frage":"Vor einer Fusion betragen die Verwaltungs- und Einkaufskosten der A-GmbH 60 Mio. € und der B-GmbH 40 Mio. € pro Jahr. Nach der Fusion fallen durch gemeinsame Verwaltung und gebündelten Einkauf nur noch 90 Mio. € an.\na) Berechnen Sie den Synergieeffekt absolut und in Prozent der Ausgangskosten (Rechenweg angeben).\nb) Erklären Sie die Formel „2 + 2 = 5“ im Zusammenhang mit Synergieeffekten.\nc) Nennen Sie zwei typische Quellen von Synergien bei Zusammenschlüssen.","loesung":"a) Schritt 1: Kosten vor der Fusion = 60 + 40 = 100 Mio. €. Schritt 2: Kosten nach der Fusion = 90 Mio. €. Schritt 3: Synergieeffekt = 100 − 90 = 10 Mio. € Ersparnis; in Prozent: 10 ÷ 100 × 100 = 10 % der Ausgangskosten.\nb) „2 + 2 = 5“ bedeutet: Durch das Zusammenwirken entsteht ein Mehrwert, der über die Summe der Einzelleistungen hinausgeht — gemeinsam erzielen die Unternehmen mehr Wert (bzw. geringere Kosten) als getrennt.\nc) Zum Beispiel: Teilung der Forschungs- und Entwicklungskosten; Mengenrabatte durch gebündelten Einkauf; Zusammenlegung von Verwaltung, Logistik oder Vertrieb; Wissens- und Technologietransfer. (Zwei Nennungen genügen.)"},{"topic":"Ziele & Richtungen","punkte":5,"frage":"Ordnen Sie die folgenden Ziele der Richtung des Zusammenschlusses zu, mit der sie typischerweise verfolgt werden (horizontal, vertikal, diagonal), und begründen Sie kurz:\na) Sicherung der Rohstoffversorgung,\nb) Rationalisierung durch Betriebserweiterung (Größenvorteile),\nc) Risikominderung durch Einstieg in völlig neuartige Produkte,\nd) Sicherung der Absatzwege,\ne) Erhöhung des Marktanteils auf derselben Wirtschaftsstufe.","hinweis":"Vertikal kann vor- oder nachgelagert sein — Beschaffungs- oder Absatzseite.","loesung":"a) Vertikal (vorgelagerte Stufe, Rückwärtsintegration) — der Zusammenschluss mit Lieferanten sichert die Versorgung mit Rohstoffen.\nb) Horizontal — der Zusammenschluss gleichartiger Betriebe schafft Größenvorteile und Rationalisierungspotenziale.\nc) Diagonal (anorganisch/konglomerat) — branchenfremde Geschäftsfelder streuen das Risiko.\nd) Vertikal (nachgelagerte Stufe, Vorwärtsintegration) — der Zusammenschluss mit Handels- bzw. Abnehmerstufen sichert den Absatz.\ne) Horizontal — Wettbewerber derselben Wirtschaftsstufe addieren ihre Marktanteile."},{"topic":"Fusionskontrolle: Anmeldepflicht","punkte":5,"frage":"Die A-AG (weltweiter Umsatz 420 Mio. €, davon 80 Mio. € im Inland) will die B-GmbH (weltweiter Umsatz 130 Mio. €, davon 25 Mio. € im Inland) übernehmen. Prüfen Sie anhand der Umsatzschwellen des GWB, ob der Zusammenschluss beim Bundeskartellamt angemeldet werden muss, und nennen Sie die Rechtsfolge eines Vollzugs ohne Freigabe.","hinweis":"Schwellen: weltweit zusammen mehr als 500 Mio. €; im Inland ein Beteiligter mehr als 50 Mio. €, ein weiterer mehr als 17,5 Mio. €.","loesung":"Prüfschritte: 1. Weltweiter Gesamtumsatz: 420 + 130 = 550 Mio. € — die Schwelle von 500 Mio. € ist überschritten. 2. Inlandsumsätze: Die A-AG erzielt mit 80 Mio. € mehr als 50 Mio. €, die B-GmbH mit 25 Mio. € mehr als 17,5 Mio. €. Ergebnis: Alle Schwellen sind überschritten — der Zusammenschluss muss vor dem Vollzug beim Bundeskartellamt angemeldet werden (präventive Fusionskontrolle, Paragrafen 35 ff. GWB). Bis zur Freigabe gilt das Vollzugsverbot; ein Verstoß macht den Vollzug unwirksam und kann mit Bußgeldern geahndet werden.\nZur Bewertung prüft das Amt anschließend, ob wirksamer Wettbewerb erheblich behindert würde (insbesondere Marktbeherrschung)."},{"topic":"Konzern oder Fusion?","punkte":3,"frage":"Die X-AG erwirbt 100 % der Anteile der Y-GmbH. Ein Vorstandsmitglied erklärt: „Damit ist die Y-GmbH mit uns verschmolzen.“ Beurteilen Sie die Aussage.","hinweis":"Was geschieht mit der rechtlichen Selbstständigkeit der Y-GmbH?","loesung":"Die Aussage ist falsch. Durch den Anteilserwerb entsteht ein Konzern: Die Y-GmbH wird hundertprozentige Tochter unter einheitlicher Leitung der X-AG, bleibt aber als GmbH rechtlich selbstständig (eigene Firma, eigene Organe, eigener Jahresabschluss) — nur ihre wirtschaftliche Selbstständigkeit geht verloren. Eine Verschmelzung (Fusion) läge erst vor, wenn die Y-GmbH ihr Vermögen nach dem Umwandlungsgesetz auf die X-AG übertragen würde und als Rechtsträger erlischt."},{"topic":"Kronzeugenregelung","punkte":3,"frage":"Erläutern Sie die Kronzeugenregelung des Bundeskartellamts und begründen Sie, warum sie ein wirksames Instrument zur Aufdeckung von Kartellen ist.","loesung":"Kronzeugenregelung: Ein Kartellbeteiligter, der als Erster mit dem Bundeskartellamt kooperiert und zur Aufdeckung des Kartells beiträgt, kann einen vollständigen Erlass des Bußgelds erhalten; weitere Kooperierende erhalten Ermäßigungen.\nWirksamkeit: Kartelle sind geheime Absprachen, die von außen schwer nachweisbar sind. Die Regelung schafft für jedes Mitglied einen ständigen Anreiz, das Kartell zu verraten, bevor es ein anderer tut — sie sät Misstrauen unter den Beteiligten, destabilisiert bestehende Kartelle und schreckt vor Neugründungen ab."},{"topic":"Ziele von Zusammenschlüssen (Fall)","punkte":5,"frage":"Ordnen Sie den folgenden Situationen das primär verfolgte Ziel des Zusammenschlusses zu (Synergieeffekte, Marktmacht, Rationalisierung, Risikostreuung, Sicherung der Beschaffung) und begründen Sie kurz:\na) Zwei Pharmaunternehmen teilen sich die Entwicklungskosten eines neuen Wirkstoffs.\nb) Ein Handelskonzern übernimmt einen Wettbewerber und erhöht seinen Marktanteil auf 35 %.\nc) Ein Energiekonzern steigt in die Telekommunikationsbranche ein.\nd) Ein Stahlwerk beteiligt sich an einer Erzmine.\ne) Zwei Molkereien legen ihre Verwaltungen zusammen.","loesung":"a) Synergieeffekte — Bündelung von Know-how und Teilung der F&E-Kosten („2 + 2 = 5“).\nb) Marktmacht — größerer Marktanteil stärkt die Position gegenüber Lieferanten, Abnehmern und Wettbewerbern.\nc) Risikostreuung — Diversifikation in ein branchenfremdes Geschäftsfeld (diagonaler Zusammenschluss).\nd) Sicherung der Beschaffung — die Beteiligung am vorgelagerten Rohstofflieferanten sichert die Versorgung (Rückwärtsintegration).\ne) Rationalisierung — Zusammenlegung von Funktionen senkt die Kosten (Größenvorteile)."},{"topic":"Submissionsabsprache (Fall)","punkte":5,"frage":"Vor einer öffentlichen Ausschreibung für den Bau einer Schule sprechen zwei Bauunternehmen ab, wer das günstigste Angebot abgibt; das andere Unternehmen bietet bewusst überhöht.\na) Benennen Sie die Kartellart.\nb) Erläutern Sie zwei Rechtsfolgen der Absprache.\nc) Grenzen Sie den Fall von einer zulässigen Arbeitsgemeinschaft der beiden Unternehmen ab.","loesung":"a) Submissionsabsprache (Angebotsabsprache bei Ausschreibungen) — eine Hardcore-Kartellabsprache.\nb) Die Vereinbarung verstößt gegen das Kartellverbot (Paragraf 1 GWB) und ist nichtig; das Bundeskartellamt kann empfindliche Bußgelder gegen Unternehmen und Verantwortliche verhängen. Daneben drohen Schadensersatzansprüche des Auftraggebers, Ausschluss von künftigen Vergaben und strafrechtliche Verfolgung (Submissionsbetrug).\nc) Bei einer zulässigen ARGE geben die Unternehmen gemeinsam und offen ein einziges Angebot ab, weil sie den Auftrag z. B. allein nicht stemmen könnten — das ermöglicht Wettbewerb. Bei der Submissionsabsprache täuschen getrennte Angebote einen Wettbewerb vor, der tatsächlich ausgeschaltet ist."},{"topic":"Richtig oder falsch: Konzentration","punkte":5,"frage":"Beurteilen Sie die folgenden Aussagen (richtig/falsch) mit kurzer Begründung:\na) Im Gleichordnungskonzern ist ein Unternehmen vom anderen abhängig.\nb) Eine Holding produziert in der Regel selbst nicht, sondern hält und steuert Beteiligungen.\nc) Bei der Verschmelzung durch Neugründung erlöschen alle übertragenden Rechtsträger.\nd) Die Ministererlaubnis wird vom Bundeskartellamt erteilt.\ne) Ab einem Marktanteil von 40 % vermutet das GWB eine marktbeherrschende Stellung.","loesung":"a) Falsch — kennzeichnend für den Gleichordnungskonzern ist gerade die einheitliche Leitung ohne Abhängigkeit; die Mutter-Tochter-Abhängigkeit prägt den Unterordnungskonzern.\nb) Richtig — die Holding beschränkt sich als Obergesellschaft auf das Halten und Steuern von Beteiligungen und übt darüber die einheitliche Leitung aus.\nc) Richtig — bei A + B → C übertragen beide ihr Vermögen auf die neue Gesellschaft und erlöschen als Rechtsträger.\nd) Falsch — die Ministererlaubnis (Paragraf 42 GWB) erteilt das Bundeswirtschaftsministerium; sie kann einen vom Bundeskartellamt untersagten Zusammenschluss aus Gemeinwohlgründen ausnahmsweise erlauben.\ne) Richtig — ab 40 % Marktanteil greift die Marktbeherrschungsvermutung des GWB."}];
+const KEY = 'wfw_lernbereich_' + DAY_ID;
+
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { state = {}; }
+function save() { localStorage.setItem(KEY, JSON.stringify(state)); }
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function render() {
+  const wrap = document.getElementById('tasks');
+  wrap.innerHTML = TASKS.map((t, i) => {
+    const st = state[i] || {};
+    return `
+    <div class="task ${st.check || ''}" id="task-${i}">
+      <div class="task-head">
+        <span class="task-num">Aufgabe ${i + 1}</span>
+        <span class="task-topic">${esc(t.topic)}</span>
+        ${t.punkte ? `<span class="task-punkte">${t.punkte} Punkte</span>` : ''}
+      </div>
+      <div class="task-frage">${esc(t.frage)}</div>
+      ${t.hinweis ? `<details class="task-hinweis"><summary>💡 Tipp anzeigen</summary><p>${esc(t.hinweis)}</p></details>` : ''}
+      <textarea id="answer-${i}" placeholder="Ihre Antwort — in vollständigen Sätzen, wie in der Prüfung …">${esc(st.answer || '')}</textarea>
+      <div class="task-actions">
+        <button class="btn btn-loesung" onclick="toggleLoesung(${i})">Lösungshinweis anzeigen</button>
+        <span class="saved-note" id="saved-${i}"></span>
+      </div>
+      <div class="loesung ${st.open ? 'show' : ''}" id="loesung-${i}">
+        <div class="loesung-label">✓ Lösungshinweis</div>
+        <div class="loesung-text">${esc(t.loesung)}</div>
+      </div>
+      <div class="self-check ${st.open ? 'show' : ''}" id="check-${i}">
+        <span>Selbsteinschätzung:</span>
+        <button class="btn btn-ok ${st.check === 'ok' ? 'active' : ''}" onclick="setCheck(${i}, 'ok')">✓ Gewusst</button>
+        <button class="btn btn-teil ${st.check === 'teil' ? 'active' : ''}" onclick="setCheck(${i}, 'teil')">≈ Teilweise</button>
+        <button class="btn btn-nein ${st.check === 'nein' ? 'active' : ''}" onclick="setCheck(${i}, 'nein')">✗ Nochmal üben</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  TASKS.forEach((t, i) => {
+    const ta = document.getElementById('answer-' + i);
+    let timer = null;
+    ta.addEventListener('input', () => {
+      state[i] = state[i] || {};
+      state[i].answer = ta.value;
+      save();
+      const note = document.getElementById('saved-' + i);
+      note.textContent = 'gespeichert ✓';
+      clearTimeout(timer);
+      timer = setTimeout(() => { note.textContent = ''; }, 1500);
+    });
+  });
+  updateProgress();
+}
+
+function toggleLoesung(i) {
+  state[i] = state[i] || {};
+  state[i].open = !state[i].open;
+  save();
+  document.getElementById('loesung-' + i).classList.toggle('show', state[i].open);
+  document.getElementById('check-' + i).classList.toggle('show', state[i].open);
+}
+
+function setCheck(i, val) {
+  state[i] = state[i] || {};
+  state[i].check = state[i].check === val ? null : val;
+  save();
+  const card = document.getElementById('task-' + i);
+  card.classList.remove('ok', 'teil', 'nein');
+  if (state[i].check) card.classList.add(state[i].check);
+  document.querySelectorAll(`#check-${i} .btn`).forEach(b => b.classList.remove('active'));
+  if (state[i].check) {
+    const cls = { ok: 'btn-ok', teil: 'btn-teil', nein: 'btn-nein' }[state[i].check];
+    document.querySelector(`#check-${i} .${cls}`).classList.add('active');
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const counts = { ok: 0, teil: 0, nein: 0 };
+  TASKS.forEach((t, i) => { const c = (state[i] || {}).check; if (counts[c] !== undefined) counts[c]++; });
+  const n = TASKS.length;
+  const bar = document.getElementById('progressBar');
+  bar.querySelector('.seg-ok').style.width = (counts.ok / n * 100) + '%';
+  bar.querySelector('.seg-teil').style.width = (counts.teil / n * 100) + '%';
+  bar.querySelector('.seg-nein').style.width = (counts.nein / n * 100) + '%';
+  const done = counts.ok + counts.teil + counts.nein;
+  document.getElementById('progressLabel').textContent =
+    `${done}/${n} bearbeitet · ${counts.ok} gewusst · ${counts.teil} teilweise · ${counts.nein} üben`;
+}
+
+function resetAll() {
+  if (!confirm('Alle Antworten und Bewertungen dieser Lektion löschen?')) return;
+  state = {};
+  save();
+  render();
+}
+
+render();
+</script>
+</body>
+</html>

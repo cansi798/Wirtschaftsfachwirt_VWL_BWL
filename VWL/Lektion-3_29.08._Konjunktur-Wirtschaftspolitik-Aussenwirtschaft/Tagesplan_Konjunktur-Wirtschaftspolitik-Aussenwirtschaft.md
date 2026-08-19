@@ -31,7 +31,7 @@ Die Teilnehmenden können am Ende der Lektion …
 | 11:05–11:25 | Block 5: Konzeptionen | Nachfrage- vs. angebotsorientierte Wirtschaftspolitik: Keynes/Fiskalismus vs. Angebotstheorie/Monetarismus — Gegenüberstellung Tab. 3.6 | Präsentation + Diskussion |
 | 11:25–11:35 | **Pause** | | |
 | 11:35–12:10 | Block 6: Außenwirtschaft & EU | Freihandel vs. Protektionismus, tarifäre/nichttarifäre Handelshemmnisse; Binnenmarkt (4 Freiheiten), EWWU (Konvergenzkriterien), Euro: Vor-/Nachteile | Präsentation + Übungsband Kap. 4 |
-| 12:10–12:35 | Block 7: Übungsphase | Aufgabenheft: EZB-Zinserhöhung (Transmissionskette), Transferaufgabe nachfrage- vs. angebotsorientiert | Einzelarbeit + Besprechung |
+| 12:10–12:35 | Block 7: Prüfungsaufgaben-Training (interaktiv, mit Lösungshinweisen) | Prüfungsaufgaben-Seite: EZB-Zinserhöhung (Transmissionskette), Konzeptionen-Transfer (nachfrage- vs. angebotsorientiert) | Einzelarbeit + Besprechung |
 | 12:35–13:10 | Block 8: Prüfungstraining Block 1.1 | Wiederholung Lektionen 1–3: Quiz-Battle (Preisbildung, Marktformen, Wettbewerb, VGR, magisches Viereck/Sechseck, Geld- & Fiskalpolitik, EU), IHK-Originalaufgaben besprechen, Klausurstrategie (Operatoren, Zeitmanagement) | Quiz + Plenum |
 | 13:10–13:15 | Abschluss | Zusammenfassung Block 1.1, Ausblick BWL-Teil (Sa 05.09.: Betriebliche Funktionen I) | Plenum |
 
@@ -49,7 +49,8 @@ Freiwillige Vertiefung mit den Selbstlernmaterialien der Plattform — keine Pfl
 
 1. **Quiz** (60 Fragen mit Selbstkontrolle) bearbeiten — festigt zugleich den Prüfungsstoff Block 1.1.
 2. **Lernbereich** (18 offene Aufgaben mit Lösungshinweisen) durcharbeiten.
-3. **Aufgabenheft** mit Musterlösungen — empfehlenswert: Aufgabe 3 (EZB) und 8 (Konzeptionen).
-4. **Karteikarten & Lernspiele** (Wordle, Hängemann, Memory) der Lektionen 1–3 wiederholen (Spaced Repetition bis zur Prüfung).
+3. **Prüfungsaufgaben** (`Pruefungsaufgaben_Konjunktur-Wirtschaftspolitik-Aussenwirtschaft.html`) — 13 prüfungsnahe Aufgaben im IHK-Klausurstil (inkl. Rechenaufgaben zu Wachstums-, Inflations- und Arbeitslosenquote): schriftlich üben und mit den Lösungshinweisen selbst prüfen.
+4. **Aufgabenheft** mit Musterlösungen — empfehlenswert: Aufgabe 3 (EZB) und 8 (Konzeptionen).
+5. **Karteikarten & Lernspiele** (Wordle, Hängemann, Memory) der Lektionen 1–3 wiederholen (Spaced Repetition bis zur Prüfung).
 
 Ausblick: ab Sa 05.09. beginnt der BWL-Teil (Betriebliche Funktionen).

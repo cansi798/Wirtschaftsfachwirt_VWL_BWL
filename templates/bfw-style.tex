@@ -6,7 +6,8 @@
 % Texten verwenden wir " als normales Zeichen — daher Shorthand komplett ausschalten.
 \shorthandoff{"}
 \usepackage{geometry}
-\geometry{a4paper, top=2.2cm, bottom=2.2cm, left=2.3cm, right=2.3cm}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.3cm, right=2.3cm,
+          headheight=15pt, headsep=0.7cm, footskip=1.1cm}
 
 \usepackage{fontspec}
 % Fallback-Kette: Source Sans Pro -> Calibri -> Segoe UI -> Latin Modern Sans
@@ -28,6 +29,10 @@
   \setmonofont{Latin Modern Mono}[Scale=0.92]%
 }}
 
+% Gesperrte Versalien für Labels/Titelbalken (Kapitälchen-Ersatz, funktioniert
+% mit jeder OpenType-Schrift — Latin Modern Sans hat keine echten Kapitälchen)
+\newcommand{\bfwlabelfont}{\footnotesize\bfseries\addfontfeatures{LetterSpace=8.0}}
+
 \usepackage{xcolor}
 % Farbpalette: hell, freundlich, modern
 \definecolor{bfwPrimary}{HTML}{0EA5A4}    % Petrol/Türkis - Primär
@@ -41,66 +46,101 @@
 \definecolor{bfwBgTeal}{HTML}{ECFEFF}     % helles Türkis
 \definecolor{bfwBgAmber}{HTML}{FEF3C7}    % helles Gelb
 \definecolor{bfwBgRose}{HTML}{FFE4E6}     % helles Rosé für Eselsbrücken
+\definecolor{bfwTabHead}{HTML}{E4F3F2}    % zarte Kopfzeilen-Hinterlegung für Tabellen
 
 \usepackage[colorlinks=true, linkcolor=bfwPrimaryDark, urlcolor=bfwPrimaryDark]{hyperref}
+\usepackage{lastpage}
 \usepackage{enumitem}
 \setlist[itemize]{leftmargin=*, itemsep=2pt, topsep=2pt}
 \setlist[enumerate]{leftmargin=*, itemsep=2pt, topsep=2pt}
 
 \usepackage[most]{tcolorbox}
 \usepackage{booktabs}
+\usepackage{colortbl}
 \usepackage{tikz}
 \usetikzlibrary{decorations.pathmorphing, positioning, shapes.geometric, arrows.meta}
 
+% ---------------------------------------------------------------------------
+% Einheitliches Tabellen-Design
+%   - etwas mehr Zeilenluft, dezente graue Linien (wirkt auch mit \hline ruhiger)
+%   - Kopfzeile einer Tabelle bei Bedarf zart hinterlegen: \rowcolor{bfwTabHead}
+% ---------------------------------------------------------------------------
+\renewcommand{\arraystretch}{1.25}
+\arrayrulecolor{bfwInkSoft!50}
+\setlength{\heavyrulewidth}{1pt}
+\setlength{\lightrulewidth}{0.5pt}
+
+% ---------------------------------------------------------------------------
+% Boxen — klare farbige Titelbalken mit gesperrten Versal-Labels
+% (Titel bleibt per Option überschreibbar: \begin{merksatz}[title={...}])
+% ---------------------------------------------------------------------------
+\tcbset{bfwbox/.style={%
+  enhanced, breakable,
+  boxrule=0.5pt, arc=2.5pt,
+  left=10pt, right=10pt, top=8pt, bottom=8pt,
+  toptitle=4pt, bottomtitle=4pt,
+  titlerule=0pt,
+  fonttitle=\bfwlabelfont,
+  coltitle=white
+}}
+
 % Merkkästchen — wichtige Definition / Kernpunkt
 \newtcolorbox{merksatz}[1][]{%
-  enhanced, breakable,
+  bfwbox,
   colback=bfwBgTeal,
-  colframe=bfwPrimary,
-  boxrule=0.6pt,
-  arc=4pt,
-  left=10pt, right=10pt, top=8pt, bottom=8pt,
-  fonttitle=\bfseries\color{bfwPrimaryDark},
-  title={\faLightbulb\ Merksatz},
+  colframe=bfwPrimaryDark,
+  colbacktitle=bfwPrimaryDark,
+  title={MERKE},
   #1
 }
 
 % Eselsbrücke — Mnemoniks
 \newtcolorbox{eselsbruecke}[1][]{%
-  enhanced, breakable,
+  bfwbox,
   colback=bfwBgRose,
-  colframe=bfwAccent,
-  boxrule=0.6pt,
-  arc=4pt,
-  left=10pt, right=10pt, top=8pt, bottom=8pt,
-  fonttitle=\bfseries\color{bfwWarn},
-  title={Eselsbrücke},
+  colframe=bfwAccent!85!black,
+  colbacktitle=bfwAccent!85!black,
+  title={ESELSBRÜCKE},
   #1
 }
 
 % Beispiel-Box
 \newtcolorbox{beispiel}[1][]{%
-  enhanced, breakable,
+  bfwbox,
   colback=bfwBgSoft,
   colframe=bfwInkSoft,
-  boxrule=0.4pt,
-  arc=3pt,
-  left=10pt, right=10pt, top=8pt, bottom=8pt,
-  fonttitle=\bfseries\color{bfwInk},
-  title={Beispiel},
+  colbacktitle=bfwInkSoft,
+  title={BEISPIEL},
   #1
 }
 
 % Lösungs-Box (für Aufgabenhefte)
 \newtcolorbox{loesung}[1][]{%
-  enhanced, breakable,
-  colback=bfwBgAmber!40,
-  colframe=bfwSuccess,
-  boxrule=0.6pt,
-  arc=3pt,
-  left=10pt, right=10pt, top=8pt, bottom=8pt,
-  fonttitle=\bfseries\color{bfwSuccess!70!black},
-  title={Lösung},
+  bfwbox,
+  colback=bfwSuccess!7,
+  colframe=bfwSuccess!65!black,
+  colbacktitle=bfwSuccess!65!black,
+  title={LÖSUNG},
+  #1
+}
+
+% Achtung-Box — typische Fehler / Stolperfallen
+\newtcolorbox{achtung}[1][]{%
+  bfwbox,
+  colback=bfwWarn!6,
+  colframe=bfwWarn!85!black,
+  colbacktitle=bfwWarn!85!black,
+  title={ACHTUNG},
+  #1
+}
+
+% Formel-Box — für zentrale Formeln (groß, ruhig, ohne Titelbalken)
+\newtcolorbox{formelbox}[1][]{%
+  enhanced,
+  colback=bfwBgTeal,
+  colframe=bfwPrimaryDark,
+  boxrule=1pt, arc=3pt,
+  left=10pt, right=10pt, top=6pt, bottom=6pt,
   #1
 }
 
@@ -109,17 +149,29 @@
   \par\noindent\textbf{\color{bfwPrimaryDark}#1} \enspace #2\par\smallskip
 }
 
-% Section-Stil — etwas farbiger als Standard
+% ---------------------------------------------------------------------------
+% Abschnitts-Design: farbiges Nummern-Quadrat + feine Linie unter \section,
+% dezent farbige \subsection/\subsubsection
+% ---------------------------------------------------------------------------
 \usepackage{titlesec}
+\newcommand{\bfwSecBadge}[1]{%
+  \begin{tikzpicture}[baseline={([yshift=-0.62em]n.center)}]
+    \node[fill=bfwPrimaryDark, text=white, font=\normalsize\bfseries,
+          minimum width=1.55em, minimum height=1.55em, inner sep=1pt,
+          rounded corners=1.5pt] (n) {#1};
+  \end{tikzpicture}}
 \titleformat{\section}
   {\Large\bfseries\color{bfwPrimaryDark}}
-  {\thesection}{0.6em}{}
+  {\bfwSecBadge{\thesection}}{0.6em}{}
+  [\vspace{-0.2em}{\color{bfwPrimary!60}\titlerule[0.8pt]}]
 \titleformat{\subsection}
-  {\large\bfseries\color{bfwPrimary}}
-  {\thesubsection}{0.5em}{}
+  {\large\bfseries\color{bfwPrimaryDark}}
+  {\textcolor{bfwPrimary}{\thesubsection}}{0.5em}{}
 \titleformat{\subsubsection}
   {\normalsize\bfseries\color{bfwInk}}
-  {\thesubsubsection}{0.4em}{}
+  {\textcolor{bfwPrimary}{\thesubsubsection}}{0.4em}{}
+\titlespacing*{\section}{0pt}{1.6em}{1em}
+\titlespacing*{\subsection}{0pt}{1.2em}{0.5em}
 
 % TikZ-Stil "skizzenhaft" — etwas weicher als Rough.js, aber stabil
 \tikzset{
@@ -140,10 +192,47 @@
 \newcommand{\faLightbulb}{$\bullet$}
 \newcommand{\faBookmark}{$\bullet$}
 
-% Header/Footer
+% ---------------------------------------------------------------------------
+% Kopf-/Fußzeile
+%   Kopf links:  Wortlogo „Wirtschaftsfachwirt"
+%   Kopf rechts: Dokument-Kurztext, gesetzt via \kopfzeile{...}
+%   Fuß links:   © Can Siebert · 2026 — Fuß rechts: Seite X von Y
+%   Titelseite (Seite 1) bleibt ohne Kopf-/Fußzeile (\handouttitel setzt
+%   \thispagestyle{empty}).
+% ---------------------------------------------------------------------------
 \usepackage{fancyhdr}
+\newcommand{\bfwKopfzeileText}{}
+\newcommand{\kopfzeile}[1]{\renewcommand{\bfwKopfzeileText}{#1}}
 \pagestyle{fancy}
 \fancyhf{}
-\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\small\bfseries\color{bfwPrimaryDark}Wirtschaftsfachwirt}
+\fancyhead[R]{\small\color{bfwInkSoft}\bfwKopfzeileText}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\headrule}{{\color{bfwPrimary}\hrule width\headwidth height 0.6pt}}
 \fancyfoot[L]{\small\color{bfwInkSoft}\copyright\ Can Siebert\,\textperiodcentered\,2026}
-\fancyfoot[R]{\small\color{bfwInkSoft}\thepage}
+\fancyfoot[R]{\small\color{bfwInkSoft}Seite \thepage\ von \pageref*{LastPage}}
+% Auch \thispagestyle{plain} (z.B. durch \maketitle) soll leer bleiben:
+\fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}\renewcommand{\headrule}{}}
+
+% ---------------------------------------------------------------------------
+% \handouttitel{Obertitel}{Untertitel}{Kurs-Label}{Termin-Zeile}
+%   Einheitlicher professioneller Titelblock: Dachzeile, farbige Headline,
+%   Untertitel, farbige Trennlinie und dezente Meta-Zeile (Kurs/Termin/Dozent).
+%   Ersetzt \title/\maketitle. Direkt nach \begin{document} aufrufen.
+% ---------------------------------------------------------------------------
+\newcommand{\handouttitel}[4]{%
+  \thispagestyle{empty}%
+  \begingroup
+  \setlength{\parindent}{0pt}%
+  {\bfwlabelfont\color{bfwPrimary}WIRTSCHAFTSFACHWIRT (IHK)\par}
+  \vspace{0.55em}
+  {\huge\bfseries\color{bfwPrimaryDark}#1\par}
+  \vspace{0.5em}
+  {\large\color{bfwInkSoft}#2\par}
+  \vspace{0.9em}
+  {\color{bfwPrimary}\rule{\linewidth}{2pt}}\par
+  \vspace{0.55em}
+  {\small\color{bfwInkSoft}#3\ \,\textperiodcentered\,\ #4\ \,\textperiodcentered\,\ Dozent: Can Siebert\par}
+  \endgroup
+  \vspace{1.4em}%
+}

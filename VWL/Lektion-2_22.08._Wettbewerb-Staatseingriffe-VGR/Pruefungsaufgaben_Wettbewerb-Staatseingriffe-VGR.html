@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Lektion 2 · Prüfungsaufgaben — Wettbewerbspolitik, Staatseingriffe & Volkswirtschaftliche Gesamtrechnung</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:#0EA5A4; --bfw-primary-dark:#0F766E;
+  --bfw-accent:#F59E0B; --bfw-warn:#F97316;
+  --bfw-success:#10B981; --bfw-danger:#EF4444;
+  --bfw-ink:#0F172A; --bfw-ink-soft:#475569;
+  --bfw-bg:#FAFAFA; --bfw-bg-soft:#F8FAFC;
+  --bfw-bg-teal:#ECFEFF; --bfw-bg-amber:#FEF3C7;
+  --bfw-bg-rose:#FFE4E6; --bfw-border:#E2E8F0;
+  --bfw-bg-green:#D1FAE5;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, var(--bfw-bg-teal) 0%, var(--bfw-bg) 50%, var(--bfw-bg-amber) 100%);
+  min-height: 100vh; color: var(--bfw-ink); -webkit-font-smoothing: antialiased;
+  padding: 2rem 1rem 4rem;
+}
+.container { max-width: 900px; margin: 0 auto; }
+header { text-align: center; margin-bottom: 1.6rem; }
+.tag-pill {
+  display: inline-block; background: var(--bfw-bg-teal); color: var(--bfw-primary-dark);
+  font-weight: 700; font-size: 0.82rem; padding: 0.3rem 0.9rem; border-radius: 999px;
+  letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.8rem;
+}
+h1 { font-size: 1.7rem; color: var(--bfw-primary-dark); margin-bottom: 0.4rem; }
+.subtitle { color: var(--bfw-ink-soft); font-size: 1.02rem; line-height: 1.5; }
+
+.progress-wrap {
+  background: white; border: 1px solid var(--bfw-border); border-radius: 14px;
+  padding: 1rem 1.3rem; margin-bottom: 1.6rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.progress-bar { flex: 1; min-width: 200px; height: 12px; background: var(--bfw-bg-soft); border: 1px solid var(--bfw-border); border-radius: 999px; overflow: hidden; display: flex; }
+.progress-bar .seg-ok { background: var(--bfw-success); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-teil { background: var(--bfw-accent); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-nein { background: var(--bfw-danger); height: 100%; transition: width 0.3s; }
+.progress-label { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; white-space: nowrap; }
+.btn-reset {
+  padding: 0.45rem 0.9rem; background: transparent; color: var(--bfw-ink-soft);
+  border: 1.5px solid var(--bfw-border); border-radius: 8px; font-family: inherit;
+  font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.15s;
+}
+.btn-reset:hover { color: var(--bfw-danger); border-color: var(--bfw-danger); }
+
+.task {
+  background: white; border: 1px solid var(--bfw-border); border-left: 5px solid var(--bfw-border);
+  border-radius: 14px; padding: 1.4rem 1.5rem; margin-bottom: 1.2rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04); transition: border-color 0.2s;
+}
+.task.ok { border-left-color: var(--bfw-success); }
+.task.teil { border-left-color: var(--bfw-accent); }
+.task.nein { border-left-color: var(--bfw-danger); }
+.task-head { display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
+.task-num { font-weight: 800; color: var(--bfw-primary-dark); font-size: 1.05rem; white-space: nowrap; }
+.task-topic {
+  display: inline-block; background: var(--bfw-bg-amber); color: #92400E;
+  font-weight: 700; font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 999px;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.task-punkte { margin-left: auto; color: var(--bfw-ink-soft); font-size: 0.82rem; font-weight: 600; white-space: nowrap; }
+.task-frage { font-size: 1.02rem; line-height: 1.55; margin-bottom: 0.9rem; white-space: pre-line; }
+.task-hinweis { margin-bottom: 0.9rem; }
+.task-hinweis summary { cursor: pointer; color: var(--bfw-primary-dark); font-weight: 600; font-size: 0.9rem; }
+.task-hinweis p { margin-top: 0.5rem; padding: 0.7rem 0.9rem; background: var(--bfw-bg-teal); border-radius: 8px; font-size: 0.92rem; color: var(--bfw-ink-soft); line-height: 1.5; }
+textarea {
+  width: 100%; min-height: 110px; padding: 0.8rem 0.9rem;
+  border: 1.5px solid var(--bfw-border); border-radius: 10px;
+  font-family: inherit; font-size: 0.98rem; line-height: 1.5; resize: vertical;
+  background: var(--bfw-bg-soft); transition: all 0.15s;
+}
+textarea:focus { outline: none; border-color: var(--bfw-primary); background: white; box-shadow: 0 0 0 3px rgba(14,165,164,0.12); }
+.task-actions { margin-top: 0.8rem; display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+.btn {
+  padding: 0.55rem 1.1rem; border: none; border-radius: 9px; cursor: pointer;
+  font-family: inherit; font-size: 0.92rem; font-weight: 700; transition: all 0.15s;
+}
+.btn-loesung { background: var(--bfw-primary); color: white; }
+.btn-loesung:hover { background: var(--bfw-primary-dark); }
+.loesung {
+  display: none; margin-top: 1rem; padding: 1rem 1.1rem;
+  background: var(--bfw-bg-green); border: 1px solid #A7F3D0; border-radius: 10px;
+}
+.loesung.show { display: block; }
+.loesung-label { font-weight: 800; color: #047857; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+.loesung-text { font-size: 0.97rem; line-height: 1.6; white-space: pre-line; }
+.self-check { display: none; margin-top: 0.9rem; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.self-check.show { display: flex; }
+.self-check span { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; }
+.btn-ok { background: var(--bfw-bg-green); color: #047857; border: 1.5px solid #A7F3D0; }
+.btn-teil { background: var(--bfw-bg-amber); color: #92400E; border: 1.5px solid #FDE68A; }
+.btn-nein { background: var(--bfw-bg-rose); color: #B91C1C; border: 1.5px solid #FECACA; }
+.btn-ok.active, .btn-ok:hover { background: var(--bfw-success); color: white; }
+.btn-teil.active, .btn-teil:hover { background: var(--bfw-accent); color: white; }
+.btn-nein.active, .btn-nein:hover { background: var(--bfw-danger); color: white; }
+.saved-note { font-size: 0.78rem; color: var(--bfw-ink-soft); margin-left: auto; }
+
+footer { text-align: center; margin-top: 2.5rem; color: var(--bfw-ink-soft); font-size: 0.85rem; }
+@media print { .btn, .btn-reset, .self-check { display: none !important; } .loesung { display: block; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <span class="tag-pill">Lektion 2 · Prüfungsaufgaben</span>
+    <h1>Prüfungsaufgaben: Wettbewerbspolitik, Staatseingriffe & Volkswirtschaftliche Gesamtrechnung</h1>
+    <p class="subtitle">Beantworten Sie die Aufgaben in eigenen Worten im Antwortfeld — Ihre Eingaben werden lokal im Browser gespeichert. Prüfen Sie sich danach mit dem <strong>Lösungshinweis</strong> und bewerten Sie sich selbst. In der IHK-Prüfung zählen ausformulierte Begründungen!</p>
+  </header>
+
+  <div class="progress-wrap">
+    <div class="progress-bar" id="progressBar"><div class="seg-ok"></div><div class="seg-teil"></div><div class="seg-nein"></div></div>
+    <span class="progress-label" id="progressLabel"></span>
+    <button class="btn-reset" onclick="resetAll()">Zurücksetzen</button>
+  </div>
+
+  <div id="tasks"></div>
+
+  <footer>© Can Siebert · 2026 · Wirtschaftsfachwirt — VWL — Volkswirtschaftliche Grundlagen</footer>
+</div>
+
+<script>
+const DAY_ID = 'vwl-2-pa';
+const TASKS = [{"topic":"GWB-Fallmix","punkte":10,"frage":"Ordnen Sie die folgenden fünf Fälle jeweils der zutreffenden Kategorie zu — Kartellart (mit Bezeichnung), Missbrauchsform oder Fall der Fusionskontrolle — und begründen Sie kurz:\n1. Drei Baukonzerne sprechen vor einer öffentlichen Ausschreibung ab, wer das günstigste Angebot abgibt.\n2. Ein marktbeherrschender Lebensmittelkonzern zwingt kleine Zulieferer nachträglich zu Sonderrabatten („Hochzeitsrabatte“).\n3. Die Nr. 1 und Nr. 2 im deutschen Kabelnetzmarkt wollen sich zusammenschließen — gemeinsam hätten sie über 70 % Marktanteil.\n4. Zwei Mineralölkonzerne vereinbaren, ihre Absatzgebiete entlang der Bundesländergrenzen aufzuteilen.\n5. Ein Online-Riese verkauft E-Books dauerhaft unter Einstandspreis, um einen neuen Wettbewerber vom Markt zu drängen.","hinweis":"Die drei Säulen des GWB: Kartellverbot (§ 1), Missbrauchsaufsicht (§§ 19 ff.), Fusionskontrolle (§ 35).","loesung":"1. Submissionskartell — verbotene Absprache bei öffentlichen Ausschreibungen (Paragraf 1 GWB).\n2. Ausbeutungsmissbrauch (Paragrafen 19 ff. GWB) — ein Marktbeherrscher erzwingt Vorteile von abhängigen Zulieferern.\n3. Fusionskontrolle (Paragraf 35 GWB) — der Zusammenschluss ist anmeldepflichtig; wegen der entstehenden Marktbeherrschung droht die Untersagung durch das Bundeskartellamt (Ausweg: Ministererlaubnis nach Paragraf 42 GWB).\n4. Gebietskartell — verbotene Aufteilung des Absatzmarktes (Paragraf 1 GWB).\n5. Behinderungsmissbrauch — Kampfpreise (Dumping) versperren Wettbewerbern den Marktzugang."},{"topic":"Wettbewerbspolitik","punkte":6,"frage":"Ordnen Sie die folgenden Fälle dem UWG oder dem GWB zu und begründen Sie jeweils:\na) Ein Möbelhaus wirbt seit zwei Jahren durchgehend mit „Totaler Räumungsverkauf — nur noch diese Woche!“.\nb) Zwei Bäckereiketten einer Region vereinbaren, ihre Brötchenpreise gleichzeitig um 10 Cent zu erhöhen.\nc) Ein marktbeherrschender Softwareanbieter verlangt von Bestandskunden deutlich überhöhte Wartungsgebühren.","hinweis":"UWG schützt das „Wie“ (faire Praktiken), GWB den Bestand des Wettbewerbs.","loesung":"a) UWG — die dauerhafte, irreführende Werbung mit einem angeblichen Räumungsverkauf ist eine unlautere geschäftliche Handlung (Irreführung der Verbraucher); es geht um die Art und Weise des Wettbewerbs.\nb) GWB — verbotene Preisabsprache (Preiskartell) nach Paragraf 1 GWB; die Vereinbarung schränkt den Wettbewerb ein und gefährdet seinen Bestand.\nc) GWB — Ausbeutungsmissbrauch nach den Paragrafen 19 ff. GWB: Ein marktbeherrschendes Unternehmen nutzt seine Stellung, um überhöhte Preise durchzusetzen (Missbrauchsaufsicht)."},{"topic":"Ordnungspolitik","punkte":4,"frage":"Erläutern Sie, warum ein sich selbst überlassener Markt die Tendenz hat, den Wettbewerb zu reduzieren, und was daraus für die Aufgabe des Staates folgt.","hinweis":"Was ist für ein einzelnes Unternehmen bequemer als Wettbewerb?","loesung":"Für die einzelnen Unternehmen ist Wettbewerb anstrengend: Er drückt Preise und Gewinne und erzwingt ständige Verbesserungen. Deshalb besteht der Anreiz, ihm auszuweichen — durch Absprachen (Kartelle), durch Aufkauf von Konkurrenten (Konzentration, Fusionen) oder durch Verdrängung mittels Marktmacht. Ohne Gegenmaßnahmen würde der Wettbewerb sich also selbst abschaffen. Daraus folgt die Aufgabe des Staates, im Rahmen der Ordnungspolitik den Bestand des Wettbewerbs zu schützen — in Deutschland vor allem durch das GWB mit seinen drei Säulen (Kartellverbot, Missbrauchsaufsicht, Fusionskontrolle), überwacht vom Bundeskartellamt."},{"topic":"Staatseingriffe","punkte":6,"frage":"Der Staat gewährt Herstellern von Wärmepumpen eine Subvention je produziertem Gerät.\na) Erläutern Sie die Wirkung im Preis-Mengen-Diagramm (Angebotskurve, Gleichgewichtspreis, Gleichgewichtsmenge).\nb) Beurteilen Sie, ob es sich um einen marktkonformen oder marktkonträren Eingriff handelt.","hinweis":"Die Subvention senkt die Produktionskosten der Anbieter.","loesung":"a) Die Subvention wirkt wie eine Senkung der Produktionskosten: Die Anbieter können zu jedem Preis mehr anbieten — die Angebotskurve verschiebt sich nach rechts (bzw. nach unten). Im neuen Schnittpunkt mit der unveränderten Nachfragekurve ist der Gleichgewichtspreis niedriger und die Gleichgewichtsmenge größer: Wärmepumpen werden billiger und häufiger gekauft.\nb) Es handelt sich um einen marktkonformen (indirekten) Eingriff: Der Staat beeinflusst nur die Bestimmungsfaktoren des Angebots; der Preis bildet sich weiterhin frei über den Preismechanismus. Kritisch würde es erst bei Dauersubventionen, die die Selektions- und Signalfunktion des Preises dauerhaft aushebeln."},{"topic":"Staatseingriffe","punkte":4,"frage":"Unterscheiden Sie Subventionen und Transferleistungen als marktkonforme Instrumente und ordnen Sie zu: a) Zuschuss für die Markteinführung von Windkraftanlagen, b) Wohngeld für einkommensschwache Haushalte.","hinweis":"Welche Marktseite wird jeweils unterstützt?","loesung":"Subventionen unterstützen die Anbieter: Zuschüsse oder Vergünstigungen an Unternehmen, die dadurch günstiger produzieren und ggf. unter den Produktionskosten verkaufen können. Transferleistungen unterstützen die Nachfrager: staatliche Zahlungen an Haushalte ohne unmittelbare Gegenleistung, die deren Kaufkraft stärken.\nZuordnung: a) Subvention (Förderung der Anbieterseite bei der Markteinführung), b) Transferleistung (Subvention der Nachfrager — das Wohngeld stärkt die Nachfrage nach Wohnraum)."},{"topic":"VGR","punkte":5,"frage":"Für eine Volkswirtschaft gilt (in Mrd. €): BIP 3.200; Einkommen von Nichtinländern im Inland 90; Einkommen von Inländern im Ausland 150.\na) Berechnen Sie das Bruttonationaleinkommen (BNE).\nb) Ein Grenzpendler aus Frankreich arbeitet in einem deutschen Werk. Begründen Sie, in welche der beiden Größen (deutsches BIP, deutsches BNE) sein Arbeitsentgelt eingeht.","hinweis":"BNE = BIP − Inlandseinkommen der Nichtinländer + Auslandseinkommen der Inländer.","loesung":"a) BNE = BIP − Inlandseinkommen der Nichtinländer + Auslandseinkommen der Inländer = 3.200 − 90 + 150 = 3.260 Mrd. €.\nb) Sein Entgelt geht in das deutsche BIP ein, denn die Leistung wird innerhalb der deutschen Grenzen erbracht (Inlandskonzept: Es zählt der Ort der Leistungserstellung). In das deutsche BNE geht es nicht ein, denn der Pendler ist kein Inländer (Inländerkonzept: Es zählt der Wohnsitz des Einkommensbeziehers) — sein Einkommen zählt zum französischen BNE."},{"topic":"VGR","punkte":6,"frage":"Das nominale BIP eines Landes beträgt im Berichtsjahr 2.310 Mrd. €; der Preisindex liegt bei 110 (Basisjahr = 100). Im Vorjahr (Basisjahr) betrug das BIP 2.100 Mrd. €.\na) Berechnen Sie das reale BIP des Berichtsjahres.\nb) Ermitteln Sie das nominale und das reale Wachstum und interpretieren Sie das Ergebnis.","hinweis":"Reales BIP = nominales BIP ÷ Preisindex × 100.","loesung":"a) Reales BIP = 2.310 ÷ 110 × 100 = 2.100 Mrd. €.\nb) Nominales Wachstum: (2.310 − 2.100) ÷ 2.100 × 100 = +10 %. Reales Wachstum: (2.100 − 2.100) ÷ 2.100 × 100 = 0 %.\nInterpretation: Der gesamte nominale Zuwachs von 10 % ist reine Preissteigerung (Inflation) — es wurden real nicht mehr Güter und Dienstleistungen produziert. Für Wachstumsaussagen ist daher stets das reale BIP maßgeblich."},{"topic":"VGR","punkte":5,"frage":"Für eine Volkswirtschaft liegen folgende Daten vor (in Mrd. €): private Konsumausgaben 1.750; Konsumausgaben des Staates 720; Bruttoinvestitionen 760; Exporte 1.620; Importe 1.480. Berechnen Sie das BIP nach der Verwendungsrechnung und benennen Sie die einzelnen Rechenschritte.","hinweis":"Privater Konsum + Staatskonsum + Bruttoinvestitionen + Außenbeitrag = BIP.","loesung":"Schritt 1: Außenbeitrag = Exporte − Importe = 1.620 − 1.480 = +140 Mrd. €.\nSchritt 2: BIP = private Konsumausgaben + Konsumausgaben des Staates + Bruttoinvestitionen + Außenbeitrag = 1.750 + 720 + 760 + 140 = 3.370 Mrd. €.\nDie Verwendungsrechnung beantwortet die Leitfrage: Wofür wurde die Inlandsproduktion verwendet? Sie führt zum gleichen BIP wie Entstehungs- und Verteilungsrechnung."},{"topic":"Stabilitätsziele","punkte":6,"frage":"Eine Volkswirtschaft mit einem nominalen BIP von 3.500 Mrd. € exportiert Waren und Dienstleistungen für 1.620 Mrd. € und importiert für 1.480 Mrd. €.\na) Berechnen Sie den Außenbeitrag absolut und in Prozent des BIP.\nb) Beurteilen Sie das Ergebnis im Hinblick auf das Ziel des außenwirtschaftlichen Gleichgewichts.","hinweis":"Zielgröße: positiver Außenbeitrag von etwa 1 bis 2 % des nominalen BIP.","loesung":"a) Außenbeitrag = Exporte − Importe = 1.620 − 1.480 = +140 Mrd. €. In Prozent des BIP: 140 ÷ 3.500 × 100 = 4,0 %.\nb) Das Ziel des außenwirtschaftlichen Gleichgewichts gilt als erreicht bei einem positiven Außenbeitrag von etwa 1 bis 2 % des nominalen BIP. Mit 4,0 % liegt das Land deutlich darüber — das Ziel ist verfehlt. Ein dauerhaft hoher Exportüberschuss bedeutet Abhängigkeit vom Ausland, kann Handelspartner verschulden und provoziert protektionistische Gegenmaßnahmen."},{"topic":"Inflationsmessung","punkte":4,"frage":"Erläutern Sie, wie die Inflationsrate in Deutschland gemessen wird. Gehen Sie dabei auf die Begriffe Warenkorb und Verbraucherpreisindex ein.","hinweis":"Was steckt „im Korb“ — und womit wird verglichen?","loesung":"Grundlage ist ein repräsentativer Warenkorb: eine Zusammenstellung von mehreren hundert Gütern und Dienstleistungen, die ein durchschnittlicher Haushalt verbraucht (Miete, Lebensmittel, Energie, Verkehr, Freizeit usw.), gewichtet nach ihrem Anteil an den Ausgaben. Die Preise dieses Warenkorbs werden regelmäßig erhoben und zum Verbraucherpreisindex (VPI) zusammengefasst, der die Preisentwicklung gegenüber einem Basisjahr misst. Die Inflationsrate ist die prozentuale Veränderung des Verbraucherpreisindex gegenüber dem Vorjahr(eszeitraum). Für den Euroraum wird entsprechend der harmonisierte Verbraucherpreisindex (HVPI) verwendet."},{"topic":"Einkommensverteilung","punkte":4,"frage":"Erklären Sie, wie mit der Lorenzkurve die personelle Einkommensverteilung dargestellt wird und woran man in der Grafik den Grad der Ungleichheit erkennt.","hinweis":"Was bedeutet die 45-Grad-Linie (Diagonale)?","loesung":"Die Lorenzkurve trägt auf der waagerechten Achse den kumulierten Anteil der Haushalte (von den ärmsten zu den reichsten) und auf der senkrechten Achse den kumulierten Anteil am Gesamteinkommen ab. Die 45-Grad-Diagonale stellt die völlige Gleichverteilung dar: x % der Haushalte erhalten genau x % des Einkommens. Die tatsächliche Lorenzkurve verläuft unterhalb der Diagonale (durchhängend). Je stärker die Kurve von der Diagonale abweicht (je größer die Fläche zwischen Diagonale und Kurve), desto ungleicher ist das Einkommen verteilt. Liest man z. B. ab, dass 50 % der Haushalte nur 20 % des Einkommens erhalten, zeigt das eine deutliche Ungleichverteilung."},{"topic":"Magisches Viereck","punkte":6,"frage":"Die Wirtschaft eines Landes wächst seit zwei Jahren kräftig, die Arbeitslosenquote liegt bei 3 %, die Inflationsrate ist auf 4,5 % gestiegen. Die Regierung plant dennoch ein zusätzliches kreditfinanziertes Konjunkturprogramm, um das Wachstum weiter zu erhöhen. Beurteilen Sie dieses Vorhaben anhand der Ziele des magischen Vierecks.","hinweis":"Welche Ziele sind bereits erreicht — und welches Ziel wird durch das Programm gefährdet?","loesung":"Ausgangslage: Das Ziel des hohen Beschäftigungsstands ist mit 3 % Arbeitslosenquote erreicht, das Wachstumsziel ebenfalls; die Preisniveaustabilität (Zielwert: rund 2 %) ist mit 4,5 % Inflation dagegen bereits verfehlt.\nBeurteilung: Ein zusätzliches kreditfinanziertes Konjunkturprogramm erhöht die gesamtwirtschaftliche Nachfrage in einer Situation nahezu voller Kapazitätsauslastung — es heizt den Preisauftrieb weiter an und verschärft den Zielkonflikt zwischen Wachstum und Preisniveaustabilität. Sinnvoll wäre das Gegenteil: antizyklisch restriktive Politik im Boom (Ausgaben senken, Rücklagen bilden). Das Vorhaben widerspricht damit der Logik des Stabilitätsgesetzes; es wirkt prozyklisch statt antizyklisch und erhöht zudem die Staatsverschuldung."},{"topic":"Wirtschaftskreislauf","punkte":5,"frage":"Beschreiben Sie den einfachen Wirtschaftskreislauf zwischen privaten Haushalten und Unternehmen (Güter- und Geldströme) und erläutern Sie, welche Rolle die Kapitalsammelstellen (Banken) im erweiterten Kreislauf übernehmen.","hinweis":"Jedem Güterstrom steht ein Geldstrom in Gegenrichtung gegenüber.","loesung":"Einfacher Kreislauf: Die privaten Haushalte stellen den Unternehmen Produktionsfaktoren (Arbeit, Boden, Kapital) zur Verfügung und erhalten dafür Faktoreinkommen (Löhne, Mieten, Zinsen). Mit diesem Einkommen kaufen die Haushalte Konsumgüter von den Unternehmen und zahlen dafür die Konsumausgaben. Es fließen also zwei Güterströme (Faktorleistungen, Konsumgüter) und zwei entgegengesetzte Geldströme (Einkommen, Konsumausgaben).\nKapitalsammelstellen: Sparen die Haushalte einen Teil ihres Einkommens, fließt dieses Geld nicht direkt in die Nachfrage. Banken und andere Kapitalsammelstellen sammeln die Ersparnisse und stellen sie den Unternehmen als Kredite für Investitionen zur Verfügung — sie schließen damit den Kreislauf zwischen Sparen und Investieren."}];
+const KEY = 'wfw_lernbereich_' + DAY_ID;
+
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { state = {}; }
+function save() { localStorage.setItem(KEY, JSON.stringify(state)); }
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function render() {
+  const wrap = document.getElementById('tasks');
+  wrap.innerHTML = TASKS.map((t, i) => {
+    const st = state[i] || {};
+    return `
+    <div class="task ${st.check || ''}" id="task-${i}">
+      <div class="task-head">
+        <span class="task-num">Aufgabe ${i + 1}</span>
+        <span class="task-topic">${esc(t.topic)}</span>
+        ${t.punkte ? `<span class="task-punkte">${t.punkte} Punkte</span>` : ''}
+      </div>
+      <div class="task-frage">${esc(t.frage)}</div>
+      ${t.hinweis ? `<details class="task-hinweis"><summary>💡 Tipp anzeigen</summary><p>${esc(t.hinweis)}</p></details>` : ''}
+      <textarea id="answer-${i}" placeholder="Ihre Antwort — in vollständigen Sätzen, wie in der Prüfung …">${esc(st.answer || '')}</textarea>
+      <div class="task-actions">
+        <button class="btn btn-loesung" onclick="toggleLoesung(${i})">Lösungshinweis anzeigen</button>
+        <span class="saved-note" id="saved-${i}"></span>
+      </div>
+      <div class="loesung ${st.open ? 'show' : ''}" id="loesung-${i}">
+        <div class="loesung-label">✓ Lösungshinweis</div>
+        <div class="loesung-text">${esc(t.loesung)}</div>
+      </div>
+      <div class="self-check ${st.open ? 'show' : ''}" id="check-${i}">
+        <span>Selbsteinschätzung:</span>
+        <button class="btn btn-ok ${st.check === 'ok' ? 'active' : ''}" onclick="setCheck(${i}, 'ok')">✓ Gewusst</button>
+        <button class="btn btn-teil ${st.check === 'teil' ? 'active' : ''}" onclick="setCheck(${i}, 'teil')">≈ Teilweise</button>
+        <button class="btn btn-nein ${st.check === 'nein' ? 'active' : ''}" onclick="setCheck(${i}, 'nein')">✗ Nochmal üben</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  TASKS.forEach((t, i) => {
+    const ta = document.getElementById('answer-' + i);
+    let timer = null;
+    ta.addEventListener('input', () => {
+      state[i] = state[i] || {};
+      state[i].answer = ta.value;
+      save();
+      const note = document.getElementById('saved-' + i);
+      note.textContent = 'gespeichert ✓';
+      clearTimeout(timer);
+      timer = setTimeout(() => { note.textContent = ''; }, 1500);
+    });
+  });
+  updateProgress();
+}
+
+function toggleLoesung(i) {
+  state[i] = state[i] || {};
+  state[i].open = !state[i].open;
+  save();
+  document.getElementById('loesung-' + i).classList.toggle('show', state[i].open);
+  document.getElementById('check-' + i).classList.toggle('show', state[i].open);
+}
+
+function setCheck(i, val) {
+  state[i] = state[i] || {};
+  state[i].check = state[i].check === val ? null : val;
+  save();
+  const card = document.getElementById('task-' + i);
+  card.classList.remove('ok', 'teil', 'nein');
+  if (state[i].check) card.classList.add(state[i].check);
+  document.querySelectorAll(`#check-${i} .btn`).forEach(b => b.classList.remove('active'));
+  if (state[i].check) {
+    const cls = { ok: 'btn-ok', teil: 'btn-teil', nein: 'btn-nein' }[state[i].check];
+    document.querySelector(`#check-${i} .${cls}`).classList.add('active');
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const counts = { ok: 0, teil: 0, nein: 0 };
+  TASKS.forEach((t, i) => { const c = (state[i] || {}).check; if (counts[c] !== undefined) counts[c]++; });
+  const n = TASKS.length;
+  const bar = document.getElementById('progressBar');
+  bar.querySelector('.seg-ok').style.width = (counts.ok / n * 100) + '%';
+  bar.querySelector('.seg-teil').style.width = (counts.teil / n * 100) + '%';
+  bar.querySelector('.seg-nein').style.width = (counts.nein / n * 100) + '%';
+  const done = counts.ok + counts.teil + counts.nein;
+  document.getElementById('progressLabel').textContent =
+    `${done}/${n} bearbeitet · ${counts.ok} gewusst · ${counts.teil} teilweise · ${counts.nein} üben`;
+}
+
+function resetAll() {
+  if (!confirm('Alle Antworten und Bewertungen dieser Lektion löschen?')) return;
+  state = {};
+  save();
+  render();
+}
+
+render();
+</script>
+</body>
+</html>

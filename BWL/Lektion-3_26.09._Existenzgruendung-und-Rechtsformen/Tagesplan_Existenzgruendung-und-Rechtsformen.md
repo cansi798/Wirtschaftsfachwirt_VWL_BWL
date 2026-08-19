@@ -23,7 +23,7 @@ Die Teilnehmenden können am Ende der Lektion …
 | 08:15–08:30 | Begrüßung & Einstieg | Rückblick Lektion 2, Tagesüberblick, Aktivierung: „Würden Sie gründen? Was hält Sie ab?" | Plenum |
 | 08:30–09:30 | Block 1: Gründungsphasen & Voraussetzungen | Gründungsgeschehen in Deutschland, Phasenmodell der Gründung, persönliche/fachliche/unternehmerische Voraussetzungen, finanzielle Basis | Präsentation + Aktivierung |
 | 09:30–09:45 | **Pause** | | |
-| 09:45–10:45 | Block 2: Businessplan & Förderung | Funktion und Adressaten des Businessplans, Bestandteile: Executive Summary, Geschäftsmodell, Markt & Wettbewerb, Marketing, Finanzplanung/Kapitalbedarf, Rechtsform; Förderkulisse: KfW, Gründungszuschuss | Präsentation + Übungsphase (eigene Aufgaben mit Lösungen) + Gruppenarbeit „Mini-Businessplan" |
+| 09:45–10:45 | Block 2: Businessplan & Förderung | Funktion und Adressaten des Businessplans, Bestandteile: Executive Summary, Geschäftsmodell, Markt & Wettbewerb, Marketing, Finanzplanung/Kapitalbedarf, Rechtsform; Förderkulisse: KfW, Gründungszuschuss | Präsentation + Prüfungsaufgaben-Training (interaktiv, mit Lösungshinweisen) + Gruppenarbeit „Mini-Businessplan" |
 | 10:45–11:00 | **Pause** | | |
 | 11:00–12:15 | Block 3: Rechtsformen I — Einzelunternehmen & Personengesellschaften | Überblick/Systematik, Einzelunternehmen (e. K.), GbR, OHG, KG, PartG; Firma & Handelsregister, Richtig/Falsch-Check Personengesellschaften | Präsentation + Richtig/Falsch-Check |
 | 12:15–13:00 | Block 4: Rechtsformen II — Kapitalgesellschaften, Mischformen & Vergleich | GmbH, UG (haftungsbeschränkt), AG mit Organen, GmbH & Co. KG, Genossenschaft kurz; Vergleichstabelle Haftung/Geschäftsführung/Vertretung/Kapital; Fallarbeit „Welche Rechtsform passt?" | Präsentation + Fallaufgabe |
@@ -44,8 +44,9 @@ Die Teilnehmenden können am Ende der Lektion …
 
 1. **Quiz** (60 Fragen) mit sofortiger Selbstkontrolle bearbeiten; Karteikarten digital wiederholen.
 2. **Lernbereich** nutzen — 18 offene Aufgaben mit Lösungshinweisen.
-3. **Aufgabenheft mit Musterlösungen** durcharbeiten — insbesondere die Fallaufgabe „Welche Rechtsform passt?" und die Businessplan-Aufgabe schriftlich lösen.
-4. **Karteikarten & Lernspiele** (Wordle, Hängemann, Memory): monatlich 1× wiederholen (z. B. jeweils am Monatsende); ab Februar 2027 zusätzlich die Vergleichstabelle der Rechtsformen aus dem Handout aus dem Gedächtnis reproduzieren.
-5. **Prüfungstraining BWL** auf dem Dashboard — Aufgaben im IHK-Klausurformat.
+3. **Prüfungsaufgaben** (`Pruefungsaufgaben_Existenzgruendung-und-Rechtsformen.html`) — neue interaktive Seite mit 13 prüfungsnahen Aufgaben im IHK-Stil: schriftlich lösen, dann mit den Lösungshinweisen vergleichen.
+4. **Aufgabenheft mit Musterlösungen** durcharbeiten — insbesondere die Fallaufgabe „Welche Rechtsform passt?" und die Businessplan-Aufgabe schriftlich lösen.
+5. **Karteikarten & Lernspiele** (Wordle, Hängemann, Memory): monatlich 1× wiederholen (z. B. jeweils am Monatsende); ab Februar 2027 zusätzlich die Vergleichstabelle der Rechtsformen aus dem Handout aus dem Gedächtnis reproduzieren.
+6. **Prüfungstraining BWL** auf dem Dashboard — Aufgaben im IHK-Klausurformat.
 
 Weitere Übungen: Übungsband (mit Lösungsteil).

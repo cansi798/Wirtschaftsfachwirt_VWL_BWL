@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Lektion 3 · Prüfungsaufgaben — Existenzgründung & Unternehmensrechtsformen</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:#0EA5A4; --bfw-primary-dark:#0F766E;
+  --bfw-accent:#F59E0B; --bfw-warn:#F97316;
+  --bfw-success:#10B981; --bfw-danger:#EF4444;
+  --bfw-ink:#0F172A; --bfw-ink-soft:#475569;
+  --bfw-bg:#FAFAFA; --bfw-bg-soft:#F8FAFC;
+  --bfw-bg-teal:#ECFEFF; --bfw-bg-amber:#FEF3C7;
+  --bfw-bg-rose:#FFE4E6; --bfw-border:#E2E8F0;
+  --bfw-bg-green:#D1FAE5;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, var(--bfw-bg-teal) 0%, var(--bfw-bg) 50%, var(--bfw-bg-amber) 100%);
+  min-height: 100vh; color: var(--bfw-ink); -webkit-font-smoothing: antialiased;
+  padding: 2rem 1rem 4rem;
+}
+.container { max-width: 900px; margin: 0 auto; }
+header { text-align: center; margin-bottom: 1.6rem; }
+.tag-pill {
+  display: inline-block; background: var(--bfw-bg-teal); color: var(--bfw-primary-dark);
+  font-weight: 700; font-size: 0.82rem; padding: 0.3rem 0.9rem; border-radius: 999px;
+  letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.8rem;
+}
+h1 { font-size: 1.7rem; color: var(--bfw-primary-dark); margin-bottom: 0.4rem; }
+.subtitle { color: var(--bfw-ink-soft); font-size: 1.02rem; line-height: 1.5; }
+
+.progress-wrap {
+  background: white; border: 1px solid var(--bfw-border); border-radius: 14px;
+  padding: 1rem 1.3rem; margin-bottom: 1.6rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.progress-bar { flex: 1; min-width: 200px; height: 12px; background: var(--bfw-bg-soft); border: 1px solid var(--bfw-border); border-radius: 999px; overflow: hidden; display: flex; }
+.progress-bar .seg-ok { background: var(--bfw-success); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-teil { background: var(--bfw-accent); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-nein { background: var(--bfw-danger); height: 100%; transition: width 0.3s; }
+.progress-label { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; white-space: nowrap; }
+.btn-reset {
+  padding: 0.45rem 0.9rem; background: transparent; color: var(--bfw-ink-soft);
+  border: 1.5px solid var(--bfw-border); border-radius: 8px; font-family: inherit;
+  font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.15s;
+}
+.btn-reset:hover { color: var(--bfw-danger); border-color: var(--bfw-danger); }
+
+.task {
+  background: white; border: 1px solid var(--bfw-border); border-left: 5px solid var(--bfw-border);
+  border-radius: 14px; padding: 1.4rem 1.5rem; margin-bottom: 1.2rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04); transition: border-color 0.2s;
+}
+.task.ok { border-left-color: var(--bfw-success); }
+.task.teil { border-left-color: var(--bfw-accent); }
+.task.nein { border-left-color: var(--bfw-danger); }
+.task-head { display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
+.task-num { font-weight: 800; color: var(--bfw-primary-dark); font-size: 1.05rem; white-space: nowrap; }
+.task-topic {
+  display: inline-block; background: var(--bfw-bg-amber); color: #92400E;
+  font-weight: 700; font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 999px;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.task-punkte { margin-left: auto; color: var(--bfw-ink-soft); font-size: 0.82rem; font-weight: 600; white-space: nowrap; }
+.task-frage { font-size: 1.02rem; line-height: 1.55; margin-bottom: 0.9rem; white-space: pre-line; }
+.task-hinweis { margin-bottom: 0.9rem; }
+.task-hinweis summary { cursor: pointer; color: var(--bfw-primary-dark); font-weight: 600; font-size: 0.9rem; }
+.task-hinweis p { margin-top: 0.5rem; padding: 0.7rem 0.9rem; background: var(--bfw-bg-teal); border-radius: 8px; font-size: 0.92rem; color: var(--bfw-ink-soft); line-height: 1.5; }
+textarea {
+  width: 100%; min-height: 110px; padding: 0.8rem 0.9rem;
+  border: 1.5px solid var(--bfw-border); border-radius: 10px;
+  font-family: inherit; font-size: 0.98rem; line-height: 1.5; resize: vertical;
+  background: var(--bfw-bg-soft); transition: all 0.15s;
+}
+textarea:focus { outline: none; border-color: var(--bfw-primary); background: white; box-shadow: 0 0 0 3px rgba(14,165,164,0.12); }
+.task-actions { margin-top: 0.8rem; display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+.btn {
+  padding: 0.55rem 1.1rem; border: none; border-radius: 9px; cursor: pointer;
+  font-family: inherit; font-size: 0.92rem; font-weight: 700; transition: all 0.15s;
+}
+.btn-loesung { background: var(--bfw-primary); color: white; }
+.btn-loesung:hover { background: var(--bfw-primary-dark); }
+.loesung {
+  display: none; margin-top: 1rem; padding: 1rem 1.1rem;
+  background: var(--bfw-bg-green); border: 1px solid #A7F3D0; border-radius: 10px;
+}
+.loesung.show { display: block; }
+.loesung-label { font-weight: 800; color: #047857; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+.loesung-text { font-size: 0.97rem; line-height: 1.6; white-space: pre-line; }
+.self-check { display: none; margin-top: 0.9rem; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.self-check.show { display: flex; }
+.self-check span { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; }
+.btn-ok { background: var(--bfw-bg-green); color: #047857; border: 1.5px solid #A7F3D0; }
+.btn-teil { background: var(--bfw-bg-amber); color: #92400E; border: 1.5px solid #FDE68A; }
+.btn-nein { background: var(--bfw-bg-rose); color: #B91C1C; border: 1.5px solid #FECACA; }
+.btn-ok.active, .btn-ok:hover { background: var(--bfw-success); color: white; }
+.btn-teil.active, .btn-teil:hover { background: var(--bfw-accent); color: white; }
+.btn-nein.active, .btn-nein:hover { background: var(--bfw-danger); color: white; }
+.saved-note { font-size: 0.78rem; color: var(--bfw-ink-soft); margin-left: auto; }
+
+footer { text-align: center; margin-top: 2.5rem; color: var(--bfw-ink-soft); font-size: 0.85rem; }
+@media print { .btn, .btn-reset, .self-check { display: none !important; } .loesung { display: block; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <span class="tag-pill">Lektion 3 · Prüfungsaufgaben</span>
+    <h1>Prüfungsaufgaben: Existenzgründung & Unternehmensrechtsformen</h1>
+    <p class="subtitle">Beantworten Sie die Aufgaben in eigenen Worten im Antwortfeld — Ihre Eingaben werden lokal im Browser gespeichert. Prüfen Sie sich danach mit dem <strong>Lösungshinweis</strong> und bewerten Sie sich selbst. In der IHK-Prüfung zählen ausformulierte Begründungen!</p>
+  </header>
+
+  <div class="progress-wrap">
+    <div class="progress-bar" id="progressBar"><div class="seg-ok"></div><div class="seg-teil"></div><div class="seg-nein"></div></div>
+    <span class="progress-label" id="progressLabel"></span>
+    <button class="btn-reset" onclick="resetAll()">Zurücksetzen</button>
+  </div>
+
+  <div id="tasks"></div>
+
+  <footer>© Can Siebert · 2026 · Wirtschaftsfachwirt — BWL — Betriebswirtschaftliche Grundlagen</footer>
+</div>
+
+<script>
+const DAY_ID = 'bwl-3-pa';
+const TASKS = [{"topic":"Gründungsphasen","punkte":5,"frage":"Ordnen Sie die folgenden Tätigkeiten der zutreffenden Gründungsphase zu (Geschäftsidee, Orientierung, Konzeption, Umsetzung, Festigung):\na) Der Businessplan wird erstellt und die Rechtsform gewählt.\nb) Erste Informationsgespräche bei der IHK-Gründungsberatung und Besuch einer Gründermesse.\nc) Gewerbeanmeldung, Ladeneröffnung und Gewinnung der ersten Kunden.\nd) Aus der Beobachtung einer Marktlücke entsteht der Einfall für ein neues Angebot.\ne) Ausbau des Kundenstamms und laufender Soll-Ist-Vergleich mit dem Businessplan.","hinweis":"Reihenfolge der Phasen: „Gute Organisation kann Unternehmen festigen.“","loesung":"a) Konzeption — in dieser Phase entsteht der Businessplan mit allen Planungsentscheidungen (inklusive Rechtsformwahl).\nb) Orientierung — Informationsbeschaffung und erste Beratung vor der eigentlichen Planung.\nc) Umsetzung — der Start des Unternehmens (Formalitäten, Eröffnung, erste Umsätze).\nd) Geschäftsidee — der Ausgangspunkt jeder Gründung.\ne) Festigung — Konsolidierung am Markt mit laufender Kontrolle und Nachsteuerung."},{"topic":"Voraussetzungen der Gründung (Fall)","punkte":6,"frage":"Herr Brandt, angestellter Kfz-Meister, möchte eine freie Werkstatt eröffnen. Er gilt als exzellenter Techniker mit langjähriger Branchenerfahrung, hat aber keine kaufmännischen Kenntnisse, scheut Risiken und verfügt über 5.000 € Erspartes bei einem Kapitalbedarf von 100.000 €.\na) Beurteilen Sie seine Gründungsvoraussetzungen anhand der drei Gruppen (persönlich, fachlich, unternehmerisch) sowie der finanziellen Basis.\nb) Geben Sie Herrn Brandt zwei begründete Empfehlungen.","hinweis":"Faustregel zur finanziellen Basis: 15–20 % Eigenkapital.","loesung":"a) Fachlich: sehr gut — Meisterqualifikation und Branchenerfahrung liegen vor. Persönlich: kritisch — die geringe Risikobereitschaft spricht gegen die Belastungen einer Selbstständigkeit (Rückschläge, hoher Zeiteinsatz). Unternehmerisch: kritisch — kaufmännische Kenntnisse (Kalkulation, Buchführung, Recht) fehlen. Finanzielle Basis: unzureichend — die Eigenkapitalquote beträgt nur 5.000 ÷ 100.000 = 5 % und liegt damit deutlich unter der Faustregel von 15–20 %; Finanzierungsmängel sind eine Hauptursache des Scheiterns.\nb) Zum Beispiel: (1) Vor der Gründung kaufmännische Qualifikation aufbauen (Existenzgründungsseminare der IHK, betriebswirtschaftliche Weiterbildung) oder die Defizite durch einen kaufmännisch qualifizierten Partner bzw. Steuerberater ausgleichen. (2) Eigenkapitalbasis stärken (weiter ansparen, Beteiligung eines Partners) und Fördermöglichkeiten prüfen (z. B. KfW-Gründerkredit über die Hausbank); alternativ kleiner starten (geringerer Kapitalbedarf) oder den Gründungszeitpunkt verschieben."},{"topic":"Businessplan","punkte":4,"frage":"Zu welchem Bestandteil des Businessplans gehören die folgenden Inhalte? Begründen Sie kurz:\na) die Kurzfassung des Vorhabens auf 1–2 Seiten,\nb) Konkurrenzanalyse und Standortwahl,\nc) der Liquiditätsplan,\nd) die Begründung der gewählten GmbH.","loesung":"a) Executive Summary — die Zusammenfassung, die Kapitalgeber zuerst lesen; sie entscheidet oft über das Weiterlesen.\nb) Markt und Wettbewerb — Markt- und Branchenanalyse, Zielgruppen, Konkurrenz und Standort.\nc) Finanzplanung — neben Kapitalbedarfs-, Investitions- und Finanzierungsplan gehört der Liquiditätsplan zum Zahlenteil.\nd) Organisation und Rechtsform — hier werden Personal, Aufbau und die gewählte Rechtsform mit Begründung dargestellt."},{"topic":"Richtig oder falsch?","punkte":6,"frage":"Beurteilen Sie die folgenden Aussagen (richtig/falsch) mit kurzer Begründung:\na) Der Businessplan richtet sich ausschließlich an Banken.\nb) Der Gründungszuschuss wird von der Agentur für Arbeit an Gründer aus dem ALG-I-Bezug gezahlt.\nc) KfW-Gründerkredite beantragt man direkt bei der KfW.\nd) Der Gründungszuschuss ist eine Pflichtleistung, auf die ein Rechtsanspruch besteht.\ne) Für den Gründungszuschuss ist eine Tragfähigkeitsbescheinigung einer fachkundigen Stelle erforderlich.\nf) Die Executive Summary steht am Ende des Businessplans und fasst die Ergebnisse zusammen.","loesung":"a) Falsch — er richtet sich auch nach innen: als Planungsinstrument des Gründers (Idee planmäßig durchdenken) und als Führungsgrundlage für spätere Soll-Ist-Vergleiche.\nb) Richtig — Träger ist die Agentur für Arbeit, Zielgruppe sind Empfänger von Arbeitslosengeld I, die sich hauptberuflich selbstständig machen.\nc) Falsch — es gilt das Hausbankprinzip: Der Antrag läuft über die eigene Geschäftsbank; die KfW refinanziert und übernimmt einen Großteil des Risikos.\nd) Falsch — der Gründungszuschuss ist eine Ermessensleistung.\ne) Richtig — die Tragfähigkeit der Gründung muss z. B. durch die IHK bestätigt werden.\nf) Falsch — die Executive Summary ist die Kurzfassung am Anfang des Businessplans; sie wird zuerst gelesen."},{"topic":"Kapitalbedarfsrechnung","punkte":6,"frage":"Für eine Gründung sind geplant: Investitionen 80.000 €, Gründungskosten (Notar, Register, Beratung) 4.000 €, Anlaufkosten für sechs Monate 18.000 €, private Lebenshaltung für sechs Monate 10.000 €. An Eigenkapital stehen 28.000 € zur Verfügung.\na) Berechnen Sie den Kapitalbedarf (Rechenweg angeben).\nb) Berechnen Sie den Fremdkapitalbedarf.\nc) Berechnen Sie die Eigenkapitalquote und beurteilen Sie sie anhand der Faustregel.","hinweis":"Kapitalbedarf = Investitionen + Gründungskosten + Anlaufkosten + private Lebenshaltung.","loesung":"a) Kapitalbedarf = 80.000 € + 4.000 € + 18.000 € + 10.000 € = 112.000 €.\nb) Fremdkapitalbedarf = Kapitalbedarf − Eigenkapital = 112.000 € − 28.000 € = 84.000 €.\nc) Eigenkapitalquote = 28.000 ÷ 112.000 × 100 = 25 %. Beurteilung: Die Faustregel von 15–20 % Eigenkapital wird übertroffen — die finanzielle Basis der Gründung ist solide; das verbessert die Chancen bei Kreditverhandlungen mit der Hausbank."},{"topic":"Gewinnverteilung OHG","punkte":6,"frage":"A und B betreiben eine OHG. Die Kapitalanteile betragen 120.000 € (A) und 60.000 € (B). Der Gesellschaftsvertrag vereinbart die klassische Verteilungsregel: 4 % Vorabverzinsung des Kapitalanteils, Rest nach Köpfen. Der Jahresgewinn beträgt 39.600 €.\na) Berechnen Sie die Gewinnanteile von A und B (Rechenweg angeben).\nb) Erläutern Sie, wie der Gewinn verteilt würde, wenn der Vertrag keine Regelung enthielte (Rechtslage seit dem MoPeG 2024).","hinweis":"Schritt 1: Vorabverzinsung je Gesellschafter. Schritt 2: Restgewinn nach Köpfen. Schritt 3: Summe je Gesellschafter.","loesung":"a) Schritt 1 — Vorabverzinsung: A: 4 % von 120.000 € = 4.800 €; B: 4 % von 60.000 € = 2.400 €; zusammen 7.200 €. Schritt 2 — Restgewinn: 39.600 € − 7.200 € = 32.400 €, nach Köpfen je 16.200 €. Schritt 3 — Gewinnanteile: A = 4.800 € + 16.200 € = 21.000 €; B = 2.400 € + 16.200 € = 18.600 €. (Kontrolle: 21.000 + 18.600 = 39.600 €.)\nb) Ohne vertragliche Regelung verteilt das Gesetz seit dem MoPeG (1.1.2024) den Gewinn im Verhältnis der Beteiligungen — hier 120.000 : 60.000 = 2 : 1, also A 26.400 € und B 13.200 €. Merksatz: Vertrag vor Gesetz."},{"topic":"UG-Rücklage","punkte":5,"frage":"Eine UG (haftungsbeschränkt) erzielt einen Jahresüberschuss von 16.000 €.\na) Berechnen Sie die gesetzliche Rücklage des Jahres und den maximal ausschüttbaren Betrag.\nb) Erläutern Sie, wie lange die Rücklagenpflicht besteht und welche Möglichkeit sich der Gesellschaft danach bietet.\nc) Berechnen Sie, nach wie vielen Jahren die Grenze bei konstantem Jahresüberschuss von 16.000 € erreicht wäre.","hinweis":"Paragraf 5a GmbHG: 25 % des Jahresüberschusses in die gesetzliche Rücklage.","loesung":"a) Gesetzliche Rücklage = 25 % × 16.000 € = 4.000 €; maximal ausschüttbar = 16.000 € − 4.000 € = 12.000 €.\nb) Die Pflicht besteht, bis die Rücklage 25.000 € erreicht hat. Danach kann die UG in eine GmbH umfirmieren (das Stammkapital wird auf mindestens 25.000 € erhöht).\nc) Bei 4.000 € Rücklage pro Jahr sind nach sechs Jahren 24.000 € angespart — im siebten Jahr wird die Grenze von 25.000 € erreicht."},{"topic":"Firma & Firmengrundsätze","punkte":5,"frage":"Zwei Gesellschafter haben eine Werbeagentur als GmbH gegründet; die Eintragung ins Handelsregister B ist erfolgt. Beurteilen Sie die Zulässigkeit der folgenden Firmierungen und nennen Sie jeweils den maßgeblichen Firmengrundsatz:\na) „Pixelwerk Werbeagentur GmbH“,\nb) „Pixelwerk GbmH“,\nc) „Die Werbeprofis“.","hinweis":"Prüfen Sie insbesondere den Rechtsformzusatz und die Grundsätze Firmenwahrheit und -klarheit.","loesung":"a) Zulässig — ein unterscheidungskräftiger Fantasie-/Sachname mit korrektem Rechtsformzusatz „GmbH“; nach der konstitutiven Eintragung ins HR B darf der Zusatz geführt werden (Firmenwahrheit erfüllt).\nb) Unzulässig — „GbmH“ ist ein falscher, verwirrender Zusatz und verstößt gegen Firmenklarheit und Firmenwahrheit; der Rechtsformzusatz muss eindeutig sein.\nc) Unzulässig — es fehlt jeder Rechtsformzusatz; der Geschäftsverkehr kann die Haftungsverhältnisse nicht erkennen (Pflicht zum Rechtsformzusatz, Firmenklarheit)."},{"topic":"Rechtsformwahl (Fallaufgabe)","punkte":8,"frage":"Empfehlen Sie für jeden Fall eine passende Rechtsform und begründen Sie anhand von mindestens drei Kriterien (z. B. Haftung, Leitung, Kapital, Gründungsaufwand):\nFall 1: Drei befreundete IT-Entwicklerinnen wollen nebenberuflich eine App entwickeln — geringes Risiko, kein nennenswerter Kapitalbedarf, die Gründung soll möglichst einfach und kostenlos sein.\nFall 2: Ein wachsendes Handelsunternehmen benötigt für die Expansion rund 2 Mio. € und will sich langfristig die Möglichkeit sichern, Kapital über die Börse aufzunehmen.","hinweis":"Prüfschema: Haftung → Leitung → Kapital → Gewinn/Steuern → Aufwand/Publizität.","loesung":"Fall 1: GbR. Gründungsaufwand: formfreier Gesellschaftsvertrag, keine Registerpflicht, keine Kosten — passt zum nebenberuflichen Start. Kapital: kein Mindestkapital erforderlich. Leitung: gemeinschaftliche Geschäftsführung der drei Partnerinnen. Haftung: zwar unbeschränkt und gesamtschuldnerisch — bei geringem Geschäftsrisiko aber vertretbar; wächst das Risiko später, kann in eine haftungsbeschränkte Form gewechselt werden (z. B. UG/GmbH).\nFall 2: AG. Kapital: Das Grundkapital (mindestens 50.000 €) ist in Aktien zerlegt — große Kapitalbeträge lassen sich durch Ausgabe von Aktien an viele Anleger beschaffen, perspektivisch auch über die Börse. Haftung: beschränkt auf das Gesellschaftsvermögen. Leitung: professionelle Führung durch den Vorstand in eigener Verantwortung, Kontrolle durch den Aufsichtsrat. Zu bedenken: hoher Gründungs- und Organisationsaufwand sowie Publizitätspflichten."},{"topic":"KG: Haftung des Kommanditisten","punkte":4,"frage":"Kommanditist K ist mit einer Haftsumme von 50.000 € im Handelsregister eingetragen, hat auf seine Einlage aber erst 30.000 € eingezahlt. Die KG kann ihre Verbindlichkeiten nicht mehr bedienen.\na) Erläutern Sie, in welcher Höhe die Gläubiger K persönlich in Anspruch nehmen können.\nb) Erläutern Sie, wie sich die Rechtslage ändert, wenn K seine Einlage in voller Höhe geleistet hat.","hinweis":"Maßgeblich ist die im Handelsregister eingetragene Haftsumme.","loesung":"a) K haftet den Gläubigern gegenüber persönlich bis zur Höhe der eingetragenen Haftsumme, soweit die Einlage noch nicht geleistet ist — hier also mit den noch offenen 20.000 € (50.000 € Haftsumme − 30.000 € geleistete Einlage). Die bereits eingezahlten 30.000 € stehen den Gläubigern über das Gesellschaftsvermögen zur Verfügung.\nb) Hat K die Einlage in Höhe der Haftsumme voll geleistet, ist seine persönliche Haftung erloschen — die Gläubiger können nur noch auf das Gesellschaftsvermögen und den unbeschränkt haftenden Komplementär zugreifen. Das ist der Kern der Teilhafterstellung des Kommanditisten."},{"topic":"Richtig oder falsch: Kapitalgesellschaften","punkte":5,"frage":"Beurteilen Sie die folgenden Aussagen (richtig/falsch) mit kurzer Begründung:\na) Eine GmbH kann von einer einzigen Person gegründet werden.\nb) Das Mindestgrundkapital der AG beträgt 25.000 €.\nc) Der Aufsichtsrat der AG führt die Geschäfte der Gesellschaft.\nd) Bei der Bargründung einer GmbH müssen zur Anmeldung mindestens 12.500 € eingezahlt sein.\ne) Die Eintragung der GmbH ins Handelsregister wirkt konstitutiv.","loesung":"a) Richtig — die Ein-Personen-GmbH ist zulässig; Gründer und Geschäftsführer können identisch sein.\nb) Falsch — das Grundkapital der AG beträgt mindestens 50.000 €; 25.000 € sind das Mindeststammkapital der GmbH.\nc) Falsch — die Geschäfte führt der Vorstand in eigener Verantwortung; der Aufsichtsrat bestellt, überwacht und berät ihn.\nd) Richtig — bei Bargründung muss mindestens die Hälfte des Mindeststammkapitals (12.500 €) eingezahlt sein.\ne) Richtig — die GmbH entsteht als juristische Person erst mit der Eintragung ins Handelsregister B (konstitutive Wirkung)."},{"topic":"Einzelunternehmen & Beteiligung (Fall)","punkte":6,"frage":"Frau Sommer führt ihr Modegeschäft erfolgreich als eingetragene Kauffrau (e. K.).\na) Nennen Sie zwei Vorteile und zwei Nachteile des Einzelunternehmens.\nb) Eine Freundin möchte sich mit 40.000 € am Geschäft beteiligen, will aber weder mitarbeiten noch unbeschränkt haften. Frau Sommer möchte die alleinige Leitung behalten. Empfehlen Sie eine geeignete Rechtsform und begründen Sie mit den Rollen beider Beteiligter.","loesung":"a) Vorteile: alleinige Entscheidungsgewalt; der gesamte Gewinn steht dem Inhaber zu; einfache, kostengünstige Gründung und keine Publizitätspflicht. Nachteile: unbeschränkte Haftung mit Betriebs- und Privatvermögen; Kapitalbasis und Kreditrahmen sind auf eine Person begrenzt; alles hängt von der Inhaberin ab. (Je zwei Nennungen genügen.)\nb) Kommanditgesellschaft (KG): Frau Sommer wird Komplementärin — sie behält Geschäftsführung und Vertretung allein und haftet (wie bisher) unbeschränkt. Die Freundin wird Kommanditistin — sie bringt die 40.000 € als Einlage ein, haftet nur bis zur Höhe ihrer eingetragenen Haftsumme und ist von Geschäftsführung und Vertretung ausgeschlossen (behält aber Kontrollrechte). Die KG erfüllt damit exakt die Wünsche beider Seiten: Kapital gegen begrenzte Haftung, Leitung bleibt bei der Gründerin."},{"topic":"UG (haftungsbeschränkt)","punkte":3,"frage":"Beurteilen Sie die Aussage: „Die UG (haftungsbeschränkt) ist eine völlig eigenständige Rechtsform neben der GmbH.“","loesung":"Die Aussage ist falsch. Die UG (haftungsbeschränkt) ist keine eigenständige Rechtsform, sondern eine Variante (Unterform) der GmbH nach Paragraf 5a GmbHG — es gilt grundsätzlich das GmbH-Recht. Besonderheiten sind lediglich: Gründung ab 1 € Stammkapital, keine Sacheinlagen bei der Gründung, Pflicht zur gesetzlichen Rücklage von 25 % des Jahresüberschusses bis 25.000 € sowie der ungekürzt zu führende Zusatz „UG (haftungsbeschränkt)“."}];
+const KEY = 'wfw_lernbereich_' + DAY_ID;
+
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { state = {}; }
+function save() { localStorage.setItem(KEY, JSON.stringify(state)); }
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function render() {
+  const wrap = document.getElementById('tasks');
+  wrap.innerHTML = TASKS.map((t, i) => {
+    const st = state[i] || {};
+    return `
+    <div class="task ${st.check || ''}" id="task-${i}">
+      <div class="task-head">
+        <span class="task-num">Aufgabe ${i + 1}</span>
+        <span class="task-topic">${esc(t.topic)}</span>
+        ${t.punkte ? `<span class="task-punkte">${t.punkte} Punkte</span>` : ''}
+      </div>
+      <div class="task-frage">${esc(t.frage)}</div>
+      ${t.hinweis ? `<details class="task-hinweis"><summary>💡 Tipp anzeigen</summary><p>${esc(t.hinweis)}</p></details>` : ''}
+      <textarea id="answer-${i}" placeholder="Ihre Antwort — in vollständigen Sätzen, wie in der Prüfung …">${esc(st.answer || '')}</textarea>
+      <div class="task-actions">
+        <button class="btn btn-loesung" onclick="toggleLoesung(${i})">Lösungshinweis anzeigen</button>
+        <span class="saved-note" id="saved-${i}"></span>
+      </div>
+      <div class="loesung ${st.open ? 'show' : ''}" id="loesung-${i}">
+        <div class="loesung-label">✓ Lösungshinweis</div>
+        <div class="loesung-text">${esc(t.loesung)}</div>
+      </div>
+      <div class="self-check ${st.open ? 'show' : ''}" id="check-${i}">
+        <span>Selbsteinschätzung:</span>
+        <button class="btn btn-ok ${st.check === 'ok' ? 'active' : ''}" onclick="setCheck(${i}, 'ok')">✓ Gewusst</button>
+        <button class="btn btn-teil ${st.check === 'teil' ? 'active' : ''}" onclick="setCheck(${i}, 'teil')">≈ Teilweise</button>
+        <button class="btn btn-nein ${st.check === 'nein' ? 'active' : ''}" onclick="setCheck(${i}, 'nein')">✗ Nochmal üben</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  TASKS.forEach((t, i) => {
+    const ta = document.getElementById('answer-' + i);
+    let timer = null;
+    ta.addEventListener('input', () => {
+      state[i] = state[i] || {};
+      state[i].answer = ta.value;
+      save();
+      const note = document.getElementById('saved-' + i);
+      note.textContent = 'gespeichert ✓';
+      clearTimeout(timer);
+      timer = setTimeout(() => { note.textContent = ''; }, 1500);
+    });
+  });
+  updateProgress();
+}
+
+function toggleLoesung(i) {
+  state[i] = state[i] || {};
+  state[i].open = !state[i].open;
+  save();
+  document.getElementById('loesung-' + i).classList.toggle('show', state[i].open);
+  document.getElementById('check-' + i).classList.toggle('show', state[i].open);
+}
+
+function setCheck(i, val) {
+  state[i] = state[i] || {};
+  state[i].check = state[i].check === val ? null : val;
+  save();
+  const card = document.getElementById('task-' + i);
+  card.classList.remove('ok', 'teil', 'nein');
+  if (state[i].check) card.classList.add(state[i].check);
+  document.querySelectorAll(`#check-${i} .btn`).forEach(b => b.classList.remove('active'));
+  if (state[i].check) {
+    const cls = { ok: 'btn-ok', teil: 'btn-teil', nein: 'btn-nein' }[state[i].check];
+    document.querySelector(`#check-${i} .${cls}`).classList.add('active');
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const counts = { ok: 0, teil: 0, nein: 0 };
+  TASKS.forEach((t, i) => { const c = (state[i] || {}).check; if (counts[c] !== undefined) counts[c]++; });
+  const n = TASKS.length;
+  const bar = document.getElementById('progressBar');
+  bar.querySelector('.seg-ok').style.width = (counts.ok / n * 100) + '%';
+  bar.querySelector('.seg-teil').style.width = (counts.teil / n * 100) + '%';
+  bar.querySelector('.seg-nein').style.width = (counts.nein / n * 100) + '%';
+  const done = counts.ok + counts.teil + counts.nein;
+  document.getElementById('progressLabel').textContent =
+    `${done}/${n} bearbeitet · ${counts.ok} gewusst · ${counts.teil} teilweise · ${counts.nein} üben`;
+}
+
+function resetAll() {
+  if (!confirm('Alle Antworten und Bewertungen dieser Lektion löschen?')) return;
+  state = {};
+  save();
+  render();
+}
+
+render();
+</script>
+</body>
+</html>

@@ -3,16 +3,14 @@
 % Gemeinsame Style-Definitionen (TEXINPUTS muss templates/ enthalten — siehe scripts/build_tex.py)
 \input{bfw-style.tex}
 
-\title{\vspace*{-1.5cm}\Huge\bfseries\color{bfwPrimaryDark}Lektion~1: Volkswirtschaftliche Grundbegriffe \& Preisbildung am Markt\\[0.4em]
-  \large\color{bfwInkSoft}\textnormal{Vom Bedürfnis zum Marktgleichgewicht}}
-\author{\textsf{Wirtschaftsfachwirt --- 1.1 Volkswirtschaftliche Grundlagen \textperiodcentered{} \small\copyright\ Can Siebert\,\textperiodcentered\,2026}}
-\date{}
+\kopfzeile{VWL Lektion 1 \textperiodcentered{} Grundbegriffe \& Preisbildung}
 
 \begin{document}
-\maketitle
-\thispagestyle{empty}
+\handouttitel{Lektion~1: Volkswirtschaftliche Grundbegriffe \& Preisbildung am Markt}%
+  {Vom Bedürfnis zum Marktgleichgewicht}%
+  {1.1 Volkswirtschaftliche Grundlagen}%
+  {Mi, 19.08.2026, 18:00--21:15 Uhr}
 
-\vspace{1em}
 \begin{merksatz}[title={\bfseries Worum geht es in dieser Lektion?}]
 Die Volkswirtschaftslehre beginnt bei einem Grundkonflikt: Die menschlichen Bedürfnisse
 sind (nahezu) unbegrenzt, die Güter zu ihrer Befriedigung aber knapp. Aus dieser Knappheit
@@ -167,22 +165,124 @@ Mitteln ihren Nutzen maximieren. Wichtige Bestimmungsfaktoren der Güternachfrag
   \item \textbf{Zukunftserwartungen} bezüglich Preisen und Einkommen.
 \end{itemize}
 
-\subsection{Elastizitäten}
+\subsection{Elastizitäten: Wie stark reagieren die Kunden?}
+\label{sec:elastizitaet}
 
-\begin{merksatz}[title={\bfseries Formel: Direkte Preiselastizität der Nachfrage}]
+Die \textbf{Preiselastizität der Nachfrage} beantwortet eine ganz praktische Frage:
+\emph{Wie stark reagieren die Kunden, wenn der Preis sich ändert?} Erhöht ein Bäcker
+den Brötchenpreis um 10\,\%, kaufen die Kunden dann fast unverändert weiter (träge
+Reaktion) --- oder laufen sie in Scharen zur Konkurrenz (heftige Reaktion)? Genau
+dieses Reaktionsausmaß fasst die Elastizität in einer einzigen Zahl zusammen.
+
+\medskip
+\noindent
+\begin{minipage}[c]{0.55\textwidth}
+\begin{formelbox}
 \[
-\varepsilon \;=\; \frac{\text{prozentuale Mengenänderung der Nachfrage}}{\text{prozentuale Preisänderung}}
+\varepsilon \;=\; \frac{\text{Mengenänderung in \%}}{\text{Preisänderung in \%}}
 \]
-Sie zeigt, in welchem Ausmaß die Nachfragemenge auf Preisänderungen reagiert.
-$|\varepsilon| > 1$: elastisch (Luxusgüter); $|\varepsilon| < 1$: unelastisch
-(lebensnotwendige Güter wie Medikamente); $|\varepsilon| = 0$: vollkommen unelastisch.
-\end{merksatz}
+\end{formelbox}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.41\textwidth}
+\small
+\textbf{In Worten:} Oben steht die \emph{Reaktion} der Kunden (um wie viel Prozent
+ändert sich die nachgefragte \textbf{Menge}?), unten der \emph{Auslöser} (um wie viel
+Prozent hat sich der \textbf{Preis} geändert?). Beides immer in Prozent --- nie in
+Euro oder Stück!
+\end{minipage}
+\medskip
 
-Die \textbf{Kreuzpreiselastizität} misst, wie die Nachfrage nach Gut~A auf eine
-Preisänderung bei Gut~B reagiert (positiv bei Substituten, negativ bei Komplementen).
-Die \textbf{Einkommenselastizität} misst die Reaktion der Nachfrage auf
-Einkommensänderungen. Ausführliche Rechenbeispiele mit Schritt-für-Schritt-Lösungsweg
-finden Sie im Abschnitt „Formeln \& Rechenbeispiele`` am Ende dieses Handouts.
+Da Preis und Menge normalerweise gegenläufig reagieren (Preis rauf, Menge runter),
+ist $\varepsilon$ meist \textbf{negativ}. Für die Interpretation zählt allein der
+\textbf{Betrag} $|\varepsilon|$, also die Zahl ohne Vorzeichen:
+
+\begin{center}
+\small
+\begin{tabular}{p{2.7cm} p{4.0cm} p{3.3cm} p{4.0cm}}
+\toprule
+\rowcolor{bfwTabHead}
+\textbf{Ergebnis} & \textbf{Bedeutung in einfachen Worten} & \textbf{Typische Güter} & \textbf{Preiserhöhung wirkt auf den Umsatz \ldots}\\
+\midrule
+$|\varepsilon| > 1$ \newline \textbf{elastisch} &
+  Kunden reagieren \emph{stark}: Die Menge ändert sich prozentual stärker als der Preis. &
+  Luxusgüter, Urlaubsreisen, Markenartikel --- alles, worauf man verzichten oder ausweichen kann &
+  \ldots{} \textbf{senkend}: Der Mengenrückgang frisst die Preiserhöhung mehr als auf.\\
+\addlinespace
+$|\varepsilon| < 1$ \newline \textbf{unelastisch} &
+  Kunden reagieren \emph{schwach}: Die Menge ändert sich prozentual weniger als der Preis. &
+  Lebensnotwendiges: Grundnahrungsmittel, Medikamente, Strom, Benzin &
+  \ldots{} \textbf{steigernd}: Fast alle kaufen weiter --- zum höheren Preis.\\
+\addlinespace
+$|\varepsilon| = 0$ \newline \textbf{vollkommen unelastisch} &
+  Kunden reagieren \emph{gar nicht}: Die Menge bleibt exakt gleich. &
+  lebenswichtige Güter ohne jeden Ersatz, z.\,B. Insulin für Diabetiker &
+  \ldots{} \textbf{voll steigernd}: Der Umsatz wächst im selben Maß wie der Preis.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{beispiel}[title={SCHRITT FÜR SCHRITT: PREISELASTIZITÄT BERECHNEN}]
+Ein Medikament kostet 2,00~€; der Preis steigt auf 2,40~€. Die verkaufte Menge sinkt
+von 1.000 auf 980 Packungen.
+\begin{enumerate}
+  \item \textbf{Preisänderung in \% berechnen:} Änderung $= 2{,}40 - 2{,}00 = 0{,}40$~€.
+    Bezogen auf den \emph{Ausgangspreis}: $0{,}40 \div 2{,}00 = \mathbf{+20\,\%}$.
+  \item \textbf{Mengenänderung in \% berechnen:} Änderung $= 980 - 1.000 = -20$ Packungen.
+    Bezogen auf die \emph{Ausgangsmenge}: $-20 \div 1.000 = \mathbf{-2\,\%}$.
+  \item \textbf{In die Formel einsetzen:}
+    $\varepsilon = -2\,\% \div (+20\,\%) = -0{,}1$, also $|\varepsilon| = 0{,}1$.
+  \item \textbf{Interpretieren:} $|\varepsilon| = 0{,}1 < 1$ $\Rightarrow$
+    \textbf{unelastisch} --- die Käufer können auf das lebensnotwendige Gut kaum
+    verzichten.
+  \item \textbf{Umsatz-Probe:} vorher $2{,}00~\text{€} \times 1.000 = 2.000$~€,
+    nachher $2{,}40~\text{€} \times 980 = 2.352$~€. Der Umsatz \emph{steigt} --- genau
+    wie es die Tabelle für unelastische Güter vorhersagt.
+\end{enumerate}
+Zum Vergleich: Bei einem Modeartikel mit Preis $+10\,\%$ und Menge $-25\,\%$ wäre
+$|\varepsilon| = 2{,}5$ --- \emph{elastisch}, der Umsatz würde sinken.
+\end{beispiel}
+
+\begin{achtung}[title={TYPISCHE FEHLER BEI DER PREISELASTIZITÄT}]
+\begin{itemize}
+  \item \textbf{Vorzeichen falsch gedeutet:} Ein negatives $\varepsilon$ ist bei der
+    Preiselastizität \emph{normal} (Preis rauf, Menge runter). Für
+    elastisch/unelastisch zählt nur der Betrag $|\varepsilon|$ --- nicht das
+    Minuszeichen.
+  \item \textbf{Absolute statt prozentuale Änderungen:} „$0{,}40$~€ geteilt durch
+    20~Stück`` ist falsch --- beide Änderungen müssen \emph{in Prozent}, jeweils
+    bezogen auf den \emph{Ausgangswert}, in die Formel.
+  \item \textbf{Zähler und Nenner vertauscht:} Die \emph{Menge} gehört nach oben,
+    der \emph{Preis} nach unten. Merkhilfe: erst die Reaktion, dann der Auslöser.
+  \item \textbf{Verwechslung mit der Kreuzpreiselastizität:} Die direkte
+    Preiselastizität betrachtet \emph{ein} Gut (eigener Preis $\rightarrow$ eigene
+    Menge). Sobald \emph{zwei} Güter im Spiel sind (Butter/Margarine), ist die
+    Kreuzpreiselastizität gefragt.
+\end{itemize}
+\end{achtung}
+
+\subsubsection{Kreuzpreiselastizität und Einkommenselastizität --- kurz erklärt}
+
+Die \textbf{Kreuzpreiselastizität} fragt: Wie reagiert die Menge von Gut~A, wenn sich
+der \emph{Preis eines anderen Gutes~B} ändert?
+\[
+\varepsilon_K \;=\; \frac{\text{Mengenänderung bei Gut A in \%}}{\text{Preisänderung bei Gut B in \%}}
+\]
+Hier trägt das \textbf{Vorzeichen} die Information: \textbf{positiv} $\Rightarrow$
+\emph{Substitute} (Butter wird teurer $\rightarrow$ mehr Margarine); \textbf{negativ}
+$\Rightarrow$ \emph{Komplemente} (Drucker wird teurer $\rightarrow$ weniger Patronen).
+
+\begin{beispiel}[title={BEISPIEL: KREUZPREISELASTIZITÄT}]
+Der Butterpreis (Gut~B) steigt um $10\,\%$; die nachgefragte Menge an Margarine
+(Gut~A) steigt um $5\,\%$. Einsetzen:
+$\varepsilon_K = +5\,\% \div (+10\,\%) = +0{,}5$. Das \emph{positive} Vorzeichen
+zeigt: Butter und Margarine sind \textbf{Substitute}.
+\end{beispiel}
+
+Die \textbf{Einkommenselastizität} fragt: Wie reagiert die nachgefragte Menge, wenn
+sich das \emph{Einkommen} der Haushalte ändert? Bei normalen Gütern ist sie positiv
+(mehr Einkommen $\rightarrow$ mehr Nachfrage), bei Luxusgütern besonders hoch, bei
+inferioren Gütern (z.\,B. einfachste Lebensmittel) negativ --- wer mehr verdient,
+kauft davon weniger.
 
 \subsection{Nachfragekurve: Bewegung und Verschiebung}
 
@@ -305,55 +405,14 @@ Alle Berechnungen dieser Lektion folgen einfachen Grundformeln. Rechnen Sie die
 Beispiele einmal selbst nach --- genau solche kleinen Rechnungen kommen in der
 IHK-Prüfung vor.
 
-\subsection{Direkte Preiselastizität der Nachfrage}
+\subsection{Preiselastizität, Kreuzpreiselastizität \& Einkommenselastizität}
 
-\begin{merksatz}[title={\bfseries Formel}]
-\[
-\varepsilon \;=\; \frac{\text{prozentuale Mengenänderung der Nachfrage}}{\text{prozentuale Preisänderung}}
-\]
-$|\varepsilon| > 1$: elastisch \textperiodcentered{} $|\varepsilon| < 1$: unelastisch
-\textperiodcentered{} $|\varepsilon| = 0$: vollkommen unelastisch.
-\end{merksatz}
-
-\begin{beispiel}
-Ein Medikament kostet 2,00~€; der Preis steigt auf 2,40~€. Die verkaufte Menge sinkt
-von 1.000 auf 980 Packungen.
-\begin{enumerate}
-  \item \textbf{Preisänderung berechnen:} $0{,}40~\text{€} \div 2{,}00~\text{€} = +20\,\%$.
-  \item \textbf{Mengenänderung berechnen:} $-20 \div 1.000 = -2\,\%$.
-  \item \textbf{Einsetzen:} $\varepsilon = -2\,\% \div (+20\,\%) = -0{,}1$, also $|\varepsilon| = 0{,}1$.
-\end{enumerate}
-\textbf{Interpretation:} $|\varepsilon| < 1$ --- die Nachfrage reagiert \emph{unelastisch}:
-Die Käufer können auf das lebensnotwendige Gut kaum verzichten. Der Umsatz der Anbieter
-\emph{steigt} bei der Preiserhöhung, weil der Mengenrückgang ($-2\,\%$) viel schwächer
-ausfällt als die Preiserhöhung ($+20\,\%$). Zum Vergleich: Bei einem Modeartikel mit
-Preis $+10\,\%$ und Menge $-25\,\%$ wäre $|\varepsilon| = 2{,}5$ --- \emph{elastisch},
-der Umsatz würde sinken.
-\end{beispiel}
-
-\subsection{Kreuzpreiselastizität}
-
-\begin{merksatz}[title={\bfseries Formel}]
-\[
-\varepsilon_K \;=\; \frac{\text{prozentuale Mengenänderung bei Gut A}}{\text{prozentuale Preisänderung bei Gut B}}
-\]
-Vorzeichen \textbf{positiv} $\Rightarrow$ Substitutionsgüter \textperiodcentered{}
-Vorzeichen \textbf{negativ} $\Rightarrow$ komplementäre Güter.
-\end{merksatz}
-
-\begin{beispiel}
-Der Butterpreis (Gut~B) steigt um $10\,\%$; die nachgefragte Menge an Margarine (Gut~A)
-steigt um $5\,\%$.
-\begin{enumerate}
-  \item \textbf{Mengenänderung bei Gut A:} $+5\,\%$ (Margarine).
-  \item \textbf{Preisänderung bei Gut B:} $+10\,\%$ (Butter).
-  \item \textbf{Einsetzen:} $\varepsilon_K = +5\,\% \div (+10\,\%) = +0{,}5$.
-\end{enumerate}
-\textbf{Interpretation:} Das \emph{positive} Vorzeichen zeigt Substitute --- wird Butter
-teurer, weichen die Käufer auf Margarine aus. Bei Komplementen (z.\,B. Drucker und
-Patronen) wäre $\varepsilon_K$ \emph{negativ}: Ein teurerer Drucker senkt auch die
-Patronen-Nachfrage.
-\end{beispiel}
+Formeln, Interpretations-Tabelle und die durchgerechneten Schritt-für-Schritt-Beispiele
+(Medikament: Preis $2{,}00 \rightarrow 2{,}40$~€, Menge $1.000 \rightarrow 980$
+Packungen; Butter/Margarine) finden Sie gebündelt in
+Abschnitt~\ref{sec:elastizitaet} --- inklusive der Box „Typische Fehler``.
+Prüfen Sie sich selbst: Können Sie das Medikamenten-Beispiel ohne Blick in den
+Lösungsweg nachrechnen und das Ergebnis interpretieren?
 
 \subsection{Gleichgewichtspreis und -menge aus einer Tabelle bestimmen}
 
@@ -396,7 +455,7 @@ vollkommenen Marktes}, die \emph{Marktformen-Matrix} mit Beispielen, die Skizze 
 \emph{Preisbildung} (Gleichgewicht, Überschüsse), die \emph{vier Preisfunktionen},
 den Unterschied zwischen \emph{Bewegung auf} und \emph{Verschiebung von} Kurven sowie
 die \emph{Rechenwege} für Preiselastizität, Kreuzpreiselastizität und Gleichgewichtspreis
-(Abschnitt „Formeln \& Rechenbeispiele``).
+(Abschnitte „Elastizitäten`` und „Formeln \& Rechenbeispiele``).
 Üben Sie mit dem Aufgabenheft und dem Quiz dieser Lektion!
 \end{merksatz}
 

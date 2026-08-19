@@ -44,5 +44,6 @@ Freiwillige Vertiefung mit den Selbstlernmaterialien der Plattform — keine Pfl
 
 1. **Quiz** (60 Fragen mit Selbstkontrolle) bearbeiten — GWB, Staatseingriffe, VGR, magisches Viereck.
 2. **Lernbereich** (18 offene Aufgaben mit Lösungshinweisen) durcharbeiten.
-3. **Aufgabenheft** mit Musterlösungen — empfehlenswert: Aufgabe 4 (Mindestpreis) und 7 (VGR-Rechnung).
-4. **Karteikarten & Lernspiele** (Wordle, Hängemann, Memory) zur Begriffssicherung.
+3. **Prüfungsaufgaben** (`Pruefungsaufgaben_Wettbewerb-Staatseingriffe-VGR.html`) — 13 prüfungsnahe Aufgaben im IHK-Klausurstil: schriftlich üben und mit den Lösungshinweisen selbst prüfen.
+4. **Aufgabenheft** mit Musterlösungen — empfehlenswert: Aufgabe 4 (Mindestpreis) und 7 (VGR-Rechnung).
+5. **Karteikarten & Lernspiele** (Wordle, Hängemann, Memory) zur Begriffssicherung.

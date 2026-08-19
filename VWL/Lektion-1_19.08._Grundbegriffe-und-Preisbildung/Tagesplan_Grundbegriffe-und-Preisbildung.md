@@ -23,7 +23,7 @@ Die Teilnehmenden können am Ende der Lektion …
 | 18:00–18:25 | Begrüßung & Organisation | Vorstellung, Kursüberblick (7 Termine, Prüfungsrelevanz), Plattform-Demo (Zugangscode, Material, Quiz) | Plenum |
 | 18:25–19:00 | Block 1: Grundbegriffe | Bedürfnisse → Bedarf → Nachfrage, ökonomisches Prinzip, Wirtschaftssubjekte, Produktionsfaktoren, Marktarten | Präsentation + Aktivierung |
 | 19:00–19:10 | **Pause** | | |
-| 19:10–19:55 | Block 2: Markt & Marktformen | Markt-Definition, vollkommener/unvollkommener Markt, Marktformen-Matrix (Tab. 1.2) mit Beispielen | Präsentation + Übungsphase (eigene Aufgaben mit Lösungsfolie) |
+| 19:10–19:55 | Block 2: Markt & Marktformen | Markt-Definition, vollkommener/unvollkommener Markt, Marktformen-Matrix (Tab. 1.2) mit Beispielen | Präsentation + Prüfungsaufgaben-Training (interaktiv, mit Lösungshinweisen) |
 | 19:55–20:35 | Block 3: Nachfrage & Angebot | Bestimmungsfaktoren, Nachfrage-/Angebotskurve, Verschiebung vs. Bewegung, Preiselastizität | Präsentation + Skizzenübung |
 | 20:35–20:45 | **Pause** | | |
 | 20:45–21:05 | Block 4: Preisbildung | Marktgleichgewicht, Käufer-/Verkäufermarkt, Preismechanismus, Konsumenten-/Produzentenrente, Preisfunktionen | Präsentation + Abb. 1.3/1.4 |
@@ -43,5 +43,6 @@ Freiwillige Vertiefung mit den Selbstlernmaterialien der Plattform — keine Pfl
 
 1. **Quiz** (60 Fragen mit Selbstkontrolle) bearbeiten — festigt die Grundbegriffe.
 2. **Lernbereich** (18 offene Aufgaben mit Lösungshinweisen) durcharbeiten.
-3. **Aufgabenheft** mit Musterlösungen — nach Bedarf lösen und selbst vergleichen.
-4. **Karteikarten & Lernspiele** (Wordle, Hängemann, Memory) zur Begriffssicherung.
+3. **Prüfungsaufgaben** (`Pruefungsaufgaben_Grundbegriffe-und-Preisbildung.html`) — 13 prüfungsnahe Aufgaben im IHK-Klausurstil: schriftlich üben und mit den Lösungshinweisen selbst prüfen.
+4. **Aufgabenheft** mit Musterlösungen — nach Bedarf lösen und selbst vergleichen.
+5. **Karteikarten & Lernspiele** (Wordle, Hängemann, Memory) zur Begriffssicherung.

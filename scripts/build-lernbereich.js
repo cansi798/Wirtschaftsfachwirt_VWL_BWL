@@ -21,6 +21,22 @@ const FOLDERS = {
   'bwl-4': 'BWL/Lektion-4_27.02._Unternehmenszusammenschluesse',
   'vwl-pt': 'VWL/Pruefungstraining',
   'bwl-pt': 'BWL/Pruefungstraining',
+  // Prüfungsaufgaben pro Lektion (gleiche Ordner wie die Lektion, Datei Pruefungsaufgaben_<slug>.html)
+  'vwl-1-pa': 'VWL/Lektion-1_19.08._Grundbegriffe-und-Preisbildung',
+  'vwl-2-pa': 'VWL/Lektion-2_22.08._Wettbewerb-Staatseingriffe-VGR',
+  'vwl-3-pa': 'VWL/Lektion-3_29.08._Konjunktur-Wirtschaftspolitik-Aussenwirtschaft',
+  'bwl-1-pa': 'BWL/Lektion-1_05.09._Betriebliche-Funktionen-I',
+  'bwl-2-pa': 'BWL/Lektion-2_12.09._Betriebliche-Funktionen-II',
+  'bwl-3-pa': 'BWL/Lektion-3_26.09._Existenzgruendung-und-Rechtsformen',
+  'bwl-4-pa': 'BWL/Lektion-4_27.02._Unternehmenszusammenschluesse',
+  // Übungsband interaktiv pro Lektion (Datei Uebungsband_<slug>.html)
+  'vwl-1-ub': 'VWL/Lektion-1_19.08._Grundbegriffe-und-Preisbildung',
+  'vwl-2-ub': 'VWL/Lektion-2_22.08._Wettbewerb-Staatseingriffe-VGR',
+  'vwl-3-ub': 'VWL/Lektion-3_29.08._Konjunktur-Wirtschaftspolitik-Aussenwirtschaft',
+  'bwl-1-ub': 'BWL/Lektion-1_05.09._Betriebliche-Funktionen-I',
+  'bwl-2-ub': 'BWL/Lektion-2_12.09._Betriebliche-Funktionen-II',
+  'bwl-3-ub': 'BWL/Lektion-3_26.09._Existenzgruendung-und-Rechtsformen',
+  'bwl-4-ub': 'BWL/Lektion-4_27.02._Unternehmenszusammenschluesse',
 };
 const MIN_TASKS = 10;
 

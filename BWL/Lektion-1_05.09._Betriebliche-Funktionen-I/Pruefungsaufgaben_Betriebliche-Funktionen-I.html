@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Lektion 1 · Prüfungsaufgaben — Betriebliche Funktionen I: Produktion, Logistik & Marketing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:#0EA5A4; --bfw-primary-dark:#0F766E;
+  --bfw-accent:#F59E0B; --bfw-warn:#F97316;
+  --bfw-success:#10B981; --bfw-danger:#EF4444;
+  --bfw-ink:#0F172A; --bfw-ink-soft:#475569;
+  --bfw-bg:#FAFAFA; --bfw-bg-soft:#F8FAFC;
+  --bfw-bg-teal:#ECFEFF; --bfw-bg-amber:#FEF3C7;
+  --bfw-bg-rose:#FFE4E6; --bfw-border:#E2E8F0;
+  --bfw-bg-green:#D1FAE5;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, var(--bfw-bg-teal) 0%, var(--bfw-bg) 50%, var(--bfw-bg-amber) 100%);
+  min-height: 100vh; color: var(--bfw-ink); -webkit-font-smoothing: antialiased;
+  padding: 2rem 1rem 4rem;
+}
+.container { max-width: 900px; margin: 0 auto; }
+header { text-align: center; margin-bottom: 1.6rem; }
+.tag-pill {
+  display: inline-block; background: var(--bfw-bg-teal); color: var(--bfw-primary-dark);
+  font-weight: 700; font-size: 0.82rem; padding: 0.3rem 0.9rem; border-radius: 999px;
+  letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.8rem;
+}
+h1 { font-size: 1.7rem; color: var(--bfw-primary-dark); margin-bottom: 0.4rem; }
+.subtitle { color: var(--bfw-ink-soft); font-size: 1.02rem; line-height: 1.5; }
+
+.progress-wrap {
+  background: white; border: 1px solid var(--bfw-border); border-radius: 14px;
+  padding: 1rem 1.3rem; margin-bottom: 1.6rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.progress-bar { flex: 1; min-width: 200px; height: 12px; background: var(--bfw-bg-soft); border: 1px solid var(--bfw-border); border-radius: 999px; overflow: hidden; display: flex; }
+.progress-bar .seg-ok { background: var(--bfw-success); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-teil { background: var(--bfw-accent); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-nein { background: var(--bfw-danger); height: 100%; transition: width 0.3s; }
+.progress-label { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; white-space: nowrap; }
+.btn-reset {
+  padding: 0.45rem 0.9rem; background: transparent; color: var(--bfw-ink-soft);
+  border: 1.5px solid var(--bfw-border); border-radius: 8px; font-family: inherit;
+  font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.15s;
+}
+.btn-reset:hover { color: var(--bfw-danger); border-color: var(--bfw-danger); }
+
+.task {
+  background: white; border: 1px solid var(--bfw-border); border-left: 5px solid var(--bfw-border);
+  border-radius: 14px; padding: 1.4rem 1.5rem; margin-bottom: 1.2rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04); transition: border-color 0.2s;
+}
+.task.ok { border-left-color: var(--bfw-success); }
+.task.teil { border-left-color: var(--bfw-accent); }
+.task.nein { border-left-color: var(--bfw-danger); }
+.task-head { display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
+.task-num { font-weight: 800; color: var(--bfw-primary-dark); font-size: 1.05rem; white-space: nowrap; }
+.task-topic {
+  display: inline-block; background: var(--bfw-bg-amber); color: #92400E;
+  font-weight: 700; font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 999px;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.task-punkte { margin-left: auto; color: var(--bfw-ink-soft); font-size: 0.82rem; font-weight: 600; white-space: nowrap; }
+.task-frage { font-size: 1.02rem; line-height: 1.55; margin-bottom: 0.9rem; white-space: pre-line; }
+.task-hinweis { margin-bottom: 0.9rem; }
+.task-hinweis summary { cursor: pointer; color: var(--bfw-primary-dark); font-weight: 600; font-size: 0.9rem; }
+.task-hinweis p { margin-top: 0.5rem; padding: 0.7rem 0.9rem; background: var(--bfw-bg-teal); border-radius: 8px; font-size: 0.92rem; color: var(--bfw-ink-soft); line-height: 1.5; }
+textarea {
+  width: 100%; min-height: 110px; padding: 0.8rem 0.9rem;
+  border: 1.5px solid var(--bfw-border); border-radius: 10px;
+  font-family: inherit; font-size: 0.98rem; line-height: 1.5; resize: vertical;
+  background: var(--bfw-bg-soft); transition: all 0.15s;
+}
+textarea:focus { outline: none; border-color: var(--bfw-primary); background: white; box-shadow: 0 0 0 3px rgba(14,165,164,0.12); }
+.task-actions { margin-top: 0.8rem; display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+.btn {
+  padding: 0.55rem 1.1rem; border: none; border-radius: 9px; cursor: pointer;
+  font-family: inherit; font-size: 0.92rem; font-weight: 700; transition: all 0.15s;
+}
+.btn-loesung { background: var(--bfw-primary); color: white; }
+.btn-loesung:hover { background: var(--bfw-primary-dark); }
+.loesung {
+  display: none; margin-top: 1rem; padding: 1rem 1.1rem;
+  background: var(--bfw-bg-green); border: 1px solid #A7F3D0; border-radius: 10px;
+}
+.loesung.show { display: block; }
+.loesung-label { font-weight: 800; color: #047857; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+.loesung-text { font-size: 0.97rem; line-height: 1.6; white-space: pre-line; }
+.self-check { display: none; margin-top: 0.9rem; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.self-check.show { display: flex; }
+.self-check span { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; }
+.btn-ok { background: var(--bfw-bg-green); color: #047857; border: 1.5px solid #A7F3D0; }
+.btn-teil { background: var(--bfw-bg-amber); color: #92400E; border: 1.5px solid #FDE68A; }
+.btn-nein { background: var(--bfw-bg-rose); color: #B91C1C; border: 1.5px solid #FECACA; }
+.btn-ok.active, .btn-ok:hover { background: var(--bfw-success); color: white; }
+.btn-teil.active, .btn-teil:hover { background: var(--bfw-accent); color: white; }
+.btn-nein.active, .btn-nein:hover { background: var(--bfw-danger); color: white; }
+.saved-note { font-size: 0.78rem; color: var(--bfw-ink-soft); margin-left: auto; }
+
+footer { text-align: center; margin-top: 2.5rem; color: var(--bfw-ink-soft); font-size: 0.85rem; }
+@media print { .btn, .btn-reset, .self-check { display: none !important; } .loesung { display: block; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <span class="tag-pill">Lektion 1 · Prüfungsaufgaben</span>
+    <h1>Prüfungsaufgaben: Betriebliche Funktionen I: Produktion, Logistik & Marketing</h1>
+    <p class="subtitle">Beantworten Sie die Aufgaben in eigenen Worten im Antwortfeld — Ihre Eingaben werden lokal im Browser gespeichert. Prüfen Sie sich danach mit dem <strong>Lösungshinweis</strong> und bewerten Sie sich selbst. In der IHK-Prüfung zählen ausformulierte Begründungen!</p>
+  </header>
+
+  <div class="progress-wrap">
+    <div class="progress-bar" id="progressBar"><div class="seg-ok"></div><div class="seg-teil"></div><div class="seg-nein"></div></div>
+    <span class="progress-label" id="progressLabel"></span>
+    <button class="btn-reset" onclick="resetAll()">Zurücksetzen</button>
+  </div>
+
+  <div id="tasks"></div>
+
+  <footer>© Can Siebert · 2026 · Wirtschaftsfachwirt — BWL — Betriebswirtschaftliche Grundlagen</footer>
+</div>
+
+<script>
+const DAY_ID = 'bwl-1-pa';
+const TASKS = [{"topic":"Produktionsfaktoren","punkte":4,"frage":"Ordnen Sie die folgenden Positionen jeweils dem zutreffenden Produktionsfaktor nach Gutenberg zu und begründen Sie kurz:\na) eine Näherin, die an der Maschine arbeitet,\nb) eine CNC-Fräse,\nc) Holzbretter für die Möbelfertigung,\nd) die Produktionsleiterin, die den Schichtplan erstellt.","hinweis":"Elementarfaktoren: ausführende Arbeit, Betriebsmittel, Werkstoffe — dazu der dispositive Faktor (leitende Arbeit).","loesung":"a) Näherin: ausführende (objektbezogene) Arbeit — Elementarfaktor; sie ist unmittelbar an der Leistungserstellung beteiligt.\nb) CNC-Fräse: Betriebsmittel — sie wird gebraucht, nicht verbraucht, und geht nicht in das Produkt ein.\nc) Holzbretter: Werkstoff (Rohstoff) — sie werden Hauptbestandteil des Endprodukts.\nd) Produktionsleiterin: dispositiver Faktor — leitende Arbeit mit den Aufgaben Planung, Organisation und Kontrolle; sie kombiniert die Elementarfaktoren."},{"topic":"Werkstoffe","punkte":4,"frage":"In einer Großbäckerei fallen an: Mehl, Hefe, Backofen und Strom. Ordnen Sie jede Position dem Begriff Rohstoff, Hilfsstoff, Betriebsstoff oder Betriebsmittel zu und begründen Sie jeweils mit dem entscheidenden Merkmal.","hinweis":"Rohstoff = Hauptbestandteil · Hilfsstoff = untergeordneter Bestandteil · Betriebsstoff = wird verbraucht, geht nicht ins Produkt ein · Betriebsmittel = wird gebraucht.","loesung":"Mehl: Rohstoff — es ist der Hauptbestandteil des Endprodukts (Brot, Gebäck).\nHefe: Hilfsstoff — sie geht in das Produkt ein, aber nur in untergeordneter Menge und Bedeutung.\nBackofen: Betriebsmittel — er wird über lange Zeit gebraucht (genutzt), nicht verbraucht, und geht nicht in das Produkt ein.\nStrom: Betriebsstoff — er wird bei der Produktion verbraucht, geht aber nicht in das Erzeugnis ein."},{"topic":"Fertigungstypen","punkte":4,"frage":"Bestimmen Sie für die folgenden Situationen jeweils den Fertigungstyp (Einzel-, Serien-, Sorten-, Massenfertigung) und begründen Sie kurz:\na) Ein Maßatelier fertigt ein Brautkleid nach individuellen Kundenwünschen.\nb) Eine Molkerei stellt auf derselben Anlage nacheinander Natur-, Erdbeer- und Vanillejoghurt her.\nc) Ein Küchengerätehersteller fertigt 25.000 Stück eines Standmixermodells und rüstet dann auf ein anderes Modell um.\nd) Eine Zuckerfabrik produziert ganzjährig denselben Haushaltszucker in sehr großer Stückzahl.","hinweis":"Serie = artverschiedene Produkte in begrenzter Stückzahl · Sorte = artgleiche Varianten desselben Grundprodukts.","loesung":"a) Einzelfertigung — ein Unikat auf Kundenbestellung.\nb) Sortenfertigung — artgleiche Varianten desselben Grundprodukts (Joghurt) auf derselben Anlage.\nc) Serienfertigung — begrenzte Stückzahl artverschiedener Produkte, zwischen den Modellen wird umgerüstet.\nd) Massenfertigung — sehr große Stückzahl eines gleichbleibenden Produkts über einen langen Zeitraum."},{"topic":"Produktivität & Wirtschaftlichkeit","punkte":6,"frage":"Ein Fertigungsbetrieb stellte im vergangenen Jahr 12.000 Gehäuse in 4.800 Fertigungsstunden her. Der bewertete Ertrag betrug 540.000 €, der Aufwand 450.000 €.\na) Berechnen Sie die Arbeitsproduktivität (Stück je Fertigungsstunde).\nb) Berechnen Sie die Wirtschaftlichkeit und beurteilen Sie das Ergebnis.\nc) Erklären Sie, warum eine steigende Produktivität nicht zwingend eine steigende Wirtschaftlichkeit bedeutet.","hinweis":"Produktivität = Mengenverhältnis (Output ÷ Input) · Wirtschaftlichkeit = Wertverhältnis (Ertrag ÷ Aufwand).","loesung":"a) Produktivität = Output ÷ Input = 12.000 Stück ÷ 4.800 Std. = 2,5 Stück je Fertigungsstunde.\nb) Wirtschaftlichkeit = Ertrag ÷ Aufwand = 540.000 € ÷ 450.000 € = 1,2. Beurteilung: Der Wert liegt über 1 — der Betrieb arbeitet wirtschaftlich, je eingesetztem Euro Aufwand werden 1,20 € Ertrag erzielt.\nc) Die Produktivität ist ein reines Mengenverhältnis, die Wirtschaftlichkeit ein Wertverhältnis. Steigt die Stückzahl je Stunde, können gleichzeitig die Faktorpreise steigen (z. B. Löhne, Material) oder die Absatzpreise sinken — dann verbessert sich die Produktivität, während die Wirtschaftlichkeit stagniert oder sogar sinkt."},{"topic":"Produktion im Wandel","punkte":4,"frage":"Nennen und erläutern Sie kurz zwei aktuelle Veränderungstendenzen der Produktion (Beispiel Automobilindustrie).","loesung":"Zwei Nennungen genügen, z. B.:\n1. Zunehmende Variantenvielfalt — Kunden erwarten individuelle Ausstattungen; das erhöht die Komplexität von Fertigung und Logistik.\n2. Outsourcing an Zulieferer — ganze Baugruppen werden fremdbezogen; der Hersteller konzentriert sich auf Entwicklung, Montage und Steuerung der Lieferkette.\nEbenfalls richtig: verschärfter internationaler Wettbewerb; die Steuerung der Produktion wird wichtiger als die direkte Eigenproduktion; wachsende Bedeutung ökologischer Anforderungen (Energie, Emissionen, Recycling)."},{"topic":"Logistik: Teilbereiche","punkte":4,"frage":"Ordnen Sie die folgenden Tätigkeiten dem zutreffenden Teilbereich der Logistik zu (Beschaffungs-, Produktions-, Distributions-, Entsorgungslogistik):\na) Wareneingang prüfen und im Eingangslager einlagern,\nb) innerbetrieblicher Transport zwischen zwei Fertigungshallen,\nc) Kommissionierung und Auslieferung an Kunden,\nd) Rücknahme von Verpackungen und Retouren.","hinweis":"Fragen Sie jeweils: In welche Richtung fließen die Güter — vom Lieferanten, innerhalb der Fertigung, zum Kunden oder zurück?","loesung":"a) Beschaffungslogistik — Güterfluss vom Lieferanten in das Unternehmen (Wareneingang, Eingangslager).\nb) Produktionslogistik — Material- und Informationsfluss innerhalb der Fertigung.\nc) Distributionslogistik — Güterfluss vom Unternehmen zum Kunden (Absatzlager, Kommissionierung, Versand).\nd) Entsorgungslogistik — Rückfluss von Abfällen, Verpackungen und Retouren (Recycling)."},{"topic":"Lagerfunktionen","punkte":4,"frage":"Bestimmen Sie für die folgenden Situationen jeweils die Funktion der Lagerhaltung und begründen Sie kurz:\na) Ein Weingut lagert seinen Wein zwei Jahre zur Reifung.\nb) Ein Betrieb kauft Kupfer auf Vorrat, weil er steigende Preise erwartet.\nc) Eine Zuckerfabrik lagert nach der Rübenernte für den ganzjährigen Absatz ein.\nd) Ein Unternehmen hält einen Sicherheitsbestand gegen Lieferverzögerungen.","loesung":"a) Veredelungsfunktion — die Lagerung ist Teil des Produktionsprozesses (Reifung von Wein, Käse, Whisky).\nb) Spekulationsfunktion — Vorratskauf zur Ausnutzung erwarteter Preissteigerungen (bzw. von Mengenrabatten).\nc) Ausgleichs-/Pufferfunktion — saisonales Angebot (Ernte) wird mit dem ganzjährigen Verbrauch bzw. Absatz ausgeglichen.\nd) Sicherungsfunktion (Vorratsfunktion) — Schutz vor Lieferverzögerungen und Bedarfsschwankungen."},{"topic":"Lagerkennzahlen","punkte":6,"frage":"Für ein Materiallager gelten: Anfangsbestand 60.000 €, Endbestand 20.000 €, Jahresverbrauch 160.000 €.\na) Berechnen Sie den durchschnittlichen Lagerbestand.\nb) Berechnen Sie die Umschlagshäufigkeit.\nc) Berechnen Sie die durchschnittliche Lagerdauer (360 Tage).\nd) Nennen Sie zwei Maßnahmen, mit denen die Umschlagshäufigkeit erhöht werden kann.","hinweis":"Ø Lagerbestand = (Anfangs- + Endbestand) ÷ 2 · Umschlagshäufigkeit = Jahresverbrauch ÷ Ø Lagerbestand · Ø Lagerdauer = 360 ÷ Umschlagshäufigkeit.","loesung":"a) Ø Lagerbestand = (60.000 € + 20.000 €) ÷ 2 = 40.000 €.\nb) Umschlagshäufigkeit = 160.000 € ÷ 40.000 € = 4-mal pro Jahr.\nc) Ø Lagerdauer = 360 Tage ÷ 4 = 90 Tage.\nd) Zum Beispiel: Bestände senken durch kleinere, häufigere Bestellungen (bis hin zu Just-in-time-Anlieferung); bessere Absatz- und Bedarfsplanung; Sortimentsbereinigung um Langsamdreher (zwei Nennungen genügen). Wirkung: geringere Kapitalbindung und niedrigere Lagerkosten."},{"topic":"Marketingziele","punkte":4,"frage":"Ordnen Sie die folgenden Marketingziele den ökonomischen bzw. psychografischen Zielen zu und begründen Sie kurz:\na) den Marktanteil um 2 Prozentpunkte steigern,\nb) einen Bekanntheitsgrad von 60 % erreichen,\nc) den Deckungsbeitrag erhöhen,\nd) ein Image als nachhaltige Marke aufbauen.","hinweis":"Ökonomisch = messbare Markt- und Erfolgsgrößen · psychografisch = Wirkung „im Kopf des Kunden“.","loesung":"a) Ökonomisch — der Marktanteil ist eine direkt messbare Marktgröße.\nb) Psychografisch — der Bekanntheitsgrad beschreibt die Verankerung im Bewusstsein der Zielgruppe.\nc) Ökonomisch — der Deckungsbeitrag ist eine monetäre Erfolgsgröße.\nd) Psychografisch — das Image ist eine Einstellungs- und Wahrnehmungsgröße beim Kunden."},{"topic":"Marktforschung","punkte":5,"frage":"a) Ordnen Sie die folgenden Vorhaben der Primär- oder der Sekundärforschung zu und benennen Sie bei Primärforschung die Erhebungsmethode:\n(1) Online-Befragung von 500 Kunden,\n(2) Auswertung der amtlichen Statistik,\n(3) Beobachtung des Kaufverhaltens im Ladengeschäft,\n(4) Analyse der eigenen Vertriebsstatistik.\nb) Begründen Sie, warum ein Unternehmen in der Regel zuerst Sekundärforschung betreiben sollte.","loesung":"a) (1) Primärforschung — Methode: Befragung. (2) Sekundärforschung — Auswertung vorhandener externer Daten. (3) Primärforschung — Methode: Beobachtung. (4) Sekundärforschung — Auswertung vorhandener interner Daten.\nb) Sekundärforschung ist schneller und kostengünstiger, weil vorhandenes Material genutzt wird. Erst wenn die Daten nicht passgenau, unvollständig oder veraltet sind, lohnt die teurere und zeitaufwendigere Primärforschung — sie wird dann gezielt ergänzend eingesetzt."},{"topic":"Marketingstrategien (Ansoff)","punkte":4,"frage":"Ein Getränkehersteller plant vier Vorhaben. Ordnen Sie jedes Vorhaben der zutreffenden Strategie der Produkt-Markt-Matrix nach Ansoff zu und begründen Sie kurz:\na) Das Erfolgsprodukt wird künftig auch in Österreich verkauft.\nb) Im Stammmarkt startet eine Rabattaktion für das bestehende Sortiment.\nc) Für die bisherigen Kunden wird eine zuckerfreie Variante eingeführt.\nd) Das Unternehmen steigt in das Fitnessstudio-Geschäft ein.","hinweis":"Zwei Fragen je Fall: Produkt gegenwärtig oder neu? Markt gegenwärtig oder neu?","loesung":"a) Marktentwicklung — gegenwärtiges Produkt auf einem neuen (Auslands-)Markt.\nb) Marktdurchdringung — gegenwärtiges Produkt im gegenwärtigen Markt, Ausschöpfung durch Preisaktionen und Werbung.\nc) Produktentwicklung — neues Produkt (Variante) für den gegenwärtigen Markt.\nd) Diversifikation — neues Leistungsangebot auf einem neuen Markt."},{"topic":"Marketing-Mix","punkte":4,"frage":"Ordnen Sie die folgenden Maßnahmen dem zutreffenden Instrument des Marketing-Mix zu und begründen Sie kurz:\na) 2 % Skonto bei Zahlung innerhalb von 10 Tagen,\nb) Umstieg auf den Online-Direktvertrieb,\nc) ein neues Produktdesign,\nd) eine Social-Media-Kampagne.","hinweis":"Die 4P: Product, Price, Place, Promotion.","loesung":"a) Preis-/Kontrahierungspolitik (Price) — Skonto ist eine Zahlungsbedingung.\nb) Distributionspolitik (Place) — Entscheidung über den Absatzweg (direkter Absatz).\nc) Produkt- und Leistungspolitik (Product) — Gestaltung des Produkts.\nd) Kommunikationspolitik (Promotion) — Ansprache der Zielgruppe über Werbe- und Kommunikationskanäle."},{"topic":"Break-even-Rechnung","punkte":6,"frage":"Für ein neues Küchenmesser-Set gelten: Fixkosten 120.000 €, Verkaufspreis 25 € je Set, variable Stückkosten 10 € je Set.\na) Berechnen Sie die Break-even-Menge (Rechenweg angeben).\nb) Erläutern Sie, was an der Gewinnschwelle gilt.\nc) Berechnen Sie den Gewinn bei einem Absatz von 12.000 Sets.","hinweis":"Break-even-Menge = Fixkosten ÷ Stückdeckungsbeitrag (Preis − variable Stückkosten).","loesung":"a) Schritt 1: Stückdeckungsbeitrag = 25 € − 10 € = 15 €. Schritt 2: Break-even-Menge = 120.000 € ÷ 15 € = 8.000 Sets.\nb) An der Gewinnschwelle gilt: Erlöse = Gesamtkosten, der Gewinn ist null — die Deckungsbeiträge decken genau die Fixkosten. Jedes weitere verkaufte Set bringt 15 € Gewinn.\nc) Gewinn = (12.000 − 8.000) × 15 € = 60.000 €. (Kontrolle: Erlöse 300.000 € − variable Kosten 120.000 € − Fixkosten 120.000 € = 60.000 €.)"},{"topic":"Produktlebenszyklus","punkte":5,"frage":"a) Nennen Sie die fünf Phasen des Produktlebenszyklus in der richtigen Reihenfolge.\nb) Ein Standmixer befindet sich in der Sättigungsphase: Die Umsätze stagnieren, erste Rückgänge zeichnen sich ab. Schlagen Sie zwei produktpolitische Maßnahmen vor und begründen Sie deren Zweck.","hinweis":"Der Produktlebenszyklus ist der „Kompass“ der Produkt- und Leistungspolitik.","loesung":"a) Einführung → Wachstum → Reife → Sättigung → Degeneration (Rückgang).\nb) Zum Beispiel: (1) Relaunch/Produktvariation — das Produkt wird überarbeitet (neues Design, verbesserte Funktionen, neue Rezeptheft-App), um den Zyklus zu verlängern und die Nachfrage neu zu beleben; (2) Produktdifferenzierung — zusätzliche Varianten oder Serviceleistungen (Garantieverlängerung, Zubehör) sprechen neue Käufergruppen an bzw. erhöhen den Kundennutzen. (Ebenfalls vertretbar: rechtzeitige Produktinnovation als Nachfolger, Eliminationsprüfung erst in der Degenerationsphase.)"}];
+const KEY = 'wfw_lernbereich_' + DAY_ID;
+
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { state = {}; }
+function save() { localStorage.setItem(KEY, JSON.stringify(state)); }
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function render() {
+  const wrap = document.getElementById('tasks');
+  wrap.innerHTML = TASKS.map((t, i) => {
+    const st = state[i] || {};
+    return `
+    <div class="task ${st.check || ''}" id="task-${i}">
+      <div class="task-head">
+        <span class="task-num">Aufgabe ${i + 1}</span>
+        <span class="task-topic">${esc(t.topic)}</span>
+        ${t.punkte ? `<span class="task-punkte">${t.punkte} Punkte</span>` : ''}
+      </div>
+      <div class="task-frage">${esc(t.frage)}</div>
+      ${t.hinweis ? `<details class="task-hinweis"><summary>💡 Tipp anzeigen</summary><p>${esc(t.hinweis)}</p></details>` : ''}
+      <textarea id="answer-${i}" placeholder="Ihre Antwort — in vollständigen Sätzen, wie in der Prüfung …">${esc(st.answer || '')}</textarea>
+      <div class="task-actions">
+        <button class="btn btn-loesung" onclick="toggleLoesung(${i})">Lösungshinweis anzeigen</button>
+        <span class="saved-note" id="saved-${i}"></span>
+      </div>
+      <div class="loesung ${st.open ? 'show' : ''}" id="loesung-${i}">
+        <div class="loesung-label">✓ Lösungshinweis</div>
+        <div class="loesung-text">${esc(t.loesung)}</div>
+      </div>
+      <div class="self-check ${st.open ? 'show' : ''}" id="check-${i}">
+        <span>Selbsteinschätzung:</span>
+        <button class="btn btn-ok ${st.check === 'ok' ? 'active' : ''}" onclick="setCheck(${i}, 'ok')">✓ Gewusst</button>
+        <button class="btn btn-teil ${st.check === 'teil' ? 'active' : ''}" onclick="setCheck(${i}, 'teil')">≈ Teilweise</button>
+        <button class="btn btn-nein ${st.check === 'nein' ? 'active' : ''}" onclick="setCheck(${i}, 'nein')">✗ Nochmal üben</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  TASKS.forEach((t, i) => {
+    const ta = document.getElementById('answer-' + i);
+    let timer = null;
+    ta.addEventListener('input', () => {
+      state[i] = state[i] || {};
+      state[i].answer = ta.value;
+      save();
+      const note = document.getElementById('saved-' + i);
+      note.textContent = 'gespeichert ✓';
+      clearTimeout(timer);
+      timer = setTimeout(() => { note.textContent = ''; }, 1500);
+    });
+  });
+  updateProgress();
+}
+
+function toggleLoesung(i) {
+  state[i] = state[i] || {};
+  state[i].open = !state[i].open;
+  save();
+  document.getElementById('loesung-' + i).classList.toggle('show', state[i].open);
+  document.getElementById('check-' + i).classList.toggle('show', state[i].open);
+}
+
+function setCheck(i, val) {
+  state[i] = state[i] || {};
+  state[i].check = state[i].check === val ? null : val;
+  save();
+  const card = document.getElementById('task-' + i);
+  card.classList.remove('ok', 'teil', 'nein');
+  if (state[i].check) card.classList.add(state[i].check);
+  document.querySelectorAll(`#check-${i} .btn`).forEach(b => b.classList.remove('active'));
+  if (state[i].check) {
+    const cls = { ok: 'btn-ok', teil: 'btn-teil', nein: 'btn-nein' }[state[i].check];
+    document.querySelector(`#check-${i} .${cls}`).classList.add('active');
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const counts = { ok: 0, teil: 0, nein: 0 };
+  TASKS.forEach((t, i) => { const c = (state[i] || {}).check; if (counts[c] !== undefined) counts[c]++; });
+  const n = TASKS.length;
+  const bar = document.getElementById('progressBar');
+  bar.querySelector('.seg-ok').style.width = (counts.ok / n * 100) + '%';
+  bar.querySelector('.seg-teil').style.width = (counts.teil / n * 100) + '%';
+  bar.querySelector('.seg-nein').style.width = (counts.nein / n * 100) + '%';
+  const done = counts.ok + counts.teil + counts.nein;
+  document.getElementById('progressLabel').textContent =
+    `${done}/${n} bearbeitet · ${counts.ok} gewusst · ${counts.teil} teilweise · ${counts.nein} üben`;
+}
+
+function resetAll() {
+  if (!confirm('Alle Antworten und Bewertungen dieser Lektion löschen?')) return;
+  state = {};
+  save();
+  render();
+}
+
+render();
+</script>
+</body>
+</html>
