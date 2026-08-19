@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Hängemann Lektion 1 — Volkswirtschaftliche Grundbegriffe & Preisbildung am Markt</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:#0EA5A4; --bfw-primary-dark:#0F766E; --bfw-accent:#F59E0B;
+  --bfw-ink:#0F172A; --bfw-ink-soft:#475569; --bfw-bg:#FAFAFA;
+  --bfw-bg-teal:#ECFEFF; --bfw-border:#E2E8F0; --bfw-success:#10B981; --bfw-danger:#EF4444;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', system-ui, sans-serif; background: linear-gradient(180deg, var(--bfw-bg-teal) 0%, var(--bfw-bg) 240px); color: var(--bfw-ink); min-height: 100vh; padding: 1.5rem 1rem 3rem; }
+.container { max-width: 560px; margin: 0 auto; }
+header { text-align: center; margin-bottom: 1rem; }
+.tag-pill { display: inline-block; padding: 0.4rem 1rem; background: var(--bfw-primary); color: white; border-radius: 999px; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.75rem; }
+h1 { font-size: 1.6rem; color: var(--bfw-primary-dark); }
+.hint { background: white; border: 1px solid var(--bfw-border); border-left: 4px solid var(--bfw-accent); border-radius: 10px; padding: 0.85rem 1.1rem; margin-bottom: 1rem; font-size: 1rem; line-height: 1.45; }
+.hint b { color: var(--bfw-primary-dark); }
+details.how { background: var(--bfw-bg); border: 1px solid var(--bfw-border); border-radius: 10px; padding: 0.6rem 1rem; margin-bottom: 1rem; font-size: 0.9rem; color: var(--bfw-ink-soft); line-height: 1.5; }
+details.how summary { cursor: pointer; font-weight: 600; color: var(--bfw-primary-dark); }
+details.how p { margin: 0.5rem 0 0; }
+.stage { display: flex; justify-content: center; margin-bottom: 0.5rem; }
+.stage svg { width: 200px; height: 220px; }
+.lives { text-align: center; font-size: 0.9rem; color: var(--bfw-ink-soft); margin-bottom: 0.75rem; }
+.word { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 1rem; }
+.slot { width: 34px; height: 44px; border-bottom: 4px solid var(--bfw-ink-soft); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: 700; text-transform: uppercase; }
+.slot.revealed { color: var(--bfw-primary-dark); }
+.msg { text-align: center; min-height: 1.6rem; font-weight: 600; margin-bottom: 0.75rem; }
+.msg.win { color: var(--bfw-success); } .msg.lose { color: var(--bfw-danger); }
+.keyboard { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.key { width: 40px; height: 46px; border: none; border-radius: 8px; background: #E2E8F0; color: var(--bfw-ink); font-size: 1rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+.key:disabled { cursor: default; opacity: 0.55; }
+.key.right { background: var(--bfw-success); color: white; } .key.wrong { background: var(--bfw-danger); color: white; }
+.key:active:not(:disabled) { transform: translateY(1px); }
+.controls { text-align: center; margin: 1rem 0; }
+.btn { padding: 0.7rem 1.4rem; border: none; border-radius: 10px; background: var(--bfw-primary); color: white; font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+.stats { text-align: center; font-size: 0.85rem; color: var(--bfw-ink-soft); margin-top: 0.5rem; }
+footer { text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: var(--bfw-ink-soft); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <span class="tag-pill">Lektion 1 · Hängemann</span>
+    <h1>Volkswirtschaftliche Grundbegriffe & Preisbildung am Markt</h1>
+  </header>
+  <details class="how" open>
+    <summary>ℹ️ Spielanleitung</summary>
+    <p>Errate das gesuchte Fachwort Buchstabe für Buchstabe. Der <b>Hinweis</b> oben hilft dir dabei.</p>
+    <p>Klicke einen Buchstaben (oder tippe ihn auf der Tastatur). <b>Richtige</b> Buchstaben erscheinen im Wort, <b>falsche</b> zeichnen Stück für Stück den Galgen.</p>
+    <p>Bei <b>6 Fehlversuchen</b> ist die Runde verloren – das gesuchte Wort wird dann aufgelöst.</p>
+  </details>
+  <div class="hint" id="hint"><b>Hinweis:</b> <span id="hintText">…</span></div>
+  <div class="stage">
+    <svg viewBox="0 0 200 220">
+      <!-- Galgen -->
+      <line x1="20" y1="210" x2="120" y2="210" stroke="#0F766E" stroke-width="6"/>
+      <line x1="50" y1="210" x2="50" y2="20" stroke="#0F766E" stroke-width="6"/>
+      <line x1="50" y1="20" x2="130" y2="20" stroke="#0F766E" stroke-width="6"/>
+      <line x1="130" y1="20" x2="130" y2="45" stroke="#0F766E" stroke-width="6"/>
+      <!-- Körperteile (per JS eingeblendet) -->
+      <circle id="p0" cx="130" cy="62" r="17" stroke="#EF4444" stroke-width="4" fill="none" style="display:none"/>
+      <line id="p1" x1="130" y1="79" x2="130" y2="140" stroke="#EF4444" stroke-width="4" style="display:none"/>
+      <line id="p2" x1="130" y1="95" x2="105" y2="120" stroke="#EF4444" stroke-width="4" style="display:none"/>
+      <line id="p3" x1="130" y1="95" x2="155" y2="120" stroke="#EF4444" stroke-width="4" style="display:none"/>
+      <line id="p4" x1="130" y1="140" x2="110" y2="175" stroke="#EF4444" stroke-width="4" style="display:none"/>
+      <line id="p5" x1="130" y1="140" x2="150" y2="175" stroke="#EF4444" stroke-width="4" style="display:none"/>
+    </svg>
+  </div>
+  <div class="lives" id="lives"></div>
+  <div class="word" id="word"></div>
+  <div class="msg" id="msg"></div>
+  <div class="keyboard" id="keyboard"></div>
+  <div class="controls"><button class="btn" onclick="newGame()">🔄 Neues Wort</button></div>
+  <div class="stats" id="stats"></div>
+  <footer>BFW Lernplattform · Büroprozesse (M-067) · © Can Siebert 2026</footer>
+</div>
+<script>
+const DAY_ID = 'vwl-1';
+const WORDS = [{"word":"MARKT","hint":"Zusammentreffen von Angebot und Nachfrage mit Preisbildung."},{"word":"PREIS","hint":"Bildet sich am Markt aus Angebot und Nachfrage."},{"word":"ANGEBOT","hint":"Die Marktseite der Verkäufer."},{"word":"NACHFRAGE","hint":"Der am Markt wirksam werdende Bedarf."},{"word":"BEDARF","hint":"Mit Kaufkraft ausgestattetes Bedürfnis."},{"word":"KNAPPHEIT","hint":"Grundproblem der Volkswirtschaft: begrenzte Güter, unbegrenzte Bedürfnisse."},{"word":"POLYPOL","hint":"Marktform mit vielen Anbietern und vielen Nachfragern."},{"word":"OLIGOPOL","hint":"Marktform mit wenigen (großen) Anbietern."},{"word":"MONOPOL","hint":"Marktform mit nur einem Anbieter oder Nachfrager."},{"word":"ARBEIT","hint":"Produktionsfaktor: körperliche und geistige Erwerbstätigkeit."},{"word":"BODEN","hint":"Produktionsfaktor: Anbau, Abbau und Standort."},{"word":"KAPITAL","hint":"Produktionsfaktor: Maschinen, Anlagen, Gebäude."},{"word":"WISSEN","hint":"Zunehmend eigenständiger vierter Produktionsfaktor (Know-how)."},{"word":"HAUSHALT","hint":"Privates Wirtschaftssubjekt, das Nutzenmaximierung anstrebt."},{"word":"UNTERNEHMEN","hint":"Wirtschaftssubjekt mit dem Ziel der Gewinnmaximierung."},{"word":"GEWINN","hint":"Differenz aus Erlös und Kosten — Ziel der Anbieter."},{"word":"NUTZEN","hint":"Wird von den Nachfragern maximiert."},{"word":"HOMOGEN","hint":"Eigenschaft der Güter am vollkommenen Markt: sachlich gleichwertig."},{"word":"TRANSPARENZ","hint":"Vollständiger Marktüberblick aller Teilnehmer."},{"word":"PUNKTMARKT","hint":"Anbieter und Nachfrager treffen am gleichen Ort zur gleichen Zeit aufeinander."},{"word":"PRAEFERENZ","hint":"Persönliche, räumliche oder zeitliche Vorliebe — fehlt am vollkommenen Markt."},{"word":"BOERSE","hint":"Realer Markt, der dem vollkommenen Markt sehr nahe kommt."},{"word":"FAKTORMARKT","hint":"Marktart, auf der Produktionsfaktoren gehandelt werden."},{"word":"GUETERMARKT","hint":"Marktart für Konsum- und Investitionsgüter."},{"word":"FINANZMARKT","hint":"Geld- und Kapitalmarkt, z. B. Aktien- und Devisenmarkt."},{"word":"DEVISENMARKT","hint":"Teil des Finanzmarkts: Handel mit ausländischen Währungen."},{"word":"ARBEITSMARKT","hint":"Faktormarkt für den Produktionsfaktor Arbeit."},{"word":"ELASTIZITAET","hint":"Maß für die Reaktion der Nachfragemenge auf Preisänderungen."},{"word":"SUBSTITUT","hint":"Gut, das ein anderes ersetzen kann (z. B. Margarine statt Butter)."},{"word":"KOMPLEMENT","hint":"Gut, das ein anderes ergänzt (z. B. Drucker und Patrone)."},{"word":"EINKOMMEN","hint":"Bestimmungsfaktor der Nachfrage: verfügbare Konsumsumme."},{"word":"ERWARTUNGEN","hint":"Zukunftsbezogener Bestimmungsfaktor der Nachfrage."},{"word":"GLEICHGEWICHT","hint":"Angebotene Menge = nachgefragte Menge."},{"word":"SCHNITTPUNKT","hint":"Grafische Lage des Marktgleichgewichts der beiden Kurven."},{"word":"KAEUFERMARKT","hint":"Marktsituation mit Angebotsüberschuss — Käufer im Vorteil."},{"word":"PREISNEHMER","hint":"Marktteilnehmer bei vollständiger Konkurrenz, der den Preis hinnehmen muss."},{"word":"MENGENANPASSER","hint":"Reagiert auf den gegebenen Marktpreis nur über die Menge."},{"word":"SIGNALFUNKTION","hint":"Preisfunktion: spiegelt die Knappheit eines Gutes wider."},{"word":"ALLOKATION","hint":"Lenkung der Produktionsfaktoren durch Marktpreise."},{"word":"SELEKTION","hint":"Preisfunktion: sondert zu teure Anbieter aus dem Markt aus."},{"word":"AUSGLEICH","hint":"Preisfunktion: gleicht Angebots- und Nachfragemenge tendenziell an."},{"word":"RENTE","hint":"Konsumenten- oder Produzenten…: Vorteil gegenüber der eigenen Zahlungs-/Verkaufsbereitschaft."},{"word":"PREISKAMPF","hint":"Ruinöse Strategie der Marktverdrängung im Oligopol."},{"word":"PREISRUHE","hint":"Preisstarre — typische Erscheinung auf oligopolistischen Märkten."},{"word":"TANKSTELLE","hint":"Klassisches Beispiel für Preisführerschaft im Angebotsoligopol."},{"word":"WERBUNG","hint":"Instrument der Produktdifferenzierung im unvollkommenen Polypol."},{"word":"MARKE","hint":"Schafft Präferenzen und einen monopolistischen Absatzbereich."},{"word":"PREISFIXIERER","hint":"Rolle des Monopolisten bei der Preissetzung."},{"word":"STADTWERKE","hint":"Kommunales Beispiel für ein regionales Angebotsmonopol."},{"word":"BUNDESWEHR","hint":"Beispiel für einen Nachfrager im (zweiseitigen) Monopol bei Kampfflugzeugen."}];
+const MAX_WRONG = 6;
+const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜß'.split('');
+const STORAGE = 'hangman_' + DAY_ID;
+
+let target='', hint='', wrong=0, guessed=new Set(), over=false, lastIdx=-1;
+function pickWord(){ let i; do { i=Math.floor(Math.random()*WORDS.length); } while(WORDS.length>1 && i===lastIdx); lastIdx=i; return WORDS[i]; }
+
+function loadStats(){ try { return JSON.parse(localStorage.getItem(STORAGE)) || {played:0,won:0}; } catch(e){ return {played:0,won:0}; } }
+function saveStats(s){ try { localStorage.setItem(STORAGE, JSON.stringify(s)); } catch(e){} }
+function renderStats(){ const s=loadStats(); document.getElementById('stats').textContent = `Gespielt: ${s.played} · Gewonnen: ${s.won}`; }
+
+function newGame(){
+  const pick = pickWord();
+  target = pick.word.toUpperCase(); hint = pick.hint;
+  wrong=0; guessed=new Set(); over=false;
+  document.getElementById('hintText').textContent = hint;
+  document.getElementById('msg').textContent=''; document.getElementById('msg').className='msg';
+  for(let i=0;i<MAX_WRONG;i++) document.getElementById('p'+i).style.display='none';
+  buildWord(); buildKeyboard(); updateLives();
+}
+
+function buildWord(){
+  const w=document.getElementById('word'); w.innerHTML='';
+  for(const ch of target){
+    const s=document.createElement('div'); s.className='slot';
+    if(guessed.has(ch) || over){ s.textContent=ch; s.classList.add('revealed'); }
+    w.appendChild(s);
+  }
+}
+function buildKeyboard(){
+  const kb=document.getElementById('keyboard'); kb.innerHTML='';
+  ALPHABET.forEach(ch=>{
+    const b=document.createElement('button'); b.className='key'; b.textContent=ch;
+    if(guessed.has(ch)){ b.disabled=true; b.classList.add(target.includes(ch)?'right':'wrong'); }
+    if(over) b.disabled=true;
+    b.onclick=()=>guess(ch);
+    kb.appendChild(b);
+  });
+}
+function updateLives(){ document.getElementById('lives').textContent = `Fehlversuche: ${wrong} / ${MAX_WRONG}`; }
+
+function guess(ch){
+  if(over || guessed.has(ch)) return;
+  guessed.add(ch);
+  if(target.includes(ch)){ buildWord(); buildKeyboard(); checkWin(); }
+  else { wrong++; document.getElementById('p'+(wrong-1)).style.display='block'; updateLives(); buildKeyboard(); if(wrong>=MAX_WRONG) lose(); }
+}
+function checkWin(){ if([...target].every(c=>guessed.has(c))){ over=true; const m=document.getElementById('msg'); m.textContent='🎉 Gewonnen! '+target; m.className='msg win'; const s=loadStats(); s.played++; s.won++; saveStats(s); renderStats(); buildKeyboard(); } }
+function lose(){ over=true; const m=document.getElementById('msg'); m.textContent='Verloren! Das Wort war: '+target; m.className='msg lose'; buildWord(); buildKeyboard(); const s=loadStats(); s.played++; saveStats(s); renderStats(); }
+
+document.addEventListener('keydown', e=>{ const c=e.key.toUpperCase(); if(/^[A-ZÄÖÜß]$/.test(c)) guess(c); });
+
+renderStats(); newGame();
+</script>
+</body>
+</html>

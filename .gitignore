@@ -1,0 +1,32 @@
+# Verlagsmaterial — nicht ins public Repo (Urheberrecht)
+**/Grundlagen_*.pdf
+**/Uebungen_*.pdf
+
+# Große Backups / Browser-Artefakte
+*.zip
+.playwright-mcp/
+
+# Lokale Claude-Code-Konfiguration
+.claude/
+
+# OS / Editor
+desktop.ini
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+~$*
+
+# LaTeX-Artefakte
+*.aux
+*.log
+*.out
+*.toc
+missfont.log
+texput.log
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/

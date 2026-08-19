@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Wirtschaftsfachwirt — Lernplattform VWL &amp; BWL</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:#0EA5A4; --bfw-primary-dark:#0F766E;
+  --bfw-accent:#F59E0B; --bfw-warn:#F97316;
+  --bfw-success:#10B981; --bfw-danger:#EF4444;
+  --bfw-ink:#0F172A; --bfw-ink-soft:#475569;
+  --bfw-bg:#FAFAFA; --bfw-bg-soft:#F8FAFC;
+  --bfw-bg-teal:#ECFEFF; --bfw-bg-amber:#FEF3C7;
+  --bfw-bg-rose:#FFE4E6; --bfw-border:#E2E8F0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, var(--bfw-bg-teal) 0%, var(--bfw-bg) 50%, var(--bfw-bg-amber) 100%);
+  min-height: 100vh;
+  color: var(--bfw-ink);
+  -webkit-font-smoothing: antialiased;
+  display: flex; flex-direction: column;
+}
+.landing {
+  flex: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 3rem 1.2rem;
+}
+.landing-inner { max-width: 880px; width: 100%; }
+
+.landing-head {
+  text-align: center;
+  margin-bottom: 2.6rem;
+}
+.landing-icon {
+  width: 84px; height: 84px;
+  background: linear-gradient(135deg, var(--bfw-primary) 0%, var(--bfw-primary-dark) 100%);
+  border-radius: 22px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.4rem;
+  box-shadow: 0 8px 24px rgba(14,165,164,0.3);
+}
+.landing-icon svg { width: 44px; height: 44px; color: white; }
+.landing-head h1 {
+  font-size: 2rem;
+  color: var(--bfw-primary-dark);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
+}
+.landing-head p {
+  color: var(--bfw-ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.kurs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.4rem;
+}
+.kurs-card {
+  display: block;
+  background: white;
+  border: 1px solid var(--bfw-border);
+  border-radius: 18px;
+  padding: 1.8rem 1.7rem;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(15,23,42,0.04);
+}
+.kurs-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(15,23,42,0.10);
+  border-color: var(--bfw-primary);
+}
+.kurs-card .kurs-stripe {
+  position: absolute; top: 0; left: 0; right: 0; height: 5px;
+  background: linear-gradient(90deg, var(--bfw-primary) 0%, var(--bfw-accent) 100%);
+}
+.kurs-card.alt .kurs-stripe {
+  background: linear-gradient(90deg, #6366F1 0%, #EC4899 100%);
+}
+.kurs-modul {
+  display: inline-block;
+  background: var(--bfw-bg-teal);
+  color: var(--bfw-primary-dark);
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 0.28rem 0.75rem;
+  border-radius: 999px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.9rem;
+}
+.kurs-card.alt .kurs-modul { background: #E0E7FF; color: #3730A3; }
+.kurs-card h2 {
+  font-size: 1.28rem;
+  color: var(--bfw-ink);
+  line-height: 1.3;
+  margin-bottom: 0.6rem;
+}
+.kurs-meta {
+  color: var(--bfw-ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin-bottom: 1.3rem;
+}
+.kurs-cta {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  color: var(--bfw-primary-dark);
+  font-weight: 700;
+  font-size: 0.98rem;
+}
+.kurs-card.alt .kurs-cta { color: #4F46E5; }
+.kurs-card:hover .kurs-cta { gap: 0.8rem; }
+
+footer {
+  text-align: center;
+  padding: 1.8rem 1.2rem;
+  color: var(--bfw-ink-soft);
+  font-size: 0.85rem;
+}
+footer a { color: var(--bfw-primary-dark); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* Globaler Zugangscode-Gate */
+.gate {
+  max-width: 420px; width: 100%; margin: 0 auto;
+  background: white; border: 1px solid var(--bfw-border);
+  border-radius: 18px; padding: 2rem 1.8rem;
+  box-shadow: 0 4px 16px rgba(15,23,42,0.06);
+  text-align: center;
+}
+.gate p { color: var(--bfw-ink-soft); font-size: 0.98rem; margin-bottom: 1.2rem; }
+.gate-form { display: flex; flex-direction: column; gap: 0.7rem; }
+.gate input {
+  padding: 0.8rem 1rem; font-size: 1.05rem;
+  border: 1.5px solid var(--bfw-border); border-radius: 10px;
+  font-family: inherit; text-align: center;
+}
+.gate input:focus { outline: none; border-color: var(--bfw-primary); }
+.gate button {
+  padding: 0.8rem 1rem; font-size: 1.02rem; font-weight: 700;
+  border: none; border-radius: 10px; cursor: pointer;
+  background: var(--bfw-primary); color: white; transition: background 0.15s;
+}
+.gate button:hover { background: var(--bfw-primary-dark); }
+.gate-error { color: var(--bfw-danger); font-size: 0.9rem; min-height: 1.1em; }
+.gate-hint { color: var(--bfw-ink-soft); font-size: 0.82rem; margin-top: 0.4rem; }
+</style>
+</head>
+<body>
+
+<div class="landing">
+  <div class="landing-inner">
+
+    <div class="landing-head">
+      <div class="landing-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+        </svg>
+      </div>
+      <h1>Wirtschaftsfachwirt — Lernplattform</h1>
+      <p>Volks- und Betriebswirtschaft (Wirtschaftsbezogene Qualifikationen)<br>Geben Sie Ihren Zugangscode ein, um zu Ihrem Kursbereich zu gelangen.</p>
+    </div>
+
+    <div class="gate" id="gate">
+      <p>Bitte geben Sie Ihren Kurs-Zugangscode ein.</p>
+      <form class="gate-form" id="gateForm" autocomplete="off">
+        <input type="password" id="gateInput" placeholder="Zugangscode" autocomplete="off" required autofocus>
+        <button type="submit">Zum Kurs →</button>
+        <div class="gate-error" id="gateError"></div>
+      </form>
+      <div class="gate-hint">Ihr Code öffnet direkt Ihren Kursbereich.</div>
+    </div>
+
+    <div class="kurs-grid" id="kursGrid" style="display:none;">
+
+      <a class="kurs-card" id="card-vwl" href="kurs-vwl.html" style="display:none;">
+        <div class="kurs-stripe"></div>
+        <span class="kurs-modul">1.1 Volkswirtschaft</span>
+        <h2>Volkswirtschaftliche Grundlagen</h2>
+        <div class="kurs-meta">3 Lektionen · 19.08.–29.08.2026 · 16 UE<br>Markt &amp; Preisbildung, Wettbewerb, VGR, Konjunktur, Wirtschaftspolitik &amp; Außenwirtschaft</div>
+        <span class="kurs-cta">Zum Kurs <span>→</span></span>
+      </a>
+
+      <a class="kurs-card alt" id="card-bwl" href="kurs-bwl.html" style="display:none;">
+        <div class="kurs-stripe"></div>
+        <span class="kurs-modul">1.2–1.4 Betriebswirtschaft</span>
+        <h2>Betriebswirtschaftliche Grundlagen</h2>
+        <div class="kurs-meta">4 Lektionen · 05.09.2026–27.02.2027 · 24 UE<br>Betriebliche Funktionen, Existenzgründung &amp; Rechtsformen, Unternehmenszusammenschlüsse</div>
+        <span class="kurs-cta">Zum Kurs <span>→</span></span>
+      </a>
+
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  © Can Siebert · 2026 · Material nur für unterrichtliche Zwecke im Rahmen des Kurses<br>
+  <a href="https://github.com/cansi798/Wirtschaftsfachwirt_VWL_BWL">github.com/cansi798/Wirtschaftsfachwirt_VWL_BWL</a>
+</footer>
+
+<script>
+  // Der eingegebene Zugangscode wählt den Kursbereich:
+  //   "vwl" -> Volkswirtschaftliche Grundlagen
+  //   "bwl" -> Betriebswirtschaftliche Grundlagen
+  // Der passende Kurs wird zugleich freigeschaltet (kein zweiter Code nötig).
+  const KURSE = {
+    'vwl': { card: 'card-vwl', storageKey: 'wfw_vwl_unlocked' },
+    'bwl': { card: 'card-bwl', storageKey: 'wfw_bwl_unlocked' }
+  };
+  const gate  = document.getElementById('gate');
+  const grid  = document.getElementById('kursGrid');
+  const form  = document.getElementById('gateForm');
+  const input = document.getElementById('gateInput');
+  const error = document.getElementById('gateError');
+
+  function kursZeigen(key) {
+    const kurs = KURSE[key];
+    localStorage.setItem(kurs.storageKey, '1');   // Kurs vorab freischalten
+    gate.style.display = 'none';
+    grid.style.display = 'grid';
+    document.getElementById(kurs.card).style.display = 'block';
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const code = input.value.trim().toLowerCase();
+    if (KURSE[code]) {
+      error.textContent = '';
+      kursZeigen(code);
+    } else {
+      error.textContent = 'Falscher Zugangscode. Bitte erneut versuchen.';
+      input.value = '';
+      input.focus();
+    }
+  });
+</script>
+
+</body>
+</html>

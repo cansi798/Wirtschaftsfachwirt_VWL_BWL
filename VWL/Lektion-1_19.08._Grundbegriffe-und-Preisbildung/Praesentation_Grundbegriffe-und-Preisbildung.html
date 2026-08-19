@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Präsentation Lektion 1 — Volkswirtschaftliche Grundbegriffe & Preisbildung am Markt</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:       #0EA5A4;
+  --bfw-primary-dark:  #0F766E;
+  --bfw-accent:        #F59E0B;
+  --bfw-warn:          #F97316;
+  --bfw-success:       #10B981;
+  --bfw-ink:           #0F172A;
+  --bfw-ink-soft:      #475569;
+  --bfw-bg:            #FAFAFA;
+  --bfw-bg-teal:       #ECFEFF;
+  --bfw-bg-amber:      #FEF3C7;
+  --bfw-bg-rose:       #FFE4E6;
+  --bfw-border:        #E2E8F0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; font-family: 'Inter', system-ui, sans-serif; color: var(--bfw-ink); background: var(--bfw-bg); }
+
+.deck { position: relative; width: 100vw; height: 100vh; }
+.slide {
+  position: absolute; inset: 0;
+  display: none;
+  padding: 4rem 6rem;
+  flex-direction: column;
+  justify-content: center;
+  background: white;
+  animation: fadeIn 0.35s ease;
+}
+.slide.active { display: flex; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+h1 { font-size: 3.5rem; line-height: 1.1; color: var(--bfw-primary-dark); margin-bottom: 1rem; letter-spacing: -0.02em; }
+h2 { font-size: 2.4rem; color: var(--bfw-primary-dark); margin-bottom: 1.5rem; }
+h3 { font-size: 1.4rem; color: var(--bfw-primary); margin-bottom: 0.8rem; font-weight: 600; }
+p { font-size: 1.25rem; line-height: 1.55; margin-bottom: 0.8rem; color: var(--bfw-ink); }
+ul, ol { margin: 0.5rem 0 1rem 1.5rem; }
+li { font-size: 1.2rem; line-height: 1.6; margin-bottom: 0.4rem; }
+.subtitle { font-size: 1.4rem; color: var(--bfw-ink-soft); margin-bottom: 2rem; font-weight: 500; }
+.muted { color: var(--bfw-ink-soft); }
+
+/* Deckblatt */
+.cover { background: linear-gradient(135deg, var(--bfw-bg-teal) 0%, white 60%, var(--bfw-bg-amber) 100%); }
+.cover-tag {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: var(--bfw-primary);
+  color: white;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.cover-meta { display: flex; gap: 2rem; margin-top: 2rem; color: var(--bfw-ink-soft); font-size: 1.1rem; }
+.cover-meta span strong { color: var(--bfw-ink); display: block; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* Karten-Grid */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+.card { background: white; border: 1px solid var(--bfw-border); border-radius: 14px; padding: 1.4rem; box-shadow: 0 2px 8px rgba(15,23,42,0.04); }
+.card.teal { background: var(--bfw-bg-teal); border-color: var(--bfw-primary); }
+.card.amber { background: var(--bfw-bg-amber); border-color: var(--bfw-accent); }
+.card.rose { background: var(--bfw-bg-rose); border-color: var(--bfw-warn); }
+.card-title { font-size: 1.15rem; font-weight: 700; color: var(--bfw-primary-dark); margin-bottom: 0.5rem; }
+.card.amber .card-title { color: var(--bfw-warn); }
+
+/* Merksatz */
+.merksatz {
+  background: var(--bfw-bg-teal);
+  border-left: 6px solid var(--bfw-primary);
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+  font-size: 1.15rem;
+}
+.merksatz-label { font-weight: 700; color: var(--bfw-primary-dark); display: block; margin-bottom: 0.3rem; font-size: 1rem; }
+
+/* Tabellen */
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 1.1rem; }
+th { background: var(--bfw-bg-teal); color: var(--bfw-primary-dark); text-align: left; padding: 0.7rem 1rem; font-weight: 700; }
+td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
+
+/* Diagramm-Container für Rough.js */
+.figure { margin: 1.5rem auto; text-align: center; }
+.figure svg { max-width: 100%; height: auto; }
+.caption { color: var(--bfw-ink-soft); font-size: 0.95rem; margin-top: 0.5rem; }
+
+/* Navigation */
+.nav { position: fixed; bottom: 1rem; right: 1.5rem; display: flex; gap: 0.5rem; align-items: center; z-index: 100; }
+.nav button {
+  border: none; background: var(--bfw-primary); color: white;
+  width: 44px; height: 44px; border-radius: 50%;
+  font-size: 1.2rem; cursor: pointer;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.12);
+  transition: all 0.15s;
+}
+.nav button:hover { background: var(--bfw-primary-dark); transform: translateY(-1px); }
+.nav-counter { background: white; padding: 0.4rem 0.9rem; border-radius: 999px; font-weight: 600; color: var(--bfw-ink-soft); font-size: 0.95rem; box-shadow: 0 2px 8px rgba(15,23,42,0.06); }
+
+.slide-num { position: fixed; bottom: 1rem; left: 1.5rem; color: var(--bfw-ink-soft); font-size: 0.9rem; }
+
+/* Listen mit Icons */
+.checklist { list-style: none; margin-left: 0; }
+.checklist li { padding-left: 2rem; position: relative; }
+.checklist li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--bfw-success); font-weight: 700; font-size: 1.3rem; }
+
+.numlist { list-style: none; margin-left: 0; counter-reset: numitem; }
+.numlist li { padding-left: 3rem; position: relative; counter-increment: numitem; margin-bottom: 0.8rem; }
+.numlist li::before {
+  content: counter(numitem);
+  position: absolute; left: 0; top: 0;
+  width: 2rem; height: 2rem;
+  background: var(--bfw-primary); color: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.95rem;
+}
+
+/* Print-friendly */
+@media print {
+  .slide { display: flex; page-break-after: always; }
+  .nav, .slide-num { display: none; }
+  html, body { height: auto; overflow: visible; }
+}
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- 1. Deckblatt -->
+  <section class="slide active cover">
+    <span class="cover-tag">Lektion 1 · Mi, 19.08.2026 · 18:00–21:15</span>
+    <h1>Volkswirtschaftliche Grundbegriffe &amp; Preisbildung am Markt</h1>
+    <p class="subtitle">Vom Bedürfnis zum Marktgleichgewicht — der Einstieg in die VWL</p>
+    <div class="cover-meta">
+      <span><strong>Kurs</strong>Wirtschaftsfachwirt — 1.1 Volkswirtschaftliche Grundlagen</span>
+      <span><strong>Rahmenplan</strong>1.1.1 Markt, Preis und Wettbewerb</span>
+      <span><strong>Quelle</strong>Textband Volkswirtschaft, Kap. 1 (S. 1–11)</span>
+    </div>
+  </section>
+
+  <!-- 2. Organisation -->
+  <section class="slide">
+    <h2>Herzlich willkommen! Unser Fahrplan</h2>
+    <p class="subtitle">7 Termine · 40 UE · Volks- und Betriebswirtschaft</p>
+    <table>
+      <tr><th>Termin</th><th>Datum</th><th>Thema</th></tr>
+      <tr><td><strong>1 (heute)</strong></td><td>Mi 19.08.</td><td><strong>VWL: Grundbegriffe &amp; Preisbildung</strong></td></tr>
+      <tr><td>2</td><td>Sa 22.08.</td><td>VWL: Wettbewerb, Staatseingriffe &amp; VGR</td></tr>
+      <tr><td>3</td><td>Sa 29.08.</td><td>VWL: Konjunktur, Wirtschaftspolitik &amp; Außenwirtschaft</td></tr>
+      <tr><td>4</td><td>Sa 05.09.</td><td>BWL: Betriebliche Funktionen I</td></tr>
+      <tr><td>5</td><td>Sa 12.09.</td><td>BWL: Betriebliche Funktionen II</td></tr>
+      <tr><td>6</td><td>Sa 26.09.</td><td>BWL: Existenzgründung &amp; Rechtsformen</td></tr>
+      <tr><td>7</td><td>Sa 27.02.27</td><td>BWL: Unternehmenszusammenschlüsse</td></tr>
+    </table>
+    <p class="muted">Alle Materialien auf der Lernplattform — Zugangscode <code>vwl</code>. Pro Lektion: Präsentation, Handout, Quiz, Karteikarten, Lernspiele, Aufgabenheft.</p>
+  </section>
+
+  <!-- 3. Lernziele -->
+  <section class="slide">
+    <h2>Was Sie heute lernen</h2>
+    <p class="subtitle">Am Ende dieser Lektion können Sie …</p>
+    <ul class="checklist">
+      <li>erklären, warum <strong>Knappheit</strong> uns zum Wirtschaften zwingt (ökonomisches Prinzip)</li>
+      <li><strong>Bedürfnis, Bedarf und Nachfrage</strong> sauber unterscheiden</li>
+      <li>die <strong>Produktionsfaktoren</strong> und <strong>Marktarten</strong> nennen</li>
+      <li>die 5 Bedingungen des <strong>vollkommenen Marktes</strong> aufzählen</li>
+      <li>die <strong>Marktformen</strong> (Polypol, Oligopol, Monopol) mit Beispielen zuordnen</li>
+      <li>die <strong>Preisbildung im Gleichgewicht</strong> grafisch erklären</li>
+      <li>die <strong>4 Funktionen des Marktpreises</strong> und die <strong>Preiselastizität</strong> anwenden</li>
+    </ul>
+  </section>
+
+  <!-- 4. Knappheit -->
+  <section class="slide">
+    <h2>Warum wirtschaften wir überhaupt?</h2>
+    <div class="cards">
+      <div class="card rose">
+        <div class="card-title">Unbegrenzte Bedürfnisse</div>
+        <p style="font-size: 1rem;">Essen, Wohnen, Sicherheit, Urlaub, Anerkennung, das neueste Smartphone … die Wunschliste endet nie.</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Knappe Güter</div>
+        <p style="font-size: 1rem;">Zeit, Geld, Rohstoffe, Arbeitskräfte — alle Mittel zur Bedürfnisbefriedigung sind begrenzt.</p>
+      </div>
+      <div class="card teal">
+        <div class="card-title">⇒ Wirtschaften</div>
+        <p style="font-size: 1rem;">Planvoller Umgang mit knappen Mitteln nach dem <strong>ökonomischen Prinzip</strong>.</p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="merksatz-label">📌 Merke</span>
+      <strong>Maximalprinzip:</strong> gegebene Mittel → maximaler Erfolg. <strong>Minimalprinzip:</strong> gegebenes Ziel → minimaler Mitteleinsatz. „Mit minimalen Mitteln maximaler Erfolg“ ist <strong>kein</strong> ökonomisches Prinzip!
+    </div>
+  </section>
+
+  <!-- 5. Bedürfnis-Bedarf-Nachfrage -->
+  <section class="slide">
+    <h2>Vom Bedürfnis zur Nachfrage</h2>
+    <div class="figure" id="fig-beduerfnis"></div>
+    <p class="caption">Nur der Teil der Bedürfnisse, der mit Kaufkraft ausgestattet ist und am Markt wirksam wird, zählt als Nachfrage.</p>
+    <div class="merksatz">
+      <span class="merksatz-label">💡 Beispiel</span>
+      Ich <em>wünsche</em> mir ein E-Auto (Bedürfnis) → ich <em>habe</em> 30.000 € (Bedarf) → ich <em>gehe zum Händler und kaufe</em> (Nachfrage).
+    </div>
+  </section>
+
+  <!-- 6. Wirtschaftssubjekte & Produktionsfaktoren -->
+  <section class="slide">
+    <h2>Wirtschaftssubjekte &amp; Produktionsfaktoren</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Wirtschaftssubjekte</div>
+        <p style="font-size: 1rem;">Kleinste selbstständig entscheidende Einheiten: <strong>Privathaushalte, Unternehmen, staatliche Körperschaften</strong> — zusammengefasst zu Wirtschaftssektoren.</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Produktionsfaktoren (VWL)</div>
+        <p style="font-size: 1rem;"><strong>Arbeit</strong> · <strong>Boden</strong> · <strong>Kapital</strong> — und zunehmend <strong>Wissen (Know-how)</strong> als vierter Faktor.</p>
+      </div>
+    </div>
+    <p>Drei Grundfragen jeder Volkswirtschaft: <strong>Was</strong> wird produziert? <strong>Wie</strong> wird produziert? <strong>Für wen</strong> wird produziert?</p>
+    <div class="merksatz">
+      <span class="merksatz-label">⚠️ Abgrenzung</span>
+      Die <em>betriebswirtschaftlichen</em> Produktionsfaktoren (Elementarfaktoren + dispositiver Faktor) behandeln wir im BWL-Teil ab dem 05.09.
+    </div>
+  </section>
+
+  <!-- 7. Markt & Marktarten -->
+  <section class="slide">
+    <h2>Der Markt: Ort der Preisbildung</h2>
+    <p><strong>Markt</strong> = Zusammentreffen von Angebot und Nachfrage, bei dem sich der <strong>Preis</strong> bildet. Nachfrager wollen <em>Nutzen maximieren</em>, Anbieter <em>Gewinn maximieren</em>.</p>
+    <table>
+      <tr><th>Marktart</th><th>Marktgegenstand</th><th>Beispiele</th></tr>
+      <tr><td><strong>Faktormarkt</strong></td><td>Produktionsfaktoren</td><td>Arbeitsmarkt, Immobilienmarkt</td></tr>
+      <tr><td><strong>Gütermarkt</strong></td><td>Güter</td><td>Konsumgüter, Investitionsgüter, Dienstleistungen</td></tr>
+      <tr><td><strong>Finanzmarkt</strong></td><td>Geld, Kredite, Kapitalanlagen</td><td>Devisenmarkt, Aktienmarkt</td></tr>
+    </table>
+  </section>
+
+  <!-- 8. Vollkommener Markt -->
+  <section class="slide">
+    <h2>Der vollkommene Markt — ein Idealtyp</h2>
+    <p class="subtitle">Alle 5 Bedingungen müssen erfüllt sein — sonst: unvollkommener Markt</p>
+    <ol class="numlist">
+      <li><strong>Homogenität der Güter</strong> — sachlich gleichwertig, keine Qualitätsunterschiede</li>
+      <li><strong>Keine Präferenzen</strong> — weder persönliche noch räumliche noch zeitliche</li>
+      <li><strong>Vollkommene Markttransparenz</strong> — alle kennen Preise und Konditionen</li>
+      <li><strong>Unendlich schnelle Reaktionen</strong> — Punktmarkt: gleicher Ort, gleiche Zeit</li>
+      <li><strong>Polypolistische Struktur</strong> — viele Anbieter, viele Nachfrager, freier Zutritt</li>
+    </ol>
+    <div class="merksatz">
+      <span class="merksatz-label">📌 Prüfungsklassiker</span>
+      Der vollkommene Markt existiert in der Realität <strong>nicht</strong> — die <strong>Börse</strong> kommt ihm am nächsten (homogene Güter, Punktmarkt, Transparenz).
+    </div>
+  </section>
+
+  <!-- 9. Marktformen -->
+  <section class="slide">
+    <h2>Marktformen: Wer trifft auf wen?</h2>
+    <table>
+      <tr><th>Nachfrager ↓ / Anbieter →</th><th>viele</th><th>wenige</th><th>einer</th></tr>
+      <tr><td><strong>viele</strong></td><td>Polypol<br><span class="muted">Wochenmarkt</span></td><td>Angebotsoligopol<br><span class="muted">Mobilfunk, Tankstellen</span></td><td>Angebotsmonopol<br><span class="muted">Wasserversorger</span></td></tr>
+      <tr><td><strong>wenige</strong></td><td>Nachfrageoligopol<br><span class="muted">Molkereien ↔ Milchbauern</span></td><td>zweiseitiges Oligopol<br><span class="muted">Spezialmaschinen</span></td><td>beschränktes Angebotsmonopol</td></tr>
+      <tr><td><strong>einer</strong></td><td>Nachfragemonopol<br><span class="muted">Staat im Straßenbau</span></td><td>beschränktes Nachfragemonopol<br><span class="muted">Bundeswehr</span></td><td>zweiseitiges Monopol</td></tr>
+    </table>
+    <p class="muted">Benennung immer aus Sicht der „knappen“ Marktseite: <em>Angebots</em>-Oligopol = wenige <em>Anbieter</em>.</p>
+  </section>
+
+  <!-- 10. Übungsphase -->
+  <section class="slide">
+    <h2>Ihre Reihe: Marktformen zuordnen</h2>
+    <p class="subtitle">Übungsband Kap. 1, Übungen 1–4 · ca. 15 Minuten</p>
+    <ol style="font-size: 1.15rem;">
+      <li>Welches Ziel verfolgen Nachfrager und Anbieter?</li>
+      <li>Richtig oder falsch? (Polypol, Monopol, Apotheken, Mineralöl …)</li>
+      <li>Zwei Märkte, die dem vollkommenen Markt nahekommen?</li>
+      <li>Bedingungen des vollkommenen Marktes prüfen</li>
+    </ol>
+    <div class="merksatz">
+      <span class="merksatz-label">🗣️ Danach</span>
+      Besprechung im Plenum — begründen Sie Ihre Zuordnung immer mit der <strong>Anzahl der Anbieter und Nachfrager</strong>.
+    </div>
+  </section>
+
+  <!-- 11. Nachfrage -->
+  <section class="slide">
+    <h2>Was bestimmt die Nachfrage?</h2>
+    <ul class="checklist">
+      <li><strong>Preis des Gutes</strong> — hoher Preis, geringere Menge (Regelfall)</li>
+      <li><strong>Preise anderer Güter</strong> — Substitute &amp; Komplemente</li>
+      <li><strong>Verfügbares Einkommen</strong> — die Konsumsumme</li>
+      <li><strong>Bedürfnisstruktur</strong> — Mode, Demografie, Werte, Technologie</li>
+      <li><strong>Zukunftserwartungen</strong> — Preis- und Einkommenserwartungen</li>
+    </ul>
+    <div class="merksatz">
+      <span class="merksatz-label">📌 Merke</span>
+      Nachfrager sind nicht nur Privathaushalte — auch <strong>Unternehmen, Staat und Ausland</strong> fragen Güter nach.
+    </div>
+  </section>
+
+  <!-- 12. Substitute & Komplemente -->
+  <section class="slide">
+    <h2>Substitute &amp; Komplemente</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Substitutionsgüter (ersetzen sich)</div>
+        <p style="font-size: 1rem;">Butter ↔ Margarine · Gasheizung ↔ Wärmepumpe<br><strong>Preis des Substituts steigt → Nachfrage nach dem Gut steigt</strong> (Rechtsverschiebung)</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Komplementäre Güter (ergänzen sich)</div>
+        <p style="font-size: 1rem;">Drucker ↔ Patronen · Auto ↔ Benzin<br><strong>Preis des Komplements steigt → Nachfrage nach dem Gut sinkt</strong> (Linksverschiebung)</p>
+      </div>
+    </div>
+    <p class="muted">Aktuelles Beispiel aus dem Textband: Steigende Heizöl- und Gaspreise → Nachfrageboom bei Wärmepumpen und Pelletheizungen.</p>
+  </section>
+
+  <!-- 13. Elastizität -->
+  <section class="slide">
+    <h2>Preiselastizität der Nachfrage</h2>
+    <div class="merksatz">
+      <span class="merksatz-label">🧮 Formel</span>
+      ε = <strong>prozentuale Mengenänderung der Nachfrage</strong> ÷ <strong>prozentuale Preisänderung</strong>
+    </div>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">|ε| &lt; 1: unelastisch</div>
+        <p style="font-size: 1rem;">Lebensnotwendige Güter (Medikamente): Preis +20 %, Menge −2 % → ε = 0,1</p>
+      </div>
+      <div class="card rose">
+        <div class="card-title">|ε| &gt; 1: elastisch</div>
+        <p style="font-size: 1rem;">Verzichtbare Güter (Mode): Preis +10 %, Menge −25 % → ε = 2,5</p>
+      </div>
+    </div>
+    <p><strong>Kreuzpreiselastizität:</strong> Mengenänderung bei Gut A ÷ Preisänderung bei Gut B. <strong>Einkommenselastizität:</strong> Reaktion der Nachfrage auf Einkommensänderungen.</p>
+  </section>
+
+  <!-- 14. Kurvenlogik -->
+  <section class="slide">
+    <h2>Bewegung oder Verschiebung?</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Bewegung AUF der Kurve</div>
+        <p style="font-size: 1rem;">Der <strong>Preis des Gutes selbst</strong> ändert sich → Menge passt sich entlang der Kurve an.</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Verschiebung DER Kurve</div>
+        <p style="font-size: 1rem;"><strong>Andere Einflussgrößen</strong> ändern sich (Einkommen, andere Güterpreise, Mode, Erwartungen) → ganze Kurve wandert.</p>
+      </div>
+    </div>
+    <ul class="checklist">
+      <li><strong>Rechtsverschiebung Nachfrage:</strong> mehr Einkommen, teureres Substitut, Optimismus</li>
+      <li><strong>Linksverschiebung Nachfrage:</strong> Gut aus der Mode, sinkendes Realeinkommen, teureres Komplement</li>
+    </ul>
+  </section>
+
+  <!-- 15. Angebot -->
+  <section class="slide">
+    <h2>Das Angebot</h2>
+    <p class="subtitle">Angebotskurve steigt: höherer Preis → mehr Produktion lohnt sich</p>
+    <ul class="checklist">
+      <li><strong>Preis des Gutes</strong> — Anreiz zur Mengenausweitung</li>
+      <li><strong>Kosten der Produktionsfaktoren</strong> — Löhne, Material, Energie</li>
+      <li><strong>Stand der Technik</strong> — Produktivität</li>
+    </ul>
+    <div class="merksatz">
+      <span class="merksatz-label">📌 Merke</span>
+      Steigende Kosten → <strong>Linksverschiebung</strong> (Angebotssenkung). Technischer Fortschritt / sinkende Kosten → <strong>Rechtsverschiebung</strong> (Angebotserhöhung).
+    </div>
+  </section>
+
+  <!-- 16. Preisbildung Figur -->
+  <section class="slide">
+    <h2>Preisbildung im Marktgleichgewicht</h2>
+    <div class="figure" id="fig-preisbildung"></div>
+    <p class="caption">Vollständige Konkurrenz = vollkommener Markt + Polypol. Alle sind Preisnehmer und Mengenanpasser. Das Gleichgewicht liegt im Schnittpunkt.</p>
+  </section>
+
+  <!-- 17. Preismechanismus -->
+  <section class="slide">
+    <h2>Der Preismechanismus</h2>
+    <div class="cards">
+      <div class="card rose">
+        <div class="card-title">Preis zu hoch: Angebotsüberschuss</div>
+        <p style="font-size: 1rem;"><strong>Käufermarkt</strong> — Käufer haben die Macht. Anbieter senken Preise, drosseln Produktion → Richtung Gleichgewicht.</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Preis zu niedrig: Nachfrageüberschuss</div>
+        <p style="font-size: 1rem;"><strong>Verkäufermarkt</strong> — Verkäufer haben die Macht. Preise steigen, Produktion wird ausgeweitet → Richtung Gleichgewicht.</p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="merksatz-label">📌 Merke</span>
+      Diesen Anpassungsprozess über Preis und Menge nennt man <strong>Preismechanismus</strong> (Marktmechanismus). Nur im Gleichgewicht findet der mengenmäßig größte Umsatz statt.
+    </div>
+  </section>
+
+  <!-- 18. Renten -->
+  <section class="slide">
+    <h2>Konsumenten- und Produzentenrente</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Konsumentenrente</div>
+        <p style="font-size: 1rem;">Ich war bereit, <strong>mehr</strong> als p* zu zahlen — die Differenz ist mein Nutzengewinn.</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Produzentenrente</div>
+        <p style="font-size: 1rem;">Ich hätte auch <strong>billiger</strong> als p* verkauft — die Differenz ist mein Mehrerlös.</p>
+      </div>
+    </div>
+    <p>Grafisch: die Flächen zwischen Nachfrage- bzw. Angebotskurve und der Preislinie p* (Abb. 1.4 im Textband).</p>
+  </section>
+
+  <!-- 19. Preisfunktionen -->
+  <section class="slide">
+    <h2>Die 4 Funktionen des Marktpreises</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">1. Signalfunktion</div>
+        <p style="font-size: 0.98rem;">Preis zeigt Knappheit an (Informationsfunktion).</p>
+      </div>
+      <div class="card teal">
+        <div class="card-title">2. Ausgleichsfunktion</div>
+        <p style="font-size: 0.98rem;">Preise gleichen Angebots- und Nachfragemenge aus.</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">3. Allokationsfunktion</div>
+        <p style="font-size: 0.98rem;">Lenkt Produktionsfaktoren in marktfähige Güter (Lenkungsfunktion).</p>
+      </div>
+      <div class="card rose">
+        <div class="card-title">4. Selektionsfunktion</div>
+        <p style="font-size: 0.98rem;">Sondert zu teure Anbieter aus (Sanktionsfunktion).</p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="merksatz-label">🧠 Eselsbrücke</span>
+      <strong>SAAS</strong> — Signal, Ausgleich, Allokation, Selektion.
+    </div>
+  </section>
+
+  <!-- 20. Unvollständige Konkurrenz -->
+  <section class="slide">
+    <h2>Preisbildung bei unvollständiger Konkurrenz</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Unvollkommenes Polypol</div>
+        <p style="font-size: 0.95rem;"><strong>Produktdifferenzierung</strong> (Marke, Werbung) schafft einen <strong>monopolistischen Absatzbereich</strong> — Preisspielraum ohne Kundenverlust.</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Oligopol</div>
+        <p style="font-size: 0.95rem;">Gegenseitige Beobachtung: <strong>Preisführerschaft</strong>, <strong>Parallelverhalten</strong>, Preisruhe — Wettbewerb über Qualität, Marke, Service. Gefahr: verbotene Absprachen.</p>
+      </div>
+      <div class="card rose">
+        <div class="card-title">Monopol</div>
+        <p style="font-size: 0.95rem;">Ein Anbieter = <strong>Preisfixierer</strong>. Grenzen: Ausweichen der Nachfrager, Substitute, Regulierung.</p>
+      </div>
+    </div>
+    <p class="muted">Beispiel Tankstellen: Ein Anbieter erhöht vor dem Feiertag — alle ziehen nach (Preisführerschaft). Mehr zur Wettbewerbspolitik in Lektion 2!</p>
+  </section>
+
+  <!-- 21. Zusammenfassung -->
+  <section class="slide">
+    <h2>Das Wichtigste in 6 Sätzen</h2>
+    <ol class="numlist">
+      <li>Knappheit zwingt zum Wirtschaften — nach Maximal- <em>oder</em> Minimalprinzip.</li>
+      <li>Bedürfnis → Bedarf (Kaufkraft) → Nachfrage (am Markt wirksam).</li>
+      <li>Der vollkommene Markt ist ein Idealtyp mit 5 Bedingungen — die Börse kommt ihm nahe.</li>
+      <li>Marktformen ordnet man nach der Zahl der Anbieter und Nachfrager (Polypol/Oligopol/Monopol).</li>
+      <li>Das Gleichgewicht liegt im Schnittpunkt von Angebot und Nachfrage; der Preismechanismus führt dorthin.</li>
+      <li>Der Preis wirkt als Signal, Ausgleich, Allokation und Selektion (SAAS).</li>
+    </ol>
+  </section>
+
+  <!-- 22. Hausaufgabe & Ausblick -->
+  <section class="slide">
+    <h2>Hausaufgabe &amp; Ausblick</h2>
+    <p class="subtitle">Bis Samstag, 22.08.2026, 08:15 Uhr</p>
+    <ul class="checklist">
+      <li><strong>Quiz</strong> auf der Plattform vollständig bearbeiten (40 Fragen, Selbstkontrolle)</li>
+      <li><strong>Übungsband Kap. 1</strong>, Übungen 1–4 fertigstellen</li>
+      <li><strong>Handout</strong> Abschnitte 1–3 lesen, Fragen notieren</li>
+      <li>Optional: <strong>Karteikarten &amp; Lernspiele</strong> (Wordle, Hängemann, Memory)</li>
+    </ul>
+    <div class="merksatz">
+      <span class="merksatz-label">🔭 Lektion 2 (Sa, 22.08.)</span>
+      Wettbewerbspolitik &amp; Funktionen des Wettbewerbs · Eingriffe des Staates in die Preisbildung (Höchst-/Mindestpreise, Subventionen) · Volkswirtschaftliche Gesamtrechnung (BIP &amp; Co.) · Ziele der Stabilitätspolitik.
+    </div>
+  </section>
+
+
+</div>
+
+<div class="slide-num">© Can Siebert · 2026 · <span id="slideCount">1 / 26</span></div>
+<nav class="nav">
+  <button onclick="prev()" title="Zurück (←)">←</button>
+  <span class="nav-counter"><span id="slideNum">1</span></span>
+  <button onclick="next()" title="Weiter (→)">→</button>
+</nav>
+
+<!-- Rough.js für handgezeichnete Diagramme -->
+<script src="https://cdn.jsdelivr.net/npm/roughjs@4.6.6/bundled/rough.min.js"></script>
+<script>
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+function show(i) {
+  slides.forEach(s => s.classList.remove('active'));
+  current = Math.max(0, Math.min(i, slides.length - 1));
+  slides[current].classList.add('active');
+  document.getElementById('slideNum').textContent = current + 1;
+  document.getElementById('slideCount').textContent = `${current + 1} / ${slides.length}`;
+}
+function next() { show(current + 1); }
+function prev() { show(current - 1); }
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { next(); e.preventDefault(); }
+  if (e.key === 'ArrowLeft') prev();
+  if (e.key === 'Home') show(0);
+  if (e.key === 'End') show(slides.length - 1);
+});
+
+// Rough.js-Skizzen
+function makeRough(svgEl, fn) {
+  const rc = rough.svg(svgEl);
+  fn(rc, svgEl);
+}
+
+function box(rc, svg, x, y, w, h, fill, stroke) {
+  const node = rc.rectangle(x, y, w, h, {
+    roughness: 1.6, bowing: 1, fill: fill, fillStyle: 'solid', stroke: stroke, strokeWidth: 1.6
+  });
+  svg.appendChild(node);
+}
+function arrow(rc, svg, x1, y1, x2, y2, color) {
+  svg.appendChild(rc.line(x1, y1, x2, y2, { roughness: 1.4, stroke: color, strokeWidth: 1.8 }));
+  // Pfeilspitze
+  const ang = Math.atan2(y2 - y1, x2 - x1);
+  const ah = 10;
+  svg.appendChild(rc.line(x2, y2, x2 - ah * Math.cos(ang - Math.PI / 7), y2 - ah * Math.sin(ang - Math.PI / 7), { roughness: 1.2, stroke: color, strokeWidth: 1.8 }));
+  svg.appendChild(rc.line(x2, y2, x2 - ah * Math.cos(ang + Math.PI / 7), y2 - ah * Math.sin(ang + Math.PI / 7), { roughness: 1.2, stroke: color, strokeWidth: 1.8 }));
+}
+function text(svg, x, y, str, opts = {}) {
+  const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  t.setAttribute('x', x); t.setAttribute('y', y);
+  t.setAttribute('text-anchor', opts.anchor || 'middle');
+  t.setAttribute('font-family', 'Inter, sans-serif');
+  t.setAttribute('font-size', opts.size || 15);
+  t.setAttribute('fill', opts.color || '#0F172A');
+  t.setAttribute('font-weight', opts.bold ? 700 : 500);
+  t.textContent = str;
+  svg.appendChild(t);
+  return t;
+}
+
+window.addEventListener('load', () => {
+  // FIG: Bedürfnis -> Bedarf -> Nachfrage (Trichter/Kette)
+  const c1 = document.getElementById('fig-beduerfnis');
+  if (c1) {
+    const svg1 = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg1.setAttribute('viewBox', '0 0 900 300');
+    svg1.setAttribute('width', '900'); svg1.setAttribute('height', '300');
+    c1.appendChild(svg1);
+    makeRough(svg1, (rc, svg) => {
+      const stufen = [
+        { t: 'Bedürfnis', s: 'empfundener Mangel', c: '#FFE4E6', st: '#F97316' },
+        { t: 'Bedarf', s: 'mit Kaufkraft ausgestattet', c: '#FEF3C7', st: '#F59E0B' },
+        { t: 'Nachfrage', s: 'am Markt wirksam', c: '#ECFEFF', st: '#0F766E' }
+      ];
+      let x = 40;
+      stufen.forEach((f, i) => {
+        box(rc, svg, x, 90, 220, 110, f.c, f.st);
+        text(svg, x + 110, 140, f.t, { bold: true, size: 20, color: f.st });
+        text(svg, x + 110, 170, f.s, { size: 14, color: '#475569' });
+        if (i < stufen.length - 1) arrow(rc, svg, x + 220, 145, x + 290, 145, '#0F766E');
+        x += 290;
+      });
+      text(svg, 450, 45, 'Nur kaufkräftige, am Markt wirksame Wünsche werden zur Nachfrage', { size: 18, bold: true, color: '#0F766E' });
+      text(svg, 450, 250, 'unbegrenzt  ⟶  begrenzt durch Einkommen  ⟶  marktwirksam', { size: 14, color: '#475569' });
+    });
+  }
+
+  // FIG: Preisbildung — Angebots- und Nachfragekurve mit Gleichgewicht
+  const c2 = document.getElementById('fig-preisbildung');
+  if (c2) {
+    const svg2 = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg2.setAttribute('viewBox', '0 0 900 420');
+    svg2.setAttribute('width', '900'); svg2.setAttribute('height', '420');
+    c2.appendChild(svg2);
+    makeRough(svg2, (rc, svg) => {
+      const ox = 130, oy = 360, w = 560, h = 300;
+      // Achsen
+      arrow(rc, svg, ox, oy, ox, oy - h - 20, '#0F172A');
+      arrow(rc, svg, ox, oy, ox + w + 20, oy, '#0F172A');
+      text(svg, ox - 60, oy - h - 10, 'Preis (p)', { size: 16, bold: true, anchor: 'start' });
+      text(svg, ox + w - 20, oy + 30, 'Menge (x)', { size: 16, bold: true });
+      // Nachfragekurve (fallend)
+      svg.appendChild(rc.line(ox + 40, oy - h + 20, ox + w - 40, oy - 40, { roughness: 1.4, stroke: '#EF4444', strokeWidth: 2.2 }));
+      text(svg, ox + w - 20, oy - 55, 'N', { size: 18, bold: true, color: '#EF4444' });
+      // Angebotskurve (steigend)
+      svg.appendChild(rc.line(ox + 40, oy - 40, ox + w - 40, oy - h + 20, { roughness: 1.4, stroke: '#0F766E', strokeWidth: 2.2 }));
+      text(svg, ox + w - 20, oy - h + 10, 'A', { size: 18, bold: true, color: '#0F766E' });
+      // Gleichgewicht (Schnittpunkt in der Mitte)
+      const gx = ox + w / 2, gy = oy - h / 2 - 10;
+      svg.appendChild(rc.circle(gx, gy, 16, { roughness: 1.2, stroke: '#F59E0B', strokeWidth: 2.4, fill: '#FEF3C7', fillStyle: 'solid' }));
+      // Hilfslinien
+      svg.appendChild(rc.line(ox, gy, gx, gy, { roughness: 0.8, stroke: '#94A3B8', strokeWidth: 1.2, strokeLineDash: [6, 6] }));
+      svg.appendChild(rc.line(gx, gy, gx, oy, { roughness: 0.8, stroke: '#94A3B8', strokeWidth: 1.2, strokeLineDash: [6, 6] }));
+      text(svg, ox - 30, gy + 5, 'p*', { size: 17, bold: true, color: '#F59E0B' });
+      text(svg, gx, oy + 25, 'x*', { size: 17, bold: true, color: '#F59E0B' });
+      // Überschuss-Beschriftungen
+      text(svg, gx, oy - h + 5, 'Angebotsüberschuss (Preis zu hoch → Preissenkung)', { size: 14, color: '#475569' });
+      text(svg, gx, oy - 15, 'Nachfrageüberschuss (Preis zu niedrig → Preiserhöhung)', { size: 14, color: '#475569' });
+      text(svg, gx + 120, gy - 25, 'Marktgleichgewicht', { size: 15, bold: true, color: '#F59E0B' });
+    });
+  }
+});
+
+</script>
+
+</body>
+</html>

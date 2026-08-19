@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Karteikarten Lektion 1 — Volkswirtschaftliche Grundbegriffe & Preisbildung am Markt (60 Karten)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:#0EA5A4; --bfw-primary-dark:#0F766E;
+  --bfw-accent:#F59E0B; --bfw-warn:#F97316;
+  --bfw-success:#10B981; --bfw-danger:#EF4444;
+  --bfw-ink:#0F172A; --bfw-ink-soft:#475569;
+  --bfw-bg:#FAFAFA; --bfw-bg-soft:#F8FAFC;
+  --bfw-bg-teal:#ECFEFF; --bfw-bg-amber:#FEF3C7;
+  --bfw-bg-green:#D1FAE5; --bfw-border:#E2E8F0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: linear-gradient(180deg, var(--bfw-bg-teal) 0%, var(--bfw-bg) 240px);
+  color: var(--bfw-ink); min-height: 100vh; padding: 2rem 1rem 6rem;
+}
+.container { max-width: 720px; margin: 0 auto; }
+header { text-align: center; margin-bottom: 1.5rem; }
+.tag-pill {
+  display: inline-block; padding: 0.4rem 1rem; background: var(--bfw-primary);
+  color: white; border-radius: 999px; font-weight: 600; font-size: 0.85rem;
+  letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1rem;
+}
+h1 { font-size: 2rem; color: var(--bfw-primary-dark); margin-bottom: 0.4rem; letter-spacing: -0.01em; }
+.subtitle { color: var(--bfw-ink-soft); font-size: 1.05rem; }
+
+/* Fortschritt / Leitner-Fächer */
+.stats {
+  background: white; border: 1px solid var(--bfw-border); border-radius: 14px;
+  padding: 1rem 1.25rem; margin-bottom: 1.25rem;
+  display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+}
+.boxes { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.box-chip {
+  font-size: 0.8rem; font-weight: 600; padding: 0.35rem 0.7rem; border-radius: 999px;
+  background: var(--bfw-bg-soft); border: 1px solid var(--bfw-border); color: var(--bfw-ink-soft);
+}
+.box-chip b { color: var(--bfw-primary-dark); }
+.mastered { font-weight: 700; color: var(--bfw-success); }
+.progress { width: 100%; background: var(--bfw-bg-teal); height: 10px; border-radius: 999px; overflow: hidden; margin-top: 0.5rem; }
+.progress > div { height: 100%; background: var(--bfw-success); border-radius: 999px; transition: width 0.3s; width: 0; }
+
+/* Karte */
+.card-scene { perspective: 1200px; margin-bottom: 1.25rem; }
+.card {
+  position: relative; width: 100%; min-height: 320px; cursor: pointer;
+  transform-style: preserve-3d; transition: transform 0.5s; transition-timing-function: cubic-bezier(.4,.2,.2,1);
+}
+.card.flipped { transform: rotateY(180deg); }
+.face {
+  position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  border-radius: 18px; padding: 2rem; display: flex; flex-direction: column; justify-content: center;
+  box-shadow: 0 6px 24px rgba(15,23,42,0.08); border: 1px solid var(--bfw-border);
+}
+.face-front { background: white; }
+.face-back { background: linear-gradient(160deg, #ffffff 0%, var(--bfw-bg-green) 100%); transform: rotateY(180deg); }
+.card-topic {
+  align-self: flex-start; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--bfw-primary-dark); background: var(--bfw-bg-teal);
+  padding: 0.25rem 0.6rem; border-radius: 999px; margin-bottom: 1rem;
+}
+.card-label { font-size: 0.75rem; color: var(--bfw-ink-soft); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.card-front-text { font-size: 1.5rem; font-weight: 600; line-height: 1.35; color: var(--bfw-ink); }
+.card-back-text { font-size: 1.12rem; line-height: 1.55; color: var(--bfw-ink); }
+.flip-hint { margin-top: auto; padding-top: 1rem; font-size: 0.85rem; color: var(--bfw-ink-soft); }
+
+/* Buttons */
+.actions { display: flex; gap: 0.75rem; margin-bottom: 1rem; }
+.btn { flex: 1; padding: 0.9rem 1rem; border: none; border-radius: 12px; font-size: 1rem; font-weight: 600;
+  cursor: pointer; transition: transform 0.1s, box-shadow 0.2s; font-family: inherit; }
+.btn:active { transform: translateY(1px); }
+.btn-flip { background: var(--bfw-primary); color: white; }
+.btn-known { background: var(--bfw-success); color: white; }
+.btn-again { background: var(--bfw-bg-amber); color: #92400E; border: 1px solid #FCD34D; }
+.btn-ghost { background: white; color: var(--bfw-ink-soft); border: 1px solid var(--bfw-border); }
+.mini-actions { display: flex; gap: 0.75rem; justify-content: center; }
+.mini-actions .btn { flex: 0 1 auto; padding: 0.55rem 1rem; font-size: 0.85rem; }
+.hidden { display: none !important; }
+
+/* Abschluss */
+.done { background: white; border: 1px solid var(--bfw-border); border-radius: 18px; padding: 2.5rem 2rem; text-align: center; box-shadow: 0 6px 24px rgba(15,23,42,0.08); }
+.done h2 { color: var(--bfw-success); font-size: 1.8rem; margin-bottom: 0.75rem; }
+.done p { color: var(--bfw-ink-soft); margin-bottom: 1.5rem; line-height: 1.6; }
+.how { background: var(--bfw-bg-soft); border: 1px solid var(--bfw-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1.25rem; font-size: 0.9rem; color: var(--bfw-ink-soft); line-height: 1.5; }
+.how b { color: var(--bfw-ink); }
+footer { text-align: center; margin-top: 2rem; font-size: 0.8rem; color: var(--bfw-ink-soft); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <span class="tag-pill">Lektion 1 · Karteikarten</span>
+    <h1>Volkswirtschaftliche Grundbegriffe & Preisbildung am Markt</h1>
+    <p class="subtitle">60 Lernkarten · Begriff → Definition · Leitner-System</p>
+  </header>
+
+  <div class="how">
+    <b>So funktioniert's:</b> Lesen Sie die Vorderseite, überlegen Sie die Antwort, dann <b>Umdrehen</b>.
+    Wussten Sie es? → <b>Gewusst</b> (Karte wandert ins nächste Fach). Nicht sicher? → <b>Nochmal</b>
+    (Karte kommt zurück in Fach 1). Ziel: alle Karten in Fach 3. Ihr Fortschritt wird im Browser gespeichert.
+  </div>
+
+  <div class="stats">
+    <div class="boxes" id="boxes"></div>
+    <div class="mastered" id="mastered">0 / 60 gemeistert</div>
+    <div class="progress"><div id="progressBar"></div></div>
+  </div>
+
+  <div id="quizArea">
+    <div class="card-scene">
+      <div class="card" id="card" onclick="flipCard()">
+        <div class="face face-front">
+          <span class="card-topic" id="frontTopic">Thema</span>
+          <div class="card-label">Begriff / Frage</div>
+          <div class="card-front-text" id="frontText">…</div>
+          <div class="flip-hint">👆 Zum Umdrehen tippen</div>
+        </div>
+        <div class="face face-back">
+          <span class="card-topic" id="backTopic">Thema</span>
+          <div class="card-label">Definition / Antwort</div>
+          <div class="card-back-text" id="backText">…</div>
+          <div class="flip-hint">Wussten Sie es?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions" id="flipRow">
+      <button class="btn btn-flip" onclick="flipCard()">Umdrehen</button>
+    </div>
+    <div class="actions hidden" id="gradeRow">
+      <button class="btn btn-again" onclick="grade(false)">↺ Nochmal</button>
+      <button class="btn btn-known" onclick="grade(true)">✓ Gewusst</button>
+    </div>
+    <div class="mini-actions">
+      <button class="btn btn-ghost" onclick="shuffleRestart()">🔀 Neu mischen</button>
+      <button class="btn btn-ghost" onclick="resetProgress()">♻ Fortschritt zurücksetzen</button>
+    </div>
+  </div>
+
+  <div id="doneArea" class="done hidden">
+    <h2>🎉 Alle Karten gemeistert!</h2>
+    <p id="doneText">Sie haben alle 60 Karten sicher beantwortet. Starke Leistung!</p>
+    <div class="mini-actions">
+      <button class="btn btn-flip" onclick="resetProgress()">Von vorne beginnen</button>
+    </div>
+  </div>
+
+  <footer>BFW Lernplattform · Büroprozesse (M-067) · © Can Siebert 2026</footer>
+</div>
+
+<script>
+const DAY_ID = 'vwl-1';
+const MAX_BOX = 3;                    // Fach 3 = gemeistert
+const CARDS = [{"topic":"Grundbegriffe","front":"Warum ist Wirtschaften notwendig?","back":"Wegen des Konflikts zwischen knappen Gütern und nahezu unbegrenzten Bedürfnissen — knappe Mittel müssen planvoll eingesetzt werden."},{"topic":"Grundbegriffe","front":"Was ist ein Bedürfnis?","back":"Ein empfundener Mangel verbunden mit dem Wunsch, ihn zu beseitigen (z. B. Hunger, Sicherheit, Anerkennung)."},{"topic":"Grundbegriffe","front":"Was ist der Bedarf?","back":"Der Teil der Bedürfnisse, der mit Kaufkraft ausgestattet ist."},{"topic":"Grundbegriffe","front":"Was ist die Nachfrage?","back":"Der Bedarf, der am Markt tatsächlich wirksam wird (Kaufabsicht wird umgesetzt)."},{"topic":"Grundbegriffe","front":"Was besagt das Maximalprinzip?","back":"Mit gegebenen Mitteln einen möglichst großen Erfolg erzielen."},{"topic":"Grundbegriffe","front":"Was besagt das Minimalprinzip?","back":"Ein gegebenes Ziel mit möglichst geringem Mitteleinsatz erreichen."},{"topic":"Grundbegriffe","front":"Warum ist „mit minimalen Mitteln maximaler Erfolg“ kein ökonomisches Prinzip?","back":"Es können nicht beide Größen gleichzeitig optimiert werden — entweder sind die Mittel gegeben (Maximalprinzip) oder das Ziel (Minimalprinzip)."},{"topic":"Grundbegriffe","front":"Was ist ein Wirtschaftssubjekt?","back":"Das kleinste wirtschaftende Grundelement, das selbstständig wirtschaftliche Entscheidungen treffen kann (Privathaushalt, Unternehmen, staatliche Körperschaft)."},{"topic":"Grundbegriffe","front":"Welche drei Grundfragen stellt jede Volkswirtschaft?","back":"Was soll produziert werden? Wie soll produziert werden? Für wen soll produziert werden?"},{"topic":"Produktionsfaktoren","front":"Nennen Sie die drei klassischen volkswirtschaftlichen Produktionsfaktoren.","back":"Arbeit, Boden und Kapital."},{"topic":"Produktionsfaktoren","front":"Welcher vierte Produktionsfaktor gewinnt zunehmend an Bedeutung?","back":"Wissen (Know-how)."},{"topic":"Produktionsfaktoren","front":"Was umfasst der Produktionsfaktor Kapital?","back":"Produzierte Produktionsmittel wie Maschinen, Anlagen und Gebäude (Sachkapital)."},{"topic":"Markt","front":"Definieren Sie den Begriff Markt.","back":"Das Zusammentreffen von Angebot und Nachfrage, bei dem sich der Preis bildet — real oder virtuell."},{"topic":"Markt","front":"Welche Aufgaben erfüllt der Markt?","back":"Verteilung der Güter, bestmögliche Versorgung der Marktteilnehmer und Preisbildung."},{"topic":"Markt","front":"Welches Ziel verfolgen Nachfrager am Markt?","back":"Nutzenmaximierung: das Einkommen so verwenden, dass ein möglichst hoher Grad an Bedürfnisbefriedigung erreicht wird."},{"topic":"Markt","front":"Welches Ziel verfolgen Anbieter am Markt?","back":"Gewinnmaximierung, mindestens aber Kostendeckung."},{"topic":"Marktarten","front":"Nennen Sie die drei Marktarten nach dem Marktgegenstand.","back":"Faktormarkt (Produktionsfaktoren), Gütermarkt (Konsum-/Investitionsgüter, Dienstleistungen), Geld- und Kapitalmarkt/Finanzmarkt."},{"topic":"Marktarten","front":"Zu welcher Marktart gehört der Arbeitsmarkt?","back":"Zum Faktormarkt — dort werden Produktionsfaktoren gehandelt."},{"topic":"Vollkommener Markt","front":"Nennen Sie die fünf Bedingungen des vollkommenen Marktes.","back":"1. Homogene Güter, 2. keine Präferenzen, 3. vollkommene Markttransparenz, 4. unendlich schnelle Reaktionen (Punktmarkt), 5. polypolistische Marktstruktur."},{"topic":"Vollkommener Markt","front":"Was bedeutet Homogenität der Güter?","back":"Die Güter werden als sachlich gleichwertig eingeschätzt — keine Unterschiede in Qualität, Aufmachung oder Verpackung."},{"topic":"Vollkommener Markt","front":"Welche Arten von Präferenzen müssen am vollkommenen Markt fehlen?","back":"Persönliche, räumliche und zeitliche Präferenzen."},{"topic":"Vollkommener Markt","front":"Welcher reale Markt kommt dem vollkommenen Markt sehr nahe?","back":"Die Börse: homogene Güter, Punktmarkt, Markttransparenz — nur der Marktzutritt ist beschränkt."},{"topic":"Marktformen","front":"Nach welchem Kriterium unterscheidet man die Marktformen?","back":"Nach der Anzahl der Anbieter und Nachfrager (viele — wenige — einer): Polypol, Oligopol, Monopol."},{"topic":"Marktformen","front":"Was ist ein Angebotsoligopol? Beispiel?","back":"Wenige Anbieter stehen vielen Nachfragern gegenüber — z. B. Mobilfunkanbieter, Mineralöl, Waschmittel, Automobile."},{"topic":"Marktformen","front":"Was ist ein Angebotsmonopol? Beispiel?","back":"Ein Anbieter beliefert viele Nachfrager — z. B. regionaler Wasser- und Abwasserversorger."},{"topic":"Marktformen","front":"Was ist ein Nachfragemonopol? Beispiel?","back":"Ein Nachfrager steht vielen Anbietern gegenüber — z. B. der Staat als Nachfrager von Straßenbauleistungen."},{"topic":"Marktformen","front":"Was ist ein zweiseitiges Polypol? Beispiel?","back":"Viele Anbieter und viele Nachfrager — z. B. Wochenmärkte."},{"topic":"Nachfrage","front":"Nennen Sie die wichtigsten Bestimmungsfaktoren der Nachfrage.","back":"Preis des Gutes, Preise anderer Güter (Substitute/Komplemente), verfügbares Einkommen, Bedürfnisstruktur, Zukunftserwartungen."},{"topic":"Nachfrage","front":"Was sind komplementäre Güter? Beispiel?","back":"Sich ergänzende Güter, deren Nutzung einander bedingt — z. B. Drucker und Druckerpatronen."},{"topic":"Nachfrage","front":"Was sind Substitutionsgüter? Beispiel?","back":"Sich ersetzende Güter — z. B. Butter und Margarine oder Gasheizung und Wärmepumpe."},{"topic":"Nachfrage","front":"Wann verschiebt sich die Nachfragekurve nach rechts?","back":"Bei Nachfrageerhöhung ohne Preisänderung des Gutes: höheres Realeinkommen, optimistische Erwartungen, teureres Substitut, billigeres Komplement."},{"topic":"Nachfrage","front":"Unterschied: Bewegung auf der Kurve vs. Verschiebung der Kurve?","back":"Bewegung: Der Preis des Gutes selbst ändert sich. Verschiebung: Andere Einflussgrößen (Einkommen, andere Güterpreise, Erwartungen) ändern sich."},{"topic":"Elastizität","front":"Formel der direkten Preiselastizität der Nachfrage?","back":"Prozentuale Mengenänderung der Nachfrage geteilt durch prozentuale Preisänderung."},{"topic":"Elastizität","front":"Wann heißt die Nachfrage elastisch, wann unelastisch?","back":"|ε| > 1: elastisch (z. B. Luxusgüter). |ε| < 1: unelastisch (z. B. Medikamente, lebensnotwendige Güter)."},{"topic":"Elastizität","front":"Was misst die Kreuzpreiselastizität?","back":"Die prozentuale Mengenänderung bei Gut A im Verhältnis zur prozentualen Preisänderung bei Gut B."},{"topic":"Angebot","front":"Nennen Sie die Bestimmungsfaktoren des Angebots.","back":"Preis des Gutes, Kosten der Produktionsfaktoren, Stand der Technik."},{"topic":"Angebot","front":"Wie verläuft die Angebotskurve und warum?","back":"Steigend: Ein höherer Marktpreis ist ein Anreiz, die Produktionsmenge auszuweiten, um den Gewinn zu erhöhen."},{"topic":"Angebot","front":"Was verschiebt die Angebotskurve nach links?","back":"Steigende Faktorkosten, sinkende Produktivität (veraltete Technologie) oder negative Gewinnerwartungen — das Angebot sinkt."},{"topic":"Preisbildung","front":"Was bedeutet vollständige Konkurrenz?","back":"Kombination aus vollkommenem Markt und Polypol: Alle Teilnehmer sind Preisnehmer und Mengenanpasser."},{"topic":"Preisbildung","front":"Wo liegt grafisch das Marktgleichgewicht?","back":"Im Schnittpunkt von Angebots- und Nachfragekurve: Gleichgewichtspreis p* und Gleichgewichtsmenge x*."},{"topic":"Preisbildung","front":"Was passiert bei einem Angebotsüberschuss?","back":"Angebot > Nachfrage (Käufermarkt): Anbieter senken Preise, drosseln die Produktion — der Markt tendiert zum Gleichgewicht."},{"topic":"Preisbildung","front":"Was ist ein Verkäufermarkt?","back":"Nachfrageüberschuss (Angebotsdefizit): Die Nachfrage übersteigt das Angebot, die größere Macht liegt bei den Verkäufern, Preise steigen."},{"topic":"Preisbildung","front":"Was ist der Preismechanismus?","back":"Der Anpassungsprozess über Preis und Menge nach den Gesetzen von Angebot und Nachfrage bis zum Marktgleichgewicht (Marktmechanismus)."},{"topic":"Renten","front":"Was ist die Konsumentenrente?","back":"Der Nutzengewinn der Nachfrager, die bereit gewesen wären, mehr als den Gleichgewichtspreis zu zahlen."},{"topic":"Renten","front":"Was ist die Produzentenrente?","back":"Der Mehrerlös der Anbieter, die bereit gewesen wären, unter dem Gleichgewichtspreis zu verkaufen."},{"topic":"Preisfunktionen","front":"Nennen Sie die vier Funktionen des Marktpreises.","back":"Signalfunktion, Ausgleichsfunktion, Allokationsfunktion (Lenkung), Selektionsfunktion (Sanktion) — Merkwort: SAAS."},{"topic":"Preisfunktionen","front":"Was besagt die Signalfunktion des Preises?","back":"Der Marktpreis spiegelt die Knappheit eines Gutes wider und löst Reaktionen von Anbietern und Nachfragern aus."},{"topic":"Preisfunktionen","front":"Was besagt die Allokationsfunktion des Preises?","back":"Marktpreise lenken die Produktionsfaktoren in die Produktion marktfähiger Güter (Ressourcenschonung)."},{"topic":"Unvollständige Konkurrenz","front":"Wie entsteht ein monopolistischer Absatzbereich?","back":"Durch Produktdifferenzierung (Marken, Werbung, Qualität) schafft sich der Anbieter im unvollkommenen Polypol einen Preisspielraum."},{"topic":"Unvollständige Konkurrenz","front":"Was ist Preisführerschaft im Oligopol?","back":"Ein Anbieter ändert die Preise, die übrigen passen sich an — z. B. Tankstellen vor Feiertagen."},{"topic":"Unvollständige Konkurrenz","front":"Was ist Parallelverhalten im Oligopol?","back":"Abgestimmtes Verhalten ohne ausdrückliche Absprache: Preisruhe (Preisstarre) und Gleichschritt bei Preisänderungen."},{"topic":"Unvollständige Konkurrenz","front":"Warum ist der Angebotsmonopolist „Preisfixierer“?","back":"Ohne Wettbewerber kann er den Preis festlegen — besonders wirksam, wenn Substitute fehlen und das Gut dringend benötigt wird."},{"topic":"Unvollständige Konkurrenz","front":"Was ist Marktverdrängungspolitik?","back":"Ein Oligopolist verzichtet kurzfristig auf Gewinnmaximierung und versucht durch massive Preissenkungen, Marktanteile der Konkurrenz zu gewinnen."}];
+
+const STORAGE_KEY = 'kk_' + DAY_ID;
+let boxes = {};                       // cardIndex -> Fach (1..3)
+let queue = [];                       // zu übende Karten-Indizes (Reihenfolge)
+let current = null;
+
+function loadState() {
+  try { boxes = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+  catch (e) { boxes = {}; }
+  CARDS.forEach((_, i) => { if (!boxes[i]) boxes[i] = 1; });
+}
+function saveState() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(boxes)); } catch (e) {} }
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function buildQueue() {
+  queue = shuffle(CARDS.map((_, i) => i).filter(i => boxes[i] < MAX_BOX));
+}
+
+function renderStats() {
+  const counts = [0, 0, 0];
+  CARDS.forEach((_, i) => counts[boxes[i] - 1]++);
+  document.getElementById('boxes').innerHTML =
+    counts.map((c, k) => `<span class="box-chip">Fach ${k + 1}: <b>${c}</b></span>`).join('');
+  const mastered = counts[MAX_BOX - 1];
+  document.getElementById('mastered').textContent = `${mastered} / ${CARDS.length} gemeistert`;
+  document.getElementById('progressBar').style.width = (mastered / CARDS.length * 100) + '%';
+}
+
+function showCard() {
+  if (queue.length === 0) { finish(); return; }
+  current = queue[0];
+  const c = CARDS[current];
+  document.getElementById('card').classList.remove('flipped');
+  document.getElementById('frontTopic').textContent = c.topic;
+  document.getElementById('backTopic').textContent = c.topic;
+  document.getElementById('frontText').textContent = c.front;
+  document.getElementById('backText').textContent = c.back;
+  document.getElementById('flipRow').classList.remove('hidden');
+  document.getElementById('gradeRow').classList.add('hidden');
+}
+
+function flipCard() {
+  const card = document.getElementById('card');
+  card.classList.toggle('flipped');
+  const flipped = card.classList.contains('flipped');
+  document.getElementById('flipRow').classList.toggle('hidden', flipped);
+  document.getElementById('gradeRow').classList.toggle('hidden', !flipped);
+}
+
+function grade(known) {
+  if (current === null) return;
+  if (known) { boxes[current] = Math.min(MAX_BOX, boxes[current] + 1); }
+  else { boxes[current] = 1; }
+  saveState();
+  queue.shift();
+  if (!known) queue.push(current);        // falsche Karte kommt später wieder
+  else if (boxes[current] < MAX_BOX) queue.push(current);
+  renderStats();
+  showCard();
+}
+
+function finish() {
+  document.getElementById('quizArea').classList.add('hidden');
+  document.getElementById('doneArea').classList.remove('hidden');
+}
+
+function shuffleRestart() {
+  document.getElementById('doneArea').classList.add('hidden');
+  document.getElementById('quizArea').classList.remove('hidden');
+  buildQueue();
+  renderStats();
+  showCard();
+}
+
+function resetProgress() {
+  CARDS.forEach((_, i) => boxes[i] = 1);
+  saveState();
+  shuffleRestart();
+}
+
+// Init
+loadState();
+renderStats();
+buildQueue();
+if (queue.length === 0) finish(); else showCard();
+</script>
+</body>
+</html>

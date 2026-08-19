@@ -1,0 +1,208 @@
+{
+  "day_id": "vwl-1",
+  "lektion": 1,
+  "thema": "Volkswirtschaftliche Grundbegriffe & Preisbildung am Markt",
+  "slug": "Grundbegriffe-und-Preisbildung",
+  "words": [
+    {
+      "word": "MARKT",
+      "hint": "Zusammentreffen von Angebot und Nachfrage mit Preisbildung."
+    },
+    {
+      "word": "PREIS",
+      "hint": "Bildet sich am Markt aus Angebot und Nachfrage."
+    },
+    {
+      "word": "ANGEBOT",
+      "hint": "Die Marktseite der Verkäufer."
+    },
+    {
+      "word": "NACHFRAGE",
+      "hint": "Der am Markt wirksam werdende Bedarf."
+    },
+    {
+      "word": "BEDARF",
+      "hint": "Mit Kaufkraft ausgestattetes Bedürfnis."
+    },
+    {
+      "word": "KNAPPHEIT",
+      "hint": "Grundproblem der Volkswirtschaft: begrenzte Güter, unbegrenzte Bedürfnisse."
+    },
+    {
+      "word": "POLYPOL",
+      "hint": "Marktform mit vielen Anbietern und vielen Nachfragern."
+    },
+    {
+      "word": "OLIGOPOL",
+      "hint": "Marktform mit wenigen (großen) Anbietern."
+    },
+    {
+      "word": "MONOPOL",
+      "hint": "Marktform mit nur einem Anbieter oder Nachfrager."
+    },
+    {
+      "word": "ARBEIT",
+      "hint": "Produktionsfaktor: körperliche und geistige Erwerbstätigkeit."
+    },
+    {
+      "word": "BODEN",
+      "hint": "Produktionsfaktor: Anbau, Abbau und Standort."
+    },
+    {
+      "word": "KAPITAL",
+      "hint": "Produktionsfaktor: Maschinen, Anlagen, Gebäude."
+    },
+    {
+      "word": "WISSEN",
+      "hint": "Zunehmend eigenständiger vierter Produktionsfaktor (Know-how)."
+    },
+    {
+      "word": "HAUSHALT",
+      "hint": "Privates Wirtschaftssubjekt, das Nutzenmaximierung anstrebt."
+    },
+    {
+      "word": "UNTERNEHMEN",
+      "hint": "Wirtschaftssubjekt mit dem Ziel der Gewinnmaximierung."
+    },
+    {
+      "word": "GEWINN",
+      "hint": "Differenz aus Erlös und Kosten — Ziel der Anbieter."
+    },
+    {
+      "word": "NUTZEN",
+      "hint": "Wird von den Nachfragern maximiert."
+    },
+    {
+      "word": "HOMOGEN",
+      "hint": "Eigenschaft der Güter am vollkommenen Markt: sachlich gleichwertig."
+    },
+    {
+      "word": "TRANSPARENZ",
+      "hint": "Vollständiger Marktüberblick aller Teilnehmer."
+    },
+    {
+      "word": "PUNKTMARKT",
+      "hint": "Anbieter und Nachfrager treffen am gleichen Ort zur gleichen Zeit aufeinander."
+    },
+    {
+      "word": "PRAEFERENZ",
+      "hint": "Persönliche, räumliche oder zeitliche Vorliebe — fehlt am vollkommenen Markt."
+    },
+    {
+      "word": "BOERSE",
+      "hint": "Realer Markt, der dem vollkommenen Markt sehr nahe kommt."
+    },
+    {
+      "word": "FAKTORMARKT",
+      "hint": "Marktart, auf der Produktionsfaktoren gehandelt werden."
+    },
+    {
+      "word": "GUETERMARKT",
+      "hint": "Marktart für Konsum- und Investitionsgüter."
+    },
+    {
+      "word": "FINANZMARKT",
+      "hint": "Geld- und Kapitalmarkt, z. B. Aktien- und Devisenmarkt."
+    },
+    {
+      "word": "DEVISENMARKT",
+      "hint": "Teil des Finanzmarkts: Handel mit ausländischen Währungen."
+    },
+    {
+      "word": "ARBEITSMARKT",
+      "hint": "Faktormarkt für den Produktionsfaktor Arbeit."
+    },
+    {
+      "word": "ELASTIZITAET",
+      "hint": "Maß für die Reaktion der Nachfragemenge auf Preisänderungen."
+    },
+    {
+      "word": "SUBSTITUT",
+      "hint": "Gut, das ein anderes ersetzen kann (z. B. Margarine statt Butter)."
+    },
+    {
+      "word": "KOMPLEMENT",
+      "hint": "Gut, das ein anderes ergänzt (z. B. Drucker und Patrone)."
+    },
+    {
+      "word": "EINKOMMEN",
+      "hint": "Bestimmungsfaktor der Nachfrage: verfügbare Konsumsumme."
+    },
+    {
+      "word": "ERWARTUNGEN",
+      "hint": "Zukunftsbezogener Bestimmungsfaktor der Nachfrage."
+    },
+    {
+      "word": "GLEICHGEWICHT",
+      "hint": "Angebotene Menge = nachgefragte Menge."
+    },
+    {
+      "word": "SCHNITTPUNKT",
+      "hint": "Grafische Lage des Marktgleichgewichts der beiden Kurven."
+    },
+    {
+      "word": "KAEUFERMARKT",
+      "hint": "Marktsituation mit Angebotsüberschuss — Käufer im Vorteil."
+    },
+    {
+      "word": "PREISNEHMER",
+      "hint": "Marktteilnehmer bei vollständiger Konkurrenz, der den Preis hinnehmen muss."
+    },
+    {
+      "word": "MENGENANPASSER",
+      "hint": "Reagiert auf den gegebenen Marktpreis nur über die Menge."
+    },
+    {
+      "word": "SIGNALFUNKTION",
+      "hint": "Preisfunktion: spiegelt die Knappheit eines Gutes wider."
+    },
+    {
+      "word": "ALLOKATION",
+      "hint": "Lenkung der Produktionsfaktoren durch Marktpreise."
+    },
+    {
+      "word": "SELEKTION",
+      "hint": "Preisfunktion: sondert zu teure Anbieter aus dem Markt aus."
+    },
+    {
+      "word": "AUSGLEICH",
+      "hint": "Preisfunktion: gleicht Angebots- und Nachfragemenge tendenziell an."
+    },
+    {
+      "word": "RENTE",
+      "hint": "Konsumenten- oder Produzenten…: Vorteil gegenüber der eigenen Zahlungs-/Verkaufsbereitschaft."
+    },
+    {
+      "word": "PREISKAMPF",
+      "hint": "Ruinöse Strategie der Marktverdrängung im Oligopol."
+    },
+    {
+      "word": "PREISRUHE",
+      "hint": "Preisstarre — typische Erscheinung auf oligopolistischen Märkten."
+    },
+    {
+      "word": "TANKSTELLE",
+      "hint": "Klassisches Beispiel für Preisführerschaft im Angebotsoligopol."
+    },
+    {
+      "word": "WERBUNG",
+      "hint": "Instrument der Produktdifferenzierung im unvollkommenen Polypol."
+    },
+    {
+      "word": "MARKE",
+      "hint": "Schafft Präferenzen und einen monopolistischen Absatzbereich."
+    },
+    {
+      "word": "PREISFIXIERER",
+      "hint": "Rolle des Monopolisten bei der Preissetzung."
+    },
+    {
+      "word": "STADTWERKE",
+      "hint": "Kommunales Beispiel für ein regionales Angebotsmonopol."
+    },
+    {
+      "word": "BUNDESWEHR",
+      "hint": "Beispiel für einen Nachfrager im (zweiseitigen) Monopol bei Kampfflugzeugen."
+    }
+  ]
+}
