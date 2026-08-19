@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Lernbereich Lektion 1 — Volkswirtschaftliche Grundbegriffe & Preisbildung am Markt</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:#0EA5A4; --bfw-primary-dark:#0F766E;
+  --bfw-accent:#F59E0B; --bfw-warn:#F97316;
+  --bfw-success:#10B981; --bfw-danger:#EF4444;
+  --bfw-ink:#0F172A; --bfw-ink-soft:#475569;
+  --bfw-bg:#FAFAFA; --bfw-bg-soft:#F8FAFC;
+  --bfw-bg-teal:#ECFEFF; --bfw-bg-amber:#FEF3C7;
+  --bfw-bg-rose:#FFE4E6; --bfw-border:#E2E8F0;
+  --bfw-bg-green:#D1FAE5;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, var(--bfw-bg-teal) 0%, var(--bfw-bg) 50%, var(--bfw-bg-amber) 100%);
+  min-height: 100vh; color: var(--bfw-ink); -webkit-font-smoothing: antialiased;
+  padding: 2rem 1rem 4rem;
+}
+.container { max-width: 900px; margin: 0 auto; }
+header { text-align: center; margin-bottom: 1.6rem; }
+.tag-pill {
+  display: inline-block; background: var(--bfw-bg-teal); color: var(--bfw-primary-dark);
+  font-weight: 700; font-size: 0.82rem; padding: 0.3rem 0.9rem; border-radius: 999px;
+  letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.8rem;
+}
+h1 { font-size: 1.7rem; color: var(--bfw-primary-dark); margin-bottom: 0.4rem; }
+.subtitle { color: var(--bfw-ink-soft); font-size: 1.02rem; line-height: 1.5; }
+
+.progress-wrap {
+  background: white; border: 1px solid var(--bfw-border); border-radius: 14px;
+  padding: 1rem 1.3rem; margin-bottom: 1.6rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.progress-bar { flex: 1; min-width: 200px; height: 12px; background: var(--bfw-bg-soft); border: 1px solid var(--bfw-border); border-radius: 999px; overflow: hidden; display: flex; }
+.progress-bar .seg-ok { background: var(--bfw-success); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-teil { background: var(--bfw-accent); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-nein { background: var(--bfw-danger); height: 100%; transition: width 0.3s; }
+.progress-label { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; white-space: nowrap; }
+.btn-reset {
+  padding: 0.45rem 0.9rem; background: transparent; color: var(--bfw-ink-soft);
+  border: 1.5px solid var(--bfw-border); border-radius: 8px; font-family: inherit;
+  font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.15s;
+}
+.btn-reset:hover { color: var(--bfw-danger); border-color: var(--bfw-danger); }
+
+.task {
+  background: white; border: 1px solid var(--bfw-border); border-left: 5px solid var(--bfw-border);
+  border-radius: 14px; padding: 1.4rem 1.5rem; margin-bottom: 1.2rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04); transition: border-color 0.2s;
+}
+.task.ok { border-left-color: var(--bfw-success); }
+.task.teil { border-left-color: var(--bfw-accent); }
+.task.nein { border-left-color: var(--bfw-danger); }
+.task-head { display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
+.task-num { font-weight: 800; color: var(--bfw-primary-dark); font-size: 1.05rem; white-space: nowrap; }
+.task-topic {
+  display: inline-block; background: var(--bfw-bg-amber); color: #92400E;
+  font-weight: 700; font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 999px;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.task-punkte { margin-left: auto; color: var(--bfw-ink-soft); font-size: 0.82rem; font-weight: 600; white-space: nowrap; }
+.task-frage { font-size: 1.02rem; line-height: 1.55; margin-bottom: 0.9rem; white-space: pre-line; }
+.task-hinweis { margin-bottom: 0.9rem; }
+.task-hinweis summary { cursor: pointer; color: var(--bfw-primary-dark); font-weight: 600; font-size: 0.9rem; }
+.task-hinweis p { margin-top: 0.5rem; padding: 0.7rem 0.9rem; background: var(--bfw-bg-teal); border-radius: 8px; font-size: 0.92rem; color: var(--bfw-ink-soft); line-height: 1.5; }
+textarea {
+  width: 100%; min-height: 110px; padding: 0.8rem 0.9rem;
+  border: 1.5px solid var(--bfw-border); border-radius: 10px;
+  font-family: inherit; font-size: 0.98rem; line-height: 1.5; resize: vertical;
+  background: var(--bfw-bg-soft); transition: all 0.15s;
+}
+textarea:focus { outline: none; border-color: var(--bfw-primary); background: white; box-shadow: 0 0 0 3px rgba(14,165,164,0.12); }
+.task-actions { margin-top: 0.8rem; display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+.btn {
+  padding: 0.55rem 1.1rem; border: none; border-radius: 9px; cursor: pointer;
+  font-family: inherit; font-size: 0.92rem; font-weight: 700; transition: all 0.15s;
+}
+.btn-loesung { background: var(--bfw-primary); color: white; }
+.btn-loesung:hover { background: var(--bfw-primary-dark); }
+.loesung {
+  display: none; margin-top: 1rem; padding: 1rem 1.1rem;
+  background: var(--bfw-bg-green); border: 1px solid #A7F3D0; border-radius: 10px;
+}
+.loesung.show { display: block; }
+.loesung-label { font-weight: 800; color: #047857; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+.loesung-text { font-size: 0.97rem; line-height: 1.6; white-space: pre-line; }
+.self-check { display: none; margin-top: 0.9rem; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.self-check.show { display: flex; }
+.self-check span { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; }
+.btn-ok { background: var(--bfw-bg-green); color: #047857; border: 1.5px solid #A7F3D0; }
+.btn-teil { background: var(--bfw-bg-amber); color: #92400E; border: 1.5px solid #FDE68A; }
+.btn-nein { background: var(--bfw-bg-rose); color: #B91C1C; border: 1.5px solid #FECACA; }
+.btn-ok.active, .btn-ok:hover { background: var(--bfw-success); color: white; }
+.btn-teil.active, .btn-teil:hover { background: var(--bfw-accent); color: white; }
+.btn-nein.active, .btn-nein:hover { background: var(--bfw-danger); color: white; }
+.saved-note { font-size: 0.78rem; color: var(--bfw-ink-soft); margin-left: auto; }
+
+footer { text-align: center; margin-top: 2.5rem; color: var(--bfw-ink-soft); font-size: 0.85rem; }
+@media print { .btn, .btn-reset, .self-check { display: none !important; } .loesung { display: block; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <span class="tag-pill">Lektion 1 · Lernbereich</span>
+    <h1>Lernbereich: Volkswirtschaftliche Grundbegriffe & Preisbildung am Markt</h1>
+    <p class="subtitle">Beantworten Sie die Aufgaben in eigenen Worten im Antwortfeld — Ihre Eingaben werden lokal im Browser gespeichert. Prüfen Sie sich danach mit dem <strong>Lösungshinweis</strong> und bewerten Sie sich selbst. In der IHK-Prüfung zählen ausformulierte Begründungen!</p>
+  </header>
+
+  <div class="progress-wrap">
+    <div class="progress-bar" id="progressBar"><div class="seg-ok"></div><div class="seg-teil"></div><div class="seg-nein"></div></div>
+    <span class="progress-label" id="progressLabel"></span>
+    <button class="btn-reset" onclick="resetAll()">Zurücksetzen</button>
+  </div>
+
+  <div id="tasks"></div>
+
+  <footer>© Can Siebert · 2026 · Wirtschaftsfachwirt — VWL — Volkswirtschaftliche Grundlagen</footer>
+</div>
+
+<script>
+const DAY_ID = 'vwl-1';
+const TASKS = [{"topic":"Grundbegriffe","punkte":3,"frage":"Erklären Sie, warum Menschen und Unternehmen wirtschaften müssen.","hinweis":"Denken Sie an das Verhältnis von Bedürfnissen und verfügbaren Gütern.","loesung":"Die menschlichen Bedürfnisse sind nahezu unbegrenzt, die zu ihrer Befriedigung verfügbaren Güter und Mittel jedoch knapp. Aus dieser Knappheit folgt die Notwendigkeit, mit den vorhandenen Mitteln planvoll und rational umzugehen — also zu wirtschaften."},{"topic":"Grundbegriffe","punkte":4,"frage":"Unterscheiden Sie die Begriffe Bedürfnis, Bedarf und Nachfrage anhand eines selbst gewählten Beispiels.","hinweis":"Die Kette lautet: Mangelgefühl → Kaufkraft → Marktwirksamkeit.","loesung":"Bedürfnis: empfundener Mangel mit dem Wunsch, ihn zu beseitigen (z. B. Wunsch nach einem neuen Auto). Bedarf: der Teil der Bedürfnisse, der mit Kaufkraft ausgestattet ist (ich verfüge über 30.000 €). Nachfrage: der Bedarf, der am Markt tatsächlich wirksam wird (ich gehe zum Händler und kaufe)."},{"topic":"Ökonomisches Prinzip","punkte":4,"frage":"Ein Marketingleiter sagt: „Wir wollen mit unserem festen Budget von 50.000 € möglichst viele Kunden erreichen.“ Die Produktionsleiterin sagt: „Ich muss die geplanten 1.000 Stück mit möglichst geringen Kosten fertigen.“ Ordnen Sie beide Aussagen dem Maximal- bzw. Minimalprinzip zu und begründen Sie.","hinweis":"Prüfen Sie jeweils: Was ist fest vorgegeben — die Mittel oder das Ziel?","loesung":"Marketingleiter: Maximalprinzip — die Mittel (50.000 €) sind gegeben, der Erfolg (Kundenreichweite) soll maximiert werden. Produktionsleiterin: Minimalprinzip — das Ziel (1.000 Stück) ist gegeben, der Mitteleinsatz (Kosten) soll minimiert werden."},{"topic":"Ökonomisches Prinzip","punkte":2,"frage":"Beurteilen Sie die Aussage: „Wirtschaftlich handelt, wer mit minimalen Mitteln maximalen Erfolg erzielt.“","loesung":"Die Aussage ist nicht haltbar: Minimale Mittel und maximaler Erfolg können nicht gleichzeitig optimiert werden. Entweder sind die Mittel gegeben und der Erfolg wird maximiert (Maximalprinzip), oder das Ziel ist gegeben und die Mittel werden minimiert (Minimalprinzip). Die Kombination beider ist ein beliebter Prüfungsfehler."},{"topic":"Produktionsfaktoren","punkte":4,"frage":"Nennen Sie die drei klassischen volkswirtschaftlichen Produktionsfaktoren sowie den zunehmend eigenständigen vierten Faktor und geben Sie je ein Beispiel.","loesung":"Arbeit (körperliche und geistige Erwerbstätigkeit, z. B. die Arbeit einer Buchhalterin), Boden (Anbau, Abbau, Standort, z. B. ein Betriebsgrundstück), Kapital (produzierte Produktionsmittel, z. B. Maschinen und Anlagen) — sowie zunehmend Wissen/Know-how (z. B. Patente, Mitarbeiterkompetenz)."},{"topic":"Markt & Marktarten","punkte":5,"frage":"Definieren Sie den Begriff „Markt“ und nennen Sie die drei Marktarten nach dem Marktgegenstand mit je einem Beispiel.","loesung":"Markt = das Zusammentreffen von Angebot und Nachfrage, bei dem sich der Preis bildet. Marktarten: Faktormarkt (Produktionsfaktoren, z. B. Arbeitsmarkt), Gütermarkt (Güter, z. B. Konsumgütermarkt), Geld- und Kapitalmarkt/Finanzmarkt (Geld, Kredite, Kapitalanlagen, z. B. Aktienmarkt)."},{"topic":"Vollkommener Markt","punkte":5,"frage":"Nennen Sie die fünf Bedingungen des vollkommenen Marktes.","hinweis":"Homogenität — Präferenzen — Transparenz — Reaktionsgeschwindigkeit — Marktstruktur.","loesung":"1. Homogenität der Güter (sachlich gleichwertig), 2. Fehlen persönlicher, räumlicher und zeitlicher Präferenzen, 3. vollkommene Markttransparenz, 4. unendlich schnelle Reaktion der Marktteilnehmer (Punktmarkt), 5. polypolistische Marktstruktur mit freiem Marktzutritt."},{"topic":"Vollkommener Markt","punkte":2,"frage":"Begründen Sie, warum die Börse dem vollkommenen Markt sehr nahe kommt.","loesung":"An der Börse sind die gehandelten Güter homogen (z. B. Aktien derselben Gesellschaft), die Bedingungen des Punktmarktes sind erfüllt und die Makler besitzen Markttransparenz. Lediglich beim Marktzutritt gibt es Beschränkungen — daher „nahe“, aber nicht vollkommen."},{"topic":"Marktformen","punkte":6,"frage":"Ordnen Sie zu und begründen Sie kurz:\na) Wenige Mineralölkonzerne beliefern Millionen Autofahrer.\nb) Ein regionaler Wasserversorger beliefert alle Haushalte.\nc) Der Staat fragt als einziger Straßenbauleistungen bei vielen Bauunternehmen nach.","hinweis":"Zählen Sie jeweils Anbieter und Nachfrager (viele — wenige — einer).","loesung":"a) Angebotsoligopol: wenige Anbieter, viele Nachfrager. b) Angebotsmonopol: ein Anbieter, viele Nachfrager. c) Nachfragemonopol: ein Nachfrager (Staat), viele Anbieter."},{"topic":"Nachfrage","punkte":5,"frage":"Nennen Sie die fünf wichtigsten Bestimmungsfaktoren der Güternachfrage.","loesung":"1. Preis des nachgefragten Gutes, 2. Preise anderer Güter (Substitutions- und Komplementärgüter), 3. Höhe des verfügbaren Einkommens, 4. Bedürfnisstruktur der Nachfrager (Mode, Demografie, Werte), 5. Zukunftserwartungen bezüglich Preisen und Einkommen."},{"topic":"Nachfrage","punkte":6,"frage":"Die Gaspreise steigen dauerhaft. Erläutern Sie die Wirkung auf die Nachfragekurve für Wärmepumpen und erklären Sie den Unterschied zwischen einer Bewegung auf der Kurve und einer Verschiebung der Kurve.","hinweis":"Gasheizung und Wärmepumpe stehen in einer bestimmten Güterbeziehung zueinander.","loesung":"Gasheizung und Wärmepumpe sind Substitutionsgüter. Steigt der Preis des Substituts (Gas), weichen Nachfrager auf Wärmepumpen aus — die Nachfragekurve für Wärmepumpen verschiebt sich nach rechts, obwohl deren Preis unverändert ist. Bewegung auf der Kurve: Der Preis des Gutes selbst ändert sich. Verschiebung: Andere Einflussgrößen (Einkommen, Preise anderer Güter, Erwartungen) ändern sich — die ganze Kurve wandert."},{"topic":"Elastizität","punkte":5,"frage":"Der Preis eines Medikaments steigt um 20 %, die Nachfragemenge sinkt um 2 %. Bei einem Modeartikel führt +10 % Preis zu −25 % Menge. Berechnen Sie beide Elastizitäten und interpretieren Sie das Ergebnis.","hinweis":"ε = prozentuale Mengenänderung ÷ prozentuale Preisänderung.","loesung":"Medikament: ε = −2 % / +20 % = −0,1 (Betrag 0,1) → unelastische Nachfrage: Bei lebensnotwendigen Gütern fehlen Ausweichmöglichkeiten. Modeartikel: ε = −25 % / +10 % = −2,5 (Betrag 2,5) → elastische Nachfrage: Auf das Gut kann verzichtet oder ausgewichen werden."},{"topic":"Angebot","punkte":4,"frage":"Nennen Sie die Bestimmungsfaktoren des Angebots und erläutern Sie, wodurch sich die Angebotskurve nach rechts verschiebt.","loesung":"Bestimmungsfaktoren: Preis des Gutes, Kosten der Produktionsfaktoren, Stand der Technik. Rechtsverschiebung (Angebotserhöhung) z. B. durch sinkende Produktionskosten oder technischen Fortschritt (höhere Pro-Kopf-Leistung bei gleichen Kosten) — es wird bei jedem Preis mehr angeboten."},{"topic":"Preisbildung","punkte":6,"frage":"Ein Markt zeigt bei 10 € ein Angebot von 1.000 und eine Nachfrage von 200 Stück; bei 6 € sind beide 600; bei 2 € stehen 200 angebotene 1.000 nachgefragten Stück gegenüber. Bestimmen Sie das Gleichgewicht und beschreiben Sie die Marktsituation bei 10 € und bei 2 € mit den passenden Fachbegriffen.","hinweis":"Käufermarkt oder Verkäufermarkt? Und wie reagiert der Preis jeweils?","loesung":"Gleichgewicht: p* = 6 €, x* = 600 Stück. Bei 10 €: Angebotsüberschuss (Nachfragedefizit) — Käufermarkt: Anbieter senken Preise und drosseln die Produktion. Bei 2 €: Nachfrageüberschuss (Angebotsdefizit) — Verkäufermarkt: Preise steigen, Produktion wird ausgeweitet. In beiden Fällen führt der Preismechanismus zurück zum Gleichgewicht."},{"topic":"Preisbildung","punkte":4,"frage":"Erklären Sie die Begriffe Konsumentenrente und Produzentenrente.","loesung":"Konsumentenrente: Nutzengewinn der Nachfrager, die bereit gewesen wären, mehr als den Gleichgewichtspreis zu zahlen — sie sparen die Differenz. Produzentenrente: Mehrerlös der Anbieter, die bereit gewesen wären, ihre Güter unter dem Gleichgewichtspreis zu verkaufen."},{"topic":"Preisfunktionen","punkte":8,"frage":"Nennen und erläutern Sie die vier Funktionen des Marktpreises mit je einem Beispiel.","hinweis":"Merkwort SAAS.","loesung":"Signalfunktion: Der Preis zeigt Knappheit an (steigende Strompreise signalisieren Knappheit). Ausgleichsfunktion: Preise gleichen Angebots- und Nachfragemenge tendenziell aus. Allokationsfunktion (Lenkung): Preise lenken Produktionsfaktoren in marktfähige Güter (hohe Preise ziehen Investitionen an). Selektionsfunktion (Sanktion): Anbieter mit zu hohen Kosten und zahlungsunwillige/-unfähige Nachfrager scheiden aus dem Markt aus."},{"topic":"Unvollständige Konkurrenz","punkte":5,"frage":"Erklären Sie, wie ein Anbieter im unvollkommenen Polypol einen monopolistischen Absatzbereich erlangt und welche Risiken das Über- bzw. Unterschreiten des Preisspielraums birgt.","loesung":"Durch Produktdifferenzierung (Marken, Werbung, Qualität, Design) schafft der Anbieter Präferenzen bei den Kunden und damit einen Preisspielraum (monopolistischer Absatzbereich), in dem er den Preis nahezu frei setzen kann. Überschreitet er ihn, wandern Kunden ab; unterschreitet er ihn, gewinnt er zwar Kunden, deckt aber eventuell seine Kosten oder die Nachfragemenge nicht mehr."},{"topic":"Unvollständige Konkurrenz","punkte":4,"frage":"Erläutern Sie die Begriffe Preisführerschaft und Parallelverhalten im Oligopol am Beispiel des Tankstellenmarktes.","loesung":"Preisführerschaft: Ein Anbieter (z. B. großer Mineralölkonzern) erhöht vor einem Feiertag die Preise, die übrigen Tankstellen ziehen nach. Parallelverhalten: Die Oligopolisten verhalten sich ohne ausdrückliche Absprache gleichgerichtet (Preisruhe, Gleichschritt bei Preisänderungen), um Preiskämpfe zu vermeiden; der Wettbewerb verlagert sich auf Qualität, Marke, Werbung und Service."}];
+const KEY = 'wfw_lernbereich_' + DAY_ID;
+
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { state = {}; }
+function save() { localStorage.setItem(KEY, JSON.stringify(state)); }
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function render() {
+  const wrap = document.getElementById('tasks');
+  wrap.innerHTML = TASKS.map((t, i) => {
+    const st = state[i] || {};
+    return `
+    <div class="task ${st.check || ''}" id="task-${i}">
+      <div class="task-head">
+        <span class="task-num">Aufgabe ${i + 1}</span>
+        <span class="task-topic">${esc(t.topic)}</span>
+        ${t.punkte ? `<span class="task-punkte">${t.punkte} Punkte</span>` : ''}
+      </div>
+      <div class="task-frage">${esc(t.frage)}</div>
+      ${t.hinweis ? `<details class="task-hinweis"><summary>💡 Tipp anzeigen</summary><p>${esc(t.hinweis)}</p></details>` : ''}
+      <textarea id="answer-${i}" placeholder="Ihre Antwort — in vollständigen Sätzen, wie in der Prüfung …">${esc(st.answer || '')}</textarea>
+      <div class="task-actions">
+        <button class="btn btn-loesung" onclick="toggleLoesung(${i})">Lösungshinweis anzeigen</button>
+        <span class="saved-note" id="saved-${i}"></span>
+      </div>
+      <div class="loesung ${st.open ? 'show' : ''}" id="loesung-${i}">
+        <div class="loesung-label">✓ Lösungshinweis</div>
+        <div class="loesung-text">${esc(t.loesung)}</div>
+      </div>
+      <div class="self-check ${st.open ? 'show' : ''}" id="check-${i}">
+        <span>Selbsteinschätzung:</span>
+        <button class="btn btn-ok ${st.check === 'ok' ? 'active' : ''}" onclick="setCheck(${i}, 'ok')">✓ Gewusst</button>
+        <button class="btn btn-teil ${st.check === 'teil' ? 'active' : ''}" onclick="setCheck(${i}, 'teil')">≈ Teilweise</button>
+        <button class="btn btn-nein ${st.check === 'nein' ? 'active' : ''}" onclick="setCheck(${i}, 'nein')">✗ Nochmal üben</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  TASKS.forEach((t, i) => {
+    const ta = document.getElementById('answer-' + i);
+    let timer = null;
+    ta.addEventListener('input', () => {
+      state[i] = state[i] || {};
+      state[i].answer = ta.value;
+      save();
+      const note = document.getElementById('saved-' + i);
+      note.textContent = 'gespeichert ✓';
+      clearTimeout(timer);
+      timer = setTimeout(() => { note.textContent = ''; }, 1500);
+    });
+  });
+  updateProgress();
+}
+
+function toggleLoesung(i) {
+  state[i] = state[i] || {};
+  state[i].open = !state[i].open;
+  save();
+  document.getElementById('loesung-' + i).classList.toggle('show', state[i].open);
+  document.getElementById('check-' + i).classList.toggle('show', state[i].open);
+}
+
+function setCheck(i, val) {
+  state[i] = state[i] || {};
+  state[i].check = state[i].check === val ? null : val;
+  save();
+  const card = document.getElementById('task-' + i);
+  card.classList.remove('ok', 'teil', 'nein');
+  if (state[i].check) card.classList.add(state[i].check);
+  document.querySelectorAll(`#check-${i} .btn`).forEach(b => b.classList.remove('active'));
+  if (state[i].check) {
+    const cls = { ok: 'btn-ok', teil: 'btn-teil', nein: 'btn-nein' }[state[i].check];
+    document.querySelector(`#check-${i} .${cls}`).classList.add('active');
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const counts = { ok: 0, teil: 0, nein: 0 };
+  TASKS.forEach((t, i) => { const c = (state[i] || {}).check; if (counts[c] !== undefined) counts[c]++; });
+  const n = TASKS.length;
+  const bar = document.getElementById('progressBar');
+  bar.querySelector('.seg-ok').style.width = (counts.ok / n * 100) + '%';
+  bar.querySelector('.seg-teil').style.width = (counts.teil / n * 100) + '%';
+  bar.querySelector('.seg-nein').style.width = (counts.nein / n * 100) + '%';
+  const done = counts.ok + counts.teil + counts.nein;
+  document.getElementById('progressLabel').textContent =
+    `${done}/${n} bearbeitet · ${counts.ok} gewusst · ${counts.teil} teilweise · ${counts.nein} üben`;
+}
+
+function resetAll() {
+  if (!confirm('Alle Antworten und Bewertungen dieser Lektion löschen?')) return;
+  state = {};
+  save();
+  render();
+}
+
+render();
+</script>
+</body>
+</html>
