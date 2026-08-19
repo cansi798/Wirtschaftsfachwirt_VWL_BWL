@@ -22,7 +22,7 @@ Die Teilnehmenden können am Ende der Lektion …
 
 | Zeit | Block | Inhalt | Methode |
 |------|-------|--------|---------|
-| 08:15–08:25 | Begrüßung & Rückblick | Hausaufgaben-Check Lektion 2 (VGR, Stabilitätsziele), offene Fragen | Plenum |
+| 08:15–08:25 | Begrüßung & Rückblick | Rückblick Selbstlernmaterial Lektion 2 (VGR, Stabilitätsziele), offene Fragen | Plenum |
 | 08:25–08:50 | Block 1: Konjunktur (kurz) | Konjunkturzyklus (4 Phasen), Konjunktur- vs. Saisonschwankung, Früh-/Präsenz-/Spätindikatoren | Präsentation + Skizze |
 | 08:50–09:45 | Block 2: Geldpolitik der EZB | Ziel Preisniveaustabilität (HVPI), Zwei-Säulen-Strategie, Leitzinsen, Offenmarktgeschäfte (Haupttender/Basistender), Fazilitäten, Mindestreserve, Transmissionskette, expansive vs. restriktive Geldpolitik, Grenzen | Präsentation + Abb. Wirkungskette |
 | 09:45–09:55 | **Pause** | | |
@@ -40,12 +40,16 @@ Die Teilnehmenden können am Ende der Lektion …
 - `Praesentation_Konjunktur-Wirtschaftspolitik-Aussenwirtschaft.html` — Foliensatz
 - `Handout_Konjunktur-Wirtschaftspolitik-Aussenwirtschaft.pdf` — Skript zur Nachbereitung
 - `Aufgabenheft_Konjunktur-Wirtschaftspolitik-Aussenwirtschaft.pdf` — Übungsaufgaben mit Musterlösungen
-- `Quiz_/Karteikarten_/Wordle_/Hangman_/Memory_…` — Selbstlernmaterial (Hausaufgabe: Quiz)
+- `Quiz_/Karteikarten_/Wordle_/Hangman_/Memory_…` — Selbstlernmaterial (freiwillige Vertiefung)
 - `Grundlagen_….pdf` / `Uebungen_….pdf` — Literatur-Auszüge (Textband Kap. 3.2 + 4, Übungsband Kap. 3 + 4)
 
-## Hausaufgabe
+## Übungsaufgaben zur Vertiefung (Selbststudium)
 
-1. Quiz vollständig bearbeiten (Selbstkontrolle) — festigt zugleich den Prüfungsstoff Block 1.1.
-2. Aufgabenheft: alle neun Aufgaben schriftlich lösen und mit dem Lösungsteil vergleichen.
-3. Karteikarten der Lektionen 1–3 wiederholen (Spaced Repetition bis zur Prüfung).
-4. Ausblick: ab Sa 05.09. beginnt der BWL-Teil (Betriebliche Funktionen) — Handout Lektion 3 vorab lesen.
+Freiwillige Vertiefung mit den Selbstlernmaterialien der Plattform — keine Pflicht, aber sehr empfohlen:
+
+1. **Quiz** (60 Fragen mit Selbstkontrolle) bearbeiten — festigt zugleich den Prüfungsstoff Block 1.1.
+2. **Lernbereich** (18 offene Aufgaben mit Lösungshinweisen) durcharbeiten.
+3. **Aufgabenheft** mit Musterlösungen — empfehlenswert: Aufgabe 3 (EZB) und 8 (Konzeptionen).
+4. **Karteikarten & Lernspiele** (Wordle, Hängemann, Memory) der Lektionen 1–3 wiederholen (Spaced Repetition bis zur Prüfung).
+
+Ausblick: ab Sa 05.09. beginnt der BWL-Teil (Betriebliche Funktionen).

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>IHK-Prüfungstraining · BWL — BWL — Betriebswirtschaftliche Grundlagen</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:#0EA5A4; --bfw-primary-dark:#0F766E;
+  --bfw-accent:#F59E0B; --bfw-warn:#F97316;
+  --bfw-success:#10B981; --bfw-danger:#EF4444;
+  --bfw-ink:#0F172A; --bfw-ink-soft:#475569;
+  --bfw-bg:#FAFAFA; --bfw-bg-soft:#F8FAFC;
+  --bfw-bg-teal:#ECFEFF; --bfw-bg-amber:#FEF3C7;
+  --bfw-bg-rose:#FFE4E6; --bfw-border:#E2E8F0;
+  --bfw-bg-green:#D1FAE5;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, var(--bfw-bg-teal) 0%, var(--bfw-bg) 50%, var(--bfw-bg-amber) 100%);
+  min-height: 100vh; color: var(--bfw-ink); -webkit-font-smoothing: antialiased;
+  padding: 2rem 1rem 4rem;
+}
+.container { max-width: 900px; margin: 0 auto; }
+header { text-align: center; margin-bottom: 1.6rem; }
+.tag-pill {
+  display: inline-block; background: var(--bfw-bg-teal); color: var(--bfw-primary-dark);
+  font-weight: 700; font-size: 0.82rem; padding: 0.3rem 0.9rem; border-radius: 999px;
+  letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.8rem;
+}
+h1 { font-size: 1.7rem; color: var(--bfw-primary-dark); margin-bottom: 0.4rem; }
+.subtitle { color: var(--bfw-ink-soft); font-size: 1.02rem; line-height: 1.5; }
+
+.progress-wrap {
+  background: white; border: 1px solid var(--bfw-border); border-radius: 14px;
+  padding: 1rem 1.3rem; margin-bottom: 1.6rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.progress-bar { flex: 1; min-width: 200px; height: 12px; background: var(--bfw-bg-soft); border: 1px solid var(--bfw-border); border-radius: 999px; overflow: hidden; display: flex; }
+.progress-bar .seg-ok { background: var(--bfw-success); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-teil { background: var(--bfw-accent); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-nein { background: var(--bfw-danger); height: 100%; transition: width 0.3s; }
+.progress-label { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; white-space: nowrap; }
+.btn-reset {
+  padding: 0.45rem 0.9rem; background: transparent; color: var(--bfw-ink-soft);
+  border: 1.5px solid var(--bfw-border); border-radius: 8px; font-family: inherit;
+  font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.15s;
+}
+.btn-reset:hover { color: var(--bfw-danger); border-color: var(--bfw-danger); }
+
+.task {
+  background: white; border: 1px solid var(--bfw-border); border-left: 5px solid var(--bfw-border);
+  border-radius: 14px; padding: 1.4rem 1.5rem; margin-bottom: 1.2rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04); transition: border-color 0.2s;
+}
+.task.ok { border-left-color: var(--bfw-success); }
+.task.teil { border-left-color: var(--bfw-accent); }
+.task.nein { border-left-color: var(--bfw-danger); }
+.task-head { display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
+.task-num { font-weight: 800; color: var(--bfw-primary-dark); font-size: 1.05rem; white-space: nowrap; }
+.task-topic {
+  display: inline-block; background: var(--bfw-bg-amber); color: #92400E;
+  font-weight: 700; font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 999px;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.task-punkte { margin-left: auto; color: var(--bfw-ink-soft); font-size: 0.82rem; font-weight: 600; white-space: nowrap; }
+.task-frage { font-size: 1.02rem; line-height: 1.55; margin-bottom: 0.9rem; white-space: pre-line; }
+.task-hinweis { margin-bottom: 0.9rem; }
+.task-hinweis summary { cursor: pointer; color: var(--bfw-primary-dark); font-weight: 600; font-size: 0.9rem; }
+.task-hinweis p { margin-top: 0.5rem; padding: 0.7rem 0.9rem; background: var(--bfw-bg-teal); border-radius: 8px; font-size: 0.92rem; color: var(--bfw-ink-soft); line-height: 1.5; }
+textarea {
+  width: 100%; min-height: 110px; padding: 0.8rem 0.9rem;
+  border: 1.5px solid var(--bfw-border); border-radius: 10px;
+  font-family: inherit; font-size: 0.98rem; line-height: 1.5; resize: vertical;
+  background: var(--bfw-bg-soft); transition: all 0.15s;
+}
+textarea:focus { outline: none; border-color: var(--bfw-primary); background: white; box-shadow: 0 0 0 3px rgba(14,165,164,0.12); }
+.task-actions { margin-top: 0.8rem; display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+.btn {
+  padding: 0.55rem 1.1rem; border: none; border-radius: 9px; cursor: pointer;
+  font-family: inherit; font-size: 0.92rem; font-weight: 700; transition: all 0.15s;
+}
+.btn-loesung { background: var(--bfw-primary); color: white; }
+.btn-loesung:hover { background: var(--bfw-primary-dark); }
+.loesung {
+  display: none; margin-top: 1rem; padding: 1rem 1.1rem;
+  background: var(--bfw-bg-green); border: 1px solid #A7F3D0; border-radius: 10px;
+}
+.loesung.show { display: block; }
+.loesung-label { font-weight: 800; color: #047857; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+.loesung-text { font-size: 0.97rem; line-height: 1.6; white-space: pre-line; }
+.self-check { display: none; margin-top: 0.9rem; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.self-check.show { display: flex; }
+.self-check span { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; }
+.btn-ok { background: var(--bfw-bg-green); color: #047857; border: 1.5px solid #A7F3D0; }
+.btn-teil { background: var(--bfw-bg-amber); color: #92400E; border: 1.5px solid #FDE68A; }
+.btn-nein { background: var(--bfw-bg-rose); color: #B91C1C; border: 1.5px solid #FECACA; }
+.btn-ok.active, .btn-ok:hover { background: var(--bfw-success); color: white; }
+.btn-teil.active, .btn-teil:hover { background: var(--bfw-accent); color: white; }
+.btn-nein.active, .btn-nein:hover { background: var(--bfw-danger); color: white; }
+.saved-note { font-size: 0.78rem; color: var(--bfw-ink-soft); margin-left: auto; }
+
+footer { text-align: center; margin-top: 2.5rem; color: var(--bfw-ink-soft); font-size: 0.85rem; }
+@media print { .btn, .btn-reset, .self-check { display: none !important; } .loesung { display: block; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <span class="tag-pill">IHK-Prüfungstraining · BWL</span>
+    <h1>Prüfungstraining: BWL — Betriebswirtschaftliche Grundlagen</h1>
+    <p class="subtitle">Beantworten Sie die Aufgaben in eigenen Worten im Antwortfeld — Ihre Eingaben werden lokal im Browser gespeichert. Prüfen Sie sich danach mit dem <strong>Lösungshinweis</strong> und bewerten Sie sich selbst. In der IHK-Prüfung zählen ausformulierte Begründungen!</p>
+  </header>
+
+  <div class="progress-wrap">
+    <div class="progress-bar" id="progressBar"><div class="seg-ok"></div><div class="seg-teil"></div><div class="seg-nein"></div></div>
+    <span class="progress-label" id="progressLabel"></span>
+    <button class="btn-reset" onclick="resetAll()">Zurücksetzen</button>
+  </div>
+
+  <div id="tasks"></div>
+
+  <footer>© Can Siebert · 2026 · Wirtschaftsfachwirt — BWL — Betriebswirtschaftliche Grundlagen</footer>
+</div>
+
+<script>
+const DAY_ID = 'bwl-pt';
+const TASKS = [{"topic":"Betriebliche Funktionen","punkte":15,"frage":"Ein mittelständischer Hersteller von Gartengeräten plant aufgrund anhaltender Markterfolge, eine zweite Betriebsstätte in Leipzig zu eröffnen. Sie werden gebeten, eine bereichsübergreifende Projektgruppe zusammenzustellen, um dieses Unternehmensziel zu realisieren.\nGeben Sie fünf betriebliche Funktionsbereiche an, die in der Projektgruppe vertreten sein sollten, und nennen Sie zu jedem Bereich zwei Aufgaben, mit denen er das Vorhaben unterstützt.","hinweis":"Denken Sie an die Kernfunktionen entlang der Wertschöpfung: Personal, Finanzen, Rechnungswesen, Produktion, Absatz, Logistik.","loesung":"Mögliche Funktionsbereiche mit je zwei Aufgaben (fünf Bereiche genügen):\n• Personal: Planung des Personalbedarfs am neuen Standort (Menge und Qualifikation); Personalbeschaffung und -auswahl.\n• Finanzen: Ermittlung des Kapitalbedarfs für die neue Betriebsstätte; Beschaffung des Kapitals (Eigen-/Fremdfinanzierung).\n• Rechnungswesen/Controlling: Wirtschaftlichkeits- bzw. Break-even-Analyse für den Standort; Kalkulation der Preise.\n• Produktion: Planung der zusätzlichen Produktionsmengen und Kapazitäten; Vorschläge zur Beschaffung neuer Maschinen und Anlagen.\n• Absatz/Marketing: Absatzplanung für die erweiterten Mengen; Aufbau des Vertriebs am neuen Standort.\n• Logistik: Organisation des Transports der benötigten Produktionsmittel; Planung von Lagerhaltung und Vorräten."},{"topic":"Betriebliche Funktionen","punkte":12,"frage":"Die Unternehmensleitung eines Elektrogeräteherstellers gibt für das kommende Geschäftsjahr das Ziel aus, die Umsatzerlöse um 20 % gegenüber dem Vorjahr zu steigern.\nErläutern Sie vier Teilpläne der betrieblichen Planung, die aufgrund dieses Ziels überarbeitet werden müssen, und gehen Sie dabei jeweils auf den Inhalt des Teilplans ein.","loesung":"Mögliche Teilpläne (vier genügen):\n• Absatzplan: Grundlage aller übrigen Teilpläne; hier werden die geplanten Absatzmengen und -preise je Produkt und Region festgelegt.\n• Produktionsplan: Es wird geplant, auf welchen Anlagen die zusätzlichen Mengen gefertigt werden und ob die Kapazitäten erweitert oder Aufträge fremdvergeben werden müssen.\n• Beschaffungsplan: Das Mengengerüst der Materialbeschaffung wird an die höhere Absatzmenge angepasst (mehr Material, ggf. neue Lieferanten, Bestellrhythmen).\n• Personalbedarfsplan: Es wird festgelegt, wie viel zusätzliches Personal mit welchen Qualifikationen für die Mehrproduktion und den Vertrieb benötigt wird.\n• Investitionsplan: Erfordert die Mengenausweitung zusätzliche Maschinen, wird deren Anschaffung hier festgehalten.\n• Finanzierungsplan: Er legt fest, welche finanziellen Mittel für die zusätzlichen Investitionen benötigt und wie sie finanziert werden (Eigen- und/oder Fremdfinanzierung).\n• Ergebnisplan: Gegenüberstellung des überarbeiteten Umsatzplans und des angepassten Kostenplans zur Ermittlung des Planergebnisses."},{"topic":"Marketing & Preispolitik","punkte":9,"frage":"Ein Hersteller von Ladestationen für E-Bikes möchte in einen asiatischen Markt exportieren. Die Marketingabteilung hat folgende Nachfrageprognose erstellt:\nVerkaufspreis 800 €/Stück → Nachfrage 6.000 Stück; 1.000 €/Stück → 4.500 Stück; 1.200 €/Stück → 3.000 Stück.\na) Berechnen Sie nachvollziehbar, bei welchem Verkaufspreis die maximale Einnahme erzielt wird, und leiten Sie daraus eine Handlungsempfehlung ab. (4 Punkte)\nb) Die Zollbehörde des Abnehmerlandes verlangt für Einfuhrmengen von mehr als 5.000 Stück eine Qualitätszertifizierung, die pauschal 600.000 € kostet. Überprüfen Sie rechnerisch, ob sich Ihre Empfehlung aus a) dadurch ändert. (5 Punkte)","hinweis":"Einnahme = Preis × Menge. In b) die Pauschale nur dort abziehen, wo die Mengengrenze überschritten wird.","loesung":"a) Einnahmen: 800 € × 6.000 = 4.800.000 €; 1.000 € × 4.500 = 4.500.000 €; 1.200 € × 3.000 = 3.600.000 €. Das Einnahmenmaximum liegt bei einem Preis von 800 € (4,8 Mio. €). Empfehlung: Preis von 800 € festlegen.\nb) Bei 6.000 Stück wird die Grenze von 5.000 Stück überschritten, die Zertifizierung reduziert die Einnahme um 600.000 € auf 4.200.000 €. Bei 1.000 € und 4.500 Stück fällt die Pauschale nicht an, die Einnahme beträgt 4.500.000 € und ist damit um 300.000 € höher. Die Empfehlung ändert sich: Es sollte ein Preis von 1.000 € festgelegt werden."},{"topic":"Marketing & Preispolitik","punkte":6,"frage":"Ein Fahrradhändler verkauft monatlich 400 Stück eines Zubehörartikels zum Preis von 20 €. Ein Testlauf zeigt: Bei einer Preiserhöhung auf 25 € sinkt der Absatz auf 360 Stück.\nBeurteilen Sie diese Marktreaktion unter Berücksichtigung der Preiselastizität der Nachfrage und leiten Sie nachvollziehbar eine Empfehlung für die Preisgestaltung ab, um einen maximalen Umsatz in Euro zu erzielen.","hinweis":"ε = prozentuale Mengenänderung ÷ prozentuale Preisänderung; anschließend beide Umsätze vergleichen.","loesung":"Preisänderung: von 20 € auf 25 € = +25 %. Mengenänderung: von 400 auf 360 Stück = −10 %. Preiselastizität: ε = −10 % ÷ +25 % = −0,4 (Betrag < 1) → unelastische Marktreaktion.\nUmsatzvergleich: bisher 20 € × 400 = 8.000 €; neu 25 € × 360 = 9.000 €. Da die Nachfrage unelastisch reagiert, steigt der Umsatz durch die Preiserhöhung um 1.000 €. Empfehlung: Der Preis sollte auf 25 € angehoben werden."},{"topic":"Marketing & Preispolitik","punkte":9,"frage":"Die Geschäftsleitung eines Baustoffwerks erwägt eine moderate Preiserhöhung um 4 % und bittet Sie, mögliche Kundenreaktionen auszuloten.\na) Geben Sie an, um wie viel Prozent die Nachfrage bei einer Preiserhöhung von 4 % zurückgehen würde,\n• im Falle einer unelastischen Reaktion (Preiselastizität der Nachfrage: −0,5),\n• im Falle einer neutralen Reaktion (Preiselastizität: −1),\n• im Falle einer elastischen Reaktion (Preiselastizität: −2,5). (6 Punkte)\nb) Legen Sie dar und begründen Sie, wie Sie die Preiselastizität der Nachfrage nach Zement einschätzen. (3 Punkte)","hinweis":"Mengenänderung = Elastizität × Preisänderung.","loesung":"a) Mengenrückgang = Elastizität × Preisänderung:\n• ε = −0,5: Rückgang um 2 % (−0,5 × 4 %).\n• ε = −1: Rückgang um 4 % (−1 × 4 %).\n• ε = −2,5: Rückgang um 10 % (−2,5 × 4 %).\nb) Die Preiselastizität der Nachfrage nach Zement ist eher gering (unelastisch) einzuschätzen: Zement wird in der Bauwirtschaft vielfältig benötigt und kann nur schwer bzw. allenfalls schrittweise durch andere Baustoffe ersetzt werden. Zudem macht er meist nur einen kleinen Teil der gesamten Baukosten aus, sodass Preiserhöhungen die Nachfrage kaum verändern."},{"topic":"Rechnungswesen & Controlling","punkte":8,"frage":"Eine Gießerei setzt zur Unternehmenssteuerung Kennzahlen ein.\na) Beschreiben Sie, anhand welcher Messgrößen die Produktivität gemessen wird, und nennen Sie eine konkrete Maßnahme, mit der die Gießerei ihre Produktivität steigern könnte. (4 Punkte)\nb) Beschreiben Sie, anhand welcher Messgrößen die Wirtschaftlichkeit gemessen wird, und nennen Sie eine konkrete Maßnahme zur Steigerung der Wirtschaftlichkeit. (4 Punkte)","hinweis":"Produktivität = Mengenbetrachtung, Wirtschaftlichkeit = Wertbetrachtung.","loesung":"a) Die Produktivität wird als reine Mengenbetrachtung gemessen: mengenmäßiger Output ÷ mengenmäßiger Input (z. B. produzierte Gussteile je Arbeitsstunde). Maßnahme: gleicher Output mit weniger Einsatz, z. B. überwacht ein Mitarbeiter von einer Leitwarte aus mehrere Fertigungslinien statt jeweils nur eine.\nb) Die Wirtschaftlichkeit wird als Wertbetrachtung gemessen: in Euro bewerteter Output (Ertrag/Leistung) ÷ in Euro bewerteter Input (Aufwand/Kosten). Maßnahme: Die Gießerei steigert ihre Wirtschaftlichkeit, wenn es ihr gelingt, die Verkaufspreise stärker zu erhöhen, als die Produktionskosten steigen, oder die Kosten bei gleichen Erlösen zu senken."},{"topic":"Rechnungswesen & Controlling","punkte":8,"frage":"Die Geschäftsleitung derselben Gießerei möchte zusätzlich die Kapitalseite im Blick behalten.\na) Beschreiben Sie, anhand welcher Messgrößen die Eigenkapitalrentabilität gemessen wird, und nennen Sie eine konkrete Maßnahme, wie sie gesteigert werden könnte. (4 Punkte)\nb) Beschreiben Sie, anhand welcher Messgrößen der Verschuldungskoeffizient gemessen wird, und nennen Sie eine konkrete Maßnahme, wie er verbessert werden könnte. (4 Punkte)","loesung":"a) Die Eigenkapitalrentabilität setzt den in Euro bewerteten Erfolg (Gewinn) ins Verhältnis zum eingesetzten Eigenkapital: Gewinn ÷ Eigenkapital × 100. Maßnahme: bei gleicher Ertragskraft den Gewinn erhöhen, z. B. durch Auslagerung unwirtschaftlicher Prozessteile (etwa der Lohnbuchhaltung), oder das gebundene Eigenkapital reduzieren.\nb) Der Verschuldungskoeffizient (statischer Verschuldungsgrad) setzt das Fremdkapital ins Verhältnis zum Eigenkapital: Fremdkapital ÷ Eigenkapital. Maßnahme: Gewinne nicht ausschütten, sondern einbehalten und zur Tilgung von Bankverbindlichkeiten verwenden — das Fremdkapital sinkt, das Eigenkapital steigt."},{"topic":"Rechnungswesen & Controlling","punkte":12,"frage":"Aus Fertigung und Rechnungswesen eines Herstellers von Wandhalterungen liegen Ihnen folgende Daten vor:\nMai: Gesamtkosten 180.000 € bei 8.000 Stück; Juni: Gesamtkosten 228.000 € bei 12.000 Stück. Der Nettoverkaufspreis beträgt 19 €/Stück.\na) Berechnen Sie nachvollziehbar die variablen Stückkosten, die Fixkosten und die Break-even-Menge. (6 Punkte)\nb) Berechnen Sie das Betriebsergebnis für den Monat Mai. (2 Punkte)\nc) Die Geschäftsführung möchte den Break-even-Point künftig bereits bei 10.500 Stück pro Monat erreichen. Ermitteln Sie rechnerisch den dazu erforderlichen Nettoverkaufspreis pro Stück. (4 Punkte)","hinweis":"Variable Stückkosten über die Kostendifferenz zweier Monate (mathematische Kostenauflösung) bestimmen.","loesung":"a) Variable Stückkosten: kv = (228.000 € − 180.000 €) ÷ (12.000 − 8.000 Stück) = 48.000 € ÷ 4.000 Stück = 12 €/Stück.\nFixkosten (z. B. mit Mai): Kf = 180.000 € − 12 € × 8.000 = 84.000 €/Monat.\nBreak-even-Menge: xBEP = Kf ÷ (p − kv) = 84.000 € ÷ (19 € − 12 €) = 12.000 Stück/Monat.\nb) Betriebsergebnis Mai: Umsatzerlöse 19 € × 8.000 = 152.000 € minus Gesamtkosten 180.000 € = −28.000 € (Verlust).\nc) Aus xBEP = Kf ÷ (p − kv) folgt p = Kf ÷ xBEP + kv = 84.000 € ÷ 10.500 Stück + 12 € = 8 € + 12 € = 20 €/Stück. Der Nettoverkaufspreis müsste auf 20 € angehoben werden."},{"topic":"Rechnungswesen & Controlling","punkte":12,"frage":"Ein Industrieunternehmen fertigt auf einem Bearbeitungszentrum Halterungen für Solarmodule. Für ein Bauteil liegen folgende Kalkulationsdaten vor:\nFertigungsmaterial 120,00 €/Stück; Materialgemeinkostenzuschlag 10 %; Fertigungslöhne 40,00 €/Stück; Fertigungsgemeinkostenzuschlag 125 %; Verwaltungsgemeinkostenzuschlag 10 %; Vertriebsgemeinkostenzuschlag 5 %; Gewinnzuschlag 15 %; Kundenskonto 2 %; Kundenrabatt 20 %.\nKalkulieren Sie nachvollziehbar den Listenverkaufspreis (netto) für ein Bauteil. Runden Sie kaufmännisch auf zwei Nachkommastellen.","hinweis":"Skonto und Rabatt sind Im-Hundert-Sätze: Zielverkaufspreis = Barverkaufspreis ÷ 0,98; Listenverkaufspreis = Zielverkaufspreis ÷ 0,80.","loesung":"Fertigungsmaterial 120,00 € + Materialgemeinkosten (10 %) 12,00 € = Materialkosten 132,00 €.\nFertigungslöhne 40,00 € + Fertigungsgemeinkosten (125 %) 50,00 € = Fertigungskosten 90,00 €.\nHerstellkosten = 132,00 € + 90,00 € = 222,00 €.\n+ Verwaltungsgemeinkosten (10 %) 22,20 € + Vertriebsgemeinkosten (5 %) 11,10 € = Selbstkosten 255,30 €.\n+ Gewinnzuschlag (15 %) 38,30 € = Barverkaufspreis 293,60 €.\nZielverkaufspreis = 293,60 € ÷ 0,98 = 299,59 € (darin Skonto 5,99 €).\nListenverkaufspreis (netto) = 299,59 € ÷ 0,80 = 374,49 € (darin Rabatt 74,90 €)."},{"topic":"Rechnungswesen & Controlling","punkte":8,"frage":"Als Mitarbeiter des Rechnungswesens einer Handels-GmbH wirken Sie beim Jahresabschluss zum 31.12. mit. Es liegen folgende Erfolgskonten vor:\nUmsatzerlöse 240.000 €; Zinserträge 2.000 €; Aufwendungen für Waren 90.000 €; Gehälter 70.000 €; Mietaufwand 30.000 €; Abschreibungen 6.000 €; sonstige betriebliche Aufwendungen 4.000 €.\na) Ermitteln Sie nachvollziehbar das Jahresergebnis. (5 Punkte)\nb) Berechnen Sie das Eigenkapital zum Jahresende, wenn es zu Jahresbeginn 150.000 € betrug und keine Ausschüttungen oder Einlagen erfolgt sind. (3 Punkte)","hinweis":"Jahresergebnis = Summe der Erträge − Summe der Aufwendungen; der Gewinn erhöht das Eigenkapital.","loesung":"a) Erträge: 240.000 € + 2.000 € = 242.000 €. Aufwendungen: 90.000 € + 70.000 € + 30.000 € + 6.000 € + 4.000 € = 200.000 €. Jahresergebnis = 242.000 € − 200.000 € = 42.000 € (Gewinn).\nb) Eigenkapital am Jahresende = Eigenkapital zu Jahresbeginn + Jahresüberschuss = 150.000 € + 42.000 € = 192.000 €."},{"topic":"Rechnungswesen & Controlling","punkte":8,"frage":"Sie sollen den Auszubildenden Ihres Unternehmens in einer internen Schulung die kalkulatorischen Kosten näherbringen.\na) Erklären Sie, was unter kalkulatorischen Kosten verstanden wird. (3 Punkte)\nb) Beschreiben Sie zwei kalkulatorische Kostenarten. (5 Punkte)","loesung":"a) Kalkulatorische Kosten sind Kosten, die nur in der Kosten- und Leistungsrechnung verrechnet werden. Ihnen steht in der Finanzbuchhaltung entweder kein Aufwand gegenüber (Zusatzkosten) oder ein Aufwand in anderer Höhe (Anderskosten). Sie erhöhen die Genauigkeit der Kalkulation.\nb) Beispiele (zwei genügen):\n• Kalkulatorische Abschreibungen: Sie orientieren sich am tatsächlichen, betriebsgewöhnlichen Werteverzehr (substanzielle Kapitalerhaltung), während die bilanziellen Abschreibungen gesetzlichen Vorgaben folgen.\n• Kalkulatorischer Unternehmerlohn: Die Arbeitsleistung des Einzelunternehmers bzw. mitarbeitender Gesellschafter wird als Tätigkeitsvergütung angesetzt, um Vergleichbarkeit mit Kapitalgesellschaften herzustellen.\n• Kalkulatorische Zinsen: Für das betriebsnotwendige Eigenkapital wird der entgangene Zinsertrag einer alternativen Anlage angesetzt.\n• Kalkulatorische Miete: Für betrieblich genutzte Privaträume des Unternehmers wird die ortsübliche Vergleichsmiete verrechnet.\n• Kalkulatorische Wagnisse: spezielle Einzelwagnisse werden mit Durchschnittswerten vergangener Schäden verrechnet."},{"topic":"Finanzierung","punkte":10,"frage":"Nach eingehender Marktforschung hat sich die Geschäftsführung eines Produktionsunternehmens entschlossen, in eine neue Fertigungsanlage zu investieren. Sie sollen sich mit der Kapitalbeschaffung befassen.\na) Beschreiben Sie die beiden Begriffe Innen- und Außenfinanzierung. (4 Punkte)\nb) Geben Sie jeweils zwei Beispiele der Innen- und der Außenfinanzierung an und nennen Sie die jeweilige Finanzierungsform. (6 Punkte)","loesung":"a) Innenfinanzierung: Das Kapital wird aus dem betrieblichen Umsatz- bzw. Leistungsprozess selbst erwirtschaftet. Außenfinanzierung: Das Kapital wird dem Unternehmen von außen als Eigen- oder Fremdkapital zugeführt.\nb) Beispiele Innenfinanzierung:\n• Gewinne werden nicht ausgeschüttet, sondern einbehalten — Selbstfinanzierung.\n• Nicht mehr betriebsnotwendige Vermögensgegenstände werden verkauft und der Erlös investiert — Finanzierung aus Vermögensumschichtung.\nBeispiele Außenfinanzierung:\n• Aufnahme eines Darlehens bei einem Kreditinstitut oder Lieferantenkredit — Kreditfinanzierung (Fremdfinanzierung).\n• Aufnahme eines weiteren Gesellschafters, der Eigenkapital einbringt — Beteiligungsfinanzierung (Einlagenfinanzierung)."},{"topic":"Finanzierung","punkte":10,"frage":"Ein Fahrzeughandelsunternehmen leidet unter stark gestiegenen Beschaffungskosten, das Jahresergebnis ist deutlich eingebrochen. Die Hausbank mahnt zur Vorsicht.\na) Nennen Sie vier mögliche Ursachen, die ein Unternehmen in die Insolvenz führen können. (4 Punkte)\nb) Erläutern Sie drei Maßnahmen, mit denen das Unternehmen seine Ergebnissituation verbessern könnte. (6 Punkte)","loesung":"a) Mögliche Insolvenzursachen (vier genügen):\n• Verfall von Vermögenswerten (z. B. Beteiligungen, Vorräte, Forderungsausfälle)\n• Illiquidität (z. B. Kündigung von Krediten durch die Hausbank, Unterschlagung)\n• Geschäftsstillstand (z. B. durch Pandemie, Hackerangriff, Entzug behördlicher Genehmigungen)\n• negative Presse (z. B. Verfehlungen der Geschäftsleitung)\n• hohe Verluste durch Wegfall eines wichtigen Kunden oder Lieferanten.\nb) Mögliche Maßnahmen (drei genügen):\n• Überwälzung der gestiegenen Beschaffungskosten auf die Kunden durch Erhöhung der Verkaufspreise.\n• Rationalisierungsinvestitionen, um den Vertriebs- und Verwaltungsaufwand nachhaltig zu senken.\n• Aufnahme von Fahrzeugen günstigerer Anbieter in das Sortiment, um eine höhere Handelsspanne zu erzielen.\n• Verlagerung des Vertriebs an einen Standort mit geringeren Fix- und Steuerbelastungen."},{"topic":"Personal","punkte":8,"frage":"Ein Speditionsunternehmen findet trotz intensiver Suche kaum noch Fahrer und Disponenten.\na) Erläutern Sie die demografische Hauptursache der Personalknappheit in deutschen Unternehmen. (4 Punkte)\nb) Erläutern Sie je einen positiven und einen negativen Aspekt, die sich für das Unternehmen ergeben können, wenn die personelle Lücke durch zugewanderte Arbeitskräfte geschlossen wird. (4 Punkte)","loesung":"a) Hauptursache ist der demografische Wandel: Die geburtenstarken Jahrgänge (Babyboomer) gehen seit Jahren in den Ruhestand, während wegen der niedrigen Geburtenrate deutlich kleinere Jahrgänge nachrücken. Das Arbeitskräfteangebot schrumpft, offene Stellen können nicht besetzt werden.\nb) Positiv: Die personelle Lücke kann geschlossen werden, Aufträge bleiben erfüllbar; gelungene Integration kann die Belegschaft zudem enger zusammenschweißen und neue Perspektiven einbringen. Negativ: Die Integration bindet zunächst erhebliche Ressourcen (Sprachförderung, Einarbeitung, Anerkennung von Qualifikationen, Behördengänge), bevor die volle Arbeitsleistung zur Verfügung steht."},{"topic":"Existenzgründung & Rechtsformen","punkte":9,"frage":"Die Erledigung der Zoll- und Exportformalitäten ist für ein Maschinenbauunternehmen ein notwendiges Übel, mit dem kein Geld verdient wird. Die Geschäftsleitung möchte diese Dienstleistung an einen externen Betreiber vergeben. Kommende Woche findet ein Gespräch mit einem Existenzgründer statt, der den Auftrag übernehmen will.\nBeschreiben Sie drei Voraussetzungen für eine Erfolg versprechende Existenzgründung.","loesung":"Mögliche Voraussetzungen (drei genügen):\n• Marktanalyse: Chancen und Risiken am Markt — auch unter Berücksichtigung des Standorts — werden systematisch untersucht.\n• Businessplan: Der Gründer weist sich selbst und den Kapitalgebern nach, dass er sich intensiv mit dem Geschäftsmodell und dessen nachhaltiger Tragfähigkeit auseinandergesetzt hat.\n• Fachliche und kaufmännische Qualifikation: hinreichende Berufserfahrung in der Branche sowie kaufmännische Kenntnisse und persönliche Eignung zur Unternehmensführung.\n• Fachkundige Beratung: Einbindung externer Stellen wie Hausbank, IHK, Steuerberater oder Rechtsanwalt.\n• Ausreichende finanzielle Reserven: um die Anlaufphase und unvorhergesehene Abweichungen von der Planung auffangen zu können."},{"topic":"Existenzgründung & Rechtsformen","punkte":10,"frage":"Eine Existenzgründerin möchte einen mobilen IT-Service aufbauen. Bei der Wahl der Rechtsform ist ihr wichtig, dass sie nicht persönlich haftet, sie verfügt nur über wenig Eigenkapital und der Gründungsaufwand soll möglichst gering sein.\nGeben Sie eine begründete Empfehlung ab, in welcher Rechtsform sie sich selbstständig machen sollte, indem Sie die gewählte Rechtsform anhand von drei Aspekten beschreiben.","loesung":"Empfehlung: Unternehmergesellschaft (haftungsbeschränkt) — UG (haftungsbeschränkt) als Einstiegsvariante der GmbH. Begründende Aspekte (drei genügen):\n• Geringes Startkapital: Es genügt ein eingezahltes Stammkapital ab 1 € (mit Pflicht zur Rücklagenbildung aus Gewinnen, bis das GmbH-Mindestkapital erreicht ist).\n• Haftungsbeschränkung: Es besteht keine persönliche Haftung; die Haftung ist auf das Gesellschaftsvermögen beschränkt.\n• Geringer Gründungsaufwand: Die Gründungskosten können durch die Verwendung des gesetzlichen Musterprotokolls niedrig gehalten werden.\n• Flexibilität: Eine spätere Veräußerung oder Umwandlung in eine GmbH ist organisatorisch vergleichsweise einfach möglich."},{"topic":"Existenzgründung & Rechtsformen","punkte":10,"frage":"Ihr Arbeitgeber, ein Großhandelsunternehmen, hat die Rechtsform einer GmbH & Co. KG und ist im Handelsregister eingetragen.\na) Stellen Sie dar, wer in der GmbH & Co. KG Vollhafter (Komplementär) ist. (3 Punkte)\nb) Beschreiben Sie, in welchem Umfang der Kommanditist in der GmbH & Co. KG haftet. (3 Punkte)\nc) Benennen Sie je eine Unternehmensform, die im Handelsregister in Abteilung A bzw. in Abteilung B verzeichnet ist. (4 Punkte)","loesung":"a) Vollhafter (Komplementär) ist die GmbH. Dadurch haftet im Ergebnis keine natürliche Person unbeschränkt, denn die GmbH haftet zwar unbeschränkt, aber nur mit ihrem Gesellschaftsvermögen.\nb) Der Kommanditist haftet beschränkt, nämlich nur bis zur Höhe seiner im Handelsregister eingetragenen Einlage (Haftsumme); ist die Einlage voll geleistet, ist die persönliche Haftung ausgeschlossen.\nc) Abteilung A: Personengesellschaften und Einzelkaufleute, z. B. e. K., OHG oder KG. Abteilung B: Kapitalgesellschaften, z. B. GmbH oder AG."},{"topic":"Unternehmenszusammenschlüsse","punkte":9,"frage":"Die Geschäftsleitung eines Handelsunternehmens plant, entweder mit einem anderen Unternehmen zu kooperieren oder dieses zu übernehmen.\na) Erklären Sie den wesentlichen Unterschied zwischen einer Kooperation und einer Übernahme. (3 Punkte)\nb) Stellen Sie drei Motive dar, warum sich Unternehmen zusammenschließen. (6 Punkte)","loesung":"a) Bei einer Kooperation behalten beide Unternehmen ihre rechtliche Selbstständigkeit und schränken ihre wirtschaftliche Selbstständigkeit nur im Rahmen der Zusammenarbeit ein. Bei einer Übernahme verliert das übernommene Unternehmen seine wirtschaftliche und in der Regel auch seine rechtliche Selbstständigkeit.\nb) Mögliche Motive (drei genügen):\n• Verbesserung der Wettbewerbsfähigkeit gegenüber größeren Konkurrenten\n• Erschließung neuer Märkte über die Kunden- und Vertriebsstrukturen des Partners\n• Senkung bzw. Streuung von Risiken auf mehrere Märkte oder Geschäftsfelder\n• Austausch und Transfer von Know-how\n• Nutzung von Synergie- und Kostenvorteilen, z. B. sinkende Stückkosten durch größere Mengen oder höhere Mengenrabatte im Einkauf."},{"topic":"Unternehmenszusammenschlüsse","punkte":10,"frage":"Ein deutscher Fahrzeughändler erwägt, ein Handelsunternehmen in Tschechien zu übernehmen, um dort Fuß zu fassen.\na) Erläutern Sie zwei Motive, die für diese Übernahme sprechen. (4 Punkte)\nb) Erläutern Sie drei Risiken bzw. Herausforderungen, die mit dieser Übernahme verbunden sein können. (6 Punkte)","loesung":"a) Mögliche Motive (zwei genügen):\n• Erschließung neuer Märkte: Die bestehenden Kundenkontakte des tschechischen Unternehmens ermöglichen einen schnellen Ausbau der Marktpräsenz.\n• Risikostreuung: Eine Rezession in einem der beiden Länder kann durch Erfolge im anderen Land ausgeglichen werden.\n• Know-how-Transfer und Synergie-/Kostenvorteile (größere Bestellmengen, sinkende Stückkosten).\nb) Mögliche Risiken/Herausforderungen (drei genügen):\n• Währungsrisiko: Investition und Umsätze in tschechischen Kronen unterliegen Wechselkursschwankungen.\n• Rechtliches Risiko: unterschiedliche Rechtssysteme und Vorschriften.\n• Integrationsrisiko: Die Mitarbeiter identifizieren sich nicht mit dem neuen Eigentümer; unterschiedliche Unternehmenskulturen und doppelt besetzte Funktionen; zusätzlich ist die Verknüpfung der IT-Systeme (Lagerhaltung, Bestellwesen, Buchhaltung) hochkomplex.\n• Finanzielles Risiko: Bleibt der Markterfolg aus, sinkt die Eigenkapitalrentabilität, zumal die Übernahme einen erhöhten Kapitaleinsatz erfordert.\n• Geopolitisches Risiko: politische Spannungen können die erwarteten Erfolge gefährden."},{"topic":"Unternehmenszusammenschlüsse","punkte":8,"frage":"Sie betreiben einen Getränke-Lieferdienst, der vier Stadtteile beliefert. Ein Wettbewerber, der die übrigen Stadtteile beliefert, schlägt Ihnen vor, die exklusive Aufteilung der Liefergebiete vertraglich zu vereinbaren.\na) Begründen Sie, ob diese angestrebte Vereinbarung kartellrechtlich zulässig ist. (4 Punkte)\nb) Geben Sie zwei Formen einer grundsätzlich zulässigen Unternehmenszusammenarbeit an. (4 Punkte)","loesung":"a) Bei der Vereinbarung handelt es sich um ein Gebietskartell: Die Wettbewerber teilen den Markt räumlich unter sich auf und schalten den Wettbewerb aus. Solche wettbewerbsbeschränkenden Absprachen sind nach dem Gesetz gegen Wettbewerbsbeschränkungen (Kartellverbot) verboten.\nb) Grundsätzlich zulässige Formen der Zusammenarbeit sind z. B. (zwei genügen): Arbeitsgemeinschaft (ARGE), Interessengemeinschaft, Joint Venture, BGB-Gesellschaft für gemeinsame Projekte, Einkaufsgenossenschaft."}];
+const KEY = 'wfw_lernbereich_' + DAY_ID;
+
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { state = {}; }
+function save() { localStorage.setItem(KEY, JSON.stringify(state)); }
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function render() {
+  const wrap = document.getElementById('tasks');
+  wrap.innerHTML = TASKS.map((t, i) => {
+    const st = state[i] || {};
+    return `
+    <div class="task ${st.check || ''}" id="task-${i}">
+      <div class="task-head">
+        <span class="task-num">Aufgabe ${i + 1}</span>
+        <span class="task-topic">${esc(t.topic)}</span>
+        ${t.punkte ? `<span class="task-punkte">${t.punkte} Punkte</span>` : ''}
+      </div>
+      <div class="task-frage">${esc(t.frage)}</div>
+      ${t.hinweis ? `<details class="task-hinweis"><summary>💡 Tipp anzeigen</summary><p>${esc(t.hinweis)}</p></details>` : ''}
+      <textarea id="answer-${i}" placeholder="Ihre Antwort — in vollständigen Sätzen, wie in der Prüfung …">${esc(st.answer || '')}</textarea>
+      <div class="task-actions">
+        <button class="btn btn-loesung" onclick="toggleLoesung(${i})">Lösungshinweis anzeigen</button>
+        <span class="saved-note" id="saved-${i}"></span>
+      </div>
+      <div class="loesung ${st.open ? 'show' : ''}" id="loesung-${i}">
+        <div class="loesung-label">✓ Lösungshinweis</div>
+        <div class="loesung-text">${esc(t.loesung)}</div>
+      </div>
+      <div class="self-check ${st.open ? 'show' : ''}" id="check-${i}">
+        <span>Selbsteinschätzung:</span>
+        <button class="btn btn-ok ${st.check === 'ok' ? 'active' : ''}" onclick="setCheck(${i}, 'ok')">✓ Gewusst</button>
+        <button class="btn btn-teil ${st.check === 'teil' ? 'active' : ''}" onclick="setCheck(${i}, 'teil')">≈ Teilweise</button>
+        <button class="btn btn-nein ${st.check === 'nein' ? 'active' : ''}" onclick="setCheck(${i}, 'nein')">✗ Nochmal üben</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  TASKS.forEach((t, i) => {
+    const ta = document.getElementById('answer-' + i);
+    let timer = null;
+    ta.addEventListener('input', () => {
+      state[i] = state[i] || {};
+      state[i].answer = ta.value;
+      save();
+      const note = document.getElementById('saved-' + i);
+      note.textContent = 'gespeichert ✓';
+      clearTimeout(timer);
+      timer = setTimeout(() => { note.textContent = ''; }, 1500);
+    });
+  });
+  updateProgress();
+}
+
+function toggleLoesung(i) {
+  state[i] = state[i] || {};
+  state[i].open = !state[i].open;
+  save();
+  document.getElementById('loesung-' + i).classList.toggle('show', state[i].open);
+  document.getElementById('check-' + i).classList.toggle('show', state[i].open);
+}
+
+function setCheck(i, val) {
+  state[i] = state[i] || {};
+  state[i].check = state[i].check === val ? null : val;
+  save();
+  const card = document.getElementById('task-' + i);
+  card.classList.remove('ok', 'teil', 'nein');
+  if (state[i].check) card.classList.add(state[i].check);
+  document.querySelectorAll(`#check-${i} .btn`).forEach(b => b.classList.remove('active'));
+  if (state[i].check) {
+    const cls = { ok: 'btn-ok', teil: 'btn-teil', nein: 'btn-nein' }[state[i].check];
+    document.querySelector(`#check-${i} .${cls}`).classList.add('active');
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const counts = { ok: 0, teil: 0, nein: 0 };
+  TASKS.forEach((t, i) => { const c = (state[i] || {}).check; if (counts[c] !== undefined) counts[c]++; });
+  const n = TASKS.length;
+  const bar = document.getElementById('progressBar');
+  bar.querySelector('.seg-ok').style.width = (counts.ok / n * 100) + '%';
+  bar.querySelector('.seg-teil').style.width = (counts.teil / n * 100) + '%';
+  bar.querySelector('.seg-nein').style.width = (counts.nein / n * 100) + '%';
+  const done = counts.ok + counts.teil + counts.nein;
+  document.getElementById('progressLabel').textContent =
+    `${done}/${n} bearbeitet · ${counts.ok} gewusst · ${counts.teil} teilweise · ${counts.nein} üben`;
+}
+
+function resetAll() {
+  if (!confirm('Alle Antworten und Bewertungen dieser Lektion löschen?')) return;
+  state = {};
+  save();
+  render();
+}
+
+render();
+</script>
+</body>
+</html>

@@ -258,7 +258,7 @@ Verhältnis (KG). In der Prüfung zählt: \emph{Vertrag vor Gesetz!}
     (\emph{konstitutiv} --- erst mit Eintragung entsteht die GmbH). Organe:
     \textbf{Geschäftsführer} (auch Fremdgeschäftsführer möglich),
     \textbf{Gesellschafterversammlung} (oberstes Willensbildungs- und Kontrollorgan),
-    ab 500 Arbeitnehmern zusätzlich ein \textbf{Aufsichtsrat}. Gewinnverteilung im
+    bei mehr als 500 Arbeitnehmern zusätzlich ein \textbf{Aufsichtsrat}. Gewinnverteilung im
     Verhältnis der Geschäftsanteile (Einlagen), wenn der Gesellschaftsvertrag nichts
     anderes regelt.
   \item \textbf{UG (haftungsbeschränkt), §~5a GmbHG:} „Mini-GmbH`` bzw.
@@ -406,13 +406,102 @@ Bei der Fallfrage „Welche Rechtsform passt?`` prüfen Sie systematisch:
     Buchführungs- und Offenlegungspflichten, Image/Kreditwürdigkeit.
 \end{enumerate}
 
+\section{Formeln \& Rechenbeispiele}
+
+\subsection{Kapitalbedarfsrechnung}
+
+Der Kapitalbedarf wird als einfaches \emph{Additionsschema} ermittelt --- erst danach
+zeigt sich, wie viel Fremdkapital fehlt:
+
+\[
+\textrm{Kapitalbedarf} = \textrm{Investitionen} + \textrm{Gründungskosten}
++ \textrm{Anlaufkosten} + \textrm{private Lebenshaltung}
+\]
+\[
+\textrm{Fremdkapitalbedarf} = \textrm{Kapitalbedarf} - \textrm{Eigenkapital}
+\]
+
+\begin{beispiel}[title={\bfseries Zahlenbeispiel: Kapitalbedarf einer Ladengründung}]
+\begin{center}
+\begin{tabular}{clr}
+\toprule
+ & \textbf{Position} & \textbf{Betrag}\\
+\midrule
+ & Investitionen (Ladeneinrichtung, Maschinen) & 60.000~€\\
+$+$ & Warenerstausstattung & 20.000~€\\
+$+$ & Gründungskosten (Notar, Register, Beratung) & 3.000~€\\
+$+$ & Anlaufkosten (6 Monate Miete, Personal, Werbung) & 15.000~€\\
+$+$ & private Lebenshaltung (6 Monate) & 12.000~€\\
+\midrule
+$=$ & \textbf{Kapitalbedarf} & \textbf{110.000~€}\\
+$-$ & Eigenkapital & 22.000~€\\
+\midrule
+$=$ & \textbf{Fremdkapitalbedarf} & \textbf{88.000~€}\\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Rechenweg:} Schritt~1: alle Positionen addieren (110.000~€).
+Schritt~2: Eigenkapital abziehen (110.000 $-$ 22.000 = 88.000~€ Fremdkapitalbedarf).
+Schritt~3: Eigenkapitalquote prüfen: $22.000 \div 110.000 = 20\,\%$ ---
+die Faustregel (15--20\,\%) ist erfüllt.
+\end{beispiel}
+
+\subsection{Gewinnverteilung bei OHG und KG (gesetzliche Regelung)}
+
+Es gilt \emph{Vertrag vor Gesetz}. Fehlt eine vertragliche Regelung, rechnet die
+klassische (in Lehrbüchern und Prüfungen übliche) gesetzliche Regel in zwei Schritten:
+
+\[
+\textrm{Gewinnanteil} = \underbrace{4\,\% \times \textrm{Kapitalanteil}}_{\textrm{Schritt 1: Vorabverzinsung}}
++ \underbrace{\textrm{Anteil am Restgewinn}}_{\textrm{Schritt 2: OHG nach Köpfen, KG angemessen}}
+\]
+
+\begin{beispiel}[title={\bfseries Zahlenbeispiel: OHG mit 30.000~€ Gewinn}]
+Gesellschafter A hat 100.000~€ Kapitalanteil, Gesellschafter B 50.000~€.
+\begin{enumerate}
+  \item \textbf{Vorabverzinsung (4\,\%):} A erhält $100.000 \times 0{,}04 = 4.000$~€,
+    B erhält $50.000 \times 0{,}04 = 2.000$~€ --- zusammen 6.000~€.
+  \item \textbf{Restgewinn nach Köpfen:} $30.000 - 6.000 = 24.000$~€, geteilt durch
+    zwei Gesellschafter $=$ je 12.000~€.
+  \item \textbf{Summe:} A $= 4.000 + 12.000 = \textbf{16.000~€}$;
+    B $= 2.000 + 12.000 = \textbf{14.000~€}$.
+\end{enumerate}
+\emph{Hinweis:} Nach neuem Recht (MoPeG, seit 1.1.2024) verteilt das Gesetz im
+Verhältnis der Beteiligungen ($2:1$): A 20.000~€, B 10.000~€. In der Prüfung die
+verlangte Regel anwenden --- und immer zuerst in den Gesellschaftsvertrag schauen!
+\end{beispiel}
+
+\subsection{UG (haftungsbeschränkt): gesetzliche Rücklage}
+
+Die UG muss jedes Jahr ein Viertel ihres Jahresüberschusses ansparen:
+
+\[
+\textrm{gesetzliche Rücklage (pro Jahr)} = 25\,\% \times \textrm{Jahresüberschuss}
+= 0{,}25 \times \textrm{Jahresüberschuss}
+\]
+
+\begin{beispiel}[title={\bfseries Zahlenbeispiel: UG-Rücklage}]
+Eine UG erzielt einen Jahresüberschuss von 12.000~€.
+\begin{enumerate}
+  \item \textbf{Rücklage berechnen:} $0{,}25 \times 12.000 = \textbf{3.000~€}$
+    müssen in die gesetzliche Rücklage eingestellt werden.
+  \item \textbf{Ausschüttbarer Rest:} $12.000 - 3.000 = 9.000$~€ dürfen höchstens
+    an die Gesellschafter ausgeschüttet werden.
+  \item \textbf{Dauer der Ansparphase:} Bei konstant 12.000~€ Jahresüberschuss sind
+    nach 8~Jahren $8 \times 3.000 = 24.000$~€ angespart --- im 9.~Jahr ist die Grenze
+    von 25.000~€ erreicht. Dann ist die Umfirmierung in eine GmbH möglich.
+\end{enumerate}
+\end{beispiel}
+
 \begin{merksatz}[title={\bfseries Wichtig für die Prüfungsvorbereitung}]
 Sie sollten sicher können: die \emph{fünf Gründungsphasen} in der richtigen Reihenfolge,
 die \emph{Voraussetzungen} der Gründung in drei Gruppen, die \emph{Bestandteile des
 Businessplans} mit den Elementen der Finanzplanung, die \emph{GmbH-Eckdaten} (25.000~€,
 Organe, Gesellschaftsvertrag), die \emph{AG-Organe} mit Zusammensetzung und Aufgabe, den
-Unterschied \emph{Komplementär/Kommanditist} sowie die Konstruktion der
-\emph{GmbH \& Co. KG}. Üben Sie mit dem Aufgabenheft und dem Quiz dieser Lektion ---
+Unterschied \emph{Komplementär/Kommanditist}, die Konstruktion der
+\emph{GmbH \& Co. KG} sowie die drei Rechenwege (\emph{Kapitalbedarf},
+\emph{Gewinnverteilung OHG/KG}, \emph{UG-Rücklage}). Üben Sie mit dem Aufgabenheft und
+dem Quiz dieser Lektion ---
 gerade wegen der langen Pause bis zum 27.02.2027!
 \end{merksatz}
 

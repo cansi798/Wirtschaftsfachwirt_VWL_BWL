@@ -19,6 +19,8 @@ const FOLDERS = {
   'bwl-2': 'BWL/Lektion-2_12.09._Betriebliche-Funktionen-II',
   'bwl-3': 'BWL/Lektion-3_26.09._Existenzgruendung-und-Rechtsformen',
   'bwl-4': 'BWL/Lektion-4_27.02._Unternehmenszusammenschluesse',
+  'vwl-pt': 'VWL/Pruefungstraining',
+  'bwl-pt': 'BWL/Pruefungstraining',
 };
 const MIN_TASKS = 10;
 
@@ -42,12 +44,13 @@ for (const file of files.sort()) {
   if (p.length) { console.error(`✗ ${file}: ${p.slice(0, 4).join('; ')}`); errors++; continue; }
 
   const html = TEMPLATE
-    .replaceAll('{{TAG}}', String(d.lektion))
+    .replaceAll('{{PILL}}', d.pill || `Lektion ${d.lektion} · Lernbereich`)
+    .replaceAll('{{TITEL_PREFIX}}', d.titel_prefix || 'Lernbereich')
     .replaceAll('{{THEMA}}', d.thema)
     .replaceAll('{{DAY_ID}}', d.day_id)
     .replaceAll('{{KURS_LABEL}}', d.kurs_label || '')
     .replace('{{TASKS_JSON}}', JSON.stringify(d.tasks, null, 0));
-  const out = path.join(ROOT, FOLDERS[d.day_id], `Lernbereich_${d.slug}.html`);
+  const out = path.join(ROOT, FOLDERS[d.day_id], `${d.datei_prefix || 'Lernbereich'}_${d.slug}.html`);
   fs.writeFileSync(out, html, 'utf8');
   console.log(`✓ Lernbereich ${d.day_id}: ${d.tasks.length} Aufgaben -> ${path.basename(out)}`);
 }

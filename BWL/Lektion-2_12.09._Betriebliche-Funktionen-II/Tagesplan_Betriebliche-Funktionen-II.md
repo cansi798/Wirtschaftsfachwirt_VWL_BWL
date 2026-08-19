@@ -3,7 +3,7 @@
 **Kurs:** Wirtschaftsfachwirt — 1.2 Betriebswirtschaftliche Grundlagen (BWL)
 **Termin:** Samstag, 12.09.2026 · 08:15–13:15 Uhr · 6 UE (Online)
 **Rahmenplan:** 1.2.1.4–1.2.1.7 (Rechnungswesen, Finanzierung/Investition, Controlling, Personal) und 1.2.2 (Zusammenwirken der betrieblichen Funktionen)
-**Literatur:** Übungsband Betriebswirtschaft Kap. 1, Übungen 25–44 · Textband-Auszug wird nachgereicht (Textband liegt noch nicht vor — Grundlage: Rahmenplan + IHK-Standardwissen)
+**Literatur:** Übungsband Betriebswirtschaft Kap. 1 (mit Lösungsteil; ergänzende Übungen) · Textband-Auszug wird nachgereicht (Textband liegt noch nicht vor — Grundlage: Rahmenplan + IHK-Standardwissen)
 
 ## Lernziele
 
@@ -25,25 +25,31 @@ Die Teilnehmenden können am Ende der Lektion …
 | 08:15–08:35 | Begrüßung & Wiederholung | Kurzwiederholung Lektion 1 (Ziele, Beschaffung, Produktion, Absatz/Marketing) — Blitzquiz | Plenum |
 | 08:35–09:25 | Block 1: Rechnungswesen | Aufgaben (Dokumentation, Information, Kontrolle, Disposition), vier Teilgebiete (FiBu, KLR, Statistik, Planungsrechnung), internes vs. externes ReWe | Präsentation + Aktivierung |
 | 09:25–09:35 | **Pause** | | |
-| 09:35–10:45 | Block 2: Finanzierung & Investition | Investitionsbegriff und -arten, Ablauf einer Investitionsentscheidung, Finanzierungsmatrix (Innen/Außen × Eigen/Fremd), EK vs. FK, Leasing/Factoring, goldene Finanzierungsregel | Präsentation + Übungsband Ü 26–34 |
+| 09:35–10:45 | Block 2: Finanzierung & Investition | Investitionsbegriff und -arten, Ablauf einer Investitionsentscheidung, Finanzierungsmatrix (Innen/Außen × Eigen/Fremd), EK vs. FK, Leasing/Factoring, goldene Finanzierungsregel | Präsentation + Übungsphase (eigene Aufgaben mit Lösungen) |
 | 10:45–11:00 | **Pause** | | |
-| 11:00–12:00 | Block 3: Controlling & Personal | Controlling vs. Kontrolle, Controlling-Kreislauf, strategisch/operativ, Kennzahlen (kurz); Personalaufgaben und -ziele, demografischer Wandel | Präsentation + Übungsband Ü 35–42 |
+| 11:00–12:00 | Block 3: Controlling & Personal | Controlling vs. Kontrolle, Controlling-Kreislauf, strategisch/operativ, Kennzahlen (kurz); Personalaufgaben und -ziele, demografischer Wandel | Präsentation + Aktivierungsfragen |
 | 12:00–12:10 | **Pause** | | |
-| 12:10–13:00 | Block 4: Zusammenwirken der Funktionen | Erreichen der Unternehmensziele, Schnittstellen und Zielkonflikte (Absatz ↔ Produktion ↔ Finanzen), Wertschöpfungskette; Fallarbeit in Kleingruppen | Fallaufgabe + Übungsband Ü 43–44 |
-| 13:00–13:15 | Abschluss | Zusammenfassung Block 1.2, Quiz & Karteikarten als Hausaufgabe, Ausblick Lektion 3 (26.09.: Existenzgründung & Rechtsformen) | Plenum |
+| 12:10–13:00 | Block 4: Zusammenwirken der Funktionen | Erreichen der Unternehmensziele, Schnittstellen und Zielkonflikte (Absatz ↔ Produktion ↔ Finanzen), Wertschöpfungskette; Fallarbeit in Kleingruppen | Fallaufgabe in Kleingruppen |
+| 13:00–13:15 | Abschluss | Zusammenfassung Block 1.2, Übungsaufgaben zur Vertiefung (Selbstlernmaterialien der Plattform), Ausblick Lektion 3 (26.09.: Existenzgründung & Rechtsformen) | Plenum |
 
 ## Material
 
 - `Praesentation_Betriebliche-Funktionen-II.html` — Foliensatz
 - `Handout_Betriebliche-Funktionen-II.pdf` — Skript zur Nachbereitung
 - `Aufgabenheft_Betriebliche-Funktionen-II.pdf` — Übungsaufgaben im IHK-Format mit Musterlösungen
-- `Quiz_/Karteikarten_/Wordle_/Hangman_/Memory_…` — Selbstlernmaterial (Hausaufgabe: Quiz)
+- `Quiz_/Karteikarten_/Wordle_/Hangman_/Memory_…` — Selbstlernmaterial (freiwillige Vertiefung)
 - `Uebungen_Betriebliche-Funktionen-II.pdf` — Literatur-Auszug (Übungsband Kap. 1)
 - Textband-Auszug: **wird nachgereicht**, sobald der BWL-Textband vorliegt
 
-## Hausaufgabe
+## Übungsaufgaben zur Vertiefung (Selbststudium)
 
-1. Quiz vollständig bearbeiten (Selbstkontrolle).
-2. Übungsband Kap. 1, Übungen 25–44 fertigstellen (falls im Unterricht nicht abgeschlossen).
-3. Handout lesen; Zuordnungsaufgabe Finanzierungsarten (Aufgabenheft, Aufgabe 4) wiederholen.
-4. Fragen für Lektion 3 (Existenzgründung & Rechtsformen) notieren.
+Freiwillige Selbstlernangebote auf der Lernplattform:
+
+1. **Quiz** (60 Fragen) mit sofortiger Selbstkontrolle bearbeiten.
+2. **Lernbereich** nutzen — 18 offene Aufgaben mit Lösungshinweisen.
+3. **Aufgabenheft mit Musterlösungen** durcharbeiten — z. B. Zuordnungsaufgabe Finanzierungsarten (Aufgabe 4) und Fallaufgabe Zielkonflikte (Aufgabe 9); Handout lesen.
+4. **Karteikarten & Lernspiele** (Wordle, Hängemann, Memory) für die Begriffe.
+5. **Prüfungstraining BWL** auf dem Dashboard — Aufgaben im IHK-Klausurformat.
+6. Fragen für Lektion 3 (Existenzgründung & Rechtsformen) notieren.
+
+Weitere Übungen: Übungsband (mit Lösungsteil).

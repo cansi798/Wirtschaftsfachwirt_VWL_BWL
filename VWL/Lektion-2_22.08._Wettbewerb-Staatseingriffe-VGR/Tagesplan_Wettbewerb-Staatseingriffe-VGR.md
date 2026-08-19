@@ -22,25 +22,27 @@ Die Teilnehmenden können am Ende der Lektion …
 
 | Zeit | Block | Inhalt | Methode |
 |------|-------|--------|---------|
-| 08:15–08:30 | Begrüßung & Rückblick | Fragen zur Hausaufgabe (Quiz Lektion 1), Kurzwiederholung Preisbildung, Tagesüberblick | Plenum |
+| 08:15–08:30 | Begrüßung & Rückblick | Fragen zum Selbstlernmaterial (Quiz Lektion 1), Kurzwiederholung Preisbildung, Tagesüberblick | Plenum |
 | 08:30–09:45 | Block 1: Wettbewerbspolitik | Funktionen des Wettbewerbs, UWG/GWB, Kartellverbot (§ 1 GWB) & Kartellarten, Ausnahmen (Mittelstandskartelle, Freistellungen), Missbrauchsaufsicht (§§ 19 ff.), Fusionskontrolle (§ 35) & Ministererlaubnis, Bundeskartellamt & EU (Art. 101 AEUV, FKVO) | Präsentation + Fallbeispiele |
 | 09:45–10:00 | **Pause** | | |
 | 10:00–11:30 | Block 2: Staatseingriffe in die Preisbildung | Marktkonforme Eingriffe (Verbrauchssteuern, Zölle, Subventionen, Transferleistungen, Mengenmaßnahmen), marktkonträre Eingriffe (Mindest-/Höchstpreise mit Abb. 1.8), Folgen & Beurteilung (Überschüsse, Schwarzmärkte) | Präsentation + Skizzenübung + Übungsband |
 | 11:30–11:45 | **Pause** | | |
 | 11:45–13:00 | Block 3: VGR & Stabilitätspolitik | Wirtschaftskreislauf, BIP/BNE (Inlands-/Inländerkonzept), Entstehungs-/Verwendungs-/Verteilungsrechnung, nominal vs. real, Grenzen des BIP, Lohn- & Gewinnquote, Umverteilung, verfügbares Einkommen, StabG, magisches Viereck/Sechseck, Zielkonflikte & Zielharmonien | Präsentation + Rechenübung (Lohnquote) |
-| 13:00–13:15 | Abschluss | Zusammenfassung, Quiz & Karteikarten als Hausaufgabe, Ausblick Lektion 3 (29.08.: Konjunktur, Wirtschaftspolitik, Außenwirtschaft) | Plenum |
+| 13:00–13:15 | Abschluss | Zusammenfassung, Hinweis auf Selbstlernmaterial (Quiz & Karteikarten), Ausblick Lektion 3 (29.08.: Konjunktur, Wirtschaftspolitik, Außenwirtschaft) | Plenum |
 
 ## Material
 
 - `Praesentation_Wettbewerb-Staatseingriffe-VGR.html` — Foliensatz
 - `Handout_Wettbewerb-Staatseingriffe-VGR.pdf` — Skript zur Nachbereitung
 - `Aufgabenheft_Wettbewerb-Staatseingriffe-VGR.pdf` — Übungsaufgaben mit Musterlösungen
-- `Quiz_/Karteikarten_/Wordle_/Hangman_/Memory_…` — Selbstlernmaterial (Hausaufgabe: Quiz)
+- `Quiz_/Karteikarten_/Wordle_/Hangman_/Memory_…` — Selbstlernmaterial (freiwillige Vertiefung)
 - `Grundlagen_….pdf` / `Uebungen_….pdf` — Literatur-Auszüge (Textband S. 12–38, Übungsband Kap. 1–3)
 
-## Hausaufgabe
+## Übungsaufgaben zur Vertiefung (Selbststudium)
 
-1. Quiz vollständig bearbeiten (Selbstkontrolle).
-2. Aufgabenheft: Aufgaben 4 (Mindestpreis) und 7 (VGR-Rechnung) schriftlich lösen.
-3. Handout Abschnitte 3–5 (VGR, Verteilung, Stabilitätspolitik) lesen; Formeln für Lohnquote und verfügbares Einkommen einprägen.
-4. Optional: Karteikarten & Lernspiele (Wordle, Hängemann, Memory).
+Freiwillige Vertiefung mit den Selbstlernmaterialien der Plattform — keine Pflicht, aber sehr empfohlen:
+
+1. **Quiz** (60 Fragen mit Selbstkontrolle) bearbeiten — GWB, Staatseingriffe, VGR, magisches Viereck.
+2. **Lernbereich** (18 offene Aufgaben mit Lösungshinweisen) durcharbeiten.
+3. **Aufgabenheft** mit Musterlösungen — empfehlenswert: Aufgabe 4 (Mindestpreis) und 7 (VGR-Rechnung).
+4. **Karteikarten & Lernspiele** (Wordle, Hängemann, Memory) zur Begriffssicherung.

@@ -23,13 +23,21 @@ Kurs- und Materialorganisation für den Qualifikationsbereich **1. Volks- und Be
 ## Material pro Lektion
 
 - `Tagesplan_<Thema>.md` — Ablaufplan mit Zeitblöcken
-- `Handout_<Thema>.pdf` (+ `.tex`) — ausführliches Skript
-- `Praesentation_<Thema>.html` — Foliensatz für den Unterricht
-- `Quiz_<Thema>.html` — Multiple-Choice-Quiz zur Selbstkontrolle
+- `Handout_<Thema>.pdf` (+ `.tex`) — ausführliches Skript inkl. Abschnitt „Formeln & Rechenbeispiele"
+- `Praesentation_<Thema>.html` — Foliensatz mit Übungsphasen samt Lösungsfolien und Formel-Folien
+- `Quiz_<Thema>.html` — Multiple-Choice-Quiz (60 Fragen) zur Selbstkontrolle
+- `Lernbereich_<Thema>.html` — 18 offene Aufgaben: Antwort schreiben, mit Lösungshinweis prüfen, Selbsteinschätzung mit Fortschritt
 - `Karteikarten_<Thema>.html` — Leitner-System
 - `Wordle_/Hangman_/Memory_<Thema>.html` — Lernspiele
 - `Aufgabenheft_<Thema>.pdf` (+ `.tex`, `Aufgaben_<Thema>.md`) — Übungsaufgaben mit Musterlösungen
 - `Grundlagen_/Uebungen_<Thema>.pdf` — Literatur-Auszüge (_aus Urheberrechtsgründen nicht im Repo_)
+
+## Prüfungstraining
+
+Pro Kursbereich eine Seite mit original-nahen (umformulierten) IHK-Prüfungsaufgaben zum
+schriftlichen Beantworten mit Lösungshinweis-Prüfung:
+`VWL/Pruefungstraining/Pruefungstraining_VWL.html` (22 Aufgaben) und
+`BWL/Pruefungstraining/Pruefungstraining_BWL.html` (20 Aufgaben).
 
 ## Struktur
 
@@ -48,6 +56,8 @@ Kurs- und Materialorganisation für den Qualifikationsbereich **1. Volks- und Be
 
 ```bash
 node scripts/build-lernmaterial.js       # Quiz, Karteikarten, Memory, Wordle, Hängemann aus JSON-Daten
+node scripts/build-praesentation.js      # Präsentationen aus scripts/praes-data/
+node scripts/build-lernbereich.js        # Lernbereiche + Prüfungstraining aus scripts/lernbereich-data/
 python3 scripts/build_tex.py             # Handouts & Aufgabenhefte (xelatex)
 bash scripts/split_literatur.sh          # Literatur-Auszüge splitten (lokal, nicht im Repo)
 ```

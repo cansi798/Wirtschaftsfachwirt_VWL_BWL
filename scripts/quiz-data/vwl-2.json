@@ -484,6 +484,246 @@
       ],
       "a": 1,
       "e": "Steigt das BIP, werden mehr Produktionsfaktoren benötigt — die Arbeitslosigkeit geht zurück (Zielharmonie)."
+    },
+    {
+      "topic": "Wettbewerb",
+      "q": "Ein Smartphone-Hersteller bringt unter dem Druck der Konkurrenz ständig verbesserte Modelle auf den Markt. Welche Wettbewerbsfunktion zeigt sich hier?",
+      "options": [
+        "Verteilungsfunktion",
+        "Innovationsfunktion",
+        "Kontrollfunktion",
+        "Freiheitsfunktion"
+      ],
+      "a": 1,
+      "e": "Innovationsfunktion: Wettbewerb schafft Anreize, Produkte zu verbessern, kostengünstiger zu produzieren und den technischen Fortschritt rasch zu nutzen."
+    },
+    {
+      "topic": "Wettbewerb",
+      "q": "Ein Anbieter mit veralteten und zu teuren Produkten muss den Markt verlassen. Welche Wettbewerbsfunktion wirkt hier?",
+      "options": [
+        "Auslesefunktion",
+        "Freiheitsfunktion",
+        "Verteilungsfunktion",
+        "Innovationsfunktion"
+      ],
+      "a": 0,
+      "e": "Auslesefunktion: Auslese der Marktteilnehmer nach wirtschaftlicher Leistungsfähigkeit — stets kommen die Leistungsfähigsten zum Zug."
+    },
+    {
+      "topic": "Wettbewerb",
+      "q": "Welche Unterfunktion der Steuerungsfunktion sorgt dafür, dass die Produktionsfaktoren so kombiniert werden, dass ein Maximum an Produktivität entsteht?",
+      "options": [
+        "Koordinations- und Anpassungsfunktion",
+        "Allokationsfunktion",
+        "Selektionsfunktion",
+        "Signalfunktion"
+      ],
+      "a": 1,
+      "e": "Die Allokationsfunktion lenkt Arbeit, Boden, Kapital und Know-how in ihre produktivste Verwendung; die Koordinationsfunktion gleicht Angebot und Nachfrage an."
+    },
+    {
+      "topic": "Wettbewerbspolitik",
+      "q": "Wer ist für die Wettbewerbspolitik auf EU-Ebene zuständig — und was gilt im Konflikt zwischen EU-Recht und nationalem Recht?",
+      "options": [
+        "Das Bundeskartellamt; nationales Recht geht vor",
+        "Die EU-Kommission; EU-Recht steht über nationalem Recht",
+        "Die EZB; EU-Recht gilt nur für Banken",
+        "Der Bundeswirtschaftsminister; beide Rechtsordnungen sind gleichrangig"
+      ],
+      "a": 1,
+      "e": "Die EU-Kommission (Kommissar für Wettbewerb) wacht über Art. 101 ff. AEUV und die FKVO; EU-Recht greift, wenn der Handel zwischen Mitgliedstaaten beeinträchtigt wird."
+    },
+    {
+      "topic": "Wettbewerbspolitik",
+      "q": "Ein Unternehmen wirbt mit irreführenden Angaben über Konkurrenzprodukte. Welches Gesetz schützt hier die Art und Weise (Fairness) des Wettbewerbs?",
+      "options": [
+        "GWB",
+        "UWG",
+        "StabG",
+        "AEUV"
+      ],
+      "a": 1,
+      "e": "Das UWG sichert faire Marktpraktiken (das Wie des Wettbewerbs); das GWB schützt dagegen den Bestand des Wettbewerbs."
+    },
+    {
+      "topic": "Kartellverbot",
+      "q": "Zwei Baustoffhändler vereinbaren, dass der eine nur nördlich, der andere nur südlich des Mains verkauft. Welche Kartellart liegt vor?",
+      "options": [
+        "Quotenkartell",
+        "Gebietskartell",
+        "Preiskartell",
+        "Submissionskartell"
+      ],
+      "a": 1,
+      "e": "Gebietskartell: Aufteilung des Absatzmarktes — nach § 1 GWB verboten."
+    },
+    {
+      "topic": "Kartellverbot",
+      "q": "Was bedeutet das Selbstprüfungssystem im Kartellrecht?",
+      "options": [
+        "Das Bundeskartellamt prüft jede Kooperation vorab und genehmigt sie",
+        "Unternehmen müssen selbst einschätzen, ob ihr Verhalten kartellrechtskonform ist — Anmelde- und Überprüfungsverfahren entfallen",
+        "Kartellmitglieder kontrollieren sich gegenseitig",
+        "Verbraucher melden Kartellverstöße direkt der EU-Kommission"
+      ],
+      "a": 1,
+      "e": "Weniger Bürokratie, mehr Eigenverantwortung — bei Fehleinschätzung drohen aber empfindliche Strafen."
+    },
+    {
+      "topic": "Kartellverbot",
+      "q": "Unter welchen Voraussetzungen ist eine wettbewerbsbeschränkende Vereinbarung nach § 2 GWB freigestellt (Legalausnahme)?",
+      "options": [
+        "Wenn alle Beteiligten Großunternehmen sind",
+        "Wenn Verbraucher angemessen am Gewinn beteiligt werden, die Warenerzeugung oder -verteilung verbessert oder der technische Fortschritt gefördert wird — ohne Ausschaltung des Wettbewerbs",
+        "Wenn die Vereinbarung schriftlich geschlossen und notariell beglaubigt wurde",
+        "Wenn der gemeinsame Marktanteil über 50 % liegt"
+      ],
+      "a": 1,
+      "e": "Einzelfreistellung nach § 2 GWB bzw. Art. 101 Abs. 3 AEUV — der Wettbewerb zwischen den Beteiligten darf dabei nicht ausgeschaltet werden."
+    },
+    {
+      "topic": "Missbrauchsaufsicht",
+      "q": "Auf welche Unternehmen bezieht sich die Missbrauchsaufsicht des Bundeskartellamts?",
+      "options": [
+        "Auf alle Unternehmen mit mehr als 500 Mitarbeitern",
+        "Auf marktbeherrschende Unternehmen",
+        "Nur auf staatliche Unternehmen",
+        "Nur auf ausländische Konzerne"
+      ],
+      "a": 1,
+      "e": "Die Missbrauchsaufsicht (§§ 19 ff. GWB) betrifft bestehende marktbeherrschende Unternehmen — im Gegensatz zur vorbeugenden Fusionskontrolle."
+    },
+    {
+      "topic": "Fusionskontrolle",
+      "q": "Das Bundeskartellamt hat eine Fusion untersagt. Wer kann den Zusammenschluss dennoch erlauben — und unter welcher Bedingung?",
+      "options": [
+        "Der Bundespräsident, wenn beide Unternehmen zustimmen",
+        "Der Bundeswirtschaftsminister per Ministererlaubnis (§ 42 GWB), wenn die Fusion von gesamtwirtschaftlichem Vorteil ist",
+        "Die Bundesbank, wenn die Preisstabilität gesichert ist",
+        "Niemand — die Untersagung ist endgültig"
+      ],
+      "a": 1,
+      "e": "Ministererlaubnis: Voraussetzung ist ein gesamtwirtschaftlicher Vorteil, ohne dass die marktwirtschaftliche Ordnung gefährdet wird."
+    },
+    {
+      "topic": "Mindestpreis",
+      "q": "Der gesetzliche Mindestlohn ist ökonomisch betrachtet ein …",
+      "options": [
+        "Höchstpreis auf dem Arbeitsmarkt",
+        "Mindestpreis auf dem Arbeitsmarkt — mit dem Risiko eines Angebotsüberhangs an Arbeitskräften",
+        "marktkonformer Eingriff ohne Nebenwirkungen",
+        "Transfereinkommen des Staates"
+      ],
+      "a": 1,
+      "e": "Er hebelt die Findung des Gleichgewichtslohns aus; Arbeitgeber können Arbeitskräfte durch Technik ersetzen oder Arbeit ins Ausland verlagern."
+    },
+    {
+      "topic": "Mindestpreis",
+      "q": "Der Staat begrenzt bei einem Mindestpreis die Produktionsmengen durch Kontingente. Welche typische Gefahr entsteht dabei?",
+      "options": [
+        "Ein grauer Markt, auf dem die Mehrproduktion unter dem Mindestpreis angeboten wird",
+        "Ein Nachfrageüberschuss",
+        "Eine Hyperinflation",
+        "Steigende Einfuhrzölle"
+      ],
+      "a": 0,
+      "e": "Bei Mengenkontingenten kann ein grauer Markt entstehen: Die über das Kontingent hinaus produzierte Menge wird unter dem festgesetzten Mindestpreis verkauft."
+    },
+    {
+      "topic": "Höchstpreis",
+      "q": "Der Staat setzt einen Höchstpreis fest, der über dem Gleichgewichtspreis liegt. Welche Wirkung hat er?",
+      "options": [
+        "Er erzeugt einen Nachfrageüberschuss",
+        "Er bleibt wirkungslos, weil sich der niedrigere Gleichgewichtspreis am Markt von selbst einstellt",
+        "Er erzeugt einen Angebotsüberschuss",
+        "Er führt sofort zu Schwarzmärkten"
+      ],
+      "a": 1,
+      "e": "Nur ein Höchstpreis unter dem Gleichgewichtspreis (bzw. ein Mindestpreis über ihm) greift in das Marktergebnis ein — sonst ist die Preisgrenze wirkungslos."
+    },
+    {
+      "topic": "Staatseingriffe",
+      "q": "Wohngeld und Kindergeld sind aus Sicht der Preistheorie …",
+      "options": [
+        "marktkonträre Höchstpreise",
+        "marktkonforme Transferleistungen, die die Nachfrager fördern",
+        "Subventionen an die Anbieter",
+        "Mengenmaßnahmen des Staates"
+      ],
+      "a": 1,
+      "e": "Transferleistungen geben Haushalten zusätzliche Mittel für den Erwerb bestimmter Güter — der Preismechanismus bleibt intakt (marktkonform)."
+    },
+    {
+      "topic": "VGR",
+      "q": "Wie lautet das (vereinfachte) Schema der Entstehungsrechnung des BIP?",
+      "options": [
+        "Private Konsumausgaben + Staatskonsum + Bruttoinvestitionen + Außenbeitrag",
+        "Bruttowertschöpfung aller Wirtschaftsbereiche + Gütersteuern abzüglich Gütersubventionen",
+        "Arbeitnehmerentgelt + Unternehmens- und Vermögenseinkommen",
+        "Exporte − Importe + Abschreibungen"
+      ],
+      "a": 1,
+      "e": "Die Entstehungsrechnung fragt: Wo (in welchen Wirtschaftsbereichen) ist die Wirtschaftsleistung entstanden?"
+    },
+    {
+      "topic": "VGR",
+      "q": "Das BIP beträgt 3.500 Mrd. €. Nichtinländer erzielten im Inland Einkommen von 120 Mrd. €, Inländer im Ausland 180 Mrd. €. Wie hoch ist das BNE?",
+      "options": [
+        "3.440 Mrd. €",
+        "3.560 Mrd. €",
+        "3.800 Mrd. €",
+        "3.200 Mrd. €"
+      ],
+      "a": 1,
+      "e": "BNE = BIP − Inlandseinkommen der Nichtinländer + Auslandseinkommen der Inländer = 3.500 − 120 + 180 = 3.560 Mrd. €."
+    },
+    {
+      "topic": "VGR",
+      "q": "Das nominale BIP beträgt 2.100 Mrd. €, der Preisindex 105 (Basisjahr = 100). Wie hoch ist das reale BIP?",
+      "options": [
+        "2.205 Mrd. €",
+        "2.000 Mrd. €",
+        "2.100 Mrd. €",
+        "1.995 Mrd. €"
+      ],
+      "a": 1,
+      "e": "Reales BIP = nominales BIP ÷ Preisindex × 100 = 2.100 ÷ 105 × 100 = 2.000 Mrd. € — die Preissteigerung ist herausgerechnet."
+    },
+    {
+      "topic": "Einkommensverteilung",
+      "q": "Arbeitnehmerentgelt: 1.800 Mrd. €, Unternehmens- und Vermögenseinkommen: 700 Mrd. €. Wie hoch ist die Lohnquote?",
+      "options": [
+        "28 %",
+        "72 %",
+        "61 %",
+        "80 %"
+      ],
+      "a": 1,
+      "e": "Volkseinkommen = 1.800 + 700 = 2.500 Mrd. €; Lohnquote = 1.800 ÷ 2.500 × 100 = 72 %. Die Gewinnquote beträgt entsprechend 28 %."
+    },
+    {
+      "topic": "Einkommensverteilung",
+      "q": "Ein Haushalt hat ein Primäreinkommen von 3.000 €. Er zahlt 400 € direkte Steuern und 500 € Sozialversicherungsbeiträge und erhält 600 € Transferzahlungen. Wie hoch ist das verfügbare Einkommen?",
+      "options": [
+        "2.100 €",
+        "2.700 €",
+        "3.300 €",
+        "1.500 €"
+      ],
+      "a": 1,
+      "e": "Verfügbares Einkommen = 3.000 − 400 − 500 + 600 = 2.700 € — es steht für Konsum und Sparen zur Verfügung."
+    },
+    {
+      "topic": "Stabilitätspolitik",
+      "q": "Wann gilt das Ziel „hoher Beschäftigungsstand“ (Vollbeschäftigung) als erreicht?",
+      "options": [
+        "Bei einer Arbeitslosenquote von 0 %",
+        "Bei einer Arbeitslosenquote von ca. 3–4 %",
+        "Bei einer Erwerbsquote von 100 %",
+        "Wenn die Lohnquote 69 % beträgt"
+      ],
+      "a": 1,
+      "e": "Eine Sockelarbeitslosigkeit bleibt stets bestehen — Vollbeschäftigung gilt daher schon bei einer Arbeitslosenquote von rund 3–4 % als erreicht."
     }
   ]
 }

@@ -212,13 +212,60 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
     </div>
   </section>
 
+  <!-- 5b. Formeln I: Wachstum & Inflation -->
+  <section class="slide">
+    <h2>Formeln I: Wachstumsrate &amp; Inflationsrate</h2>
+    <p class="subtitle">Beide nach demselben Muster: (neu − alt) ÷ alt × 100</p>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">🧮 Wirtschaftswachstum</div>
+        <p style="font-size: 0.95rem;"><strong>Wachstumsrate</strong> = (BIP<sub>neu</sub> − BIP<sub>alt</sub>) ÷ BIP<sub>alt</sub> × 100<br>
+        <strong>Beispiel:</strong> reales BIP 3.000 → 3.060 Mrd. €<br>
+        ① 3.060 − 3.000 = <strong>60</strong> · ② 60 ÷ 3.000 = <strong>0,02</strong> · ③ × 100 = <strong>2,0 %</strong></p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">🧮 Inflationsrate</div>
+        <p style="font-size: 0.95rem;"><strong>Inflationsrate</strong> = (Index<sub>neu</sub> − Index<sub>alt</sub>) ÷ Index<sub>alt</sub> × 100<br>
+        <strong>Beispiel:</strong> Preisindex 110 → 115,5<br>
+        ① 115,5 − 110 = <strong>5,5</strong> · ② 5,5 ÷ 110 = <strong>0,05</strong> · ③ × 100 = <strong>5,0 %</strong></p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="merksatz-label">⚠️ Typische Fehler</span>
+      Wachstum immer mit dem <strong>realen</strong> BIP rechnen (sonst misst man Inflation mit). Bei der Inflationsrate durch den <strong>alten Basiswert</strong> (hier 110) teilen — nicht durch 100!
+    </div>
+  </section>
+
+  <!-- 5c. Formeln II: Arbeitslosenquote & Konvergenz-Check -->
+  <section class="slide">
+    <h2>Formeln II: Arbeitslosenquote &amp; Konvergenz-Check</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">🧮 Arbeitslosenquote</div>
+        <p style="font-size: 0.95rem;"><strong>ALQ</strong> = registrierte Arbeitslose ÷ alle zivilen Erwerbspersonen × 100<br>
+        <strong>Beispiel:</strong> 2,3 Mio. Arbeitslose, 43,7 Mio. Erwerbstätige<br>
+        ① Erwerbspersonen: 43,7 + 2,3 = <strong>46 Mio.</strong> · ② 2,3 ÷ 46 = <strong>0,05</strong> · ③ × 100 = <strong>5,0 %</strong></p>
+      </div>
+      <div class="card rose">
+        <div class="card-title">🧮 Konvergenzkriterien (3 % / 60 %)</div>
+        <p style="font-size: 0.95rem;"><strong>Beispiel:</strong> BIP 500 Mrd. €, Neuverschuldung 20 Mrd. €, Gesamtschulden 280 Mrd. €<br>
+        ① 20 ÷ 500 × 100 = <strong>4,0 %</strong> &gt; 3 % → <strong>verletzt</strong><br>
+        ② 280 ÷ 500 × 100 = <strong>56,0 %</strong> &lt; 60 % → <strong>erfüllt</strong></p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="merksatz-label">📌 Merke</span>
+      Erwerbspersonen = Erwerbstätige <strong>+</strong> registrierte Arbeitslose. Alle Quoten folgen dem Muster <strong>„Teil ÷ Ganzes × 100“</strong> — Prüfungsklassiker im Block 1.1!
+    </div>
+  </section>
+
   <!-- 6. EZB Ziel -->
   <section class="slide">
     <h2>Geldpolitik: Die EZB und ihr Ziel</h2>
     <ul class="checklist">
       <li>Seit <strong>1999</strong> steuert die <strong>EZB</strong> die Geldmenge in der Eurozone</li>
       <li>Vorrangiges Ziel (Vertrag von Maastricht): <strong>Preisniveaustabilität</strong></li>
-      <li>Erreicht, wenn der <strong>HVPI</strong>-Anstieg <strong>unter, aber nahe 2 %</strong> liegt — schließt Inflation <em>und</em> Deflation aus</li>
+      <li>Erreicht, wenn der <strong>HVPI</strong>-Anstieg mittelfristig <strong>2 %</strong> beträgt (seit 2021 <em>symmetrisches</em> Ziel, zuvor „unter, aber nahe 2 %“) — schließt Inflation <em>und</em> Deflation aus</li>
       <li><strong>Zwei-Säulen-Strategie</strong>: Preisentwicklung + Geldmengenentwicklung im Blick</li>
       <li>Banken brauchen Zentralbankgeld (<strong>Refinanzierung</strong>) — hier setzen die Instrumente an</li>
     </ul>
@@ -304,7 +351,7 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
         <p style="font-size: 1rem;">Konjunktursteuerung im Sinne des <strong>Stabilitätsgesetzes (1967)</strong> — antizyklisch nach <strong>Keynes</strong></p>
       </div>
     </div>
-    <p>Grenzen der Verschuldung: <strong>Schuldenbremse</strong> (§ 109 GG, 2009) und europäischer Fiskalpakt (2013).</p>
+    <p>Grenzen der Verschuldung: <strong>Schuldenbremse</strong> (Art. 109 GG, 2009) und europäischer Fiskalpakt (2013).</p>
   </section>
 
   <!-- 12. Antizyklische Fiskalpolitik -->
@@ -420,7 +467,7 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
   <!-- 18. Transferfall -->
   <section class="slide">
     <h2>Ihre Reihe: Rezessions-Debatte</h2>
-    <p class="subtitle">Transferaufgabe · ca. 10 Minuten · danach Besprechung</p>
+    <p class="subtitle">Transferaufgabe · ca. 10 Minuten · Musterlösung auf der nächsten Folie</p>
     <p>Deutschland in der Rezession (BIP −1,5 %, steigende Arbeitslosigkeit). Zwei Vorschläge im Bundestag:</p>
     <div class="cards">
       <div class="card teal">
@@ -436,6 +483,24 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <li>Ordnen Sie beide Positionen der jeweiligen Konzeption zu (mit Vertretern).</li>
       <li>Erläutern Sie die Wirkungslogik und je zwei Kritikpunkte.</li>
     </ol>
+    <p class="muted">Weitere Übungen: Übungsband (mit Lösungsteil).</p>
+  </section>
+
+  <!-- 18b. Lösungen -->
+  <section class="slide">
+    <h2>Lösungen: Rezessions-Debatte</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Partei A = nachfrageorientiert (Keynes, „Fiskalisten“)</div>
+        <p style="font-size: 0.95rem;"><strong>Wirkungslogik:</strong> Rezession = zu geringe Gesamtnachfrage → der Staat springt aktiv ein: kreditfinanzierte Investitionsprogramme (Deficit Spending) und höhere Transfers steigern die Nachfrage → Produktion und Beschäftigung ziehen an.<br>
+        <strong>Kritik:</strong> ① Timelags — die Wirkung kommt oft zu spät; ② Crowding-out und wachsende Staatsverschuldung.</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Partei B = angebotsorientiert (Neoklassik, Friedman)</div>
+        <p style="font-size: 0.95rem;"><strong>Wirkungslogik:</strong> Ursache der Krise sind schlechte Angebotsbedingungen → Steuersenkungen, Bürokratieabbau und moderate Lohnabschlüsse verbessern die Gewinnerwartungen → mehr private Investitionen, mittel- bis langfristig mehr Wachstum.<br>
+        <strong>Kritik:</strong> ① Löhne sind auch ein Nachfragefaktor — Lohnzurückhaltung dämpft den Konsum; ② Investitions<em>fähigkeit</em> erzeugt noch keine Investitions<em>bereitschaft</em>.</p>
+      </div>
+    </div>
   </section>
 
   <!-- 19. Freihandel vs. Protektionismus -->
@@ -523,15 +588,16 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
     </ol>
   </section>
 
-  <!-- 24. Hausaufgabe & Ausblick BWL -->
+  <!-- 24. Übungsaufgaben zur Vertiefung & Ausblick BWL -->
   <section class="slide">
-    <h2>Hausaufgabe &amp; Ausblick: Es geht weiter mit BWL</h2>
-    <p class="subtitle">Bis Samstag, 05.09.2026, 08:15 Uhr</p>
+    <h2>Übungsaufgaben zur Vertiefung &amp; Ausblick: Es geht weiter mit BWL</h2>
+    <p class="subtitle">Freiwillige Vertiefung — alle Materialien auf der Lernplattform</p>
     <ul class="checklist">
-      <li><strong>Quiz</strong> dieser Lektion vollständig bearbeiten (40 Fragen)</li>
-      <li><strong>Aufgabenheft</strong> Lektion 3 lösen — besonders Aufgabe 3 (EZB) und 8 (Konzeptionen)</li>
-      <li><strong>Karteikarten der Lektionen 1–3</strong> wiederholen (Prüfungsstoff Block 1.1!)</li>
-      <li>Optional: Lernspiele (Wordle, Hängemann, Memory) zur Begriffssicherung</li>
+      <li><strong>Quiz</strong> (60 Fragen mit Selbstkontrolle) — festigt zugleich den Prüfungsstoff Block 1.1</li>
+      <li><strong>Lernbereich</strong>: 18 offene Aufgaben mit Lösungshinweisen</li>
+      <li><strong>Aufgabenheft</strong> mit Musterlösungen — empfehlenswert: Aufgabe 3 (EZB) und 8 (Konzeptionen)</li>
+      <li><strong>Karteikarten &amp; Lernspiele</strong> (Wordle, Hängemann, Memory) der Lektionen 1–3 zur Wiederholung</li>
+      <li><strong>Prüfungstraining VWL</strong> auf dem Dashboard — ideal zur Vorbereitung auf die IHK-Prüfung</li>
     </ul>
     <div class="merksatz">
       <span class="merksatz-label">🔭 Ab 05.09.: BWL-Teil (Block 1.2)</span>
