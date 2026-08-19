@@ -1,0 +1,369 @@
+{
+ "day_id": "vwl-2b",
+ "lektion": 2,
+ "thema": "VGR & Stabilitätsziele (Teil 2)",
+ "slug": "Wettbewerb-Staatseingriffe-VGR-Teil-2",
+ "kurs_label": "VWL — Volkswirtschaftliche Grundlagen",
+ "questions": [
+  {
+   "topic": "VGR",
+   "q": "Was misst das Bruttoinlandsprodukt (BIP)?",
+   "options": [
+    "Das Einkommen aller Inländer weltweit",
+    "Den Wert der innerhalb der geografischen Grenzen einer Volkswirtschaft produzierten Güter und Dienstleistungen",
+    "Nur die Industrieproduktion des Inlands",
+    "Das Vermögen aller Haushalte"
+   ],
+   "a": 1,
+   "e": "BIP = Inlandskonzept: Es zählt der Produktionsort, nicht der Wohnsitz der Produzenten."
+  },
+  {
+   "topic": "VGR",
+   "q": "Auf welchem Konzept basiert das Bruttonationaleinkommen (BNE)?",
+   "options": [
+    "Inlandskonzept",
+    "Inländerkonzept",
+    "Ausländerkonzept",
+    "Basisjahrkonzept"
+   ],
+   "a": 1,
+   "e": "Das BNE misst das Einkommen der Inländer aus dem In- und Ausland — z. B. auch von Pendlern und Monteuren im Ausland."
+  },
+  {
+   "topic": "VGR",
+   "q": "Warum werden bei der BIP-Berechnung die Vorleistungen abgezogen?",
+   "options": [
+    "Um die Steuerlast zu senken",
+    "Um Doppelzählungen zu vermeiden",
+    "Um Importe zu erfassen",
+    "Um die Abschreibungen zu berücksichtigen"
+   ],
+   "a": 1,
+   "e": "Bruttowertschöpfung = Produktionswerte − Vorleistungen: Der Zulieferer-Motor steckt schon im Preis der fertigen Maschine."
+  },
+  {
+   "topic": "VGR",
+   "q": "Wie lautet das Schema der Verwendungsrechnung des BIP?",
+   "options": [
+    "Arbeitnehmerentgelt + Unternehmens- und Vermögenseinkommen",
+    "Private Konsumausgaben + Konsumausgaben des Staates + Bruttoinvestitionen + Außenbeitrag",
+    "Bruttowertschöpfung + Gütersteuern − Gütersubventionen",
+    "Exporte − Importe"
+   ],
+   "a": 1,
+   "e": "Die Verwendungsrechnung fragt: Wofür wurde die Inlandsproduktion verwendet? Außenbeitrag = Exporte − Importe."
+  },
+  {
+   "topic": "VGR",
+   "q": "Was ergibt in der Verteilungsrechnung die Summe aus Arbeitnehmerentgelt und Unternehmens- und Vermögenseinkommen?",
+   "options": [
+    "Das BIP",
+    "Das Volkseinkommen",
+    "Den Außenbeitrag",
+    "Die Bruttowertschöpfung"
+   ],
+   "a": 1,
+   "e": "Volkseinkommen = Arbeitnehmerentgelt + Unternehmens- und Vermögenseinkommen der Inländer."
+  },
+  {
+   "topic": "VGR",
+   "q": "Das nominale BIP ist um 5 % gestiegen, die Preise ebenfalls um 5 %. Was folgt daraus?",
+   "options": [
+    "Die Wirtschaft ist real um 5 % gewachsen",
+    "Real ist die Wirtschaftsleistung etwa gleich geblieben",
+    "Das reale BIP ist um 10 % gestiegen",
+    "Die Gleichgewichtsmenge hat sich verdoppelt"
+   ],
+   "a": 1,
+   "e": "Das reale BIP rechnet mit Preisen eines Basisjahres und eliminiert Preissteigerungen — hier bleibt real kein Zuwachs."
+  },
+  {
+   "topic": "VGR",
+   "q": "Welche Leistung wird bei der BIP-Berechnung NICHT erfasst?",
+   "options": [
+    "Staatliche Bildungsleistungen",
+    "Unbezahlte Hausarbeit und ehrenamtliche Tätigkeiten",
+    "Exporte",
+    "Dienstleistungen von Haushaltshilfen"
+   ],
+   "a": 1,
+   "e": "Eigenleistungen der Haushalte und Ehrenamt bleiben unberücksichtigt; Schwarzarbeit wird nur geschätzt — eine Grenze des BIP."
+  },
+  {
+   "topic": "Einkommensverteilung",
+   "q": "Wie berechnet man die Lohnquote?",
+   "options": [
+    "Volkseinkommen ÷ Arbeitnehmerentgelt × 100",
+    "Arbeitnehmerentgelt ÷ Volkseinkommen × 100",
+    "Arbeitnehmerentgelt ÷ BIP × 100",
+    "Löhne ÷ Gewinne × 100"
+   ],
+   "a": 1,
+   "e": "Lohnquote = Arbeitnehmerentgelt ÷ Volkseinkommen × 100; 2018 rund 69 %. Gewinnquote entsprechend mit Unternehmens- und Vermögenseinkommen."
+  },
+  {
+   "topic": "Einkommensverteilung",
+   "q": "Was zeigt die Lorenzkurve?",
+   "options": [
+    "Die Entwicklung des Preisniveaus",
+    "Wie gleichmäßig das Volkseinkommen auf die Einkommensbezieher verteilt ist",
+    "Den Konjunkturverlauf",
+    "Die Höhe der Staatsverschuldung"
+   ],
+   "a": 1,
+   "e": "Je weiter die Lorenzkurve von der Diagonalen (Gleichverteilung) entfernt ist, desto ungleicher die Einkommensverteilung."
+  },
+  {
+   "topic": "Einkommensverteilung",
+   "q": "Nach welchem Prinzip erfolgt die Sekundärverteilung des Volkseinkommens?",
+   "options": [
+    "Leistungsprinzip",
+    "Bedarfsprinzip",
+    "Verursacherprinzip",
+    "Mehrheitsprinzip"
+   ],
+   "a": 1,
+   "e": "Die Primärverteilung folgt dem Leistungsprinzip; die staatliche Umverteilung (Sekundärverteilung) korrigiert nach dem Bedarfsprinzip."
+  },
+  {
+   "topic": "Einkommensverteilung",
+   "q": "Wie berechnet sich das verfügbare Einkommen der privaten Haushalte?",
+   "options": [
+    "Primäreinkommen + direkte Steuern + Sozialbeiträge − Transfers",
+    "Primäreinkommen − direkte Steuern − Sozialversicherungsbeiträge + Sozialleistungen des Staates",
+    "Bruttolohn − Werbungskosten",
+    "Volkseinkommen ÷ Einwohnerzahl"
+   ],
+   "a": 1,
+   "e": "Ergebnis der Sekundärverteilung: Es steht für Konsum und Sparen zur Verfügung."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Welches Gesetz gilt als Grundgesetz der Wirtschaftspolitik?",
+   "options": [
+    "Das GWB von 1958",
+    "Das Stabilitätsgesetz (StabG) von 1967",
+    "Das UWG",
+    "Das Bundesbankgesetz"
+   ],
+   "a": 1,
+   "e": "Das Gesetz zur Förderung der Stabilität und des Wachstums der Wirtschaft (StabG, 1967) verpflichtet Bund und Länder auf das gesamtwirtschaftliche Gleichgewicht."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Welche vier Ziele bilden das magische Viereck?",
+   "options": [
+    "Preisniveaustabilität, hoher Beschäftigungsstand, außenwirtschaftliches Gleichgewicht, stetiges und angemessenes Wirtschaftswachstum",
+    "Umweltschutz, Wachstum, gerechte Verteilung, Preisstabilität",
+    "Vollbeschäftigung, niedrige Steuern, Exportüberschuss, starker Euro",
+    "Preisstabilität, Haushaltsausgleich, Wachstum, Verteilungsgerechtigkeit"
+   ],
+   "a": 0,
+   "e": "So in § 1 StabG verankert; da kaum alle Ziele gleichzeitig erreichbar sind, heißt das Viereck „magisch“."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Um welche Ziele wird das magische Viereck zum magischen Sechseck erweitert?",
+   "options": [
+    "Digitalisierung und Bildung",
+    "Erhaltung einer lebenswerten Umwelt und gerechte Einkommens- und Vermögensverteilung",
+    "Exportförderung und Preisbindung",
+    "Vollbeschäftigung und Geldwertstabilität"
+   ],
+   "a": 1,
+   "e": "Zwei qualitative Ziele ohne klaren Maßstab der Zielerreichung ergänzen die vier quantitativen (messbaren) Ziele."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Wann gilt das Ziel der Preisniveaustabilität nach EZB-Definition als erreicht?",
+   "options": [
+    "Bei einer Inflationsrate von 0 %",
+    "Bei einer Inflationsrate knapp unter 2 %",
+    "Bei einer Deflation von 2 %",
+    "Wenn kein einziger Preis steigt"
+   ],
+   "a": 1,
+   "e": "Gemessen am (harmonisierten) Verbraucherpreisindex; einzelne Preise dürfen steigen, wenn andere sinken."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Mit welcher Kennzahl wird das außenwirtschaftliche Gleichgewicht gemessen?",
+   "options": [
+    "Mit der Arbeitslosenquote",
+    "Mit dem Außenbeitrag (Saldo aus Handels- und Dienstleistungsbilanz)",
+    "Mit dem Verbraucherpreisindex",
+    "Mit der Lohnquote"
+   ],
+   "a": 1,
+   "e": "Angestrebt wird ein positiver Außenbeitrag von ein bis zwei Prozent des nominalen BIP."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Starkes Wirtschaftswachstum zieht in der Regel Preiserhöhungen nach sich. Welche Zielbeziehung liegt vor?",
+   "options": [
+    "Zielharmonie",
+    "Zielkonflikt (konkurrierende Zielbeziehung)",
+    "Indifferente Zielbeziehung",
+    "Zielidentität"
+   ],
+   "a": 1,
+   "e": "Wachstum und Preisniveaustabilität konkurrieren — ein klassischer Zielkonflikt des magischen Vierecks."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Wirtschaftswachstum und Vollbeschäftigung stehen zueinander in einer …",
+   "options": [
+    "konkurrierenden Zielbeziehung",
+    "komplementären Zielbeziehung (Zielharmonie)",
+    "indifferenten Zielbeziehung",
+    "gesetzlich verbotenen Beziehung"
+   ],
+   "a": 1,
+   "e": "Steigt das BIP, werden mehr Produktionsfaktoren benötigt — die Arbeitslosigkeit geht zurück (Zielharmonie)."
+  },
+  {
+   "topic": "VGR",
+   "q": "Wie lautet das (vereinfachte) Schema der Entstehungsrechnung des BIP?",
+   "options": [
+    "Private Konsumausgaben + Staatskonsum + Bruttoinvestitionen + Außenbeitrag",
+    "Bruttowertschöpfung aller Wirtschaftsbereiche + Gütersteuern abzüglich Gütersubventionen",
+    "Arbeitnehmerentgelt + Unternehmens- und Vermögenseinkommen",
+    "Exporte − Importe + Abschreibungen"
+   ],
+   "a": 1,
+   "e": "Die Entstehungsrechnung fragt: Wo (in welchen Wirtschaftsbereichen) ist die Wirtschaftsleistung entstanden?"
+  },
+  {
+   "topic": "VGR",
+   "q": "Das BIP beträgt 3.500 Mrd. €. Nichtinländer erzielten im Inland Einkommen von 120 Mrd. €, Inländer im Ausland 180 Mrd. €. Wie hoch ist das BNE?",
+   "options": [
+    "3.440 Mrd. €",
+    "3.560 Mrd. €",
+    "3.800 Mrd. €",
+    "3.200 Mrd. €"
+   ],
+   "a": 1,
+   "e": "BNE = BIP − Inlandseinkommen der Nichtinländer + Auslandseinkommen der Inländer = 3.500 − 120 + 180 = 3.560 Mrd. €."
+  },
+  {
+   "topic": "VGR",
+   "q": "Das nominale BIP beträgt 2.100 Mrd. €, der Preisindex 105 (Basisjahr = 100). Wie hoch ist das reale BIP?",
+   "options": [
+    "2.205 Mrd. €",
+    "2.000 Mrd. €",
+    "2.100 Mrd. €",
+    "1.995 Mrd. €"
+   ],
+   "a": 1,
+   "e": "Reales BIP = nominales BIP ÷ Preisindex × 100 = 2.100 ÷ 105 × 100 = 2.000 Mrd. € — die Preissteigerung ist herausgerechnet."
+  },
+  {
+   "topic": "VGR",
+   "q": "Welches europäische Regelwerk sichert die Vergleichbarkeit der VGR-Daten zwischen den EU-Staaten?",
+   "options": [
+    "Der Harmonisierte Verbraucherpreisindex (HVPI)",
+    "Das Europäische System volkswirtschaftlicher Gesamtrechnungen (ESVG 2010)",
+    "Die Fusionskontrollverordnung (FKVO)",
+    "Das Stabilitätsgesetz (StabG)"
+   ],
+   "a": 1,
+   "e": "Für alle EU-Staaten gilt das ESVG 2010 — es standardisiert die Volkswirtschaftlichen Gesamtrechnungen und macht die Daten international vergleichbar."
+  },
+  {
+   "topic": "VGR",
+   "q": "Wodurch unterscheidet sich das Nettoinlandsprodukt vom Bruttoinlandsprodukt?",
+   "options": [
+    "Durch den Abzug der Vorleistungen",
+    "Durch den Abzug der Abschreibungen",
+    "Durch den Abzug der Importe",
+    "Durch die Bewertung zu Preisen eines Basisjahres"
+   ],
+   "a": 1,
+   "e": "Brutto heißt inklusive Abschreibungen, netto nach deren Abzug: Nettoinlandsprodukt = BIP − Abschreibungen. Die Vorleistungen sind bereits in der Bruttowertschöpfung abgezogen."
+  },
+  {
+   "topic": "Einkommensverteilung",
+   "q": "Arbeitnehmerentgelt: 1.800 Mrd. €, Unternehmens- und Vermögenseinkommen: 700 Mrd. €. Wie hoch ist die Lohnquote?",
+   "options": [
+    "28 %",
+    "72 %",
+    "61 %",
+    "80 %"
+   ],
+   "a": 1,
+   "e": "Volkseinkommen = 1.800 + 700 = 2.500 Mrd. €; Lohnquote = 1.800 ÷ 2.500 × 100 = 72 %. Die Gewinnquote beträgt entsprechend 28 %."
+  },
+  {
+   "topic": "Einkommensverteilung",
+   "q": "Ein Haushalt hat ein Primäreinkommen von 3.000 €. Er zahlt 400 € direkte Steuern und 500 € Sozialversicherungsbeiträge und erhält 600 € Transferzahlungen. Wie hoch ist das verfügbare Einkommen?",
+   "options": [
+    "2.100 €",
+    "2.700 €",
+    "3.300 €",
+    "1.500 €"
+   ],
+   "a": 1,
+   "e": "Verfügbares Einkommen = 3.000 − 400 − 500 + 600 = 2.700 € — es steht für Konsum und Sparen zur Verfügung."
+  },
+  {
+   "topic": "Einkommensverteilung",
+   "q": "Ein Arbeitnehmer erhält Zinsen aus seinem Sparguthaben. Zu welcher Quote zählen diese Einkünfte bei der funktionalen Einkommensverteilung?",
+   "options": [
+    "Zur Lohnquote, weil er Arbeitnehmer ist",
+    "Zur Gewinnquote, weil Zinsen Vermögenseinkommen sind",
+    "Zu keiner Quote, weil Zinsen nicht zum Volkseinkommen gehören",
+    "Je zur Hälfte zu Lohn- und Gewinnquote"
+   ],
+   "a": 1,
+   "e": "Die funktionale Verteilung fragt nach der Einkommensquelle: Zinsen sind Vermögenseinkommen und zählen zur Gewinnquote — auch wenn der Empfänger Arbeitnehmer ist. Umgekehrt zählen Vorstandsgehälter zur Lohnquote."
+  },
+  {
+   "topic": "Einkommensverteilung",
+   "q": "Wie wird das Pro-Kopf-Einkommen als vereinfachter Wohlstandsindikator berechnet?",
+   "options": [
+    "Arbeitnehmerentgelt ÷ Zahl der Erwerbstätigen",
+    "Volkseinkommen ÷ Einwohnerzahl",
+    "BIP ÷ Zahl der privaten Haushalte",
+    "Verfügbares Einkommen × Einwohnerzahl"
+   ],
+   "a": 1,
+   "e": "Pro-Kopf-Einkommen = Volkseinkommen ÷ Einwohnerzahl. Es dient häufig als Wohlstandsindikator im Ländervergleich, sagt aber nichts über die tatsächliche Verteilung aus."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Wann gilt das Ziel „hoher Beschäftigungsstand“ (Vollbeschäftigung) als erreicht?",
+   "options": [
+    "Bei einer Arbeitslosenquote von 0 %",
+    "Bei einer Arbeitslosenquote von ca. 3–4 %",
+    "Bei einer Erwerbsquote von 100 %",
+    "Wenn die Lohnquote 69 % beträgt"
+   ],
+   "a": 1,
+   "e": "Eine Sockelarbeitslosigkeit bleibt stets bestehen — Vollbeschäftigung gilt daher schon bei einer Arbeitslosenquote von rund 3–4 % als erreicht."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Was enthält der Jahreswirtschaftsbericht, den die Bundesregierung nach § 2 StabG jährlich vorlegt?",
+   "options": [
+    "Die Bilanzen der DAX-Unternehmen",
+    "Zukunftserwartungen, wirtschafts- und finanzpolitische Ziele sowie eine Stellungnahme zum Jahresgutachten des Sachverständigenrates",
+    "Die Haushaltspläne der Bundesländer",
+    "Den Geschäftsbericht der Europäischen Zentralbank"
+   ],
+   "a": 1,
+   "e": "Der Jahreswirtschaftsbericht informiert über die wirtschaftlichen Zukunftserwartungen der Bundesregierung, formuliert die Ziele für das laufende Jahr und nimmt Stellung zum Jahresgutachten des Sachverständigenrates."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Außenwirtschaftliches Gleichgewicht und Erhaltung der Umwelt beeinflussen sich gegenseitig nicht. Welche Zielbeziehung liegt vor?",
+   "options": [
+    "Eine konkurrierende Zielbeziehung (Zielkonflikt)",
+    "Eine indifferente Zielbeziehung",
+    "Eine komplementäre Zielbeziehung (Zielharmonie)",
+    "Eine magische Zielbeziehung"
+   ],
+   "a": 1,
+   "e": "Bei indifferenten Zielbeziehungen beeinflussen sich die Ziele nicht — die Verfolgung des einen Ziels wirkt sich weder positiv noch negativ auf das andere aus."
+  }
+ ]
+}

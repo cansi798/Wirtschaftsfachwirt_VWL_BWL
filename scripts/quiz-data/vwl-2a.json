@@ -1,0 +1,369 @@
+{
+ "day_id": "vwl-2a",
+ "lektion": 2,
+ "thema": "Wettbewerbspolitik & Staatseingriffe (Teil 1)",
+ "slug": "Wettbewerb-Staatseingriffe-VGR-Teil-1",
+ "kurs_label": "VWL — Volkswirtschaftliche Grundlagen",
+ "questions": [
+  {
+   "topic": "Wettbewerb",
+   "q": "Was versteht man unter Wettbewerb?",
+   "options": [
+    "Die staatliche Kontrolle aller Marktpreise",
+    "Die Rivalität der Marktteilnehmer unter- und gegeneinander zur Durchsetzung ihrer Ziele",
+    "Die Zusammenarbeit von Unternehmen zur Gewinnsteigerung",
+    "Den Vergleich von Produkten durch Testinstitute"
+   ],
+   "a": 1,
+   "e": "Wettbewerb ist die Rivalität der Marktteilnehmer, um die eigenen Ziele zulasten der Konkurrenten durchzusetzen."
+  },
+  {
+   "topic": "Wettbewerb",
+   "q": "Welche Funktion des Wettbewerbs sichert die Freiheit der Unternehmertätigkeit und der Konsumwahl?",
+   "options": [
+    "Kontrollfunktion",
+    "Freiheitsfunktion",
+    "Auslesefunktion",
+    "Verteilungsfunktion"
+   ],
+   "a": 1,
+   "e": "Die Freiheitsfunktion: Jeder kann Fähigkeiten und Mittel für frei gewählte Zwecke einsetzen — mehr Handlungsalternativen für alle."
+  },
+  {
+   "topic": "Wettbewerbspolitik",
+   "q": "Welche beiden Gesetze sind die Grundlagen der deutschen Wettbewerbspolitik?",
+   "options": [
+    "BGB und HGB",
+    "UWG und GWB",
+    "StabG und AEUV",
+    "GWB und StGB"
+   ],
+   "a": 1,
+   "e": "Das UWG sichert fairen Wettbewerb und faire Marktpraktiken, das GWB (Kartellgesetz) den Bestand des Wettbewerbs."
+  },
+  {
+   "topic": "Wettbewerbspolitik",
+   "q": "Welche Behörde wacht in Deutschland über die Einhaltung des GWB?",
+   "options": [
+    "Die Bundesbank",
+    "Das Bundeskartellamt",
+    "Die BaFin",
+    "Das Statistische Bundesamt"
+   ],
+   "a": 1,
+   "e": "Das Bundeskartellamt überwacht die Einhaltung des Gesetzes gegen Wettbewerbsbeschränkungen."
+  },
+  {
+   "topic": "Wettbewerbspolitik",
+   "q": "Welches sind die drei Säulen des GWB?",
+   "options": [
+    "Preisaufsicht, Gewerbeaufsicht, Fusionskontrolle",
+    "Kartellverbot, Missbrauchsaufsicht, Fusionskontrolle",
+    "Kartellverbot, Subventionskontrolle, Preisbindung",
+    "Missbrauchsaufsicht, Verbraucherschutz, Zollkontrolle"
+   ],
+   "a": 1,
+   "e": "Ka-Mi-Fu: Kartellverbot (§ 1), Missbrauchsaufsicht (§§ 19 ff.), Fusionskontrolle (§ 35 GWB)."
+  },
+  {
+   "topic": "Kartellverbot",
+   "q": "Was ist ein Kartell?",
+   "options": [
+    "Eine Fusion mehrerer Unternehmen zu einem Konzern",
+    "Eine vertragliche Kooperation rechtlich selbstständiger Unternehmen zur Verbesserung ihrer Wettbewerbsposition",
+    "Eine staatliche Preisfestsetzung",
+    "Ein Zusammenschluss von Verbrauchern"
+   ],
+   "a": 1,
+   "e": "Die Beteiligten bleiben rechtlich selbstständig, schränken aber ihre wirtschaftliche Selbstständigkeit teilweise ein."
+  },
+  {
+   "topic": "Kartellverbot",
+   "q": "Mehrere Anbieter sprechen eine einheitliche Preispolitik ab. Welche Kartellart liegt vor?",
+   "options": [
+    "Gebietskartell",
+    "Quotenkartell",
+    "Preiskartell",
+    "Submissionskartell"
+   ],
+   "a": 2,
+   "e": "Preiskartell: Absprache einer einheitlichen Preispolitik — nach § 1 GWB verboten."
+  },
+  {
+   "topic": "Kartellverbot",
+   "q": "Bauunternehmen legen vor einer öffentlichen Ausschreibung fest, wer den Zuschlag erhalten soll. Das ist ein …",
+   "options": [
+    "Submissionskartell",
+    "Preiskartell",
+    "Gebietskartell",
+    "Mittelstandskartell"
+   ],
+   "a": 0,
+   "e": "Submissionskartell: Vereinbarung von Preisuntergrenzen bzw. Festlegung, welches Mitglied bei Ausschreibungen zum Zug kommt."
+  },
+  {
+   "topic": "Kartellverbot",
+   "q": "Welche Kartelle sind nach § 3 GWB ausnahmsweise zulässig?",
+   "options": [
+    "Preiskartelle großer Konzerne",
+    "Mittelstandskartelle kleiner und mittlerer Unternehmen",
+    "Gebietskartelle im Einzelhandel",
+    "Quotenkartelle in der Landwirtschaft"
+   ],
+   "a": 1,
+   "e": "Mittelstandskartelle gleichen Wettbewerbsnachteile kleiner und mittlerer Unternehmen gegenüber Großunternehmen aus."
+  },
+  {
+   "topic": "Missbrauchsaufsicht",
+   "q": "Ein marktbeherrschendes Unternehmen fordert von einem abhängigen Zulieferer extreme Preisnachlässe. Welche Missbrauchsform liegt vor?",
+   "options": [
+    "Behinderungsmissbrauch",
+    "Ausbeutungsmissbrauch",
+    "Fusionsmissbrauch",
+    "Submissionsmissbrauch"
+   ],
+   "a": 1,
+   "e": "Ausbeutungsmissbrauch: überhöhte Preise von Kunden oder extreme Nachlässe von abhängigen Zulieferern fordern."
+  },
+  {
+   "topic": "Missbrauchsaufsicht",
+   "q": "Ein Marktbeherrscher verdrängt einen neuen Konkurrenten gezielt über Kampfpreise (Dumping). Das ist …",
+   "options": [
+    "Ausbeutungsmissbrauch",
+    "Behinderungsmissbrauch",
+    "erlaubter Preiswettbewerb",
+    "ein Quotenkartell"
+   ],
+   "a": 1,
+   "e": "Behinderungsmissbrauch: Marktmacht wird eingesetzt, um Konkurrenten zu behindern, zu verdrängen oder den Marktzugang zu versperren."
+  },
+  {
+   "topic": "Fusionskontrolle",
+   "q": "Warum gilt die Fusionskontrolle (§ 35 GWB) als vorbeugende Maßnahme?",
+   "options": [
+    "Sie bestraft bestehende Monopole",
+    "Geplante Fusionen müssen angezeigt werden und können untersagt werden, bevor eine marktbeherrschende Stellung entsteht",
+    "Sie verbietet alle Unternehmenszusammenschlüsse",
+    "Sie kontrolliert nur ausländische Unternehmen"
+   ],
+   "a": 1,
+   "e": "Anders als die Missbrauchsaufsicht (bestehende Marktbeherrscher) setzt die Fusionskontrolle vor der Entstehung von Marktmacht an."
+  },
+  {
+   "topic": "Staatseingriffe",
+   "q": "Was kennzeichnet marktkonforme Staatseingriffe?",
+   "options": [
+    "Sie setzen den Preismechanismus außer Kraft",
+    "Sie beeinflussen Angebot und Nachfrage, ohne den Marktpreismechanismus außer Kraft zu setzen",
+    "Sie legen Preise direkt fest",
+    "Sie verbieten den Handel mit bestimmten Gütern"
+   ],
+   "a": 1,
+   "e": "Marktkonform (indirekt): z. B. Steuern, Zölle, Subventionen. Marktkonträr (direkt): z. B. Höchst- und Mindestpreise."
+  },
+  {
+   "topic": "Staatseingriffe",
+   "q": "Wie wirkt eine Erhöhung der Tabaksteuer auf dem Zigarettenmarkt?",
+   "options": [
+    "Gleichgewichtspreis und -menge steigen",
+    "Der Gleichgewichtspreis steigt, die Gleichgewichtsmenge sinkt",
+    "Preis und Menge bleiben unverändert",
+    "Der Gleichgewichtspreis sinkt, die Menge steigt"
+   ],
+   "a": 1,
+   "e": "Die Steuer verteuert das Gut: höherer Gleichgewichtspreis, geringere Menge — so kann Verbraucherverhalten gelenkt werden."
+  },
+  {
+   "topic": "Staatseingriffe",
+   "q": "Warum sind Dauersubventionen ordnungspolitisch problematisch?",
+   "options": [
+    "Sie erhöhen automatisch die Inflation",
+    "Sie behindern sämtliche Preisfunktionen: falsche Signale, keine Selektion, Fehlallokation der Produktionsfaktoren",
+    "Sie sind nach dem GWB verboten",
+    "Sie senken die Staatsausgaben zu stark"
+   ],
+   "a": 1,
+   "e": "Der künstlich niedrige Preis verhindert das Ausscheiden kostenungünstiger Anbieter und bindet Faktoren in nicht mehr gefragten Produkten."
+  },
+  {
+   "topic": "Mindestpreis",
+   "q": "Ein staatlicher Mindestpreis …",
+   "options": [
+    "liegt unter dem Gleichgewichtspreis und schützt die Nachfrager",
+    "liegt über dem Gleichgewichtspreis und schützt die Anbieter",
+    "entspricht immer dem Gleichgewichtspreis",
+    "senkt das Angebot und erhöht die Nachfrage"
+   ],
+   "a": 1,
+   "e": "Der Mindestpreis ist eine Preisuntergrenze über dem Gleichgewichtspreis — Ziel ist der Schutz der Anbieter."
+  },
+  {
+   "topic": "Höchstpreis",
+   "q": "Ein staatlicher Höchstpreis …",
+   "options": [
+    "liegt über dem Gleichgewichtspreis und schützt die Anbieter",
+    "liegt unter dem Gleichgewichtspreis und schützt die Nachfrager",
+    "führt zu einem Angebotsüberschuss",
+    "erhöht das Angebot"
+   ],
+   "a": 1,
+   "e": "Der Höchstpreis ist eine Preisobergrenze unter dem Gleichgewichtspreis — Ziel ist der Schutz der Nachfrager (z. B. Mietpreisbremse)."
+  },
+  {
+   "topic": "Wettbewerb",
+   "q": "Ein Smartphone-Hersteller bringt unter dem Druck der Konkurrenz ständig verbesserte Modelle auf den Markt. Welche Wettbewerbsfunktion zeigt sich hier?",
+   "options": [
+    "Verteilungsfunktion",
+    "Innovationsfunktion",
+    "Kontrollfunktion",
+    "Freiheitsfunktion"
+   ],
+   "a": 1,
+   "e": "Innovationsfunktion: Wettbewerb schafft Anreize, Produkte zu verbessern, kostengünstiger zu produzieren und den technischen Fortschritt rasch zu nutzen."
+  },
+  {
+   "topic": "Wettbewerb",
+   "q": "Ein Anbieter mit veralteten und zu teuren Produkten muss den Markt verlassen. Welche Wettbewerbsfunktion wirkt hier?",
+   "options": [
+    "Auslesefunktion",
+    "Freiheitsfunktion",
+    "Verteilungsfunktion",
+    "Innovationsfunktion"
+   ],
+   "a": 0,
+   "e": "Auslesefunktion: Auslese der Marktteilnehmer nach wirtschaftlicher Leistungsfähigkeit — stets kommen die Leistungsfähigsten zum Zug."
+  },
+  {
+   "topic": "Wettbewerb",
+   "q": "Welche Unterfunktion der Steuerungsfunktion sorgt dafür, dass die Produktionsfaktoren so kombiniert werden, dass ein Maximum an Produktivität entsteht?",
+   "options": [
+    "Koordinations- und Anpassungsfunktion",
+    "Allokationsfunktion",
+    "Selektionsfunktion",
+    "Signalfunktion"
+   ],
+   "a": 1,
+   "e": "Die Allokationsfunktion lenkt Arbeit, Boden, Kapital und Know-how in ihre produktivste Verwendung; die Koordinationsfunktion gleicht Angebot und Nachfrage an."
+  },
+  {
+   "topic": "Wettbewerbspolitik",
+   "q": "Wer ist für die Wettbewerbspolitik auf EU-Ebene zuständig — und was gilt im Konflikt zwischen EU-Recht und nationalem Recht?",
+   "options": [
+    "Das Bundeskartellamt; nationales Recht geht vor",
+    "Die EU-Kommission; EU-Recht steht über nationalem Recht",
+    "Die EZB; EU-Recht gilt nur für Banken",
+    "Der Bundeswirtschaftsminister; beide Rechtsordnungen sind gleichrangig"
+   ],
+   "a": 1,
+   "e": "Die EU-Kommission (Kommissar für Wettbewerb) wacht über Art. 101 ff. AEUV und die FKVO; EU-Recht greift, wenn der Handel zwischen Mitgliedstaaten beeinträchtigt wird."
+  },
+  {
+   "topic": "Kartellverbot",
+   "q": "Zwei Baustoffhändler vereinbaren, dass der eine nur nördlich, der andere nur südlich des Mains verkauft. Welche Kartellart liegt vor?",
+   "options": [
+    "Quotenkartell",
+    "Gebietskartell",
+    "Preiskartell",
+    "Submissionskartell"
+   ],
+   "a": 1,
+   "e": "Gebietskartell: Aufteilung des Absatzmarktes — nach § 1 GWB verboten."
+  },
+  {
+   "topic": "Kartellverbot",
+   "q": "Was bedeutet das Selbstprüfungssystem im Kartellrecht?",
+   "options": [
+    "Das Bundeskartellamt prüft jede Kooperation vorab und genehmigt sie",
+    "Unternehmen müssen selbst einschätzen, ob ihr Verhalten kartellrechtskonform ist — Anmelde- und Überprüfungsverfahren entfallen",
+    "Kartellmitglieder kontrollieren sich gegenseitig",
+    "Verbraucher melden Kartellverstöße direkt der EU-Kommission"
+   ],
+   "a": 1,
+   "e": "Weniger Bürokratie, mehr Eigenverantwortung — bei Fehleinschätzung drohen aber empfindliche Strafen."
+  },
+  {
+   "topic": "Kartellverbot",
+   "q": "Unter welchen Voraussetzungen ist eine wettbewerbsbeschränkende Vereinbarung nach § 2 GWB freigestellt (Legalausnahme)?",
+   "options": [
+    "Wenn alle Beteiligten Großunternehmen sind",
+    "Wenn Verbraucher angemessen am Gewinn beteiligt werden, die Warenerzeugung oder -verteilung verbessert oder der technische Fortschritt gefördert wird — ohne Ausschaltung des Wettbewerbs",
+    "Wenn die Vereinbarung schriftlich geschlossen und notariell beglaubigt wurde",
+    "Wenn der gemeinsame Marktanteil über 50 % liegt"
+   ],
+   "a": 1,
+   "e": "Einzelfreistellung nach § 2 GWB bzw. Art. 101 Abs. 3 AEUV — der Wettbewerb zwischen den Beteiligten darf dabei nicht ausgeschaltet werden."
+  },
+  {
+   "topic": "Missbrauchsaufsicht",
+   "q": "Auf welche Unternehmen bezieht sich die Missbrauchsaufsicht des Bundeskartellamts?",
+   "options": [
+    "Auf alle Unternehmen mit mehr als 500 Mitarbeitern",
+    "Auf marktbeherrschende Unternehmen",
+    "Nur auf staatliche Unternehmen",
+    "Nur auf ausländische Konzerne"
+   ],
+   "a": 1,
+   "e": "Die Missbrauchsaufsicht (§§ 19 ff. GWB) betrifft bestehende marktbeherrschende Unternehmen — im Gegensatz zur vorbeugenden Fusionskontrolle."
+  },
+  {
+   "topic": "Fusionskontrolle",
+   "q": "Das Bundeskartellamt hat eine Fusion untersagt. Wer kann den Zusammenschluss dennoch erlauben — und unter welcher Bedingung?",
+   "options": [
+    "Der Bundespräsident, wenn beide Unternehmen zustimmen",
+    "Der Bundeswirtschaftsminister per Ministererlaubnis (§ 42 GWB), wenn die Fusion von gesamtwirtschaftlichem Vorteil ist",
+    "Die Bundesbank, wenn die Preisstabilität gesichert ist",
+    "Niemand — die Untersagung ist endgültig"
+   ],
+   "a": 1,
+   "e": "Ministererlaubnis: Voraussetzung ist ein gesamtwirtschaftlicher Vorteil, ohne dass die marktwirtschaftliche Ordnung gefährdet wird."
+  },
+  {
+   "topic": "Mindestpreis",
+   "q": "Der gesetzliche Mindestlohn ist ökonomisch betrachtet ein …",
+   "options": [
+    "Höchstpreis auf dem Arbeitsmarkt",
+    "Mindestpreis auf dem Arbeitsmarkt — mit dem Risiko eines Angebotsüberhangs an Arbeitskräften",
+    "marktkonformer Eingriff ohne Nebenwirkungen",
+    "Transfereinkommen des Staates"
+   ],
+   "a": 1,
+   "e": "Er hebelt die Findung des Gleichgewichtslohns aus; Arbeitgeber können Arbeitskräfte durch Technik ersetzen oder Arbeit ins Ausland verlagern."
+  },
+  {
+   "topic": "Mindestpreis",
+   "q": "Der Staat begrenzt bei einem Mindestpreis die Produktionsmengen durch Kontingente. Welche typische Gefahr entsteht dabei?",
+   "options": [
+    "Ein grauer Markt, auf dem die Mehrproduktion unter dem Mindestpreis angeboten wird",
+    "Ein Nachfrageüberschuss",
+    "Eine Hyperinflation",
+    "Steigende Einfuhrzölle"
+   ],
+   "a": 0,
+   "e": "Bei Mengenkontingenten kann ein grauer Markt entstehen: Die über das Kontingent hinaus produzierte Menge wird unter dem festgesetzten Mindestpreis verkauft."
+  },
+  {
+   "topic": "Höchstpreis",
+   "q": "Der Staat setzt einen Höchstpreis fest, der über dem Gleichgewichtspreis liegt. Welche Wirkung hat er?",
+   "options": [
+    "Er erzeugt einen Nachfrageüberschuss",
+    "Er bleibt wirkungslos, weil sich der niedrigere Gleichgewichtspreis am Markt von selbst einstellt",
+    "Er erzeugt einen Angebotsüberschuss",
+    "Er führt sofort zu Schwarzmärkten"
+   ],
+   "a": 1,
+   "e": "Nur ein Höchstpreis unter dem Gleichgewichtspreis (bzw. ein Mindestpreis über ihm) greift in das Marktergebnis ein — sonst ist die Preisgrenze wirkungslos."
+  },
+  {
+   "topic": "Staatseingriffe",
+   "q": "Wohngeld und Kindergeld sind aus Sicht der Preistheorie …",
+   "options": [
+    "marktkonträre Höchstpreise",
+    "marktkonforme Transferleistungen, die die Nachfrager fördern",
+    "Subventionen an die Anbieter",
+    "Mengenmaßnahmen des Staates"
+   ],
+   "a": 1,
+   "e": "Transferleistungen geben Haushalten zusätzliche Mittel für den Erwerb bestimmter Güter — der Preismechanismus bleibt intakt (marktkonform)."
+  }
+ ]
+}

@@ -270,6 +270,12 @@ a.btn-logout:hover { color: var(--bfw-primary-dark); border-color: var(--bfw-pri
 .tag-link.game .link-icon { background: var(--bfw-bg-amber); color: var(--bfw-warn); }
 .tag-link-label { flex: 1; font-weight: 500; }
 .tag-link-arrow { color: var(--bfw-ink-soft); font-size: 0.9rem; }
+.teil-label {
+  margin: 0.7rem 0 0.15rem;
+  font-size: 0.76rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--bfw-primary-dark);
+}
 
 /* Deaktivierte "folgt"-Markierung für noch fehlende Medien */
 .tag-chip-soon {
@@ -423,11 +429,11 @@ const LEKTIONEN = [
   { num: 2, thema: 'Wettbewerbspolitik, Staatseingriffe & Volkswirtschaftliche Gesamtrechnung',
     datum: 'Sa, 22.08.2026 · 08:15–13:15 · 6 UE',
     folder: 'Lektion-2_22.08._Wettbewerb-Staatseingriffe-VGR',
-    slug: 'Wettbewerb-Staatseingriffe-VGR', verfügbar: true },
+    slug: 'Wettbewerb-Staatseingriffe-VGR', verfügbar: true, teile: 2 },
   { num: 3, thema: 'Konjunktur, Wirtschaftspolitik & Außenwirtschaft',
     datum: 'Sa, 29.08.2026 · 08:15–13:15 · 6 UE',
     folder: 'Lektion-3_29.08._Konjunktur-Wirtschaftspolitik-Aussenwirtschaft',
-    slug: 'Konjunktur-Wirtschaftspolitik-Aussenwirtschaft', verfügbar: true }
+    slug: 'Konjunktur-Wirtschaftspolitik-Aussenwirtschaft', verfügbar: true, teile: 2 }
 ];
 
 function tryLogin(e) {
@@ -469,90 +475,49 @@ function renderLektionen() {
           <div class="coming-soon">In Vorbereitung</div>
         </div>`;
     }
+    const teile = t.teile || 1;
+    const m = t.medien || {};
+    const link = (cls, icon, href, label, arrow) => `
+          <a class="tag-link ${cls}" href="${base}/${href}" target="_blank" rel="noopener">
+            <span class="link-icon">${icon}</span>
+            <span class="tag-link-label">${label}</span>
+            <span class="tag-link-arrow">${arrow}</span>
+          </a>`;
+    const chip = (icon, label) => `
+          <div class="tag-chip-soon" title="folgt in Kürze">
+            <span class="link-icon">${icon}</span>
+            <span class="tag-link-label">${label}</span>
+            <span class="soon-badge">folgt</span>
+          </div>`;
+    let links = '';
+    for (let teil = 1; teil <= teile; teil++) {
+      const sfx = teile === 2 ? `-Teil-${teil}` : '';
+      const lbl = teile === 2 ? ` (Teil ${teil})` : '';
+      if (teile === 2) links += `<div class="teil-label">Session ${teil}</div>`;
+      links += link('html', '▶', `Praesentation_${t.slug}${sfx}.html`, `Präsentation${lbl}`, '→');
+      links += link('pdf', 'PDF', `Handout_${t.slug}${sfx}.pdf`, `Handout (PDF)${lbl}`, '↓');
+      links += link('html', '?', `Quiz_${t.slug}${sfx}.html`, `Quiz (Selbstkontrolle)${lbl}`, '→');
+      const vid = teile === 2 ? m['video' + teil] : m.video;
+      const pod = teile === 2 ? m['podcast' + teil] : m.podcast;
+      links += vid ? link('video', '🎬', encodeURIComponent(vid), `Video-Aufzeichnung${lbl}`, '▶') : chip('🎬', `Video-Aufzeichnung${lbl}`);
+      links += pod ? link('audio', '🎧', encodeURIComponent(pod), `Podcast (Audio)${lbl}`, '▶') : chip('🎧', `Podcast (Audio)${lbl}`);
+    }
+    if (teile === 2) links += `<div class="teil-label">Gemeinsames Material</div>`;
+    links += link('cards', '🎓', `Lernbereich_${t.slug}.html`, 'Lernbereich: Aufgaben mit Lösungshinweisen', '→');
+    links += link('cards', '📝', `Pruefungsaufgaben_${t.slug}.html`, 'Prüfungsaufgaben: schriftlich üben &amp; prüfen', '→');
+    links += link('cards', '📖', `Uebungsband_${t.slug}.html`, 'Übungsband interaktiv: Aufgaben mit Lösungshinweisen', '→');
+    links += link('cards', '🗂', `Karteikarten_${t.slug}.html`, 'Karteikarten (Leitner)', '→');
+    links += link('game', '🟩', `Wordle_${t.slug}.html`, 'Wordle', '→');
+    links += link('game', '🎯', `Hangman_${t.slug}.html`, 'Hängemann', '→');
+    links += link('game', '🧠', `Memory_${t.slug}.html`, 'Memory', '→');
+    links += link('pdf', 'PDF', `Aufgabenheft_${t.slug}.pdf`, 'Aufgabenheft mit Lösungen', '↓');
     return `
       <div class="tag-card">
         <div class="tag-stripe"></div>
         <div class="tag-num">Lektion ${t.num}</div>
         <h3>${t.thema}</h3>
         <div class="tag-date">${t.datum}</div>
-        <div class="tag-links">
-          <a class="tag-link html" href="${base}/Praesentation_${t.slug}.html" target="_blank" rel="noopener">
-            <span class="link-icon">▶</span>
-            <span class="tag-link-label">Präsentation (HTML)</span>
-            <span class="tag-link-arrow">→</span>
-          </a>
-          <a class="tag-link pdf" href="${base}/Handout_${t.slug}.pdf" target="_blank" rel="noopener">
-            <span class="link-icon">PDF</span>
-            <span class="tag-link-label">Handout (PDF)</span>
-            <span class="tag-link-arrow">↓</span>
-          </a>
-          <a class="tag-link html" href="${base}/Quiz_${t.slug}.html" target="_blank" rel="noopener">
-            <span class="link-icon">?</span>
-            <span class="tag-link-label">Quiz (Selbstkontrolle)</span>
-            <span class="tag-link-arrow">→</span>
-          </a>
-          <a class="tag-link cards" href="${base}/Lernbereich_${t.slug}.html" target="_blank" rel="noopener">
-            <span class="link-icon">🎓</span>
-            <span class="tag-link-label">Lernbereich: Aufgaben mit Lösungshinweisen</span>
-            <span class="tag-link-arrow">→</span>
-          </a>
-          <a class="tag-link cards" href="${base}/Pruefungsaufgaben_${t.slug}.html" target="_blank" rel="noopener">
-            <span class="link-icon">📝</span>
-            <span class="tag-link-label">Prüfungsaufgaben: schriftlich üben &amp; prüfen</span>
-            <span class="tag-link-arrow">→</span>
-          </a>
-          <a class="tag-link cards" href="${base}/Uebungsband_${t.slug}.html" target="_blank" rel="noopener">
-            <span class="link-icon">📖</span>
-            <span class="tag-link-label">Übungsband interaktiv: Aufgaben mit Lösungshinweisen</span>
-            <span class="tag-link-arrow">→</span>
-          </a>
-          <a class="tag-link cards" href="${base}/Karteikarten_${t.slug}.html" target="_blank" rel="noopener">
-            <span class="link-icon">🗂</span>
-            <span class="tag-link-label">Karteikarten (Leitner)</span>
-            <span class="tag-link-arrow">→</span>
-          </a>
-          <a class="tag-link game" href="${base}/Wordle_${t.slug}.html" target="_blank" rel="noopener">
-            <span class="link-icon">🟩</span>
-            <span class="tag-link-label">Wordle</span>
-            <span class="tag-link-arrow">→</span>
-          </a>
-          <a class="tag-link game" href="${base}/Hangman_${t.slug}.html" target="_blank" rel="noopener">
-            <span class="link-icon">🎯</span>
-            <span class="tag-link-label">Hängemann</span>
-            <span class="tag-link-arrow">→</span>
-          </a>
-          <a class="tag-link game" href="${base}/Memory_${t.slug}.html" target="_blank" rel="noopener">
-            <span class="link-icon">🧠</span>
-            <span class="tag-link-label">Memory</span>
-            <span class="tag-link-arrow">→</span>
-          </a>
-          <a class="tag-link pdf" href="${base}/Aufgabenheft_${t.slug}.pdf" target="_blank" rel="noopener">
-            <span class="link-icon">PDF</span>
-            <span class="tag-link-label">Aufgabenheft mit Lösungen</span>
-            <span class="tag-link-arrow">↓</span>
-          </a>
-          ${t.medien && t.medien.video ? `
-          <a class="tag-link video" href="${base}/${encodeURIComponent(t.medien.video)}" target="_blank" rel="noopener">
-            <span class="link-icon">🎬</span>
-            <span class="tag-link-label">Video-Aufzeichnung</span>
-            <span class="tag-link-arrow">▶</span>
-          </a>` : `
-          <div class="tag-chip-soon" title="Video folgt in Kürze">
-            <span class="link-icon">🎬</span>
-            <span class="tag-link-label">Video-Aufzeichnung</span>
-            <span class="soon-badge">folgt</span>
-          </div>`}
-          ${t.medien && t.medien.podcast ? `
-          <a class="tag-link audio" href="${base}/${encodeURIComponent(t.medien.podcast)}" target="_blank" rel="noopener">
-            <span class="link-icon">🎧</span>
-            <span class="tag-link-label">Podcast (Audio)</span>
-            <span class="tag-link-arrow">▶</span>
-          </a>` : `
-          <div class="tag-chip-soon" title="Podcast folgt in Kürze">
-            <span class="link-icon">🎧</span>
-            <span class="tag-link-label">Podcast (Audio)</span>
-            <span class="soon-badge">folgt</span>
-          </div>`}
+        <div class="tag-links">${links}
         </div>
       </div>`;
   }).join('');

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Quiz Lektion 3 — Existenzgründung & Businessplan (Teil 1)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:#0EA5A4; --bfw-primary-dark:#0F766E;
+  --bfw-accent:#F59E0B; --bfw-warn:#F97316;
+  --bfw-success:#10B981; --bfw-danger:#EF4444;
+  --bfw-ink:#0F172A; --bfw-ink-soft:#475569;
+  --bfw-bg:#FAFAFA; --bfw-bg-soft:#F8FAFC;
+  --bfw-bg-teal:#ECFEFF; --bfw-bg-amber:#FEF3C7;
+  --bfw-bg-rose:#FFE4E6; --bfw-bg-green:#D1FAE5;
+  --bfw-bg-red:#FEE2E2; --bfw-border:#E2E8F0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: linear-gradient(180deg, var(--bfw-bg-teal) 0%, var(--bfw-bg) 240px);
+  color: var(--bfw-ink);
+  min-height: 100vh;
+  padding: 2rem 1rem 6rem;
+}
+.container { max-width: 880px; margin: 0 auto; }
+
+header { text-align: center; margin-bottom: 2.5rem; }
+.tag-pill {
+  display: inline-block; padding: 0.4rem 1rem;
+  background: var(--bfw-primary); color: white;
+  border-radius: 999px; font-weight: 600;
+  font-size: 0.85rem; letter-spacing: 0.05em;
+  text-transform: uppercase; margin-bottom: 1rem;
+}
+h1 {
+  font-size: 2.4rem; color: var(--bfw-primary-dark);
+  margin-bottom: 0.5rem; letter-spacing: -0.01em;
+}
+.subtitle { color: var(--bfw-ink-soft); font-size: 1.15rem; }
+
+.controls {
+  background: white; border: 1px solid var(--bfw-border);
+  border-radius: 14px; padding: 1.2rem 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex; flex-wrap: wrap; gap: 1rem;
+  align-items: center; justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+}
+.progress {
+  flex: 1; min-width: 200px;
+  background: var(--bfw-bg-teal); height: 10px;
+  border-radius: 999px; overflow: hidden;
+}
+.progress > div {
+  height: 100%; background: var(--bfw-primary);
+  border-radius: 999px; transition: width 0.3s;
+}
+.score {
+  font-weight: 700; color: var(--bfw-primary-dark);
+  font-size: 1.05rem;
+}
+
+.btn {
+  border: none; padding: 0.55rem 1.1rem;
+  border-radius: 8px; cursor: pointer;
+  font-family: inherit; font-size: 0.95rem; font-weight: 600;
+  transition: all 0.15s;
+}
+.btn-primary { background: var(--bfw-primary); color: white; }
+.btn-primary:hover { background: var(--bfw-primary-dark); }
+.btn-ghost {
+  background: transparent; color: var(--bfw-primary-dark);
+  border: 1.5px solid var(--bfw-primary);
+}
+.btn-ghost:hover { background: var(--bfw-bg-teal); }
+
+.question {
+  background: white; border: 1px solid var(--bfw-border);
+  border-radius: 14px; padding: 1.6rem 1.8rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+}
+.question.locked { background: var(--bfw-bg-soft); }
+.q-num {
+  display: inline-block;
+  background: var(--bfw-bg-teal); color: var(--bfw-primary-dark);
+  font-weight: 700; font-size: 0.85rem;
+  padding: 0.25rem 0.7rem; border-radius: 999px;
+  margin-bottom: 0.7rem;
+}
+.q-topic {
+  display: inline-block; margin-left: 0.5rem;
+  color: var(--bfw-ink-soft); font-size: 0.85rem;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.q-text { font-size: 1.15rem; line-height: 1.55; margin-bottom: 1rem; font-weight: 500; }
+
+.options { display: flex; flex-direction: column; gap: 0.6rem; }
+.option {
+  display: flex; align-items: flex-start; gap: 0.8rem;
+  padding: 0.8rem 1rem;
+  background: var(--bfw-bg-soft);
+  border: 1.5px solid var(--bfw-border);
+  border-radius: 10px;
+  cursor: pointer; font-size: 1.02rem;
+  transition: all 0.15s;
+}
+.option:hover:not(.locked) { background: var(--bfw-bg-teal); border-color: var(--bfw-primary); }
+.option .marker {
+  flex-shrink: 0; width: 28px; height: 28px;
+  background: white; border: 1.5px solid var(--bfw-border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: var(--bfw-ink-soft);
+  font-size: 0.9rem;
+}
+.option.correct { background: var(--bfw-bg-green); border-color: var(--bfw-success); }
+.option.correct .marker { background: var(--bfw-success); color: white; border-color: var(--bfw-success); }
+.option.incorrect { background: var(--bfw-bg-red); border-color: var(--bfw-danger); }
+.option.incorrect .marker { background: var(--bfw-danger); color: white; border-color: var(--bfw-danger); }
+.option.locked { cursor: default; }
+
+.explanation {
+  margin-top: 0.9rem; padding: 0.9rem 1.1rem;
+  background: var(--bfw-bg-amber);
+  border-left: 4px solid var(--bfw-accent);
+  border-radius: 6px; font-size: 0.98rem; line-height: 1.5;
+}
+.explanation::before {
+  content: "Erklärung:"; font-weight: 700;
+  color: var(--bfw-warn); margin-right: 0.5rem;
+}
+
+.summary {
+  background: white; border-radius: 14px;
+  padding: 2rem; text-align: center;
+  border: 2px solid var(--bfw-primary);
+  box-shadow: 0 8px 24px rgba(14,165,164,0.12);
+  margin-top: 2rem;
+}
+.summary h2 { color: var(--bfw-primary-dark); margin-bottom: 0.6rem; font-size: 1.8rem; }
+.summary .big-score {
+  font-size: 3.5rem; font-weight: 800;
+  color: var(--bfw-primary); line-height: 1;
+  margin: 1rem 0;
+}
+.summary .grade { font-size: 1.2rem; color: var(--bfw-ink-soft); }
+
+footer {
+  text-align: center; color: var(--bfw-ink-soft);
+  font-size: 0.85rem; margin-top: 3rem;
+}
+
+@media print {
+  .controls, .btn { display: none; }
+  .option.locked { background: white; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+  <span class="tag-pill">Lektion 3 · 30 Fragen</span>
+  <h1>Quiz: Existenzgründung & Businessplan (Teil 1)</h1>
+  <p class="subtitle">Multiple-Choice zur Selbstkontrolle und Wiederholung — IHK-Format</p>
+  <p class="subtitle" style="font-size: 0.95rem; margin-top: 0.4rem;">Alle 30 Fragen basieren auf Handout und Präsentation der Lektion. Antwortpositionen werden bei jedem Quiz-Start zufällig gemischt.</p>
+</header>
+
+<div class="controls">
+  <div class="progress"><div id="progressBar" style="width: 0%"></div></div>
+  <div class="score">Beantwortet: <span id="answered">0</span> / <span id="total">60</span> · Richtig: <span id="correct">0</span></div>
+</div>
+
+<div class="controls" style="gap: 0.6rem;">
+  <div style="display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap;">
+    <span style="color: var(--bfw-ink-soft); font-size: 0.9rem;">Ansicht:</span>
+    <button class="btn btn-ghost mode-btn" id="modeList" onclick="setView('list')">Alle untereinander</button>
+    <button class="btn btn-ghost mode-btn" id="modeSlide" onclick="setView('slide')">Eine pro Slide</button>
+  </div>
+  <div style="display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap;">
+    <span style="color: var(--bfw-ink-soft); font-size: 0.9rem;">Auswertung:</span>
+    <button class="btn btn-ghost mode-btn" id="modeImmediate" onclick="setEval('immediate')">Sofort nach jeder Frage</button>
+    <button class="btn btn-ghost mode-btn" id="modeEnd" onclick="setEval('end')">Erst am Ende</button>
+  </div>
+  <button class="btn btn-primary" onclick="finishNow()">Quiz auswerten</button>
+  <button class="btn btn-ghost" onclick="resetQuiz()">Zurücksetzen</button>
+</div>
+
+<div id="quiz"></div>
+
+<div id="slideNav" style="display:none; text-align:center; margin: 1.5rem 0;">
+  <button class="btn btn-ghost" onclick="prevSlide()">← Zurück</button>
+  <span style="margin: 0 1rem; color: var(--bfw-ink-soft); font-weight: 600;"><span id="slidePos">1</span> / <span id="slideTotal">60</span></span>
+  <button class="btn btn-primary" onclick="nextSlide()">Weiter →</button>
+</div>
+
+<div id="summary" style="display:none;"></div>
+
+<footer>© Can Siebert · 2026 · Wirtschaftsfachwirt — BWL — Betriebswirtschaftliche Grundlagen</footer>
+
+</div>
+
+<script>
+const QUESTIONS = [{"topic":"Gründungsphasen","q":"In welcher Reihenfolge verlaufen die Phasen einer Unternehmensgründung?","options":["Orientierung → Geschäftsidee → Umsetzung → Konzeption → Festigung","Geschäftsidee → Orientierung → Konzeption → Umsetzung → Festigung","Konzeption → Geschäftsidee → Orientierung → Festigung → Umsetzung","Geschäftsidee → Konzeption → Orientierung → Umsetzung → Festigung"],"a":1,"e":"Am Anfang steht die Geschäftsidee, dann folgen Orientierung, Konzeption (Businessplan), Umsetzung (Start) und Festigung (Konsolidierung)."},{"topic":"Gründungsphasen","q":"In welcher Phase entsteht der Businessplan?","options":["Orientierungsphase","Planungs- und Konzeptionsphase","Umsetzungsphase","Festigungsphase"],"a":1,"e":"In der Konzeptionsphase wird aus der Idee ein Konzept — der Businessplan mit Marktanalyse, Marketing, Rechtsform und Finanzplanung."},{"topic":"Gründungsphasen","q":"Was kennzeichnet die Orientierungsphase einer Gründung?","options":["Der Markteintritt mit ersten Kunden","Erste Informationsbeschaffung und Selbstprüfung, z. B. mit einer Stärken-Schwächen-Analyse","Die notarielle Beurkundung des Gesellschaftsvertrags","Die Rückzahlung der Gründerkredite"],"a":1,"e":"In der Orientierungsphase prüft der Gründer sich und sein Umfeld: Passt die Gründung zur Lebenssituation? Grobe Markteinschätzung, Stärken-Schwächen-Analyse, Beratungsangebote nutzen."},{"topic":"Gründungsphasen","q":"Was geschieht in der Festigungsphase (Konsolidierung)?","options":["Die Geschäftsidee wird erstmals formuliert","Die Gewerbeanmeldung wird eingereicht","Das junge Unternehmen etabliert sich am Markt — Kundenstamm ausbauen, Liquidität sichern, Soll-Ist-Kontrolle","Der Businessplan wird geschrieben"],"a":2,"e":"In der Festigungsphase etabliert sich das Unternehmen: Kundenstamm ausbauen, Liquidität sichern, Prozesse professionalisieren und die Entwicklung per Soll-Ist-Vergleich am Businessplan messen."},{"topic":"Gründungsphasen","q":"Warum sank die Zahl der Existenzgründungen in Deutschland um 2015?","options":["Wegen zu hoher Gründungszuschüsse","Wegen guter Arbeitsmarktlage, Fachkräftemangel und demografischer Entwicklung","Weil die GmbH abgeschafft wurde","Weil Banken keine Kredite mehr vergeben durften"],"a":1,"e":"Bei guter Arbeitsmarktlage wird die feste Anstellung oft der Selbstständigkeit vorgezogen; Demografie und Fachkräftemangel verstärken den Effekt."},{"topic":"Gründungsphasen","q":"Womit wird der Hochpunkt der Existenzgründungen im Jahr 2004 erklärt?","options":["Mit der Einführung des Euro-Bargelds","Mit den arbeitsmarktpolitischen Anreizen der „Hartz-Gesetze“ — Gründungen aus der Arbeitslosigkeit","Mit der Abschaffung der Gewerbesteuer","Mit einem besonders niedrigen Leitzins"],"a":1,"e":"Der Hochpunkt 2004 wird u. a. mit den arbeitsmarktpolitischen Anreizen der „Hartz-Gesetze“ erklärt: Viele gründeten aus der Arbeitslosigkeit heraus."},{"topic":"Voraussetzungen","q":"Welche der folgenden Voraussetzungen zählt zu den persönlichen Voraussetzungen eines Gründers?","options":["Branchenkenntnis","Mut zum Risiko und Umgang mit Rückschlägen","Kenntnisse in Buchführung","Umgang mit branchenspezifischer EDV"],"a":1,"e":"Persönliche Voraussetzungen: Zielstrebigkeit, Risikobereitschaft, Belastbarkeit, Rückhalt der Familie, Disziplin im Umgang mit Geld."},{"topic":"Voraussetzungen","q":"Kalkulations-, Buchführungs- und Rechtskenntnisse gehören zu welcher Kompetenzgruppe?","options":["Persönliche Voraussetzungen","Fachliche Kompetenz","Unternehmerische (kaufmännische) Kompetenz","Soziale Kompetenz"],"a":2,"e":"Kaufmännisches Wissen (Kalkulation, Buchführung, Steuern, Recht, Vertrieb) zählt zur unternehmerischen Kompetenz."},{"topic":"Voraussetzungen","q":"Branchenkenntnis und eine zum Vorhaben passende Ausbildung gehören zu welcher Voraussetzungsgruppe?","options":["Fachliche Kompetenz","Persönliche Voraussetzungen","Finanzielle Basis","Unternehmerische Kompetenz"],"a":0,"e":"Zur fachlichen Kompetenz zählen passende Ausbildung und Berufserfahrung, Branchenkenntnis, das Ausgleichen fachlicher Defizite und der Umgang mit branchenspezifischer EDV."},{"topic":"Voraussetzungen","q":"Welche Faustregel gilt für die Eigenkapitalquote bei einer Gründung?","options":["Eigenkapital ist überflüssig, wenn Fördermittel fließen","Mindestens 15–20 % des Kapitalbedarfs sollten Eigenkapital sein","Das Eigenkapital muss 100 % des Kapitalbedarfs decken","Höchstens 5 % Eigenkapital sind sinnvoll"],"a":1,"e":"Als Faustregel sollten mindestens 15–20 % des Kapitalbedarfs aus Eigenmitteln stammen — Finanzierungsmängel sind eine Hauptursache des Scheiterns."},{"topic":"Voraussetzungen","q":"Was ist die häufigste Ursache des Scheiterns junger Unternehmen?","options":["Zu viele Mitarbeiter in der Startphase","Finanzierungsmängel und unzureichende Planung","Zu niedrige Preise der Konkurrenz","Fehlende Werbegeschenke"],"a":1,"e":"Junge Unternehmen scheitern am häufigsten an Finanzierungsmängeln und unzureichender Planung — deshalb sind Kapitalbedarfsrechnung und Businessplan so wichtig."},{"topic":"Geschäftsidee","q":"Welche drei Merkmale kennzeichnen eine tragfähige Geschäftsidee?","options":["Niedrige Steuern, viele Mitarbeiter, großes Büro","Kundennutzen, Abgrenzung vom Wettbewerb (USP), ausreichend großer erreichbarer Markt","Patente, Fördermittel, Importlizenzen","Hoher Preis, geringe Kosten, schnelle Expansion"],"a":1,"e":"Eine tragfähige Geschäftsidee stiftet Kundennutzen, grenzt sich per Alleinstellungsmerkmal (USP) vom Wettbewerb ab und trifft auf einen ausreichend großen, erreichbaren Markt."},{"topic":"Geschäftsidee","q":"Wofür steht die Abkürzung USP im Zusammenhang mit der Geschäftsidee?","options":["Universal Sales Program — das Vertriebshandbuch","Unique Selling Proposition — das Alleinstellungsmerkmal gegenüber dem Wettbewerb","Unternehmens-Sicherungs-Plan — die Risikovorsorge","United Service Partners — das Gründungsnetzwerk"],"a":1,"e":"USP (Unique Selling Proposition) bezeichnet das Alleinstellungsmerkmal: das Besondere, mit dem sich das Angebot vom Wettbewerb abgrenzt."},{"topic":"Businessplan","q":"Was ist ein Businessplan?","options":["Eine mündliche Präsentation der Geschäftsidee","Die schriftliche Ausarbeitung zur Darlegung der Geschäftsidee, ihrer Realisierung und der Ergebnisse","Ein Vertrag mit der Hausbank","Die Gewerbeanmeldung beim Ordnungsamt"],"a":1,"e":"Der Businessplan ist die schriftliche Darlegung der Geschäftsidee, ihrer Umsetzung und der erwarteten Ergebnisse."},{"topic":"Businessplan","q":"An wen richtet sich der Businessplan in erster Linie?","options":["An die Finanzverwaltung","An die Geldgeber und zukünftigen Geschäftspartner","An die Konkurrenz","An die Agentur für Arbeit"],"a":1,"e":"Hauptadressaten sind Geldgeber (Banken, Förderinstitute) und künftige Geschäftspartner; zugleich dient er dem Gründer als Planungs- und Führungsinstrument."},{"topic":"Businessplan","q":"Welche Funktion erfüllt der Businessplan nach innen?","options":["Er ersetzt den Handelsregistereintrag","Er ist Werbematerial für Kunden","Er zwingt zum planmäßigen Durchdenken der Idee und dient als Führungsgrundlage","Er legt die Steuerlast fest"],"a":2,"e":"Nach innen wirkt er als Planungsinstrument (Idee planmäßig durchdenken) und als Führungsgrundlage für Mitarbeiter und Gremien."},{"topic":"Businessplan","q":"Welcher Bestandteil steht am Anfang des Businessplans und fasst alles kurz zusammen?","options":["Liquiditätsplan","Executive Summary","Marktanalyse","Organigramm"],"a":1,"e":"Die Executive Summary ist die Kurzzusammenfassung auf 1–2 Seiten — sie wird zuerst gelesen und entscheidet oft über das Weiterlesen."},{"topic":"Businessplan","q":"In welchem Bestandteil des Businessplans wird die gewählte Rechtsform dargestellt und begründet?","options":["Executive Summary","Chancen und Risiken","Marketing und Vertrieb","Organisation und Rechtsform"],"a":3,"e":"Der Abschnitt Organisation und Rechtsform enthält Aufbauorganisation, Personalplanung und die begründete Rechtsformwahl."},{"topic":"Businessplan","q":"In welchem Bestandteil des Businessplans werden Best-Case- und Worst-Case-Szenarien mit Gegenmaßnahmen dargestellt?","options":["Chancen und Risiken","Executive Summary","Organisation und Rechtsform","Geschäftsmodell"],"a":0,"e":"Der Abschnitt Chancen und Risiken enthält realistische Szenarien (Best/Worst Case) und die geplanten Gegenmaßnahmen."},{"topic":"Businessplan","q":"Welche vier Instrumente des Marketing-Mix gehören in den Businessplan-Baustein „Marketing und Vertrieb“?","options":["Bilanz-, Kosten-, Erlös- und Steuerpolitik","Produkt-, Preis-, Distributions- und Kommunikationspolitik","Einkaufs-, Lager-, Fertigungs- und Versandpolitik","Personal-, Standort-, Rechts- und Finanzpolitik"],"a":1,"e":"Der Marketing-Mix umfasst Produkt-, Preis- (Kontrahierungs-), Distributions- und Kommunikationspolitik — die „4 P“."},{"topic":"Businessplan","q":"Was gehört in den Businessplan-Baustein „Markt und Wettbewerb“?","options":["Nur die Preisliste des eigenen Angebots","Markt- und Branchenanalyse, Zielgruppen, Wettbewerbsanalyse und Standortanalyse","Die Satzung der künftigen Gesellschaft","Der Tilgungsplan für den Gründerkredit"],"a":1,"e":"Zum Baustein Markt und Wettbewerb zählen Markt- und Branchenanalyse (Marktgröße, Wachstum, Zielgruppen), die Wettbewerbsanalyse und die Standortanalyse."},{"topic":"Finanzplanung","q":"Welche vier Aspekte gehören zur Finanzplanung im Businessplan?","options":["Kapitalbedarf, Investitionsplan, Liquiditätsplan, Umsatzschätzung/Ertragsvorschau","Werbeplan, Preisliste, Sortiment, Standort","Executive Summary, USP, Zielgruppe, Vision","Gewerbeanmeldung, Notartermin, Registerauszug, Satzung"],"a":0,"e":"Zur Finanzplanung zählen die Kalkulation des Kapitalbedarfs, der Investitionsplan, der Liquiditätsplan sowie Umsatzschätzung und Ertragsvorschau."},{"topic":"Finanzplanung","q":"Welche Frage beantwortet der Liquiditätsplan?","options":["Wie hoch der Gewinn nach fünf Jahren ist","Ob das Geld in jedem Monat ausreicht, um alle fälligen Zahlungen zu leisten","Welche Rechtsform am wenigsten Steuern kostet","Wie viele Mitarbeiter eingestellt werden"],"a":1,"e":"Der Liquiditätsplan stellt Einzahlungen und Auszahlungen Monat für Monat gegenüber — er zeigt, ob das Unternehmen jederzeit zahlungsfähig bleibt."},{"topic":"Förderung","q":"Wie funktioniert die Gründungsförderung über die KfW?","options":["Die KfW zahlt nicht rückzahlbare Zuschüsse direkt aus","Zinsgünstige Förderkredite werden über die Hausbank beantragt (Hausbankprinzip)","Die KfW beteiligt sich immer als Gesellschafterin","Die KfW erlässt die Gewerbesteuer"],"a":1,"e":"KfW-Gründerkredite (z. B. ERP-Gründerkredit StartGeld) werden über die Hausbank beantragt; die KfW übernimmt einen Großteil des Risikos."},{"topic":"Förderung","q":"Wer zahlt den Gründungszuschuss und an wen?","options":["Die IHK an alle Mitglieder","Die Agentur für Arbeit an Gründer aus dem ALG-I-Bezug","Das Finanzamt an alle Neugründer","Die KfW an Studierende"],"a":1,"e":"Der Gründungszuschuss ist eine Ermessensleistung der Agentur für Arbeit für Gründungen aus dem Arbeitslosengeld-I-Bezug; nötig ist u. a. eine Tragfähigkeitsbescheinigung."},{"topic":"Förderung","q":"Welche Voraussetzung gilt u. a. für den Gründungszuschuss der Agentur für Arbeit?","options":["Ein Restanspruch von mindestens 150 Tagen Arbeitslosengeld I","Ein abgeschlossenes Studium","Eine GmbH als Rechtsform","Ein Eigenkapital von mindestens 50.000 €"],"a":0,"e":"Nötig sind u. a. ein Restanspruch von mindestens 150 Tagen ALG I, eine hauptberufliche Gründung und eine Tragfähigkeitsbescheinigung (z. B. der IHK)."},{"topic":"Förderung","q":"Bis zu welcher Summe finanziert der ERP-Gründerkredit „StartGeld“ der KfW Gründungsvorhaben?","options":["12.500 €","50.000 €","125.000 €","1.000.000 €"],"a":2,"e":"Das StartGeld fördert Gründungen bis 125.000 € — beantragt über die Hausbank (Hausbankprinzip); die KfW übernimmt einen Großteil des Kreditrisikos."},{"topic":"Kapitalbedarf","q":"Welche Positionen gehören in die Kapitalbedarfsrechnung einer Gründung?","options":["Nur die Investitionen ins Anlagevermögen","Nur die erwarteten Umsätze des ersten Jahres","Investitionen, Gründungs- und Anlaufkosten sowie die private Lebenshaltung der Startphase","Nur das gesetzliche Mindestkapital der Rechtsform"],"a":2,"e":"Kapitalbedarf = Investitionen + Gründungskosten + Anlaufkosten (Betriebsmittel) + private Lebenshaltung in der Startphase — künftige Umsätze decken den Bedarf erst später."},{"topic":"Kapitalbedarf","q":"Eine Gründerin kalkuliert: Investitionen 60.000 €, Warenerstausstattung 20.000 €, Gründungskosten 3.000 €, Anlaufkosten 15.000 €, private Lebenshaltung 12.000 €. Sie bringt 22.000 € Eigenkapital mit. Wie hoch ist ihr Fremdkapitalbedarf?","options":["110.000 €","88.000 €","98.000 €","72.000 €"],"a":1,"e":"Kapitalbedarf: 60.000 + 20.000 + 3.000 + 15.000 + 12.000 = 110.000 €; abzüglich 22.000 € Eigenkapital bleiben 88.000 € Fremdkapitalbedarf (Eigenkapitalquote genau 20 %)."},{"topic":"Kapitalbedarf","q":"Ein Gründer plant: Investitionen 40.000 €, Warenerstausstattung 10.000 €, Gründungskosten 2.000 €, Anlaufkosten 8.000 €, private Lebenshaltung 12.000 €. Er verfügt über 18.000 € Eigenkapital. Wie hoch sind Kapitalbedarf und Fremdkapitalbedarf?","options":["Kapitalbedarf 60.000 €, Fremdkapitalbedarf 42.000 €","Kapitalbedarf 72.000 €, Fremdkapitalbedarf 54.000 €","Kapitalbedarf 72.000 €, Fremdkapitalbedarf 72.000 €","Kapitalbedarf 54.000 €, Fremdkapitalbedarf 36.000 €"],"a":1,"e":"Kapitalbedarf: 40.000 + 10.000 + 2.000 + 8.000 + 12.000 = 72.000 €; abzüglich 18.000 € Eigenkapital bleiben 54.000 € Fremdkapitalbedarf. Die Eigenkapitalquote beträgt 18.000 ÷ 72.000 = 25 % — Faustregel erfüllt."}];
+
+let answers = new Array(QUESTIONS.length).fill(null);
+let viewMode = 'list';      // 'list' oder 'slide'
+let evalMode = 'immediate'; // 'immediate' oder 'end'
+let currentSlide = 0;
+
+// Pro Frage: shuffled[displayIdx] = origIdx (so bleibt qd.a der originale Lösungs-Index)
+function shuffleAnswers() {
+  QUESTIONS.forEach(qd => {
+    const n = qd.options.length;
+    qd.shuffled = Array.from({length: n}, (_, k) => k);
+    for (let i = n - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [qd.shuffled[i], qd.shuffled[j]] = [qd.shuffled[j], qd.shuffled[i]];
+    }
+  });
+}
+shuffleAnswers();
+function origIndex(qi, displayIdx) { return QUESTIONS[qi].shuffled[displayIdx]; }
+function displayCorrectIdx(qi) { return QUESTIONS[qi].shuffled.indexOf(QUESTIONS[qi].a); }
+function isCorrect(qi) {
+  if (answers[qi] === null) return false;
+  return origIndex(qi, answers[qi]) === QUESTIONS[qi].a;
+}
+
+// IHK-Notenschlüssel (offiziell, AbschlussPrüfungen kaufmännischer Berufe)
+function ihkNote(pct) {
+  if (pct >= 92) return { num: 1, name: 'sehr gut',     color: '#10B981', bestanden: true };
+  if (pct >= 81) return { num: 2, name: 'gut',          color: '#0EA5A4', bestanden: true };
+  if (pct >= 67) return { num: 3, name: 'befriedigend', color: '#0EA5A4', bestanden: true };
+  if (pct >= 50) return { num: 4, name: 'ausreichend',  color: '#F59E0B', bestanden: true };
+  if (pct >= 30) return { num: 5, name: 'mangelhaft',   color: '#F97316', bestanden: false };
+  return                         { num: 6, name: 'ungenügend',   color: '#EF4444', bestanden: false };
+}
+
+function setView(mode) {
+  viewMode = mode;
+  document.getElementById('modeList').classList.toggle('btn-primary', mode === 'list');
+  document.getElementById('modeList').classList.toggle('btn-ghost',   mode !== 'list');
+  document.getElementById('modeSlide').classList.toggle('btn-primary', mode === 'slide');
+  document.getElementById('modeSlide').classList.toggle('btn-ghost',   mode !== 'slide');
+  document.getElementById('slideNav').style.display = (mode === 'slide') ? 'block' : 'none';
+  applyView();
+}
+
+function setEval(mode) {
+  evalMode = mode;
+  document.getElementById('modeImmediate').classList.toggle('btn-primary', mode === 'immediate');
+  document.getElementById('modeImmediate').classList.toggle('btn-ghost',   mode !== 'immediate');
+  document.getElementById('modeEnd').classList.toggle('btn-primary', mode === 'end');
+  document.getElementById('modeEnd').classList.toggle('btn-ghost',   mode !== 'end');
+}
+
+function applyView() {
+  const allQ = document.querySelectorAll('.question');
+  if (viewMode === 'list') {
+    allQ.forEach(q => q.style.display = '');
+  } else {
+    allQ.forEach((q, i) => q.style.display = (i === currentSlide ? '' : 'none'));
+    document.getElementById('slidePos').textContent = currentSlide + 1;
+    document.getElementById('slideTotal').textContent = QUESTIONS.length;
+  }
+}
+
+function nextSlide() {
+  if (currentSlide < QUESTIONS.length - 1) { currentSlide++; applyView(); window.scrollTo(0, 0); }
+}
+function prevSlide() {
+  if (currentSlide > 0) { currentSlide--; applyView(); window.scrollTo(0, 0); }
+}
+
+function renderQuiz() {
+  const root = document.getElementById('quiz');
+  root.innerHTML = '';
+  document.getElementById('total').textContent = QUESTIONS.length;
+  QUESTIONS.forEach((qd, i) => {
+    const q = document.createElement('div');
+    q.className = 'question';
+    q.id = `q-${i}`;
+    let html = `
+      <span class="q-num">Frage ${i + 1}</span>
+      <span class="q-topic">${qd.topic}</span>
+      <p class="q-text">${qd.q}</p>
+      <div class="options">
+    `;
+    qd.shuffled.forEach((origIdx, j) => {
+      const letter = String.fromCharCode(65 + j);
+      const opt = qd.options[origIdx];
+      html += `<div class="option" data-q="${i}" data-opt="${j}" onclick="answer(${i}, ${j})">
+        <div class="marker">${letter}</div>
+        <div>${opt}</div>
+      </div>`;
+    });
+    html += '</div>';
+    q.innerHTML = html;
+    root.appendChild(q);
+  });
+  applyView();
+  updateScore();
+}
+
+function answer(qi, oi) {
+  if (answers[qi] !== null) return;
+  answers[qi] = oi;
+  const q = document.getElementById(`q-${qi}`);
+  const opts = q.querySelectorAll('.option');
+  opts.forEach(o => o.classList.add('locked'));
+
+  if (evalMode === 'immediate') {
+    // Sofort markieren und Erklärung zeigen — vergleicht im Display-Index-Raum
+    const correctDisplayIdx = displayCorrectIdx(qi);
+    const userIsCorrect = (oi === correctDisplayIdx);
+    opts[oi].classList.add(userIsCorrect ? 'correct' : 'incorrect');
+    if (!userIsCorrect) opts[correctDisplayIdx].classList.add('correct');
+    const exp = document.createElement('div');
+    exp.className = 'explanation';
+    exp.textContent = QUESTIONS[qi].e;
+    q.appendChild(exp);
+    q.classList.add('locked');
+  } else {
+    // Nur „angekreuzt”-Status, keine Bewertung anzeigen
+    opts[oi].style.borderColor = 'var(--bfw-primary)';
+    opts[oi].style.background = 'var(--bfw-bg-teal)';
+    opts[oi].querySelector('.marker').style.background = 'var(--bfw-primary)';
+    opts[oi].querySelector('.marker').style.color = 'white';
+    opts[oi].querySelector('.marker').style.borderColor = 'var(--bfw-primary)';
+  }
+  updateScore();
+}
+
+function updateScore() {
+  const answered = answers.filter(a => a !== null).length;
+  document.getElementById('answered').textContent = answered;
+  document.getElementById('progressBar').style.width = `${(answered / QUESTIONS.length) * 100}%`;
+  if (evalMode === 'immediate') {
+    const correct = answers.filter((a, i) => isCorrect(i)).length;
+    document.getElementById('correct').textContent = correct;
+  } else {
+    document.getElementById('correct').textContent = '—';
+  }
+  if (answered === QUESTIONS.length && evalMode === 'immediate') showSummary();
+}
+
+function finishNow() {
+  // Im End-Modus: alle bislang nicht beantworteten Fragen werden als „nicht beantwortet” gewertet
+  // und alle Lösungen+Erklärungen werden offengelegt.
+  for (let i = 0; i < QUESTIONS.length; i++) {
+    const q = document.getElementById(`q-${i}`);
+    if (!q) continue;
+    const opts = q.querySelectorAll('.option');
+    opts.forEach(o => o.classList.add('locked'));
+    const correctDisplayIdx = displayCorrectIdx(i);
+    if (answers[i] !== null) {
+      const wasRight = (answers[i] === correctDisplayIdx);
+      opts[answers[i]].classList.add(wasRight ? 'correct' : 'incorrect');
+      if (!wasRight) opts[correctDisplayIdx].classList.add('correct');
+    } else {
+      opts[correctDisplayIdx].classList.add('correct');
+    }
+    if (!q.querySelector('.explanation')) {
+      const exp = document.createElement('div');
+      exp.className = 'explanation';
+      exp.textContent = QUESTIONS[i].e;
+      q.appendChild(exp);
+    }
+    q.classList.add('locked');
+  }
+  // Im Slide-Modus: zur Übersicht wechseln
+  setView('list');
+  showSummary();
+}
+
+function showSummary() {
+  const total = QUESTIONS.length;
+  const correct = answers.filter((a, i) => isCorrect(i)).length;
+  const answered = answers.filter(a => a !== null).length;
+  const pct = Math.round((correct / total) * 100);
+  const note = ihkNote(pct);
+
+  // IHK-Skala-Tabelle
+  const skala = [
+    { stufe: 1, label: 'sehr gut',     range: '92 – 100 %', col: '#10B981' },
+    { stufe: 2, label: 'gut',          range: '81 – 91 %',  col: '#0EA5A4' },
+    { stufe: 3, label: 'befriedigend', range: '67 – 80 %',  col: '#0EA5A4' },
+    { stufe: 4, label: 'ausreichend',  range: '50 – 66 %',  col: '#F59E0B' },
+    { stufe: 5, label: 'mangelhaft',   range: '30 – 49 %',  col: '#F97316' },
+    { stufe: 6, label: 'ungenügend',   range: '0 – 29 %',   col: '#EF4444' }
+  ];
+
+  const skalaRows = skala.map(s => `
+    <tr style="${s.stufe === note.num ? 'background: var(--bfw-bg-teal); font-weight: 700;' : ''}">
+      <td style="color: ${s.col}; font-weight: 700;">${s.stufe}</td>
+      <td>${s.label}</td>
+      <td>${s.range}</td>
+    </tr>`).join('');
+
+  const s = document.getElementById('summary');
+  s.style.display = 'block';
+  s.innerHTML = `
+    <div class="summary">
+      <h2>Quiz ausgewertet</h2>
+      <div class="big-score" style="color: ${note.color};">${note.num}</div>
+      <div class="grade"><strong>${note.name}</strong> · ${correct} von ${total} richtig (${pct} %)</div>
+      <div style="margin-top: 0.5rem; color: ${note.bestanden ? 'var(--bfw-success)' : 'var(--bfw-danger)'}; font-weight: 600;">
+        ${note.bestanden ? '✓ bestanden' : '✗ nicht bestanden'}
+      </div>
+      ${answered < total ? `<div style="margin-top: 0.6rem; color: var(--bfw-warn); font-size: 0.95rem;">${total - answered} Fragen unbeantwortet — als falsch gewertet.</div>` : ''}
+
+      <div style="margin: 1.6rem auto 0; max-width: 360px;">
+        <table style="font-size: 0.9rem;">
+          <thead><tr><th>Note</th><th>Beurteilung</th><th>Punktebereich</th></tr></thead>
+          <tbody>${skalaRows}</tbody>
+        </table>
+        <p style="font-size: 0.78rem; color: var(--bfw-ink-soft); margin-top: 0.4rem;">
+          IHK-Notenschlüssel (kaufmännische Abschlussprüfungen)
+        </p>
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <button class="btn btn-primary" onclick="resetQuiz()">Neu starten</button>
+        <button class="btn btn-ghost" onclick="window.print()" style="margin-left: 0.5rem;">Drucken / als PDF speichern</button>
+      </div>
+    </div>
+  `;
+  s.scrollIntoView({ behavior: 'smooth' });
+}
+
+function resetQuiz() {
+  answers = new Array(QUESTIONS.length).fill(null);
+  currentSlide = 0;
+  shuffleAnswers();
+  document.getElementById('summary').style.display = 'none';
+  document.getElementById('summary').innerHTML = '';
+  renderQuiz();
+  window.scrollTo(0, 0);
+}
+
+// Initial: Buttons-Default-Status setzen
+setView('list');
+setEval('immediate');
+renderQuiz();
+</script>
+
+</body>
+</html>

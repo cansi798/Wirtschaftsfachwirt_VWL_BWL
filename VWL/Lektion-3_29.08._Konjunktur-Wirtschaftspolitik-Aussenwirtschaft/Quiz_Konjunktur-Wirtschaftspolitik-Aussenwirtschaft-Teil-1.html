@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Quiz Lektion 3 — Konjunktur, Geld- & Finanzpolitik (Teil 1)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:#0EA5A4; --bfw-primary-dark:#0F766E;
+  --bfw-accent:#F59E0B; --bfw-warn:#F97316;
+  --bfw-success:#10B981; --bfw-danger:#EF4444;
+  --bfw-ink:#0F172A; --bfw-ink-soft:#475569;
+  --bfw-bg:#FAFAFA; --bfw-bg-soft:#F8FAFC;
+  --bfw-bg-teal:#ECFEFF; --bfw-bg-amber:#FEF3C7;
+  --bfw-bg-rose:#FFE4E6; --bfw-bg-green:#D1FAE5;
+  --bfw-bg-red:#FEE2E2; --bfw-border:#E2E8F0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: linear-gradient(180deg, var(--bfw-bg-teal) 0%, var(--bfw-bg) 240px);
+  color: var(--bfw-ink);
+  min-height: 100vh;
+  padding: 2rem 1rem 6rem;
+}
+.container { max-width: 880px; margin: 0 auto; }
+
+header { text-align: center; margin-bottom: 2.5rem; }
+.tag-pill {
+  display: inline-block; padding: 0.4rem 1rem;
+  background: var(--bfw-primary); color: white;
+  border-radius: 999px; font-weight: 600;
+  font-size: 0.85rem; letter-spacing: 0.05em;
+  text-transform: uppercase; margin-bottom: 1rem;
+}
+h1 {
+  font-size: 2.4rem; color: var(--bfw-primary-dark);
+  margin-bottom: 0.5rem; letter-spacing: -0.01em;
+}
+.subtitle { color: var(--bfw-ink-soft); font-size: 1.15rem; }
+
+.controls {
+  background: white; border: 1px solid var(--bfw-border);
+  border-radius: 14px; padding: 1.2rem 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex; flex-wrap: wrap; gap: 1rem;
+  align-items: center; justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+}
+.progress {
+  flex: 1; min-width: 200px;
+  background: var(--bfw-bg-teal); height: 10px;
+  border-radius: 999px; overflow: hidden;
+}
+.progress > div {
+  height: 100%; background: var(--bfw-primary);
+  border-radius: 999px; transition: width 0.3s;
+}
+.score {
+  font-weight: 700; color: var(--bfw-primary-dark);
+  font-size: 1.05rem;
+}
+
+.btn {
+  border: none; padding: 0.55rem 1.1rem;
+  border-radius: 8px; cursor: pointer;
+  font-family: inherit; font-size: 0.95rem; font-weight: 600;
+  transition: all 0.15s;
+}
+.btn-primary { background: var(--bfw-primary); color: white; }
+.btn-primary:hover { background: var(--bfw-primary-dark); }
+.btn-ghost {
+  background: transparent; color: var(--bfw-primary-dark);
+  border: 1.5px solid var(--bfw-primary);
+}
+.btn-ghost:hover { background: var(--bfw-bg-teal); }
+
+.question {
+  background: white; border: 1px solid var(--bfw-border);
+  border-radius: 14px; padding: 1.6rem 1.8rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+}
+.question.locked { background: var(--bfw-bg-soft); }
+.q-num {
+  display: inline-block;
+  background: var(--bfw-bg-teal); color: var(--bfw-primary-dark);
+  font-weight: 700; font-size: 0.85rem;
+  padding: 0.25rem 0.7rem; border-radius: 999px;
+  margin-bottom: 0.7rem;
+}
+.q-topic {
+  display: inline-block; margin-left: 0.5rem;
+  color: var(--bfw-ink-soft); font-size: 0.85rem;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.q-text { font-size: 1.15rem; line-height: 1.55; margin-bottom: 1rem; font-weight: 500; }
+
+.options { display: flex; flex-direction: column; gap: 0.6rem; }
+.option {
+  display: flex; align-items: flex-start; gap: 0.8rem;
+  padding: 0.8rem 1rem;
+  background: var(--bfw-bg-soft);
+  border: 1.5px solid var(--bfw-border);
+  border-radius: 10px;
+  cursor: pointer; font-size: 1.02rem;
+  transition: all 0.15s;
+}
+.option:hover:not(.locked) { background: var(--bfw-bg-teal); border-color: var(--bfw-primary); }
+.option .marker {
+  flex-shrink: 0; width: 28px; height: 28px;
+  background: white; border: 1.5px solid var(--bfw-border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: var(--bfw-ink-soft);
+  font-size: 0.9rem;
+}
+.option.correct { background: var(--bfw-bg-green); border-color: var(--bfw-success); }
+.option.correct .marker { background: var(--bfw-success); color: white; border-color: var(--bfw-success); }
+.option.incorrect { background: var(--bfw-bg-red); border-color: var(--bfw-danger); }
+.option.incorrect .marker { background: var(--bfw-danger); color: white; border-color: var(--bfw-danger); }
+.option.locked { cursor: default; }
+
+.explanation {
+  margin-top: 0.9rem; padding: 0.9rem 1.1rem;
+  background: var(--bfw-bg-amber);
+  border-left: 4px solid var(--bfw-accent);
+  border-radius: 6px; font-size: 0.98rem; line-height: 1.5;
+}
+.explanation::before {
+  content: "Erklärung:"; font-weight: 700;
+  color: var(--bfw-warn); margin-right: 0.5rem;
+}
+
+.summary {
+  background: white; border-radius: 14px;
+  padding: 2rem; text-align: center;
+  border: 2px solid var(--bfw-primary);
+  box-shadow: 0 8px 24px rgba(14,165,164,0.12);
+  margin-top: 2rem;
+}
+.summary h2 { color: var(--bfw-primary-dark); margin-bottom: 0.6rem; font-size: 1.8rem; }
+.summary .big-score {
+  font-size: 3.5rem; font-weight: 800;
+  color: var(--bfw-primary); line-height: 1;
+  margin: 1rem 0;
+}
+.summary .grade { font-size: 1.2rem; color: var(--bfw-ink-soft); }
+
+footer {
+  text-align: center; color: var(--bfw-ink-soft);
+  font-size: 0.85rem; margin-top: 3rem;
+}
+
+@media print {
+  .controls, .btn { display: none; }
+  .option.locked { background: white; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+  <span class="tag-pill">Lektion 3 · 30 Fragen</span>
+  <h1>Quiz: Konjunktur, Geld- & Finanzpolitik (Teil 1)</h1>
+  <p class="subtitle">Multiple-Choice zur Selbstkontrolle und Wiederholung — IHK-Format</p>
+  <p class="subtitle" style="font-size: 0.95rem; margin-top: 0.4rem;">Alle 30 Fragen basieren auf Handout und Präsentation der Lektion. Antwortpositionen werden bei jedem Quiz-Start zufällig gemischt.</p>
+</header>
+
+<div class="controls">
+  <div class="progress"><div id="progressBar" style="width: 0%"></div></div>
+  <div class="score">Beantwortet: <span id="answered">0</span> / <span id="total">60</span> · Richtig: <span id="correct">0</span></div>
+</div>
+
+<div class="controls" style="gap: 0.6rem;">
+  <div style="display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap;">
+    <span style="color: var(--bfw-ink-soft); font-size: 0.9rem;">Ansicht:</span>
+    <button class="btn btn-ghost mode-btn" id="modeList" onclick="setView('list')">Alle untereinander</button>
+    <button class="btn btn-ghost mode-btn" id="modeSlide" onclick="setView('slide')">Eine pro Slide</button>
+  </div>
+  <div style="display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap;">
+    <span style="color: var(--bfw-ink-soft); font-size: 0.9rem;">Auswertung:</span>
+    <button class="btn btn-ghost mode-btn" id="modeImmediate" onclick="setEval('immediate')">Sofort nach jeder Frage</button>
+    <button class="btn btn-ghost mode-btn" id="modeEnd" onclick="setEval('end')">Erst am Ende</button>
+  </div>
+  <button class="btn btn-primary" onclick="finishNow()">Quiz auswerten</button>
+  <button class="btn btn-ghost" onclick="resetQuiz()">Zurücksetzen</button>
+</div>
+
+<div id="quiz"></div>
+
+<div id="slideNav" style="display:none; text-align:center; margin: 1.5rem 0;">
+  <button class="btn btn-ghost" onclick="prevSlide()">← Zurück</button>
+  <span style="margin: 0 1rem; color: var(--bfw-ink-soft); font-weight: 600;"><span id="slidePos">1</span> / <span id="slideTotal">60</span></span>
+  <button class="btn btn-primary" onclick="nextSlide()">Weiter →</button>
+</div>
+
+<div id="summary" style="display:none;"></div>
+
+<footer>© Can Siebert · 2026 · Wirtschaftsfachwirt — VWL — Volkswirtschaftliche Grundlagen</footer>
+
+</div>
+
+<script>
+const QUESTIONS = [{"topic":"Konjunktur","q":"In welcher Reihenfolge durchläuft die Wirtschaft die vier Konjunkturphasen?","options":["Boom → Aufschwung → Rezession → Depression","Aufschwung → Boom → Rezession → Depression","Depression → Rezession → Boom → Aufschwung","Aufschwung → Rezession → Boom → Depression"],"a":1,"e":"Aufschwung (Expansion) → Hochkonjunktur (Boom) → Abschwung (Rezession) → Tiefphase (Depression) — dann beginnt der Zyklus von vorn."},{"topic":"Konjunktur","q":"Die Bauwirtschaft produziert im Winter regelmäßig weniger. Um welche Art von Schwankung handelt es sich?","options":["Konjunkturschwankung","Saisonschwankung","Strukturkrise","Zufallsschwankung"],"a":1,"e":"Saisonschwankungen sind regelmäßige, jahreszeitlich bedingte Schwankungen — im Gegensatz zu den mehrjährigen Konjunkturschwankungen."},{"topic":"Konjunktur","q":"Welcher Indikator ist ein typischer Frühindikator der Konjunktur?","options":["Arbeitslosenquote","Auftragseingänge","Inflationsrate","Insolvenzen"],"a":1,"e":"Auftragseingänge, Geschäftsklimaindex (ifo) und Baugenehmigungen laufen der Entwicklung voraus; Arbeitslosenquote und Preise sind Spätindikatoren."},{"topic":"Konjunktur","q":"Das reale BIP und die Kapazitätsauslastung zählen zu den …","options":["Frühindikatoren","Präsenzindikatoren","Spätindikatoren","Strukturindikatoren"],"a":1,"e":"Präsenzindikatoren beschreiben die aktuelle Konjunkturlage — z. B. reales BIP, Industrieproduktion, Kapazitätsauslastung, Kurzarbeit."},{"topic":"Konjunktur","q":"Ein Land verzeichnet volle Kapazitätsauslastung, Vollbeschäftigung sowie steigende Preise und Zinsen. In welcher Konjunkturphase befindet es sich?","options":["Aufschwung (Expansion)","Hochkonjunktur (Boom)","Abschwung (Rezession)","Tiefphase (Depression)"],"a":1,"e":"Der Boom ist durch Überauslastung, hohe Gewinne und Überhitzungsgefahr (steigende Preise und Zinsen) gekennzeichnet — danach folgt typischerweise der Abschwung."},{"topic":"Konjunktur","q":"Welcher Indikator zählt zu den Spätindikatoren der Konjunktur?","options":["Baugenehmigungen","Aktienkurse","Insolvenzen","Auftragseingänge"],"a":2,"e":"Insolvenzen, Arbeitslosenquote, Preisniveau und Löhne laufen der Konjunktur hinterher; Baugenehmigungen, Aktienkurse und Auftragseingänge sind Frühindikatoren."},{"topic":"Konjunktur","q":"Das reale BIP sinkt zwei Quartale in Folge. Wie bezeichnet man diese Situation üblicherweise?","options":["Depression","Stagflation","(Technische) Rezession","Hochkonjunktur"],"a":2,"e":"Faustregel: Sinkt das reale BIP in zwei aufeinanderfolgenden Quartalen, spricht man von einer (technischen) Rezession — die Depression ist die anschließende Tiefphase."},{"topic":"Geldpolitik","q":"Was ist das vorrangige Ziel der Europäischen Zentralbank?","options":["Vollbeschäftigung im Euroraum","Preisniveaustabilität","Wirtschaftswachstum","Ausgeglichene Staatshaushalte"],"a":1,"e":"Nach dem Vertrag von Maastricht ist die Preisniveaustabilität vorrangig: Der HVPI-Anstieg soll mittelfristig zwei Prozent betragen (seit 2021 symmetrisches Ziel; zuvor „unter, aber nahe zwei Prozent“)."},{"topic":"Geldpolitik","q":"Welche drei Leitzinsen legt die EZB fest?","options":["Hauptrefinanzierungssatz, Spitzenrefinanzierungsfazilität, Einlagefazilität","Hypothekenzins, Sparzins, Dispozins","Mindestreservesatz, Basiszins, Tagesgeldsatz","Mengentender, Zinstender, Standardtender"],"a":0,"e":"Der Hauptrefinanzierungssatz ist der wichtigste Leitzins; Spitzenrefinanzierungs- und Einlagefazilität bilden Ober- und Untergrenze des Zinskorridors."},{"topic":"Geldpolitik","q":"Das Hauptrefinanzierungsgeschäft (Haupttender) wird angeboten …","options":["täglich mit einem Tag Laufzeit","wöchentlich mit einer Woche Laufzeit","monatlich mit drei Monaten Laufzeit","jährlich als Daueremission"],"a":1,"e":"Wöchentlicher Rhythmus, Laufzeit eine Woche — hierüber decken die Banken den größten Teil ihres Refinanzierungsbedarfs."},{"topic":"Geldpolitik","q":"Über welche Fazilität können sich Geschäftsbanken über Nacht unbegrenzt Zentralbankgeld beschaffen?","options":["Einlagefazilität","Spitzenrefinanzierungsfazilität","Feinsteuerungsoperation","Mindestreserve"],"a":1,"e":"Die Spitzenrefinanzierungsfazilität (Kreditfazilität) ist der Übernachtkredit; die Einlagefazilität dient der Übernachtanlage überschüssiger Liquidität."},{"topic":"Geldpolitik","q":"Die EZB erhöht den Mindestreservesatz. Welche Wirkung tritt ein?","options":["Die Banken haben mehr Liquidität und vergeben mehr Kredite","Die Banken haben weniger Liquidität und können weniger Kredite vergeben","Die Sparzinsen sinken automatisch","Die Geldmenge steigt"],"a":1,"e":"Höhere Pflichtguthaben bei der Zentralbank entziehen den Banken Liquidität — der Kreditschöpfungsspielraum sinkt (restriktive Wirkung)."},{"topic":"Geldpolitik","q":"Die EZB kauft am offenen Markt Wertpapiere von den Banken. Was passiert?","options":["Zentralbankgeld fließt den Banken zu, die Nachfrage wird angeregt","Geld wird knapper, die Zinsen steigen","Die Mindestreserve steigt","Die Inflation wird gedämpft"],"a":0,"e":"Wertpapierkauf = Zentralbankgeldschöpfung: Liquidität fließt in den Bankensektor, die Konjunktur wird belebt. Verkauf wirkt umgekehrt."},{"topic":"Geldpolitik","q":"Welche Maßnahmenkombination kennzeichnet eine restriktive Geldpolitik?","options":["Leitzinsen senken, Liquidität zuführen","Leitzinsen erhöhen, Liquidität verknappen","Steuern senken, Staatsausgaben erhöhen","Mindestreserve senken, Wertpapiere kaufen"],"a":1,"e":"Restriktiv = bremsen: höhere Zinsen und knappere Liquidität dämpfen Kreditnachfrage, Nachfrage und Preisauftrieb — Mittel gegen Inflation."},{"topic":"Geldpolitik","q":"Die EZB erhöht die Leitzinsen. Welche Wirkungskette ist zu erwarten?","options":["Kreditzinsen sinken → Investitionen steigen → Preise steigen","Kreditzinsen steigen → Kreditnachfrage sinkt → Nachfrage sinkt → Preisauftrieb lässt nach","Geldmenge steigt → Konsum steigt → Inflation steigt","Sparneigung sinkt → Nachfrage steigt → Beschäftigung steigt"],"a":1,"e":"Transmission: teurere Refinanzierung → höhere Kreditzinsen → weniger kreditfinanzierte Investitionen und Konsum → sinkende Gesamtnachfrage → Inflationsdämpfung."},{"topic":"Geldpolitik","q":"Welcher Störfaktor begrenzt die Wirkung der EZB-Geldpolitik?","options":["Die EZB darf keine Wertpapiere handeln","Bei pessimistischer Grundhaltung fördern selbst niedrige Zinsen Investitionen kaum","Die Mindestreserve ist gesetzlich verboten","Leitzinsen wirken nur auf Privatkunden"],"a":1,"e":"Weitere Grenzen: internationale Finanzströme, hohe Lohnabschlüsse, unklare Zinsweitergabe der Banken, gegenläufige Fiskalpolitik des Staates."},{"topic":"Geldpolitik","q":"Die EZB gibt beim Tenderverfahren den Zinssatz und das Zuteilungsvolumen vor; die Banken bieten nur Mengen. Wie heißt dieses Verfahren?","options":["Zinstender","Mengentender","Schnelltender","Basistender"],"a":1,"e":"Beim Mengentender steht der Zinssatz fest; beim Zinstender bieten die Banken Zinssätze, und die Zuteilung richtet sich nach der Höhe des Gebots."},{"topic":"Geldpolitik","q":"Welche Maßnahmenkombination kennzeichnet eine expansive Geldpolitik?","options":["Leitzinsen erhöhen, Wertpapiere verkaufen, Mindestreserve erhöhen","Leitzinsen senken, Wertpapiere kaufen, Mindestreserve senken","Steuern erhöhen und Staatsausgaben senken","Leitzinsen senken, Wertpapiere verkaufen, Mindestreserve erhöhen"],"a":1,"e":"Expansiv = „Politik des billigen Geldes“: Zinsen senken und Liquidität zuführen — Mittel gegen Rezession und Deflation. Steuern und Staatsausgaben gehören zur Fiskalpolitik."},{"topic":"Geldpolitik","q":"Wozu dient die Einlagefazilität der EZB?","options":["Übernachtkredit für Geschäftsbanken (Obergrenze des Zinskorridors)","Übernachtanlage überschüssiger Liquidität bei der EZB (Untergrenze des Zinskorridors)","Wöchentliche Refinanzierung der Banken","Pflichtguthaben der Banken bei der Zentralbank"],"a":1,"e":"Einlagefazilität = Banken parken Geld über Nacht bei der EZB (Untergrenze); Spitzenrefinanzierungsfazilität = Übernachtkredit (Obergrenze). Zusammen bilden sie den Zinskorridor."},{"topic":"Geldpolitik","q":"Die Wirtschaft steckt in einer tiefen Rezession mit Deflationsgefahr. Wie sollte die EZB reagieren?","options":["Leitzinsen erhöhen, um die Preise zu stützen","Mindestreservesatz erhöhen","Leitzinsen senken und dem Bankensektor Liquidität zuführen","Wertpapiere am offenen Markt verkaufen"],"a":2,"e":"Gegen Rezession und Deflation hilft expansive Geldpolitik: billiges Geld regt Kreditnachfrage, Investitionen und Konsum an. Die anderen Maßnahmen wirken restriktiv."},{"topic":"Geldpolitik","q":"Welche Laufzeit haben die längerfristigen Refinanzierungsgeschäfte (Basistender) ursprünglich?","options":["Ein Geschäftstag","Eine Woche","Drei Monate","Zehn Jahre"],"a":2,"e":"Basistender: ursprünglich monatlich mit drei Monaten Laufzeit (heute auch länger). Der Haupttender läuft wöchentlich mit einer Woche, die Fazilitäten über Nacht."},{"topic":"Finanzpolitik","q":"Welche Aufgaben umfasst die Finanzpolitik?","options":["Nur die Steuererhebung","Einnahmenbeschaffung, Einkommensumverteilung und Stabilitätsaufgaben","Nur die Geldmengensteuerung","Ausschließlich die Sozialversicherung"],"a":1,"e":"Fiskalpolitik betrifft den Staatshaushalt: Einnahmen beschaffen, Einkommen umverteilen (Distribution) und die Konjunktur im Sinne des StabG steuern."},{"topic":"Finanzpolitik","q":"Wie soll sich der Staat nach der antizyklischen Fiskalpolitik in der Rezession verhalten?","options":["Ausgaben senken und Steuern erhöhen","Ausgaben erhöhen und Einnahmen senken","Den Haushalt strikt ausgleichen","Die Leitzinsen senken"],"a":1,"e":"In der Rezession expansiv: mehr Staatsausgaben, weniger Steuern — notfalls über Verschuldung (Deficit Spending). Im Boom umgekehrt (restriktiv)."},{"topic":"Finanzpolitik","q":"Was versteht man unter Deficit Spending?","options":["Das Verbot der Neuverschuldung","Der Staat nimmt bewusst Schulden auf, um in der Rezession zusätzliche Nachfrage zu schaffen","Kürzung aller Subventionen im Boom","Die Finanzierung der EZB durch den Staat"],"a":1,"e":"Deficit Spending: bewusste Verschuldung zur Nachfragebelebung in der Rezession — Kernidee der keynesianischen Fiskalpolitik (z. B. Konjunkturpakete 2008/09)."},{"topic":"Finanzpolitik","q":"Warum gilt die progressive Einkommensteuer als automatischer Stabilisator?","options":["Sie muss jedes Jahr neu beschlossen werden","Sie entzieht im Boom überproportional Kaufkraft und entlastet in der Rezession — ohne politische Entscheidung","Sie ist für alle Einkommen gleich hoch","Sie finanziert die EZB"],"a":1,"e":"Automatische Stabilisatoren (progressive Steuer, Arbeitslosengeld) wirken antizyklisch, ohne dass der Gesetzgeber eingreifen muss."},{"topic":"Finanzpolitik","q":"Welche juristische Grenze der Staatsverschuldung ist im Grundgesetz verankert?","options":["Der Stabilitäts- und Wachstumspakt","Die Schuldenbremse (Art. 109 GG)","Das Stabilitätsgesetz von 1967","Die Konvergenzkriterien"],"a":1,"e":"Die Schuldenbremse wurde 2009 im Grundgesetz verankert; der europäische Fiskalpakt (2013) verpflichtet die Mitgliedsländer zu nationalen Regelungen."},{"topic":"Finanzpolitik","q":"Wie soll sich der Staat nach der antizyklischen Fiskalpolitik im Boom verhalten?","options":["Ausgaben erhöhen und Steuern senken","Steuern erhöhen, Ausgaben senken und Überschüsse bilden","Neue Schulden aufnehmen (Deficit Spending)","Die Leitzinsen erhöhen"],"a":1,"e":"Im Boom restriktiv: Kaufkraft abschöpfen, Rücklagen bilden — so wird die Überhitzung gedämpft. Leitzinsen sind Sache der EZB, nicht der Fiskalpolitik."},{"topic":"Finanzpolitik","q":"Warum wirkt die Arbeitslosenversicherung als automatischer Stabilisator?","options":["Sie erhöht im Boom die Kaufkraft der Haushalte","Das Arbeitslosengeld stützt in der Rezession die Nachfrage, während im Aufschwung die Beiträge Kaufkraft dämpfen — ohne neuen Beschluss","Sie senkt automatisch die Leitzinsen","Sie gleicht den Staatshaushalt jedes Jahr aus"],"a":1,"e":"Automatische Stabilisatoren wirken antizyklisch, ohne dass der Gesetzgeber eingreifen muss — der Haushalt „atmet“ mit der Konjunktur (ebenso: progressive Einkommensteuer)."},{"topic":"Formeln","q":"Das reale BIP steigt von 3.000 Mrd. Euro auf 3.060 Mrd. Euro. Wie hoch ist die Wachstumsrate?","options":["0,6 %","2,0 %","6,0 %","20,0 %"],"a":1,"e":"Wachstumsrate = (BIP neu − BIP alt) ÷ BIP alt × 100 = (3.060 − 3.000) ÷ 3.000 × 100 = 60 ÷ 3.000 × 100 = 2,0 %."},{"topic":"Formeln","q":"Der Verbraucherpreisindex steigt von 110 auf 115,5 Punkte. Wie hoch ist die Inflationsrate?","options":["5,5 %","5,0 %","4,5 %","10,0 %"],"a":1,"e":"Inflationsrate = (Index neu − Index alt) ÷ Index alt × 100 = 5,5 ÷ 110 × 100 = 5,0 %. Achtung: Durch den Basiswert 110 teilen, nicht durch 100!"}];
+
+let answers = new Array(QUESTIONS.length).fill(null);
+let viewMode = 'list';      // 'list' oder 'slide'
+let evalMode = 'immediate'; // 'immediate' oder 'end'
+let currentSlide = 0;
+
+// Pro Frage: shuffled[displayIdx] = origIdx (so bleibt qd.a der originale Lösungs-Index)
+function shuffleAnswers() {
+  QUESTIONS.forEach(qd => {
+    const n = qd.options.length;
+    qd.shuffled = Array.from({length: n}, (_, k) => k);
+    for (let i = n - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [qd.shuffled[i], qd.shuffled[j]] = [qd.shuffled[j], qd.shuffled[i]];
+    }
+  });
+}
+shuffleAnswers();
+function origIndex(qi, displayIdx) { return QUESTIONS[qi].shuffled[displayIdx]; }
+function displayCorrectIdx(qi) { return QUESTIONS[qi].shuffled.indexOf(QUESTIONS[qi].a); }
+function isCorrect(qi) {
+  if (answers[qi] === null) return false;
+  return origIndex(qi, answers[qi]) === QUESTIONS[qi].a;
+}
+
+// IHK-Notenschlüssel (offiziell, AbschlussPrüfungen kaufmännischer Berufe)
+function ihkNote(pct) {
+  if (pct >= 92) return { num: 1, name: 'sehr gut',     color: '#10B981', bestanden: true };
+  if (pct >= 81) return { num: 2, name: 'gut',          color: '#0EA5A4', bestanden: true };
+  if (pct >= 67) return { num: 3, name: 'befriedigend', color: '#0EA5A4', bestanden: true };
+  if (pct >= 50) return { num: 4, name: 'ausreichend',  color: '#F59E0B', bestanden: true };
+  if (pct >= 30) return { num: 5, name: 'mangelhaft',   color: '#F97316', bestanden: false };
+  return                         { num: 6, name: 'ungenügend',   color: '#EF4444', bestanden: false };
+}
+
+function setView(mode) {
+  viewMode = mode;
+  document.getElementById('modeList').classList.toggle('btn-primary', mode === 'list');
+  document.getElementById('modeList').classList.toggle('btn-ghost',   mode !== 'list');
+  document.getElementById('modeSlide').classList.toggle('btn-primary', mode === 'slide');
+  document.getElementById('modeSlide').classList.toggle('btn-ghost',   mode !== 'slide');
+  document.getElementById('slideNav').style.display = (mode === 'slide') ? 'block' : 'none';
+  applyView();
+}
+
+function setEval(mode) {
+  evalMode = mode;
+  document.getElementById('modeImmediate').classList.toggle('btn-primary', mode === 'immediate');
+  document.getElementById('modeImmediate').classList.toggle('btn-ghost',   mode !== 'immediate');
+  document.getElementById('modeEnd').classList.toggle('btn-primary', mode === 'end');
+  document.getElementById('modeEnd').classList.toggle('btn-ghost',   mode !== 'end');
+}
+
+function applyView() {
+  const allQ = document.querySelectorAll('.question');
+  if (viewMode === 'list') {
+    allQ.forEach(q => q.style.display = '');
+  } else {
+    allQ.forEach((q, i) => q.style.display = (i === currentSlide ? '' : 'none'));
+    document.getElementById('slidePos').textContent = currentSlide + 1;
+    document.getElementById('slideTotal').textContent = QUESTIONS.length;
+  }
+}
+
+function nextSlide() {
+  if (currentSlide < QUESTIONS.length - 1) { currentSlide++; applyView(); window.scrollTo(0, 0); }
+}
+function prevSlide() {
+  if (currentSlide > 0) { currentSlide--; applyView(); window.scrollTo(0, 0); }
+}
+
+function renderQuiz() {
+  const root = document.getElementById('quiz');
+  root.innerHTML = '';
+  document.getElementById('total').textContent = QUESTIONS.length;
+  QUESTIONS.forEach((qd, i) => {
+    const q = document.createElement('div');
+    q.className = 'question';
+    q.id = `q-${i}`;
+    let html = `
+      <span class="q-num">Frage ${i + 1}</span>
+      <span class="q-topic">${qd.topic}</span>
+      <p class="q-text">${qd.q}</p>
+      <div class="options">
+    `;
+    qd.shuffled.forEach((origIdx, j) => {
+      const letter = String.fromCharCode(65 + j);
+      const opt = qd.options[origIdx];
+      html += `<div class="option" data-q="${i}" data-opt="${j}" onclick="answer(${i}, ${j})">
+        <div class="marker">${letter}</div>
+        <div>${opt}</div>
+      </div>`;
+    });
+    html += '</div>';
+    q.innerHTML = html;
+    root.appendChild(q);
+  });
+  applyView();
+  updateScore();
+}
+
+function answer(qi, oi) {
+  if (answers[qi] !== null) return;
+  answers[qi] = oi;
+  const q = document.getElementById(`q-${qi}`);
+  const opts = q.querySelectorAll('.option');
+  opts.forEach(o => o.classList.add('locked'));
+
+  if (evalMode === 'immediate') {
+    // Sofort markieren und Erklärung zeigen — vergleicht im Display-Index-Raum
+    const correctDisplayIdx = displayCorrectIdx(qi);
+    const userIsCorrect = (oi === correctDisplayIdx);
+    opts[oi].classList.add(userIsCorrect ? 'correct' : 'incorrect');
+    if (!userIsCorrect) opts[correctDisplayIdx].classList.add('correct');
+    const exp = document.createElement('div');
+    exp.className = 'explanation';
+    exp.textContent = QUESTIONS[qi].e;
+    q.appendChild(exp);
+    q.classList.add('locked');
+  } else {
+    // Nur „angekreuzt”-Status, keine Bewertung anzeigen
+    opts[oi].style.borderColor = 'var(--bfw-primary)';
+    opts[oi].style.background = 'var(--bfw-bg-teal)';
+    opts[oi].querySelector('.marker').style.background = 'var(--bfw-primary)';
+    opts[oi].querySelector('.marker').style.color = 'white';
+    opts[oi].querySelector('.marker').style.borderColor = 'var(--bfw-primary)';
+  }
+  updateScore();
+}
+
+function updateScore() {
+  const answered = answers.filter(a => a !== null).length;
+  document.getElementById('answered').textContent = answered;
+  document.getElementById('progressBar').style.width = `${(answered / QUESTIONS.length) * 100}%`;
+  if (evalMode === 'immediate') {
+    const correct = answers.filter((a, i) => isCorrect(i)).length;
+    document.getElementById('correct').textContent = correct;
+  } else {
+    document.getElementById('correct').textContent = '—';
+  }
+  if (answered === QUESTIONS.length && evalMode === 'immediate') showSummary();
+}
+
+function finishNow() {
+  // Im End-Modus: alle bislang nicht beantworteten Fragen werden als „nicht beantwortet” gewertet
+  // und alle Lösungen+Erklärungen werden offengelegt.
+  for (let i = 0; i < QUESTIONS.length; i++) {
+    const q = document.getElementById(`q-${i}`);
+    if (!q) continue;
+    const opts = q.querySelectorAll('.option');
+    opts.forEach(o => o.classList.add('locked'));
+    const correctDisplayIdx = displayCorrectIdx(i);
+    if (answers[i] !== null) {
+      const wasRight = (answers[i] === correctDisplayIdx);
+      opts[answers[i]].classList.add(wasRight ? 'correct' : 'incorrect');
+      if (!wasRight) opts[correctDisplayIdx].classList.add('correct');
+    } else {
+      opts[correctDisplayIdx].classList.add('correct');
+    }
+    if (!q.querySelector('.explanation')) {
+      const exp = document.createElement('div');
+      exp.className = 'explanation';
+      exp.textContent = QUESTIONS[i].e;
+      q.appendChild(exp);
+    }
+    q.classList.add('locked');
+  }
+  // Im Slide-Modus: zur Übersicht wechseln
+  setView('list');
+  showSummary();
+}
+
+function showSummary() {
+  const total = QUESTIONS.length;
+  const correct = answers.filter((a, i) => isCorrect(i)).length;
+  const answered = answers.filter(a => a !== null).length;
+  const pct = Math.round((correct / total) * 100);
+  const note = ihkNote(pct);
+
+  // IHK-Skala-Tabelle
+  const skala = [
+    { stufe: 1, label: 'sehr gut',     range: '92 – 100 %', col: '#10B981' },
+    { stufe: 2, label: 'gut',          range: '81 – 91 %',  col: '#0EA5A4' },
+    { stufe: 3, label: 'befriedigend', range: '67 – 80 %',  col: '#0EA5A4' },
+    { stufe: 4, label: 'ausreichend',  range: '50 – 66 %',  col: '#F59E0B' },
+    { stufe: 5, label: 'mangelhaft',   range: '30 – 49 %',  col: '#F97316' },
+    { stufe: 6, label: 'ungenügend',   range: '0 – 29 %',   col: '#EF4444' }
+  ];
+
+  const skalaRows = skala.map(s => `
+    <tr style="${s.stufe === note.num ? 'background: var(--bfw-bg-teal); font-weight: 700;' : ''}">
+      <td style="color: ${s.col}; font-weight: 700;">${s.stufe}</td>
+      <td>${s.label}</td>
+      <td>${s.range}</td>
+    </tr>`).join('');
+
+  const s = document.getElementById('summary');
+  s.style.display = 'block';
+  s.innerHTML = `
+    <div class="summary">
+      <h2>Quiz ausgewertet</h2>
+      <div class="big-score" style="color: ${note.color};">${note.num}</div>
+      <div class="grade"><strong>${note.name}</strong> · ${correct} von ${total} richtig (${pct} %)</div>
+      <div style="margin-top: 0.5rem; color: ${note.bestanden ? 'var(--bfw-success)' : 'var(--bfw-danger)'}; font-weight: 600;">
+        ${note.bestanden ? '✓ bestanden' : '✗ nicht bestanden'}
+      </div>
+      ${answered < total ? `<div style="margin-top: 0.6rem; color: var(--bfw-warn); font-size: 0.95rem;">${total - answered} Fragen unbeantwortet — als falsch gewertet.</div>` : ''}
+
+      <div style="margin: 1.6rem auto 0; max-width: 360px;">
+        <table style="font-size: 0.9rem;">
+          <thead><tr><th>Note</th><th>Beurteilung</th><th>Punktebereich</th></tr></thead>
+          <tbody>${skalaRows}</tbody>
+        </table>
+        <p style="font-size: 0.78rem; color: var(--bfw-ink-soft); margin-top: 0.4rem;">
+          IHK-Notenschlüssel (kaufmännische Abschlussprüfungen)
+        </p>
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <button class="btn btn-primary" onclick="resetQuiz()">Neu starten</button>
+        <button class="btn btn-ghost" onclick="window.print()" style="margin-left: 0.5rem;">Drucken / als PDF speichern</button>
+      </div>
+    </div>
+  `;
+  s.scrollIntoView({ behavior: 'smooth' });
+}
+
+function resetQuiz() {
+  answers = new Array(QUESTIONS.length).fill(null);
+  currentSlide = 0;
+  shuffleAnswers();
+  document.getElementById('summary').style.display = 'none';
+  document.getElementById('summary').innerHTML = '';
+  renderQuiz();
+  window.scrollTo(0, 0);
+}
+
+// Initial: Buttons-Default-Status setzen
+setView('list');
+setEval('immediate');
+renderQuiz();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,344 @@
+\documentclass[11pt, a4paper]{article}
+
+% Gemeinsame Style-Definitionen (TEXINPUTS muss templates/ enthalten — siehe scripts/build_tex.py)
+\input{bfw-style.tex}
+
+\kopfzeile{Handout BWL Lektion 2 \textperiodcentered{} Teil 1}
+
+\begin{document}
+\handouttitel{Lektion~2 \textperiodcentered{} Teil~1: Rechnungswesen \& Finanzierung/Investition}%
+  {Rechnungswesen, Investition \& Finanzierung --- mit allen Kennzahlen-Formeln}%
+  {1.2 Betriebliche Funktionen}%
+  {Sa, 12.09.2026 \textperiodcentered{} Session 1}
+
+\begin{merksatz}[title={\bfseries Worum geht es in dieser Session?}]
+In Lektion~1 haben Sie die leistungswirtschaftlichen Grundfunktionen kennengelernt
+(Beschaffung, Produktion, Absatz/Marketing). Lektion~2 vervollständigt das Bild in zwei
+Sessions. \emph{Teil~1 (diese Session):} Das \emph{Rechnungswesen} bildet alle Geld- und
+Leistungsströme ab, \emph{Investition und Finanzierung} sorgen für Mittelverwendung und
+Mittelherkunft --- dazu die wichtigsten \emph{Kennzahlen-Formeln} (Eigenkapitalquote,
+Rentabilitäten, Liquidität, Cashflow) mit Rechenbeispielen. \emph{Teil~2 (heute ab
+10:55~Uhr):} Controlling, Personalwirtschaft und das Zusammenwirken aller betrieblichen
+Funktionen (Rahmenplan 1.2.2).
+\end{merksatz}
+
+\tableofcontents
+\vspace{1em}
+\hrule
+\vspace{1em}
+
+\section{Das betriebliche Rechnungswesen}
+
+Das Rechnungswesen erfasst alle Geld- und Leistungsströme des Unternehmens zahlenmäßig,
+bereitet sie auf und wertet sie aus. Es ist das „Zahlengedächtnis`` des Betriebs und
+zugleich die Informationsbasis für alle Entscheidungen.
+
+\subsection{Die vier Aufgaben des Rechnungswesens}
+
+\begin{itemize}
+  \item \textbf{Dokumentation:} lückenlose, planmäßige Aufzeichnung aller
+    Geschäftsvorfälle anhand von Belegen (keine Buchung ohne Beleg).
+  \item \textbf{Information (Rechenschaftslegung):} Unterrichtung interner und externer
+    Adressaten --- Geschäftsleitung, Gesellschafter, Gläubiger, Finanzamt, Öffentlichkeit.
+  \item \textbf{Kontrolle:} Überwachung von Wirtschaftlichkeit, Rentabilität und
+    Liquidität, z.\,B. durch Soll-Ist-Vergleiche und Nachkalkulation.
+  \item \textbf{Disposition:} Bereitstellung des Zahlenmaterials als Grundlage für
+    unternehmerische Planungen und Entscheidungen.
+\end{itemize}
+
+\begin{eselsbruecke}
+\textbf{D}as \textbf{I}st \textbf{K}lar \textbf{D}okumentiert --- \textbf{D}okumentation,
+\textbf{I}nformation, \textbf{K}ontrolle, \textbf{D}isposition: die vier Aufgaben des
+Rechnungswesens.
+\end{eselsbruecke}
+
+\subsection{Die vier Teilgebiete}
+
+\begin{center}
+\begin{tabular}{p{3.6cm} p{5.4cm} p{4.6cm}}
+\textbf{Teilgebiet} & \textbf{Inhalt} & \textbf{Charakter}\\
+\hline
+Buchführung (FiBu) & Zeitraumrechnung: erfasst alle Geschäftsvorfälle; mündet in den
+Jahresabschluss (Bilanz, GuV) & extern, gesetzlich geregelt (HGB, AO)\\
+Kosten- und Leistungsrechnung (KLR) & Betriebsabrechnung und Kalkulation: Kosten erfassen,
+verteilen, den Leistungen zurechnen & intern, keine gesetzliche Pflicht\\
+Statistik & Vergleichsrechnung: bereitet Zahlen aus FiBu und KLR auf (Zeit-, Betriebs-,
+Soll-Ist-Vergleiche) & intern\\
+Planungsrechnung & Vorschaurechnung: zukunftsgerichtete Schätzung und Budgetierung
+(z.\,B. Absatz-, Investitions-, Finanzpläne) & intern\\
+\end{tabular}
+\end{center}
+
+\begin{eselsbruecke}
+\textbf{B}etriebe \textbf{k}alkulieren \textbf{s}tets \textbf{p}lanvoll ---
+\textbf{B}uchführung, \textbf{K}LR, \textbf{S}tatistik, \textbf{P}lanungsrechnung.
+\end{eselsbruecke}
+
+\subsection{Internes vs. externes Rechnungswesen}
+
+\begin{center}
+\begin{tabular}{p{3.2cm} p{5.2cm} p{5.2cm}}
+ & \textbf{Externes ReWe} & \textbf{Internes ReWe}\\
+\hline
+Teilgebiete & Buchführung, Jahresabschluss & KLR, Statistik, Planungsrechnung\\
+Adressaten & Gläubiger, Gesellschafter, Finanzamt, Öffentlichkeit & Geschäftsleitung,
+Controlling, Führungskräfte\\
+Rechtsgrundlage & HGB, AO, Steuergesetze (verpflichtend) & keine --- freiwillig,
+zweckorientiert\\
+Zeitbezug & vergangenheitsorientiert & gegenwarts- und zukunftsorientiert\\
+Rechengrößen & Aufwand und Ertrag & Kosten und Leistungen\\
+\end{tabular}
+\end{center}
+
+\begin{beispiel}
+Die Nordwest Küchengeräte AG erstellt zum 31.12. ihre \emph{Bilanz} und die \emph{GuV}
+(externes ReWe, Pflicht nach HGB). Parallel ermittelt die KLR, dass die Herstellung eines
+Standmixers 38~Euro kostet --- Grundlage für die Preiskalkulation (internes ReWe,
+freiwillig).
+\end{beispiel}
+
+\section{Investition und Finanzierung}
+
+\begin{merksatz}
+\textbf{Investition} = Mittel\emph{verwendung} (Kapital wird in Vermögen gebunden ---
+freies wird zu gebundenem Kapital). \textbf{Finanzierung} = Mittel\emph{herkunft}
+(Beschaffung der finanziellen Mittel). Beide sind zwei Seiten derselben Medaille: Jede
+Investition muss finanziert werden.
+\end{merksatz}
+
+\subsection{Investitionsarten}
+
+\textbf{Nach dem Investitionsobjekt:}
+\begin{itemize}
+  \item \textbf{Sachinvestition:} Kauf materieller Vermögensgegenstände --- Maschinen,
+    Gebäude, Fuhrpark, Filteranlagen.
+  \item \textbf{Finanzinvestition:} Erwerb von Finanzvermögen --- Beteiligungen, Aktien,
+    Anleihen, Ausleihungen.
+  \item \textbf{Immaterielle Investition:} Erwerb nicht körperlicher Werte --- Lizenzen,
+    Patente, Software, Forschung \& Entwicklung, Weiterbildung, Werbung/Marke.
+\end{itemize}
+
+\textbf{Nach dem Investitionsanlass:}
+\begin{itemize}
+  \item \textbf{Erstinvestition (Gründungsinvestition):} erstmalige Ausstattung bei
+    Gründung oder Aufbau eines neuen Betriebsteils.
+  \item \textbf{Ersatzinvestition:} Ersatz einer verbrauchten oder defekten Anlage durch
+    eine gleichartige (oft verbunden mit \emph{Rationalisierung}, wenn die neue Anlage
+    leistungsfähiger ist).
+  \item \textbf{Erweiterungsinvestition:} Ausbau der Kapazität über den bisherigen Bestand
+    hinaus (z.\,B. zusätzliche Fertigungslinie).
+\end{itemize}
+
+\begin{beispiel}
+Bei der Nordwest Küchengeräte AG ist eine alte Produktionsanlage defekt; sie wird durch
+eine moderne, leistungsfähigere Anlage ersetzt: \emph{Ersatzinvestition} (mit
+Rationalisierungseffekt), zugleich eine \emph{Sachinvestition}. Der Ablauf einer rationalen
+Investitionsentscheidung: (1)~Mindestanforderungen festlegen, (2)~Informationen zu
+Alternativen sammeln, (3)~entscheidungsrelevante Daten ermitteln (Kosten, Erlöse),
+(4)~Alternativen mit einem Verfahren der Investitionsrechnung beurteilen, (5)~günstigste
+Alternative realisieren, (6)~laufende Rentabilitätskontrolle.
+\end{beispiel}
+
+\subsection{Finanzierungsarten: die Finanzierungsmatrix}
+
+Finanzierungen lassen sich nach zwei Kriterien ordnen: nach der \textbf{Herkunft der
+Mittel} (Außenfinanzierung = Mittel von außen; Innenfinanzierung = Mittel aus dem
+betrieblichen Umsatzprozess) und nach der \textbf{Rechtsstellung der Kapitalgeber}
+(Eigenkapital vs. Fremdkapital).
+
+\begin{center}
+\begin{tabular}{p{2.8cm} p{5.6cm} p{5.6cm}}
+ & \textbf{Außenfinanzierung} & \textbf{Innenfinanzierung}\\
+\hline
+\textbf{Eigenkapital} & \emph{Einlagen- und Beteiligungsfinanzierung:} Einlagen der
+Gesellschafter, Aufnahme neuer Gesellschafter, Aktienemission, Venture Capital &
+\emph{Selbstfinanzierung:} Einbehaltung (Thesaurierung) von Gewinnen --- offen über
+Rücklagen oder still über stille Reserven\\
+\hline
+\textbf{Fremdkapital} & \emph{Kreditfinanzierung:} Bankdarlehen, Lieferantenkredit,
+Anleihen; Sonderformen: \emph{Leasing}, \emph{Factoring} & \emph{Finanzierung aus
+Rückstellungen:} z.\,B. Pensionsrückstellungen (Mittel stehen bis zur Fälligkeit zur
+Verfügung)\\
+\hline
+\multicolumn{1}{l}{} & \multicolumn{2}{p{11.2cm}}{\emph{Finanzierung aus
+Kapitalfreisetzung} (Innenfinanzierung ohne Kapitalart-Zuordnung): Abschreibungsfinanzierung
+(verdiente Abschreibungsgegenwerte werden reinvestiert), Verkauf nicht betriebsnotwendigen
+Vermögens, Rationalisierung}\\
+\end{tabular}
+\end{center}
+
+\begin{merksatz}[title={\bfseries Eigenkapital vs. Fremdkapital --- typische Merkmale}]
+\textbf{Eigenkapital:} Beteiligungsverhältnis, erfolgsabhängige Gewinnbeteiligung, Haftung
+(mindestens in Höhe der Einlage), grundsätzlich Mitbestimmungsrecht, steht unbefristet zur
+Verfügung, kein vorrangiger Rückzahlungsanspruch.\\[0.3em]
+\textbf{Fremdkapital:} Kapitalgeber ist \emph{Gläubiger} (Schuldverhältnis), fester
+Zinsanspruch (Zinsen sind steuerlich absetzbar), vorrangiger Anspruch auf Rückzahlung,
+befristete Überlassung, grundsätzlich keine Mitbestimmung.
+\end{merksatz}
+
+\subsection{Leasing und Factoring (kurz)}
+
+\begin{itemize}
+  \item \textbf{Leasing:} Sonderform der Vermietung. \emph{Vorteile:} geringer
+    Finanzmittelbedarf bei Anschaffung (Liquidität wird geschont, Investitionsspielraum
+    steigt), Raten kalkulierbar. \emph{Nachteile:} Die Summe der Leasingraten übersteigt
+    i.\,d.\,R. den Kaufpreis; beim \emph{Operate-Leasing} erwirbt der Leasingnehmer kein
+    Eigentum am Gegenstand. Leasing ist \emph{keine} Selbstfinanzierung!
+  \item \textbf{Factoring:} laufender Verkauf von Forderungen an ein Factoringinstitut
+    $\Rightarrow$ \emph{sofortige Liquidität}. Wirkungen: Liquiditätsengpässe durch lange
+    Zahlungsfristen werden vermieden, Skonti bei Lieferanten können genutzt werden,
+    Kreditrahmen der Banken werden geschont, das Debitorenmanagement kann ausgelagert
+    werden (Dienstleistungsfunktion), das Ausfallrisiko kann übernommen werden
+    (Delkrederefunktion).
+\end{itemize}
+
+\subsection{Die goldene Finanzierungsregel}
+
+\begin{merksatz}[title={\bfseries Goldene Finanzierungsregel (Fristenkongruenz)}]
+Die Dauer der Kapitalüberlassung soll der Dauer der Kapitalbindung entsprechen:
+\emph{Langfristig gebundenes Vermögen} (Anlagevermögen) ist \emph{langfristig} zu
+finanzieren (Eigenkapital, langfristiges Fremdkapital); \emph{kurzfristig gebundenes
+Vermögen} (Umlaufvermögen) darf \emph{kurzfristig} finanziert werden.
+„Lang zu lang, kurz zu kurz.``
+\end{merksatz}
+
+\section{Formeln \& Rechenbeispiele}\label{sec:formeln}
+
+Die wichtigsten Finanz-Kennzahlen dieser Lektion folgen demselben einfachen Muster.
+In Teil~2 setzt das Controlling sie als sein wichtigstes Werkzeug ein. Rechnen Sie in der
+Prüfung immer in drei Schritten: (1)~Formel notieren, (2)~Zahlen einsetzen und
+ausrechnen, (3)~Ergebnis \emph{interpretieren} (am besten im Vergleich).
+
+\subsection{Eigenkapitalquote (Kapitalstruktur)}
+
+\[
+\mbox{Eigenkapitalquote} = \frac{\mbox{Eigenkapital}}{\mbox{Gesamtkapital}} \times 100\,\%
+\]
+
+\begin{beispiel}[title={Beispiel: Eigenkapitalquote}]
+Eigenkapital 400.000~Euro, Gesamtkapital 1.000.000~Euro.\\
+\textbf{Schritt 1:} Formel: Eigenkapital $\div$ Gesamtkapital $\times$ 100.\\
+\textbf{Schritt 2:} $400.000 \div 1.000.000 \times 100 = 40\,\%$.\\
+\textbf{Schritt 3 (Interpretation):} 40~\% des Kapitals gehören dem Unternehmen selbst
+--- eine solide Basis. Je höher die Quote, desto unabhängiger von Gläubigern und desto
+kreditwürdiger ist der Betrieb.
+\end{beispiel}
+
+\subsection{Eigenkapitalrentabilität}
+
+\[
+\mbox{Eigenkapitalrentabilität} = \frac{\mbox{Gewinn}}{\mbox{Eigenkapital}} \times 100\,\%
+\]
+
+\begin{beispiel}[title={Beispiel: Eigenkapitalrentabilität}]
+Gewinn 60.000~Euro, Eigenkapital 500.000~Euro.\\
+\textbf{Schritt 1:} Gewinn $\div$ Eigenkapital $\times$ 100.\\
+\textbf{Schritt 2:} $60.000 \div 500.000 \times 100 = 12\,\%$.\\
+\textbf{Schritt 3 (Interpretation):} Das eingesetzte Eigenkapital verzinst sich mit
+12~\% --- deutlich mehr, als eine alternative Geldanlage brächte. Die Eigentümer werden
+für ihr Risiko angemessen entlohnt.
+\end{beispiel}
+
+\subsection{Gesamtkapitalrentabilität}
+
+\[
+\mbox{Gesamtkapitalrentabilität} =
+\frac{\mbox{Gewinn} + \mbox{Fremdkapitalzinsen}}{\mbox{Gesamtkapital}} \times 100\,\%
+\]
+
+\begin{beispiel}[title={Beispiel: Gesamtkapitalrentabilität}]
+Gewinn 80.000~Euro, Fremdkapitalzinsen 20.000~Euro, Gesamtkapital 2.000.000~Euro.\\
+\textbf{Schritt 1:} (Gewinn + FK-Zinsen) $\div$ Gesamtkapital $\times$ 100 --- die
+Zinsen werden hinzugerechnet, weil das Gesamtkapital auch das verzinste Fremdkapital
+umfasst.\\
+\textbf{Schritt 2:} $(80.000 + 20.000) \div 2.000.000 \times 100 = 5\,\%$.\\
+\textbf{Schritt 3 (Interpretation):} Das gesamte eingesetzte Kapital verzinst sich mit
+5~\%. Liegt dieser Wert über dem Fremdkapitalzinssatz, lohnt sich der Einsatz von
+Fremdkapital (Hebelwirkung).
+\end{beispiel}
+
+\subsection{Umsatzrentabilität}
+
+\[
+\mbox{Umsatzrentabilität} = \frac{\mbox{Gewinn}}{\mbox{Umsatz}} \times 100\,\%
+\]
+
+\begin{beispiel}[title={Beispiel: Umsatzrentabilität}]
+Gewinn 50.000~Euro, Umsatz 1.000.000~Euro.\\
+\textbf{Schritt 1:} Gewinn $\div$ Umsatz $\times$ 100.\\
+\textbf{Schritt 2:} $50.000 \div 1.000.000 \times 100 = 5\,\%$.\\
+\textbf{Schritt 3 (Interpretation):} Von jedem Euro Umsatz bleiben 5~Cent als Gewinn.
+Sinkt die Quote im Zeitvergleich, fressen steigende Kosten die Marge auf.
+\end{beispiel}
+
+\subsection{Liquiditätsgrade (Zahlungsfähigkeit)}
+
+\[
+\mbox{Liquidität 1. Grades} =
+\frac{\mbox{flüssige Mittel}}{\mbox{kurzfristige Verbindlichkeiten}} \times 100\,\%
+\]
+\[
+\mbox{Liquidität 2. Grades} =
+\frac{\mbox{flüssige Mittel} + \mbox{kurzfristige Forderungen}}
+     {\mbox{kurzfristige Verbindlichkeiten}} \times 100\,\%
+\]
+
+\begin{beispiel}[title={Beispiel: Liquidität 1. und 2. Grades}]
+Flüssige Mittel (Kasse, Bank) 50.000~Euro, kurzfristige Forderungen 100.000~Euro,
+kurzfristige Verbindlichkeiten 120.000~Euro.\\
+\textbf{Schritt 1:} Liquidität 1. Grades: $50.000 \div 120.000 \times 100
+\approx 41{,}7\,\%$.\\
+\textbf{Schritt 2:} Liquidität 2. Grades: $(50.000 + 100.000) \div 120.000 \times 100
+= 125\,\%$.\\
+\textbf{Schritt 3 (Interpretation):} Mit Kasse und Bank allein könnte der Betrieb nur
+knapp 42~\% seiner kurzfristigen Schulden sofort bezahlen; rechnet man die bald
+eingehenden Forderungen hinzu, sind es 125~\% --- die Zahlungsfähigkeit ist gesichert.
+Faustregel: Liquidität 2. Grades sollte mindestens 100~\% erreichen.
+\end{beispiel}
+
+\subsection{Cashflow (einfache Ermittlung)}
+
+\[
+\mbox{Cashflow} = \mbox{Jahresüberschuss} + \mbox{Abschreibungen}
++ \mbox{Erhöhung der Rückstellungen}
+\]
+
+\begin{beispiel}[title={Beispiel: Cashflow}]
+Jahresüberschuss 100.000~Euro, Abschreibungen 40.000~Euro, Erhöhung der Rückstellungen
+10.000~Euro.\\
+\textbf{Schritt 1:} Abschreibungen und Rückstellungszuführungen sind Aufwand, aber
+\emph{keine Auszahlungen} --- sie werden dem Gewinn wieder hinzugerechnet.\\
+\textbf{Schritt 2:} $100.000 + 40.000 + 10.000 = 150.000$~Euro.\\
+\textbf{Schritt 3 (Interpretation):} Dem Betrieb sind im Jahr 150.000~Euro an
+selbst erwirtschafteten Zahlungsmitteln zugeflossen --- seine
+\emph{Innenfinanzierungskraft}. Daraus können Investitionen, Schuldentilgung und
+Ausschüttungen bestritten werden.
+\end{beispiel}
+
+\begin{merksatz}[title={\bfseries Merkhilfe zu den Rentabilitäten}]
+Alle Rentabilitäten haben den \textbf{Gewinn im Zähler} --- es ändert sich nur der
+Nenner: \emph{worauf} beziehe ich den Gewinn? Auf das Eigenkapital
+(EK-Rentabilität), auf das Gesamtkapital (GK-Rentabilität, dann + FK-Zinsen im
+Zähler) oder auf den Umsatz (Umsatzrentabilität)?
+\end{merksatz}
+
+\begin{merksatz}[title={\bfseries Wichtig für die Prüfungsvorbereitung (Teil 1)}]
+Sie sollten sicher können: die \emph{vier Aufgaben} und \emph{vier Teilgebiete} des
+Rechnungswesens (mit Abgrenzung intern/extern), die \emph{Investitionsarten} nach Objekt
+und Anlass, die \emph{Finanzierungsmatrix} (Innen-/Außen- $\times$ Eigen-/Fremdfinanzierung)
+mit Beispielen, die Abgrenzung \emph{Rücklagen/Rückstellungen}, \emph{Leasing und
+Factoring}, die \emph{goldene Finanzierungsregel} sowie die \emph{Kennzahlen-Formeln} aus
+Abschnitt~\ref{sec:formeln} (Eigenkapitalquote, Rentabilitäten, Liquiditätsgrade,
+Cashflow) mit Rechenweg und Interpretation. Üben Sie mit dem Aufgabenheft und dem Quiz
+zu Teil~1!
+\end{merksatz}
+
+\vspace{1em}
+\hrule
+\vspace{0.8em}
+\noindent\textsf{\small Quellen: Rahmenplan Wirtschaftsbezogene Qualifikationen (DIHK),
+Abschnitte 1.2.1.4--1.2.1.5; Übungsband Betriebswirtschaft (DIHK-Bildungs-GmbH),
+Kap.~1, Übungen 25--44. Der Textband-Auszug wird nachgereicht. Weiter geht es heute ab
+10:55~Uhr mit Teil~2: Controlling, Personal \& Zusammenwirken der Funktionen.}
+
+\end{document}

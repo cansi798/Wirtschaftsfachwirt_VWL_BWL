@@ -21,6 +21,19 @@ const FOLDERS = {
   'bwl-2': 'BWL/Lektion-2_12.09._Betriebliche-Funktionen-II',
   'bwl-3': 'BWL/Lektion-3_26.09._Existenzgruendung-und-Rechtsformen',
   'bwl-4': 'BWL/Lektion-4_27.02._Unternehmenszusammenschluesse',
+  // Session-Teile (a = Teil 1, b = Teil 2) der 6-UE-Lektionen — gleiche Ordner
+  'vwl-2a': 'VWL/Lektion-2_22.08._Wettbewerb-Staatseingriffe-VGR',
+  'vwl-2b': 'VWL/Lektion-2_22.08._Wettbewerb-Staatseingriffe-VGR',
+  'vwl-3a': 'VWL/Lektion-3_29.08._Konjunktur-Wirtschaftspolitik-Aussenwirtschaft',
+  'vwl-3b': 'VWL/Lektion-3_29.08._Konjunktur-Wirtschaftspolitik-Aussenwirtschaft',
+  'bwl-1a': 'BWL/Lektion-1_05.09._Betriebliche-Funktionen-I',
+  'bwl-1b': 'BWL/Lektion-1_05.09._Betriebliche-Funktionen-I',
+  'bwl-2a': 'BWL/Lektion-2_12.09._Betriebliche-Funktionen-II',
+  'bwl-2b': 'BWL/Lektion-2_12.09._Betriebliche-Funktionen-II',
+  'bwl-3a': 'BWL/Lektion-3_26.09._Existenzgruendung-und-Rechtsformen',
+  'bwl-3b': 'BWL/Lektion-3_26.09._Existenzgruendung-und-Rechtsformen',
+  'bwl-4a': 'BWL/Lektion-4_27.02._Unternehmenszusammenschluesse',
+  'bwl-4b': 'BWL/Lektion-4_27.02._Unternehmenszusammenschluesse',
 };
 const MIN_CARDS = 40, MIN_WORDS = 40, MIN_QUESTIONS = 20, MIN_PAIRS = 8;
 const WORD_RE = /^[A-ZÄÖÜß]{4,14}$/;

@@ -21,6 +21,19 @@ const FOLDERS = {
   'bwl-2': 'BWL/Lektion-2_12.09._Betriebliche-Funktionen-II',
   'bwl-3': 'BWL/Lektion-3_26.09._Existenzgruendung-und-Rechtsformen',
   'bwl-4': 'BWL/Lektion-4_27.02._Unternehmenszusammenschluesse',
+  // Session-Teile (a = Teil 1, b = Teil 2) der 6-UE-Lektionen — gleiche Ordner
+  'vwl-2a': 'VWL/Lektion-2_22.08._Wettbewerb-Staatseingriffe-VGR',
+  'vwl-2b': 'VWL/Lektion-2_22.08._Wettbewerb-Staatseingriffe-VGR',
+  'vwl-3a': 'VWL/Lektion-3_29.08._Konjunktur-Wirtschaftspolitik-Aussenwirtschaft',
+  'vwl-3b': 'VWL/Lektion-3_29.08._Konjunktur-Wirtschaftspolitik-Aussenwirtschaft',
+  'bwl-1a': 'BWL/Lektion-1_05.09._Betriebliche-Funktionen-I',
+  'bwl-1b': 'BWL/Lektion-1_05.09._Betriebliche-Funktionen-I',
+  'bwl-2a': 'BWL/Lektion-2_12.09._Betriebliche-Funktionen-II',
+  'bwl-2b': 'BWL/Lektion-2_12.09._Betriebliche-Funktionen-II',
+  'bwl-3a': 'BWL/Lektion-3_26.09._Existenzgruendung-und-Rechtsformen',
+  'bwl-3b': 'BWL/Lektion-3_26.09._Existenzgruendung-und-Rechtsformen',
+  'bwl-4a': 'BWL/Lektion-4_27.02._Unternehmenszusammenschluesse',
+  'bwl-4b': 'BWL/Lektion-4_27.02._Unternehmenszusammenschluesse',
 };
 
 const SHELL = fs.readFileSync(path.join(__dirname, 'praesentation-shell.html'), 'utf8');
@@ -34,7 +47,8 @@ if (!files.length) { console.error('Keine Folien-Dateien gefunden.'); process.ex
 let errors = 0;
 for (const file of files.sort()) {
   const dayId = file.replace('.slides.html', '');
-  const metaPath = path.join(__dirname, 'karteikarten-data', dayId + '.json');
+  let metaPath = path.join(__dirname, 'karteikarten-data', dayId + '.json');
+  if (!fs.existsSync(metaPath)) metaPath = path.join(DATA_DIR, dayId + '.meta.json');
   if (!fs.existsSync(metaPath)) { console.error(`✗ ${dayId}: Metadaten fehlen (${metaPath})`); errors++; continue; }
   const meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
   const slides = fs.readFileSync(path.join(DATA_DIR, file), 'utf8');

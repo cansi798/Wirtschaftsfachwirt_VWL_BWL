@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Präsentation Lektion 3 — Existenzgründung & Businessplan (Teil 1)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:       #0EA5A4;
+  --bfw-primary-dark:  #0F766E;
+  --bfw-accent:        #F59E0B;
+  --bfw-warn:          #F97316;
+  --bfw-success:       #10B981;
+  --bfw-ink:           #0F172A;
+  --bfw-ink-soft:      #475569;
+  --bfw-bg:            #FAFAFA;
+  --bfw-bg-teal:       #ECFEFF;
+  --bfw-bg-amber:      #FEF3C7;
+  --bfw-bg-rose:       #FFE4E6;
+  --bfw-border:        #E2E8F0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; font-family: 'Inter', system-ui, sans-serif; color: var(--bfw-ink); background: var(--bfw-bg); }
+
+.deck { position: relative; width: 100vw; height: 100vh; }
+.slide {
+  position: absolute; inset: 0;
+  display: none;
+  padding: 4rem 6rem;
+  flex-direction: column;
+  justify-content: center;
+  background: white;
+  animation: fadeIn 0.35s ease;
+}
+.slide.active { display: flex; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+h1 { font-size: 3.5rem; line-height: 1.1; color: var(--bfw-primary-dark); margin-bottom: 1rem; letter-spacing: -0.02em; }
+h2 { font-size: 2.4rem; color: var(--bfw-primary-dark); margin-bottom: 1.5rem; }
+h3 { font-size: 1.4rem; color: var(--bfw-primary); margin-bottom: 0.8rem; font-weight: 600; }
+p { font-size: 1.25rem; line-height: 1.55; margin-bottom: 0.8rem; color: var(--bfw-ink); }
+ul, ol { margin: 0.5rem 0 1rem 1.5rem; }
+li { font-size: 1.2rem; line-height: 1.6; margin-bottom: 0.4rem; }
+.subtitle { font-size: 1.4rem; color: var(--bfw-ink-soft); margin-bottom: 2rem; font-weight: 500; }
+.muted { color: var(--bfw-ink-soft); }
+
+/* Deckblatt */
+.cover { background: linear-gradient(135deg, var(--bfw-bg-teal) 0%, white 60%, var(--bfw-bg-amber) 100%); }
+.cover-tag {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: var(--bfw-primary);
+  color: white;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.cover-meta { display: flex; gap: 2rem; margin-top: 2rem; color: var(--bfw-ink-soft); font-size: 1.1rem; }
+.cover-meta span strong { color: var(--bfw-ink); display: block; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* Karten-Grid */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+.card { background: white; border: 1px solid var(--bfw-border); border-radius: 14px; padding: 1.4rem; box-shadow: 0 2px 8px rgba(15,23,42,0.04); }
+.card.teal { background: var(--bfw-bg-teal); border-color: var(--bfw-primary); }
+.card.amber { background: var(--bfw-bg-amber); border-color: var(--bfw-accent); }
+.card.rose { background: var(--bfw-bg-rose); border-color: var(--bfw-warn); }
+.card-title { font-size: 1.15rem; font-weight: 700; color: var(--bfw-primary-dark); margin-bottom: 0.5rem; }
+.card.amber .card-title { color: var(--bfw-warn); }
+
+/* Merksatz */
+.merksatz {
+  background: var(--bfw-bg-teal);
+  border-left: 6px solid var(--bfw-primary);
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+  font-size: 1.15rem;
+}
+.merksatz-label { font-weight: 700; color: var(--bfw-primary-dark); display: block; margin-bottom: 0.3rem; font-size: 1rem; }
+
+/* Tabellen */
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 1.1rem; }
+th { background: var(--bfw-bg-teal); color: var(--bfw-primary-dark); text-align: left; padding: 0.7rem 1rem; font-weight: 700; }
+td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
+
+/* Diagramm-Container für Rough.js */
+.figure { margin: 1.5rem auto; text-align: center; }
+.figure svg { max-width: 100%; height: auto; }
+.caption { color: var(--bfw-ink-soft); font-size: 0.95rem; margin-top: 0.5rem; }
+
+/* Navigation */
+.nav { position: fixed; bottom: 1rem; right: 1.5rem; display: flex; gap: 0.5rem; align-items: center; z-index: 100; }
+.nav button {
+  border: none; background: var(--bfw-primary); color: white;
+  width: 44px; height: 44px; border-radius: 50%;
+  font-size: 1.2rem; cursor: pointer;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.12);
+  transition: all 0.15s;
+}
+.nav button:hover { background: var(--bfw-primary-dark); transform: translateY(-1px); }
+.nav-counter { background: white; padding: 0.4rem 0.9rem; border-radius: 999px; font-weight: 600; color: var(--bfw-ink-soft); font-size: 0.95rem; box-shadow: 0 2px 8px rgba(15,23,42,0.06); }
+
+.slide-num { position: fixed; bottom: 1rem; left: 1.5rem; color: var(--bfw-ink-soft); font-size: 0.9rem; }
+
+/* Listen mit Icons */
+.checklist { list-style: none; margin-left: 0; }
+.checklist li { padding-left: 2rem; position: relative; }
+.checklist li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--bfw-success); font-weight: 700; font-size: 1.3rem; }
+
+.numlist { list-style: none; margin-left: 0; counter-reset: numitem; }
+.numlist li { padding-left: 3rem; position: relative; counter-increment: numitem; margin-bottom: 0.8rem; }
+.numlist li::before {
+  content: counter(numitem);
+  position: absolute; left: 0; top: 0;
+  width: 2rem; height: 2rem;
+  background: var(--bfw-primary); color: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.95rem;
+}
+
+/* Print-friendly */
+@media print {
+  .slide { display: flex; page-break-after: always; }
+  .nav, .slide-num { display: none; }
+  html, body { height: auto; overflow: visible; }
+}
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- 1. Deckblatt -->
+  <section class="slide active cover">
+    <span class="cover-tag">Lektion 3 · Teil 1 · Sa, 26.09.2026 · 08:15–10:40</span>
+    <h1>Existenzgründung &amp; Businessplan</h1>
+    <p class="subtitle">Von der Geschäftsidee zum überzeugenden Gründungskonzept</p>
+    <div class="cover-meta">
+      <span><strong>Kurs</strong>Wirtschaftsfachwirt — 1.3 Betriebswirtschaftliche Grundlagen</span>
+      <span><strong>Rahmenplan</strong>1.3 Existenzgründung und Unternehmensrechtsformen</span>
+      <span><strong>Quelle</strong>Übungsband BWL, Kap. 2 (S. 21–24) · Textband-Auszug wird nachgereicht</span>
+    </div>
+  </section>
+
+
+  <!-- Fahrplan -->
+  <section class="slide">
+    <h2>Unser Fahrplan — wo stehen wir?</h2>
+    <p class="subtitle">7 Termine · 40 UE · Volks- und Betriebswirtschaft · ✓ = bereits behandelt</p>
+    <table>
+      <tr><th>Termin</th><th>Datum</th><th>Thema</th></tr>
+      <tr><td>✓ 1</td><td>Mi 19.08.26</td><td>VWL: Grundbegriffe &amp; Preisbildung</td></tr>
+      <tr><td>✓ 2</td><td>Sa 22.08.26</td><td>VWL: Wettbewerb, Staatseingriffe &amp; VGR</td></tr>
+      <tr><td>✓ 3</td><td>Sa 29.08.26</td><td>VWL: Konjunktur, Wirtschaftspolitik &amp; Außenwirtschaft</td></tr>
+      <tr><td>✓ 4</td><td>Sa 05.09.26</td><td>BWL: Betriebliche Funktionen I</td></tr>
+      <tr><td>✓ 5</td><td>Sa 12.09.26</td><td>BWL: Betriebliche Funktionen II</td></tr>
+      <tr><td><strong>6 (heute — Teil 1)</strong></td><td><strong>Sa 26.09.26</strong></td><td><strong>BWL: Existenzgründung &amp; Rechtsformen</strong></td></tr>
+      <tr><td>7</td><td>Sa 27.02.27</td><td>BWL: Unternehmenszusammenschlüsse</td></tr>
+    </table>
+    <p class="muted">Alle Materialien auf der Lernplattform — Zugangscode <code>bwl</code>. Pro Lektion: Präsentation, Handout, Quiz, Lernbereich, Prüfungsaufgaben, Übungsband, Karteikarten &amp; Lernspiele.</p>
+  </section>
+
+  <!-- 2. Lernziele -->
+  <section class="slide">
+    <h2>Was Sie in Teil 1 lernen</h2>
+    <p class="subtitle">Am Ende dieser Session können Sie …</p>
+    <ul class="checklist">
+      <li>die <strong>Gründungsphasen</strong> in die richtige Reihenfolge bringen</li>
+      <li>die <strong>Voraussetzungen</strong> einer Existenzgründung in drei Gruppen erläutern</li>
+      <li>Merkmale einer <strong>tragfähigen Geschäftsidee</strong> (Kundennutzen, USP, Markt) benennen</li>
+      <li>die <strong>Bestandteile des Businessplans</strong> nennen — von der Executive Summary bis zur Finanzplanung</li>
+      <li>die drei <strong>Funktionen des Businessplans</strong> (Geldgeber, Planung, Führung) erklären</li>
+      <li><strong>Fördermöglichkeiten</strong> (KfW, Gründungszuschuss) einordnen</li>
+      <li>den <strong>Kapitalbedarf</strong> und den <strong>Fremdkapitalbedarf</strong> einer Gründung berechnen</li>
+    </ul>
+  </section>
+
+  <!-- 3. Gründungsphasen -->
+  <section class="slide">
+    <h2>Die Phasen der Existenzgründung</h2>
+    <div class="figure" id="fig-phasen"></div>
+    <p class="caption">Idealtypischer Ablauf: Am Anfang steht die Geschäftsidee — der Businessplan entsteht in der Konzeptionsphase.</p>
+    <div class="merksatz">
+      <span class="merksatz-label">📌 Prüfungsklassiker</span>
+      Reihenfolge sicher können: <strong>Geschäftsidee → Orientierung → Konzeption → Umsetzung → Festigung</strong>. Merkhilfe: „<strong>G</strong>ute <strong>O</strong>rganisation <strong>k</strong>ann <strong>U</strong>nternehmen <strong>f</strong>estigen.“
+    </div>
+  </section>
+
+  <!-- 4. Voraussetzungen -->
+  <section class="slide">
+    <h2>Voraussetzungen: Bin ich ein Gründertyp?</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Persönliche Voraussetzungen</div>
+        <p style="font-size: 0.95rem;">Ziele setzen &amp; konsequent verfolgen · Mut zum Risiko, Umgang mit Rückschlägen · Rückhalt der Familie, hoher Zeiteinsatz · Disziplin beim Geld</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Fachliche Kompetenz</div>
+        <p style="font-size: 0.95rem;">Passende Ausbildung &amp; Erfahrung · Branchenkenntnis · Defizite ausgleichen · branchenspezifische EDV</p>
+      </div>
+      <div class="card rose">
+        <div class="card-title">Unternehmerische Kompetenz</div>
+        <p style="font-size: 0.95rem;">Kaufmännische &amp; rechtliche Kenntnisse · selbstbewusstes Auftreten · delegieren können · Kreativität</p>
+      </div>
+    </div>
+    <p class="muted">IHK-Frageform: „Nennen Sie je vier Voraussetzungen.“</p>
+  </section>
+
+  <!-- 5. Finanzielle Basis & Geschäftsidee -->
+  <section class="slide">
+    <h2>Finanzielle Basis &amp; tragfähige Geschäftsidee</h2>
+    <div class="cards">
+      <div class="card amber">
+        <div class="card-title">Finanzielle Basis</div>
+        <p style="font-size: 1rem;">Kapitalbedarf realistisch kalkulieren (Investitionen + Anlaufphase + private Lebenshaltung) · Faustregel: <strong>15–20 % Eigenkapital</strong> · Zugang zu Fremdkapital &amp; Sicherheiten</p>
+      </div>
+      <div class="card teal">
+        <div class="card-title">Geschäftsidee</div>
+        <p style="font-size: 1rem;"><strong>Kundennutzen</strong> stiften · sich vom Wettbewerb <strong>abgrenzen</strong> (USP) · ausreichend großer, erreichbarer <strong>Markt</strong></p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="merksatz-label">⚠️ Achtung</span>
+      Finanzierungsmängel und unzureichende Planung sind die häufigsten Ursachen des Scheiterns junger Unternehmen.
+    </div>
+  </section>
+
+  <!-- 6. Businessplan Funktionen -->
+  <section class="slide">
+    <h2>Der Businessplan: Begriff &amp; Funktionen</h2>
+    <p><strong>Businessplan</strong> = die <strong>schriftliche</strong> Ausarbeitung zur Darlegung der <strong>Geschäftsidee</strong>, ihrer Realisierung und der daraus resultierenden Ergebnisse.</p>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Nach außen</div>
+        <p style="font-size: 0.98rem;">Richtet sich v. a. an <strong>Geldgeber</strong> und künftige Geschäftspartner — Grundlage der Finanzierungsentscheidung.</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Nach innen: Planung</div>
+        <p style="font-size: 0.98rem;">Zwingt den Gründer, die Idee <strong>planmäßig zu durchdenken</strong> — Schwachstellen werden früh sichtbar.</p>
+      </div>
+      <div class="card rose">
+        <div class="card-title">Nach innen: Führung</div>
+        <p style="font-size: 0.98rem;"><strong>Führungsgrundlage</strong> für Mitarbeiter und Gremien; später Maßstab für Soll-Ist-Vergleiche.</p>
+      </div>
+    </div>
+    <p class="muted">Die drei Funktionen sind ein Prüfungsklassiker — Training dazu in den Prüfungsaufgaben zur Lektion.</p>
+  </section>
+
+  <!-- 7. Businessplan Bestandteile -->
+  <section class="slide">
+    <h2>Bestandteile des Businessplans</h2>
+    <ol class="numlist">
+      <li><strong>Executive Summary</strong> — Kurzfassung auf 1–2 Seiten, wird zuerst gelesen</li>
+      <li><strong>Geschäftsmodell / Geschäftsidee</strong> — Zweck, Besonderheit, Angebot, Ziele, Gründerprofil</li>
+      <li><strong>Markt &amp; Wettbewerb</strong> — Markt-/Branchenanalyse, Zielgruppen, Konkurrenz, Standort</li>
+      <li><strong>Marketing &amp; Vertrieb</strong> — Produkt-, Preis-, Distributions-, Kommunikationspolitik</li>
+      <li><strong>Organisation &amp; Rechtsform</strong> — Personal, gewählte Rechtsform mit Begründung</li>
+      <li><strong>Finanzplanung &amp; Kapitalbedarf</strong> — Investitions-, Finanzierungs-, Liquiditätsplan, Ertragsvorschau</li>
+      <li><strong>Chancen &amp; Risiken</strong> — Best/Worst Case und Gegenmaßnahmen</li>
+    </ol>
+  </section>
+
+  <!-- 8. Finanzplanung -->
+  <section class="slide">
+    <h2>Herzstück: die Finanzplanung</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Kapitalbedarf &amp; Investitionsplan</div>
+        <p style="font-size: 0.98rem;">Was wird angeschafft, was kostet die Anlaufphase — wie viel Kapital wird insgesamt benötigt?</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Finanzierungs- &amp; Liquiditätsplan</div>
+        <p style="font-size: 0.98rem;">Woher kommt das Kapital (Eigen-/Fremdkapital, Fördermittel)? Reicht das Geld in jedem Monat?</p>
+      </div>
+      <div class="card rose">
+        <div class="card-title">Umsatzschätzung &amp; Ertragsvorschau</div>
+        <p style="font-size: 0.98rem;">Welche Umsätze und Gewinne sind realistisch? Ab wann trägt sich das Unternehmen?</p>
+      </div>
+    </div>
+    <p class="muted">Diskussionsfrage: Was wiegt schwerer — eine starke Geschäftsidee oder eine solide Finanzierung?</p>
+  </section>
+
+  <!-- 9. Formel: Kapitalbedarfsrechnung -->
+  <section class="slide">
+    <h2>Rechnen: die Kapitalbedarfsrechnung</h2>
+    <p class="subtitle">Kapitalbedarf = Investitionen + Gründungskosten + Anlaufkosten + private Lebenshaltung · Fremdkapitalbedarf = Kapitalbedarf − Eigenkapital</p>
+    <table>
+      <tr><th></th><th>Position</th><th>Betrag</th></tr>
+      <tr><td></td><td>Investitionen (Ladeneinrichtung, Maschinen)</td><td>60.000 €</td></tr>
+      <tr><td>+</td><td>Warenerstausstattung</td><td>20.000 €</td></tr>
+      <tr><td>+</td><td>Gründungskosten (Notar, Register, Beratung)</td><td>3.000 €</td></tr>
+      <tr><td>+</td><td>Anlaufkosten (6 Monate Miete, Personal, Werbung)</td><td>15.000 €</td></tr>
+      <tr><td>+</td><td>Private Lebenshaltung (6 Monate)</td><td>12.000 €</td></tr>
+      <tr><td>=</td><td><strong>Kapitalbedarf</strong></td><td><strong>110.000 €</strong></td></tr>
+      <tr><td>−</td><td>Eigenkapital</td><td>22.000 €</td></tr>
+      <tr><td>=</td><td><strong>Fremdkapitalbedarf</strong></td><td><strong>88.000 €</strong></td></tr>
+    </table>
+    <div class="merksatz">
+      <span class="merksatz-label">✅ Kontrolle</span>
+      Schritt 1: addieren (110.000 €) · Schritt 2: Eigenkapital abziehen (88.000 €) · Schritt 3: Eigenkapitalquote prüfen: 22.000 ÷ 110.000 = <strong>20 %</strong> — Faustregel (15–20 %) erfüllt.
+    </div>
+  </section>
+
+  <!-- 10. Förderung -->
+  <section class="slide">
+    <h2>Fördermöglichkeiten im Überblick</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">KfW-Gründerkredite</div>
+        <p style="font-size: 0.98rem;">Zinsgünstige Kredite der staatlichen KfW (z. B. ERP-Gründerkredit StartGeld bis 125.000 €) · Antrag über die <strong>Hausbank</strong> (Hausbankprinzip) · KfW übernimmt einen Großteil des Risikos</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Gründungszuschuss</div>
+        <p style="font-size: 0.98rem;"><strong>Agentur für Arbeit</strong> · für Gründungen aus dem <strong>ALG-I-Bezug</strong> · Ermessensleistung · Tragfähigkeitsbescheinigung (z. B. IHK) erforderlich</p>
+      </div>
+    </div>
+    <p class="muted">Daneben: Bürgschaftsbanken, Landesprogramme, Beratungsförderung, Beteiligungskapital.</p>
+  </section>
+
+  <!-- 11. Zusammenfassung Teil 1 -->
+  <section class="slide">
+    <h2>Das Wichtigste aus Teil 1 in 5 Sätzen</h2>
+    <ol class="numlist">
+      <li>Gründung verläuft in Phasen: Geschäftsidee → Orientierung → Konzeption → Umsetzung → Festigung.</li>
+      <li>Voraussetzungen in drei Gruppen: persönlich, fachlich, unternehmerisch — plus finanzielle Basis (15–20 % Eigenkapital).</li>
+      <li>Die Geschäftsidee trägt nur mit Kundennutzen, USP und ausreichend großem Markt.</li>
+      <li>Der Businessplan ist die schriftliche Darlegung der Idee — für Geldgeber, Planung und Führung; Herzstück ist die Finanzplanung.</li>
+      <li>Kapitalbedarf = Investitionen + Gründungskosten + Anlaufkosten + private Lebenshaltung; abzüglich Eigenkapital bleibt der Fremdkapitalbedarf.</li>
+    </ol>
+  </section>
+
+  <!-- 12. Ausblick Teil 2 -->
+  <section class="slide">
+    <h2>Gleich geht es weiter: Teil 2 ab 10:55 Uhr</h2>
+    <p class="subtitle">Kurze Pause (10:40–10:55) — danach: Unternehmensrechtsformen</p>
+    <ul class="checklist">
+      <li><strong>Einzelunternehmen</strong> (e. K.) — die häufigste Rechtsform</li>
+      <li><strong>Personengesellschaften</strong>: GbR, OHG, KG, PartG</li>
+      <li><strong>Kapitalgesellschaften</strong>: GmbH, UG (haftungsbeschränkt), AG</li>
+      <li><strong>Mischformen &amp; Genossenschaft</strong>: GmbH &amp; Co. KG, eG</li>
+      <li><strong>Vergleichskriterien</strong>: Haftung · Geschäftsführung · Vertretung · Kapital · Gewinn · Firma · Publizität</li>
+      <li><strong>Fallarbeit</strong>: Welche Rechtsform passt zu welchem Gründungsfall?</li>
+    </ul>
+    <div class="merksatz">
+      <span class="merksatz-label">💡 Brücke</span>
+      Im Businessplan-Baustein „Organisation &amp; Rechtsform“ muss die Rechtsformwahl <strong>begründet</strong> werden — genau dafür liefert Teil 2 das Handwerkszeug.
+    </div>
+  </section>
+
+
+</div>
+
+<div class="slide-num">© Can Siebert · 2026 · <span id="slideCount">1 / 26</span></div>
+<nav class="nav">
+  <button onclick="prev()" title="Zurück (←)">←</button>
+  <span class="nav-counter"><span id="slideNum">1</span></span>
+  <button onclick="next()" title="Weiter (→)">→</button>
+</nav>
+
+<!-- Rough.js für handgezeichnete Diagramme -->
+<script src="https://cdn.jsdelivr.net/npm/roughjs@4.6.6/bundled/rough.min.js"></script>
+<script>
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+function show(i) {
+  slides.forEach(s => s.classList.remove('active'));
+  current = Math.max(0, Math.min(i, slides.length - 1));
+  slides[current].classList.add('active');
+  document.getElementById('slideNum').textContent = current + 1;
+  document.getElementById('slideCount').textContent = `${current + 1} / ${slides.length}`;
+}
+function next() { show(current + 1); }
+function prev() { show(current - 1); }
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { next(); e.preventDefault(); }
+  if (e.key === 'ArrowLeft') prev();
+  if (e.key === 'Home') show(0);
+  if (e.key === 'End') show(slides.length - 1);
+});
+
+// Rough.js-Skizzen
+function makeRough(svgEl, fn) {
+  const rc = rough.svg(svgEl);
+  fn(rc, svgEl);
+}
+
+function box(rc, svg, x, y, w, h, fill, stroke) {
+  const node = rc.rectangle(x, y, w, h, {
+    roughness: 1.6, bowing: 1, fill: fill, fillStyle: 'solid', stroke: stroke, strokeWidth: 1.6
+  });
+  svg.appendChild(node);
+}
+function arrow(rc, svg, x1, y1, x2, y2, color) {
+  svg.appendChild(rc.line(x1, y1, x2, y2, { roughness: 1.4, stroke: color, strokeWidth: 1.8 }));
+  // Pfeilspitze
+  const ang = Math.atan2(y2 - y1, x2 - x1);
+  const ah = 10;
+  svg.appendChild(rc.line(x2, y2, x2 - ah * Math.cos(ang - Math.PI / 7), y2 - ah * Math.sin(ang - Math.PI / 7), { roughness: 1.2, stroke: color, strokeWidth: 1.8 }));
+  svg.appendChild(rc.line(x2, y2, x2 - ah * Math.cos(ang + Math.PI / 7), y2 - ah * Math.sin(ang + Math.PI / 7), { roughness: 1.2, stroke: color, strokeWidth: 1.8 }));
+}
+function text(svg, x, y, str, opts = {}) {
+  const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  t.setAttribute('x', x); t.setAttribute('y', y);
+  t.setAttribute('text-anchor', opts.anchor || 'middle');
+  t.setAttribute('font-family', 'Inter, sans-serif');
+  t.setAttribute('font-size', opts.size || 15);
+  t.setAttribute('fill', opts.color || '#0F172A');
+  t.setAttribute('font-weight', opts.bold ? 700 : 500);
+  t.textContent = str;
+  svg.appendChild(t);
+  return t;
+}
+
+window.addEventListener('load', () => {
+  // FIG: Gründungsphasen-Kette (5 Stufen)
+  const c1 = document.getElementById('fig-phasen');
+  if (c1) {
+    const svg1 = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg1.setAttribute('viewBox', '0 0 940 300');
+    svg1.setAttribute('width', '940'); svg1.setAttribute('height', '300');
+    c1.appendChild(svg1);
+    makeRough(svg1, (rc, svg) => {
+      const phasen = [
+        { t: 'Geschäftsidee', s: 'Auslöser', c: '#FFE4E6', st: '#F97316' },
+        { t: 'Orientierung', s: 'Selbstprüfung', c: '#FEF3C7', st: '#F59E0B' },
+        { t: 'Konzeption', s: 'Businessplan', c: '#ECFEFF', st: '#0F766E' },
+        { t: 'Umsetzung', s: 'Start & Formalitäten', c: '#FEF3C7', st: '#F59E0B' },
+        { t: 'Festigung', s: 'Konsolidierung', c: '#ECFEFF', st: '#0F766E' }
+      ];
+      let x = 20;
+      phasen.forEach((f, i) => {
+        box(rc, svg, x, 100, 150, 100, f.c, f.st);
+        text(svg, x + 75, 145, f.t, { bold: true, size: 16, color: f.st });
+        text(svg, x + 75, 172, f.s, { size: 12, color: '#475569' });
+        if (i < phasen.length - 1) arrow(rc, svg, x + 150, 150, x + 188, 150, '#0F766E');
+        x += 188;
+      });
+      text(svg, 470, 50, 'Die fünf Phasen der Existenzgründung', { size: 18, bold: true, color: '#0F766E' });
+      text(svg, 470, 250, 'Übungsband, Übung 46: Reihenfolge sicher können!', { size: 14, color: '#475569' });
+    });
+  }
+});
+
+</script>
+
+</body>
+</html>
