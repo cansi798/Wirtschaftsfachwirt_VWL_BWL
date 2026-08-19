@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Lernbereich Lektion 3 — Konjunktur, Wirtschaftspolitik & Außenwirtschaft</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:#0EA5A4; --bfw-primary-dark:#0F766E;
+  --bfw-accent:#F59E0B; --bfw-warn:#F97316;
+  --bfw-success:#10B981; --bfw-danger:#EF4444;
+  --bfw-ink:#0F172A; --bfw-ink-soft:#475569;
+  --bfw-bg:#FAFAFA; --bfw-bg-soft:#F8FAFC;
+  --bfw-bg-teal:#ECFEFF; --bfw-bg-amber:#FEF3C7;
+  --bfw-bg-rose:#FFE4E6; --bfw-border:#E2E8F0;
+  --bfw-bg-green:#D1FAE5;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, var(--bfw-bg-teal) 0%, var(--bfw-bg) 50%, var(--bfw-bg-amber) 100%);
+  min-height: 100vh; color: var(--bfw-ink); -webkit-font-smoothing: antialiased;
+  padding: 2rem 1rem 4rem;
+}
+.container { max-width: 900px; margin: 0 auto; }
+header { text-align: center; margin-bottom: 1.6rem; }
+.tag-pill {
+  display: inline-block; background: var(--bfw-bg-teal); color: var(--bfw-primary-dark);
+  font-weight: 700; font-size: 0.82rem; padding: 0.3rem 0.9rem; border-radius: 999px;
+  letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.8rem;
+}
+h1 { font-size: 1.7rem; color: var(--bfw-primary-dark); margin-bottom: 0.4rem; }
+.subtitle { color: var(--bfw-ink-soft); font-size: 1.02rem; line-height: 1.5; }
+
+.progress-wrap {
+  background: white; border: 1px solid var(--bfw-border); border-radius: 14px;
+  padding: 1rem 1.3rem; margin-bottom: 1.6rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.progress-bar { flex: 1; min-width: 200px; height: 12px; background: var(--bfw-bg-soft); border: 1px solid var(--bfw-border); border-radius: 999px; overflow: hidden; display: flex; }
+.progress-bar .seg-ok { background: var(--bfw-success); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-teil { background: var(--bfw-accent); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-nein { background: var(--bfw-danger); height: 100%; transition: width 0.3s; }
+.progress-label { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; white-space: nowrap; }
+.btn-reset {
+  padding: 0.45rem 0.9rem; background: transparent; color: var(--bfw-ink-soft);
+  border: 1.5px solid var(--bfw-border); border-radius: 8px; font-family: inherit;
+  font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.15s;
+}
+.btn-reset:hover { color: var(--bfw-danger); border-color: var(--bfw-danger); }
+
+.task {
+  background: white; border: 1px solid var(--bfw-border); border-left: 5px solid var(--bfw-border);
+  border-radius: 14px; padding: 1.4rem 1.5rem; margin-bottom: 1.2rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04); transition: border-color 0.2s;
+}
+.task.ok { border-left-color: var(--bfw-success); }
+.task.teil { border-left-color: var(--bfw-accent); }
+.task.nein { border-left-color: var(--bfw-danger); }
+.task-head { display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
+.task-num { font-weight: 800; color: var(--bfw-primary-dark); font-size: 1.05rem; white-space: nowrap; }
+.task-topic {
+  display: inline-block; background: var(--bfw-bg-amber); color: #92400E;
+  font-weight: 700; font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 999px;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.task-punkte { margin-left: auto; color: var(--bfw-ink-soft); font-size: 0.82rem; font-weight: 600; white-space: nowrap; }
+.task-frage { font-size: 1.02rem; line-height: 1.55; margin-bottom: 0.9rem; white-space: pre-line; }
+.task-hinweis { margin-bottom: 0.9rem; }
+.task-hinweis summary { cursor: pointer; color: var(--bfw-primary-dark); font-weight: 600; font-size: 0.9rem; }
+.task-hinweis p { margin-top: 0.5rem; padding: 0.7rem 0.9rem; background: var(--bfw-bg-teal); border-radius: 8px; font-size: 0.92rem; color: var(--bfw-ink-soft); line-height: 1.5; }
+textarea {
+  width: 100%; min-height: 110px; padding: 0.8rem 0.9rem;
+  border: 1.5px solid var(--bfw-border); border-radius: 10px;
+  font-family: inherit; font-size: 0.98rem; line-height: 1.5; resize: vertical;
+  background: var(--bfw-bg-soft); transition: all 0.15s;
+}
+textarea:focus { outline: none; border-color: var(--bfw-primary); background: white; box-shadow: 0 0 0 3px rgba(14,165,164,0.12); }
+.task-actions { margin-top: 0.8rem; display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+.btn {
+  padding: 0.55rem 1.1rem; border: none; border-radius: 9px; cursor: pointer;
+  font-family: inherit; font-size: 0.92rem; font-weight: 700; transition: all 0.15s;
+}
+.btn-loesung { background: var(--bfw-primary); color: white; }
+.btn-loesung:hover { background: var(--bfw-primary-dark); }
+.loesung {
+  display: none; margin-top: 1rem; padding: 1rem 1.1rem;
+  background: var(--bfw-bg-green); border: 1px solid #A7F3D0; border-radius: 10px;
+}
+.loesung.show { display: block; }
+.loesung-label { font-weight: 800; color: #047857; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+.loesung-text { font-size: 0.97rem; line-height: 1.6; white-space: pre-line; }
+.self-check { display: none; margin-top: 0.9rem; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.self-check.show { display: flex; }
+.self-check span { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; }
+.btn-ok { background: var(--bfw-bg-green); color: #047857; border: 1.5px solid #A7F3D0; }
+.btn-teil { background: var(--bfw-bg-amber); color: #92400E; border: 1.5px solid #FDE68A; }
+.btn-nein { background: var(--bfw-bg-rose); color: #B91C1C; border: 1.5px solid #FECACA; }
+.btn-ok.active, .btn-ok:hover { background: var(--bfw-success); color: white; }
+.btn-teil.active, .btn-teil:hover { background: var(--bfw-accent); color: white; }
+.btn-nein.active, .btn-nein:hover { background: var(--bfw-danger); color: white; }
+.saved-note { font-size: 0.78rem; color: var(--bfw-ink-soft); margin-left: auto; }
+
+footer { text-align: center; margin-top: 2.5rem; color: var(--bfw-ink-soft); font-size: 0.85rem; }
+@media print { .btn, .btn-reset, .self-check { display: none !important; } .loesung { display: block; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <span class="tag-pill">Lektion 3 · Lernbereich</span>
+    <h1>Lernbereich: Konjunktur, Wirtschaftspolitik & Außenwirtschaft</h1>
+    <p class="subtitle">Beantworten Sie die Aufgaben in eigenen Worten im Antwortfeld — Ihre Eingaben werden lokal im Browser gespeichert. Prüfen Sie sich danach mit dem <strong>Lösungshinweis</strong> und bewerten Sie sich selbst. In der IHK-Prüfung zählen ausformulierte Begründungen!</p>
+  </header>
+
+  <div class="progress-wrap">
+    <div class="progress-bar" id="progressBar"><div class="seg-ok"></div><div class="seg-teil"></div><div class="seg-nein"></div></div>
+    <span class="progress-label" id="progressLabel"></span>
+    <button class="btn-reset" onclick="resetAll()">Zurücksetzen</button>
+  </div>
+
+  <div id="tasks"></div>
+
+  <footer>© Can Siebert · 2026 · Wirtschaftsfachwirt — VWL — Volkswirtschaftliche Grundlagen</footer>
+</div>
+
+<script>
+const DAY_ID = 'vwl-3';
+const TASKS = [{"topic":"Konjunktur","punkte":7,"frage":"Jede volkswirtschaftliche Entwicklung ist Schwankungen unterworfen.\na) Beschreiben Sie die vier Phasen des Konjunkturzyklus mit ihren typischen Merkmalen.\nb) Unterscheiden Sie Konjunkturschwankung und Saisonschwankung.","hinweis":"Denken Sie an eine Wellenlinie um den langfristigen Wachstumstrend — und daran, welche Schwankung jahreszeitlich bedingt ist.","loesung":"a) 1. Aufschwung (Expansion): steigende Nachfrage, Produktion und Investitionen, sinkende Arbeitslosigkeit, wachsender Optimismus. 2. Hochkonjunktur (Boom): volle Kapazitätsauslastung, hohe Gewinne, Vollbeschäftigung, aber steigende Preise und Zinsen (Überhitzungsgefahr). 3. Abschwung (Rezession): sinkende Nachfrage und Produktion, Auftragsrückgänge, steigende Arbeitslosigkeit, Pessimismus. 4. Tiefphase (Depression): geringe Auslastung, hohe Arbeitslosigkeit, niedrige Preise und Zinsen — Ausgangspunkt für einen neuen Aufschwung.\nb) Konjunkturschwankungen sind mehrjährige, wellenförmige Schwankungen der gesamtwirtschaftlichen Aktivität um den langfristigen Trend. Saisonschwankungen sind kurzfristige, regelmäßig wiederkehrende, jahreszeitlich bedingte Schwankungen (z. B. Bauwirtschaft im Winter, Tourismus im Sommer)."},{"topic":"Konjunktur","punkte":6,"frage":"Ordnen Sie die folgenden Konjunkturindikatoren den Kategorien Frühindikator, Präsenzindikator und Spätindikator zu und begründen Sie kurz: Auftragseingänge, Arbeitslosenquote, reales BIP, ifo-Geschäftsklimaindex, Inflationsrate, Kapazitätsauslastung.","hinweis":"Merkhilfe F-P-S: Früh kündigt an, Präsenz zeigt an, Spät hinkt nach.","loesung":"Frühindikatoren (laufen der Entwicklung voraus): Auftragseingänge, ifo-Geschäftsklimaindex — sie kündigen künftige Produktion bzw. Erwartungen an. Präsenzindikatoren (zeigen die aktuelle Lage): reales BIP, Kapazitätsauslastung — sie messen die gegenwärtige gesamtwirtschaftliche Aktivität. Spätindikatoren (laufen hinterher): Arbeitslosenquote, Inflationsrate — Unternehmen entlassen erst, wenn der Abschwung schon läuft, und Preise reagieren verzögert. Weitere Präsenzindikatoren wären z. B. Industrieproduktion, Kurzarbeit, Zahl der offenen Stellen."},{"topic":"Geldpolitik (EZB)","punkte":6,"frage":"a) Nennen Sie das vorrangige Ziel der EZB und erklären Sie, wann dieses Ziel als erreicht gilt.\nb) Geben Sie die drei Leitzinsen der EZB an.","hinweis":"Der Zinskorridor hat eine Obergrenze, eine Untergrenze und einen wichtigsten Satz in der Mitte.","loesung":"a) Vorrangiges Ziel ist die Preisniveaustabilität in der Eurozone (Vertrag von Maastricht). Sie gilt als erreicht, wenn der Anstieg des harmonisierten Verbraucherpreisindex (HVPI) unter, aber nahe zwei Prozent liegt — damit sind sowohl Inflation als auch Deflation ausgeschlossen.\nb) 1. Zinssatz für die Hauptrefinanzierungsgeschäfte (wichtigster Leitzins), 2. Zinssatz der Spitzenrefinanzierungsfazilität (Übernachtkredit, Obergrenze des Zinskorridors), 3. Zinssatz der Einlagefazilität (Übernachtanlage, Untergrenze des Zinskorridors)."},{"topic":"Geldpolitik (EZB)","punkte":6,"frage":"a) Beschreiben Sie das Hauptrefinanzierungsgeschäft der EZB (Rhythmus, Laufzeit, Technik, Bedeutung).\nb) Erklären Sie den Begriff Mindestreserve.","loesung":"a) Das Hauptrefinanzierungsgeschäft (Haupttender) ist eine befristete Transaktion, die im wöchentlichen Rhythmus mit einer Laufzeit von einer Woche angeboten wird. Die EZB kauft bzw. verkauft Wertpapiere auf Basis einer Rückkaufvereinbarung (Pensionsgeschäfte) oder gewährt Kredite gegen Verpfändung von Wertpapieren. Die Banken decken hierüber den größten Teil ihres Refinanzierungsbedarfs; der festgelegte Zinssatz ist der wichtigste Leitzins im Euroraum und beeinflusst sämtliche Zinsen der Banken.\nb) Die Mindestreserve verpflichtet die Geschäftsbanken, bestimmte prozentuale Anteile der bei ihnen angelegten Sicht-, Termin- und Spareinlagen als Pflichtguthaben auf Konten bei der Zentralbank zu unterhalten. Eine Erhöhung des Satzes entzieht den Banken Liquidität, eine Senkung wirkt umgekehrt."},{"topic":"Geldpolitik (EZB)","punkte":6,"frage":"Die Inflationsrate im Euroraum liegt deutlich über dem Zielwert von knapp zwei Prozent. Der EZB-Rat beschließt eine kräftige Erhöhung der Leitzinsen. Stellen Sie die Wirkungskette dieser Zinserhöhung bis zum Preisniveau dar (mindestens fünf Stufen).","hinweis":"Beginnen Sie bei der Refinanzierung der Geschäftsbanken und enden Sie beim Preisanstieg.","loesung":"Wirkungskette der restriktiven Geldpolitik: Leitzinserhöhung → 1. Die Refinanzierung bei der EZB wird für die Geschäftsbanken teurer. → 2. Die Banken geben die höheren Zinsen an Unternehmen und Haushalte weiter, das Zinsniveau steigt (zugleich steigt die Sparneigung). → 3. Die Kreditnachfrage sinkt, die Kreditmöglichkeiten werden eingeschränkt. → 4. Kreditfinanzierte Investitionen der Unternehmen und Konsumentenkredite der Haushalte gehen zurück. → 5. Die gesamtwirtschaftliche Nachfrage sinkt. → 6. Der Preisanstieg wird verringert, die Inflation bekämpft (Konjunkturdämpfung)."},{"topic":"Geldpolitik (EZB)","punkte":6,"frage":"a) Erläutern Sie zwei mögliche negative Nebenwirkungen einer kräftigen Leitzinserhöhung auf Wachstum und Beschäftigung.\nb) Nennen Sie zwei Grenzen (Störfaktoren), an die die Geldpolitik der EZB stoßen kann.","loesung":"a) Wachstum: Unterbleiben Investitionen, sinkt die gesamtwirtschaftliche Nachfrage — das Wirtschaftswachstum (BIP) geht zurück, im Extremfall droht eine Rezession. Beschäftigung: Bei sinkender Produktion bauen Unternehmen Personal ab bzw. stellen nicht ein — die Arbeitslosigkeit steigt. (Auch denkbar: höhere Finanzierungskosten für den Staat, Belastung von Bauwirtschaft und Immobilienmarkt.)\nb) Z. B.: Internationale Finanzströme können trotz restriktiver Politik Inflation erzeugen; hohe Lohnabschlüsse über dem Produktivitätsfortschritt wirken preistreibend; unklar ist, ob und wann Banken Zinsänderungen weitergeben; erhöht der Staat gleichzeitig schuldenfinanziert seine Ausgaben, verpufft die restriktive Wirkung (zwei Nennungen genügen)."},{"topic":"Geldpolitik (EZB)","punkte":6,"frage":"Transfer: Die Eurozone steckt in einer Rezession, die Preise beginnen zu sinken (Deflationsgefahr). Erläutern Sie, welche geldpolitische Grundausrichtung die EZB nun wählt, und stellen Sie die zugehörige Wirkungskette dar.","hinweis":"„Zins runter — Wirtschaft munter.“","loesung":"Die EZB betreibt expansive Geldpolitik („Politik des billigen Geldes“): Sie senkt die Leitzinsen und führt dem Bankensektor Liquidität zu (z. B. durch Wertpapierkäufe im Offenmarktgeschäft oder Senkung des Mindestreservesatzes). Wirkungskette: Leitzinssenkung → Refinanzierung wird für Banken billiger → Kreditzinsen sinken → Kreditnachfrage und Geldmenge steigen → Investitionen und Konsum nehmen zu → gesamtwirtschaftliche Nachfrage und BIP steigen, Arbeitslosigkeit sinkt, das Preisniveau stabilisiert sich — Mittel gegen Rezession und Deflation."},{"topic":"Fiskalpolitik","punkte":8,"frage":"a) Erklären Sie das Grundprinzip der antizyklischen Fiskalpolitik nach John Maynard Keynes und nennen Sie die gesetzliche Grundlage in Deutschland.\nb) Nennen Sie je zwei fiskalpolitische Maßnahmen für die Boomphase und für die Rezession.","hinweis":"Antizyklisch heißt: gegen den Konjunkturverlauf steuern.","loesung":"a) Der Staat gestaltet seine Einnahmen- und Ausgabenpolitik so, dass sie dem Konjunkturverlauf entgegenwirkt: Im Boom dämpft er die Nachfrage (restriktiv), in der Rezession stützt er sie (expansiv). Konjunkturschwankungen sollen so ausgeglichen werden. Gesetzliche Grundlage ist das Stabilitätsgesetz (StabG) von 1967, theoretische Grundlage die Lehre von John Maynard Keynes.\nb) Boom (restriktiv): Staatsausgaben senken (Investitionen, Subventionen, Transferleistungen zurückfahren), Einnahmen erhöhen (Steuererhöhungen), Budgetüberschüsse als Rücklagen bilden. Rezession (expansiv): Ausgaben erhöhen (öffentliche Investitions- und Konjunkturprogramme), Einnahmen senken (Steuererleichterungen) — notfalls kreditfinanziert (Deficit Spending). Je zwei Nennungen genügen."},{"topic":"Fiskalpolitik","punkte":4,"frage":"Erklären Sie den Begriff „automatische Stabilisatoren“ anhand zweier Beispiele.","hinweis":"Diese Stabilisatoren wirken ohne politische Entscheidung — der Haushalt „atmet“ mit der Konjunktur.","loesung":"Automatische (eingebaute) Stabilisatoren wirken antizyklisch, ohne dass eine politische Entscheidung nötig ist. Beispiele: 1. Die progressive Einkommensteuer entzieht im Boom überproportional Kaufkraft und entlastet in der Rezession. 2. Arbeitslosengeld und Sozialleistungen stützen in der Rezession die Nachfrage der Haushalte, während im Boom die Beitragszahlungen die Kaufkraft dämpfen."},{"topic":"Tarifpolitik","punkte":10,"frage":"a) Erklären Sie den Begriff Tarifautonomie und nennen Sie die Rechtsgrundlage.\nb) Unterscheiden Sie Lohn- bzw. Gehaltstarifvertrag und Manteltarifvertrag nach ihren Regelungsinhalten.\nc) Stellen Sie die Lohnargumentation der Gewerkschaften (Kaufkrafttheorie) der produktivitätsorientierten Lohnpolitik der Arbeitgeber gegenüber.","hinweis":"Zu c): Löhne sind zugleich Nachfragefaktor und Kostenfaktor.","loesung":"a) Tarifautonomie bedeutet, dass die Tarifpartner (Gewerkschaften, Arbeitgeberverbände bzw. einzelne Arbeitgeber) Tarifverträge frei von staatlichen Weisungen aushandeln und abschließen; der Staat ist zur Neutralität verpflichtet. Rechtsgrundlage: Art. 9 Abs. 3 GG (Koalitionsfreiheit).\nb) Lohn- und Gehalts(rahmen)tarifverträge regeln die Entgeltfindung: Höhe des Entgelts, Eingruppierung, Zuschläge und Zulagen; meist kurze Laufzeiten. Manteltarifverträge regeln die arbeitsrechtlichen Rahmenbedingungen: Verteilung der Wochenarbeitszeit, Pausen, Urlaub, Schichtarbeit, Freistellungen, Altersversorgung; meist lange Laufzeiten.\nc) Gewerkschaften (Kaufkrafttheorie, nachfrageorientiert): Höhere Löhne steigern die Massenkaufkraft und damit die Nachfrage; das regt Produktion und Investitionen an und verbessert die Beschäftigung. Arbeitgeber (produktivitätsorientiert, angebotsorientiert): Löhne sind ein Kostenfaktor; Lohnsteigerungen sollen den Produktivitätsfortschritt nicht übersteigen, um Lohnkosteninflation und lohnkostenbedingte Arbeitslosigkeit (Rationalisierung, Produktionsverlagerung) zu vermeiden."},{"topic":"Arbeitsmarktpolitik","punkte":8,"frage":"a) Unterscheiden Sie aktive und passive Arbeitsmarktpolitik nach ihrer Zielsetzung.\nb) Nennen Sie je zwei Instrumente der aktiven und der passiven Arbeitsmarktpolitik.","hinweis":"Passiv = Folgen mildern (Geldleistungen), aktiv = vorbeugen und eingliedern.","loesung":"a) Die passive Arbeitsmarktpolitik mildert die wirtschaftlichen Folgen bereits eingetretener oder unmittelbar drohender Arbeitslosigkeit bzw. geringer Beschäftigung (Absicherung des Einkommens durch Lohnersatzleistungen). Die aktive Arbeitsmarktpolitik setzt vorher an: Sie soll Erwerbspersonen in die Lage versetzen, im Arbeitsprozess zu bleiben oder schnellstmöglich und dauerhaft wieder einzutreten (Vorbeugung und Eingliederung).\nb) Passiv: Arbeitslosengeld I und II (Bürgergeld), Kurzarbeitergeld, Insolvenzgeld. Aktiv: Beratung und Vermittlung, Trainings- und Qualifizierungsmaßnahmen, Förderung der Aus- und Weiterbildung, Umschulung, Existenzgründungsförderung, Mobilitätshilfen. Je zwei Nennungen genügen."},{"topic":"Umweltpolitik","punkte":10,"frage":"a) Erklären Sie Verursacherprinzip und Gemeinlastprinzip mit je einem Beispiel.\nb) Erklären Sie die Funktionsweise des Zertifikatehandels am Beispiel des EU-Emissionshandels.\nc) Nennen Sie zwei Beispiele für umweltpolitische Auflagen (Ordnungsrecht).","hinweis":"Merkhilfe A-A-Z: Auflagen verbieten, Abgaben verteuern, Zertifikate begrenzen und handeln.","loesung":"a) Verursacherprinzip: Die Kosten für Vermeidung, Beseitigung oder Ausgleich von Umweltbelastungen trägt derjenige, der sie verursacht — externe Kosten werden internalisiert (Beispiel: Abwasserabgabe, Rücknahmepflicht für Umverpackungen). Gemeinlastprinzip: Ist der Verursacher nicht eindeutig feststellbar oder gehen Schäden zulasten der Allgemeinheit, übernimmt der Staat die Maßnahmen und finanziert sie über Steuern (Beispiel: kommunale Kläranlagen, Mülldeponien).\nb) Unternehmen dürfen Umweltbelastungen nur gegen eine Berechtigung in Form von Umweltzertifikaten verursachen. Ein Zertifikat gestattet eine bestimmte Menge Schadstoffausstoß pro Jahr. Die Gesamtmenge ist begrenzt (Cap); die Emissionsrechte werden börsenmäßig gehandelt bzw. versteigert. Wer wenig emittiert, kann Zertifikate verkaufen — so entsteht ein marktwirtschaftlicher Anreiz, Emissionen dort zu vermeiden, wo es am günstigsten ist (EU-Emissionshandel für CO2).\nc) Z. B. Grenzwerte für den Schadstoffausstoß, FCKW-Verbot, Umweltplaketten für Kraftfahrzeuge beim Einfahren in Umweltzonen (zwei Nennungen genügen)."},{"topic":"Wirtschaftspolitische Konzeptionen","punkte":14,"frage":"Transfer: Deutschland befindet sich in einer Rezession — das reale BIP schrumpft um 1,5 %, die Arbeitslosigkeit steigt. Partei A fordert ein kreditfinanziertes staatliches Investitionsprogramm für Infrastruktur und höhere Transferleistungen für Haushalte. Partei B fordert Steuersenkungen für Unternehmen, den Abbau von Bürokratie und Regulierungen sowie moderate Lohnabschlüsse.\na) Ordnen Sie beide Positionen der jeweiligen wirtschaftspolitischen Konzeption zu und nennen Sie deren theoretische Begründer bzw. prominente Vertreter.\nb) Erläutern Sie die Wirkungslogik beider Konzepte (Ziel, Ansatzpunkt, Rolle des Staates).\nc) Beurteilen Sie beide Konzepte, indem Sie je zwei Schwächen (Kritikpunkte) darlegen.","hinweis":"Merkhilfe: „Keynes kauft“ (Staat schafft Nachfrage) — „Friedman freit die Märkte“ (Deregulierung).","loesung":"a) Partei A vertritt die nachfrageorientierte Wirtschaftspolitik (keynesianische Nachfragesteuerung, Fiskalismus) — Begründer: John Maynard Keynes (1883–1946). Partei B vertritt die angebotsorientierte Wirtschaftspolitik (Neoklassik/Angebotstheorie, monetaristisch geprägt) — prominenter Vertreter: Milton Friedman (1912–2006).\nb) Nachfrageorientiert: Ursache der Krise ist eine unzureichende gesamtwirtschaftliche Nachfrage. Ziel ist die kurzfristige Beseitigung der Gleichgewichtsstörung (Symptombekämpfung). Der Staat übernimmt eine aktive Rolle: Er stärkt die Massenkaufkraft (Transfers, Lohnerhöhungen), erhöht den Staatskonsum über öffentliche Ausgabenprogramme und verschuldet sich dafür notfalls (Deficit Spending) — antizyklische Politik. Angebotsorientiert: Wachstum und Beschäftigung hängen von den Angebotsbedingungen ab; Motor sind die Investitionen der Unternehmen. Ziel ist die mittel- bis langfristige Beseitigung gleichgewichtsstörender Auslösefaktoren (Ursachenbekämpfung). Der Staat verhält sich passiv und verbessert nur die Rahmenbedingungen: Steuersenkungen, Deregulierung, Kostendämpfung, Abbau von Subventionen — bessere Renditeerwartungen führen zu Investitionen und neuen Arbeitsplätzen.\nc) Kritik an A (nachfrageorientiert): Timelags (Wirkung kommt oft zu spät), Crowding-out (Verdrängung privater Investitionen), steigende Staatsquote und wachsende Staatsverschuldung. Kritik an B (angebotsorientiert): einseitige Betonung der Kosten — Löhne sind auch ein Nachfragefaktor; höhere Gewinne erhöhen zwar die Investitionsfähigkeit, aber nicht automatisch die Investitionsbereitschaft (bei schlechter Absatzerwartung wird nicht investiert). Je zwei Punkte genügen."},{"topic":"Außenwirtschaft","punkte":7,"frage":"a) Unterscheiden Sie tarifäre und nichttarifäre Handelshemmnisse und nennen Sie je zwei Beispiele.\nb) Nennen Sie zwei Vorteile des Freihandels und ein Motiv für protektionistische Maßnahmen.","hinweis":"Tarifär = wirkt über den Preis; nichttarifär = wirkt über Menge oder Verwaltung.","loesung":"a) Tarifäre Handelshemmnisse wirken über den Preis der Ein- und Ausfuhrgüter (preispolitische Instrumente): z. B. Importzölle, Exportsubventionen, Steuertarife. Nichttarifäre Handelshemmnisse haben keine fiskalische Funktion, sondern wirken mengenmäßig oder administrativ: z. B. Importkontingente, Ein- und Ausfuhrverbote, Embargos, technische Normen und Genehmigungsverfahren.\nb) Vorteile des Freihandels: vielfältiges Güterangebot für Verbraucher (Qualitäten, Preise), Spezialisierungsvorteile und Kostensenkungen, Absatzmärkte im In- und Ausland, Innovationsförderung durch internationalen Wettbewerb (zwei Nennungen genügen). Motiv für Protektionismus: Schutz der einheimischen Wirtschaft vor Billigimporten bzw. vor konjunkturellen/strukturellen Nachteilen, Vermeidung von Monostrukturen und Auslandsabhängigkeit (eine Nennung genügt)."},{"topic":"EU & Euro","punkte":7,"frage":"a) Beschreiben Sie die vier Grundfreiheiten des Europäischen Binnenmarktes jeweils anhand eines Beispiels.\nb) Nennen Sie drei Konvergenzkriterien für den Beitritt zur Eurozone (mit Referenzwerten).","hinweis":"Merkhilfe P-W-D-K: Personen, Waren, Dienstleistungen, Kapital.","loesung":"a) 1. Freier Personenverkehr: z. B. freie Arbeitsplatzwahl und Niederlassungsfreiheit in der ganzen EU, Abbau der Grenzkontrollen (Schengen). 2. Freier Warenverkehr: keine Zölle oder mengenmäßigen Beschränkungen im EU-Handel, harmonisierte technische Normen. 3. Freier Dienstleistungsverkehr: Selbstständige und freie Berufe dürfen ihre Leistungen EU-weit anbieten (z. B. ein deutscher Handwerksbetrieb in Österreich). 4. Freier Geld- und Kapitalverkehr: Öffnung der Finanzmärkte, erleichterter Zahlungsverkehr (SEPA), freie Kapitalanlage im EU-Ausland.\nb) Z. B.: Inflationsrate höchstens 1,5 Prozentpunkte über dem Mittelwert der drei preisstabilsten EU-Staaten; Nettoneuverschuldung nicht dauerhaft über 3 % des BIP; Gesamtschuldenstand in der Regel höchstens 60 % des BIP; langfristiger Zinssatz höchstens 2 Prozentpunkte über dem Mittelwert der drei preisstabilsten Staaten; zwei Jahre stabiler Wechselkurs im WKM II (drei Nennungen genügen)."},{"topic":"EU & Euro","punkte":6,"frage":"Erläutern Sie je zwei Vorteile und zwei Nachteile der gemeinsamen europäischen Währung (Euro) aus Sicht der Mitgliedstaaten.","hinweis":"Denken Sie an Wechselkurse, Preisvergleiche — und an den Verzicht auf nationale Geldpolitik.","loesung":"Vorteile: keine Wechselkursrisiken und Umtauschkosten im Euroraum, Preistransparenz (direkter Preisvergleich zwischen Ländern), Förderung von Handel, Investitionen und Reiseverkehr, starke Währung im Weltmaßstab. Nachteile: Verzicht auf eigenständige nationale Geld- und Wechselkurspolitik (keine Abwertung zur Stärkung der Wettbewerbsfähigkeit möglich), einheitlicher Leitzins für unterschiedlich entwickelte Volkswirtschaften, Haftungs- und Transferrisiken bei Schuldenkrisen einzelner Mitglieder. Je zwei Nennungen genügen."},{"topic":"Wiederholung Block 1.1","punkte":6,"frage":"Prüfungstraining (Wiederholung Lektion 2): Nennen Sie die vier Ziele des magischen Vierecks aus dem Stabilitätsgesetz und erläutern Sie am Beispiel einer kräftigen EZB-Zinserhöhung, warum zwischen diesen Zielen Zielkonflikte bestehen.","hinweis":"Warum heißt das Viereck „magisch“?","loesung":"Die vier Ziele des Stabilitätsgesetzes (magisches Viereck): 1. Stabilität des Preisniveaus, 2. hoher Beschäftigungsstand, 3. außenwirtschaftliches Gleichgewicht, 4. stetiges und angemessenes Wirtschaftswachstum. „Magisch“ heißt das Viereck, weil sich alle Ziele kaum gleichzeitig erreichen lassen — es bestehen Zielkonflikte. Beispiel Zinserhöhung: Die restriktive Geldpolitik fördert die Preisniveaustabilität, dämpft aber zugleich Investitionen und Konsum — das Wirtschaftswachstum sinkt und die Arbeitslosigkeit kann steigen. Das Ziel Preisstabilität wird also auf Kosten der Ziele Wachstum und hoher Beschäftigungsstand verfolgt."},{"topic":"Wiederholung Block 1.1","punkte":6,"frage":"Prüfungstraining (Wiederholung Lektion 1 und 2): Der Staat führt einen gesetzlichen Mindestlohn ein, der über dem bisherigen Gleichgewichtslohn liegt. Erläutern Sie mit dem Marktmodell aus Lektion 1, um welche Art von Staatseingriff es sich handelt und welche Wirkung am Arbeitsmarkt theoretisch zu erwarten ist. Erklären Sie außerdem, in welchem Spannungsverhältnis ein solcher Eingriff zur Tarifautonomie steht.","hinweis":"Mindestpreis über dem Gleichgewichtspreis: Was passiert mit Angebot und Nachfrage?","loesung":"Der Mindestlohn ist ein staatlich festgesetzter Mindestpreis auf dem Arbeitsmarkt: Er darf nicht unterschritten werden und liegt über dem Gleichgewichtslohn. Marktmodell: Beim höheren Lohn steigt das Arbeitsangebot (mehr Menschen wollen zu diesem Lohn arbeiten), während die Arbeitsnachfrage der Unternehmen sinkt (Arbeit wird als Kostenfaktor teurer) — es entsteht theoretisch ein Angebotsüberschuss, also mögliche Arbeitslosigkeit; der Preismechanismus ist außer Kraft gesetzt. Spannungsverhältnis zur Tarifautonomie: Nach Art. 9 Abs. 3 GG liegt die Lohnfindung grundsätzlich bei den Tarifparteien und der Staat ist zur Neutralität verpflichtet. Staatliche Vorgaben sind nur als Gesetze zulässig (z. B. Mindestlohngesetz) — sie setzen Mindestansprüche, die von den Tarifparteien nicht unterschritten werden dürfen, und begrenzen damit deren Verhandlungsspielraum nach unten."}];
+const KEY = 'wfw_lernbereich_' + DAY_ID;
+
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { state = {}; }
+function save() { localStorage.setItem(KEY, JSON.stringify(state)); }
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function render() {
+  const wrap = document.getElementById('tasks');
+  wrap.innerHTML = TASKS.map((t, i) => {
+    const st = state[i] || {};
+    return `
+    <div class="task ${st.check || ''}" id="task-${i}">
+      <div class="task-head">
+        <span class="task-num">Aufgabe ${i + 1}</span>
+        <span class="task-topic">${esc(t.topic)}</span>
+        ${t.punkte ? `<span class="task-punkte">${t.punkte} Punkte</span>` : ''}
+      </div>
+      <div class="task-frage">${esc(t.frage)}</div>
+      ${t.hinweis ? `<details class="task-hinweis"><summary>💡 Tipp anzeigen</summary><p>${esc(t.hinweis)}</p></details>` : ''}
+      <textarea id="answer-${i}" placeholder="Ihre Antwort — in vollständigen Sätzen, wie in der Prüfung …">${esc(st.answer || '')}</textarea>
+      <div class="task-actions">
+        <button class="btn btn-loesung" onclick="toggleLoesung(${i})">Lösungshinweis anzeigen</button>
+        <span class="saved-note" id="saved-${i}"></span>
+      </div>
+      <div class="loesung ${st.open ? 'show' : ''}" id="loesung-${i}">
+        <div class="loesung-label">✓ Lösungshinweis</div>
+        <div class="loesung-text">${esc(t.loesung)}</div>
+      </div>
+      <div class="self-check ${st.open ? 'show' : ''}" id="check-${i}">
+        <span>Selbsteinschätzung:</span>
+        <button class="btn btn-ok ${st.check === 'ok' ? 'active' : ''}" onclick="setCheck(${i}, 'ok')">✓ Gewusst</button>
+        <button class="btn btn-teil ${st.check === 'teil' ? 'active' : ''}" onclick="setCheck(${i}, 'teil')">≈ Teilweise</button>
+        <button class="btn btn-nein ${st.check === 'nein' ? 'active' : ''}" onclick="setCheck(${i}, 'nein')">✗ Nochmal üben</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  TASKS.forEach((t, i) => {
+    const ta = document.getElementById('answer-' + i);
+    let timer = null;
+    ta.addEventListener('input', () => {
+      state[i] = state[i] || {};
+      state[i].answer = ta.value;
+      save();
+      const note = document.getElementById('saved-' + i);
+      note.textContent = 'gespeichert ✓';
+      clearTimeout(timer);
+      timer = setTimeout(() => { note.textContent = ''; }, 1500);
+    });
+  });
+  updateProgress();
+}
+
+function toggleLoesung(i) {
+  state[i] = state[i] || {};
+  state[i].open = !state[i].open;
+  save();
+  document.getElementById('loesung-' + i).classList.toggle('show', state[i].open);
+  document.getElementById('check-' + i).classList.toggle('show', state[i].open);
+}
+
+function setCheck(i, val) {
+  state[i] = state[i] || {};
+  state[i].check = state[i].check === val ? null : val;
+  save();
+  const card = document.getElementById('task-' + i);
+  card.classList.remove('ok', 'teil', 'nein');
+  if (state[i].check) card.classList.add(state[i].check);
+  document.querySelectorAll(`#check-${i} .btn`).forEach(b => b.classList.remove('active'));
+  if (state[i].check) {
+    const cls = { ok: 'btn-ok', teil: 'btn-teil', nein: 'btn-nein' }[state[i].check];
+    document.querySelector(`#check-${i} .${cls}`).classList.add('active');
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const counts = { ok: 0, teil: 0, nein: 0 };
+  TASKS.forEach((t, i) => { const c = (state[i] || {}).check; if (counts[c] !== undefined) counts[c]++; });
+  const n = TASKS.length;
+  const bar = document.getElementById('progressBar');
+  bar.querySelector('.seg-ok').style.width = (counts.ok / n * 100) + '%';
+  bar.querySelector('.seg-teil').style.width = (counts.teil / n * 100) + '%';
+  bar.querySelector('.seg-nein').style.width = (counts.nein / n * 100) + '%';
+  const done = counts.ok + counts.teil + counts.nein;
+  document.getElementById('progressLabel').textContent =
+    `${done}/${n} bearbeitet · ${counts.ok} gewusst · ${counts.teil} teilweise · ${counts.nein} üben`;
+}
+
+function resetAll() {
+  if (!confirm('Alle Antworten und Bewertungen dieser Lektion löschen?')) return;
+  state = {};
+  save();
+  render();
+}
+
+render();
+</script>
+</body>
+</html>

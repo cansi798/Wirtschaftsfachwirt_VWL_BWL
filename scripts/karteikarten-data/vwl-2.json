@@ -1,0 +1,283 @@
+{
+  "day_id": "vwl-2",
+  "lektion": 2,
+  "thema": "Wettbewerbspolitik, Staatseingriffe & Volkswirtschaftliche Gesamtrechnung",
+  "slug": "Wettbewerb-Staatseingriffe-VGR",
+  "cards": [
+    {
+      "topic": "Wettbewerb",
+      "front": "Definieren Sie den Begriff Wettbewerb.",
+      "back": "Die Rivalität der Marktteilnehmer unter- und gegeneinander, um die eigenen Ziele zulasten der Konkurrenten durchzusetzen."
+    },
+    {
+      "topic": "Wettbewerb",
+      "front": "Nennen Sie die sechs Funktionen des Wettbewerbs.",
+      "back": "Freiheits-, Kontroll-, Steuerungs- (Lenkungs-), Innovations-, Auslese- und Verteilungsfunktion."
+    },
+    {
+      "topic": "Wettbewerb",
+      "front": "Welche zwei Unterfunktionen hat die Steuerungsfunktion des Wettbewerbs?",
+      "back": "Koordinations- und Anpassungsfunktion (schnellere Koordination von Angebot und Nachfrage) sowie Allokationsfunktion (produktivste Kombination der Produktionsfaktoren)."
+    },
+    {
+      "topic": "Wettbewerbspolitik",
+      "front": "Welche beiden Gesetze sind Grundlage der deutschen Wettbewerbspolitik?",
+      "back": "UWG (Gesetz gegen den unlauteren Wettbewerb: faire Marktpraktiken) und GWB (Gesetz gegen Wettbewerbsbeschränkungen, „Kartellgesetz“)."
+    },
+    {
+      "topic": "Wettbewerbspolitik",
+      "front": "Nennen Sie die drei Säulen des GWB.",
+      "back": "1. Kartellverbot (§ 1 GWB), 2. Missbrauchsaufsicht (§§ 19 ff. GWB), 3. Fusionskontrolle (§ 35 GWB) — Merkhilfe: Ka-Mi-Fu."
+    },
+    {
+      "topic": "Wettbewerbspolitik",
+      "front": "Welche Behörde überwacht die Einhaltung des GWB?",
+      "back": "Das Bundeskartellamt."
+    },
+    {
+      "topic": "Kartellverbot",
+      "front": "Was ist ein Kartell?",
+      "back": "Eine Kooperation von Unternehmen auf Basis (auch mündlicher) vertraglicher Vereinbarungen zur Verbesserung der Wettbewerbsposition — rechtlich selbstständig, wirtschaftlich teilweise eingeschränkt."
+    },
+    {
+      "topic": "Kartellverbot",
+      "front": "Was verbietet § 1 GWB?",
+      "back": "Vereinbarungen, Beschlüsse und aufeinander abgestimmte Verhaltensweisen, die eine Verhinderung, Einschränkung oder Verfälschung des Wettbewerbs bewirken."
+    },
+    {
+      "topic": "Kartellverbot",
+      "front": "Was ist ein Preiskartell?",
+      "back": "Die Absprache einer einheitlichen Preispolitik zwischen Unternehmen — verboten nach § 1 GWB."
+    },
+    {
+      "topic": "Kartellverbot",
+      "front": "Was ist ein Submissionskartell?",
+      "back": "Vereinbarung von Preisuntergrenzen bzw. Festlegung, welches Kartellmitglied bei öffentlichen Ausschreibungen zum Zug kommen soll."
+    },
+    {
+      "topic": "Kartellverbot",
+      "front": "Was ist ein Gebietskartell?",
+      "back": "Die Aufteilung des Absatzmarktes unter den Kartellmitgliedern."
+    },
+    {
+      "topic": "Kartellverbot",
+      "front": "Was ist ein Quotenkartell?",
+      "back": "Die künstliche Verknappung des Angebots durch Absprache von Produktionsquoten."
+    },
+    {
+      "topic": "Kartellverbot",
+      "front": "Nennen Sie die drei Gruppen von Ausnahmen vom Kartellverbot.",
+      "back": "1. Besondere Ausnahmeregelungen nach dem GWB (z. B. Mittelstandskartelle, § 3), 2. EU-Gruppenfreistellungsverordnungen, 3. Einzelfreistellungen (Legalausnahmen, § 2 GWB)."
+    },
+    {
+      "topic": "Kartellverbot",
+      "front": "Was sind Mittelstandskartelle?",
+      "back": "Nach § 3 GWB zulässige Vereinbarungen zwischen kleinen und mittleren Unternehmen, die wegen ihres begrenzten Potenzials Wettbewerbsnachteile gegenüber Großunternehmen haben."
+    },
+    {
+      "topic": "Missbrauchsaufsicht",
+      "front": "Was ist Ausbeutungsmissbrauch?",
+      "back": "Ein marktbeherrschendes Unternehmen fordert überhöhte Preise von Kunden oder extreme Preisnachlässe von abhängigen Zulieferern."
+    },
+    {
+      "topic": "Missbrauchsaufsicht",
+      "front": "Was ist Behinderungsmissbrauch?",
+      "back": "Marktmacht wird gezielt eingesetzt, um Konkurrenten zu behindern oder zu verdrängen — z. B. durch Kampfpreise (Dumping) oder Verweigerung des Zugangs zu Infrastruktur."
+    },
+    {
+      "topic": "Fusionskontrolle",
+      "front": "Was regelt die Fusionskontrolle (§ 35 GWB)?",
+      "back": "Geplante Fusionen müssen dem Bundeskartellamt angezeigt werden; es kann den Zusammenschluss untersagen, wenn eine marktbeherrschende Stellung zu entstehen droht (vorbeugende Maßnahme)."
+    },
+    {
+      "topic": "Fusionskontrolle",
+      "front": "Was ist die Ministererlaubnis (§ 42 GWB)?",
+      "back": "Der Bundeswirtschaftsminister kann eine vom Bundeskartellamt untersagte Fusion erlauben, wenn sie von gesamtwirtschaftlichem Vorteil ist und die marktwirtschaftliche Ordnung nicht gefährdet."
+    },
+    {
+      "topic": "Staatseingriffe",
+      "front": "Unterscheiden Sie marktkonforme und marktkonträre Eingriffe.",
+      "back": "Marktkonform (indirekt): beeinflussen Angebot/Nachfrage ohne Ausschaltung des Preismechanismus (Steuern, Zölle, Subventionen). Marktkonträr (direkt): greifen in die Preisbildung ein (Höchst-/Mindestpreise)."
+    },
+    {
+      "topic": "Staatseingriffe",
+      "front": "Wie wirkt eine höhere Verbrauchssteuer (z. B. Tabaksteuer) auf den Markt?",
+      "back": "Das Gut verteuert sich: höherer Gleichgewichtspreis, geringere Gleichgewichtsmenge — Verbraucherverhalten kann gelenkt werden; Steuereinnahmen können durch die Mengenreduktion sinken."
+    },
+    {
+      "topic": "Staatseingriffe",
+      "front": "Was sind Subventionen und wann sind sie problematisch?",
+      "back": "Staatliche Finanzhilfen, die Verkauf unter Produktionskosten ermöglichen (z. B. Markteinführung). Problematisch bei Dauer: falsche Preissignale, keine Selektion, Fehlallokation der Faktoren."
+    },
+    {
+      "topic": "Staatseingriffe",
+      "front": "Was ist eine Transferleistung? Beispiele?",
+      "back": "Subvention der Nachfrager: Der Staat gibt Haushalten zusätzliche Mittel für den Erwerb bestimmter Güter — z. B. Wohngeld, Kindergeld."
+    },
+    {
+      "topic": "Mindestpreis",
+      "front": "Was ist ein Mindestpreis und wen schützt er?",
+      "back": "Eine staatlich verordnete Preisuntergrenze über dem Gleichgewichtspreis — Ziel ist der Schutz der Anbieter (z. B. EU-Agrarmarkt, Mindestlohn)."
+    },
+    {
+      "topic": "Mindestpreis",
+      "front": "Welche Marktsituation entsteht durch einen Mindestpreis?",
+      "back": "Ein Angebotsüberschuss: Das Angebot wird ausgeweitet, die Nachfrage sinkt (x_N < x_0 < x_A). Der Staat muss mengenregulierend nachsteuern."
+    },
+    {
+      "topic": "Mindestpreis",
+      "front": "Welche Folgeprobleme zeigte der Mindestpreis im EU-Agrarmarkt?",
+      "back": "Massive Überproduktion; Beseitigung durch Einlagerung, Verarbeitung, Veräußerung oder Vernichtung (hohe Kosten); Folgemaßnahmen: Kontingente, Stilllegungsprämien."
+    },
+    {
+      "topic": "Mindestpreis",
+      "front": "Welche Risiken birgt ein gesetzlicher Mindestlohn aus Marktsicht?",
+      "back": "Er hebelt die Findung des Gleichgewichtslohns aus und kann zu einem Angebotsüberhang an Arbeitskräften (Arbeitslosigkeit) führen — Substitution durch Technik, Verlagerung ins Ausland."
+    },
+    {
+      "topic": "Höchstpreis",
+      "front": "Was ist ein Höchstpreis und wen schützt er?",
+      "back": "Eine staatlich verordnete Preisobergrenze unter dem Gleichgewichtspreis — Ziel ist der Schutz der Nachfrager (z. B. sozialer Wohnungsbau, Mietpreisbremse)."
+    },
+    {
+      "topic": "Höchstpreis",
+      "front": "Welche Marktsituation und Folgen erzeugt ein Höchstpreis?",
+      "back": "Nachfrageüberschuss (x_A < x_0 < x_N); nötig sind Subventionen, Kontingentierung und Rationierung; häufig entstehen Schwarzmärkte mit höheren Preisen."
+    },
+    {
+      "topic": "VGR",
+      "front": "Was ist die Volkswirtschaftliche Gesamtrechnung (VGR)?",
+      "back": "Das statistische Instrument zur Erfassung gesamtwirtschaftlicher Vorgänge: rückschauende Auskunft über Entstehung, Verwendung und Verteilung von BIP und BNE; Grundlage ist der Wirtschaftskreislauf."
+    },
+    {
+      "topic": "VGR",
+      "front": "Was misst das BIP und nach welchem Konzept?",
+      "back": "Den Wert der innerhalb der geografischen Grenzen produzierten Güter und Dienstleistungen zu Marktpreisen — Inlandskonzept (Wohnsitz der Produzenten egal)."
+    },
+    {
+      "topic": "VGR",
+      "front": "Was misst das BNE und nach welchem Konzept?",
+      "back": "Das Einkommen der Inländer aus der Bereitstellung von Produktionsfaktoren im In- und Ausland — Inländerkonzept (Ort der Leistung egal)."
+    },
+    {
+      "topic": "VGR",
+      "front": "Formel der Bruttowertschöpfung?",
+      "back": "Bruttowertschöpfung = (Brutto-)Produktionswerte − Vorleistungen. Der Abzug der Vorleistungen vermeidet Doppelzählungen."
+    },
+    {
+      "topic": "VGR",
+      "front": "Wie kommt man rechnerisch vom BIP zum BNE?",
+      "back": "BIP − Inlandseinkommen von Nichtinländern + Auslandseinkommen von Inländern = BNE (Saldo der Primäreinkommen aus der übrigen Welt)."
+    },
+    {
+      "topic": "VGR",
+      "front": "Unterschied nominales vs. reales BIP?",
+      "back": "Nominal: in laufenden Preisen (enthält Preissteigerungen). Real: zu Preisen eines Basisjahres — zeigt den echten Leistungszuwachs; Basis für Wachstums- und Ländervergleiche."
+    },
+    {
+      "topic": "VGR",
+      "front": "Welche Frage beantwortet die Entstehungsrechnung?",
+      "back": "Wo ist die Wirtschaftsleistung entstanden? Bruttowertschöpfung der Wirtschaftsbereiche + Gütersteuern − Gütersubventionen = BIP."
+    },
+    {
+      "topic": "VGR",
+      "front": "Welche Frage beantwortet die Verwendungsrechnung und wie lautet ihr Schema?",
+      "back": "Wofür wurde die Inlandsproduktion verwendet? Privater Konsum + Staatskonsum + Bruttoinvestitionen + Außenbeitrag (Exporte − Importe) = BIP."
+    },
+    {
+      "topic": "VGR",
+      "front": "Welche Frage beantwortet die Verteilungsrechnung?",
+      "back": "Welche Einkommen sind den Inländern zugeflossen? Arbeitnehmerentgelt + Unternehmens- und Vermögenseinkommen = Volkseinkommen."
+    },
+    {
+      "topic": "VGR",
+      "front": "Nennen Sie vier Grenzen der Aussagekraft des BIP.",
+      "back": "Hausarbeit/Ehrenamt nicht erfasst; Schwarzarbeit nur geschätzt; wohlstandsmindernde Reparaturen erhöhen das BIP; keine Aussage über Verteilung, Umwelt und Lebensqualität."
+    },
+    {
+      "topic": "Einkommensverteilung",
+      "front": "Was ist die Primärverteilung des Volkseinkommens?",
+      "back": "Die Verteilung der Einkommen nach dem Leistungsprinzip: Arbeitnehmerentgelte sowie Unternehmens- und Vermögenseinkommen aus der Bereitstellung von Produktionsfaktoren."
+    },
+    {
+      "topic": "Einkommensverteilung",
+      "front": "Formel der Lohnquote? Wert 2018?",
+      "back": "Lohnquote = Arbeitnehmerentgelt ÷ Volkseinkommen × 100. 2018: rund 69 %."
+    },
+    {
+      "topic": "Einkommensverteilung",
+      "front": "Formel der Gewinnquote? Wert 2018?",
+      "back": "Gewinnquote = Unternehmens- und Vermögenseinkommen ÷ Volkseinkommen × 100. 2018: rund 31 %. Lohn- und Gewinnquote ergänzen sich zu 100 %."
+    },
+    {
+      "topic": "Einkommensverteilung",
+      "front": "Was zeigt die Lorenzkurve?",
+      "back": "Wie viel Prozent der Einkommensempfänger wie viel Prozent des Volkseinkommens verdienen. Je weiter die Kurve von der Diagonalen (Gleichverteilung) entfernt ist, desto ungleicher die Verteilung."
+    },
+    {
+      "topic": "Einkommensverteilung",
+      "front": "Was ist das Pro-Kopf-Einkommen und wozu dient es?",
+      "back": "Volkseinkommen ÷ Einwohnerzahl — vereinfachter Wohlstandsindikator im Ländervergleich; ein hoher Durchschnitt schließt Armut von Bevölkerungsteilen nicht aus."
+    },
+    {
+      "topic": "Einkommensverteilung",
+      "front": "Was ist die Sekundärverteilung?",
+      "back": "Die staatliche Umverteilung von Teilen des Primäreinkommens nach dem Bedarfsprinzip — Ziel: gerechtere Einkommensverteilung (Steuern, Sozialbeiträge, Sozialleistungen)."
+    },
+    {
+      "topic": "Einkommensverteilung",
+      "front": "Formel des verfügbaren Einkommens der privaten Haushalte?",
+      "back": "Primäreinkommen − direkte Steuern − Sozialversicherungsbeiträge + Sozialleistungen (Transferzahlungen) = verfügbares Einkommen (für Konsum und Sparen)."
+    },
+    {
+      "topic": "Stabilitätspolitik",
+      "front": "Was regelt das Stabilitätsgesetz (StabG) von 1967?",
+      "back": "Bund und Länder müssen bei wirtschafts- und finanzpolitischen Maßnahmen das gesamtwirtschaftliche Gleichgewicht beachten — das „Grundgesetz der Wirtschaftspolitik“."
+    },
+    {
+      "topic": "Stabilitätspolitik",
+      "front": "Nennen Sie die vier Ziele des magischen Vierecks.",
+      "back": "Stabilität des Preisniveaus, hoher Beschäftigungsstand, außenwirtschaftliches Gleichgewicht, stetiges und angemessenes Wirtschaftswachstum (§ 1 StabG)."
+    },
+    {
+      "topic": "Stabilitätspolitik",
+      "front": "Warum heißt das Viereck „magisch“?",
+      "back": "Weil es nahezu unmöglich ist, alle vier Ziele gleichzeitig vollständig zu erreichen — einige Ziele stehen in Konkurrenz zueinander."
+    },
+    {
+      "topic": "Stabilitätspolitik",
+      "front": "Welche Ziele ergänzen das magische Sechseck?",
+      "back": "Erhaltung einer lebenswerten Umwelt (Umweltschutz) und gerechte Einkommens- und Vermögensverteilung — qualitative Ziele ohne klaren Messmaßstab."
+    },
+    {
+      "topic": "Stabilitätspolitik",
+      "front": "Womit wird das Ziel „hoher Beschäftigungsstand“ gemessen und wann gilt es als erreicht?",
+      "back": "Mit der Arbeitslosenquote (Bundesagentur für Arbeit); als erreicht gilt Vollbeschäftigung bei ca. 3–4 % (Sockelarbeitslosigkeit bleibt bestehen)."
+    },
+    {
+      "topic": "Stabilitätspolitik",
+      "front": "Womit wird die Preisniveaustabilität gemessen?",
+      "back": "Mit der Inflationsrate auf Basis des Verbraucherpreisindex (Warenkorb); die EZB spricht von stabilem Preisniveau bei knapp unter 2 % (HVPI)."
+    },
+    {
+      "topic": "Stabilitätspolitik",
+      "front": "Womit wird das außenwirtschaftliche Gleichgewicht gemessen?",
+      "back": "Mit dem Außenbeitrag (Saldo aus Handels- und Dienstleistungsbilanz); Ziel: positiver Außenbeitrag von 1–2 % des nominalen BIP."
+    },
+    {
+      "topic": "Stabilitätspolitik",
+      "front": "Wann gilt das Wirtschaftswachstum als angemessen und stetig?",
+      "back": "Reales BIP-Wachstum von durchschnittlich rund 2 % pro Jahr ohne allzu heftige Konjunkturausschläge — gemessen an der Zuwachsrate des realen BIP."
+    },
+    {
+      "topic": "Stabilitätspolitik",
+      "front": "Nennen Sie einen Zielkonflikt des magischen Vierecks mit Begründung.",
+      "back": "Wirtschaftswachstum vs. Preisniveaustabilität: Starkes Wachstum zieht in der Regel Preiserhöhungen nach sich und gefährdet die Preisstabilität."
+    },
+    {
+      "topic": "Stabilitätspolitik",
+      "front": "Nennen Sie eine Zielharmonie des magischen Sechsecks mit Begründung.",
+      "back": "Wirtschaftswachstum und Vollbeschäftigung: Steigt das BIP, werden mehr Produktionsfaktoren benötigt — die Arbeitslosigkeit geht zurück."
+    }
+  ]
+}

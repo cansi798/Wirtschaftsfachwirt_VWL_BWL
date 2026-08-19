@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Präsentation Lektion 2 — Wettbewerbspolitik, Staatseingriffe & Volkswirtschaftliche Gesamtrechnung</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:       #0EA5A4;
+  --bfw-primary-dark:  #0F766E;
+  --bfw-accent:        #F59E0B;
+  --bfw-warn:          #F97316;
+  --bfw-success:       #10B981;
+  --bfw-ink:           #0F172A;
+  --bfw-ink-soft:      #475569;
+  --bfw-bg:            #FAFAFA;
+  --bfw-bg-teal:       #ECFEFF;
+  --bfw-bg-amber:      #FEF3C7;
+  --bfw-bg-rose:       #FFE4E6;
+  --bfw-border:        #E2E8F0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; font-family: 'Inter', system-ui, sans-serif; color: var(--bfw-ink); background: var(--bfw-bg); }
+
+.deck { position: relative; width: 100vw; height: 100vh; }
+.slide {
+  position: absolute; inset: 0;
+  display: none;
+  padding: 4rem 6rem;
+  flex-direction: column;
+  justify-content: center;
+  background: white;
+  animation: fadeIn 0.35s ease;
+}
+.slide.active { display: flex; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+h1 { font-size: 3.5rem; line-height: 1.1; color: var(--bfw-primary-dark); margin-bottom: 1rem; letter-spacing: -0.02em; }
+h2 { font-size: 2.4rem; color: var(--bfw-primary-dark); margin-bottom: 1.5rem; }
+h3 { font-size: 1.4rem; color: var(--bfw-primary); margin-bottom: 0.8rem; font-weight: 600; }
+p { font-size: 1.25rem; line-height: 1.55; margin-bottom: 0.8rem; color: var(--bfw-ink); }
+ul, ol { margin: 0.5rem 0 1rem 1.5rem; }
+li { font-size: 1.2rem; line-height: 1.6; margin-bottom: 0.4rem; }
+.subtitle { font-size: 1.4rem; color: var(--bfw-ink-soft); margin-bottom: 2rem; font-weight: 500; }
+.muted { color: var(--bfw-ink-soft); }
+
+/* Deckblatt */
+.cover { background: linear-gradient(135deg, var(--bfw-bg-teal) 0%, white 60%, var(--bfw-bg-amber) 100%); }
+.cover-tag {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: var(--bfw-primary);
+  color: white;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.cover-meta { display: flex; gap: 2rem; margin-top: 2rem; color: var(--bfw-ink-soft); font-size: 1.1rem; }
+.cover-meta span strong { color: var(--bfw-ink); display: block; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* Karten-Grid */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+.card { background: white; border: 1px solid var(--bfw-border); border-radius: 14px; padding: 1.4rem; box-shadow: 0 2px 8px rgba(15,23,42,0.04); }
+.card.teal { background: var(--bfw-bg-teal); border-color: var(--bfw-primary); }
+.card.amber { background: var(--bfw-bg-amber); border-color: var(--bfw-accent); }
+.card.rose { background: var(--bfw-bg-rose); border-color: var(--bfw-warn); }
+.card-title { font-size: 1.15rem; font-weight: 700; color: var(--bfw-primary-dark); margin-bottom: 0.5rem; }
+.card.amber .card-title { color: var(--bfw-warn); }
+
+/* Merksatz */
+.merksatz {
+  background: var(--bfw-bg-teal);
+  border-left: 6px solid var(--bfw-primary);
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+  font-size: 1.15rem;
+}
+.merksatz-label { font-weight: 700; color: var(--bfw-primary-dark); display: block; margin-bottom: 0.3rem; font-size: 1rem; }
+
+/* Tabellen */
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 1.1rem; }
+th { background: var(--bfw-bg-teal); color: var(--bfw-primary-dark); text-align: left; padding: 0.7rem 1rem; font-weight: 700; }
+td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
+
+/* Diagramm-Container für Rough.js */
+.figure { margin: 1.5rem auto; text-align: center; }
+.figure svg { max-width: 100%; height: auto; }
+.caption { color: var(--bfw-ink-soft); font-size: 0.95rem; margin-top: 0.5rem; }
+
+/* Navigation */
+.nav { position: fixed; bottom: 1rem; right: 1.5rem; display: flex; gap: 0.5rem; align-items: center; z-index: 100; }
+.nav button {
+  border: none; background: var(--bfw-primary); color: white;
+  width: 44px; height: 44px; border-radius: 50%;
+  font-size: 1.2rem; cursor: pointer;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.12);
+  transition: all 0.15s;
+}
+.nav button:hover { background: var(--bfw-primary-dark); transform: translateY(-1px); }
+.nav-counter { background: white; padding: 0.4rem 0.9rem; border-radius: 999px; font-weight: 600; color: var(--bfw-ink-soft); font-size: 0.95rem; box-shadow: 0 2px 8px rgba(15,23,42,0.06); }
+
+.slide-num { position: fixed; bottom: 1rem; left: 1.5rem; color: var(--bfw-ink-soft); font-size: 0.9rem; }
+
+/* Listen mit Icons */
+.checklist { list-style: none; margin-left: 0; }
+.checklist li { padding-left: 2rem; position: relative; }
+.checklist li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--bfw-success); font-weight: 700; font-size: 1.3rem; }
+
+.numlist { list-style: none; margin-left: 0; counter-reset: numitem; }
+.numlist li { padding-left: 3rem; position: relative; counter-increment: numitem; margin-bottom: 0.8rem; }
+.numlist li::before {
+  content: counter(numitem);
+  position: absolute; left: 0; top: 0;
+  width: 2rem; height: 2rem;
+  background: var(--bfw-primary); color: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.95rem;
+}
+
+/* Print-friendly */
+@media print {
+  .slide { display: flex; page-break-after: always; }
+  .nav, .slide-num { display: none; }
+  html, body { height: auto; overflow: visible; }
+}
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- 1. Deckblatt -->
+  <section class="slide active cover">
+    <span class="cover-tag">Lektion 2 · Sa, 22.08.2026 · 08:15–13:15</span>
+    <h1>Wettbewerbspolitik, Staatseingriffe &amp; Volkswirtschaftliche Gesamtrechnung</h1>
+    <p class="subtitle">Vom funktionierenden Wettbewerb zum gesamtwirtschaftlichen Gleichgewicht</p>
+    <div class="cover-meta">
+      <span><strong>Kurs</strong>Wirtschaftsfachwirt — 1.1 Volkswirtschaftliche Grundlagen</span>
+      <span><strong>Rahmenplan</strong>1.1.1.2 · 1.1.1.3 · 1.1.2 · 1.1.3.1</span>
+      <span><strong>Quelle</strong>Textband Volkswirtschaft, Kap. 1.2–1.3, 2, 3.1 (S. 12–38)</span>
+    </div>
+  </section>
+
+  <!-- 2. Lernziele -->
+  <section class="slide">
+    <h2>Was Sie heute lernen</h2>
+    <p class="subtitle">Am Ende dieser Lektion können Sie …</p>
+    <ul class="checklist">
+      <li>die <strong>Funktionen des Wettbewerbs</strong> erläutern</li>
+      <li>die <strong>3 Säulen des GWB</strong> (Kartellverbot, Missbrauchsaufsicht, Fusionskontrolle) erklären</li>
+      <li><strong>Höchst- und Mindestpreise</strong> im Preis-Mengen-Diagramm darstellen und beurteilen</li>
+      <li><strong>BIP und BNE</strong> abgrenzen und die <strong>3 Rechnungen der VGR</strong> schematisch darstellen</li>
+      <li><strong>nominal/real</strong> unterscheiden und <strong>Grenzen des BIP</strong> nennen</li>
+      <li><strong>Lohnquote</strong> und <strong>verfügbares Einkommen</strong> berechnen</li>
+      <li>das <strong>magische Viereck/Sechseck</strong> mit Messgrößen und Zielkonflikten erklären</li>
+    </ul>
+  </section>
+
+  <!-- 3. Wettbewerb Begriff -->
+  <section class="slide">
+    <h2>Block 1: Warum brauchen wir Wettbewerbspolitik?</h2>
+    <p><strong>Wettbewerb</strong> = Rivalität der Marktteilnehmer unter- und gegeneinander, um die eigenen Ziele zulasten der Konkurrenten durchzusetzen.</p>
+    <div class="merksatz">
+      <span class="merksatz-label">📌 Merke</span>
+      Ein sich selbst überlassener Markt zeigt die Tendenz, <strong>Wettbewerb zu reduzieren</strong> (Absprachen, Konzentration). Deshalb greift der Staat im Rahmen der <strong>Ordnungspolitik</strong> regulierend ein.
+    </div>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">UWG</div>
+        <p style="font-size: 1rem;">Gesetz gegen den <strong>unlauteren</strong> Wettbewerb: sichert faire Marktpraktiken — das <em>Wie</em> des Wettbewerbs.</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">GWB („Kartellgesetz“)</div>
+        <p style="font-size: 1rem;">Gesetz gegen <strong>Wettbewerbsbeschränkungen</strong>: unterbindet Kartelle und Konzentration — den <em>Bestand</em> des Wettbewerbs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Funktionen des Wettbewerbs -->
+  <section class="slide">
+    <h2>Die 6 Funktionen des Wettbewerbs</h2>
+    <ol class="numlist">
+      <li><strong>Freiheitsfunktion</strong> — Freiheit der Unternehmertätigkeit und Konsumwahl</li>
+      <li><strong>Kontrollfunktion</strong> — gegenseitige Kontrolle begrenzt wirtschaftliche Macht</li>
+      <li><strong>Steuerungsfunktion</strong> — Koordination/Anpassung von Angebot &amp; Nachfrage + Allokation der Faktoren</li>
+      <li><strong>Innovationsfunktion</strong> — Anreiz für bessere Produkte und günstigere Verfahren</li>
+      <li><strong>Auslesefunktion</strong> — die Leistungsfähigsten kommen zum Zug</li>
+      <li><strong>Verteilungsfunktion</strong> — leistungsorientierte Entlohnung der Produktionsfaktoren</li>
+    </ol>
+    <div class="merksatz">
+      <span class="merksatz-label">🧠 Eselsbrücke</span>
+      „<strong>F</strong>reier <strong>K</strong>onkurrenzkampf <strong>s</strong>ichert <strong>i</strong>mmer <strong>a</strong>lle <strong>V</strong>orteile“ — F·K·S·I·A·V.
+    </div>
+  </section>
+
+  <!-- 5. GWB drei Säulen -->
+  <section class="slide">
+    <h2>Die 3 Säulen des GWB</h2>
+    <div class="figure" id="fig-gwb"></div>
+    <p class="caption">Über die Einhaltung wacht das <strong>Bundeskartellamt</strong>. EU-Ebene: EU-Kommission, Art. 101 AEUV, Fusionskontrollverordnung (FKVO) — EU-Recht steht über nationalem Recht.</p>
+  </section>
+
+  <!-- 6. Kartellverbot -->
+  <section class="slide">
+    <h2>Säule 1: Das Kartellverbot (§ 1 GWB)</h2>
+    <p><strong>Kartell</strong> = vertragliche Kooperation rechtlich selbstständiger Unternehmen; die wirtschaftliche Selbstständigkeit wird teilweise eingeschränkt. Verboten: Vereinbarungen und <em>abgestimmte Verhaltensweisen</em>, die den Wettbewerb verhindern, einschränken oder verfälschen.</p>
+    <table>
+      <tr><th>Kartellart</th><th>Absprache</th></tr>
+      <tr><td><strong>Preiskartell</strong></td><td>einheitliche Preispolitik</td></tr>
+      <tr><td><strong>Submissionskartell</strong></td><td>wer bei öffentlichen Ausschreibungen zum Zug kommt</td></tr>
+      <tr><td><strong>Gebietskartell</strong></td><td>Aufteilung des Absatzmarktes</td></tr>
+      <tr><td><strong>Quotenkartell</strong></td><td>künstliche Verknappung durch Produktionsquoten</td></tr>
+    </table>
+    <p class="muted">EU-Pendant: Art. 101 AEUV. Bei Verstößen: Bußgelder und Gewinnabschöpfung.</p>
+  </section>
+
+  <!-- 7. Ausnahmen -->
+  <section class="slide">
+    <h2>Ausnahmen vom Kartellverbot</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">1. GWB-Ausnahmen</div>
+        <p style="font-size: 1rem;"><strong>Mittelstandskartelle</strong> (§ 3 GWB): kleine und mittlere Unternehmen gleichen Nachteile gegenüber Großunternehmen aus.</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">2. EU-Gruppenfreistellung</div>
+        <p style="font-size: 1rem;">Bestimmte Vereinbarungsgruppen wirken sich trotz Beschränkung <strong>positiv auf den Markt</strong> aus — keine Einzelfallprüfung.</p>
+      </div>
+      <div class="card rose">
+        <div class="card-title">3. Einzelfreistellung (§ 2 GWB)</div>
+        <p style="font-size: 1rem;"><strong>Legalausnahme:</strong> Verbraucher am Gewinn beteiligt, bessere Erzeugung/Verteilung oder technischer Fortschritt — ohne Ausschaltung des Wettbewerbs.</p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="merksatz-label">📌 Selbstprüfungssystem</span>
+      Unternehmen schätzen <strong>selbst</strong> ein, ob ihr Verhalten kartellrechtskonform ist — weniger Bürokratie, mehr Eigenverantwortung, harte Strafen bei Verstößen.
+    </div>
+  </section>
+
+  <!-- 8. Missbrauchsaufsicht & Fusionskontrolle -->
+  <section class="slide">
+    <h2>Säulen 2 &amp; 3: Missbrauchsaufsicht und Fusionskontrolle</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Missbrauchsaufsicht (§§ 19 ff.)</div>
+        <p style="font-size: 0.98rem;">Über <strong>bestehende</strong> Marktbeherrscher:<br><strong>Ausbeutungsmissbrauch</strong> — überhöhte Preise, erzwungene Nachlässe von abhängigen Zulieferern.<br><strong>Behinderungsmissbrauch</strong> — Kampfpreise (Dumping), versperrter Marktzugang.</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Fusionskontrolle (§ 35)</div>
+        <p style="font-size: 0.98rem;"><strong>Vorbeugend:</strong> Fusionen müssen angezeigt werden; Untersagung bei drohender Marktbeherrschung.<br><strong>Ministererlaubnis</strong> (§ 42): Wirtschaftsminister kann untersagte Fusion bei gesamtwirtschaftlichem Vorteil erlauben.</p>
+      </div>
+    </div>
+    <p class="muted">Übung: Fallbeispiele zuordnen — Kartellart, Missbrauchsform oder Fusionsfall?</p>
+  </section>
+
+  <!-- 9. Staatseingriffe Übersicht -->
+  <section class="slide">
+    <h2>Block 2: Eingriffe des Staates in die Preisbildung</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Marktkonform (indirekt)</div>
+        <p style="font-size: 1rem;">Beeinflussen Angebot &amp; Nachfrage, <strong>Preismechanismus bleibt intakt</strong>: Verbrauchssteuern, Zölle, Subventionen, Transferleistungen, Mengenmaßnahmen.</p>
+      </div>
+      <div class="card rose">
+        <div class="card-title">Marktkonträr (direkt)</div>
+        <p style="font-size: 1rem;">Greifen <strong>direkt in die Preisbildung</strong> ein, Preismechanismus wird ausgehebelt: <strong>Mindestpreise</strong> und <strong>Höchstpreise</strong>.</p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="merksatz-label">💡 Beispiel Tabaksteuer</span>
+      Höhere Verbrauchssteuer → Gut wird teurer → Gleichgewichtspreis steigt, Menge sinkt. Lenkung des Verbraucherverhaltens (weniger Raucher) — aber auch geringere Steuereinnahmen möglich.
+    </div>
+  </section>
+
+  <!-- 10. Marktkonforme Instrumente -->
+  <section class="slide">
+    <h2>Marktkonforme Instrumente im Detail</h2>
+    <ul class="checklist">
+      <li><strong>Verbrauchssteuern</strong> — verteuern das Gut, lenken das Verhalten (Tabak, Energie)</li>
+      <li><strong>Zölle</strong> — Erhöhung schützt heimische Industrie, Senkung dämpft Inlandspreise (EU-Kompetenz)</li>
+      <li><strong>Subventionen</strong> — Anbieter können unter Produktionskosten verkaufen (z. B. Markteinführung Windkraft)</li>
+      <li><strong>Transferleistungen</strong> — Subvention der <em>Nachfrager</em>: Wohngeld, Kindergeld</li>
+      <li><strong>Mengenmaßnahmen</strong> — Einfuhrkontingente, Einfuhrverbote, Vorratshaltung</li>
+    </ul>
+    <div class="merksatz">
+      <span class="merksatz-label">⚠️ Dauersubventionen</span>
+      Behindern <strong>alle Preisfunktionen</strong>: falsche Signale, keine Selektion, Produktionsfaktoren bleiben in nicht mehr gefragten Produkten gebunden.
+    </div>
+  </section>
+
+  <!-- 11. Mindest-/Höchstpreis Figur -->
+  <section class="slide">
+    <h2>Mindestpreis und Höchstpreis im Diagramm</h2>
+    <div class="figure" id="fig-preiseingriffe"></div>
+    <p class="caption">Mindestpreis <strong>über</strong> p₀ → Angebotsüberschuss (x<sub>N</sub> &lt; x₀ &lt; x<sub>A</sub>). Höchstpreis <strong>unter</strong> p₀ → Nachfrageüberschuss (x<sub>A</sub> &lt; x₀ &lt; x<sub>N</sub>).</p>
+  </section>
+
+  <!-- 12. Mindestpreis -->
+  <section class="slide">
+    <h2>Der Mindestpreis: Schutz der Anbieter</h2>
+    <ul class="checklist">
+      <li>Staatliche <strong>Preisuntergrenze über dem Gleichgewichtspreis</strong></li>
+      <li>Folge: Angebot steigt, Nachfrage sinkt → <strong>Angebotsüberschuss</strong></li>
+      <li>Staat muss nachsteuern: Kontingente, Prämien, Flächenstilllegung</li>
+      <li>Bei Kontingenten droht ein <strong>grauer Markt</strong> (Verkauf unter Mindestpreis)</li>
+    </ul>
+    <div class="cards">
+      <div class="card amber">
+        <div class="card-title">EU-Agrarmarkt</div>
+        <p style="font-size: 0.98rem;">Mindestpreise + Abnahmegarantien → Überproduktion („Butterberge“) → teure Einlagerung, Verarbeitung, Vernichtung.</p>
+      </div>
+      <div class="card rose">
+        <div class="card-title">Gesetzlicher Mindestlohn</div>
+        <p style="font-size: 0.98rem;">Hebelt die Findung des Gleichgewichtslohns aus — Risiko: Angebotsüberhang an Arbeitskräften, Substitution durch Technik, Verlagerung.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13. Höchstpreis -->
+  <section class="slide">
+    <h2>Der Höchstpreis: Schutz der Nachfrager</h2>
+    <ul class="checklist">
+      <li>Staatliche <strong>Preisobergrenze unter dem Gleichgewichtspreis</strong> (sonst wirkungslos)</li>
+      <li>Beispiele: sozialer Wohnungsbau, <strong>Mietpreisbremse</strong> in Ballungsgebieten</li>
+      <li>Folge: Nachfrage steigt, Angebot sinkt → <strong>Nachfrageüberschuss</strong></li>
+      <li>Flankierend nötig: Subventionen, Kontingentierung, Rationierung</li>
+      <li>Typisch: <strong>Schwarzmärkte</strong> mit höheren Preisen; selten Entlastung durch Importe</li>
+    </ul>
+    <div class="merksatz">
+      <span class="merksatz-label">📌 Beurteilung (IHK-Klassiker)</span>
+      Marktkonträre Eingriffe setzen die <strong>Funktionen des Marktpreises</strong> (SAAS) außer Kraft: dauerhafte Überschüsse/Knappheiten, Folgekosten, Fehlallokation, graue &amp; schwarze Märkte.
+    </div>
+  </section>
+
+  <!-- 14. VGR Einstieg -->
+  <section class="slide">
+    <h2>Block 3: Die Volkswirtschaftliche Gesamtrechnung</h2>
+    <p class="subtitle">Das statistische Instrument zur Erfassung gesamtwirtschaftlicher Vorgänge</p>
+    <ul class="checklist">
+      <li><strong>Rückschauend:</strong> Entstehung, Verwendung, Verteilung von BIP und BNE</li>
+      <li>Grundlage: <strong>Wirtschaftskreislauf</strong> (Haushalte, Unternehmen, Staat, Kapitalsammelstellen, Ausland)</li>
+      <li>Genutzt für: Wachstumsmessung, Konjunkturbarometer, Wirtschaftspolitik, Lohnverhandlungen, internationalen Vergleich</li>
+      <li>EU-weit standardisiert: <strong>ESVG 2010</strong></li>
+    </ul>
+  </section>
+
+  <!-- 15. BIP vs BNE -->
+  <section class="slide">
+    <h2>BIP oder BNE? Inland oder Inländer?</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">BIP — Inlandskonzept</div>
+        <p style="font-size: 1rem;">Wert aller Güter &amp; Dienstleistungen, die <strong>innerhalb der geografischen Grenzen</strong> produziert wurden — egal von wem.</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">BNE — Inländerkonzept</div>
+        <p style="font-size: 1rem;">Einkommen der <strong>Inländer</strong> aus dem In- <em>und</em> Ausland (Pendler, Monteure, Auslandsproduktion) — egal wo erbracht.</p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="merksatz-label">🧮 Formeln</span>
+      <strong>Bruttowertschöpfung</strong> = Produktionswerte − Vorleistungen (keine Doppelzählung!). <strong>BNE</strong> = BIP − Inlandseinkommen von Nichtinländern + Auslandseinkommen von Inländern.
+    </div>
+  </section>
+
+  <!-- 16. Drei Rechnungen -->
+  <section class="slide">
+    <h2>Drei Wege zum BIP — ein Ergebnis</h2>
+    <div class="figure" id="fig-vgr"></div>
+    <p class="caption">Entstehung (wo?), Verwendung (wofür?) und Verteilung (an wen?) führen zum gleichen BIP. Verteilungsrechnung: Arbeitnehmerentgelt + Unternehmens- und Vermögenseinkommen = <strong>Volkseinkommen</strong>.</p>
+  </section>
+
+  <!-- 17. Nominal/Real + Grenzen -->
+  <section class="slide">
+    <h2>Nominal vs. real — und was das BIP nicht kann</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Nominales BIP</div>
+        <p style="font-size: 1rem;">In <strong>laufenden Preisen</strong> — enthält Mengen- <em>und</em> Preisänderungen (Inflation).</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Reales BIP</div>
+        <p style="font-size: 1rem;">Zu Preisen eines <strong>Basisjahres</strong> — zeigt den echten Leistungszuwachs; Basis aller Wachstums- und Ländervergleiche.</p>
+      </div>
+    </div>
+    <ul class="checklist">
+      <li>Hausarbeit &amp; Ehrenamt werden <strong>nicht erfasst</strong></li>
+      <li><strong>Schwarzarbeit</strong> (Schattenwirtschaft) wird nur geschätzt</li>
+      <li>Reparatur von Unfall-/Umweltschäden <strong>erhöht</strong> das BIP — ohne Wohlstandsgewinn</li>
+      <li>Keine Aussage über <strong>Verteilung, Umwelt, Lebensqualität</strong></li>
+    </ul>
+  </section>
+
+  <!-- 18. Lohn-/Gewinnquote -->
+  <section class="slide">
+    <h2>Primärverteilung: Lohn- und Gewinnquote</h2>
+    <div class="merksatz">
+      <span class="merksatz-label">🧮 Formeln</span>
+      <strong>Lohnquote</strong> = Arbeitnehmerentgelt ÷ Volkseinkommen × 100 &nbsp;·&nbsp; <strong>Gewinnquote</strong> = Unternehmens- und Vermögenseinkommen ÷ Volkseinkommen × 100
+    </div>
+    <ul class="checklist">
+      <li>Primärverteilung nach dem <strong>Leistungsprinzip</strong> (Faktoreinkommen am Markt)</li>
+      <li>2018: Lohnquote ≈ <strong>69 %</strong>, Gewinnquote ≈ <strong>31 %</strong> — zusammen immer 100 %</li>
+      <li>Vorsicht: Zinseinkünfte von Arbeitnehmern → Gewinnquote; Vorstandsgehälter → Lohnquote</li>
+      <li><strong>Personelle</strong> Verteilung: Pro-Kopf-Einkommen, <strong>Lorenzkurve</strong> (Abstand zur Diagonale = Ungleichheit)</li>
+    </ul>
+  </section>
+
+  <!-- 19. Sekundärverteilung -->
+  <section class="slide">
+    <h2>Sekundärverteilung: Der Staat verteilt um</h2>
+    <p>Die Primärverteilung ist ungleich → der Staat korrigiert nach dem <strong>Bedarfsprinzip</strong>: progressive Einkommensteuer, Sozialversicherungsbeiträge, Sozialleistungen (ALG, Renten, Wohngeld, Kindergeld).</p>
+    <div class="merksatz">
+      <span class="merksatz-label">🧮 Verfügbares Einkommen</span>
+      Primäreinkommen − direkte Steuern − Sozialversicherungsbeiträge + Transferzahlungen = <strong>verfügbares Einkommen</strong> (für Konsum und Sparen).
+    </div>
+    <p class="muted">Auch Gewerkschaften wirken über die Tarifpolitik auf die Verteilung — zu hohe Abschlüsse können aber Wettbewerbsfähigkeit und Arbeitsplätze gefährden.</p>
+  </section>
+
+  <!-- 20. Magisches Viereck -->
+  <section class="slide">
+    <h2>Das magische Viereck (§ 1 StabG, 1967)</h2>
+    <div class="figure" id="fig-viereck"></div>
+    <p class="caption">„Magisch“, weil kaum alle vier Ziele gleichzeitig erreichbar sind. Erweitert um <strong>Umweltschutz</strong> und <strong>gerechte Verteilung</strong> → magisches Sechseck (qualitative Ziele, nicht klar messbar).</p>
+  </section>
+
+  <!-- 21. Messgrößen -->
+  <section class="slide">
+    <h2>Die vier Ziele und ihre Messgrößen</h2>
+    <table>
+      <tr><th>Ziel</th><th>Messgröße</th><th>Faustregel</th></tr>
+      <tr><td><strong>Preisniveaustabilität</strong></td><td>Inflationsrate (Verbraucherpreisindex, Warenkorb)</td><td>knapp unter 2 % (EZB, HVPI)</td></tr>
+      <tr><td><strong>Hoher Beschäftigungsstand</strong></td><td>Arbeitslosenquote (Bundesagentur für Arbeit)</td><td>erreicht bei ca. 3–4 %</td></tr>
+      <tr><td><strong>Außenwirtschaftliches Gleichgewicht</strong></td><td>Außenbeitrag (Exporte − Importe)</td><td>+1 bis 2 % des nominalen BIP</td></tr>
+      <tr><td><strong>Stetiges &amp; angemessenes Wachstum</strong></td><td>Zuwachsrate des <em>realen</em> BIP</td><td>ø rund 2 % pro Jahr</td></tr>
+    </table>
+    <p class="muted">Jahreswirtschaftsbericht (§ 2 StabG): Ziele der Bundesregierung + Stellungnahme zum Gutachten des Sachverständigenrates.</p>
+  </section>
+
+  <!-- 22. Zielkonflikte -->
+  <section class="slide">
+    <h2>Zielkonflikte und Zielharmonien</h2>
+    <div class="cards">
+      <div class="card rose">
+        <div class="card-title">Zielkonflikte (konkurrierend)</div>
+        <p style="font-size: 0.98rem;">Wachstum ↔ Preisstabilität (Boom treibt Preise) · Wachstum ↔ Ökologie · Nivellierung der Einkommen ↔ Leistungsanreize</p>
+      </div>
+      <div class="card teal">
+        <div class="card-title">Zielharmonien (komplementär)</div>
+        <p style="font-size: 0.98rem;">Wachstum ↔ Vollbeschäftigung (mehr Produktion braucht mehr Arbeit) · Wachstum ↔ Umwelt, wenn in grüne Verfahren investiert wird</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Indifferent</div>
+        <p style="font-size: 0.98rem;">Ziele beeinflussen sich nicht — z. B. außenwirtschaftliches Gleichgewicht ↔ Erhaltung der Umwelt</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 23. Zusammenfassung -->
+  <section class="slide">
+    <h2>Das Wichtigste in 7 Sätzen</h2>
+    <ol class="numlist">
+      <li>Wettbewerb erfüllt 6 Funktionen — der Staat schützt ihn mit UWG und GWB.</li>
+      <li>Die 3 Säulen des GWB: Kartellverbot, Missbrauchsaufsicht, Fusionskontrolle (Bundeskartellamt).</li>
+      <li>Mindestpreis über p₀ schützt Anbieter → Angebotsüberschuss; Höchstpreis unter p₀ schützt Nachfrager → Nachfrageüberschuss.</li>
+      <li>Marktkonträre Eingriffe hebeln die Preisfunktionen aus — marktkonforme sind vorzuziehen.</li>
+      <li>BIP = Inlandskonzept, BNE = Inländerkonzept; drei Rechnungen führen zum selben Ergebnis.</li>
+      <li>Nur das reale BIP zeigt echtes Wachstum; Lohnquote = Arbeitnehmerentgelt ÷ Volkseinkommen × 100.</li>
+      <li>Das magische Viereck (StabG) umfasst Preisstabilität, Beschäftigung, außenwirtschaftliches Gleichgewicht und Wachstum — mit Zielkonflikten.</li>
+    </ol>
+  </section>
+
+  <!-- 24. Hausaufgabe & Ausblick -->
+  <section class="slide">
+    <h2>Hausaufgabe &amp; Ausblick</h2>
+    <p class="subtitle">Bis Samstag, 29.08.2026, 08:15 Uhr</p>
+    <ul class="checklist">
+      <li><strong>Quiz</strong> auf der Plattform vollständig bearbeiten (40 Fragen, Selbstkontrolle)</li>
+      <li><strong>Aufgabenheft:</strong> Aufgaben 4 (Mindestpreis) und 7 (VGR-Rechnung) schriftlich lösen</li>
+      <li><strong>Handout</strong> Abschnitte 3–5 lesen; Formeln (Lohnquote, verfügbares Einkommen) einprägen</li>
+      <li>Optional: <strong>Karteikarten &amp; Lernspiele</strong> (Wordle, Hängemann, Memory)</li>
+    </ul>
+    <div class="merksatz">
+      <span class="merksatz-label">🔭 Lektion 3 (Sa, 29.08.)</span>
+      Konjunktur (Zyklus, Indikatoren, Arbeitslosigkeit, Inflation) · Wirtschaftspolitik (Geld- und Fiskalpolitik, EZB) · Außenwirtschaft (Zahlungsbilanz, Wechselkurse, EU).
+    </div>
+  </section>
+
+
+</div>
+
+<div class="slide-num">© Can Siebert · 2026 · <span id="slideCount">1 / 26</span></div>
+<nav class="nav">
+  <button onclick="prev()" title="Zurück (←)">←</button>
+  <span class="nav-counter"><span id="slideNum">1</span></span>
+  <button onclick="next()" title="Weiter (→)">→</button>
+</nav>
+
+<!-- Rough.js für handgezeichnete Diagramme -->
+<script src="https://cdn.jsdelivr.net/npm/roughjs@4.6.6/bundled/rough.min.js"></script>
+<script>
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+function show(i) {
+  slides.forEach(s => s.classList.remove('active'));
+  current = Math.max(0, Math.min(i, slides.length - 1));
+  slides[current].classList.add('active');
+  document.getElementById('slideNum').textContent = current + 1;
+  document.getElementById('slideCount').textContent = `${current + 1} / ${slides.length}`;
+}
+function next() { show(current + 1); }
+function prev() { show(current - 1); }
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { next(); e.preventDefault(); }
+  if (e.key === 'ArrowLeft') prev();
+  if (e.key === 'Home') show(0);
+  if (e.key === 'End') show(slides.length - 1);
+});
+
+// Rough.js-Skizzen
+function makeRough(svgEl, fn) {
+  const rc = rough.svg(svgEl);
+  fn(rc, svgEl);
+}
+
+function box(rc, svg, x, y, w, h, fill, stroke) {
+  const node = rc.rectangle(x, y, w, h, {
+    roughness: 1.6, bowing: 1, fill: fill, fillStyle: 'solid', stroke: stroke, strokeWidth: 1.6
+  });
+  svg.appendChild(node);
+}
+function arrow(rc, svg, x1, y1, x2, y2, color) {
+  svg.appendChild(rc.line(x1, y1, x2, y2, { roughness: 1.4, stroke: color, strokeWidth: 1.8 }));
+  // Pfeilspitze
+  const ang = Math.atan2(y2 - y1, x2 - x1);
+  const ah = 10;
+  svg.appendChild(rc.line(x2, y2, x2 - ah * Math.cos(ang - Math.PI / 7), y2 - ah * Math.sin(ang - Math.PI / 7), { roughness: 1.2, stroke: color, strokeWidth: 1.8 }));
+  svg.appendChild(rc.line(x2, y2, x2 - ah * Math.cos(ang + Math.PI / 7), y2 - ah * Math.sin(ang + Math.PI / 7), { roughness: 1.2, stroke: color, strokeWidth: 1.8 }));
+}
+function text(svg, x, y, str, opts = {}) {
+  const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  t.setAttribute('x', x); t.setAttribute('y', y);
+  t.setAttribute('text-anchor', opts.anchor || 'middle');
+  t.setAttribute('font-family', 'Inter, sans-serif');
+  t.setAttribute('font-size', opts.size || 15);
+  t.setAttribute('fill', opts.color || '#0F172A');
+  t.setAttribute('font-weight', opts.bold ? 700 : 500);
+  t.textContent = str;
+  svg.appendChild(t);
+  return t;
+}
+
+window.addEventListener('load', () => {
+  // FIG: Die drei Säulen des GWB
+  const c1 = document.getElementById('fig-gwb');
+  if (c1) {
+    const svg1 = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg1.setAttribute('viewBox', '0 0 900 330');
+    svg1.setAttribute('width', '900'); svg1.setAttribute('height', '330');
+    c1.appendChild(svg1);
+    makeRough(svg1, (rc, svg) => {
+      // Dach
+      box(rc, svg, 90, 40, 720, 60, '#ECFEFF', '#0F766E');
+      text(svg, 450, 78, 'GWB — Gesetz gegen Wettbewerbsbeschränkungen', { bold: true, size: 20, color: '#0F766E' });
+      const saeulen = [
+        { t: 'Kartellverbot', s: '§ 1 GWB', d: 'Preis-, Submissions-, Gebiets-, Quotenkartelle', c: '#ECFEFF', st: '#0F766E' },
+        { t: 'Missbrauchsaufsicht', s: '§§ 19 ff. GWB', d: 'Ausbeutung / Behinderung (Dumping)', c: '#FEF3C7', st: '#F59E0B' },
+        { t: 'Fusionskontrolle', s: '§ 35 GWB', d: 'Anzeigepflicht, Untersagung, Ministererlaubnis', c: '#FFE4E6', st: '#F97316' }
+      ];
+      let x = 90;
+      saeulen.forEach((f) => {
+        box(rc, svg, x, 130, 220, 130, f.c, f.st);
+        text(svg, x + 110, 165, f.t, { bold: true, size: 17, color: f.st });
+        text(svg, x + 110, 192, f.s, { bold: true, size: 14, color: '#475569' });
+        text(svg, x + 110, 222, f.d, { size: 11.5, color: '#475569' });
+        arrow(rc, svg, x + 110, 130, x + 110, 100, f.st);
+        x += 250;
+      });
+      text(svg, 450, 300, 'Aufsicht: Bundeskartellamt · EU: Kommission, Art. 101 AEUV, FKVO', { size: 15, bold: true, color: '#475569' });
+    });
+  }
+
+  // FIG: Mindestpreis und Höchstpreis im Preis-Mengen-Diagramm
+  const c2 = document.getElementById('fig-preiseingriffe');
+  if (c2) {
+    const svg2 = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg2.setAttribute('viewBox', '0 0 900 420');
+    svg2.setAttribute('width', '900'); svg2.setAttribute('height', '420');
+    c2.appendChild(svg2);
+    makeRough(svg2, (rc, svg) => {
+      const drawMarket = (ox, title, mode) => {
+        const oy = 360, w = 330, h = 280;
+        // Achsen
+        arrow(rc, svg, ox, oy, ox, oy - h - 15, '#0F172A');
+        arrow(rc, svg, ox, oy, ox + w + 15, oy, '#0F172A');
+        text(svg, ox + 20, oy - h - 20, 'Preis (p)', { size: 13, bold: true });
+        text(svg, ox + w - 10, oy + 25, 'Menge (x)', { size: 13, bold: true });
+        text(svg, ox + w / 2, 45, title, { size: 17, bold: true, color: mode === 'min' ? '#0F766E' : '#F97316' });
+        // Kurven
+        svg.appendChild(rc.line(ox + 30, oy - h + 20, ox + w - 30, oy - 30, { roughness: 1.3, stroke: '#EF4444', strokeWidth: 2 }));
+        text(svg, ox + w - 18, oy - 42, 'N', { size: 15, bold: true, color: '#EF4444' });
+        svg.appendChild(rc.line(ox + 30, oy - 30, ox + w - 30, oy - h + 20, { roughness: 1.3, stroke: '#0F766E', strokeWidth: 2 }));
+        text(svg, ox + w - 18, oy - h + 12, 'A', { size: 15, bold: true, color: '#0F766E' });
+        // Gleichgewicht
+        const gx = ox + w / 2, gy = oy - h / 2 - 5;
+        svg.appendChild(rc.line(ox, gy, gx, gy, { roughness: 0.8, stroke: '#94A3B8', strokeWidth: 1, strokeLineDash: [5, 5] }));
+        svg.appendChild(rc.line(gx, gy, gx, oy, { roughness: 0.8, stroke: '#94A3B8', strokeWidth: 1, strokeLineDash: [5, 5] }));
+        text(svg, ox - 18, gy + 4, 'p₀', { size: 14, bold: true, color: '#475569' });
+        text(svg, gx, oy + 20, 'x₀', { size: 14, bold: true, color: '#475569' });
+        // Eingriffspreis
+        const py = mode === 'min' ? gy - 60 : gy + 60;
+        svg.appendChild(rc.line(ox, py, ox + w, py, { roughness: 1, stroke: '#F59E0B', strokeWidth: 2.4 }));
+        text(svg, ox - 18, py + 4, 'p̄', { size: 15, bold: true, color: '#F59E0B' });
+        if (mode === 'min') {
+          text(svg, ox + w / 2, py - 14, 'Mindestpreis (über p₀)', { size: 13, bold: true, color: '#F59E0B' });
+          text(svg, ox + w / 2, oy - 8, 'Angebotsüberschuss: xₙ < x₀ < xₐ', { size: 12.5, color: '#475569' });
+        } else {
+          text(svg, ox + w / 2, py + 22, 'Höchstpreis (unter p₀)', { size: 13, bold: true, color: '#F59E0B' });
+          text(svg, ox + w / 2, oy - h + 40, 'Nachfrageüberschuss: xₐ < x₀ < xₙ', { size: 12.5, color: '#475569' });
+        }
+      };
+      drawMarket(70, 'Mindestpreis — Schutz der Anbieter', 'min');
+      drawMarket(510, 'Höchstpreis — Schutz der Nachfrager', 'max');
+    });
+  }
+
+  // FIG: Magisches Viereck
+  const c3 = document.getElementById('fig-viereck');
+  if (c3) {
+    const svg3 = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg3.setAttribute('viewBox', '0 0 900 400');
+    svg3.setAttribute('width', '900'); svg3.setAttribute('height', '400');
+    c3.appendChild(svg3);
+    makeRough(svg3, (rc, svg) => {
+      const cx = 450, cy = 205;
+      const ecken = [
+        { x: cx, y: 55, t: 'Preisniveaustabilität', s: 'Inflationsrate < 2 %', c: '#ECFEFF', st: '#0F766E' },
+        { x: cx + 300, y: cy, t: 'Hoher Beschäftigungsstand', s: 'Arbeitslosenquote 3–4 %', c: '#FEF3C7', st: '#F59E0B' },
+        { x: cx, y: 355, t: 'Stetiges, angemessenes Wachstum', s: 'reales BIP ø +2 % p. a.', c: '#FFE4E6', st: '#F97316' },
+        { x: cx - 300, y: cy, t: 'Außenwirtschaftl. Gleichgewicht', s: 'Außenbeitrag +1–2 % des BIP', c: '#ECFEFF', st: '#0F766E' }
+      ];
+      // Rautenlinien
+      for (let i = 0; i < 4; i++) {
+        const a = ecken[i], b = ecken[(i + 1) % 4];
+        svg.appendChild(rc.line(a.x, a.y, b.x, b.y, { roughness: 1.4, stroke: '#94A3B8', strokeWidth: 1.6, strokeLineDash: [7, 6] }));
+      }
+      ecken.forEach((e) => {
+        box(rc, svg, e.x - 125, e.y - 32, 250, 64, e.c, e.st);
+        text(svg, e.x, e.y - 6, e.t, { bold: true, size: 13.5, color: e.st });
+        text(svg, e.x, e.y + 16, e.s, { size: 12, color: '#475569' });
+      });
+      text(svg, cx, cy - 12, 'Magisches', { bold: true, size: 19, color: '#0F766E' });
+      text(svg, cx, cy + 14, 'Viereck (§ 1 StabG)', { bold: true, size: 19, color: '#0F766E' });
+    });
+  }
+});
+
+</script>
+
+</body>
+</html>

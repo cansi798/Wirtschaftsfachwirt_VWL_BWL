@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Memory Lektion 4 — Unternehmenszusammenschlüsse</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:#0EA5A4; --bfw-primary-dark:#0F766E; --bfw-accent:#F59E0B;
+  --bfw-ink:#0F172A; --bfw-ink-soft:#475569; --bfw-bg:#FAFAFA; --bfw-bg-soft:#F8FAFC;
+  --bfw-bg-teal:#ECFEFF; --bfw-bg-green:#D1FAE5; --bfw-border:#E2E8F0; --bfw-success:#10B981;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', system-ui, sans-serif; background: linear-gradient(180deg, var(--bfw-bg-teal) 0%, var(--bfw-bg) 240px); color: var(--bfw-ink); min-height: 100vh; padding: 1.5rem 1rem 3rem; }
+.container { max-width: 820px; margin: 0 auto; }
+header { text-align: center; margin-bottom: 1rem; }
+.tag-pill { display: inline-block; padding: 0.4rem 1rem; background: var(--bfw-primary); color: white; border-radius: 999px; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.75rem; }
+h1 { font-size: 1.6rem; color: var(--bfw-primary-dark); }
+details.how { background: var(--bfw-bg-soft); border: 1px solid var(--bfw-border); border-radius: 10px; padding: 0.6rem 1rem; margin-bottom: 1rem; font-size: 0.9rem; color: var(--bfw-ink-soft); line-height: 1.5; }
+details.how summary { cursor: pointer; font-weight: 600; color: var(--bfw-primary-dark); }
+details.how p { margin: 0.5rem 0 0; }
+.stats { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; background: white; border: 1px solid var(--bfw-border); border-radius: 12px; padding: 0.7rem 1rem; margin-bottom: 1rem; font-size: 0.9rem; color: var(--bfw-ink-soft); }
+.stats b { color: var(--bfw-primary-dark); }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+@media (max-width: 620px){ .grid { grid-template-columns: repeat(2, 1fr); } }
+.mcard { position: relative; min-height: 120px; border-radius: 12px; cursor: pointer; border: 2px solid var(--bfw-border);
+  background: var(--bfw-primary); color: white; display: flex; align-items: center; justify-content: center;
+  padding: 0.6rem; text-align: center; transition: transform 0.12s, background 0.2s; user-select: none; }
+.mcard:active { transform: scale(0.98); }
+.mcard .content { display: none; font-size: 0.82rem; line-height: 1.35; color: var(--bfw-ink); overflow: auto; max-height: 150px; }
+.mcard .facedown { font-size: 1.8rem; }
+.mcard .label { position: absolute; top: 5px; left: 8px; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+.mcard.up { background: white; cursor: default; }
+.mcard.up.term { border-color: var(--bfw-primary); }
+.mcard.up.term .content { font-weight: 700; font-size: 1rem; color: var(--bfw-primary-dark); }
+.mcard.up .content { display: block; }
+.mcard.up .facedown { display: none; }
+.mcard.up .label { color: var(--bfw-ink-soft); }
+.mcard.matched { background: var(--bfw-bg-green); border-color: var(--bfw-success); cursor: default; }
+.mcard.matched .content { display: block; }
+.mcard.matched .facedown { display: none; }
+.mcard.matched.term .content { color: #065F46; }
+.msg { text-align: center; min-height: 1.6rem; font-weight: 600; margin: 1rem 0; }
+.msg.win { color: var(--bfw-success); }
+.controls { text-align: center; margin-top: 0.5rem; }
+.btn { padding: 0.7rem 1.4rem; border: none; border-radius: 10px; background: var(--bfw-primary); color: white; font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+.stats2 { text-align: center; font-size: 0.85rem; color: var(--bfw-ink-soft); margin-top: 0.5rem; }
+footer { text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: var(--bfw-ink-soft); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <span class="tag-pill">Lektion 4 · Memory</span>
+    <h1>Unternehmenszusammenschlüsse</h1>
+  </header>
+  <details class="how" open>
+    <summary>ℹ️ Spielanleitung</summary>
+    <p>Finde die zusammengehörenden Paare: Jede Karte zeigt entweder einen <b>Begriff</b> oder eine <b>Definition</b>.
+    Decke zwei Karten auf – gehören Begriff und Definition zusammen, bleiben sie offen (grün).</p>
+    <p>Passt es nicht, werden beide wieder umgedreht. Ziel: alle <b>8 Paare</b> mit möglichst wenigen Zügen aufdecken – so prägst du dir Begriffe und ihre Bedeutung ein.</p>
+  </details>
+  <div class="stats">
+    <div>Paare: <b id="pairs">0</b> / 8</div>
+    <div>Züge: <b id="moves">0</b></div>
+  </div>
+  <div class="grid" id="grid"></div>
+  <div class="msg" id="msg"></div>
+  <div class="controls"><button class="btn" onclick="newGame()">🔄 Neues Spiel</button></div>
+  <div class="stats2" id="best"></div>
+  <footer>BFW Lernplattform · Büroprozesse (M-067) · © Can Siebert 2026</footer>
+</div>
+<script>
+const DAY_ID = 'bwl-4';
+const PAIRS = [{"term":"Was ist ein Unternehmenszusammenschluss?","def":"Die Verbindung bisher selbstständiger Unternehmen zur gemeinsamen Verfolgung wirtschaftlicher Ziele — von lockerer Kooperation bis zur vollständigen Verschmelzung."},{"term":"Was ist der Unterschied zwischen internem und externem Wachstum?","def":"Internes Wachstum: aus eigener Kraft (Investitionen, Innovationen). Externes Wachstum: durch Zusammenschluss oder Verbindung mit anderen Unternehmen."},{"term":"Nennen Sie vier Kernziele von Unternehmenszusammenschlüssen.","def":"Synergieeffekte, Marktmacht, Rationalisierung (Kostensenkung), Risikostreuung — außerdem: Sicherung von Beschaffung und Absatz, Kapitalkraft, Markterschließung."},{"term":"Was sind Synergieeffekte?","def":"Vorteile durch Zusammenwirken („2 + 2 = 5“): geteilte F&E-Kosten, Wissens- und Technologietransfer, gemeinsame Nutzung von Ressourcen."},{"term":"Was bedeutet Rationalisierung als Zusammenschlussziel?","def":"Kostensenkung durch Größenvorteile (Kostendegression), gemeinsamen Einkauf mit Mengenrabatten, gemeinsame Verwaltung, Vertrieb und Logistik."},{"term":"Was bedeutet Risikostreuung (Diversifikation)?","def":"Verteilung des unternehmerischen Risikos auf mehrere Geschäftsfelder, Produkte oder Projekte — typisches Ziel diagonaler (konglomerater) Zusammenschlüsse."},{"term":"Welche vertikalen Motive gibt es für Zusammenschlüsse?","def":"Sicherung der Beschaffung (Zugang zu Rohstoffen und Vorprodukten, vorgelagert) und Sicherung des Absatzes (Vertriebswege, nachgelagert)."},{"term":"Was bedeutet rechtliche Selbstständigkeit?","def":"Das Unternehmen bleibt eigener Rechtsträger: eigene Firma, eigene Organe, eigene Bilanz."},{"term":"Was bedeutet wirtschaftliche Selbstständigkeit?","def":"Das Unternehmen trifft seine unternehmerischen Entscheidungen (Preise, Programme, Investitionen) selbst — ohne fremde einheitliche Leitung."},{"term":"Was kennzeichnet die Kooperation?","def":"Freiwillige Zusammenarbeit rechtlich und wirtschaftlich selbstständig bleibender Unternehmen; die Entscheidungsfreiheit wird nur im Kooperationsbereich freiwillig eingeschränkt."},{"term":"Was kennzeichnet die Konzentration?","def":"Zusammenfassung von Unternehmen unter Verlust der wirtschaftlichen Selbstständigkeit; bei Fusion und Trust geht zusätzlich die rechtliche Selbstständigkeit verloren."},{"term":"Nennen Sie die Kooperationsformen.","def":"Arbeitsgemeinschaft/Konsortium, Interessengemeinschaft, Joint Venture (Gemeinschaftsunternehmen), strategische Allianz, Verband, Kartell."},{"term":"Nennen Sie die Konzentrationsformen.","def":"Konzern (rechtliche Selbstständigkeit bleibt), Fusion/Verschmelzung und Trust (rechtliche Selbstständigkeit geht verloren)."},{"term":"Was ist eine Arbeitsgemeinschaft (ARGE)?","def":"Befristeter Zusammenschluss rechtlich und wirtschaftlich selbstständiger Unternehmen zur Durchführung eines einzelnen Auftrags/Projekts — typisch: Bauwirtschaft, Rechtsform GbR."},{"term":"Was ist ein Konsortium?","def":"Projektbezogener, befristeter Zusammenschluss v. a. im Bank- und Finanzwesen — z. B. Bankenkonsortium zur Anleihe-Emission oder Großkredit-Finanzierung; i. d. R. GbR."},{"term":"Warum gründen Bauunternehmen eine ARGE?","def":"Kapazität, Know-how und Risiko eines Großprojekts (Tunnel, Brücke) übersteigen die Möglichkeiten eines einzelnen Unternehmens — gemeinsam wird der Auftrag machbar."},{"term":"Was ist eine Interessengemeinschaft (IG)?","def":"Vertragliche, auf Dauer angelegte Zusammenarbeit rechtlich selbstständiger Unternehmen in einzelnen Teilbereichen (z. B. gemeinsame F&E, Patentverwertung), oft mit Gewinn- oder Kostenpool."},{"term":"Was ist ein Joint Venture?","def":"Ein von zwei oder mehr Partnern gegründetes, rechtlich selbstständiges Gemeinschaftsunternehmen — Kapital, Führung und Risiko werden gemeinsam getragen (oft 50:50)."},{"term":"Typisches Motiv für ein Joint Venture?","def":"Erschließung von Auslandsmärkten: Der lokale Partner bringt Marktkenntnis und Vertriebsnetz ein; außerdem Teilung hoher Entwicklungskosten."},{"term":"Was ist eine strategische Allianz?","def":"Zusammenarbeit — häufig zwischen Konkurrenten — in einzelnen strategischen Geschäftsfeldern ohne gemeinsames Tochterunternehmen; außerhalb der Allianz bleiben die Partner Wettbewerber."},{"term":"Beispiel für eine strategische Allianz?","def":"Luftfahrt-Allianzen: gemeinsames Streckennetz, Codesharing und Vielfliegerprogramme mehrerer unabhängiger Fluggesellschaften."},{"term":"Was ist ein Verband?","def":"Freiwilliger Zusammenschluss zur gemeinsamen Interessenvertretung nach außen (Staat, Öffentlichkeit, Tarifpartner) sowie zur Beratung und Information der Mitglieder — z. B. Branchen- und Arbeitgeberverbände."},{"term":"Worin unterscheiden sich ARGE/Konsortium und Interessengemeinschaft?","def":"ARGE/Konsortium: befristet, ein einzelnes Projekt. Interessengemeinschaft: auf Dauer angelegt, ständige Zusammenarbeit in Teilbereichen."},{"term":"Was ist ein Kartell?","def":"Vertragliche Absprache (oder abgestimmtes Verhalten) rechtlich selbstständig bleibender Unternehmen derselben Wirtschaftsstufe mit dem Ziel der Wettbewerbsbeschränkung."},{"term":"Nennen Sie vier Kartellarten.","def":"Preiskartell (einheitliche Preise), Quoten-/Produktionskartell (Mengenaufteilung), Gebietskartell (Markt-/Kundenaufteilung), Submissionsabsprachen (bei Ausschreibungen)."},{"term":"Welche Normen enthalten das Kartellverbot?","def":"§ 1 GWB (Deutschland) und Art. 101 AEUV (EU) — wettbewerbsbeschränkende Vereinbarungen sind grundsätzlich verboten (Verbotsprinzip)."},{"term":"Welche Ausnahmen vom Kartellverbot gibt es?","def":"Freistellungen nach § 2 GWB, wenn die Vorteile überwiegen — z. B. bestimmte Mittelstandskooperationen, die den Wettbewerb nicht wesentlich beeinträchtigen."},{"term":"Warum sind Konsortien und ARGE kartellrechtlich grundsätzlich erlaubt?","def":"Sie sind projektbezogen und beschränken den Wettbewerb regelmäßig nicht spürbar — oft ermöglichen sie die Teilnahme am Wettbewerb überhaupt erst."},{"term":"Welche Folgen hat ein Kartellverstoß?","def":"Die Vereinbarung ist nichtig; das Bundeskartellamt kann empfindliche Bußgelder verhängen. Kronzeugen, die das Kartell aufdecken, erhalten Nachlässe."},{"term":"Was ist ein Konzern?","def":"Die Zusammenfassung eines herrschenden und eines oder mehrerer abhängiger, rechtlich selbstständiger Unternehmen unter einheitlicher Leitung (§ 18 AktG)."}];       // [{term, def}, ...] – ganzer Tagespool
+const PAIRS_PER_GAME = 8;
+const STORAGE = 'memory_' + DAY_ID;
+
+let deck=[], flipped=[], matched=0, moves=0, busy=false;
+
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function loadBest(){ try { return JSON.parse(localStorage.getItem(STORAGE)); } catch(e){ return null; } }
+function saveBest(m){ try { localStorage.setItem(STORAGE, JSON.stringify(m)); } catch(e){} }
+function renderBest(){ const b=loadBest(); document.getElementById('best').textContent = b!=null ? `Bestleistung: ${b} Züge` : ''; }
+
+function newGame(){
+  const n = Math.min(PAIRS_PER_GAME, PAIRS.length);
+  const chosen = shuffle(PAIRS.map((p,i)=>i)).slice(0, n);
+  deck = [];
+  chosen.forEach((pi, k) => {
+    deck.push({ pair:k, kind:'term', text:PAIRS[pi].term });
+    deck.push({ pair:k, kind:'def',  text:PAIRS[pi].def  });
+  });
+  shuffle(deck);
+  flipped=[]; matched=0; moves=0; busy=false;
+  document.getElementById('pairs').textContent='0';
+  document.getElementById('pairs').nextSibling; // noop
+  document.getElementById('moves').textContent='0';
+  document.querySelector('.stats').firstElementChild.innerHTML = `Paare: <b id="pairs">0</b> / ${n}`;
+  document.getElementById('msg').textContent=''; document.getElementById('msg').className='msg';
+  render();
+  renderBest();
+}
+
+function render(){
+  const g=document.getElementById('grid'); g.innerHTML='';
+  deck.forEach((card, i)=>{
+    const el=document.createElement('div');
+    el.className='mcard'; el.id='c'+i;
+    el.innerHTML = `<span class="label"></span><span class="facedown">🧠</span><span class="content"></span>`;
+    el.onclick=()=>flip(i);
+    g.appendChild(el);
+  });
+}
+
+function flip(i){
+  if(busy) return;
+  const card=deck[i]; const el=document.getElementById('c'+i);
+  if(el.classList.contains('up') || el.classList.contains('matched')) return;
+  el.classList.add('up', card.kind);
+  el.querySelector('.content').textContent = card.text;
+  el.querySelector('.label').textContent = card.kind==='term' ? 'Begriff' : 'Definition';
+  flipped.push(i);
+  if(flipped.length===2){
+    moves++; document.getElementById('moves').textContent=moves;
+    const [a,b]=flipped;
+    if(deck[a].pair===deck[b].pair && deck[a].kind!==deck[b].kind){
+      // Treffer
+      document.getElementById('c'+a).classList.add('matched');
+      document.getElementById('c'+b).classList.add('matched');
+      flipped=[]; matched++;
+      document.getElementById('pairs').textContent=matched;
+      if(matched === deck.length/2) win();
+    } else {
+      busy=true;
+      setTimeout(()=>{
+        [a,b].forEach(idx=>{ const e=document.getElementById('c'+idx); e.classList.remove('up','term','def'); e.querySelector('.content').textContent=''; e.querySelector('.label').textContent=''; });
+        flipped=[]; busy=false;
+      }, 1000);
+    }
+  }
+}
+
+function win(){
+  const m=document.getElementById('msg'); m.textContent=`🎉 Geschafft in ${moves} Zügen!`; m.className='msg win';
+  const best=loadBest();
+  if(best==null || moves<best){ saveBest(moves); renderBest(); m.textContent += ' Neue Bestleistung!'; }
+}
+
+newGame();
+</script>
+</body>
+</html>

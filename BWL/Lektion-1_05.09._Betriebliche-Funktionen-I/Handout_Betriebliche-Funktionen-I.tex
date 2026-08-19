@@ -1,0 +1,440 @@
+\documentclass[11pt, a4paper]{article}
+
+% Gemeinsame Style-Definitionen (TEXINPUTS muss templates/ enthalten — siehe scripts/build_tex.py)
+\input{bfw-style.tex}
+
+\title{\vspace*{-1.5cm}\Huge\bfseries\color{bfwPrimaryDark}Lektion~1: Betriebliche Funktionen I\\[0.4em]
+  \large\color{bfwInkSoft}\textnormal{Produktion, Logistik \& Marketing --- vom Zielsystem zum Marketing-Mix}}
+\author{\textsf{Wirtschaftsfachwirt --- 1.2 Betriebswirtschaftliche Grundlagen \textperiodcentered{} \small\copyright\ Can Siebert\,\textperiodcentered\,2026}}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\vspace{1em}
+\begin{merksatz}[title={\bfseries Worum geht es in dieser Lektion?}]
+Die Betriebswirtschaftslehre beschäftigt sich mit den Prozessen, Strukturen und
+Entwicklungen in Betrieben. Teilt man sie in Aufgabenbereiche ein, wie sie sich aus dem
+Wertschöpfungsprozess ergeben, spricht man von \emph{funktionaler Gliederung}. In dieser
+Lektion verschaffen wir uns zunächst einen Überblick über das Zielsystem des Unternehmens
+und die betrieblichen Funktionsbereiche. Anschließend vertiefen wir die drei Funktionen
+entlang des Güterstroms: \textbf{Produktion} (Produktionsfaktoren, Fertigungstypen,
+Produktionsplanung, Kennzahlen), \textbf{Logistik} (Teilbereiche, Lagerfunktionen, Supply
+Chain Management, 6~R) und \textbf{Absatz/Marketing} (Marktforschung, Ziele, Strategien,
+Marketing-Mix). Die übrigen Funktionen (Rechnungswesen, Finanzierung, Controlling,
+Personal) folgen in Lektion~2.
+\end{merksatz}
+
+\tableofcontents
+\vspace{1em}
+\hrule
+\vspace{1em}
+
+\section{Zielsystem und betriebliche Funktionen im Überblick}
+
+\subsection{Das Zielsystem des Unternehmens}
+
+Unternehmen verfolgen nicht ein einzelnes Ziel, sondern ein \textbf{Zielsystem} aus
+mehreren, hierarchisch geordneten Zielen:
+
+\begin{itemize}
+  \item \textbf{Sachziele:} das konkrete Leistungsprogramm --- \emph{welche} Güter und
+    Dienstleistungen in welcher Art und Menge erstellt werden (z.\,B. „Wir bauen
+    Küchengeräte``).
+  \item \textbf{Formalziele} (Erfolgsziele): Maßstäbe, an denen der Erfolg des Handelns
+    gemessen wird --- \textbf{Gewinn}, \textbf{Rentabilität}, \textbf{Wirtschaftlichkeit},
+    \textbf{Produktivität}, Sicherung der \textbf{Liquidität}.
+  \item Daneben treten \textbf{soziale Ziele} (faire Entlohnung, Arbeitsplatzsicherheit,
+    Mitarbeiterzufriedenheit) und \textbf{ökologische Ziele} (Ressourcenschonung,
+    Emissionsminderung, Recycling).
+\end{itemize}
+
+Zwischen Zielen bestehen \textbf{Zielbeziehungen}:
+
+\begin{itemize}
+  \item \textbf{komplementär} --- ein Ziel fördert das andere (z.\,B. weniger Ausschuss
+    $\rightarrow$ geringere Kosten $\rightarrow$ höherer Gewinn);
+  \item \textbf{konkurrierend} --- ein Ziel behindert das andere (z.\,B. höchste Qualität
+    vs. minimale Kosten);
+  \item \textbf{indifferent} (neutral) --- die Ziele beeinflussen sich nicht.
+\end{itemize}
+
+\subsection{Die betrieblichen Funktionsbereiche}
+
+Entlang des Wertschöpfungsprozesses \textbf{Beschaffung $\rightarrow$ Produktion
+$\rightarrow$ Absatz} lassen sich die Grundfunktionen ordnen; hinzu kommen
+Querschnitts- und Unterstützungsfunktionen. Alle Teilbereiche sind miteinander verzahnt
+und müssen zugleich ihre eigenen Aufgaben bewältigen:
+
+\begin{center}
+\begin{tabular}{p{4.6cm} p{9.6cm}}
+\textbf{Funktion} & \textbf{Kernaufgabe}\\
+\hline
+Beschaffung/Materialwirtschaft & Versorgung mit Werkstoffen, Betriebsmitteln, Dienstleistungen\\
+Produktion & Kombination der Produktionsfaktoren zu absatzreifen Leistungen\\
+Absatz/Marketing & marktorientierte Verwertung der Leistungen\\
+Logistik & Güter-, Informations- und Wertefluss --- Querschnittsfunktion\\
+Rechnungswesen & Erfassung und Aufbereitung zahlenmäßiger Informationen\\
+Finanzierung/Investition & Mittelherkunft und Mittelverwendung\\
+Personalwirtschaft & Beschaffung, Einsatz, Entwicklung, Entlohnung der Mitarbeiter\\
+Controlling & Planung, Steuerung, Kontrolle, Information (Management-Service)\\
+\end{tabular}
+\end{center}
+
+\section{Produktion}
+
+Die \textbf{Produktionswirtschaft} hat die Kombination der Produktionsfaktoren zu
+absatzreifen Leistungen zum Gegenstand. \textbf{Produktionsfaktoren} sind die in der
+Produktion eingesetzten materiellen und immateriellen Güter, durch deren Ge- und
+Verbrauch neue Leistungen entstehen.
+
+\subsection{Betriebswirtschaftliche Produktionsfaktoren nach Gutenberg}
+
+Erich Gutenberg hat die betrieblichen Produktionsfaktoren in \textbf{Elementarfaktoren}
+und den \textbf{dispositiven Faktor} eingeteilt:
+
+\begin{itemize}
+  \item \textbf{Elementarfaktoren} (unmittelbar am Leistungsprozess beteiligt):
+    \begin{itemize}
+      \item \textbf{ausführende (objektbezogene) Arbeit} --- z.\,B. Montieren, Schweißen,
+        Bedienen von Maschinen;
+      \item \textbf{Betriebsmittel} --- Einrichtungen und Anlagen, die bei der Produktion
+        \emph{gebraucht}, aber nicht verbraucht werden (Maschinen, Werkzeuge, Gebäude,
+        Fuhrpark);
+      \item \textbf{Werkstoffe} --- Güter, die in das Erzeugnis eingehen oder bei der
+        Produktion verbraucht werden.
+    \end{itemize}
+  \item \textbf{Dispositiver Faktor} (leitende Arbeit): \textbf{Geschäfts- und
+    Betriebsleitung} mit den Aufgaben \textbf{Planung}, \textbf{Organisation} und
+    \textbf{Kontrolle} --- er kombiniert die Elementarfaktoren zielgerichtet.
+\end{itemize}
+
+Die Werkstoffe werden weiter unterteilt:
+
+\begin{center}
+\begin{tabular}{p{3.2cm} p{6.4cm} p{4.6cm}}
+\textbf{Werkstoffart} & \textbf{Merkmal} & \textbf{Beispiel (Möbelwerk)}\\
+\hline
+Rohstoffe & Hauptbestandteil des Endproduktes & Holz\\
+Hilfsstoffe & gehen in das Endprodukt ein, aber nur als untergeordneter Bestandteil & Leim, Schrauben, Lack\\
+Betriebsstoffe & werden bei der Produktion verbraucht, gehen aber \emph{nicht} in das Endprodukt ein & Strom, Schmieröl, Kraftstoff\\
+\end{tabular}
+\end{center}
+
+\begin{eselsbruecke}
+\textbf{RHB} --- \textbf{R}ohstoffe sind der \textbf{R}umpf des Produkts,
+\textbf{H}ilfsstoffe \textbf{h}alten es zusammen, \textbf{B}etriebsstoffe
+\textbf{b}etreiben die Maschinen. Und: Betriebs\textbf{mittel} werden
+\emph{gebraucht}, Betriebs\textbf{stoffe} werden \emph{verbraucht}.
+\end{eselsbruecke}
+
+\begin{merksatz}[title={\bfseries Abgrenzung: volkswirtschaftliche vs. betriebswirtschaftliche Produktionsfaktoren}]
+Verwechseln Sie die beiden Systematiken nicht --- ein Klassiker in der IHK-Prüfung:
+\begin{itemize}
+  \item \textbf{Volkswirtschaftlich} (Lektion VWL~1): \textbf{Arbeit, Boden, Kapital}
+    (zunehmend ergänzt um Wissen) --- Betrachtung der gesamten Volkswirtschaft.
+  \item \textbf{Betriebswirtschaftlich} (nach Gutenberg): \textbf{Elementarfaktoren}
+    (ausführende Arbeit, Betriebsmittel, Werkstoffe) und \textbf{dispositiver Faktor}
+    (Leitung: Planung, Organisation, Kontrolle) --- Betrachtung des einzelnen Betriebs.
+\end{itemize}
+Der volkswirtschaftliche Faktor „Arbeit`` wird betriebswirtschaftlich also
+\emph{aufgespalten} in ausführende Arbeit (Elementarfaktor) und leitende Arbeit
+(dispositiver Faktor); „Boden`` und „Kapital`` finden sich in den Betriebsmitteln und
+Werkstoffen wieder.
+\end{merksatz}
+
+\subsection{Fertigungstypen (Fertigungsarten)}
+
+Nach der \emph{Häufigkeit der Leistungswiederholung} unterscheidet man:
+
+\begin{center}
+\begin{tabular}{p{3.4cm} p{6.2cm} p{4.6cm}}
+\textbf{Fertigungstyp} & \textbf{Merkmal} & \textbf{Beispiele}\\
+\hline
+Einzelfertigung & jedes Erzeugnis wird einzeln, meist auf Bestellung gefertigt (Unikat) & Schiffbau, Spezialmaschine, Maßanzug\\
+Serienfertigung & begrenzte Stückzahl \emph{verschiedener} Produkte nacheinander auf denselben Anlagen; Umrüsten nötig & Automodelle, Möbelprogramme\\
+Sortenfertigung & Varianten eines \emph{gleichartigen} Grundprodukts aus demselben Ausgangsmaterial & Biersorten, Mehltypen, Bleche\\
+Massenfertigung & sehr große Stückzahl eines gleichen Produkts über langen Zeitraum & Zucker, Schrauben, Zigaretten\\
+\end{tabular}
+\end{center}
+
+\begin{beispiel}
+Eine Brauerei stellt auf derselben Anlage Pils, Export und Weizen her --- gleiches
+Grundprodukt Bier in Varianten: \textbf{Sortenfertigung}. Ein Werftbetrieb baut ein
+Kreuzfahrtschiff nach Kundenauftrag: \textbf{Einzelfertigung}. Prüfungsfalle: Bei der
+\emph{Serienfertigung} sind die Produkte artverschieden (verschiedene Automodelle), bei
+der \emph{Sortenfertigung} artgleich (Varianten eines Grundprodukts).
+\end{beispiel}
+
+Nach der \emph{Organisation des Fertigungsablaufs} unterscheidet man ergänzend die
+\textbf{Werkstattfertigung} (gleichartige Maschinen räumlich zusammengefasst, flexibel,
+aber lange Transportwege), die \textbf{Fließfertigung} (Anordnung nach dem
+Arbeitsablauf, kurze Durchlaufzeiten, aber störanfällig und unflexibel) und die
+\textbf{Gruppenfertigung} als Mischform (teilautonome Gruppen, verbindet Flexibilität
+und Fließprinzip).
+
+\subsection{Produktionsplanung und -steuerung}
+
+Die Produktion muss geplant, gesteuert und kontrolliert werden. Die zentralen Bereiche:
+
+\begin{itemize}
+  \item \textbf{Erzeugnisse:} Gegenstand und Ergebnis der Produktion.
+  \item \textbf{Produktionsprogramm:} legt \emph{Art, Menge und Zeitpunkt} der zu
+    fertigenden Produkte fest.
+  \item \textbf{Produktionsverfahren:} Entscheidung über die \emph{Auswahl und
+    Organisation der Betriebsmittel}.
+  \item \textbf{Bereitstellung:} die benötigten Faktoren (Material, Personal,
+    Betriebsmittel) müssen in der richtigen Qualität und Quantität, zum richtigen
+    Zeitpunkt am richtigen Ort verfügbar sein.
+  \item \textbf{Produktionsprozess:} die operationale Durchführung des
+    Produktionsprozesses.
+  \item \textbf{Produktionsplanung und -steuerung (PPS):} erfasst alle notwendigen Daten
+    und führt sie zusammen, um das Produktionssystem zu optimieren.
+  \item \textbf{Produktionskontrolle:} Soll-Ist-Vergleich mit Planwerten und Kennzahlen.
+\end{itemize}
+
+Aktuelle \textbf{Veränderungstendenzen} der industriellen Produktion (Beispiel
+Automobilindustrie): steigende Zahl der Produkte und Varianten, vernetzte Strukturen und
+Auslagerung an Zulieferer (Outsourcing), zunehmend internationaler Wettbewerb, sinkende
+Bedeutung des direkt produktiven Bereichs zugunsten der Steuerungsmechanismen sowie
+verstärkte Beachtung der ökologischen Folgen der Produktion.
+
+\subsection{Ziele der Produktion: Wirtschaftlichkeit, Produktivität, Qualität}
+
+\begin{merksatz}[title={\bfseries Formeln: Produktivität und Wirtschaftlichkeit}]
+\[
+\text{Produktivität} \;=\; \frac{\text{Ausbringungsmenge (Output)}}{\text{Einsatzmenge (Input)}}
+\qquad
+\text{Wirtschaftlichkeit} \;=\; \frac{\text{Ertrag (Leistung)}}{\text{Aufwand (Kosten)}}
+\]
+Die \textbf{Produktivität} ist ein \emph{Mengenverhältnis} (z.\,B. Stück je
+Arbeitsstunde --- Arbeits-, Maschinen-, Materialproduktivität). Die
+\textbf{Wirtschaftlichkeit} ist ein \emph{Wertverhältnis} (in Euro). Ist sie
+$> 1$, arbeitet der Betrieb wirtschaftlich (Ertrag übersteigt den Aufwand); bei
+$= 1$ wird kostendeckend, bei $< 1$ unwirtschaftlich gearbeitet.
+\end{merksatz}
+
+\begin{beispiel}
+Ein Betrieb fertigt mit 3.200 Arbeitsstunden 8.000 Gehäuse: Arbeitsproduktivität
+$= 8.000 / 3.200 = 2{,}5$ Stück je Stunde. Beträgt der Ertrag 400.000~€ bei einem
+Aufwand von 320.000~€, gilt: Wirtschaftlichkeit $= 400.000 / 320.000 = 1{,}25$ --- je
+eingesetztem Euro werden 1,25~€ erwirtschaftet.
+\end{beispiel}
+
+Drittes Produktionsziel ist die \textbf{Qualität}: die Erfüllung der festgelegten und
+vorausgesetzten Anforderungen der Kunden (Qualitätsmanagement, geringe Ausschussraten).
+Zwischen Qualität, Kosten und Zeit bestehen häufig \emph{konkurrierende}
+Zielbeziehungen --- die Produktionsplanung muss den Ausgleich finden.
+
+\section{Logistik}
+
+\subsection{Begriff und Ziele: die 6 R der Logistik}
+
+Gegenstand der \textbf{Logistik} ist die Versorgung der Betriebe und des Absatzmarktes
+mit den notwendigen Materialien bzw. Produkten. Mit immer kürzeren Produktionszyklen,
+differenzierteren Kundenanforderungen und zunehmenden ökologischen Erfordernissen werden
+die Aufgaben der Logistik zunehmend komplexer.
+
+\begin{merksatz}[title={\bfseries Die 6 R der Logistik}]
+Die \textbf{richtigen Güter} in der \textbf{richtigen Menge} im \textbf{richtigen
+Zustand} (Qualität) zum \textbf{richtigen Zeitpunkt} am \textbf{richtigen Ort} zu den
+\textbf{richtigen Kosten} bereitstellen.
+\end{merksatz}
+
+\begin{eselsbruecke}
+Merkfrage: \emph{„Was, wie viel, wie gut, wann, wohin --- und was darf's kosten?``}
+--- Güter, Menge, Zustand, Zeitpunkt, Ort, Kosten.
+\end{eselsbruecke}
+
+Die logistischen Zielsetzungen lassen sich in Zielbereiche einteilen:
+\textbf{Leistungsziele} (kurze Lieferzeiten, hohe Lieferbereitschaft und -treue),
+\textbf{Qualitätsziele} (unbeschädigte, vollständige Lieferung), \textbf{humanitäre
+Ziele} (ergonomische Arbeitsplätze, Arbeitssicherheit, faire Arbeitsbedingungen) und
+\textbf{ökologische Ziele} (Verkehrsvermeidung, emissionsarme Transportmittel,
+Verpackungsreduzierung, Recycling).
+
+\subsection{Teilbereiche der Logistik (entlang des Güterflusses)}
+
+\begin{center}
+\begin{tabular}{p{4.2cm} p{10cm}}
+\textbf{Teilbereich} & \textbf{Aufgabe}\\
+\hline
+Beschaffungslogistik & Informations- und Materialfluss \emph{vom Lieferanten zum Unternehmen} (Wareneingang, Eingangslager)\\
+Produktionslogistik & Material- und Informationsfluss \emph{innerhalb} der Produktion (Ver- und Entsorgung der Fertigung, innerbetrieblicher Transport)\\
+Distributionslogistik & Belieferungswege \emph{vom Unternehmen zum Kunden} (Absatzlager, Kommissionierung, Versand)\\
+Entsorgungslogistik & Rückführung und Entsorgung von Abfällen, Verpackungen, Retouren --- zunehmend Kreislaufwirtschaft/Recycling\\
+\end{tabular}
+\end{center}
+
+Quer dazu liegen die \textbf{Lagerlogistik} (optimale Gestaltung von Lagerung und
+Bereitstellung), die \textbf{Transportlogistik} (inner- und außerbetriebliche
+Transporte) und die \textbf{Informationslogistik} (Informationsfluss innerhalb des
+Unternehmens und zu den Partnern). Der typische Güterdurchlauf: \emph{Lieferant
+$\rightarrow$ Materiallager $\rightarrow$ Produktion $\rightarrow$ Absatzlager
+$\rightarrow$ Versand $\rightarrow$ Kunde}.
+
+\subsection{Funktionen der Lagerhaltung}
+
+\begin{itemize}
+  \item \textbf{Sicherungsfunktion (Vorratsfunktion):} Absicherung gegen
+    Lieferverzögerungen und Bedarfsschwankungen --- Produktions- und Lieferbereitschaft.
+  \item \textbf{Ausgleichsfunktion (Pufferfunktion):} Ausgleich zwischen unterschiedlichen
+    Rhythmen von Beschaffung, Produktion und Absatz (z.\,B. saisonale Ernte, ganzjähriger
+    Verbrauch).
+  \item \textbf{Spekulationsfunktion:} Einkauf größerer Mengen bei erwarteten
+    Preissteigerungen oder zur Nutzung von Mengenrabatten.
+  \item \textbf{Veredelungsfunktion (Umformungsfunktion):} Lagerung als Teil des
+    Produktionsprozesses (Reifung von Käse, Wein, Whisky; Trocknung von Holz).
+  \item \textbf{Sortimentsfunktion:} Zusammenstellung eines verkaufsfähigen Sortiments
+    (v.\,a. im Handel).
+\end{itemize}
+
+Lagerhaltung verursacht allerdings \textbf{Kosten} (Kapitalbindung, Raum, Personal,
+Schwund) --- moderne Konzepte wie \emph{Just-in-Time-Anlieferung} versuchen daher,
+Lagerbestände zu minimieren, erhöhen aber die Abhängigkeit von Lieferanten und Verkehr.
+
+\subsection{Supply Chain Management (SCM)}
+
+\textbf{Supply Chain Management} ist die integrierte Planung und Steuerung der
+\emph{gesamten} Wertschöpfungs- und Lieferkette --- vom Lieferanten über Originalhersteller,
+Logistikdienstleister, Zwischenhändler und Wiederverkäufer bis zum Endkunden. Alle
+Beteiligten stimmen Güter-, Informations- und Geldflüsse aufeinander ab. Ziele: kürzere
+Lieferzeiten, geringere Bestände entlang der Kette, Vermeidung des „Peitscheneffekts``
+(aufschaukelnde Bestellmengen), höhere Liefertreue und Kostenvorteile für alle Partner.
+Im Mittelpunkt der Kette steht der \textbf{Kunde}.
+
+\section{Absatz und Marketing}
+
+\subsection{Der Marketingbegriff}
+
+Das \textbf{Marketingdenken} von heute wird dominiert durch die Konzentration auf den
+\textbf{Kunden}: Die Leistung eines Unternehmens besteht in der \emph{Problemlösung für
+den potenziellen Käufer}. Marketing ist damit mehr als Werbung oder Verkauf --- es ist
+die konsequent \textbf{markt- und kundenorientierte Führung} des gesamten Unternehmens.
+Alle betrieblichen Funktionen sind auf den Markt auszurichten. Einsatzfelder des
+Marketings sind das Konsumgüter-, Investitionsgüter- und Dienstleistungsmarketing, das
+internationale Marketing sowie das Marketing von \emph{Non-Profit-Organisationen} ---
+auch dort ist Marketing notwendig. Das Investitionsgütermarketing setzt am
+\emph{abgeleiteten} Bedarf an (die Nachfrage nach Maschinen folgt aus der Nachfrage nach
+Konsumgütern).
+
+Das \textbf{Marketingmanagement} verläuft als Kreislauf: \emph{Information/Analyse}
+(Markt, Zielgruppe, Absatzwege) $\rightarrow$ \emph{Zielsetzung} $\rightarrow$
+\emph{alternative Strategien} $\rightarrow$ \emph{optimale Strategie} $\rightarrow$
+\emph{Voraussetzungen schaffen} $\rightarrow$ \emph{Realisierung} (Marketing-Mix)
+$\rightarrow$ \emph{Controlling} --- mit Rückkopplungen auf allen Stufen.
+
+\subsection{Marktforschung}
+
+Die \textbf{Marktforschung} beschafft und analysiert systematisch Informationen über
+Märkte (Kunden, Wettbewerber, Absatzmittler) als Grundlage der Marketingentscheidungen:
+
+\begin{itemize}
+  \item \textbf{Primärforschung} (field research): Erhebung \emph{neuer} Daten ---
+    \textbf{Befragung} (schriftlich, telefonisch, online, Interview),
+    \textbf{Beobachtung} (z.\,B. Kundenlaufstudien), \textbf{Experiment} (Markt-/Storetest)
+    und \textbf{Panel} (wiederholte Erhebung bei gleichbleibendem Teilnehmerkreis).
+  \item \textbf{Sekundärforschung} (desk research): Auswertung \emph{vorhandener} Daten
+    (interne Statistiken, amtliche Statistik, Verbandszahlen, Studien) --- schneller und
+    günstiger, aber oft nicht passgenau und veraltet.
+\end{itemize}
+
+Zu unterscheiden sind \textbf{Marktanalyse} (Momentaufnahme des Marktes) und
+\textbf{Marktbeobachtung} (Entwicklung im Zeitverlauf).
+
+\subsection{Marketingziele}
+
+Marketingziele lassen sich in zwei Gruppen unterscheiden:
+
+\begin{itemize}
+  \item \textbf{Ökonomische Ziele} --- messbare, wirtschaftliche Größen: Umsatz, Absatz,
+    Gewinn, Marktanteil, Deckungsbeitrag, Distributionsgrad.
+  \item \textbf{Psychografische Ziele} --- nicht direkt messbare, im Kopf des Kunden
+    verankerte Größen: Bekanntheitsgrad, Image, Kundenzufriedenheit, Kundenbindung,
+    Kaufpräferenzen und Wiederkaufabsicht.
+\end{itemize}
+
+\begin{eselsbruecke}
+\textbf{Öko = Zahlen, Psycho = Köpfe}: Ökonomische Ziele stehen in der
+Ergebnisrechnung, psychografische Ziele im Kopf des Kunden --- sie wirken aber
+langfristig auf die ökonomischen Ziele.
+\end{eselsbruecke}
+
+\subsection{Marketingstrategien}
+
+Auf Basis von Marktsegmentierung (Aufteilung des Gesamtmarktes in homogene
+Käufergruppen nach demografischen, sozioökonomischen und psychografischen Kriterien)
+werden Strategien festgelegt, z.\,B. nach der \textbf{Produkt-Markt-Matrix (Ansoff)}:
+
+\begin{center}
+\begin{tabular}{p{3.4cm} p{5.2cm} p{5.2cm}}
+ & \textbf{gegenwärtige Produkte} & \textbf{neue Produkte}\\
+\hline
+\textbf{gegenwärtige Märkte} & Marktdurchdringung (Marktanteil ausbauen) & Produktentwicklung (Innovationen für Stammkunden)\\
+\textbf{neue Märkte} & Marktentwicklung (neue Regionen, neue Zielgruppen) & Diversifikation (neue Produkte auf neuen Märkten)\\
+\end{tabular}
+\end{center}
+
+Weitere Grundentscheidungen: \textbf{Massenmarktstrategie} vs.
+\textbf{Segmentierungsstrategie} (Nischen), \textbf{Präferenzstrategie} (Marke, Qualität,
+höherer Preis) vs. \textbf{Preis-Mengen-Strategie} (niedriger Preis, große Menge).
+
+\subsection{Der Marketing-Mix (4P)}
+
+Der \textbf{Marketing-Mix} ist das Ergebnis der strategischen Marketingplanung: der
+aufeinander abgestimmte Einsatz der vier Instrumentalbereiche (englisch: Product, Price,
+Place, Promotion).
+
+\begin{itemize}
+  \item \textbf{Produkt- und Leistungspolitik (Product):} Produktgestaltung (Qualität,
+    Design, Verpackung), Sortiments-/Programmpolitik, Produktinnovation, -variation,
+    -elimination, Markenpolitik sowie \textbf{Service/Kundendienst} --- vor dem Kauf
+    (Information, technische Beratung, Problemlösungsvorschläge, Finanzierungsangebote),
+    in der Kaufphase (Lieferung, Montage, Umtauschrecht) und nach dem Kauf
+    (Garantieleistungen, Wartung und Reparatur, Ersatzteilversorgung).
+  \item \textbf{Preis- und Kontrahierungspolitik (Price):} Preisfestsetzung
+    (kosten-, nachfrage-, konkurrenzorientiert), Preisdifferenzierung, Rabatte, Boni und
+    Skonti, Liefer- und Zahlungsbedingungen, Absatzkredite.
+  \item \textbf{Distributionspolitik (Place):} Wahl der Absatzwege --- direkter Absatz
+    (eigener Vertrieb, Onlineshop, Werksverkauf) oder indirekter Absatz (Groß- und
+    Einzelhandel, Handelsvertreter) --- sowie die physische Distribution
+    (Marketinglogistik): das Produkt zum richtigen Zeitpunkt in der gewünschten Menge an
+    den Ort der Nachfrage bringen.
+  \item \textbf{Kommunikationspolitik (Promotion):} \textbf{Werbung} (bezahlte,
+    produktbezogene Kommunikation zur Absatzförderung), \textbf{Verkaufsförderung}
+    (Sales Promotion: Aktionen am Point of Sale), \textbf{Public Relations}
+    (Öffentlichkeitsarbeit: Vertrauen und gutes Image für das \emph{Unternehmen} ---
+    nicht unmittelbar produktbezogen), persönlicher Verkauf, Sponsoring, Messen,
+    Online-/Social-Media-Marketing.
+\end{itemize}
+
+\begin{beispiel}
+Die Nordwest Küchengeräte AG bringt einen neuen Mixer auf den Markt (Fixkosten
+150.000~€, variable Kosten 14~€/Stück, Marktpreis 30~€, erwartete Absatzmenge
+150.000 Stück). Erfolgskontrolle: Gewinn $= 150.000 \cdot (30 - 14) - 150.000 =
+2.400.000 - 150.000 = 2.250.000$~€. Die Gewinnschwelle (Break-even) liegt bei
+$150.000 / 16 = 9.375$ Stück --- das Projekt ist unter Kosten- und
+Erfolgsgesichtspunkten zu realisieren.
+\end{beispiel}
+
+\begin{merksatz}[title={\bfseries Wichtig für die Prüfungsvorbereitung}]
+Sie sollten sicher können: die \emph{Gutenberg-Systematik} der Produktionsfaktoren
+(inkl. Abgrenzung zu den volkswirtschaftlichen Faktoren), die Unterscheidung
+\emph{Roh-/Hilfs-/Betriebsstoffe} und \emph{Betriebsmittel}, die vier
+\emph{Fertigungstypen} mit Beispielen, die Formeln für \emph{Produktivität} und
+\emph{Wirtschaftlichkeit}, die \emph{6~R der Logistik} und die logistischen
+Teilbereiche, die \emph{Lagerfunktionen}, den Begriff \emph{Supply Chain Management}
+sowie den \emph{Marketing-Mix} mit den Entscheidungsebenen der vier Instrumente.
+Üben Sie mit dem Aufgabenheft und dem Quiz dieser Lektion!
+\end{merksatz}
+
+\vspace{1em}
+\hrule
+\vspace{0.8em}
+\noindent\textsf{\small Quellen: Rahmenplan Wirtschaftsbezogene Qualifikationen (DIHK), Abschnitt 1.2.1;
+Übungsband Betriebswirtschaft (DIHK-Bildungs-GmbH), Kap.~1. Der Auszug aus dem Textband
+Betriebswirtschaft wird nachgereicht. Nächste Lektion (Sa, 12.09.2026): Betriebliche Funktionen II ---
+Rechnungswesen, Finanzierung \& Investition, Controlling, Personalwirtschaft.}
+
+\end{document}

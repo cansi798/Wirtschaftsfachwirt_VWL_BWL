@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Karteikarten Lektion 2 — Wettbewerbspolitik, Staatseingriffe & Volkswirtschaftliche Gesamtrechnung (60 Karten)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:#0EA5A4; --bfw-primary-dark:#0F766E;
+  --bfw-accent:#F59E0B; --bfw-warn:#F97316;
+  --bfw-success:#10B981; --bfw-danger:#EF4444;
+  --bfw-ink:#0F172A; --bfw-ink-soft:#475569;
+  --bfw-bg:#FAFAFA; --bfw-bg-soft:#F8FAFC;
+  --bfw-bg-teal:#ECFEFF; --bfw-bg-amber:#FEF3C7;
+  --bfw-bg-green:#D1FAE5; --bfw-border:#E2E8F0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: linear-gradient(180deg, var(--bfw-bg-teal) 0%, var(--bfw-bg) 240px);
+  color: var(--bfw-ink); min-height: 100vh; padding: 2rem 1rem 6rem;
+}
+.container { max-width: 720px; margin: 0 auto; }
+header { text-align: center; margin-bottom: 1.5rem; }
+.tag-pill {
+  display: inline-block; padding: 0.4rem 1rem; background: var(--bfw-primary);
+  color: white; border-radius: 999px; font-weight: 600; font-size: 0.85rem;
+  letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1rem;
+}
+h1 { font-size: 2rem; color: var(--bfw-primary-dark); margin-bottom: 0.4rem; letter-spacing: -0.01em; }
+.subtitle { color: var(--bfw-ink-soft); font-size: 1.05rem; }
+
+/* Fortschritt / Leitner-Fächer */
+.stats {
+  background: white; border: 1px solid var(--bfw-border); border-radius: 14px;
+  padding: 1rem 1.25rem; margin-bottom: 1.25rem;
+  display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+}
+.boxes { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.box-chip {
+  font-size: 0.8rem; font-weight: 600; padding: 0.35rem 0.7rem; border-radius: 999px;
+  background: var(--bfw-bg-soft); border: 1px solid var(--bfw-border); color: var(--bfw-ink-soft);
+}
+.box-chip b { color: var(--bfw-primary-dark); }
+.mastered { font-weight: 700; color: var(--bfw-success); }
+.progress { width: 100%; background: var(--bfw-bg-teal); height: 10px; border-radius: 999px; overflow: hidden; margin-top: 0.5rem; }
+.progress > div { height: 100%; background: var(--bfw-success); border-radius: 999px; transition: width 0.3s; width: 0; }
+
+/* Karte */
+.card-scene { perspective: 1200px; margin-bottom: 1.25rem; }
+.card {
+  position: relative; width: 100%; min-height: 320px; cursor: pointer;
+  transform-style: preserve-3d; transition: transform 0.5s; transition-timing-function: cubic-bezier(.4,.2,.2,1);
+}
+.card.flipped { transform: rotateY(180deg); }
+.face {
+  position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  border-radius: 18px; padding: 2rem; display: flex; flex-direction: column; justify-content: center;
+  box-shadow: 0 6px 24px rgba(15,23,42,0.08); border: 1px solid var(--bfw-border);
+}
+.face-front { background: white; }
+.face-back { background: linear-gradient(160deg, #ffffff 0%, var(--bfw-bg-green) 100%); transform: rotateY(180deg); }
+.card-topic {
+  align-self: flex-start; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--bfw-primary-dark); background: var(--bfw-bg-teal);
+  padding: 0.25rem 0.6rem; border-radius: 999px; margin-bottom: 1rem;
+}
+.card-label { font-size: 0.75rem; color: var(--bfw-ink-soft); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.card-front-text { font-size: 1.5rem; font-weight: 600; line-height: 1.35; color: var(--bfw-ink); }
+.card-back-text { font-size: 1.12rem; line-height: 1.55; color: var(--bfw-ink); }
+.flip-hint { margin-top: auto; padding-top: 1rem; font-size: 0.85rem; color: var(--bfw-ink-soft); }
+
+/* Buttons */
+.actions { display: flex; gap: 0.75rem; margin-bottom: 1rem; }
+.btn { flex: 1; padding: 0.9rem 1rem; border: none; border-radius: 12px; font-size: 1rem; font-weight: 600;
+  cursor: pointer; transition: transform 0.1s, box-shadow 0.2s; font-family: inherit; }
+.btn:active { transform: translateY(1px); }
+.btn-flip { background: var(--bfw-primary); color: white; }
+.btn-known { background: var(--bfw-success); color: white; }
+.btn-again { background: var(--bfw-bg-amber); color: #92400E; border: 1px solid #FCD34D; }
+.btn-ghost { background: white; color: var(--bfw-ink-soft); border: 1px solid var(--bfw-border); }
+.mini-actions { display: flex; gap: 0.75rem; justify-content: center; }
+.mini-actions .btn { flex: 0 1 auto; padding: 0.55rem 1rem; font-size: 0.85rem; }
+.hidden { display: none !important; }
+
+/* Abschluss */
+.done { background: white; border: 1px solid var(--bfw-border); border-radius: 18px; padding: 2.5rem 2rem; text-align: center; box-shadow: 0 6px 24px rgba(15,23,42,0.08); }
+.done h2 { color: var(--bfw-success); font-size: 1.8rem; margin-bottom: 0.75rem; }
+.done p { color: var(--bfw-ink-soft); margin-bottom: 1.5rem; line-height: 1.6; }
+.how { background: var(--bfw-bg-soft); border: 1px solid var(--bfw-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1.25rem; font-size: 0.9rem; color: var(--bfw-ink-soft); line-height: 1.5; }
+.how b { color: var(--bfw-ink); }
+footer { text-align: center; margin-top: 2rem; font-size: 0.8rem; color: var(--bfw-ink-soft); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <span class="tag-pill">Lektion 2 · Karteikarten</span>
+    <h1>Wettbewerbspolitik, Staatseingriffe & Volkswirtschaftliche Gesamtrechnung</h1>
+    <p class="subtitle">60 Lernkarten · Begriff → Definition · Leitner-System</p>
+  </header>
+
+  <div class="how">
+    <b>So funktioniert's:</b> Lesen Sie die Vorderseite, überlegen Sie die Antwort, dann <b>Umdrehen</b>.
+    Wussten Sie es? → <b>Gewusst</b> (Karte wandert ins nächste Fach). Nicht sicher? → <b>Nochmal</b>
+    (Karte kommt zurück in Fach 1). Ziel: alle Karten in Fach 3. Ihr Fortschritt wird im Browser gespeichert.
+  </div>
+
+  <div class="stats">
+    <div class="boxes" id="boxes"></div>
+    <div class="mastered" id="mastered">0 / 60 gemeistert</div>
+    <div class="progress"><div id="progressBar"></div></div>
+  </div>
+
+  <div id="quizArea">
+    <div class="card-scene">
+      <div class="card" id="card" onclick="flipCard()">
+        <div class="face face-front">
+          <span class="card-topic" id="frontTopic">Thema</span>
+          <div class="card-label">Begriff / Frage</div>
+          <div class="card-front-text" id="frontText">…</div>
+          <div class="flip-hint">👆 Zum Umdrehen tippen</div>
+        </div>
+        <div class="face face-back">
+          <span class="card-topic" id="backTopic">Thema</span>
+          <div class="card-label">Definition / Antwort</div>
+          <div class="card-back-text" id="backText">…</div>
+          <div class="flip-hint">Wussten Sie es?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions" id="flipRow">
+      <button class="btn btn-flip" onclick="flipCard()">Umdrehen</button>
+    </div>
+    <div class="actions hidden" id="gradeRow">
+      <button class="btn btn-again" onclick="grade(false)">↺ Nochmal</button>
+      <button class="btn btn-known" onclick="grade(true)">✓ Gewusst</button>
+    </div>
+    <div class="mini-actions">
+      <button class="btn btn-ghost" onclick="shuffleRestart()">🔀 Neu mischen</button>
+      <button class="btn btn-ghost" onclick="resetProgress()">♻ Fortschritt zurücksetzen</button>
+    </div>
+  </div>
+
+  <div id="doneArea" class="done hidden">
+    <h2>🎉 Alle Karten gemeistert!</h2>
+    <p id="doneText">Sie haben alle 60 Karten sicher beantwortet. Starke Leistung!</p>
+    <div class="mini-actions">
+      <button class="btn btn-flip" onclick="resetProgress()">Von vorne beginnen</button>
+    </div>
+  </div>
+
+  <footer>BFW Lernplattform · Büroprozesse (M-067) · © Can Siebert 2026</footer>
+</div>
+
+<script>
+const DAY_ID = 'vwl-2';
+const MAX_BOX = 3;                    // Fach 3 = gemeistert
+const CARDS = [{"topic":"Wettbewerb","front":"Definieren Sie den Begriff Wettbewerb.","back":"Die Rivalität der Marktteilnehmer unter- und gegeneinander, um die eigenen Ziele zulasten der Konkurrenten durchzusetzen."},{"topic":"Wettbewerb","front":"Nennen Sie die sechs Funktionen des Wettbewerbs.","back":"Freiheits-, Kontroll-, Steuerungs- (Lenkungs-), Innovations-, Auslese- und Verteilungsfunktion."},{"topic":"Wettbewerb","front":"Welche zwei Unterfunktionen hat die Steuerungsfunktion des Wettbewerbs?","back":"Koordinations- und Anpassungsfunktion (schnellere Koordination von Angebot und Nachfrage) sowie Allokationsfunktion (produktivste Kombination der Produktionsfaktoren)."},{"topic":"Wettbewerbspolitik","front":"Welche beiden Gesetze sind Grundlage der deutschen Wettbewerbspolitik?","back":"UWG (Gesetz gegen den unlauteren Wettbewerb: faire Marktpraktiken) und GWB (Gesetz gegen Wettbewerbsbeschränkungen, „Kartellgesetz“)."},{"topic":"Wettbewerbspolitik","front":"Nennen Sie die drei Säulen des GWB.","back":"1. Kartellverbot (§ 1 GWB), 2. Missbrauchsaufsicht (§§ 19 ff. GWB), 3. Fusionskontrolle (§ 35 GWB) — Merkhilfe: Ka-Mi-Fu."},{"topic":"Wettbewerbspolitik","front":"Welche Behörde überwacht die Einhaltung des GWB?","back":"Das Bundeskartellamt."},{"topic":"Kartellverbot","front":"Was ist ein Kartell?","back":"Eine Kooperation von Unternehmen auf Basis (auch mündlicher) vertraglicher Vereinbarungen zur Verbesserung der Wettbewerbsposition — rechtlich selbstständig, wirtschaftlich teilweise eingeschränkt."},{"topic":"Kartellverbot","front":"Was verbietet § 1 GWB?","back":"Vereinbarungen, Beschlüsse und aufeinander abgestimmte Verhaltensweisen, die eine Verhinderung, Einschränkung oder Verfälschung des Wettbewerbs bewirken."},{"topic":"Kartellverbot","front":"Was ist ein Preiskartell?","back":"Die Absprache einer einheitlichen Preispolitik zwischen Unternehmen — verboten nach § 1 GWB."},{"topic":"Kartellverbot","front":"Was ist ein Submissionskartell?","back":"Vereinbarung von Preisuntergrenzen bzw. Festlegung, welches Kartellmitglied bei öffentlichen Ausschreibungen zum Zug kommen soll."},{"topic":"Kartellverbot","front":"Was ist ein Gebietskartell?","back":"Die Aufteilung des Absatzmarktes unter den Kartellmitgliedern."},{"topic":"Kartellverbot","front":"Was ist ein Quotenkartell?","back":"Die künstliche Verknappung des Angebots durch Absprache von Produktionsquoten."},{"topic":"Kartellverbot","front":"Nennen Sie die drei Gruppen von Ausnahmen vom Kartellverbot.","back":"1. Besondere Ausnahmeregelungen nach dem GWB (z. B. Mittelstandskartelle, § 3), 2. EU-Gruppenfreistellungsverordnungen, 3. Einzelfreistellungen (Legalausnahmen, § 2 GWB)."},{"topic":"Kartellverbot","front":"Was sind Mittelstandskartelle?","back":"Nach § 3 GWB zulässige Vereinbarungen zwischen kleinen und mittleren Unternehmen, die wegen ihres begrenzten Potenzials Wettbewerbsnachteile gegenüber Großunternehmen haben."},{"topic":"Missbrauchsaufsicht","front":"Was ist Ausbeutungsmissbrauch?","back":"Ein marktbeherrschendes Unternehmen fordert überhöhte Preise von Kunden oder extreme Preisnachlässe von abhängigen Zulieferern."},{"topic":"Missbrauchsaufsicht","front":"Was ist Behinderungsmissbrauch?","back":"Marktmacht wird gezielt eingesetzt, um Konkurrenten zu behindern oder zu verdrängen — z. B. durch Kampfpreise (Dumping) oder Verweigerung des Zugangs zu Infrastruktur."},{"topic":"Fusionskontrolle","front":"Was regelt die Fusionskontrolle (§ 35 GWB)?","back":"Geplante Fusionen müssen dem Bundeskartellamt angezeigt werden; es kann den Zusammenschluss untersagen, wenn eine marktbeherrschende Stellung zu entstehen droht (vorbeugende Maßnahme)."},{"topic":"Fusionskontrolle","front":"Was ist die Ministererlaubnis (§ 42 GWB)?","back":"Der Bundeswirtschaftsminister kann eine vom Bundeskartellamt untersagte Fusion erlauben, wenn sie von gesamtwirtschaftlichem Vorteil ist und die marktwirtschaftliche Ordnung nicht gefährdet."},{"topic":"Staatseingriffe","front":"Unterscheiden Sie marktkonforme und marktkonträre Eingriffe.","back":"Marktkonform (indirekt): beeinflussen Angebot/Nachfrage ohne Ausschaltung des Preismechanismus (Steuern, Zölle, Subventionen). Marktkonträr (direkt): greifen in die Preisbildung ein (Höchst-/Mindestpreise)."},{"topic":"Staatseingriffe","front":"Wie wirkt eine höhere Verbrauchssteuer (z. B. Tabaksteuer) auf den Markt?","back":"Das Gut verteuert sich: höherer Gleichgewichtspreis, geringere Gleichgewichtsmenge — Verbraucherverhalten kann gelenkt werden; Steuereinnahmen können durch die Mengenreduktion sinken."},{"topic":"Staatseingriffe","front":"Was sind Subventionen und wann sind sie problematisch?","back":"Staatliche Finanzhilfen, die Verkauf unter Produktionskosten ermöglichen (z. B. Markteinführung). Problematisch bei Dauer: falsche Preissignale, keine Selektion, Fehlallokation der Faktoren."},{"topic":"Staatseingriffe","front":"Was ist eine Transferleistung? Beispiele?","back":"Subvention der Nachfrager: Der Staat gibt Haushalten zusätzliche Mittel für den Erwerb bestimmter Güter — z. B. Wohngeld, Kindergeld."},{"topic":"Mindestpreis","front":"Was ist ein Mindestpreis und wen schützt er?","back":"Eine staatlich verordnete Preisuntergrenze über dem Gleichgewichtspreis — Ziel ist der Schutz der Anbieter (z. B. EU-Agrarmarkt, Mindestlohn)."},{"topic":"Mindestpreis","front":"Welche Marktsituation entsteht durch einen Mindestpreis?","back":"Ein Angebotsüberschuss: Das Angebot wird ausgeweitet, die Nachfrage sinkt (x_N < x_0 < x_A). Der Staat muss mengenregulierend nachsteuern."},{"topic":"Mindestpreis","front":"Welche Folgeprobleme zeigte der Mindestpreis im EU-Agrarmarkt?","back":"Massive Überproduktion; Beseitigung durch Einlagerung, Verarbeitung, Veräußerung oder Vernichtung (hohe Kosten); Folgemaßnahmen: Kontingente, Stilllegungsprämien."},{"topic":"Mindestpreis","front":"Welche Risiken birgt ein gesetzlicher Mindestlohn aus Marktsicht?","back":"Er hebelt die Findung des Gleichgewichtslohns aus und kann zu einem Angebotsüberhang an Arbeitskräften (Arbeitslosigkeit) führen — Substitution durch Technik, Verlagerung ins Ausland."},{"topic":"Höchstpreis","front":"Was ist ein Höchstpreis und wen schützt er?","back":"Eine staatlich verordnete Preisobergrenze unter dem Gleichgewichtspreis — Ziel ist der Schutz der Nachfrager (z. B. sozialer Wohnungsbau, Mietpreisbremse)."},{"topic":"Höchstpreis","front":"Welche Marktsituation und Folgen erzeugt ein Höchstpreis?","back":"Nachfrageüberschuss (x_A < x_0 < x_N); nötig sind Subventionen, Kontingentierung und Rationierung; häufig entstehen Schwarzmärkte mit höheren Preisen."},{"topic":"VGR","front":"Was ist die Volkswirtschaftliche Gesamtrechnung (VGR)?","back":"Das statistische Instrument zur Erfassung gesamtwirtschaftlicher Vorgänge: rückschauende Auskunft über Entstehung, Verwendung und Verteilung von BIP und BNE; Grundlage ist der Wirtschaftskreislauf."},{"topic":"VGR","front":"Was misst das BIP und nach welchem Konzept?","back":"Den Wert der innerhalb der geografischen Grenzen produzierten Güter und Dienstleistungen zu Marktpreisen — Inlandskonzept (Wohnsitz der Produzenten egal)."},{"topic":"VGR","front":"Was misst das BNE und nach welchem Konzept?","back":"Das Einkommen der Inländer aus der Bereitstellung von Produktionsfaktoren im In- und Ausland — Inländerkonzept (Ort der Leistung egal)."},{"topic":"VGR","front":"Formel der Bruttowertschöpfung?","back":"Bruttowertschöpfung = (Brutto-)Produktionswerte − Vorleistungen. Der Abzug der Vorleistungen vermeidet Doppelzählungen."},{"topic":"VGR","front":"Wie kommt man rechnerisch vom BIP zum BNE?","back":"BIP − Inlandseinkommen von Nichtinländern + Auslandseinkommen von Inländern = BNE (Saldo der Primäreinkommen aus der übrigen Welt)."},{"topic":"VGR","front":"Unterschied nominales vs. reales BIP?","back":"Nominal: in laufenden Preisen (enthält Preissteigerungen). Real: zu Preisen eines Basisjahres — zeigt den echten Leistungszuwachs; Basis für Wachstums- und Ländervergleiche."},{"topic":"VGR","front":"Welche Frage beantwortet die Entstehungsrechnung?","back":"Wo ist die Wirtschaftsleistung entstanden? Bruttowertschöpfung der Wirtschaftsbereiche + Gütersteuern − Gütersubventionen = BIP."},{"topic":"VGR","front":"Welche Frage beantwortet die Verwendungsrechnung und wie lautet ihr Schema?","back":"Wofür wurde die Inlandsproduktion verwendet? Privater Konsum + Staatskonsum + Bruttoinvestitionen + Außenbeitrag (Exporte − Importe) = BIP."},{"topic":"VGR","front":"Welche Frage beantwortet die Verteilungsrechnung?","back":"Welche Einkommen sind den Inländern zugeflossen? Arbeitnehmerentgelt + Unternehmens- und Vermögenseinkommen = Volkseinkommen."},{"topic":"VGR","front":"Nennen Sie vier Grenzen der Aussagekraft des BIP.","back":"Hausarbeit/Ehrenamt nicht erfasst; Schwarzarbeit nur geschätzt; wohlstandsmindernde Reparaturen erhöhen das BIP; keine Aussage über Verteilung, Umwelt und Lebensqualität."},{"topic":"Einkommensverteilung","front":"Was ist die Primärverteilung des Volkseinkommens?","back":"Die Verteilung der Einkommen nach dem Leistungsprinzip: Arbeitnehmerentgelte sowie Unternehmens- und Vermögenseinkommen aus der Bereitstellung von Produktionsfaktoren."},{"topic":"Einkommensverteilung","front":"Formel der Lohnquote? Wert 2018?","back":"Lohnquote = Arbeitnehmerentgelt ÷ Volkseinkommen × 100. 2018: rund 69 %."},{"topic":"Einkommensverteilung","front":"Formel der Gewinnquote? Wert 2018?","back":"Gewinnquote = Unternehmens- und Vermögenseinkommen ÷ Volkseinkommen × 100. 2018: rund 31 %. Lohn- und Gewinnquote ergänzen sich zu 100 %."},{"topic":"Einkommensverteilung","front":"Was zeigt die Lorenzkurve?","back":"Wie viel Prozent der Einkommensempfänger wie viel Prozent des Volkseinkommens verdienen. Je weiter die Kurve von der Diagonalen (Gleichverteilung) entfernt ist, desto ungleicher die Verteilung."},{"topic":"Einkommensverteilung","front":"Was ist das Pro-Kopf-Einkommen und wozu dient es?","back":"Volkseinkommen ÷ Einwohnerzahl — vereinfachter Wohlstandsindikator im Ländervergleich; ein hoher Durchschnitt schließt Armut von Bevölkerungsteilen nicht aus."},{"topic":"Einkommensverteilung","front":"Was ist die Sekundärverteilung?","back":"Die staatliche Umverteilung von Teilen des Primäreinkommens nach dem Bedarfsprinzip — Ziel: gerechtere Einkommensverteilung (Steuern, Sozialbeiträge, Sozialleistungen)."},{"topic":"Einkommensverteilung","front":"Formel des verfügbaren Einkommens der privaten Haushalte?","back":"Primäreinkommen − direkte Steuern − Sozialversicherungsbeiträge + Sozialleistungen (Transferzahlungen) = verfügbares Einkommen (für Konsum und Sparen)."},{"topic":"Stabilitätspolitik","front":"Was regelt das Stabilitätsgesetz (StabG) von 1967?","back":"Bund und Länder müssen bei wirtschafts- und finanzpolitischen Maßnahmen das gesamtwirtschaftliche Gleichgewicht beachten — das „Grundgesetz der Wirtschaftspolitik“."},{"topic":"Stabilitätspolitik","front":"Nennen Sie die vier Ziele des magischen Vierecks.","back":"Stabilität des Preisniveaus, hoher Beschäftigungsstand, außenwirtschaftliches Gleichgewicht, stetiges und angemessenes Wirtschaftswachstum (§ 1 StabG)."},{"topic":"Stabilitätspolitik","front":"Warum heißt das Viereck „magisch“?","back":"Weil es nahezu unmöglich ist, alle vier Ziele gleichzeitig vollständig zu erreichen — einige Ziele stehen in Konkurrenz zueinander."},{"topic":"Stabilitätspolitik","front":"Welche Ziele ergänzen das magische Sechseck?","back":"Erhaltung einer lebenswerten Umwelt (Umweltschutz) und gerechte Einkommens- und Vermögensverteilung — qualitative Ziele ohne klaren Messmaßstab."},{"topic":"Stabilitätspolitik","front":"Womit wird das Ziel „hoher Beschäftigungsstand“ gemessen und wann gilt es als erreicht?","back":"Mit der Arbeitslosenquote (Bundesagentur für Arbeit); als erreicht gilt Vollbeschäftigung bei ca. 3–4 % (Sockelarbeitslosigkeit bleibt bestehen)."},{"topic":"Stabilitätspolitik","front":"Womit wird die Preisniveaustabilität gemessen?","back":"Mit der Inflationsrate auf Basis des Verbraucherpreisindex (Warenkorb); die EZB spricht von stabilem Preisniveau bei knapp unter 2 % (HVPI)."},{"topic":"Stabilitätspolitik","front":"Womit wird das außenwirtschaftliche Gleichgewicht gemessen?","back":"Mit dem Außenbeitrag (Saldo aus Handels- und Dienstleistungsbilanz); Ziel: positiver Außenbeitrag von 1–2 % des nominalen BIP."},{"topic":"Stabilitätspolitik","front":"Wann gilt das Wirtschaftswachstum als angemessen und stetig?","back":"Reales BIP-Wachstum von durchschnittlich rund 2 % pro Jahr ohne allzu heftige Konjunkturausschläge — gemessen an der Zuwachsrate des realen BIP."},{"topic":"Stabilitätspolitik","front":"Nennen Sie einen Zielkonflikt des magischen Vierecks mit Begründung.","back":"Wirtschaftswachstum vs. Preisniveaustabilität: Starkes Wachstum zieht in der Regel Preiserhöhungen nach sich und gefährdet die Preisstabilität."},{"topic":"Stabilitätspolitik","front":"Nennen Sie eine Zielharmonie des magischen Sechsecks mit Begründung.","back":"Wirtschaftswachstum und Vollbeschäftigung: Steigt das BIP, werden mehr Produktionsfaktoren benötigt — die Arbeitslosigkeit geht zurück."}];
+
+const STORAGE_KEY = 'kk_' + DAY_ID;
+let boxes = {};                       // cardIndex -> Fach (1..3)
+let queue = [];                       // zu übende Karten-Indizes (Reihenfolge)
+let current = null;
+
+function loadState() {
+  try { boxes = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+  catch (e) { boxes = {}; }
+  CARDS.forEach((_, i) => { if (!boxes[i]) boxes[i] = 1; });
+}
+function saveState() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(boxes)); } catch (e) {} }
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function buildQueue() {
+  queue = shuffle(CARDS.map((_, i) => i).filter(i => boxes[i] < MAX_BOX));
+}
+
+function renderStats() {
+  const counts = [0, 0, 0];
+  CARDS.forEach((_, i) => counts[boxes[i] - 1]++);
+  document.getElementById('boxes').innerHTML =
+    counts.map((c, k) => `<span class="box-chip">Fach ${k + 1}: <b>${c}</b></span>`).join('');
+  const mastered = counts[MAX_BOX - 1];
+  document.getElementById('mastered').textContent = `${mastered} / ${CARDS.length} gemeistert`;
+  document.getElementById('progressBar').style.width = (mastered / CARDS.length * 100) + '%';
+}
+
+function showCard() {
+  if (queue.length === 0) { finish(); return; }
+  current = queue[0];
+  const c = CARDS[current];
+  document.getElementById('card').classList.remove('flipped');
+  document.getElementById('frontTopic').textContent = c.topic;
+  document.getElementById('backTopic').textContent = c.topic;
+  document.getElementById('frontText').textContent = c.front;
+  document.getElementById('backText').textContent = c.back;
+  document.getElementById('flipRow').classList.remove('hidden');
+  document.getElementById('gradeRow').classList.add('hidden');
+}
+
+function flipCard() {
+  const card = document.getElementById('card');
+  card.classList.toggle('flipped');
+  const flipped = card.classList.contains('flipped');
+  document.getElementById('flipRow').classList.toggle('hidden', flipped);
+  document.getElementById('gradeRow').classList.toggle('hidden', !flipped);
+}
+
+function grade(known) {
+  if (current === null) return;
+  if (known) { boxes[current] = Math.min(MAX_BOX, boxes[current] + 1); }
+  else { boxes[current] = 1; }
+  saveState();
+  queue.shift();
+  if (!known) queue.push(current);        // falsche Karte kommt später wieder
+  else if (boxes[current] < MAX_BOX) queue.push(current);
+  renderStats();
+  showCard();
+}
+
+function finish() {
+  document.getElementById('quizArea').classList.add('hidden');
+  document.getElementById('doneArea').classList.remove('hidden');
+}
+
+function shuffleRestart() {
+  document.getElementById('doneArea').classList.add('hidden');
+  document.getElementById('quizArea').classList.remove('hidden');
+  buildQueue();
+  renderStats();
+  showCard();
+}
+
+function resetProgress() {
+  CARDS.forEach((_, i) => boxes[i] = 1);
+  saveState();
+  shuffleRestart();
+}
+
+// Init
+loadState();
+renderStats();
+buildQueue();
+if (queue.length === 0) finish(); else showCard();
+</script>
+</body>
+</html>

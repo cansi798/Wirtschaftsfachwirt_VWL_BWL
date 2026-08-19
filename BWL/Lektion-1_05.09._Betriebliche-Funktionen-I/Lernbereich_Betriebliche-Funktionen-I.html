@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Lernbereich Lektion 1 — Betriebliche Funktionen I: Produktion, Logistik & Marketing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:#0EA5A4; --bfw-primary-dark:#0F766E;
+  --bfw-accent:#F59E0B; --bfw-warn:#F97316;
+  --bfw-success:#10B981; --bfw-danger:#EF4444;
+  --bfw-ink:#0F172A; --bfw-ink-soft:#475569;
+  --bfw-bg:#FAFAFA; --bfw-bg-soft:#F8FAFC;
+  --bfw-bg-teal:#ECFEFF; --bfw-bg-amber:#FEF3C7;
+  --bfw-bg-rose:#FFE4E6; --bfw-border:#E2E8F0;
+  --bfw-bg-green:#D1FAE5;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, var(--bfw-bg-teal) 0%, var(--bfw-bg) 50%, var(--bfw-bg-amber) 100%);
+  min-height: 100vh; color: var(--bfw-ink); -webkit-font-smoothing: antialiased;
+  padding: 2rem 1rem 4rem;
+}
+.container { max-width: 900px; margin: 0 auto; }
+header { text-align: center; margin-bottom: 1.6rem; }
+.tag-pill {
+  display: inline-block; background: var(--bfw-bg-teal); color: var(--bfw-primary-dark);
+  font-weight: 700; font-size: 0.82rem; padding: 0.3rem 0.9rem; border-radius: 999px;
+  letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.8rem;
+}
+h1 { font-size: 1.7rem; color: var(--bfw-primary-dark); margin-bottom: 0.4rem; }
+.subtitle { color: var(--bfw-ink-soft); font-size: 1.02rem; line-height: 1.5; }
+
+.progress-wrap {
+  background: white; border: 1px solid var(--bfw-border); border-radius: 14px;
+  padding: 1rem 1.3rem; margin-bottom: 1.6rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.progress-bar { flex: 1; min-width: 200px; height: 12px; background: var(--bfw-bg-soft); border: 1px solid var(--bfw-border); border-radius: 999px; overflow: hidden; display: flex; }
+.progress-bar .seg-ok { background: var(--bfw-success); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-teil { background: var(--bfw-accent); height: 100%; transition: width 0.3s; }
+.progress-bar .seg-nein { background: var(--bfw-danger); height: 100%; transition: width 0.3s; }
+.progress-label { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; white-space: nowrap; }
+.btn-reset {
+  padding: 0.45rem 0.9rem; background: transparent; color: var(--bfw-ink-soft);
+  border: 1.5px solid var(--bfw-border); border-radius: 8px; font-family: inherit;
+  font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.15s;
+}
+.btn-reset:hover { color: var(--bfw-danger); border-color: var(--bfw-danger); }
+
+.task {
+  background: white; border: 1px solid var(--bfw-border); border-left: 5px solid var(--bfw-border);
+  border-radius: 14px; padding: 1.4rem 1.5rem; margin-bottom: 1.2rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04); transition: border-color 0.2s;
+}
+.task.ok { border-left-color: var(--bfw-success); }
+.task.teil { border-left-color: var(--bfw-accent); }
+.task.nein { border-left-color: var(--bfw-danger); }
+.task-head { display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
+.task-num { font-weight: 800; color: var(--bfw-primary-dark); font-size: 1.05rem; white-space: nowrap; }
+.task-topic {
+  display: inline-block; background: var(--bfw-bg-amber); color: #92400E;
+  font-weight: 700; font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 999px;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.task-punkte { margin-left: auto; color: var(--bfw-ink-soft); font-size: 0.82rem; font-weight: 600; white-space: nowrap; }
+.task-frage { font-size: 1.02rem; line-height: 1.55; margin-bottom: 0.9rem; white-space: pre-line; }
+.task-hinweis { margin-bottom: 0.9rem; }
+.task-hinweis summary { cursor: pointer; color: var(--bfw-primary-dark); font-weight: 600; font-size: 0.9rem; }
+.task-hinweis p { margin-top: 0.5rem; padding: 0.7rem 0.9rem; background: var(--bfw-bg-teal); border-radius: 8px; font-size: 0.92rem; color: var(--bfw-ink-soft); line-height: 1.5; }
+textarea {
+  width: 100%; min-height: 110px; padding: 0.8rem 0.9rem;
+  border: 1.5px solid var(--bfw-border); border-radius: 10px;
+  font-family: inherit; font-size: 0.98rem; line-height: 1.5; resize: vertical;
+  background: var(--bfw-bg-soft); transition: all 0.15s;
+}
+textarea:focus { outline: none; border-color: var(--bfw-primary); background: white; box-shadow: 0 0 0 3px rgba(14,165,164,0.12); }
+.task-actions { margin-top: 0.8rem; display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+.btn {
+  padding: 0.55rem 1.1rem; border: none; border-radius: 9px; cursor: pointer;
+  font-family: inherit; font-size: 0.92rem; font-weight: 700; transition: all 0.15s;
+}
+.btn-loesung { background: var(--bfw-primary); color: white; }
+.btn-loesung:hover { background: var(--bfw-primary-dark); }
+.loesung {
+  display: none; margin-top: 1rem; padding: 1rem 1.1rem;
+  background: var(--bfw-bg-green); border: 1px solid #A7F3D0; border-radius: 10px;
+}
+.loesung.show { display: block; }
+.loesung-label { font-weight: 800; color: #047857; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+.loesung-text { font-size: 0.97rem; line-height: 1.6; white-space: pre-line; }
+.self-check { display: none; margin-top: 0.9rem; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.self-check.show { display: flex; }
+.self-check span { font-size: 0.88rem; color: var(--bfw-ink-soft); font-weight: 600; }
+.btn-ok { background: var(--bfw-bg-green); color: #047857; border: 1.5px solid #A7F3D0; }
+.btn-teil { background: var(--bfw-bg-amber); color: #92400E; border: 1.5px solid #FDE68A; }
+.btn-nein { background: var(--bfw-bg-rose); color: #B91C1C; border: 1.5px solid #FECACA; }
+.btn-ok.active, .btn-ok:hover { background: var(--bfw-success); color: white; }
+.btn-teil.active, .btn-teil:hover { background: var(--bfw-accent); color: white; }
+.btn-nein.active, .btn-nein:hover { background: var(--bfw-danger); color: white; }
+.saved-note { font-size: 0.78rem; color: var(--bfw-ink-soft); margin-left: auto; }
+
+footer { text-align: center; margin-top: 2.5rem; color: var(--bfw-ink-soft); font-size: 0.85rem; }
+@media print { .btn, .btn-reset, .self-check { display: none !important; } .loesung { display: block; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <span class="tag-pill">Lektion 1 · Lernbereich</span>
+    <h1>Lernbereich: Betriebliche Funktionen I: Produktion, Logistik & Marketing</h1>
+    <p class="subtitle">Beantworten Sie die Aufgaben in eigenen Worten im Antwortfeld — Ihre Eingaben werden lokal im Browser gespeichert. Prüfen Sie sich danach mit dem <strong>Lösungshinweis</strong> und bewerten Sie sich selbst. In der IHK-Prüfung zählen ausformulierte Begründungen!</p>
+  </header>
+
+  <div class="progress-wrap">
+    <div class="progress-bar" id="progressBar"><div class="seg-ok"></div><div class="seg-teil"></div><div class="seg-nein"></div></div>
+    <span class="progress-label" id="progressLabel"></span>
+    <button class="btn-reset" onclick="resetAll()">Zurücksetzen</button>
+  </div>
+
+  <div id="tasks"></div>
+
+  <footer>© Can Siebert · 2026 · Wirtschaftsfachwirt — BWL — Betriebswirtschaftliche Grundlagen</footer>
+</div>
+
+<script>
+const DAY_ID = 'bwl-1';
+const TASKS = [{"topic":"Zielsystem","punkte":10,"frage":"Die Geschäftsleitung der Nordwest Küchengeräte AG formuliert für das kommende Jahr: „Wir wollen hochwertige Küchengeräte fertigen (1), die Umsatzrendite auf 8 % steigern (2), die Ausschussrate halbieren (3) und den CO2-Ausstoß der Fertigung um 20 % senken (4).“\na) Unterscheiden Sie Sachziele und Formalziele und ordnen Sie die Aussagen (1) und (2) zu.\nb) Nennen Sie die drei möglichen Zielbeziehungen zwischen Unternehmenszielen.\nc) Beurteilen Sie die Zielbeziehung zwischen Ziel (3) und Ziel (2) sowie zwischen Ziel (4) und Ziel (2) — jeweils mit kurzer Begründung.","hinweis":"Sachziel = was geleistet wird; Formalziel = woran der Erfolg gemessen wird.","loesung":"a) Sachziele beschreiben das konkrete Leistungsprogramm — welche Güter und Dienstleistungen in welcher Art und Menge erstellt werden. Formalziele (Erfolgsziele) sind die Maßstäbe, an denen der Erfolg gemessen wird (Gewinn, Rentabilität, Wirtschaftlichkeit, Produktivität, Liquidität). Aussage (1) „hochwertige Küchengeräte fertigen“ ist ein Sachziel; Aussage (2) „Umsatzrendite auf 8 % steigern“ ist ein Formalziel.\nb) Komplementäre (sich fördernde), konkurrierende (sich behindernde) und indifferente (neutrale) Zielbeziehungen.\nc) Ziel (3) und Ziel (2): komplementär — eine halbierte Ausschussrate senkt die Kosten und erhöht damit tendenziell die Umsatzrendite. Ziel (4) und Ziel (2): kurzfristig eher konkurrierend, weil Investitionen in emissionsärmere Fertigung zunächst Kosten verursachen; langfristig kann die Beziehung komplementär werden (Energieeinsparung, Image)."},{"topic":"Produktionsfaktoren","punkte":12,"frage":"a) Grenzen Sie die betriebswirtschaftlichen Produktionsfaktoren nach Gutenberg von den volkswirtschaftlichen Produktionsfaktoren ab.\nb) Nennen Sie die drei Elementarfaktoren und die Aufgaben des dispositiven Faktors.\nc) In einem Möbelwerk fallen an: Holz, Leim, Schmieröl für die Sägen, eine CNC-Fräse. Ordnen Sie die vier Positionen den Faktoren Rohstoff, Hilfsstoff, Betriebsstoff und Betriebsmittel zu.","hinweis":"Merkhilfe: Rohstoffe sind der Rumpf des Produkts, Hilfsstoffe halten es zusammen, Betriebsstoffe betreiben die Maschinen. Betriebsmittel werden gebraucht, Betriebsstoffe verbraucht.","loesung":"a) Die Volkswirtschaftslehre betrachtet die gesamte Volkswirtschaft und unterscheidet die Faktoren Arbeit, Boden und Kapital (zunehmend ergänzt um Wissen). Die Betriebswirtschaftslehre betrachtet den einzelnen Betrieb; nach Gutenberg werden Elementarfaktoren (ausführende Arbeit, Betriebsmittel, Werkstoffe) und der dispositive Faktor (leitende Arbeit) unterschieden. Der volkswirtschaftliche Faktor Arbeit wird also in ausführende und leitende (dispositive) Arbeit aufgespalten; Boden und Kapital gehen in Betriebsmitteln und Werkstoffen auf.\nb) Elementarfaktoren: ausführende (objektbezogene) Arbeit, Betriebsmittel, Werkstoffe. Dispositiver Faktor: Geschäfts- und Betriebsleitung mit den Aufgaben Planung, Organisation und Kontrolle — er kombiniert die Elementarfaktoren zielgerichtet.\nc) Holz = Rohstoff (Hauptbestandteil des Endprodukts); Leim = Hilfsstoff (geht ein, aber nur untergeordnet); Schmieröl = Betriebsstoff (wird verbraucht, geht nicht in das Produkt ein); CNC-Fräse = Betriebsmittel (wird gebraucht, nicht verbraucht)."},{"topic":"Fertigungstypen","punkte":10,"frage":"Ordnen Sie die folgenden Situationen jeweils dem zutreffenden Fertigungstyp (Einzel-, Serien-, Sorten-, Massenfertigung) zu und begründen Sie kurz:\na) Eine Werft baut ein Kreuzfahrtschiff nach individuellem Kundenauftrag.\nb) Eine Brauerei stellt auf derselben Anlage nacheinander Pils, Export und Weizenbier her.\nc) Ein Automobilhersteller fertigt von einem Modell 30.000 Stück, rüstet dann auf ein anderes Modell um.\nd) Ein Schraubenhersteller produziert eine Standardschraube ununterbrochen in Millionenauflage.\ne) Unterscheiden Sie Serien- und Sortenfertigung anhand des entscheidenden Merkmals.","hinweis":"Prüfungsfalle: Sorten sind artgleich (Varianten eines Grundprodukts), Serien artverschieden.","loesung":"a) Einzelfertigung — ein Unikat wird individuell nach Kundenauftrag gefertigt.\nb) Sortenfertigung — artgleiche Varianten (Biersorten) aus demselben Ausgangsmaterial auf derselben Anlage.\nc) Serienfertigung — begrenzte Stückzahl artverschiedener Produkte (Modelle) nacheinander mit Umrüstung.\nd) Massenfertigung — sehr große Stückzahl eines gleichen Produkts über langen Zeitraum.\ne) Bei der Sortenfertigung sind die Erzeugnisse artgleich (Varianten eines Grundprodukts aus gleichem Ausgangsmaterial), bei der Serienfertigung artverschieden (unterschiedliche Produkte auf denselben Anlagen)."},{"topic":"Produktivität & Wirtschaftlichkeit","punkte":14,"frage":"Die Nordwest Küchengeräte AG fertigte im Monat August mit 20 Mitarbeitern (je 160 Arbeitsstunden) 8.000 Mixergehäuse. Der bewertete Ertrag betrug 400.000 €, der Aufwand 320.000 €. Im September wurden mit gleicher Stundenzahl 8.800 Gehäuse gefertigt; der Ertrag stieg auf 440.000 €, der Aufwand auf 352.000 €.\na) Erklären Sie den Unterschied zwischen Produktivität und Wirtschaftlichkeit.\nb) Berechnen Sie die Arbeitsproduktivität (Stück je Arbeitsstunde) für August und September.\nc) Berechnen Sie die Wirtschaftlichkeit für beide Monate und interpretieren Sie die Ergebnisse.\nd) Nennen Sie das dritte zentrale Produktionsziel neben Wirtschaftlichkeit und Produktivität.","hinweis":"Produktivität = Output ÷ Input (Mengen); Wirtschaftlichkeit = Ertrag ÷ Aufwand (Werte in Euro).","loesung":"a) Die Produktivität ist ein Mengenverhältnis: Ausbringungsmenge (Output) je Einsatzmenge (Input), z. B. Stück je Arbeitsstunde. Die Wirtschaftlichkeit ist ein Wertverhältnis: Ertrag (in €) geteilt durch Aufwand (in €); sie berücksichtigt also Preise und Kosten, nicht nur Mengen.\nb) Arbeitsstunden je Monat: 20 × 160 = 3.200 Stunden. August: 8.000 ÷ 3.200 = 2,5 Stück je Stunde. September: 8.800 ÷ 3.200 = 2,75 Stück je Stunde — die Produktivität ist gestiegen.\nc) August: 400.000 ÷ 320.000 = 1,25. September: 440.000 ÷ 352.000 = 1,25. Beide Monate sind wirtschaftlich (Wert größer als 1: je eingesetztem Euro werden 1,25 € erwirtschaftet). Trotz gestiegener Produktivität blieb die Wirtschaftlichkeit unverändert, weil Ertrag und Aufwand im gleichen Verhältnis gestiegen sind.\nd) Die Qualität (Erfüllung der Kundenanforderungen, geringe Ausschussraten)."},{"topic":"Logistik: 6 R & Teilbereiche","punkte":12,"frage":"a) Nennen Sie die 6 R der Logistik.\nb) Die folgende Beschreibung enthält sachliche Fehler: „Die Beschaffungslogistik beschäftigt sich mit dem Informations- und Materialfluss vom Kunden zum Unternehmen. Sie betrifft die Abläufe im Lager und in der Produktion.“ Stellen Sie die Aussage richtig.\nc) Bringen Sie den Güterdurchlauf in die richtige Reihenfolge: Absatzlager — Produktion — Versand — Materiallager (vom Lieferanten zum Kunden).","hinweis":"Merkfrage zu den 6 R: Was, wie viel, wie gut, wann, wohin — und was darf es kosten?","loesung":"a) Die richtigen Güter in der richtigen Menge im richtigen Zustand zum richtigen Zeitpunkt am richtigen Ort zu den richtigen Kosten.\nb) Richtig ist: Die Beschaffungslogistik beschäftigt sich mit dem Informations- und Materialfluss vom Lieferanten zum Unternehmen. Die Abläufe im Lager betreffen die Lagerlogistik, die Abläufe in der Produktion die Produktionslogistik.\nc) Lieferant → (1) Materiallager → (2) Produktion → (3) Absatzlager → (4) Versand → Kunde."},{"topic":"Lagerfunktionen & SCM","punkte":12,"frage":"a) Nennen und erläutern Sie vier Funktionen der Lagerhaltung mit je einem Beispiel.\nb) Beschreiben Sie, was unter Supply Chain Management zu verstehen ist, und nennen Sie zwei Ziele.","loesung":"a) Sicherungsfunktion (Vorratsfunktion): Absicherung gegen Lieferverzögerungen und Bedarfsschwankungen (z. B. Sicherheitsbestand an Rohstoffen). Ausgleichsfunktion (Pufferfunktion): Ausgleich unterschiedlicher Rhythmen von Beschaffung, Produktion und Absatz (z. B. saisonale Ernte — ganzjähriger Verbrauch). Spekulationsfunktion: Einkauf größerer Mengen bei erwarteten Preissteigerungen oder zur Nutzung von Mengenrabatten. Veredelungsfunktion (Umformungsfunktion): Lagerung als Teil des Produktionsprozesses (Reifung von Käse oder Wein, Trocknung von Holz). Alternativ: Sortimentsfunktion — Zusammenstellung eines verkaufsfähigen Sortiments im Handel.\nb) Supply Chain Management ist die integrierte Planung und Steuerung der gesamten Liefer- und Wertschöpfungskette — vom Lieferanten über Hersteller, Logistikdienstleister, Zwischenhändler und Wiederverkäufer bis zum Endkunden —, bei der Güter-, Informations- und Geldflüsse aller Beteiligten aufeinander abgestimmt werden. Ziele (zwei genügen): kürzere Lieferzeiten, geringere Bestände entlang der Kette, höhere Liefertreue, Vermeidung aufschaukelnder Bestellmengen (Peitscheneffekt), Kostenvorteile für alle Partner."},{"topic":"Marketingbegriff & Marktforschung","punkte":12,"frage":"a) Beurteilen Sie die Aussage: „Ausgangspunkt für alle Marketingaktivitäten ist das Produkt.“\nb) Unterscheiden Sie Primär- und Sekundärforschung und nennen Sie je zwei Methoden bzw. Quellen.\nc) Charakterisieren Sie ökonomische und psychografische Marketingziele und nennen Sie je zwei Beispiele.","hinweis":"Merkhilfe: Öko = Zahlen, Psycho = Köpfe.","loesung":"a) Die Aussage ist falsch. Ausgangspunkt aller Marketingaktivitäten sind Informationen über den Markt — über Zielgruppe, Bedürfnisse und Absatzwege. Das moderne Marketingdenken stellt den Kunden und dessen Problemlösung in den Mittelpunkt, nicht das Produkt.\nb) Primärforschung (field research): Erhebung neuer, eigener Daten — Methoden: Befragung, Beobachtung, Experiment/Markttest, Panel. Sekundärforschung (desk research): Auswertung bereits vorhandener Daten — Quellen: interne Absatzstatistiken, amtliche Statistik, Verbands- und Marktforschungsstudien. Sekundärforschung ist schneller und günstiger, aber oft nicht passgenau und ggf. veraltet.\nc) Ökonomische Ziele sind messbare wirtschaftliche Größen — Beispiele: Umsatz, Absatz, Gewinn, Marktanteil. Psychografische Ziele sind nicht direkt messbare, beim Kunden verankerte Größen — Beispiele: Bekanntheitsgrad, Image, Kundenzufriedenheit, Kundenbindung."},{"topic":"Marketing-Mix","punkte":16,"frage":"Die Nordwest Küchengeräte AG bringt einen neuen Hochleistungsmixer „VitaMix Pro“ auf den Markt. Zielgruppe sind gesundheitsbewusste Haushalte mit mittlerem bis hohem Einkommen. Der Vertriebsleiter schlägt vor, den Mixer ausschließlich über den eigenen Onlineshop zu verkaufen; die Marketingabteilung plant eine Einführungskampagne.\na) Nennen Sie die vier Instrumentalbereiche des Marketing-Mix (deutsch, ggf. mit englischem Fachbegriff).\nb) Entwickeln Sie für den „VitaMix Pro“ zu jedem der vier Instrumente je zwei konkrete Maßnahmen bzw. Entscheidungen.\nc) Der Mixer soll „zum richtigen Zeitpunkt in der gewünschten Menge am Ort der Nachfrage“ verfügbar sein. Ordnen Sie diese Aufgabe dem zutreffenden Instrument zu und begründen Sie.\nd) Unterscheiden Sie Werbung und Public Relations.","hinweis":"Die 4P: Product, Price, Place, Promotion.","loesung":"a) Produkt- und Leistungspolitik (Product), Preis- und Kontrahierungspolitik (Price), Distributionspolitik (Place), Kommunikationspolitik (Promotion).\nb) Beispiele (je zwei Maßnahmen): Produktpolitik: hochwertiges Design und langlebiger Motor; Garantieverlängerung und Rezeptheft/App als Serviceleistung. Preispolitik: Premiumpreis passend zur Präferenzstrategie (Zielgruppe mit höherem Einkommen); Einführungsrabatt oder Bundle-Angebote, Skonto für schnelle Zahlung. Distributionspolitik: Verkauf über den eigenen Onlineshop (direkter Absatz), ergänzend ausgewählte Elektrofachmärkte (indirekter Absatz) zur Erhöhung des Distributionsgrads. Kommunikationspolitik: Social-Media-Kampagne mit Food-Influencern; Verkaufsförderung durch Vorführaktionen und Produkttests am Point of Sale. (Andere sachgerechte Maßnahmen sind gleichwertig.)\nc) Distributionspolitik — sie umfasst neben der Wahl der Absatzwege die physische Distribution (Marketinglogistik), also die Aufgabe, das Produkt zum richtigen Zeitpunkt in der gewünschten Menge an den Ort der Nachfrage zu bringen.\nd) Werbung ist bezahlte, unmittelbar produkt- bzw. absatzbezogene Kommunikation (Ziel: Kaufauslösung). Public Relations (Öffentlichkeitsarbeit) richtet sich auf das gesamte Unternehmen und will Vertrauen und ein positives Image in der Öffentlichkeit aufbauen — ohne unmittelbaren Produktbezug."},{"topic":"Erfolgsrechnung","punkte":10,"frage":"Für den „VitaMix Pro“ sind bekannt: Fixkosten 150.000 €, variable Kosten 14 €/Stück, geplanter Marktpreis 30 €/Stück, erwartete Absatzmenge 150.000 Stück.\na) Berechnen Sie den erwarteten Gewinn.\nb) Berechnen Sie die Gewinnschwelle (Break-even-Menge).\nc) Entscheiden und begründen Sie, ob das Projekt unter Kosten- und Erfolgsgesichtspunkten realisiert werden soll.","hinweis":"Break-even-Menge = Fixkosten ÷ Stückdeckungsbeitrag.","loesung":"a) Deckungsbeitrag je Stück: 30 − 14 = 16 €. Gesamtdeckungsbeitrag: 150.000 × 16 = 2.400.000 €. Gewinn: 2.400.000 − 150.000 = 2.250.000 €.\nb) Break-even-Menge: Fixkosten geteilt durch Stückdeckungsbeitrag = 150.000 ÷ 16 = 9.375 Stück.\nc) Das Projekt soll realisiert werden: Die Gewinnschwelle von 9.375 Stück liegt weit unter der erwarteten Absatzmenge von 150.000 Stück; es wird ein deutlicher Gewinn von 2,25 Mio. € erwartet. Selbst bei erheblich geringerem Absatz bliebe das Projekt profitabel."},{"topic":"Funktionsbereiche","punkte":5,"frage":"Nennen Sie die drei Grundfunktionen entlang des betrieblichen Wertschöpfungsprozesses in der richtigen Reihenfolge und beschreiben Sie die Kernaufgabe der Logistik sowie des Controllings.","hinweis":"Der Güterstrom läuft vom Einkauf bis zum Verkauf; Logistik liegt quer dazu.","loesung":"Grundfunktionen entlang der Wertschöpfung: Beschaffung/Materialwirtschaft → Produktion → Absatz/Marketing. Die Logistik ist eine Querschnittsfunktion: Sie steuert den Güter-, Informations- und Wertefluss über alle Stufen hinweg. Das Controlling ist ein Management-Service mit den Aufgaben Planung, Steuerung, Kontrolle und Informationsversorgung. Weitere Funktionen: Rechnungswesen (Erfassung und Aufbereitung zahlenmäßiger Informationen), Finanzierung/Investition (Mittelherkunft und Mittelverwendung), Personalwirtschaft (Beschaffung, Einsatz, Entwicklung, Entlohnung der Mitarbeiter)."},{"topic":"Fertigungsorganisation","punkte":6,"frage":"Neben den Fertigungstypen unterscheidet man die Organisation des Fertigungsablaufs. Erläutern Sie Werkstattfertigung, Fließfertigung und Gruppenfertigung und nennen Sie zu Werkstatt- und Fließfertigung je einen Vor- und einen Nachteil.","hinweis":"Werkstatt = gleichartige Maschinen zusammen; Fließ = Anordnung nach dem Arbeitsablauf.","loesung":"Werkstattfertigung: Gleichartige Maschinen und Arbeitsplätze werden räumlich zusammengefasst (z. B. Dreherei, Lackiererei). Vorteil: hohe Flexibilität bei wechselnden Aufträgen; Nachteil: lange Transportwege und Durchlaufzeiten. Fließfertigung: Die Betriebsmittel sind nach dem Arbeitsablauf des Erzeugnisses angeordnet (Fließband). Vorteil: kurze Durchlaufzeiten und hohe Mengenleistung; Nachteil: störanfällig und unflexibel bei Produktwechseln. Gruppenfertigung: Mischform, bei der teilautonome Gruppen komplette Arbeitsschritte übernehmen — sie verbindet die Flexibilität der Werkstattfertigung mit dem Fließprinzip."},{"topic":"Just-in-Time","punkte":4,"frage":"Ein Zulieferer bietet der Nordwest Küchengeräte AG an, Motoren künftig just in time direkt ans Montageband zu liefern. Erläutern Sie das Konzept und beurteilen Sie es mit je zwei Vorteilen und Risiken.","hinweis":"Denken Sie an Kapitalbindung einerseits und Lieferketten- bzw. Verkehrsrisiken andererseits.","loesung":"Just-in-Time bedeutet die produktionssynchrone Anlieferung: Das Material trifft genau dann ein, wenn es in der Fertigung benötigt wird — Lagerbestände werden weitgehend abgebaut. Vorteile: geringere Kapitalbindung und niedrigere Lagerkosten (Raum, Personal, Schwund); kürzere Durchlaufzeiten. Risiken: hohe Abhängigkeit vom Lieferanten und vom Verkehr — schon kleine Störungen (Stau, Streik, Lieferausfall) können die Produktion stilllegen; zudem entfällt die Sicherungsfunktion des Lagers gegen Bedarfsschwankungen und Preissteigerungen."},{"topic":"Logistikziele","punkte":4,"frage":"Die logistischen Zielsetzungen lassen sich in vier Zielbereiche einteilen. Nennen Sie diese und geben Sie zu jedem Bereich ein Beispiel.","loesung":"Leistungsziele: kurze Lieferzeiten, hohe Lieferbereitschaft und Liefertreue. Qualitätsziele: unbeschädigte und vollständige Lieferung. Humanitäre Ziele: ergonomische Arbeitsplätze, Arbeitssicherheit, faire Arbeitsbedingungen. Ökologische Ziele: Verkehrsvermeidung, emissionsarme Transportmittel, Verpackungsreduzierung, Recycling."},{"topic":"Marktforschung","punkte":3,"frage":"Unterscheiden Sie Marktanalyse und Marktbeobachtung. Ordnen Sie außerdem zu: Ein Handelsunternehmen befragt jeden Monat denselben festen Kreis von 2.000 Haushalten zu ihren Einkäufen — um welche Erhebungsmethode handelt es sich?","hinweis":"Momentaufnahme oder Zeitverlauf? Gleichbleibender Teilnehmerkreis ist das Stichwort.","loesung":"Die Marktanalyse ist eine Momentaufnahme des Marktes zu einem bestimmten Zeitpunkt; die Marktbeobachtung verfolgt die Entwicklung des Marktes im Zeitverlauf. Die beschriebene Erhebung ist ein Panel: eine wiederholte Erhebung bei gleichbleibendem Teilnehmerkreis — eine Methode der Primärforschung, die zugleich der Marktbeobachtung dient."},{"topic":"Marketingstrategien","punkte":6,"frage":"Ordnen Sie die folgenden Vorhaben der Nordwest Küchengeräte AG den vier Strategien der Produkt-Markt-Matrix nach Ansoff zu und begründen Sie kurz:\na) Der bewährte Standmixer soll durch mehr Werbung und Aktionspreise höhere Marktanteile im Inland erzielen.\nb) Der Standmixer soll künftig auch in Skandinavien verkauft werden.\nc) Für die Stammkundschaft wird ein neu entwickelter Smoothie-Maker eingeführt.\nd) Das Unternehmen steigt mit einer neuen Produktlinie für Gastronomie-Großküchen in einen völlig neuen Markt ein.","hinweis":"Achsen der Matrix: gegenwärtige/neue Produkte × gegenwärtige/neue Märkte.","loesung":"a) Marktdurchdringung — gegenwärtiges Produkt auf gegenwärtigem Markt, der Marktanteil soll ausgebaut werden.\nb) Marktentwicklung — gegenwärtiges Produkt auf neuem (regionalem) Markt.\nc) Produktentwicklung — neues Produkt für gegenwärtige Märkte bzw. Stammkunden.\nd) Diversifikation — neues Produkt auf neuem Markt."},{"topic":"Marketingstrategien","punkte":3,"frage":"Der „VitaMix Pro“ soll als hochwertiges Markenprodukt zu einem Premiumpreis positioniert werden. Erläutern Sie, welche marketingstrategische Grundentscheidung dahintersteht, und grenzen Sie sie von der Alternative ab.","loesung":"Dahinter steht die Präferenzstrategie: Durch Marke, Qualität, Design und Service werden beim Kunden Präferenzen aufgebaut, die einen höheren Preis rechtfertigen. Die Alternative ist die Preis-Mengen-Strategie: Verzicht auf Präferenzbildung, dafür niedriger Preis und Absatz großer Mengen (z. B. Discounter-Eigenmarken). Für die Zielgruppe mit mittlerem bis hohem Einkommen und den Premiumanspruch des Produkts passt die Präferenzstrategie."},{"topic":"Erfolgsrechnung (Transfer)","punkte":6,"frage":"Der Vertriebsleiter schlägt für den „VitaMix Pro“ alternativ einen Kampfpreis von 26 €/Stück vor; die Absatzmenge würde dadurch voraussichtlich auf 180.000 Stück steigen (Fixkosten weiterhin 150.000 €, variable Kosten 14 €/Stück).\na) Berechnen Sie für diese Alternative die Break-even-Menge und den erwarteten Gewinn.\nb) Vergleichen Sie mit der ursprünglichen Planung (Preis 30 €, Absatz 150.000 Stück, Gewinn 2.250.000 €) und geben Sie eine begründete Empfehlung.","hinweis":"Erst den neuen Stückdeckungsbeitrag berechnen, dann Break-even und Gewinn.","loesung":"a) Neuer Deckungsbeitrag je Stück: 26 − 14 = 12 €. Break-even-Menge: 150.000 ÷ 12 = 12.500 Stück. Gewinn: 180.000 × 12 − 150.000 = 2.160.000 − 150.000 = 2.010.000 €.\nb) Trotz der um 30.000 Stück höheren Absatzmenge liegt der Gewinn mit 2.010.000 € um 240.000 € unter der ursprünglichen Planung (2.250.000 €), weil der Stückdeckungsbeitrag von 16 € auf 12 € sinkt und der Mengenzuwachs dies nicht ausgleicht. Zudem steigt die Gewinnschwelle von 9.375 auf 12.500 Stück. Empfehlung: beim Preis von 30 € bleiben — er passt auch besser zur Präferenzstrategie und zur Zielgruppe."},{"topic":"Kundendienst","punkte":6,"frage":"Serviceleistungen sind Teil der Produkt- und Leistungspolitik. Nennen Sie die drei Phasen des Kundendienstes und geben Sie für den „VitaMix Pro“ zu jeder Phase zwei Beispiele.","hinweis":"Vor dem Kauf — in der Kaufphase — nach dem Kauf.","loesung":"Vor dem Kauf: Information und technische Beratung (z. B. Produktvergleiche, Beratungs-Chat), Problemlösungsvorschläge und Finanzierungsangebote. In der Kaufphase: Lieferung und Montage bzw. Inbetriebnahme, Umtauschrecht. Nach dem Kauf: Garantieleistungen, Wartung und Reparatur, Ersatzteilversorgung (z. B. Ersatzbehälter und Messereinheiten für den Mixer)."}];
+const KEY = 'wfw_lernbereich_' + DAY_ID;
+
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { state = {}; }
+function save() { localStorage.setItem(KEY, JSON.stringify(state)); }
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function render() {
+  const wrap = document.getElementById('tasks');
+  wrap.innerHTML = TASKS.map((t, i) => {
+    const st = state[i] || {};
+    return `
+    <div class="task ${st.check || ''}" id="task-${i}">
+      <div class="task-head">
+        <span class="task-num">Aufgabe ${i + 1}</span>
+        <span class="task-topic">${esc(t.topic)}</span>
+        ${t.punkte ? `<span class="task-punkte">${t.punkte} Punkte</span>` : ''}
+      </div>
+      <div class="task-frage">${esc(t.frage)}</div>
+      ${t.hinweis ? `<details class="task-hinweis"><summary>💡 Tipp anzeigen</summary><p>${esc(t.hinweis)}</p></details>` : ''}
+      <textarea id="answer-${i}" placeholder="Ihre Antwort — in vollständigen Sätzen, wie in der Prüfung …">${esc(st.answer || '')}</textarea>
+      <div class="task-actions">
+        <button class="btn btn-loesung" onclick="toggleLoesung(${i})">Lösungshinweis anzeigen</button>
+        <span class="saved-note" id="saved-${i}"></span>
+      </div>
+      <div class="loesung ${st.open ? 'show' : ''}" id="loesung-${i}">
+        <div class="loesung-label">✓ Lösungshinweis</div>
+        <div class="loesung-text">${esc(t.loesung)}</div>
+      </div>
+      <div class="self-check ${st.open ? 'show' : ''}" id="check-${i}">
+        <span>Selbsteinschätzung:</span>
+        <button class="btn btn-ok ${st.check === 'ok' ? 'active' : ''}" onclick="setCheck(${i}, 'ok')">✓ Gewusst</button>
+        <button class="btn btn-teil ${st.check === 'teil' ? 'active' : ''}" onclick="setCheck(${i}, 'teil')">≈ Teilweise</button>
+        <button class="btn btn-nein ${st.check === 'nein' ? 'active' : ''}" onclick="setCheck(${i}, 'nein')">✗ Nochmal üben</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  TASKS.forEach((t, i) => {
+    const ta = document.getElementById('answer-' + i);
+    let timer = null;
+    ta.addEventListener('input', () => {
+      state[i] = state[i] || {};
+      state[i].answer = ta.value;
+      save();
+      const note = document.getElementById('saved-' + i);
+      note.textContent = 'gespeichert ✓';
+      clearTimeout(timer);
+      timer = setTimeout(() => { note.textContent = ''; }, 1500);
+    });
+  });
+  updateProgress();
+}
+
+function toggleLoesung(i) {
+  state[i] = state[i] || {};
+  state[i].open = !state[i].open;
+  save();
+  document.getElementById('loesung-' + i).classList.toggle('show', state[i].open);
+  document.getElementById('check-' + i).classList.toggle('show', state[i].open);
+}
+
+function setCheck(i, val) {
+  state[i] = state[i] || {};
+  state[i].check = state[i].check === val ? null : val;
+  save();
+  const card = document.getElementById('task-' + i);
+  card.classList.remove('ok', 'teil', 'nein');
+  if (state[i].check) card.classList.add(state[i].check);
+  document.querySelectorAll(`#check-${i} .btn`).forEach(b => b.classList.remove('active'));
+  if (state[i].check) {
+    const cls = { ok: 'btn-ok', teil: 'btn-teil', nein: 'btn-nein' }[state[i].check];
+    document.querySelector(`#check-${i} .${cls}`).classList.add('active');
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const counts = { ok: 0, teil: 0, nein: 0 };
+  TASKS.forEach((t, i) => { const c = (state[i] || {}).check; if (counts[c] !== undefined) counts[c]++; });
+  const n = TASKS.length;
+  const bar = document.getElementById('progressBar');
+  bar.querySelector('.seg-ok').style.width = (counts.ok / n * 100) + '%';
+  bar.querySelector('.seg-teil').style.width = (counts.teil / n * 100) + '%';
+  bar.querySelector('.seg-nein').style.width = (counts.nein / n * 100) + '%';
+  const done = counts.ok + counts.teil + counts.nein;
+  document.getElementById('progressLabel').textContent =
+    `${done}/${n} bearbeitet · ${counts.ok} gewusst · ${counts.teil} teilweise · ${counts.nein} üben`;
+}
+
+function resetAll() {
+  if (!confirm('Alle Antworten und Bewertungen dieser Lektion löschen?')) return;
+  state = {};
+  save();
+  render();
+}
+
+render();
+</script>
+</body>
+</html>

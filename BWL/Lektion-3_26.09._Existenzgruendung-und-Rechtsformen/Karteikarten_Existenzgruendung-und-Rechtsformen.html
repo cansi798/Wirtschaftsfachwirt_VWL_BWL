@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Karteikarten Lektion 3 — Existenzgründung & Unternehmensrechtsformen (60 Karten)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:#0EA5A4; --bfw-primary-dark:#0F766E;
+  --bfw-accent:#F59E0B; --bfw-warn:#F97316;
+  --bfw-success:#10B981; --bfw-danger:#EF4444;
+  --bfw-ink:#0F172A; --bfw-ink-soft:#475569;
+  --bfw-bg:#FAFAFA; --bfw-bg-soft:#F8FAFC;
+  --bfw-bg-teal:#ECFEFF; --bfw-bg-amber:#FEF3C7;
+  --bfw-bg-green:#D1FAE5; --bfw-border:#E2E8F0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: linear-gradient(180deg, var(--bfw-bg-teal) 0%, var(--bfw-bg) 240px);
+  color: var(--bfw-ink); min-height: 100vh; padding: 2rem 1rem 6rem;
+}
+.container { max-width: 720px; margin: 0 auto; }
+header { text-align: center; margin-bottom: 1.5rem; }
+.tag-pill {
+  display: inline-block; padding: 0.4rem 1rem; background: var(--bfw-primary);
+  color: white; border-radius: 999px; font-weight: 600; font-size: 0.85rem;
+  letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1rem;
+}
+h1 { font-size: 2rem; color: var(--bfw-primary-dark); margin-bottom: 0.4rem; letter-spacing: -0.01em; }
+.subtitle { color: var(--bfw-ink-soft); font-size: 1.05rem; }
+
+/* Fortschritt / Leitner-Fächer */
+.stats {
+  background: white; border: 1px solid var(--bfw-border); border-radius: 14px;
+  padding: 1rem 1.25rem; margin-bottom: 1.25rem;
+  display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+}
+.boxes { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.box-chip {
+  font-size: 0.8rem; font-weight: 600; padding: 0.35rem 0.7rem; border-radius: 999px;
+  background: var(--bfw-bg-soft); border: 1px solid var(--bfw-border); color: var(--bfw-ink-soft);
+}
+.box-chip b { color: var(--bfw-primary-dark); }
+.mastered { font-weight: 700; color: var(--bfw-success); }
+.progress { width: 100%; background: var(--bfw-bg-teal); height: 10px; border-radius: 999px; overflow: hidden; margin-top: 0.5rem; }
+.progress > div { height: 100%; background: var(--bfw-success); border-radius: 999px; transition: width 0.3s; width: 0; }
+
+/* Karte */
+.card-scene { perspective: 1200px; margin-bottom: 1.25rem; }
+.card {
+  position: relative; width: 100%; min-height: 320px; cursor: pointer;
+  transform-style: preserve-3d; transition: transform 0.5s; transition-timing-function: cubic-bezier(.4,.2,.2,1);
+}
+.card.flipped { transform: rotateY(180deg); }
+.face {
+  position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  border-radius: 18px; padding: 2rem; display: flex; flex-direction: column; justify-content: center;
+  box-shadow: 0 6px 24px rgba(15,23,42,0.08); border: 1px solid var(--bfw-border);
+}
+.face-front { background: white; }
+.face-back { background: linear-gradient(160deg, #ffffff 0%, var(--bfw-bg-green) 100%); transform: rotateY(180deg); }
+.card-topic {
+  align-self: flex-start; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--bfw-primary-dark); background: var(--bfw-bg-teal);
+  padding: 0.25rem 0.6rem; border-radius: 999px; margin-bottom: 1rem;
+}
+.card-label { font-size: 0.75rem; color: var(--bfw-ink-soft); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.card-front-text { font-size: 1.5rem; font-weight: 600; line-height: 1.35; color: var(--bfw-ink); }
+.card-back-text { font-size: 1.12rem; line-height: 1.55; color: var(--bfw-ink); }
+.flip-hint { margin-top: auto; padding-top: 1rem; font-size: 0.85rem; color: var(--bfw-ink-soft); }
+
+/* Buttons */
+.actions { display: flex; gap: 0.75rem; margin-bottom: 1rem; }
+.btn { flex: 1; padding: 0.9rem 1rem; border: none; border-radius: 12px; font-size: 1rem; font-weight: 600;
+  cursor: pointer; transition: transform 0.1s, box-shadow 0.2s; font-family: inherit; }
+.btn:active { transform: translateY(1px); }
+.btn-flip { background: var(--bfw-primary); color: white; }
+.btn-known { background: var(--bfw-success); color: white; }
+.btn-again { background: var(--bfw-bg-amber); color: #92400E; border: 1px solid #FCD34D; }
+.btn-ghost { background: white; color: var(--bfw-ink-soft); border: 1px solid var(--bfw-border); }
+.mini-actions { display: flex; gap: 0.75rem; justify-content: center; }
+.mini-actions .btn { flex: 0 1 auto; padding: 0.55rem 1rem; font-size: 0.85rem; }
+.hidden { display: none !important; }
+
+/* Abschluss */
+.done { background: white; border: 1px solid var(--bfw-border); border-radius: 18px; padding: 2.5rem 2rem; text-align: center; box-shadow: 0 6px 24px rgba(15,23,42,0.08); }
+.done h2 { color: var(--bfw-success); font-size: 1.8rem; margin-bottom: 0.75rem; }
+.done p { color: var(--bfw-ink-soft); margin-bottom: 1.5rem; line-height: 1.6; }
+.how { background: var(--bfw-bg-soft); border: 1px solid var(--bfw-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1.25rem; font-size: 0.9rem; color: var(--bfw-ink-soft); line-height: 1.5; }
+.how b { color: var(--bfw-ink); }
+footer { text-align: center; margin-top: 2rem; font-size: 0.8rem; color: var(--bfw-ink-soft); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <span class="tag-pill">Lektion 3 · Karteikarten</span>
+    <h1>Existenzgründung & Unternehmensrechtsformen</h1>
+    <p class="subtitle">60 Lernkarten · Begriff → Definition · Leitner-System</p>
+  </header>
+
+  <div class="how">
+    <b>So funktioniert's:</b> Lesen Sie die Vorderseite, überlegen Sie die Antwort, dann <b>Umdrehen</b>.
+    Wussten Sie es? → <b>Gewusst</b> (Karte wandert ins nächste Fach). Nicht sicher? → <b>Nochmal</b>
+    (Karte kommt zurück in Fach 1). Ziel: alle Karten in Fach 3. Ihr Fortschritt wird im Browser gespeichert.
+  </div>
+
+  <div class="stats">
+    <div class="boxes" id="boxes"></div>
+    <div class="mastered" id="mastered">0 / 60 gemeistert</div>
+    <div class="progress"><div id="progressBar"></div></div>
+  </div>
+
+  <div id="quizArea">
+    <div class="card-scene">
+      <div class="card" id="card" onclick="flipCard()">
+        <div class="face face-front">
+          <span class="card-topic" id="frontTopic">Thema</span>
+          <div class="card-label">Begriff / Frage</div>
+          <div class="card-front-text" id="frontText">…</div>
+          <div class="flip-hint">👆 Zum Umdrehen tippen</div>
+        </div>
+        <div class="face face-back">
+          <span class="card-topic" id="backTopic">Thema</span>
+          <div class="card-label">Definition / Antwort</div>
+          <div class="card-back-text" id="backText">…</div>
+          <div class="flip-hint">Wussten Sie es?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions" id="flipRow">
+      <button class="btn btn-flip" onclick="flipCard()">Umdrehen</button>
+    </div>
+    <div class="actions hidden" id="gradeRow">
+      <button class="btn btn-again" onclick="grade(false)">↺ Nochmal</button>
+      <button class="btn btn-known" onclick="grade(true)">✓ Gewusst</button>
+    </div>
+    <div class="mini-actions">
+      <button class="btn btn-ghost" onclick="shuffleRestart()">🔀 Neu mischen</button>
+      <button class="btn btn-ghost" onclick="resetProgress()">♻ Fortschritt zurücksetzen</button>
+    </div>
+  </div>
+
+  <div id="doneArea" class="done hidden">
+    <h2>🎉 Alle Karten gemeistert!</h2>
+    <p id="doneText">Sie haben alle 60 Karten sicher beantwortet. Starke Leistung!</p>
+    <div class="mini-actions">
+      <button class="btn btn-flip" onclick="resetProgress()">Von vorne beginnen</button>
+    </div>
+  </div>
+
+  <footer>BFW Lernplattform · Büroprozesse (M-067) · © Can Siebert 2026</footer>
+</div>
+
+<script>
+const DAY_ID = 'bwl-3';
+const MAX_BOX = 3;                    // Fach 3 = gemeistert
+const CARDS = [{"topic":"Gründungsphasen","front":"Nennen Sie die fünf Gründungsphasen in der richtigen Reihenfolge.","back":"Geschäftsidee → Orientierung → Planung/Konzeption → Umsetzung/Start → Festigung (Konsolidierung)."},{"topic":"Gründungsphasen","front":"Was geschieht in der Orientierungsphase?","back":"Erste Informationsbeschaffung und Selbstprüfung: Passt die Gründung zu mir? Grobe Einschätzung von Markt, Wettbewerb und eigenen Fähigkeiten; Beratung nutzen."},{"topic":"Gründungsphasen","front":"Was geschieht in der Konzeptionsphase?","back":"Aus der Idee wird ein Konzept: Der Businessplan entsteht — Marktanalyse, Standort, Marketing, Rechtsformwahl, Kapitalbedarfs- und Finanzierungsplanung."},{"topic":"Gründungsphasen","front":"Was geschieht in der Umsetzungsphase (Startphase)?","back":"Gründungsformalitäten (Gewerbeanmeldung, ggf. Handelsregister, Finanzamt, Kammern), Aufbau von Betrieb, Personal und Vertrieb, Markteintritt."},{"topic":"Gründungsphasen","front":"Was geschieht in der Festigungsphase?","back":"Konsolidierung am Markt: Kundenstamm ausbauen, Liquidität sichern, Prozesse professionalisieren, Soll-Ist-Vergleich mit dem Businessplan."},{"topic":"Gründungsphasen","front":"Warum sinken Gründungszahlen bei guter Arbeitsmarktlage?","back":"Sichere Festanstellungen werden der riskanten Selbstständigkeit vorgezogen; Fachkräftemangel und demografische Entwicklung verringern das Gründerpotenzial zusätzlich."},{"topic":"Voraussetzungen","front":"Nennen Sie drei persönliche Voraussetzungen eines Existenzgründers.","back":"Sich Ziele setzen und konsequent verfolgen; Mut zum Risiko und Umgang mit Rückschlägen; Rückhalt der Familie und hoher zeitlicher Einsatz; Disziplin im Umgang mit Geld."},{"topic":"Voraussetzungen","front":"Nennen Sie drei fachliche Kompetenzen eines Gründers.","back":"Passende Ausbildung und Berufserfahrung; Branchenkenntnis; Bereitschaft, fachliche Defizite auszugleichen; Umgang mit branchenspezifischer EDV."},{"topic":"Voraussetzungen","front":"Nennen Sie drei unternehmerische (kaufmännische) Kompetenzen.","back":"Kaufmännische und rechtliche Kenntnisse (Kalkulation, Buchführung, Steuern); selbstbewusstes, kontaktfreudiges Auftreten; delegieren können; Kreativität."},{"topic":"Voraussetzungen","front":"Welche Faustregel gilt für das Eigenkapital bei Gründungen?","back":"Mindestens 15–20 % des Kapitalbedarfs sollten aus Eigenmitteln stammen — Finanzierungsmängel sind eine Hauptursache des Scheiterns."},{"topic":"Voraussetzungen","front":"Was macht eine Geschäftsidee tragfähig?","back":"Sie stiftet Kundennutzen, grenzt sich vom Wettbewerb ab (Alleinstellungsmerkmal/USP) und trifft auf einen ausreichend großen, erreichbaren Markt."},{"topic":"Businessplan","front":"Definieren Sie den Businessplan.","back":"Die schriftliche Ausarbeitung zur Darlegung der Geschäftsidee, ihrer Realisierung und der daraus resultierenden Ergebnisse."},{"topic":"Businessplan","front":"An wen richtet sich der Businessplan?","back":"Vor allem an Geldgeber (Banken, Förderinstitute) und zukünftige Geschäftspartner; intern an Gründer, Mitarbeiter und Gremien."},{"topic":"Businessplan","front":"Welche drei Funktionen erfüllt der Businessplan?","back":"1. Entscheidungsgrundlage für Geldgeber/Partner, 2. Mittel, die Geschäftsidee planmäßig zu durchdenken, 3. Führungsgrundlage für Mitarbeiter und Gremien."},{"topic":"Businessplan","front":"Was ist die Executive Summary?","back":"Die Kurzzusammenfassung des Businessplans auf 1–2 Seiten — sie wird zuerst gelesen und entscheidet oft, ob der Plan weitergelesen wird."},{"topic":"Businessplan","front":"Nennen Sie die Kernbestandteile eines Businessplans.","back":"Executive Summary, Geschäftsmodell/-idee, Markt & Wettbewerb, Marketing/Vertrieb, Organisation & Rechtsform, Finanzplanung/Kapitalbedarf, Chancen & Risiken."},{"topic":"Businessplan","front":"Welche Teilpläne umfasst die Finanzplanung im Businessplan?","back":"Kapitalbedarfsplan, Investitionsplan, Finanzierungsplan, Liquiditätsplan sowie Umsatzschätzung und Ertragsvorschau (Rentabilität)."},{"topic":"Förderung","front":"Wie fördert die KfW Existenzgründer?","back":"Mit zinsgünstigen Gründerkrediten (z. B. ERP-Gründerkredit StartGeld bis 125.000 €); Antrag über die Hausbank (Hausbankprinzip), die KfW übernimmt einen Großteil des Risikos."},{"topic":"Förderung","front":"Was ist der Gründungszuschuss?","back":"Ermessensleistung der Agentur für Arbeit für Gründer aus dem ALG-I-Bezug: ALG-I-Betrag plus Pauschale zur Sozialversicherung; Tragfähigkeitsbescheinigung (z. B. IHK) nötig."},{"topic":"Rechtsformen allgemein","front":"Welche Rechtsform-Hauptgruppen gibt es?","back":"Einzelunternehmen, Personengesellschaften (GbR, OHG, KG, PartG), Kapitalgesellschaften (GmbH, UG, AG), Mischformen (GmbH & Co. KG), Genossenschaft (eG)."},{"topic":"Rechtsformen allgemein","front":"Nennen Sie zentrale Vergleichskriterien der Rechtsformwahl.","back":"Haftung, Geschäftsführung, Vertretung, Kapital/Mindestkapital, Gewinnverteilung, Firma/Handelsregister, Publizität, Steuern, Gründungsaufwand."},{"topic":"Rechtsformen allgemein","front":"Sind Personengesellschaften juristische Personen?","back":"Nein. Träger von Rechten und Pflichten sind (auch) die Gesellschafter persönlich; die Gewinne unterliegen deren Einkommensteuer, nicht einer Steuer der Gesellschaft."},{"topic":"Rechtsformen allgemein","front":"Was kennzeichnet Kapitalgesellschaften?","back":"Juristische Personen; Haftung nur mit dem Gesellschaftsvermögen; gesetzliches Mindestkapital; Organe; Körperschaftsteuer; Publizitätspflichten."},{"topic":"Einzelunternehmen","front":"Vor- und Nachteile des Einzelunternehmens?","back":"Vorteile: alleinige Entscheidung, ganzer Gewinn, einfache/günstige Gründung. Nachteil: unbeschränkte Haftung mit Betriebs- und Privatvermögen, begrenzte Kapitalbasis."},{"topic":"Einzelunternehmen","front":"Was bedeutet der Zusatz „e. K.“?","back":"Eingetragener Kaufmann/eingetragene Kauffrau — Einzelunternehmen mit Eintragung im Handelsregister Abteilung A."},{"topic":"GbR","front":"Wie entsteht eine GbR?","back":"Durch formfreien (auch mündlichen) Gesellschaftsvertrag von mindestens zwei Personen zu einem gemeinsamen Zweck; kein Handelsregistereintrag nötig."},{"topic":"GbR","front":"Wie haften die Gesellschafter der GbR?","back":"Unbeschränkt und gesamtschuldnerisch mit Gesellschafts- und Privatvermögen."},{"topic":"GbR","front":"Wer führt die Geschäfte der GbR (gesetzlicher Regelfall)?","back":"Alle Gesellschafter gemeinschaftlich — Geschäftsführung und Vertretung stehen ihnen grundsätzlich gemeinsam zu (vertraglich abweichend regelbar)."},{"topic":"GbR","front":"Was passiert, wenn die GbR ein Handelsgewerbe betreibt?","back":"Sie ist kraft Gesetzes OHG und muss ins Handelsregister eingetragen werden."},{"topic":"OHG","front":"Wie haften die OHG-Gesellschafter?","back":"Unbeschränkt, unmittelbar und gesamtschuldnerisch — jeder kann für die volle Schuld in Anspruch genommen werden, auch mit Privatvermögen."},{"topic":"OHG","front":"Geschäftsführung und Vertretung bei der OHG?","back":"Gesetzlicher Regelfall: Jeder Gesellschafter ist einzeln zur Geschäftsführung (gewöhnliche Geschäfte) und Einzelvertretung berechtigt."},{"topic":"OHG","front":"Wie wird eine OHG gegründet?","back":"Formfreier Gesellschaftsvertrag plus Eintragung ins Handelsregister (Abteilung A); Zweck: Betrieb eines Handelsgewerbes."},{"topic":"OHG","front":"Warum gilt die OHG als besonders kreditwürdig?","back":"Weil alle Gesellschafter unbeschränkt persönlich haften — Gläubiger haben Zugriff auf mehrere Privatvermögen."},{"topic":"KG","front":"Welche zwei Gesellschaftergruppen hat die KG?","back":"Komplementäre (Vollhafter: unbeschränkte Haftung, Geschäftsführung, Vertretung) und Kommanditisten (Teilhafter: Haftung nur mit der Einlage, keine Geschäftsführung)."},{"topic":"KG","front":"Welche Rechte hat der Kommanditist?","back":"Kontrollrechte (Einsicht in Jahresabschluss und Bücher) und Widerspruchsrecht bei außergewöhnlichen Geschäften; Anspruch auf Gewinnanteil."},{"topic":"KG","front":"Wofür eignet sich die KG besonders?","back":"Kapitalgeber lassen sich mit begrenztem Risiko beteiligen, ohne Führungsrechte abzugeben — die Leitung bleibt beim Komplementär."},{"topic":"PartG","front":"Was ist die Partnerschaftsgesellschaft (PartG)?","back":"Personengesellschaft für Freie Berufe (Ärzte, Anwälte, Steuerberater, Architekten); Eintragung ins Partnerschaftsregister; als PartG mbB Haftungsbeschränkung für Berufsfehler."},{"topic":"GmbH","front":"Wie hoch ist das Mindeststammkapital der GmbH?","back":"25.000 € — bei Bargründung müssen zur Handelsregisteranmeldung mindestens 12.500 € eingezahlt sein; Sacheinlagen sind möglich."},{"topic":"GmbH","front":"Wie haftet die GmbH?","back":"Als juristische Person nur mit dem Gesellschaftsvermögen; die Gesellschafter riskieren maximal ihre Einlage (Stammkapital als Haftungsmasse)."},{"topic":"GmbH","front":"Nennen Sie die Organe der GmbH.","back":"Geschäftsführer (auch Fremdgeschäftsführer möglich), Gesellschafterversammlung (Kontroll- und Beschlussorgan), ab 500 Arbeitnehmern zusätzlich ein Aufsichtsrat."},{"topic":"GmbH","front":"Wie wird der GmbH-Gewinn verteilt?","back":"Im Verhältnis der Geschäftsanteile (Einlagen), sofern der Gesellschaftsvertrag nichts anderes regelt."},{"topic":"GmbH","front":"Wann entsteht die GmbH als juristische Person?","back":"Erst mit der Eintragung ins Handelsregister Abteilung B — die Eintragung wirkt konstitutiv; der Gesellschaftsvertrag muss notariell beurkundet sein."},{"topic":"UG","front":"Was ist die UG (haftungsbeschränkt)?","back":"Einstiegsvariante der GmbH (§ 5a GmbHG): Gründung ab 1 € Stammkapital, Sacheinlagen unzulässig, gesetzliche Rücklage von 25 % des Jahresüberschusses bis 25.000 €."},{"topic":"UG","front":"Welche Rücklagepflicht hat die UG?","back":"25 % des Jahresüberschusses müssen in eine gesetzliche Rücklage eingestellt werden, bis das Stammkapital von 25.000 € erreicht ist — dann ist die Umfirmierung zur GmbH möglich."},{"topic":"AG","front":"Wie hoch ist das Mindestgrundkapital der AG?","back":"50.000 €, zerlegt in Aktien; die Satzung muss notariell beurkundet werden."},{"topic":"AG","front":"Nennen Sie Zusammensetzung und Aufgabe des AG-Vorstands.","back":"Eine oder mehrere Personen; leitendes Organ zur Wahrnehmung der Geschäftsführung — leitet eigenverantwortlich und vertritt die AG nach außen."},{"topic":"AG","front":"Nennen Sie Zusammensetzung und Aufgabe des Aufsichtsrats der AG.","back":"Mindestens drei Mitglieder; Kontrollorgan — bestellt, überwacht und berät den Vorstand."},{"topic":"AG","front":"Nennen Sie Zusammensetzung und Aufgabe der Hauptversammlung.","back":"Die Aktionäre; beschließendes Organ — entscheidet u. a. über Gewinnverwendung (Dividende), Entlastung und Satzungsänderungen."},{"topic":"Mischformen","front":"Erklären Sie die GmbH & Co. KG.","back":"Eine KG, deren einziger Komplementär eine GmbH ist: Personengesellschaft mit faktischer Haftungsbeschränkung — keine natürliche Person haftet unbeschränkt."},{"topic":"Mischformen","front":"Welche Vorteile bietet die GmbH & Co. KG?","back":"Flexibilität und Besteuerung der Personengesellschaft kombiniert mit der Haftungsbeschränkung der Kapitalgesellschaft; verbreitet im Mittelstand."},{"topic":"Genossenschaft","front":"Was kennzeichnet die eingetragene Genossenschaft (eG)?","back":"Zweck ist die Förderung der Mitglieder; mind. drei Mitglieder; Genossenschaftsregister; Organe: Vorstand, Aufsichtsrat, Generalversammlung (ein Mitglied = eine Stimme)."},{"topic":"Firma & Publizität","front":"Was ist die „Firma“ im Sinne des HGB?","back":"Der Name, unter dem der Kaufmann seine Geschäfte betreibt und die Unterschrift abgibt (§ 17 HGB) — nicht das Gebäude."},{"topic":"Firma & Publizität","front":"Nennen Sie die Firmengrundsätze.","back":"Firmenwahrheit/-klarheit, Unterscheidbarkeit, Rechtsformzusatz, Firmenbeständigkeit, Firmenöffentlichkeit (Handelsregister)."},{"topic":"Firma & Publizität","front":"Welche Abteilungen hat das Handelsregister?","back":"Abteilung A: Einzelkaufleute und Personengesellschaften (e. K., OHG, KG). Abteilung B: Kapitalgesellschaften (GmbH, UG, AG)."},{"topic":"Firma & Publizität","front":"Wer muss den Jahresabschluss offenlegen?","back":"Kapitalgesellschaften sowie Personengesellschaften ohne natürliche Person als Vollhafter (z. B. GmbH & Co. KG); Umfang der Offenlegung nach Größenklassen."}];
+
+const STORAGE_KEY = 'kk_' + DAY_ID;
+let boxes = {};                       // cardIndex -> Fach (1..3)
+let queue = [];                       // zu übende Karten-Indizes (Reihenfolge)
+let current = null;
+
+function loadState() {
+  try { boxes = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+  catch (e) { boxes = {}; }
+  CARDS.forEach((_, i) => { if (!boxes[i]) boxes[i] = 1; });
+}
+function saveState() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(boxes)); } catch (e) {} }
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function buildQueue() {
+  queue = shuffle(CARDS.map((_, i) => i).filter(i => boxes[i] < MAX_BOX));
+}
+
+function renderStats() {
+  const counts = [0, 0, 0];
+  CARDS.forEach((_, i) => counts[boxes[i] - 1]++);
+  document.getElementById('boxes').innerHTML =
+    counts.map((c, k) => `<span class="box-chip">Fach ${k + 1}: <b>${c}</b></span>`).join('');
+  const mastered = counts[MAX_BOX - 1];
+  document.getElementById('mastered').textContent = `${mastered} / ${CARDS.length} gemeistert`;
+  document.getElementById('progressBar').style.width = (mastered / CARDS.length * 100) + '%';
+}
+
+function showCard() {
+  if (queue.length === 0) { finish(); return; }
+  current = queue[0];
+  const c = CARDS[current];
+  document.getElementById('card').classList.remove('flipped');
+  document.getElementById('frontTopic').textContent = c.topic;
+  document.getElementById('backTopic').textContent = c.topic;
+  document.getElementById('frontText').textContent = c.front;
+  document.getElementById('backText').textContent = c.back;
+  document.getElementById('flipRow').classList.remove('hidden');
+  document.getElementById('gradeRow').classList.add('hidden');
+}
+
+function flipCard() {
+  const card = document.getElementById('card');
+  card.classList.toggle('flipped');
+  const flipped = card.classList.contains('flipped');
+  document.getElementById('flipRow').classList.toggle('hidden', flipped);
+  document.getElementById('gradeRow').classList.toggle('hidden', !flipped);
+}
+
+function grade(known) {
+  if (current === null) return;
+  if (known) { boxes[current] = Math.min(MAX_BOX, boxes[current] + 1); }
+  else { boxes[current] = 1; }
+  saveState();
+  queue.shift();
+  if (!known) queue.push(current);        // falsche Karte kommt später wieder
+  else if (boxes[current] < MAX_BOX) queue.push(current);
+  renderStats();
+  showCard();
+}
+
+function finish() {
+  document.getElementById('quizArea').classList.add('hidden');
+  document.getElementById('doneArea').classList.remove('hidden');
+}
+
+function shuffleRestart() {
+  document.getElementById('doneArea').classList.add('hidden');
+  document.getElementById('quizArea').classList.remove('hidden');
+  buildQueue();
+  renderStats();
+  showCard();
+}
+
+function resetProgress() {
+  CARDS.forEach((_, i) => boxes[i] = 1);
+  saveState();
+  shuffleRestart();
+}
+
+// Init
+loadState();
+renderStats();
+buildQueue();
+if (queue.length === 0) finish(); else showCard();
+</script>
+</body>
+</html>

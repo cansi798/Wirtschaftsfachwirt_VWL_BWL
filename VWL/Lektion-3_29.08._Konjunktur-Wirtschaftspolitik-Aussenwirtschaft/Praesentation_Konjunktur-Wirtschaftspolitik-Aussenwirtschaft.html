@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Präsentation Lektion 3 — Konjunktur, Wirtschaftspolitik & Außenwirtschaft</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:       #0EA5A4;
+  --bfw-primary-dark:  #0F766E;
+  --bfw-accent:        #F59E0B;
+  --bfw-warn:          #F97316;
+  --bfw-success:       #10B981;
+  --bfw-ink:           #0F172A;
+  --bfw-ink-soft:      #475569;
+  --bfw-bg:            #FAFAFA;
+  --bfw-bg-teal:       #ECFEFF;
+  --bfw-bg-amber:      #FEF3C7;
+  --bfw-bg-rose:       #FFE4E6;
+  --bfw-border:        #E2E8F0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; font-family: 'Inter', system-ui, sans-serif; color: var(--bfw-ink); background: var(--bfw-bg); }
+
+.deck { position: relative; width: 100vw; height: 100vh; }
+.slide {
+  position: absolute; inset: 0;
+  display: none;
+  padding: 4rem 6rem;
+  flex-direction: column;
+  justify-content: center;
+  background: white;
+  animation: fadeIn 0.35s ease;
+}
+.slide.active { display: flex; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+h1 { font-size: 3.5rem; line-height: 1.1; color: var(--bfw-primary-dark); margin-bottom: 1rem; letter-spacing: -0.02em; }
+h2 { font-size: 2.4rem; color: var(--bfw-primary-dark); margin-bottom: 1.5rem; }
+h3 { font-size: 1.4rem; color: var(--bfw-primary); margin-bottom: 0.8rem; font-weight: 600; }
+p { font-size: 1.25rem; line-height: 1.55; margin-bottom: 0.8rem; color: var(--bfw-ink); }
+ul, ol { margin: 0.5rem 0 1rem 1.5rem; }
+li { font-size: 1.2rem; line-height: 1.6; margin-bottom: 0.4rem; }
+.subtitle { font-size: 1.4rem; color: var(--bfw-ink-soft); margin-bottom: 2rem; font-weight: 500; }
+.muted { color: var(--bfw-ink-soft); }
+
+/* Deckblatt */
+.cover { background: linear-gradient(135deg, var(--bfw-bg-teal) 0%, white 60%, var(--bfw-bg-amber) 100%); }
+.cover-tag {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: var(--bfw-primary);
+  color: white;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.cover-meta { display: flex; gap: 2rem; margin-top: 2rem; color: var(--bfw-ink-soft); font-size: 1.1rem; }
+.cover-meta span strong { color: var(--bfw-ink); display: block; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* Karten-Grid */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+.card { background: white; border: 1px solid var(--bfw-border); border-radius: 14px; padding: 1.4rem; box-shadow: 0 2px 8px rgba(15,23,42,0.04); }
+.card.teal { background: var(--bfw-bg-teal); border-color: var(--bfw-primary); }
+.card.amber { background: var(--bfw-bg-amber); border-color: var(--bfw-accent); }
+.card.rose { background: var(--bfw-bg-rose); border-color: var(--bfw-warn); }
+.card-title { font-size: 1.15rem; font-weight: 700; color: var(--bfw-primary-dark); margin-bottom: 0.5rem; }
+.card.amber .card-title { color: var(--bfw-warn); }
+
+/* Merksatz */
+.merksatz {
+  background: var(--bfw-bg-teal);
+  border-left: 6px solid var(--bfw-primary);
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+  font-size: 1.15rem;
+}
+.merksatz-label { font-weight: 700; color: var(--bfw-primary-dark); display: block; margin-bottom: 0.3rem; font-size: 1rem; }
+
+/* Tabellen */
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 1.1rem; }
+th { background: var(--bfw-bg-teal); color: var(--bfw-primary-dark); text-align: left; padding: 0.7rem 1rem; font-weight: 700; }
+td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
+
+/* Diagramm-Container für Rough.js */
+.figure { margin: 1.5rem auto; text-align: center; }
+.figure svg { max-width: 100%; height: auto; }
+.caption { color: var(--bfw-ink-soft); font-size: 0.95rem; margin-top: 0.5rem; }
+
+/* Navigation */
+.nav { position: fixed; bottom: 1rem; right: 1.5rem; display: flex; gap: 0.5rem; align-items: center; z-index: 100; }
+.nav button {
+  border: none; background: var(--bfw-primary); color: white;
+  width: 44px; height: 44px; border-radius: 50%;
+  font-size: 1.2rem; cursor: pointer;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.12);
+  transition: all 0.15s;
+}
+.nav button:hover { background: var(--bfw-primary-dark); transform: translateY(-1px); }
+.nav-counter { background: white; padding: 0.4rem 0.9rem; border-radius: 999px; font-weight: 600; color: var(--bfw-ink-soft); font-size: 0.95rem; box-shadow: 0 2px 8px rgba(15,23,42,0.06); }
+
+.slide-num { position: fixed; bottom: 1rem; left: 1.5rem; color: var(--bfw-ink-soft); font-size: 0.9rem; }
+
+/* Listen mit Icons */
+.checklist { list-style: none; margin-left: 0; }
+.checklist li { padding-left: 2rem; position: relative; }
+.checklist li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--bfw-success); font-weight: 700; font-size: 1.3rem; }
+
+.numlist { list-style: none; margin-left: 0; counter-reset: numitem; }
+.numlist li { padding-left: 3rem; position: relative; counter-increment: numitem; margin-bottom: 0.8rem; }
+.numlist li::before {
+  content: counter(numitem);
+  position: absolute; left: 0; top: 0;
+  width: 2rem; height: 2rem;
+  background: var(--bfw-primary); color: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.95rem;
+}
+
+/* Print-friendly */
+@media print {
+  .slide { display: flex; page-break-after: always; }
+  .nav, .slide-num { display: none; }
+  html, body { height: auto; overflow: visible; }
+}
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- 1. Deckblatt -->
+  <section class="slide active cover">
+    <span class="cover-tag">Lektion 3 · Sa, 29.08.2026 · 08:15–13:15</span>
+    <h1>Konjunktur, Wirtschaftspolitik &amp; Außenwirtschaft</h1>
+    <p class="subtitle">Wie EZB und Staat die Wirtschaft steuern — und was die EU besonders macht</p>
+    <div class="cover-meta">
+      <span><strong>Kurs</strong>Wirtschaftsfachwirt — 1.1 Volkswirtschaftliche Grundlagen</span>
+      <span><strong>Rahmenplan</strong>1.1.3.2 Wirtschaftspolitische Maßnahmen · 1.1.4 Außenwirtschaft</span>
+      <span><strong>Quelle</strong>Textband Volkswirtschaft, Kap. 3.2 + 4 (S. 39–64)</span>
+    </div>
+  </section>
+
+  <!-- 2. Fahrplan -->
+  <section class="slide">
+    <h2>Willkommen zum VWL-Finale!</h2>
+    <p class="subtitle">Heute: letzter VWL-Termin — inkl. Prüfungstraining Block 1.1</p>
+    <table>
+      <tr><th>Zeit</th><th>Block</th></tr>
+      <tr><td>08:15–08:50</td><td>Rückblick · Konjunkturzyklus &amp; Indikatoren (kurz)</td></tr>
+      <tr><td>08:50–09:45</td><td>Geldpolitik der EZB (Ziel, Instrumente, Transmission)</td></tr>
+      <tr><td>09:55–10:30</td><td>Finanz- &amp; Wachstumspolitik</td></tr>
+      <tr><td>10:30–11:05</td><td>Tarif-, Arbeitsmarkt- &amp; Umweltpolitik</td></tr>
+      <tr><td>11:05–11:25</td><td>Nachfrage- vs. angebotsorientierte Wirtschaftspolitik</td></tr>
+      <tr><td>11:35–12:10</td><td>Außenwirtschaft &amp; EU (Binnenmarkt, Euro)</td></tr>
+      <tr><td>12:10–13:10</td><td>Übungsphase · <strong>Prüfungstraining Block 1.1</strong></td></tr>
+    </table>
+    <p class="muted">Zwei Pausen: 09:45–09:55 und 11:25–11:35. Ab 05.09. startet der BWL-Teil.</p>
+  </section>
+
+  <!-- 3. Lernziele -->
+  <section class="slide">
+    <h2>Was Sie heute lernen</h2>
+    <p class="subtitle">Am Ende dieser Lektion können Sie …</p>
+    <ul class="checklist">
+      <li>den <strong>Konjunkturzyklus</strong> skizzieren und <strong>Indikatoren</strong> zuordnen</li>
+      <li>Ziel und <strong>Instrumente der EZB</strong> erläutern und die <strong>Leitzins-Wirkungskette</strong> darstellen</li>
+      <li>die <strong>antizyklische Fiskalpolitik</strong> und <strong>automatische Stabilisatoren</strong> erklären</li>
+      <li>Grundzüge der <strong>Tarif-, Arbeitsmarkt- und Umweltpolitik</strong> wiedergeben</li>
+      <li><strong>Keynes vs. Angebotstheorie</strong> gegenüberstellen und anwenden</li>
+      <li><strong>Freihandel und Protektionismus</strong> mit Handelshemmnissen beurteilen</li>
+      <li>die <strong>4 Freiheiten</strong> des Binnenmarkts und die <strong>Konvergenzkriterien</strong> nennen</li>
+    </ul>
+  </section>
+
+  <!-- 4. Konjunkturzyklus -->
+  <section class="slide">
+    <h2>Der Konjunkturzyklus</h2>
+    <div class="figure" id="fig-konjunktur"></div>
+    <p class="caption">Die gesamtwirtschaftliche Aktivität schwankt wellenförmig um den Wachstumstrend — vier Phasen, dann beginnt der Zyklus von vorn.</p>
+    <div class="merksatz">
+      <span class="merksatz-label">📌 Abgrenzung</span>
+      <strong>Konjunkturschwankung</strong> = mehrjährig, wellenförmig. <strong>Saisonschwankung</strong> = regelmäßig, jahreszeitlich (Bau im Winter). Dazu: Zufallsschwankungen (Krisen, Katastrophen).
+    </div>
+  </section>
+
+  <!-- 5. Indikatoren -->
+  <section class="slide">
+    <h2>Konjunkturindikatoren: Wer läuft wann?</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Frühindikatoren</div>
+        <p style="font-size: 1rem;">kündigen an: <strong>Auftragseingänge</strong>, ifo-Geschäftsklimaindex, Baugenehmigungen, Aktienkurse</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Präsenzindikatoren</div>
+        <p style="font-size: 1rem;">zeigen die Lage: <strong>reales BIP</strong>, Kapazitätsauslastung, Industrieproduktion, offene Stellen, Kurzarbeit</p>
+      </div>
+      <div class="card rose">
+        <div class="card-title">Spätindikatoren</div>
+        <p style="font-size: 1rem;">hinken nach: <strong>Arbeitslosenquote</strong>, Preisniveau, Insolvenzen, Löhne</p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="merksatz-label">🧠 Eselsbrücke</span>
+      <strong>F-P-S</strong>: Früh kündigt an, Präsenz zeigt an, Spät hinkt nach. Die Arbeitslosenquote ist ein <strong>Spät</strong>indikator!
+    </div>
+  </section>
+
+  <!-- 6. EZB Ziel -->
+  <section class="slide">
+    <h2>Geldpolitik: Die EZB und ihr Ziel</h2>
+    <ul class="checklist">
+      <li>Seit <strong>1999</strong> steuert die <strong>EZB</strong> die Geldmenge in der Eurozone</li>
+      <li>Vorrangiges Ziel (Vertrag von Maastricht): <strong>Preisniveaustabilität</strong></li>
+      <li>Erreicht, wenn der <strong>HVPI</strong>-Anstieg <strong>unter, aber nahe 2 %</strong> liegt — schließt Inflation <em>und</em> Deflation aus</li>
+      <li><strong>Zwei-Säulen-Strategie</strong>: Preisentwicklung + Geldmengenentwicklung im Blick</li>
+      <li>Banken brauchen Zentralbankgeld (<strong>Refinanzierung</strong>) — hier setzen die Instrumente an</li>
+    </ul>
+    <div class="merksatz">
+      <span class="merksatz-label">📌 Merke</span>
+      Zinsen sinken → Kreditnachfrage steigt → Geldmenge steigt. Zinsen steigen → Kreditnachfrage sinkt → Geldmenge sinkt.
+    </div>
+  </section>
+
+  <!-- 7. Instrumente -->
+  <section class="slide">
+    <h2>Die 3 Instrumente der EZB</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">1. Offenmarktgeschäfte</div>
+        <p style="font-size: 0.95rem;"><strong>Haupttender</strong> (wöchentlich, 1 Woche — wichtigster Leitzins!), Basistender (3 Monate), Feinsteuerung, strukturelle Operationen. Abwicklung im Tenderverfahren (Mengen-/Zinstender).</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">2. Ständige Fazilitäten</div>
+        <p style="font-size: 0.95rem;"><strong>Spitzenrefinanzierung</strong> = Übernachtkredit (Obergrenze) · <strong>Einlagefazilität</strong> = Übernachtanlage (Untergrenze) → zusammen der <strong>Zinskorridor</strong></p>
+      </div>
+      <div class="card rose">
+        <div class="card-title">3. Mindestreserve</div>
+        <p style="font-size: 0.95rem;"><strong>Pflichtguthaben</strong> der Banken bei der EZB. Satz rauf = Liquidität runter (restriktiv), Satz runter = expansiv.</p>
+      </div>
+    </div>
+    <p class="muted">Prüfungsklassiker: die drei Leitzinsen = Hauptrefinanzierungssatz + Spitzenrefinanzierungs- und Einlagesatz.</p>
+  </section>
+
+  <!-- 8. Transmission -->
+  <section class="slide">
+    <h2>Was passiert bei einer Zinserhöhung?</h2>
+    <div class="figure" id="fig-transmission"></div>
+    <p class="caption">Die Transmissionskette der restriktiven Geldpolitik: von der Leitzinserhöhung bis zur Inflationsdämpfung (vgl. Abb. 3.9 im Textband).</p>
+  </section>
+
+  <!-- 9. Expansiv vs. restriktiv -->
+  <section class="slide">
+    <h2>Expansiv oder restriktiv?</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Expansive Geldpolitik („billiges Geld“)</div>
+        <p style="font-size: 1rem;">Leitzinsen ↓, Liquidität ↑ → Kredite billiger → Investitionen &amp; Konsum ↑ → BIP ↑, Arbeitslosigkeit ↓<br><strong>Einsatz: Rezession, Deflation</strong></p>
+      </div>
+      <div class="card rose">
+        <div class="card-title">Restriktive Geldpolitik</div>
+        <p style="font-size: 1rem;">Leitzinsen ↑, Liquidität ↓ → Kredite teurer → Nachfrage ↓ → Preisauftrieb ↓<br><strong>Einsatz: Inflation, Überhitzung</strong></p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="merksatz-label">🧠 Eselsbrücke</span>
+      „Zins runter — Wirtschaft munter. Zins rauf — Preisbremse drauf.“
+    </div>
+  </section>
+
+  <!-- 10. Grenzen -->
+  <section class="slide">
+    <h2>Grenzen der Geldpolitik</h2>
+    <ul class="checklist">
+      <li><strong>Internationale Finanzströme</strong> können Inflation erzeugen</li>
+      <li><strong>Hohe Lohnabschlüsse</strong> über dem Produktivitätsfortschritt wirken preistreibend</li>
+      <li><strong>Zinsweitergabe unklar</strong>: Leitzinsen treffen zunächst nur die Banken</li>
+      <li>Bei <strong>Pessimismus</strong> helfen selbst Nullzinsen nicht (Investitionszurückhaltung)</li>
+      <li>EZB braucht eine <strong>einvernehmliche Fiskalpolitik</strong> — schuldenfinanzierte Staatsausgaben konterkarieren die Inflationsbekämpfung</li>
+    </ul>
+    <p class="muted">Nebenwirkungen der Nullzinspolitik: keine Sparzinsen, „Strafzinsen“, Probleme für Sozialversicherungen und Fonds.</p>
+  </section>
+
+  <!-- 11. Finanzpolitik -->
+  <section class="slide">
+    <h2>Finanzpolitik: Aufgaben des Staates</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Einnahmen beschaffen</div>
+        <p style="font-size: 1rem;">Steuern, Beiträge, Gebühren — reichen sie nicht: Kredite → Staatsverschuldung steigt</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Umverteilen (Distribution)</div>
+        <p style="font-size: 1rem;">Progressive Einkommensteuer, Transferleistungen, Sozialversicherung</p>
+      </div>
+      <div class="card rose">
+        <div class="card-title">Stabilisieren</div>
+        <p style="font-size: 1rem;">Konjunktursteuerung im Sinne des <strong>Stabilitätsgesetzes (1967)</strong> — antizyklisch nach <strong>Keynes</strong></p>
+      </div>
+    </div>
+    <p>Grenzen der Verschuldung: <strong>Schuldenbremse</strong> (§ 109 GG, 2009) und europäischer Fiskalpakt (2013).</p>
+  </section>
+
+  <!-- 12. Antizyklische Fiskalpolitik -->
+  <section class="slide">
+    <h2>Antizyklische Fiskalpolitik</h2>
+    <table>
+      <tr><th></th><th>Boom → restriktiv</th><th>Rezession → expansiv</th></tr>
+      <tr><td><strong>Ausgaben</strong></td><td>senken (Investitionen, Subventionen, Transfers)</td><td>erhöhen (Konjunkturprogramme, öffentliche Aufträge)</td></tr>
+      <tr><td><strong>Einnahmen</strong></td><td>erhöhen (Steuern)</td><td>senken (Steuererleichterungen)</td></tr>
+      <tr><td><strong>Budget</strong></td><td>Überschüsse (Rücklagen)</td><td>Defizite — <strong>Deficit Spending</strong></td></tr>
+    </table>
+    <div class="merksatz">
+      <span class="merksatz-label">💡 Beispiel + Merke</span>
+      Konjunkturpakete I/II (2008/09): Infrastruktur, Abwrackprämie. <strong>Automatische Stabilisatoren</strong> wirken ohne Beschluss: progressive Einkommensteuer &amp; Arbeitslosengeld.
+    </div>
+  </section>
+
+  <!-- 13. Wachstumspolitik -->
+  <section class="slide">
+    <h2>Wachstumspolitik</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Quantitatives Wachstum</div>
+        <p style="font-size: 1rem;">Zunahme des realen BIP / Pro-Kopf-Einkommens — zunehmend kritisch gesehen (Umwelt, Wohlstand ≠ BIP)</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Qualitatives Wachstum</div>
+        <p style="font-size: 1rem;">+ Schonung der Umwelt, + Lebensqualität — Messkonzepte: OECD-Sozialindikatoren, Net Economic Welfare (NEW)</p>
+      </div>
+    </div>
+    <ul class="checklist">
+      <li>Förderung von <strong>Investitionen</strong> (Investitionsklima, Gewinnerwartung)</li>
+      <li>Förderung von <strong>Forschung &amp; Entwicklung</strong> (technischer Fortschritt)</li>
+      <li>Förderung von <strong>Bildung</strong> (qualifizierte Arbeitskräfte)</li>
+    </ul>
+  </section>
+
+  <!-- 14. Tarifpolitik -->
+  <section class="slide">
+    <h2>Tarifpolitik</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Tarifautonomie (Art. 9 III GG)</div>
+        <p style="font-size: 0.95rem;">Tarifpartner (Gewerkschaften ↔ Arbeitgeberverbände, auch einzelner AG = <strong>Haustarifvertrag</strong>) verhandeln <strong>frei von staatlichen Weisungen</strong>. Staat: nur Gesetze mit Mindestansprüchen (Mindestlohn, Urlaub …).</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Tarifvertragsarten</div>
+        <p style="font-size: 0.95rem;"><strong>Lohn-/Gehaltstarifvertrag</strong>: Entgelt, Eingruppierung, Zulagen · <strong>Manteltarifvertrag</strong>: Arbeitszeit, Pausen, Urlaub, Schichtarbeit</p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="merksatz-label">⚖️ Lohnpolitik</span>
+      Gewerkschaften: <strong>Kaufkrafttheorie</strong> (höhere Löhne → mehr Nachfrage). Arbeitgeber: <strong>produktivitätsorientierte Lohnpolitik</strong> (Löhne = Kostenfaktor, nicht über Produktivitätsfortschritt).
+    </div>
+  </section>
+
+  <!-- 15. Arbeitsmarktpolitik -->
+  <section class="slide">
+    <h2>Arbeitsmarktpolitik</h2>
+    <div class="cards">
+      <div class="card amber">
+        <div class="card-title">Passiv: Folgen mildern</div>
+        <p style="font-size: 1rem;">Lohnersatzleistungen: <strong>ALG I/II (Bürgergeld)</strong>, <strong>Kurzarbeitergeld</strong>, Insolvenzgeld</p>
+      </div>
+      <div class="card teal">
+        <div class="card-title">Aktiv: eingliedern</div>
+        <p style="font-size: 1rem;">Beratung &amp; <strong>Vermittlung</strong>, Qualifizierung, <strong>Aus-/Weiterbildung</strong>, Umschulung, Existenzgründungsförderung, Mobilitätshilfen</p>
+      </div>
+    </div>
+    <ul class="checklist">
+      <li>Träger: <strong>Bundesagentur für Arbeit</strong> (Agenturen, Jobcenter)</li>
+      <li>Grundsatz <strong>„Fördern und Fordern“</strong>: zumutbare Jobs annehmen, sonst Kürzungen</li>
+      <li>Kritik: geschönte Quoten, ineffiziente Maßnahmen, Leiharbeit/Scheinselbstständigkeit</li>
+    </ul>
+  </section>
+
+  <!-- 16. Umweltpolitik -->
+  <section class="slide">
+    <h2>Umweltpolitik: Prinzipien &amp; Instrumente</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Prinzipien</div>
+        <p style="font-size: 0.95rem;"><strong>Verursacherprinzip</strong> (Kosten internalisieren) · <strong>Gemeinlastprinzip</strong> (Staat zahlt) · <strong>Vorsorge-</strong>, <strong>Kooperations-</strong> &amp; <strong>Nachhaltigkeitsprinzip</strong></p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Nicht fiskalisch</div>
+        <p style="font-size: 0.95rem;">Aufklärung/Information · <strong>Auflagen</strong> (Ordnungsrecht): Grenzwerte, FCKW-Verbot, Umweltzonen</p>
+      </div>
+      <div class="card rose">
+        <div class="card-title">Fiskalisch</div>
+        <p style="font-size: 0.95rem;"><strong>Abgaben</strong> (Ökosteuer, Abwasserabgabe) · <strong>Zertifikate</strong> (EU-Emissionshandel: begrenzen &amp; handeln) · Subventionen (z. B. Wärmedämmung)</p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="merksatz-label">🧠 Eselsbrücke</span>
+      <strong>A-A-Z</strong>: Auflagen verbieten, Abgaben verteuern, Zertifikate begrenzen &amp; handeln.
+    </div>
+  </section>
+
+  <!-- 17. Keynes vs. Angebot -->
+  <section class="slide">
+    <h2>Nachfrage- vs. angebotsorientierte Politik</h2>
+    <table>
+      <tr><th></th><th>Nachfragepolitik (Keynes)</th><th>Angebotspolitik (Neoklassik)</th></tr>
+      <tr><td><strong>Vertreter</strong></td><td>J. M. Keynes (1883–1946), „Fiskalisten“</td><td>Milton Friedman (1912–2006), Monetarismus</td></tr>
+      <tr><td><strong>Ursache der Krise</strong></td><td>zu geringe Gesamtnachfrage</td><td>schlechte Angebotsbedingungen</td></tr>
+      <tr><td><strong>Ziel</strong></td><td>kurzfristig Symptome bekämpfen</td><td>mittel-/langfristig Ursachen beheben</td></tr>
+      <tr><td><strong>Rolle des Staates</strong></td><td><strong>aktiv</strong>: Ausgabenprogramme, Deficit Spending</td><td><strong>passiv</strong>: Rahmenbedingungen, Steuersenkung, Deregulierung</td></tr>
+      <tr><td><strong>Kritik</strong></td><td>Timelags, Crowding-out, Staatsschulden</td><td>Löhne auch Nachfragefaktor; Investitionsfähigkeit ≠ -bereitschaft</td></tr>
+    </table>
+  </section>
+
+  <!-- 18. Transferfall -->
+  <section class="slide">
+    <h2>Ihre Reihe: Rezessions-Debatte</h2>
+    <p class="subtitle">Transferaufgabe · ca. 10 Minuten · danach Besprechung</p>
+    <p>Deutschland in der Rezession (BIP −1,5 %, steigende Arbeitslosigkeit). Zwei Vorschläge im Bundestag:</p>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Partei A</div>
+        <p style="font-size: 1rem;">Kreditfinanziertes staatliches Investitionsprogramm + höhere Transferleistungen</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Partei B</div>
+        <p style="font-size: 1rem;">Steuersenkungen für Unternehmen, Bürokratieabbau, moderate Lohnabschlüsse</p>
+      </div>
+    </div>
+    <ol style="font-size: 1.1rem;">
+      <li>Ordnen Sie beide Positionen der jeweiligen Konzeption zu (mit Vertretern).</li>
+      <li>Erläutern Sie die Wirkungslogik und je zwei Kritikpunkte.</li>
+    </ol>
+  </section>
+
+  <!-- 19. Freihandel vs. Protektionismus -->
+  <section class="slide">
+    <h2>Außenwirtschaft: Freihandel oder Protektionismus?</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Freihandel</div>
+        <p style="font-size: 0.95rem;">Unbehinderter Güteraustausch (internationale Arbeitsteilung): große Auswahl, <strong>Spezialisierungsvorteile</strong>, neue Absatzmärkte, Innovationen durch Wettbewerb</p>
+      </div>
+      <div class="card rose">
+        <div class="card-title">Protektionismus</div>
+        <p style="font-size: 0.95rem;">Staat schützt die heimische Wirtschaft: gegen Billigimporte, Monostrukturen, Auslandsabhängigkeit — Instrumente: Handelshemmnisse</p>
+      </div>
+    </div>
+    <table>
+      <tr><th>Tarifär (über den Preis)</th><th>Nichttarifär (Menge/Verwaltung)</th></tr>
+      <tr><td><strong>Importzölle</strong>, Steuertarife, <strong>Exportsubventionen</strong></td><td><strong>Importkontingente</strong>, Ein-/Ausfuhrverbote, <strong>Embargos</strong>, Normen &amp; Genehmigungen</td></tr>
+    </table>
+    <p class="muted">Rechtsrahmen: AWG/AWV, Auskunft: BAFA. Die EU verhandelt als WTO-Mitglied Freihandelsabkommen (CETA, JEFTA).</p>
+  </section>
+
+  <!-- 20. Binnenmarkt -->
+  <section class="slide">
+    <h2>Der Europäische Binnenmarkt: 4 Freiheiten</h2>
+    <p class="subtitle">Seit 1993: ein Wirtschaftsraum ohne innere Grenzen</p>
+    <table>
+      <tr><th>Freiheit</th><th>Kennzeichen</th></tr>
+      <tr><td><strong>Personenverkehr</strong></td><td>Schengen, Niederlassungsfreiheit, freie Arbeitsplatzwahl, Anerkennung von Abschlüssen</td></tr>
+      <tr><td><strong>Warenverkehr</strong></td><td>keine Zölle/Kontingente, harmonisierte Steuern und Normen</td></tr>
+      <tr><td><strong>Dienstleistungsverkehr</strong></td><td>EU-weites Anbieten und Niederlassen, liberalisierte Banken/Versicherungen</td></tr>
+      <tr><td><strong>Geld- &amp; Kapitalverkehr</strong></td><td>offene Finanzmärkte, SEPA, freier Kapitalfluss</td></tr>
+    </table>
+    <div class="merksatz">
+      <span class="merksatz-label">📌 Chancen &amp; Risiken</span>
+      Größerer Markt, sinkende Stückkosten, mehr Wettbewerb und Auswahl — aber: Produktionsverlagerung ins günstigere EU-Ausland möglich.
+    </div>
+  </section>
+
+  <!-- 21. EWWU -->
+  <section class="slide">
+    <h2>EWWU: Wer darf den Euro einführen?</h2>
+    <p class="subtitle">Die 5 Konvergenzkriterien (Maastricht)</p>
+    <ol class="numlist">
+      <li><strong>Inflationsrate</strong>: max. 1,5 %-Punkte über den drei preisstabilsten EU-Staaten</li>
+      <li><strong>Neuverschuldung</strong>: max. <strong>3 % des BIP</strong></li>
+      <li><strong>Gesamtschuldenstand</strong>: max. <strong>60 % des BIP</strong></li>
+      <li><strong>Langfristzins</strong>: max. 2 %-Punkte über den drei preisstabilsten Staaten</li>
+      <li><strong>Wechselkurs</strong>: 2 Jahre stabil im WKM II (keine Abwertung)</li>
+    </ol>
+    <p class="muted">Nach der Staatsschuldenkrise: Reform des Stabilitäts- und Wachstumspakts (2011) — 3 % und 60 % blieben, Sanktionen greifen früher.</p>
+  </section>
+
+  <!-- 22. Euro Vor/Nachteile -->
+  <section class="slide">
+    <h2>Der Euro: Vorteile und Nachteile</h2>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Vorteile</div>
+        <p style="font-size: 1rem;">Keine <strong>Wechselkursrisiken</strong> und Umtauschkosten · <strong>Preistransparenz</strong> · fördert Handel, Investitionen, Reisen · starke Weltwährung</p>
+      </div>
+      <div class="card rose">
+        <div class="card-title">Nachteile</div>
+        <p style="font-size: 1rem;">Keine eigene <strong>Geld-/Wechselkurspolitik</strong> (keine Abwertung möglich) · <strong>ein Leitzins</strong> für unterschiedliche Volkswirtschaften · Haftungs-/Transferrisiken in Schuldenkrisen</p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="merksatz-label">📌 Prüfungsklassiker</span>
+      IHK-Frage: „Beschreiben Sie die vier Grundfreiheiten je anhand eines Beispiels“ oder „Vor- und Nachteile der gemeinsamen Währung“ — beides heute geübt!
+    </div>
+  </section>
+
+  <!-- 23. Zusammenfassung Block 1.1 -->
+  <section class="slide">
+    <h2>Block 1.1 komplett: das Wichtigste in 8 Sätzen</h2>
+    <ol class="numlist">
+      <li><strong>L1:</strong> Knappheit zwingt zum Wirtschaften; Preise entstehen im Gleichgewicht von Angebot und Nachfrage (Marktformen, Elastizität, SAAS).</li>
+      <li><strong>L2:</strong> Wettbewerb braucht Schutz (GWB, Kartellverbot); Staatseingriffe (Höchst-/Mindestpreise) erzeugen Überschüsse und Defizite.</li>
+      <li><strong>L2:</strong> Die VGR misst die Wirtschaftsleistung (BIP); magisches Viereck/Sechseck = Ziele der Stabilitätspolitik.</li>
+      <li><strong>L3:</strong> Die Konjunktur verläuft in vier Phasen — Indikatoren: früh, präsent, spät.</li>
+      <li><strong>L3:</strong> Die EZB sichert Preisstabilität über Offenmarktgeschäfte, Fazilitäten und Mindestreserve (Leitzins-Transmission!).</li>
+      <li><strong>L3:</strong> Der Staat steuert antizyklisch (StabG, Deficit Spending, automatische Stabilisatoren).</li>
+      <li><strong>L3:</strong> Keynes setzt auf Nachfrage und aktiven Staat, die Angebotstheorie auf Rahmenbedingungen und passiven Staat.</li>
+      <li><strong>L3:</strong> Die EU bietet Binnenmarkt (4 Freiheiten) und Währungsunion (Konvergenzkriterien, Euro).</li>
+    </ol>
+  </section>
+
+  <!-- 24. Hausaufgabe & Ausblick BWL -->
+  <section class="slide">
+    <h2>Hausaufgabe &amp; Ausblick: Es geht weiter mit BWL</h2>
+    <p class="subtitle">Bis Samstag, 05.09.2026, 08:15 Uhr</p>
+    <ul class="checklist">
+      <li><strong>Quiz</strong> dieser Lektion vollständig bearbeiten (40 Fragen)</li>
+      <li><strong>Aufgabenheft</strong> Lektion 3 lösen — besonders Aufgabe 3 (EZB) und 8 (Konzeptionen)</li>
+      <li><strong>Karteikarten der Lektionen 1–3</strong> wiederholen (Prüfungsstoff Block 1.1!)</li>
+      <li>Optional: Lernspiele (Wordle, Hängemann, Memory) zur Begriffssicherung</li>
+    </ul>
+    <div class="merksatz">
+      <span class="merksatz-label">🔭 Ab 05.09.: BWL-Teil (Block 1.2)</span>
+      Betriebliche Funktionen I: Zielsysteme, Grundfunktionen des Betriebs, Beschaffung, Produktion, Absatz/Marketing. Danach: Betriebliche Funktionen II, Existenzgründung &amp; Rechtsformen, Unternehmenszusammenschlüsse. Der VWL-Stoff bleibt prüfungsrelevant — dranbleiben!
+    </div>
+  </section>
+
+
+</div>
+
+<div class="slide-num">© Can Siebert · 2026 · <span id="slideCount">1 / 26</span></div>
+<nav class="nav">
+  <button onclick="prev()" title="Zurück (←)">←</button>
+  <span class="nav-counter"><span id="slideNum">1</span></span>
+  <button onclick="next()" title="Weiter (→)">→</button>
+</nav>
+
+<!-- Rough.js für handgezeichnete Diagramme -->
+<script src="https://cdn.jsdelivr.net/npm/roughjs@4.6.6/bundled/rough.min.js"></script>
+<script>
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+function show(i) {
+  slides.forEach(s => s.classList.remove('active'));
+  current = Math.max(0, Math.min(i, slides.length - 1));
+  slides[current].classList.add('active');
+  document.getElementById('slideNum').textContent = current + 1;
+  document.getElementById('slideCount').textContent = `${current + 1} / ${slides.length}`;
+}
+function next() { show(current + 1); }
+function prev() { show(current - 1); }
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { next(); e.preventDefault(); }
+  if (e.key === 'ArrowLeft') prev();
+  if (e.key === 'Home') show(0);
+  if (e.key === 'End') show(slides.length - 1);
+});
+
+// Rough.js-Skizzen
+function makeRough(svgEl, fn) {
+  const rc = rough.svg(svgEl);
+  fn(rc, svgEl);
+}
+
+function box(rc, svg, x, y, w, h, fill, stroke) {
+  const node = rc.rectangle(x, y, w, h, {
+    roughness: 1.6, bowing: 1, fill: fill, fillStyle: 'solid', stroke: stroke, strokeWidth: 1.6
+  });
+  svg.appendChild(node);
+}
+function arrow(rc, svg, x1, y1, x2, y2, color) {
+  svg.appendChild(rc.line(x1, y1, x2, y2, { roughness: 1.4, stroke: color, strokeWidth: 1.8 }));
+  // Pfeilspitze
+  const ang = Math.atan2(y2 - y1, x2 - x1);
+  const ah = 10;
+  svg.appendChild(rc.line(x2, y2, x2 - ah * Math.cos(ang - Math.PI / 7), y2 - ah * Math.sin(ang - Math.PI / 7), { roughness: 1.2, stroke: color, strokeWidth: 1.8 }));
+  svg.appendChild(rc.line(x2, y2, x2 - ah * Math.cos(ang + Math.PI / 7), y2 - ah * Math.sin(ang + Math.PI / 7), { roughness: 1.2, stroke: color, strokeWidth: 1.8 }));
+}
+function text(svg, x, y, str, opts = {}) {
+  const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  t.setAttribute('x', x); t.setAttribute('y', y);
+  t.setAttribute('text-anchor', opts.anchor || 'middle');
+  t.setAttribute('font-family', 'Inter, sans-serif');
+  t.setAttribute('font-size', opts.size || 15);
+  t.setAttribute('fill', opts.color || '#0F172A');
+  t.setAttribute('font-weight', opts.bold ? 700 : 500);
+  t.textContent = str;
+  svg.appendChild(t);
+  return t;
+}
+
+window.addEventListener('load', () => {
+  // FIG: Konjunkturzyklus — Wellenlinie mit vier Phasen um den Wachstumstrend
+  const c1 = document.getElementById('fig-konjunktur');
+  if (c1) {
+    const svg1 = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg1.setAttribute('viewBox', '0 0 900 400');
+    svg1.setAttribute('width', '900'); svg1.setAttribute('height', '400');
+    c1.appendChild(svg1);
+    makeRough(svg1, (rc, svg) => {
+      const ox = 70, oy = 340, w = 780, h = 280;
+      // Achsen
+      arrow(rc, svg, ox, oy, ox, oy - h, '#0F172A');
+      arrow(rc, svg, ox, oy, ox + w, oy, '#0F172A');
+      text(svg, ox + 55, oy - h + 8, 'BIP / Aktivität', { size: 15, bold: true });
+      text(svg, ox + w - 40, oy + 28, 'Zeit', { size: 15, bold: true });
+      // Wachstumstrend (gestrichelte Gerade, leicht steigend)
+      svg.appendChild(rc.line(ox, oy - 90, ox + w - 30, oy - 190, {
+        roughness: 0.8, stroke: '#94A3B8', strokeWidth: 1.6, strokeLineDash: [8, 8]
+      }));
+      text(svg, ox + w - 90, oy - 205, 'Trend', { size: 14, color: '#94A3B8', bold: true });
+      // Konjunkturwelle um den Trend (Pfad mit zwei vollen Wellen)
+      const wave = 'M ' + ox + ' ' + (oy - 60) +
+        ' C ' + (ox + 90) + ' ' + (oy - 60) + ', ' + (ox + 120) + ' ' + (oy - 220) + ', ' + (ox + 195) + ' ' + (oy - 225) +
+        ' C ' + (ox + 270) + ' ' + (oy - 230) + ', ' + (ox + 300) + ' ' + (oy - 70) + ', ' + (ox + 375) + ' ' + (oy - 75) +
+        ' C ' + (ox + 450) + ' ' + (oy - 80) + ', ' + (ox + 480) + ' ' + (oy - 260) + ', ' + (ox + 555) + ' ' + (oy - 265) +
+        ' C ' + (ox + 630) + ' ' + (oy - 270) + ', ' + (ox + 660) + ' ' + (oy - 110) + ', ' + (ox + 735) + ' ' + (oy - 120);
+      svg.appendChild(rc.path(wave, { roughness: 1.3, stroke: '#0F766E', strokeWidth: 2.6 }));
+      // Phasenbeschriftung
+      text(svg, ox + 110, oy - 150, 'Aufschwung', { size: 15, bold: true, color: '#10B981' });
+      text(svg, ox + 110, oy - 130, '(Expansion)', { size: 12, color: '#475569' });
+      text(svg, ox + 195, oy - 255, 'Boom', { size: 15, bold: true, color: '#F59E0B' });
+      text(svg, ox + 195, oy - 238, '(Hochkonjunktur)', { size: 12, color: '#475569' });
+      text(svg, ox + 300, oy - 160, 'Abschwung', { size: 15, bold: true, color: '#F97316' });
+      text(svg, ox + 300, oy - 142, '(Rezession)', { size: 12, color: '#475569' });
+      text(svg, ox + 375, oy - 40, 'Tief', { size: 15, bold: true, color: '#EF4444' });
+      text(svg, ox + 375, oy - 22, '(Depression)', { size: 12, color: '#475569' });
+      text(svg, ox + 480, oy - 200, 'neuer Aufschwung', { size: 13, bold: true, color: '#10B981' });
+      // Markierungspunkte an Hoch- und Tiefpunkt
+      svg.appendChild(rc.circle(ox + 195, oy - 225, 12, { roughness: 1, stroke: '#F59E0B', strokeWidth: 2, fill: '#FEF3C7', fillStyle: 'solid' }));
+      svg.appendChild(rc.circle(ox + 375, oy - 75, 12, { roughness: 1, stroke: '#EF4444', strokeWidth: 2, fill: '#FFE4E6', fillStyle: 'solid' }));
+      text(svg, ox + 390, oy - h + 30, 'Ein Zyklus = Aufschwung → Boom → Rezession → Depression', { size: 14, color: '#475569' });
+    });
+  }
+
+  // FIG: EZB-Transmissionskette — Leitzinserhöhung bis Inflationsdämpfung
+  const c2 = document.getElementById('fig-transmission');
+  if (c2) {
+    const svg2 = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg2.setAttribute('viewBox', '0 0 940 420');
+    svg2.setAttribute('width', '940'); svg2.setAttribute('height', '420');
+    c2.appendChild(svg2);
+    makeRough(svg2, (rc, svg) => {
+      // Obere Reihe: 3 Schritte
+      const reihe1 = [
+        { t: 'EZB erhöht', s: 'die Leitzinsen', c: '#FFE4E6', st: '#EF4444' },
+        { t: 'Refinanzierung', s: 'der Banken wird teurer', c: '#FEF3C7', st: '#F59E0B' },
+        { t: 'Kreditzinsen', s: 'steigen, Sparneigung steigt', c: '#FEF3C7', st: '#F59E0B' }
+      ];
+      let x = 30;
+      reihe1.forEach((f, i) => {
+        box(rc, svg, x, 40, 250, 90, f.c, f.st);
+        text(svg, x + 125, 78, f.t, { bold: true, size: 18, color: f.st });
+        text(svg, x + 125, 104, f.s, { size: 13, color: '#475569' });
+        if (i < reihe1.length - 1) arrow(rc, svg, x + 250, 85, x + 305, 85, '#0F766E');
+        x += 305;
+      });
+      // Verbindung nach unten
+      arrow(rc, svg, 795, 130, 795, 175, '#0F766E');
+      // Untere Reihe: 3 Schritte (von rechts nach links gelesen? Nein — links nach rechts, Pfeil zurück)
+      const reihe2 = [
+        { t: 'Kreditnachfrage sinkt', s: 'Unternehmen und Haushalte', c: '#ECFEFF', st: '#0F766E' },
+        { t: 'Investitionen und', s: 'Konsum gehen zurück', c: '#ECFEFF', st: '#0F766E' },
+        { t: 'Gesamtnachfrage sinkt', s: 'Konjunktur wird gedämpft', c: '#ECFEFF', st: '#0F766E' }
+      ];
+      x = 640;
+      reihe2.forEach((f, i) => {
+        box(rc, svg, x, 175, 250, 90, f.c, f.st);
+        text(svg, x + 125, 212, f.t, { bold: true, size: 17, color: f.st });
+        text(svg, x + 125, 238, f.s, { size: 13, color: '#475569' });
+        if (i < reihe2.length - 1) arrow(rc, svg, x, 220, x - 55, 220, '#0F766E');
+        x -= 305;
+      });
+      // Verbindung zum Ziel
+      arrow(rc, svg, 155, 265, 155, 310, '#0F766E');
+      // Zielbox
+      box(rc, svg, 30, 310, 860, 80, '#ECFDF5', '#10B981');
+      text(svg, 460, 344, 'Ziel erreicht: Preisanstieg wird verringert — Inflation bekämpft', { bold: true, size: 19, color: '#10B981' });
+      text(svg, 460, 372, 'Nebenwirkung: Rückgang von Wachstum und Beschäftigung möglich (restriktive Geldpolitik)', { size: 13, color: '#475569' });
+    });
+  }
+});
+
+</script>
+
+</body>
+</html>

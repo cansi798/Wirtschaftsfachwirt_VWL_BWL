@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Quiz Lektion 2 — Wettbewerbspolitik, Staatseingriffe & Volkswirtschaftliche Gesamtrechnung</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bfw-primary:#0EA5A4; --bfw-primary-dark:#0F766E;
+  --bfw-accent:#F59E0B; --bfw-warn:#F97316;
+  --bfw-success:#10B981; --bfw-danger:#EF4444;
+  --bfw-ink:#0F172A; --bfw-ink-soft:#475569;
+  --bfw-bg:#FAFAFA; --bfw-bg-soft:#F8FAFC;
+  --bfw-bg-teal:#ECFEFF; --bfw-bg-amber:#FEF3C7;
+  --bfw-bg-rose:#FFE4E6; --bfw-bg-green:#D1FAE5;
+  --bfw-bg-red:#FEE2E2; --bfw-border:#E2E8F0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: linear-gradient(180deg, var(--bfw-bg-teal) 0%, var(--bfw-bg) 240px);
+  color: var(--bfw-ink);
+  min-height: 100vh;
+  padding: 2rem 1rem 6rem;
+}
+.container { max-width: 880px; margin: 0 auto; }
+
+header { text-align: center; margin-bottom: 2.5rem; }
+.tag-pill {
+  display: inline-block; padding: 0.4rem 1rem;
+  background: var(--bfw-primary); color: white;
+  border-radius: 999px; font-weight: 600;
+  font-size: 0.85rem; letter-spacing: 0.05em;
+  text-transform: uppercase; margin-bottom: 1rem;
+}
+h1 {
+  font-size: 2.4rem; color: var(--bfw-primary-dark);
+  margin-bottom: 0.5rem; letter-spacing: -0.01em;
+}
+.subtitle { color: var(--bfw-ink-soft); font-size: 1.15rem; }
+
+.controls {
+  background: white; border: 1px solid var(--bfw-border);
+  border-radius: 14px; padding: 1.2rem 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex; flex-wrap: wrap; gap: 1rem;
+  align-items: center; justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+}
+.progress {
+  flex: 1; min-width: 200px;
+  background: var(--bfw-bg-teal); height: 10px;
+  border-radius: 999px; overflow: hidden;
+}
+.progress > div {
+  height: 100%; background: var(--bfw-primary);
+  border-radius: 999px; transition: width 0.3s;
+}
+.score {
+  font-weight: 700; color: var(--bfw-primary-dark);
+  font-size: 1.05rem;
+}
+
+.btn {
+  border: none; padding: 0.55rem 1.1rem;
+  border-radius: 8px; cursor: pointer;
+  font-family: inherit; font-size: 0.95rem; font-weight: 600;
+  transition: all 0.15s;
+}
+.btn-primary { background: var(--bfw-primary); color: white; }
+.btn-primary:hover { background: var(--bfw-primary-dark); }
+.btn-ghost {
+  background: transparent; color: var(--bfw-primary-dark);
+  border: 1.5px solid var(--bfw-primary);
+}
+.btn-ghost:hover { background: var(--bfw-bg-teal); }
+
+.question {
+  background: white; border: 1px solid var(--bfw-border);
+  border-radius: 14px; padding: 1.6rem 1.8rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+}
+.question.locked { background: var(--bfw-bg-soft); }
+.q-num {
+  display: inline-block;
+  background: var(--bfw-bg-teal); color: var(--bfw-primary-dark);
+  font-weight: 700; font-size: 0.85rem;
+  padding: 0.25rem 0.7rem; border-radius: 999px;
+  margin-bottom: 0.7rem;
+}
+.q-topic {
+  display: inline-block; margin-left: 0.5rem;
+  color: var(--bfw-ink-soft); font-size: 0.85rem;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.q-text { font-size: 1.15rem; line-height: 1.55; margin-bottom: 1rem; font-weight: 500; }
+
+.options { display: flex; flex-direction: column; gap: 0.6rem; }
+.option {
+  display: flex; align-items: flex-start; gap: 0.8rem;
+  padding: 0.8rem 1rem;
+  background: var(--bfw-bg-soft);
+  border: 1.5px solid var(--bfw-border);
+  border-radius: 10px;
+  cursor: pointer; font-size: 1.02rem;
+  transition: all 0.15s;
+}
+.option:hover:not(.locked) { background: var(--bfw-bg-teal); border-color: var(--bfw-primary); }
+.option .marker {
+  flex-shrink: 0; width: 28px; height: 28px;
+  background: white; border: 1.5px solid var(--bfw-border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: var(--bfw-ink-soft);
+  font-size: 0.9rem;
+}
+.option.correct { background: var(--bfw-bg-green); border-color: var(--bfw-success); }
+.option.correct .marker { background: var(--bfw-success); color: white; border-color: var(--bfw-success); }
+.option.incorrect { background: var(--bfw-bg-red); border-color: var(--bfw-danger); }
+.option.incorrect .marker { background: var(--bfw-danger); color: white; border-color: var(--bfw-danger); }
+.option.locked { cursor: default; }
+
+.explanation {
+  margin-top: 0.9rem; padding: 0.9rem 1.1rem;
+  background: var(--bfw-bg-amber);
+  border-left: 4px solid var(--bfw-accent);
+  border-radius: 6px; font-size: 0.98rem; line-height: 1.5;
+}
+.explanation::before {
+  content: "Erklärung:"; font-weight: 700;
+  color: var(--bfw-warn); margin-right: 0.5rem;
+}
+
+.summary {
+  background: white; border-radius: 14px;
+  padding: 2rem; text-align: center;
+  border: 2px solid var(--bfw-primary);
+  box-shadow: 0 8px 24px rgba(14,165,164,0.12);
+  margin-top: 2rem;
+}
+.summary h2 { color: var(--bfw-primary-dark); margin-bottom: 0.6rem; font-size: 1.8rem; }
+.summary .big-score {
+  font-size: 3.5rem; font-weight: 800;
+  color: var(--bfw-primary); line-height: 1;
+  margin: 1rem 0;
+}
+.summary .grade { font-size: 1.2rem; color: var(--bfw-ink-soft); }
+
+footer {
+  text-align: center; color: var(--bfw-ink-soft);
+  font-size: 0.85rem; margin-top: 3rem;
+}
+
+@media print {
+  .controls, .btn { display: none; }
+  .option.locked { background: white; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+  <span class="tag-pill">Lektion 2 · 40 Fragen</span>
+  <h1>Quiz: Wettbewerbspolitik, Staatseingriffe & Volkswirtschaftliche Gesamtrechnung</h1>
+  <p class="subtitle">Multiple-Choice zur Selbstkontrolle und Wiederholung — IHK-Format</p>
+  <p class="subtitle" style="font-size: 0.95rem; margin-top: 0.4rem;">Alle 40 Fragen basieren auf Handout und Präsentation der Lektion. Antwortpositionen werden bei jedem Quiz-Start zufällig gemischt.</p>
+</header>
+
+<div class="controls">
+  <div class="progress"><div id="progressBar" style="width: 0%"></div></div>
+  <div class="score">Beantwortet: <span id="answered">0</span> / <span id="total">60</span> · Richtig: <span id="correct">0</span></div>
+</div>
+
+<div class="controls" style="gap: 0.6rem;">
+  <div style="display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap;">
+    <span style="color: var(--bfw-ink-soft); font-size: 0.9rem;">Ansicht:</span>
+    <button class="btn btn-ghost mode-btn" id="modeList" onclick="setView('list')">Alle untereinander</button>
+    <button class="btn btn-ghost mode-btn" id="modeSlide" onclick="setView('slide')">Eine pro Slide</button>
+  </div>
+  <div style="display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap;">
+    <span style="color: var(--bfw-ink-soft); font-size: 0.9rem;">Auswertung:</span>
+    <button class="btn btn-ghost mode-btn" id="modeImmediate" onclick="setEval('immediate')">Sofort nach jeder Frage</button>
+    <button class="btn btn-ghost mode-btn" id="modeEnd" onclick="setEval('end')">Erst am Ende</button>
+  </div>
+  <button class="btn btn-primary" onclick="finishNow()">Quiz auswerten</button>
+  <button class="btn btn-ghost" onclick="resetQuiz()">Zurücksetzen</button>
+</div>
+
+<div id="quiz"></div>
+
+<div id="slideNav" style="display:none; text-align:center; margin: 1.5rem 0;">
+  <button class="btn btn-ghost" onclick="prevSlide()">← Zurück</button>
+  <span style="margin: 0 1rem; color: var(--bfw-ink-soft); font-weight: 600;"><span id="slidePos">1</span> / <span id="slideTotal">60</span></span>
+  <button class="btn btn-primary" onclick="nextSlide()">Weiter →</button>
+</div>
+
+<div id="summary" style="display:none;"></div>
+
+<footer>© Can Siebert · 2026 · Wirtschaftsfachwirt — VWL — Volkswirtschaftliche Grundlagen</footer>
+
+</div>
+
+<script>
+const QUESTIONS = [{"topic":"Wettbewerb","q":"Was versteht man unter Wettbewerb?","options":["Die staatliche Kontrolle aller Marktpreise","Die Rivalität der Marktteilnehmer unter- und gegeneinander zur Durchsetzung ihrer Ziele","Die Zusammenarbeit von Unternehmen zur Gewinnsteigerung","Den Vergleich von Produkten durch Testinstitute"],"a":1,"e":"Wettbewerb ist die Rivalität der Marktteilnehmer, um die eigenen Ziele zulasten der Konkurrenten durchzusetzen."},{"topic":"Wettbewerb","q":"Welche Funktion des Wettbewerbs sichert die Freiheit der Unternehmertätigkeit und der Konsumwahl?","options":["Kontrollfunktion","Freiheitsfunktion","Auslesefunktion","Verteilungsfunktion"],"a":1,"e":"Die Freiheitsfunktion: Jeder kann Fähigkeiten und Mittel für frei gewählte Zwecke einsetzen — mehr Handlungsalternativen für alle."},{"topic":"Wettbewerb","q":"Anbieter und Nachfrager messen sich gegenseitig an der Leistung der Konkurrenz — die Macht des Einzelnen wird begrenzt. Welche Wettbewerbsfunktion ist das?","options":["Innovationsfunktion","Steuerungsfunktion","Kontrollfunktion","Freiheitsfunktion"],"a":2,"e":"Die Kontrollfunktion: gegenseitige Kontrolle der Marktteilnehmer begrenzt wirtschaftliche Macht."},{"topic":"Wettbewerbspolitik","q":"Welche beiden Gesetze sind die Grundlagen der deutschen Wettbewerbspolitik?","options":["BGB und HGB","UWG und GWB","StabG und AEUV","GWB und StGB"],"a":1,"e":"Das UWG sichert fairen Wettbewerb und faire Marktpraktiken, das GWB (Kartellgesetz) den Bestand des Wettbewerbs."},{"topic":"Wettbewerbspolitik","q":"Welche Behörde wacht in Deutschland über die Einhaltung des GWB?","options":["Die Bundesbank","Das Bundeskartellamt","Die BaFin","Das Statistische Bundesamt"],"a":1,"e":"Das Bundeskartellamt überwacht die Einhaltung des Gesetzes gegen Wettbewerbsbeschränkungen."},{"topic":"Wettbewerbspolitik","q":"Welches sind die drei Säulen des GWB?","options":["Preisaufsicht, Gewerbeaufsicht, Fusionskontrolle","Kartellverbot, Missbrauchsaufsicht, Fusionskontrolle","Kartellverbot, Subventionskontrolle, Preisbindung","Missbrauchsaufsicht, Verbraucherschutz, Zollkontrolle"],"a":1,"e":"Ka-Mi-Fu: Kartellverbot (§ 1), Missbrauchsaufsicht (§§ 19 ff.), Fusionskontrolle (§ 35 GWB)."},{"topic":"Kartellverbot","q":"Was ist ein Kartell?","options":["Eine Fusion mehrerer Unternehmen zu einem Konzern","Eine vertragliche Kooperation rechtlich selbstständiger Unternehmen zur Verbesserung ihrer Wettbewerbsposition","Eine staatliche Preisfestsetzung","Ein Zusammenschluss von Verbrauchern"],"a":1,"e":"Die Beteiligten bleiben rechtlich selbstständig, schränken aber ihre wirtschaftliche Selbstständigkeit teilweise ein."},{"topic":"Kartellverbot","q":"Mehrere Anbieter sprechen eine einheitliche Preispolitik ab. Welche Kartellart liegt vor?","options":["Gebietskartell","Quotenkartell","Preiskartell","Submissionskartell"],"a":2,"e":"Preiskartell: Absprache einer einheitlichen Preispolitik — nach § 1 GWB verboten."},{"topic":"Kartellverbot","q":"Bauunternehmen legen vor einer öffentlichen Ausschreibung fest, wer den Zuschlag erhalten soll. Das ist ein …","options":["Submissionskartell","Preiskartell","Gebietskartell","Mittelstandskartell"],"a":0,"e":"Submissionskartell: Vereinbarung von Preisuntergrenzen bzw. Festlegung, welches Mitglied bei Ausschreibungen zum Zug kommt."},{"topic":"Kartellverbot","q":"Unternehmen verknappen das Angebot künstlich durch abgesprochene Produktionsquoten. Welche Kartellart ist das?","options":["Gebietskartell","Quotenkartell","Preiskartell","Konditionenkartell"],"a":1,"e":"Quotenkartell: künstliche Verknappung des Angebots durch Absprache von Produktionsquoten."},{"topic":"Kartellverbot","q":"Was regelt § 1 GWB?","options":["Die Fusionskontrolle","Das Verbot wettbewerbsbeschränkender Vereinbarungen und abgestimmter Verhaltensweisen","Die Ministererlaubnis","Die Missbrauchsaufsicht"],"a":1,"e":"Verboten sind Vereinbarungen, Beschlüsse und abgestimmte Verhaltensweisen, die den Wettbewerb verhindern, einschränken oder verfälschen. EU-Pendant: Art. 101 AEUV."},{"topic":"Kartellverbot","q":"Welche Kartelle sind nach § 3 GWB ausnahmsweise zulässig?","options":["Preiskartelle großer Konzerne","Mittelstandskartelle kleiner und mittlerer Unternehmen","Gebietskartelle im Einzelhandel","Quotenkartelle in der Landwirtschaft"],"a":1,"e":"Mittelstandskartelle gleichen Wettbewerbsnachteile kleiner und mittlerer Unternehmen gegenüber Großunternehmen aus."},{"topic":"Missbrauchsaufsicht","q":"Ein marktbeherrschendes Unternehmen fordert von einem abhängigen Zulieferer extreme Preisnachlässe. Welche Missbrauchsform liegt vor?","options":["Behinderungsmissbrauch","Ausbeutungsmissbrauch","Fusionsmissbrauch","Submissionsmissbrauch"],"a":1,"e":"Ausbeutungsmissbrauch: überhöhte Preise von Kunden oder extreme Nachlässe von abhängigen Zulieferern fordern."},{"topic":"Missbrauchsaufsicht","q":"Ein Marktbeherrscher verdrängt einen neuen Konkurrenten gezielt über Kampfpreise (Dumping). Das ist …","options":["Ausbeutungsmissbrauch","Behinderungsmissbrauch","erlaubter Preiswettbewerb","ein Quotenkartell"],"a":1,"e":"Behinderungsmissbrauch: Marktmacht wird eingesetzt, um Konkurrenten zu behindern, zu verdrängen oder den Marktzugang zu versperren."},{"topic":"Fusionskontrolle","q":"Warum gilt die Fusionskontrolle (§ 35 GWB) als vorbeugende Maßnahme?","options":["Sie bestraft bestehende Monopole","Geplante Fusionen müssen angezeigt werden und können untersagt werden, bevor eine marktbeherrschende Stellung entsteht","Sie verbietet alle Unternehmenszusammenschlüsse","Sie kontrolliert nur ausländische Unternehmen"],"a":1,"e":"Anders als die Missbrauchsaufsicht (bestehende Marktbeherrscher) setzt die Fusionskontrolle vor der Entstehung von Marktmacht an."},{"topic":"Staatseingriffe","q":"Was kennzeichnet marktkonforme Staatseingriffe?","options":["Sie setzen den Preismechanismus außer Kraft","Sie beeinflussen Angebot und Nachfrage, ohne den Marktpreismechanismus außer Kraft zu setzen","Sie legen Preise direkt fest","Sie verbieten den Handel mit bestimmten Gütern"],"a":1,"e":"Marktkonform (indirekt): z. B. Steuern, Zölle, Subventionen. Marktkonträr (direkt): z. B. Höchst- und Mindestpreise."},{"topic":"Staatseingriffe","q":"Wie wirkt eine Erhöhung der Tabaksteuer auf dem Zigarettenmarkt?","options":["Gleichgewichtspreis und -menge steigen","Der Gleichgewichtspreis steigt, die Gleichgewichtsmenge sinkt","Preis und Menge bleiben unverändert","Der Gleichgewichtspreis sinkt, die Menge steigt"],"a":1,"e":"Die Steuer verteuert das Gut: höherer Gleichgewichtspreis, geringere Menge — so kann Verbraucherverhalten gelenkt werden."},{"topic":"Staatseingriffe","q":"Warum sind Dauersubventionen ordnungspolitisch problematisch?","options":["Sie erhöhen automatisch die Inflation","Sie behindern sämtliche Preisfunktionen: falsche Signale, keine Selektion, Fehlallokation der Produktionsfaktoren","Sie sind nach dem GWB verboten","Sie senken die Staatsausgaben zu stark"],"a":1,"e":"Der künstlich niedrige Preis verhindert das Ausscheiden kostenungünstiger Anbieter und bindet Faktoren in nicht mehr gefragten Produkten."},{"topic":"Mindestpreis","q":"Ein staatlicher Mindestpreis …","options":["liegt unter dem Gleichgewichtspreis und schützt die Nachfrager","liegt über dem Gleichgewichtspreis und schützt die Anbieter","entspricht immer dem Gleichgewichtspreis","senkt das Angebot und erhöht die Nachfrage"],"a":1,"e":"Der Mindestpreis ist eine Preisuntergrenze über dem Gleichgewichtspreis — Ziel ist der Schutz der Anbieter."},{"topic":"Mindestpreis","q":"Welche Marktsituation entsteht durch einen wirksamen Mindestpreis?","options":["Nachfrageüberschuss","Angebotsüberschuss","Marktgleichgewicht","Schwarzmarkt mit höheren Preisen"],"a":1,"e":"Das Angebot wird ausgeweitet, die Nachfrage sinkt — es entsteht ein Angebotsüberhang (Beispiel EU-Agrarmarkt: Überproduktion)."},{"topic":"Höchstpreis","q":"Ein staatlicher Höchstpreis …","options":["liegt über dem Gleichgewichtspreis und schützt die Anbieter","liegt unter dem Gleichgewichtspreis und schützt die Nachfrager","führt zu einem Angebotsüberschuss","erhöht das Angebot"],"a":1,"e":"Der Höchstpreis ist eine Preisobergrenze unter dem Gleichgewichtspreis — Ziel ist der Schutz der Nachfrager (z. B. Mietpreisbremse)."},{"topic":"Höchstpreis","q":"Welche typische Folgeerscheinung haben Höchstpreise?","options":["Angebotsüberschüsse und Butterberge","Nachfrageüberschuss, Rationierung und Schwarzmärkte","Steigende Steuereinnahmen","Sinkende Nachfrage"],"a":1,"e":"Die Nachfrage übersteigt das verminderte Angebot; nötig sind Subventionen und Rationierung, oft entstehen Schwarzmärkte."},{"topic":"VGR","q":"Was misst das Bruttoinlandsprodukt (BIP)?","options":["Das Einkommen aller Inländer weltweit","Den Wert der innerhalb der geografischen Grenzen einer Volkswirtschaft produzierten Güter und Dienstleistungen","Nur die Industrieproduktion des Inlands","Das Vermögen aller Haushalte"],"a":1,"e":"BIP = Inlandskonzept: Es zählt der Produktionsort, nicht der Wohnsitz der Produzenten."},{"topic":"VGR","q":"Auf welchem Konzept basiert das Bruttonationaleinkommen (BNE)?","options":["Inlandskonzept","Inländerkonzept","Ausländerkonzept","Basisjahrkonzept"],"a":1,"e":"Das BNE misst das Einkommen der Inländer aus dem In- und Ausland — z. B. auch von Pendlern und Monteuren im Ausland."},{"topic":"VGR","q":"Warum werden bei der BIP-Berechnung die Vorleistungen abgezogen?","options":["Um die Steuerlast zu senken","Um Doppelzählungen zu vermeiden","Um Importe zu erfassen","Um die Abschreibungen zu berücksichtigen"],"a":1,"e":"Bruttowertschöpfung = Produktionswerte − Vorleistungen: Der Zulieferer-Motor steckt schon im Preis der fertigen Maschine."},{"topic":"VGR","q":"Wie lautet das Schema der Verwendungsrechnung des BIP?","options":["Arbeitnehmerentgelt + Unternehmens- und Vermögenseinkommen","Private Konsumausgaben + Konsumausgaben des Staates + Bruttoinvestitionen + Außenbeitrag","Bruttowertschöpfung + Gütersteuern − Gütersubventionen","Exporte − Importe"],"a":1,"e":"Die Verwendungsrechnung fragt: Wofür wurde die Inlandsproduktion verwendet? Außenbeitrag = Exporte − Importe."},{"topic":"VGR","q":"Was ergibt in der Verteilungsrechnung die Summe aus Arbeitnehmerentgelt und Unternehmens- und Vermögenseinkommen?","options":["Das BIP","Das Volkseinkommen","Den Außenbeitrag","Die Bruttowertschöpfung"],"a":1,"e":"Volkseinkommen = Arbeitnehmerentgelt + Unternehmens- und Vermögenseinkommen der Inländer."},{"topic":"VGR","q":"Das nominale BIP ist um 5 % gestiegen, die Preise ebenfalls um 5 %. Was folgt daraus?","options":["Die Wirtschaft ist real um 5 % gewachsen","Real ist die Wirtschaftsleistung etwa gleich geblieben","Das reale BIP ist um 10 % gestiegen","Die Gleichgewichtsmenge hat sich verdoppelt"],"a":1,"e":"Das reale BIP rechnet mit Preisen eines Basisjahres und eliminiert Preissteigerungen — hier bleibt real kein Zuwachs."},{"topic":"VGR","q":"Welche Leistung wird bei der BIP-Berechnung NICHT erfasst?","options":["Staatliche Bildungsleistungen","Unbezahlte Hausarbeit und ehrenamtliche Tätigkeiten","Exporte","Dienstleistungen von Haushaltshilfen"],"a":1,"e":"Eigenleistungen der Haushalte und Ehrenamt bleiben unberücksichtigt; Schwarzarbeit wird nur geschätzt — eine Grenze des BIP."},{"topic":"Einkommensverteilung","q":"Wie berechnet man die Lohnquote?","options":["Volkseinkommen ÷ Arbeitnehmerentgelt × 100","Arbeitnehmerentgelt ÷ Volkseinkommen × 100","Arbeitnehmerentgelt ÷ BIP × 100","Löhne ÷ Gewinne × 100"],"a":1,"e":"Lohnquote = Arbeitnehmerentgelt ÷ Volkseinkommen × 100; 2018 rund 69 %. Gewinnquote entsprechend mit Unternehmens- und Vermögenseinkommen."},{"topic":"Einkommensverteilung","q":"Was zeigt die Lorenzkurve?","options":["Die Entwicklung des Preisniveaus","Wie gleichmäßig das Volkseinkommen auf die Einkommensbezieher verteilt ist","Den Konjunkturverlauf","Die Höhe der Staatsverschuldung"],"a":1,"e":"Je weiter die Lorenzkurve von der Diagonalen (Gleichverteilung) entfernt ist, desto ungleicher die Einkommensverteilung."},{"topic":"Einkommensverteilung","q":"Nach welchem Prinzip erfolgt die Sekundärverteilung des Volkseinkommens?","options":["Leistungsprinzip","Bedarfsprinzip","Verursacherprinzip","Mehrheitsprinzip"],"a":1,"e":"Die Primärverteilung folgt dem Leistungsprinzip; die staatliche Umverteilung (Sekundärverteilung) korrigiert nach dem Bedarfsprinzip."},{"topic":"Einkommensverteilung","q":"Wie berechnet sich das verfügbare Einkommen der privaten Haushalte?","options":["Primäreinkommen + direkte Steuern + Sozialbeiträge − Transfers","Primäreinkommen − direkte Steuern − Sozialversicherungsbeiträge + Sozialleistungen des Staates","Bruttolohn − Werbungskosten","Volkseinkommen ÷ Einwohnerzahl"],"a":1,"e":"Ergebnis der Sekundärverteilung: Es steht für Konsum und Sparen zur Verfügung."},{"topic":"Stabilitätspolitik","q":"Welches Gesetz gilt als Grundgesetz der Wirtschaftspolitik?","options":["Das GWB von 1958","Das Stabilitätsgesetz (StabG) von 1967","Das UWG","Das Bundesbankgesetz"],"a":1,"e":"Das Gesetz zur Förderung der Stabilität und des Wachstums der Wirtschaft (StabG, 1967) verpflichtet Bund und Länder auf das gesamtwirtschaftliche Gleichgewicht."},{"topic":"Stabilitätspolitik","q":"Welche vier Ziele bilden das magische Viereck?","options":["Preisniveaustabilität, hoher Beschäftigungsstand, außenwirtschaftliches Gleichgewicht, stetiges und angemessenes Wirtschaftswachstum","Umweltschutz, Wachstum, gerechte Verteilung, Preisstabilität","Vollbeschäftigung, niedrige Steuern, Exportüberschuss, starker Euro","Preisstabilität, Haushaltsausgleich, Wachstum, Verteilungsgerechtigkeit"],"a":0,"e":"So in § 1 StabG verankert; da kaum alle Ziele gleichzeitig erreichbar sind, heißt das Viereck „magisch“."},{"topic":"Stabilitätspolitik","q":"Um welche Ziele wird das magische Viereck zum magischen Sechseck erweitert?","options":["Digitalisierung und Bildung","Erhaltung einer lebenswerten Umwelt und gerechte Einkommens- und Vermögensverteilung","Exportförderung und Preisbindung","Vollbeschäftigung und Geldwertstabilität"],"a":1,"e":"Zwei qualitative Ziele ohne klaren Maßstab der Zielerreichung ergänzen die vier quantitativen (messbaren) Ziele."},{"topic":"Stabilitätspolitik","q":"Wann gilt das Ziel der Preisniveaustabilität nach EZB-Definition als erreicht?","options":["Bei einer Inflationsrate von 0 %","Bei einer Inflationsrate knapp unter 2 %","Bei einer Deflation von 2 %","Wenn kein einziger Preis steigt"],"a":1,"e":"Gemessen am (harmonisierten) Verbraucherpreisindex; einzelne Preise dürfen steigen, wenn andere sinken."},{"topic":"Stabilitätspolitik","q":"Mit welcher Kennzahl wird das außenwirtschaftliche Gleichgewicht gemessen?","options":["Mit der Arbeitslosenquote","Mit dem Außenbeitrag (Saldo aus Handels- und Dienstleistungsbilanz)","Mit dem Verbraucherpreisindex","Mit der Lohnquote"],"a":1,"e":"Angestrebt wird ein positiver Außenbeitrag von ein bis zwei Prozent des nominalen BIP."},{"topic":"Stabilitätspolitik","q":"Starkes Wirtschaftswachstum zieht in der Regel Preiserhöhungen nach sich. Welche Zielbeziehung liegt vor?","options":["Zielharmonie","Zielkonflikt (konkurrierende Zielbeziehung)","Indifferente Zielbeziehung","Zielidentität"],"a":1,"e":"Wachstum und Preisniveaustabilität konkurrieren — ein klassischer Zielkonflikt des magischen Vierecks."},{"topic":"Stabilitätspolitik","q":"Wirtschaftswachstum und Vollbeschäftigung stehen zueinander in einer …","options":["konkurrierenden Zielbeziehung","komplementären Zielbeziehung (Zielharmonie)","indifferenten Zielbeziehung","gesetzlich verbotenen Beziehung"],"a":1,"e":"Steigt das BIP, werden mehr Produktionsfaktoren benötigt — die Arbeitslosigkeit geht zurück (Zielharmonie)."}];
+
+let answers = new Array(QUESTIONS.length).fill(null);
+let viewMode = 'list';      // 'list' oder 'slide'
+let evalMode = 'immediate'; // 'immediate' oder 'end'
+let currentSlide = 0;
+
+// Pro Frage: shuffled[displayIdx] = origIdx (so bleibt qd.a der originale Lösungs-Index)
+function shuffleAnswers() {
+  QUESTIONS.forEach(qd => {
+    const n = qd.options.length;
+    qd.shuffled = Array.from({length: n}, (_, k) => k);
+    for (let i = n - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [qd.shuffled[i], qd.shuffled[j]] = [qd.shuffled[j], qd.shuffled[i]];
+    }
+  });
+}
+shuffleAnswers();
+function origIndex(qi, displayIdx) { return QUESTIONS[qi].shuffled[displayIdx]; }
+function displayCorrectIdx(qi) { return QUESTIONS[qi].shuffled.indexOf(QUESTIONS[qi].a); }
+function isCorrect(qi) {
+  if (answers[qi] === null) return false;
+  return origIndex(qi, answers[qi]) === QUESTIONS[qi].a;
+}
+
+// IHK-Notenschlüssel (offiziell, AbschlussPrüfungen kaufmännischer Berufe)
+function ihkNote(pct) {
+  if (pct >= 92) return { num: 1, name: 'sehr gut',     color: '#10B981', bestanden: true };
+  if (pct >= 81) return { num: 2, name: 'gut',          color: '#0EA5A4', bestanden: true };
+  if (pct >= 67) return { num: 3, name: 'befriedigend', color: '#0EA5A4', bestanden: true };
+  if (pct >= 50) return { num: 4, name: 'ausreichend',  color: '#F59E0B', bestanden: true };
+  if (pct >= 30) return { num: 5, name: 'mangelhaft',   color: '#F97316', bestanden: false };
+  return                         { num: 6, name: 'ungenügend',   color: '#EF4444', bestanden: false };
+}
+
+function setView(mode) {
+  viewMode = mode;
+  document.getElementById('modeList').classList.toggle('btn-primary', mode === 'list');
+  document.getElementById('modeList').classList.toggle('btn-ghost',   mode !== 'list');
+  document.getElementById('modeSlide').classList.toggle('btn-primary', mode === 'slide');
+  document.getElementById('modeSlide').classList.toggle('btn-ghost',   mode !== 'slide');
+  document.getElementById('slideNav').style.display = (mode === 'slide') ? 'block' : 'none';
+  applyView();
+}
+
+function setEval(mode) {
+  evalMode = mode;
+  document.getElementById('modeImmediate').classList.toggle('btn-primary', mode === 'immediate');
+  document.getElementById('modeImmediate').classList.toggle('btn-ghost',   mode !== 'immediate');
+  document.getElementById('modeEnd').classList.toggle('btn-primary', mode === 'end');
+  document.getElementById('modeEnd').classList.toggle('btn-ghost',   mode !== 'end');
+}
+
+function applyView() {
+  const allQ = document.querySelectorAll('.question');
+  if (viewMode === 'list') {
+    allQ.forEach(q => q.style.display = '');
+  } else {
+    allQ.forEach((q, i) => q.style.display = (i === currentSlide ? '' : 'none'));
+    document.getElementById('slidePos').textContent = currentSlide + 1;
+    document.getElementById('slideTotal').textContent = QUESTIONS.length;
+  }
+}
+
+function nextSlide() {
+  if (currentSlide < QUESTIONS.length - 1) { currentSlide++; applyView(); window.scrollTo(0, 0); }
+}
+function prevSlide() {
+  if (currentSlide > 0) { currentSlide--; applyView(); window.scrollTo(0, 0); }
+}
+
+function renderQuiz() {
+  const root = document.getElementById('quiz');
+  root.innerHTML = '';
+  document.getElementById('total').textContent = QUESTIONS.length;
+  QUESTIONS.forEach((qd, i) => {
+    const q = document.createElement('div');
+    q.className = 'question';
+    q.id = `q-${i}`;
+    let html = `
+      <span class="q-num">Frage ${i + 1}</span>
+      <span class="q-topic">${qd.topic}</span>
+      <p class="q-text">${qd.q}</p>
+      <div class="options">
+    `;
+    qd.shuffled.forEach((origIdx, j) => {
+      const letter = String.fromCharCode(65 + j);
+      const opt = qd.options[origIdx];
+      html += `<div class="option" data-q="${i}" data-opt="${j}" onclick="answer(${i}, ${j})">
+        <div class="marker">${letter}</div>
+        <div>${opt}</div>
+      </div>`;
+    });
+    html += '</div>';
+    q.innerHTML = html;
+    root.appendChild(q);
+  });
+  applyView();
+  updateScore();
+}
+
+function answer(qi, oi) {
+  if (answers[qi] !== null) return;
+  answers[qi] = oi;
+  const q = document.getElementById(`q-${qi}`);
+  const opts = q.querySelectorAll('.option');
+  opts.forEach(o => o.classList.add('locked'));
+
+  if (evalMode === 'immediate') {
+    // Sofort markieren und Erklärung zeigen — vergleicht im Display-Index-Raum
+    const correctDisplayIdx = displayCorrectIdx(qi);
+    const userIsCorrect = (oi === correctDisplayIdx);
+    opts[oi].classList.add(userIsCorrect ? 'correct' : 'incorrect');
+    if (!userIsCorrect) opts[correctDisplayIdx].classList.add('correct');
+    const exp = document.createElement('div');
+    exp.className = 'explanation';
+    exp.textContent = QUESTIONS[qi].e;
+    q.appendChild(exp);
+    q.classList.add('locked');
+  } else {
+    // Nur „angekreuzt”-Status, keine Bewertung anzeigen
+    opts[oi].style.borderColor = 'var(--bfw-primary)';
+    opts[oi].style.background = 'var(--bfw-bg-teal)';
+    opts[oi].querySelector('.marker').style.background = 'var(--bfw-primary)';
+    opts[oi].querySelector('.marker').style.color = 'white';
+    opts[oi].querySelector('.marker').style.borderColor = 'var(--bfw-primary)';
+  }
+  updateScore();
+}
+
+function updateScore() {
+  const answered = answers.filter(a => a !== null).length;
+  document.getElementById('answered').textContent = answered;
+  document.getElementById('progressBar').style.width = `${(answered / QUESTIONS.length) * 100}%`;
+  if (evalMode === 'immediate') {
+    const correct = answers.filter((a, i) => isCorrect(i)).length;
+    document.getElementById('correct').textContent = correct;
+  } else {
+    document.getElementById('correct').textContent = '—';
+  }
+  if (answered === QUESTIONS.length && evalMode === 'immediate') showSummary();
+}
+
+function finishNow() {
+  // Im End-Modus: alle bislang nicht beantworteten Fragen werden als „nicht beantwortet” gewertet
+  // und alle Lösungen+Erklärungen werden offengelegt.
+  for (let i = 0; i < QUESTIONS.length; i++) {
+    const q = document.getElementById(`q-${i}`);
+    if (!q) continue;
+    const opts = q.querySelectorAll('.option');
+    opts.forEach(o => o.classList.add('locked'));
+    const correctDisplayIdx = displayCorrectIdx(i);
+    if (answers[i] !== null) {
+      const wasRight = (answers[i] === correctDisplayIdx);
+      opts[answers[i]].classList.add(wasRight ? 'correct' : 'incorrect');
+      if (!wasRight) opts[correctDisplayIdx].classList.add('correct');
+    } else {
+      opts[correctDisplayIdx].classList.add('correct');
+    }
+    if (!q.querySelector('.explanation')) {
+      const exp = document.createElement('div');
+      exp.className = 'explanation';
+      exp.textContent = QUESTIONS[i].e;
+      q.appendChild(exp);
+    }
+    q.classList.add('locked');
+  }
+  // Im Slide-Modus: zur Übersicht wechseln
+  setView('list');
+  showSummary();
+}
+
+function showSummary() {
+  const total = QUESTIONS.length;
+  const correct = answers.filter((a, i) => isCorrect(i)).length;
+  const answered = answers.filter(a => a !== null).length;
+  const pct = Math.round((correct / total) * 100);
+  const note = ihkNote(pct);
+
+  // IHK-Skala-Tabelle
+  const skala = [
+    { stufe: 1, label: 'sehr gut',     range: '92 – 100 %', col: '#10B981' },
+    { stufe: 2, label: 'gut',          range: '81 – 91 %',  col: '#0EA5A4' },
+    { stufe: 3, label: 'befriedigend', range: '67 – 80 %',  col: '#0EA5A4' },
+    { stufe: 4, label: 'ausreichend',  range: '50 – 66 %',  col: '#F59E0B' },
+    { stufe: 5, label: 'mangelhaft',   range: '30 – 49 %',  col: '#F97316' },
+    { stufe: 6, label: 'ungenügend',   range: '0 – 29 %',   col: '#EF4444' }
+  ];
+
+  const skalaRows = skala.map(s => `
+    <tr style="${s.stufe === note.num ? 'background: var(--bfw-bg-teal); font-weight: 700;' : ''}">
+      <td style="color: ${s.col}; font-weight: 700;">${s.stufe}</td>
+      <td>${s.label}</td>
+      <td>${s.range}</td>
+    </tr>`).join('');
+
+  const s = document.getElementById('summary');
+  s.style.display = 'block';
+  s.innerHTML = `
+    <div class="summary">
+      <h2>Quiz ausgewertet</h2>
+      <div class="big-score" style="color: ${note.color};">${note.num}</div>
+      <div class="grade"><strong>${note.name}</strong> · ${correct} von ${total} richtig (${pct} %)</div>
+      <div style="margin-top: 0.5rem; color: ${note.bestanden ? 'var(--bfw-success)' : 'var(--bfw-danger)'}; font-weight: 600;">
+        ${note.bestanden ? '✓ bestanden' : '✗ nicht bestanden'}
+      </div>
+      ${answered < total ? `<div style="margin-top: 0.6rem; color: var(--bfw-warn); font-size: 0.95rem;">${total - answered} Fragen unbeantwortet — als falsch gewertet.</div>` : ''}
+
+      <div style="margin: 1.6rem auto 0; max-width: 360px;">
+        <table style="font-size: 0.9rem;">
+          <thead><tr><th>Note</th><th>Beurteilung</th><th>Punktebereich</th></tr></thead>
+          <tbody>${skalaRows}</tbody>
+        </table>
+        <p style="font-size: 0.78rem; color: var(--bfw-ink-soft); margin-top: 0.4rem;">
+          IHK-Notenschlüssel (kaufmännische Abschlussprüfungen)
+        </p>
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <button class="btn btn-primary" onclick="resetQuiz()">Neu starten</button>
+        <button class="btn btn-ghost" onclick="window.print()" style="margin-left: 0.5rem;">Drucken / als PDF speichern</button>
+      </div>
+    </div>
+  `;
+  s.scrollIntoView({ behavior: 'smooth' });
+}
+
+function resetQuiz() {
+  answers = new Array(QUESTIONS.length).fill(null);
+  currentSlide = 0;
+  shuffleAnswers();
+  document.getElementById('summary').style.display = 'none';
+  document.getElementById('summary').innerHTML = '';
+  renderQuiz();
+  window.scrollTo(0, 0);
+}
+
+// Initial: Buttons-Default-Status setzen
+setView('list');
+setEval('immediate');
+renderQuiz();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,489 @@
+{
+  "day_id": "vwl-2",
+  "lektion": 2,
+  "thema": "Wettbewerbspolitik, Staatseingriffe & Volkswirtschaftliche Gesamtrechnung",
+  "slug": "Wettbewerb-Staatseingriffe-VGR",
+  "kurs_label": "VWL — Volkswirtschaftliche Grundlagen",
+  "questions": [
+    {
+      "topic": "Wettbewerb",
+      "q": "Was versteht man unter Wettbewerb?",
+      "options": [
+        "Die staatliche Kontrolle aller Marktpreise",
+        "Die Rivalität der Marktteilnehmer unter- und gegeneinander zur Durchsetzung ihrer Ziele",
+        "Die Zusammenarbeit von Unternehmen zur Gewinnsteigerung",
+        "Den Vergleich von Produkten durch Testinstitute"
+      ],
+      "a": 1,
+      "e": "Wettbewerb ist die Rivalität der Marktteilnehmer, um die eigenen Ziele zulasten der Konkurrenten durchzusetzen."
+    },
+    {
+      "topic": "Wettbewerb",
+      "q": "Welche Funktion des Wettbewerbs sichert die Freiheit der Unternehmertätigkeit und der Konsumwahl?",
+      "options": [
+        "Kontrollfunktion",
+        "Freiheitsfunktion",
+        "Auslesefunktion",
+        "Verteilungsfunktion"
+      ],
+      "a": 1,
+      "e": "Die Freiheitsfunktion: Jeder kann Fähigkeiten und Mittel für frei gewählte Zwecke einsetzen — mehr Handlungsalternativen für alle."
+    },
+    {
+      "topic": "Wettbewerb",
+      "q": "Anbieter und Nachfrager messen sich gegenseitig an der Leistung der Konkurrenz — die Macht des Einzelnen wird begrenzt. Welche Wettbewerbsfunktion ist das?",
+      "options": [
+        "Innovationsfunktion",
+        "Steuerungsfunktion",
+        "Kontrollfunktion",
+        "Freiheitsfunktion"
+      ],
+      "a": 2,
+      "e": "Die Kontrollfunktion: gegenseitige Kontrolle der Marktteilnehmer begrenzt wirtschaftliche Macht."
+    },
+    {
+      "topic": "Wettbewerbspolitik",
+      "q": "Welche beiden Gesetze sind die Grundlagen der deutschen Wettbewerbspolitik?",
+      "options": [
+        "BGB und HGB",
+        "UWG und GWB",
+        "StabG und AEUV",
+        "GWB und StGB"
+      ],
+      "a": 1,
+      "e": "Das UWG sichert fairen Wettbewerb und faire Marktpraktiken, das GWB (Kartellgesetz) den Bestand des Wettbewerbs."
+    },
+    {
+      "topic": "Wettbewerbspolitik",
+      "q": "Welche Behörde wacht in Deutschland über die Einhaltung des GWB?",
+      "options": [
+        "Die Bundesbank",
+        "Das Bundeskartellamt",
+        "Die BaFin",
+        "Das Statistische Bundesamt"
+      ],
+      "a": 1,
+      "e": "Das Bundeskartellamt überwacht die Einhaltung des Gesetzes gegen Wettbewerbsbeschränkungen."
+    },
+    {
+      "topic": "Wettbewerbspolitik",
+      "q": "Welches sind die drei Säulen des GWB?",
+      "options": [
+        "Preisaufsicht, Gewerbeaufsicht, Fusionskontrolle",
+        "Kartellverbot, Missbrauchsaufsicht, Fusionskontrolle",
+        "Kartellverbot, Subventionskontrolle, Preisbindung",
+        "Missbrauchsaufsicht, Verbraucherschutz, Zollkontrolle"
+      ],
+      "a": 1,
+      "e": "Ka-Mi-Fu: Kartellverbot (§ 1), Missbrauchsaufsicht (§§ 19 ff.), Fusionskontrolle (§ 35 GWB)."
+    },
+    {
+      "topic": "Kartellverbot",
+      "q": "Was ist ein Kartell?",
+      "options": [
+        "Eine Fusion mehrerer Unternehmen zu einem Konzern",
+        "Eine vertragliche Kooperation rechtlich selbstständiger Unternehmen zur Verbesserung ihrer Wettbewerbsposition",
+        "Eine staatliche Preisfestsetzung",
+        "Ein Zusammenschluss von Verbrauchern"
+      ],
+      "a": 1,
+      "e": "Die Beteiligten bleiben rechtlich selbstständig, schränken aber ihre wirtschaftliche Selbstständigkeit teilweise ein."
+    },
+    {
+      "topic": "Kartellverbot",
+      "q": "Mehrere Anbieter sprechen eine einheitliche Preispolitik ab. Welche Kartellart liegt vor?",
+      "options": [
+        "Gebietskartell",
+        "Quotenkartell",
+        "Preiskartell",
+        "Submissionskartell"
+      ],
+      "a": 2,
+      "e": "Preiskartell: Absprache einer einheitlichen Preispolitik — nach § 1 GWB verboten."
+    },
+    {
+      "topic": "Kartellverbot",
+      "q": "Bauunternehmen legen vor einer öffentlichen Ausschreibung fest, wer den Zuschlag erhalten soll. Das ist ein …",
+      "options": [
+        "Submissionskartell",
+        "Preiskartell",
+        "Gebietskartell",
+        "Mittelstandskartell"
+      ],
+      "a": 0,
+      "e": "Submissionskartell: Vereinbarung von Preisuntergrenzen bzw. Festlegung, welches Mitglied bei Ausschreibungen zum Zug kommt."
+    },
+    {
+      "topic": "Kartellverbot",
+      "q": "Unternehmen verknappen das Angebot künstlich durch abgesprochene Produktionsquoten. Welche Kartellart ist das?",
+      "options": [
+        "Gebietskartell",
+        "Quotenkartell",
+        "Preiskartell",
+        "Konditionenkartell"
+      ],
+      "a": 1,
+      "e": "Quotenkartell: künstliche Verknappung des Angebots durch Absprache von Produktionsquoten."
+    },
+    {
+      "topic": "Kartellverbot",
+      "q": "Was regelt § 1 GWB?",
+      "options": [
+        "Die Fusionskontrolle",
+        "Das Verbot wettbewerbsbeschränkender Vereinbarungen und abgestimmter Verhaltensweisen",
+        "Die Ministererlaubnis",
+        "Die Missbrauchsaufsicht"
+      ],
+      "a": 1,
+      "e": "Verboten sind Vereinbarungen, Beschlüsse und abgestimmte Verhaltensweisen, die den Wettbewerb verhindern, einschränken oder verfälschen. EU-Pendant: Art. 101 AEUV."
+    },
+    {
+      "topic": "Kartellverbot",
+      "q": "Welche Kartelle sind nach § 3 GWB ausnahmsweise zulässig?",
+      "options": [
+        "Preiskartelle großer Konzerne",
+        "Mittelstandskartelle kleiner und mittlerer Unternehmen",
+        "Gebietskartelle im Einzelhandel",
+        "Quotenkartelle in der Landwirtschaft"
+      ],
+      "a": 1,
+      "e": "Mittelstandskartelle gleichen Wettbewerbsnachteile kleiner und mittlerer Unternehmen gegenüber Großunternehmen aus."
+    },
+    {
+      "topic": "Missbrauchsaufsicht",
+      "q": "Ein marktbeherrschendes Unternehmen fordert von einem abhängigen Zulieferer extreme Preisnachlässe. Welche Missbrauchsform liegt vor?",
+      "options": [
+        "Behinderungsmissbrauch",
+        "Ausbeutungsmissbrauch",
+        "Fusionsmissbrauch",
+        "Submissionsmissbrauch"
+      ],
+      "a": 1,
+      "e": "Ausbeutungsmissbrauch: überhöhte Preise von Kunden oder extreme Nachlässe von abhängigen Zulieferern fordern."
+    },
+    {
+      "topic": "Missbrauchsaufsicht",
+      "q": "Ein Marktbeherrscher verdrängt einen neuen Konkurrenten gezielt über Kampfpreise (Dumping). Das ist …",
+      "options": [
+        "Ausbeutungsmissbrauch",
+        "Behinderungsmissbrauch",
+        "erlaubter Preiswettbewerb",
+        "ein Quotenkartell"
+      ],
+      "a": 1,
+      "e": "Behinderungsmissbrauch: Marktmacht wird eingesetzt, um Konkurrenten zu behindern, zu verdrängen oder den Marktzugang zu versperren."
+    },
+    {
+      "topic": "Fusionskontrolle",
+      "q": "Warum gilt die Fusionskontrolle (§ 35 GWB) als vorbeugende Maßnahme?",
+      "options": [
+        "Sie bestraft bestehende Monopole",
+        "Geplante Fusionen müssen angezeigt werden und können untersagt werden, bevor eine marktbeherrschende Stellung entsteht",
+        "Sie verbietet alle Unternehmenszusammenschlüsse",
+        "Sie kontrolliert nur ausländische Unternehmen"
+      ],
+      "a": 1,
+      "e": "Anders als die Missbrauchsaufsicht (bestehende Marktbeherrscher) setzt die Fusionskontrolle vor der Entstehung von Marktmacht an."
+    },
+    {
+      "topic": "Staatseingriffe",
+      "q": "Was kennzeichnet marktkonforme Staatseingriffe?",
+      "options": [
+        "Sie setzen den Preismechanismus außer Kraft",
+        "Sie beeinflussen Angebot und Nachfrage, ohne den Marktpreismechanismus außer Kraft zu setzen",
+        "Sie legen Preise direkt fest",
+        "Sie verbieten den Handel mit bestimmten Gütern"
+      ],
+      "a": 1,
+      "e": "Marktkonform (indirekt): z. B. Steuern, Zölle, Subventionen. Marktkonträr (direkt): z. B. Höchst- und Mindestpreise."
+    },
+    {
+      "topic": "Staatseingriffe",
+      "q": "Wie wirkt eine Erhöhung der Tabaksteuer auf dem Zigarettenmarkt?",
+      "options": [
+        "Gleichgewichtspreis und -menge steigen",
+        "Der Gleichgewichtspreis steigt, die Gleichgewichtsmenge sinkt",
+        "Preis und Menge bleiben unverändert",
+        "Der Gleichgewichtspreis sinkt, die Menge steigt"
+      ],
+      "a": 1,
+      "e": "Die Steuer verteuert das Gut: höherer Gleichgewichtspreis, geringere Menge — so kann Verbraucherverhalten gelenkt werden."
+    },
+    {
+      "topic": "Staatseingriffe",
+      "q": "Warum sind Dauersubventionen ordnungspolitisch problematisch?",
+      "options": [
+        "Sie erhöhen automatisch die Inflation",
+        "Sie behindern sämtliche Preisfunktionen: falsche Signale, keine Selektion, Fehlallokation der Produktionsfaktoren",
+        "Sie sind nach dem GWB verboten",
+        "Sie senken die Staatsausgaben zu stark"
+      ],
+      "a": 1,
+      "e": "Der künstlich niedrige Preis verhindert das Ausscheiden kostenungünstiger Anbieter und bindet Faktoren in nicht mehr gefragten Produkten."
+    },
+    {
+      "topic": "Mindestpreis",
+      "q": "Ein staatlicher Mindestpreis …",
+      "options": [
+        "liegt unter dem Gleichgewichtspreis und schützt die Nachfrager",
+        "liegt über dem Gleichgewichtspreis und schützt die Anbieter",
+        "entspricht immer dem Gleichgewichtspreis",
+        "senkt das Angebot und erhöht die Nachfrage"
+      ],
+      "a": 1,
+      "e": "Der Mindestpreis ist eine Preisuntergrenze über dem Gleichgewichtspreis — Ziel ist der Schutz der Anbieter."
+    },
+    {
+      "topic": "Mindestpreis",
+      "q": "Welche Marktsituation entsteht durch einen wirksamen Mindestpreis?",
+      "options": [
+        "Nachfrageüberschuss",
+        "Angebotsüberschuss",
+        "Marktgleichgewicht",
+        "Schwarzmarkt mit höheren Preisen"
+      ],
+      "a": 1,
+      "e": "Das Angebot wird ausgeweitet, die Nachfrage sinkt — es entsteht ein Angebotsüberhang (Beispiel EU-Agrarmarkt: Überproduktion)."
+    },
+    {
+      "topic": "Höchstpreis",
+      "q": "Ein staatlicher Höchstpreis …",
+      "options": [
+        "liegt über dem Gleichgewichtspreis und schützt die Anbieter",
+        "liegt unter dem Gleichgewichtspreis und schützt die Nachfrager",
+        "führt zu einem Angebotsüberschuss",
+        "erhöht das Angebot"
+      ],
+      "a": 1,
+      "e": "Der Höchstpreis ist eine Preisobergrenze unter dem Gleichgewichtspreis — Ziel ist der Schutz der Nachfrager (z. B. Mietpreisbremse)."
+    },
+    {
+      "topic": "Höchstpreis",
+      "q": "Welche typische Folgeerscheinung haben Höchstpreise?",
+      "options": [
+        "Angebotsüberschüsse und Butterberge",
+        "Nachfrageüberschuss, Rationierung und Schwarzmärkte",
+        "Steigende Steuereinnahmen",
+        "Sinkende Nachfrage"
+      ],
+      "a": 1,
+      "e": "Die Nachfrage übersteigt das verminderte Angebot; nötig sind Subventionen und Rationierung, oft entstehen Schwarzmärkte."
+    },
+    {
+      "topic": "VGR",
+      "q": "Was misst das Bruttoinlandsprodukt (BIP)?",
+      "options": [
+        "Das Einkommen aller Inländer weltweit",
+        "Den Wert der innerhalb der geografischen Grenzen einer Volkswirtschaft produzierten Güter und Dienstleistungen",
+        "Nur die Industrieproduktion des Inlands",
+        "Das Vermögen aller Haushalte"
+      ],
+      "a": 1,
+      "e": "BIP = Inlandskonzept: Es zählt der Produktionsort, nicht der Wohnsitz der Produzenten."
+    },
+    {
+      "topic": "VGR",
+      "q": "Auf welchem Konzept basiert das Bruttonationaleinkommen (BNE)?",
+      "options": [
+        "Inlandskonzept",
+        "Inländerkonzept",
+        "Ausländerkonzept",
+        "Basisjahrkonzept"
+      ],
+      "a": 1,
+      "e": "Das BNE misst das Einkommen der Inländer aus dem In- und Ausland — z. B. auch von Pendlern und Monteuren im Ausland."
+    },
+    {
+      "topic": "VGR",
+      "q": "Warum werden bei der BIP-Berechnung die Vorleistungen abgezogen?",
+      "options": [
+        "Um die Steuerlast zu senken",
+        "Um Doppelzählungen zu vermeiden",
+        "Um Importe zu erfassen",
+        "Um die Abschreibungen zu berücksichtigen"
+      ],
+      "a": 1,
+      "e": "Bruttowertschöpfung = Produktionswerte − Vorleistungen: Der Zulieferer-Motor steckt schon im Preis der fertigen Maschine."
+    },
+    {
+      "topic": "VGR",
+      "q": "Wie lautet das Schema der Verwendungsrechnung des BIP?",
+      "options": [
+        "Arbeitnehmerentgelt + Unternehmens- und Vermögenseinkommen",
+        "Private Konsumausgaben + Konsumausgaben des Staates + Bruttoinvestitionen + Außenbeitrag",
+        "Bruttowertschöpfung + Gütersteuern − Gütersubventionen",
+        "Exporte − Importe"
+      ],
+      "a": 1,
+      "e": "Die Verwendungsrechnung fragt: Wofür wurde die Inlandsproduktion verwendet? Außenbeitrag = Exporte − Importe."
+    },
+    {
+      "topic": "VGR",
+      "q": "Was ergibt in der Verteilungsrechnung die Summe aus Arbeitnehmerentgelt und Unternehmens- und Vermögenseinkommen?",
+      "options": [
+        "Das BIP",
+        "Das Volkseinkommen",
+        "Den Außenbeitrag",
+        "Die Bruttowertschöpfung"
+      ],
+      "a": 1,
+      "e": "Volkseinkommen = Arbeitnehmerentgelt + Unternehmens- und Vermögenseinkommen der Inländer."
+    },
+    {
+      "topic": "VGR",
+      "q": "Das nominale BIP ist um 5 % gestiegen, die Preise ebenfalls um 5 %. Was folgt daraus?",
+      "options": [
+        "Die Wirtschaft ist real um 5 % gewachsen",
+        "Real ist die Wirtschaftsleistung etwa gleich geblieben",
+        "Das reale BIP ist um 10 % gestiegen",
+        "Die Gleichgewichtsmenge hat sich verdoppelt"
+      ],
+      "a": 1,
+      "e": "Das reale BIP rechnet mit Preisen eines Basisjahres und eliminiert Preissteigerungen — hier bleibt real kein Zuwachs."
+    },
+    {
+      "topic": "VGR",
+      "q": "Welche Leistung wird bei der BIP-Berechnung NICHT erfasst?",
+      "options": [
+        "Staatliche Bildungsleistungen",
+        "Unbezahlte Hausarbeit und ehrenamtliche Tätigkeiten",
+        "Exporte",
+        "Dienstleistungen von Haushaltshilfen"
+      ],
+      "a": 1,
+      "e": "Eigenleistungen der Haushalte und Ehrenamt bleiben unberücksichtigt; Schwarzarbeit wird nur geschätzt — eine Grenze des BIP."
+    },
+    {
+      "topic": "Einkommensverteilung",
+      "q": "Wie berechnet man die Lohnquote?",
+      "options": [
+        "Volkseinkommen ÷ Arbeitnehmerentgelt × 100",
+        "Arbeitnehmerentgelt ÷ Volkseinkommen × 100",
+        "Arbeitnehmerentgelt ÷ BIP × 100",
+        "Löhne ÷ Gewinne × 100"
+      ],
+      "a": 1,
+      "e": "Lohnquote = Arbeitnehmerentgelt ÷ Volkseinkommen × 100; 2018 rund 69 %. Gewinnquote entsprechend mit Unternehmens- und Vermögenseinkommen."
+    },
+    {
+      "topic": "Einkommensverteilung",
+      "q": "Was zeigt die Lorenzkurve?",
+      "options": [
+        "Die Entwicklung des Preisniveaus",
+        "Wie gleichmäßig das Volkseinkommen auf die Einkommensbezieher verteilt ist",
+        "Den Konjunkturverlauf",
+        "Die Höhe der Staatsverschuldung"
+      ],
+      "a": 1,
+      "e": "Je weiter die Lorenzkurve von der Diagonalen (Gleichverteilung) entfernt ist, desto ungleicher die Einkommensverteilung."
+    },
+    {
+      "topic": "Einkommensverteilung",
+      "q": "Nach welchem Prinzip erfolgt die Sekundärverteilung des Volkseinkommens?",
+      "options": [
+        "Leistungsprinzip",
+        "Bedarfsprinzip",
+        "Verursacherprinzip",
+        "Mehrheitsprinzip"
+      ],
+      "a": 1,
+      "e": "Die Primärverteilung folgt dem Leistungsprinzip; die staatliche Umverteilung (Sekundärverteilung) korrigiert nach dem Bedarfsprinzip."
+    },
+    {
+      "topic": "Einkommensverteilung",
+      "q": "Wie berechnet sich das verfügbare Einkommen der privaten Haushalte?",
+      "options": [
+        "Primäreinkommen + direkte Steuern + Sozialbeiträge − Transfers",
+        "Primäreinkommen − direkte Steuern − Sozialversicherungsbeiträge + Sozialleistungen des Staates",
+        "Bruttolohn − Werbungskosten",
+        "Volkseinkommen ÷ Einwohnerzahl"
+      ],
+      "a": 1,
+      "e": "Ergebnis der Sekundärverteilung: Es steht für Konsum und Sparen zur Verfügung."
+    },
+    {
+      "topic": "Stabilitätspolitik",
+      "q": "Welches Gesetz gilt als Grundgesetz der Wirtschaftspolitik?",
+      "options": [
+        "Das GWB von 1958",
+        "Das Stabilitätsgesetz (StabG) von 1967",
+        "Das UWG",
+        "Das Bundesbankgesetz"
+      ],
+      "a": 1,
+      "e": "Das Gesetz zur Förderung der Stabilität und des Wachstums der Wirtschaft (StabG, 1967) verpflichtet Bund und Länder auf das gesamtwirtschaftliche Gleichgewicht."
+    },
+    {
+      "topic": "Stabilitätspolitik",
+      "q": "Welche vier Ziele bilden das magische Viereck?",
+      "options": [
+        "Preisniveaustabilität, hoher Beschäftigungsstand, außenwirtschaftliches Gleichgewicht, stetiges und angemessenes Wirtschaftswachstum",
+        "Umweltschutz, Wachstum, gerechte Verteilung, Preisstabilität",
+        "Vollbeschäftigung, niedrige Steuern, Exportüberschuss, starker Euro",
+        "Preisstabilität, Haushaltsausgleich, Wachstum, Verteilungsgerechtigkeit"
+      ],
+      "a": 0,
+      "e": "So in § 1 StabG verankert; da kaum alle Ziele gleichzeitig erreichbar sind, heißt das Viereck „magisch“."
+    },
+    {
+      "topic": "Stabilitätspolitik",
+      "q": "Um welche Ziele wird das magische Viereck zum magischen Sechseck erweitert?",
+      "options": [
+        "Digitalisierung und Bildung",
+        "Erhaltung einer lebenswerten Umwelt und gerechte Einkommens- und Vermögensverteilung",
+        "Exportförderung und Preisbindung",
+        "Vollbeschäftigung und Geldwertstabilität"
+      ],
+      "a": 1,
+      "e": "Zwei qualitative Ziele ohne klaren Maßstab der Zielerreichung ergänzen die vier quantitativen (messbaren) Ziele."
+    },
+    {
+      "topic": "Stabilitätspolitik",
+      "q": "Wann gilt das Ziel der Preisniveaustabilität nach EZB-Definition als erreicht?",
+      "options": [
+        "Bei einer Inflationsrate von 0 %",
+        "Bei einer Inflationsrate knapp unter 2 %",
+        "Bei einer Deflation von 2 %",
+        "Wenn kein einziger Preis steigt"
+      ],
+      "a": 1,
+      "e": "Gemessen am (harmonisierten) Verbraucherpreisindex; einzelne Preise dürfen steigen, wenn andere sinken."
+    },
+    {
+      "topic": "Stabilitätspolitik",
+      "q": "Mit welcher Kennzahl wird das außenwirtschaftliche Gleichgewicht gemessen?",
+      "options": [
+        "Mit der Arbeitslosenquote",
+        "Mit dem Außenbeitrag (Saldo aus Handels- und Dienstleistungsbilanz)",
+        "Mit dem Verbraucherpreisindex",
+        "Mit der Lohnquote"
+      ],
+      "a": 1,
+      "e": "Angestrebt wird ein positiver Außenbeitrag von ein bis zwei Prozent des nominalen BIP."
+    },
+    {
+      "topic": "Stabilitätspolitik",
+      "q": "Starkes Wirtschaftswachstum zieht in der Regel Preiserhöhungen nach sich. Welche Zielbeziehung liegt vor?",
+      "options": [
+        "Zielharmonie",
+        "Zielkonflikt (konkurrierende Zielbeziehung)",
+        "Indifferente Zielbeziehung",
+        "Zielidentität"
+      ],
+      "a": 1,
+      "e": "Wachstum und Preisniveaustabilität konkurrieren — ein klassischer Zielkonflikt des magischen Vierecks."
+    },
+    {
+      "topic": "Stabilitätspolitik",
+      "q": "Wirtschaftswachstum und Vollbeschäftigung stehen zueinander in einer …",
+      "options": [
+        "konkurrierenden Zielbeziehung",
+        "komplementären Zielbeziehung (Zielharmonie)",
+        "indifferenten Zielbeziehung",
+        "gesetzlich verbotenen Beziehung"
+      ],
+      "a": 1,
+      "e": "Steigt das BIP, werden mehr Produktionsfaktoren benötigt — die Arbeitslosigkeit geht zurück (Zielharmonie)."
+    }
+  ]
+}
