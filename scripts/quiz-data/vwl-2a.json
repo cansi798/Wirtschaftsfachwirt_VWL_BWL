@@ -142,7 +142,7 @@
    "q": "Warum gilt die Fusionskontrolle (§ 35 GWB) als vorbeugende Maßnahme?",
    "options": [
     "Sie bestraft bestehende Monopole",
-    "Geplante Fusionen müssen angezeigt werden und können untersagt werden, bevor eine marktbeherrschende Stellung entsteht",
+    "Geplante Fusionen müssen angemeldet werden und können untersagt werden, bevor eine marktbeherrschende Stellung entsteht",
     "Sie verbietet alle Unternehmenszusammenschlüsse",
     "Sie kontrolliert nur ausländische Unternehmen"
    ],
@@ -322,12 +322,12 @@
    "q": "Der gesetzliche Mindestlohn ist ökonomisch betrachtet ein …",
    "options": [
     "Höchstpreis auf dem Arbeitsmarkt",
-    "Mindestpreis auf dem Arbeitsmarkt — mit dem Risiko eines Angebotsüberhangs an Arbeitskräften",
+    "Mindestpreis auf dem Arbeitsmarkt",
     "marktkonformer Eingriff ohne Nebenwirkungen",
     "Transfereinkommen des Staates"
    ],
    "a": 1,
-   "e": "Er hebelt die Findung des Gleichgewichtslohns aus; Arbeitgeber können Arbeitskräfte durch Technik ersetzen oder Arbeit ins Ausland verlagern."
+   "e": "Der Mindestlohn ist eine Preisuntergrenze am Arbeitsmarkt: Liegt er über dem Gleichgewichtslohn, droht ein Angebotsüberhang an Arbeitskräften; Arbeitgeber können Arbeit durch Technik ersetzen oder ins Ausland verlagern."
   },
   {
    "topic": "Mindestpreis",
@@ -364,6 +364,366 @@
    ],
    "a": 1,
    "e": "Transferleistungen geben Haushalten zusätzliche Mittel für den Erwerb bestimmter Güter — der Preismechanismus bleibt intakt (marktkonform)."
+  },
+  {
+   "topic": "Wettbewerb",
+   "q": "Welche Wettbewerbsfunktion sorgt dafür, dass sich die Höhe der Einkommen an der Marktleistung orientiert?",
+   "options": [
+    "Kontrollfunktion",
+    "Freiheitsfunktion",
+    "Verteilungsfunktion",
+    "Allokationsfunktion"
+   ],
+   "a": 2,
+   "e": "Verteilungsfunktion: Wer bessere Marktleistungen erbringt, erzielt höhere Einkommen — die Verteilung folgt dem Leistungsprinzip."
+  },
+  {
+   "topic": "Wettbewerb",
+   "q": "Wettbewerb verhindert, dass einzelne Unternehmen dauerhaft wirtschaftliche Macht über ihre Marktpartner ausüben. Welche Funktion ist das?",
+   "options": [
+    "Kontrollfunktion",
+    "Auslesefunktion",
+    "Innovationsfunktion",
+    "Verteilungsfunktion"
+   ],
+   "a": 0,
+   "e": "Die Kontrollfunktion begrenzt wirtschaftliche Macht: Konkurrenzangebote verhindern, dass ein Anbieter seine Marktpartner dauerhaft übervorteilen kann."
+  },
+  {
+   "topic": "Wettbewerb",
+   "q": "Die Nachfrage verlagert sich von Verbrenner- zu Elektroautos, und die Hersteller stellen ihre Produktion entsprechend um. Welche Unterfunktion der Steuerungsfunktion zeigt sich hier?",
+   "options": [
+    "Allokationsfunktion",
+    "Auslesefunktion",
+    "Verteilungsfunktion",
+    "Koordinations- und Anpassungsfunktion"
+   ],
+   "a": 3,
+   "e": "Die Koordinations- und Anpassungsfunktion gleicht das Angebot laufend an die veränderte Nachfrage an; die Allokationsfunktion lenkt dagegen die Produktionsfaktoren in ihre produktivste Verwendung."
+  },
+  {
+   "topic": "Wettbewerbspolitik",
+   "q": "Ein Händler wirbt mit irreführenden Angaben über die Wirkung seiner Produkte. Welches Gesetz schützt vor solchen unlauteren Marktpraktiken?",
+   "options": [
+    "Das GWB",
+    "Das UWG",
+    "Das StabG",
+    "Das HGB"
+   ],
+   "a": 1,
+   "e": "Das UWG (Gesetz gegen den unlauteren Wettbewerb) sichert die Fairness des Wettbewerbs; das GWB schützt dagegen seinen Bestand."
+  },
+  {
+   "topic": "Wettbewerbspolitik",
+   "q": "Warum muss der Staat den Wettbewerb durch Wettbewerbspolitik schützen?",
+   "options": [
+    "Weil Unternehmen dazu neigen, den unbequemen Wettbewerb durch Absprachen oder Marktmacht auszuschalten",
+    "Weil Wettbewerb ohne staatliche Preisfestsetzung nicht funktionieren kann",
+    "Weil Verbraucher die Preise sonst nicht vergleichen könnten",
+    "Weil das Grundgesetz eine staatliche Preisaufsicht vorschreibt"
+   ],
+   "a": 0,
+   "e": "Wettbewerb ist für die Beteiligten anstrengend — es besteht die ständige Versuchung, ihn durch Kartelle, Fusionen oder Missbrauch von Marktmacht auszuschalten."
+  },
+  {
+   "topic": "Kartellverbot",
+   "q": "Mehrere Zementhersteller vereinbaren, welche Produktionsmenge jedes Unternehmen höchstens absetzen darf. Welche Kartellart liegt vor?",
+   "options": [
+    "Gebietskartell",
+    "Submissionskartell",
+    "Quotenkartell",
+    "Mittelstandskartell"
+   ],
+   "a": 2,
+   "e": "Quotenkartell: Absprache über Produktions- oder Absatzmengen, um das Angebot künstlich zu verknappen — nach § 1 GWB verboten."
+  },
+  {
+   "topic": "Kartellverbot",
+   "q": "Was verbietet § 1 GWB neben ausdrücklichen Vereinbarungen ebenfalls?",
+   "options": [
+    "Preisempfehlungen an den Einzelhandel jeder Art",
+    "Jede Kooperation rechtlich selbstständiger Unternehmen",
+    "Den Beitritt zu Branchenverbänden",
+    "Aufeinander abgestimmte Verhaltensweisen, die den Wettbewerb spürbar beschränken"
+   ],
+   "a": 3,
+   "e": "Auch ohne förmlichen Vertrag sind abgestimmte Verhaltensweisen (z. B. stillschweigend koordinierte Preiserhöhungen) verboten; zulässige Kooperationen wie Mittelstandskartelle bleiben dagegen möglich."
+  },
+  {
+   "topic": "Kartellverbot",
+   "q": "Welche Ausnahme stellt auf EU-Ebene bestimmte Gruppen von Vereinbarungen pauschal vom Kartellverbot frei?",
+   "options": [
+    "Die Ministererlaubnis",
+    "Die EU-Gruppenfreistellungsverordnungen",
+    "Das Selbstprüfungssystem",
+    "Die Fusionskontrollverordnung (FKVO)"
+   ],
+   "a": 1,
+   "e": "Gruppenfreistellungsverordnungen erklären bestimmte Vereinbarungsgruppen (z. B. Forschungs- und Entwicklungskooperationen) pauschal für zulässig; Einzelfreistellungen regelt § 2 GWB bzw. Art. 101 Abs. 3 AEUV."
+  },
+  {
+   "topic": "Kartellverbot",
+   "q": "Welche Folgen drohen Unternehmen bei einem Verstoß gegen das Kartellverbot?",
+   "options": [
+    "Empfindliche Bußgelder und die Abschöpfung der erzielten Gewinne",
+    "Lediglich eine formlose Abmahnung ohne finanzielle Folgen",
+    "Ausschließlich der Ausschluss von öffentlichen Aufträgen",
+    "Die automatische Auflösung des Unternehmens"
+   ],
+   "a": 0,
+   "e": "Bei Fehleinschätzungen im Selbstprüfungssystem drohen empfindliche Strafen: Bußgelder und Gewinnabschöpfung durch die Kartellbehörden."
+  },
+  {
+   "topic": "Kartellverbot",
+   "q": "Worin unterscheidet sich ein Kartell von einem Unternehmenszusammenschluss (Fusion)?",
+   "options": [
+    "Beim Kartell bleiben die Beteiligten rechtlich selbstständig, bei der Fusion geben Unternehmen ihre Selbstständigkeit auf",
+    "Beim Kartell entsteht ein neues Gemeinschaftsunternehmen, bei der Fusion nicht",
+    "Kartelle sind stets erlaubt, Fusionen dagegen stets verboten",
+    "Kartelle betreffen nur die Preise, Fusionen nur die Mengen"
+   ],
+   "a": 0,
+   "e": "Kartellmitglieder bleiben rechtlich selbstständig und schränken nur ihre wirtschaftliche Selbstständigkeit ein; bei der Fusion verschmelzen Unternehmen dauerhaft."
+  },
+  {
+   "topic": "Fusionskontrolle",
+   "q": "Was müssen Unternehmen nach § 39 GWB vor dem Vollzug eines kontrollpflichtigen Zusammenschlusses tun?",
+   "options": [
+    "Eine Genehmigung des Bundeswirtschaftsministers einholen",
+    "Den Zusammenschluss nachträglich innerhalb eines Jahres melden",
+    "Die Fusion beim Bundeskartellamt anmelden und dessen Entscheidung abwarten",
+    "Die Zustimmung der Europäischen Zentralbank einholen"
+   ],
+   "a": 2,
+   "e": "Kontrollpflichtige Fusionen werden beim Bundeskartellamt angemeldet (§ 39 GWB) und dürfen erst nach Freigabe vollzogen werden — daher der vorbeugende Charakter der Fusionskontrolle."
+  },
+  {
+   "topic": "Fusionskontrolle",
+   "q": "Wann untersagt das Bundeskartellamt einen angemeldeten Zusammenschluss?",
+   "options": [
+    "Wenn die beteiligten Unternehmen verschiedenen Branchen angehören",
+    "Wenn zu erwarten ist, dass eine marktbeherrschende Stellung entsteht oder verstärkt wird",
+    "Wenn durch die Fusion Arbeitsplätze abgebaut werden",
+    "Wenn der gemeinsame Umsatz eine Milliarde Euro übersteigt"
+   ],
+   "a": 1,
+   "e": "Maßstab ist der Wettbewerb: Untersagt wird, wenn der Zusammenschluss wirksamen Wettbewerb erheblich behindern würde, insbesondere durch Entstehen oder Verstärken einer marktbeherrschenden Stellung."
+  },
+  {
+   "topic": "Missbrauchsaufsicht",
+   "q": "Wie kann das Bundeskartellamt gegen den Missbrauch einer marktbeherrschenden Stellung vorgehen?",
+   "options": [
+    "Es kann das Unternehmen zerschlagen und verstaatlichen",
+    "Es kann nur die EU-Kommission um ein Einschreiten bitten",
+    "Es kann die Preise des Unternehmens dauerhaft selbst festsetzen",
+    "Es kann das missbräuchliche Verhalten untersagen und Bußgelder verhängen"
+   ],
+   "a": 3,
+   "e": "Die Missbrauchsaufsicht (§§ 19 ff. GWB) erlaubt es, missbräuchliches Verhalten zu untersagen und mit Bußgeldern zu ahnden — Marktbeherrschung selbst ist nicht verboten, nur ihr Missbrauch."
+  },
+  {
+   "topic": "Missbrauchsaufsicht",
+   "q": "Wann gilt ein Unternehmen als marktbeherrschend?",
+   "options": [
+    "Wenn es auf dem relevanten Markt keinem wesentlichen Wettbewerb ausgesetzt ist oder eine überragende Marktstellung hat",
+    "Wenn es mehr als 500 Mitarbeiter beschäftigt",
+    "Wenn es in mehreren Bundesländern tätig ist",
+    "Wenn es die höchsten Werbeausgaben der Branche hat"
+   ],
+   "a": 0,
+   "e": "Marktbeherrschung liegt vor, wenn ein Unternehmen ohne wesentlichen Wettbewerb agieren kann oder gegenüber seinen Konkurrenten eine überragende Marktstellung besitzt."
+  },
+  {
+   "topic": "Staatseingriffe",
+   "q": "Welche Kombination enthält ausschließlich marktkonträre (direkte) Eingriffe in die Preisbildung?",
+   "options": [
+    "Steuern und Zölle",
+    "Subventionen und Transferzahlungen",
+    "Höchstpreise und Mindestpreise",
+    "Zölle und Subventionen"
+   ],
+   "a": 2,
+   "e": "Höchst- und Mindestpreise setzen den Preismechanismus außer Kraft (marktkonträr); Steuern, Zölle, Subventionen und Transfers wirken dagegen über Angebot und Nachfrage (marktkonform)."
+  },
+  {
+   "topic": "Staatseingriffe",
+   "q": "Wie wirkt ein Einfuhrzoll auf ausländische Agrarprodukte?",
+   "options": [
+    "Er senkt das inländische Preisniveau des Gutes",
+    "Er wirkt marktkonträr, weil er den Preismechanismus außer Kraft setzt",
+    "Er erhöht die nachgefragte Menge ausländischer Produkte",
+    "Er verteuert die Importe und schützt so die inländischen Anbieter"
+   ],
+   "a": 3,
+   "e": "Zölle sind marktkonforme Eingriffe: Sie verteuern ausländische Güter und lenken die Nachfrage zu inländischen Anbietern — der Preismechanismus bleibt intakt."
+  },
+  {
+   "topic": "Staatseingriffe",
+   "q": "Der Staat subventioniert die Herstellung von Windkraftanlagen. Welche Marktwirkung ist zu erwarten?",
+   "options": [
+    "Das Angebot sinkt, der Preis steigt",
+    "Das Angebot steigt, der Marktpreis sinkt und die abgesetzte Menge nimmt zu",
+    "Die Nachfrage sinkt, der Preis bleibt unverändert",
+    "Preis und Menge bleiben gleich, nur die Gewinne steigen"
+   ],
+   "a": 1,
+   "e": "Die Subvention senkt die Kosten der Anbieter: Das Angebot dehnt sich aus, der Gleichgewichtspreis sinkt, die Menge steigt — so fördert der Staat erwünschte Produktionen."
+  },
+  {
+   "topic": "Staatseingriffe",
+   "q": "Der Staat zahlt Käufern von Elektroautos eine Kaufprämie. Welche Wirkung hat das auf dem Automarkt?",
+   "options": [
+    "Das Angebot sinkt, der Preis fällt",
+    "Die Nachfrage sinkt, die Menge geht zurück",
+    "Die Nachfrage steigt — Gleichgewichtspreis und -menge nehmen zu",
+    "Der Preis wird staatlich festgeschrieben"
+   ],
+   "a": 2,
+   "e": "Die Prämie wirkt wie eine Subvention der Nachfrager: Die Nachfragekurve verschiebt sich nach rechts, Preis und Menge steigen — ein marktkonformer Eingriff."
+  },
+  {
+   "topic": "Höchstpreis",
+   "q": "Welche Folge hat ein wirksamer Höchstpreis, der unter dem Gleichgewichtspreis liegt?",
+   "options": [
+    "Einen Nachfrageüberschuss, der z. B. durch Rationierung (Bezugsscheine) verwaltet werden muss",
+    "Einen Angebotsüberschuss, den der Staat aufkaufen muss",
+    "Einen automatischen Ausgleich von Angebot und Nachfrage",
+    "Eine steigende Angebotsmenge bei sinkender Nachfrage"
+   ],
+   "a": 0,
+   "e": "Zum niedrigen Höchstpreis wird mehr nachgefragt als angeboten; die knappe Menge muss dann anders verteilt werden, etwa über Bezugsscheine oder Wartelisten."
+  },
+  {
+   "topic": "Höchstpreis",
+   "q": "Warum entstehen bei staatlichen Höchstpreisen häufig Schwarzmärkte?",
+   "options": [
+    "Weil die Anbieter zu hohe Gewinne erzielen",
+    "Weil der Staat die Überschussmengen aufkauft",
+    "Weil das Angebot die Nachfrage übersteigt",
+    "Weil zahlungsbereite Nachfrager wegen der Knappheit illegal mehr als den Höchstpreis zu zahlen bereit sind"
+   ],
+   "a": 3,
+   "e": "Der Nachfrageüberschuss führt dazu, dass Güter am offiziellen Markt vorbei zu höheren Preisen gehandelt werden — der Schwarzmarkt umgeht die staatliche Preisgrenze."
+  },
+  {
+   "topic": "Mindestpreis",
+   "q": "Mit welchen Maßnahmen kann der Staat den Angebotsüberschuss bei einem Mindestpreis abbauen?",
+   "options": [
+    "Durch eine zusätzliche Erhöhung des Mindestpreises",
+    "Durch staatliche Aufkäufe der Überschussmengen oder Produktionskontingente",
+    "Durch ein Verbot der privaten Nachfrage",
+    "Durch die Freigabe zusätzlicher Importe zum Weltmarktpreis"
+   ],
+   "a": 1,
+   "e": "Der Staat kann die Überschüsse aufkaufen (Interventionskäufe) oder die Produktionsmengen kontingentieren — beides ist teuer bzw. birgt die Gefahr grauer Märkte."
+  },
+  {
+   "topic": "Mindestpreis",
+   "q": "Welches Beispiel ist ein staatlich gesetzter Mindestpreis?",
+   "options": [
+    "Die Mietpreisbremse",
+    "Die Tabaksteuer",
+    "Das Wohngeld",
+    "Garantierte Erzeugerpreise für Agrarprodukte"
+   ],
+   "a": 3,
+   "e": "Garantiepreise für Agrarerzeugnisse sind klassische Mindestpreise zum Schutz der Anbieter; die Mietpreisbremse ist dagegen ein Höchstpreis, Tabaksteuer und Wohngeld sind marktkonforme Eingriffe."
+  },
+  {
+   "topic": "Höchstpreis",
+   "q": "Welches Beispiel ist ein marktkonträrer Höchstpreis?",
+   "options": [
+    "Der gesetzliche Mindestlohn",
+    "Die Subvention für Windkraftanlagen",
+    "Die Mietpreisbremse auf angespannten Wohnungsmärkten",
+    "Das Kindergeld"
+   ],
+   "a": 2,
+   "e": "Die Mietpreisbremse deckelt den Preis unterhalb des Marktgleichgewichts zum Schutz der Mieter (Nachfrager); der Mindestlohn ist ein Mindestpreis, Subventionen und Kindergeld sind marktkonform."
+  },
+  {
+   "topic": "Mindestpreis",
+   "q": "Wer trägt typischerweise die Lasten eines staatlichen Mindestpreises?",
+   "options": [
+    "Die Nachfrager über höhere Preise und die Steuerzahler über staatliche Aufkäufe",
+    "Ausschließlich die geschützten Anbieter",
+    "Nur die ausländischen Konkurrenten",
+    "Niemand, da sich der Markt von selbst ausgleicht"
+   ],
+   "a": 0,
+   "e": "Die Nachfrager zahlen mehr als den Gleichgewichtspreis; muss der Staat Überschüsse aufkaufen, finanzieren zusätzlich die Steuerzahler den Anbieterschutz."
+  },
+  {
+   "topic": "Staatseingriffe",
+   "q": "Warum sind marktkonforme Eingriffe ordnungspolitisch den marktkonträren vorzuziehen?",
+   "options": [
+    "Weil sie den Staatshaushalt niemals belasten",
+    "Weil der Preismechanismus mit seinen Funktionen erhalten bleibt",
+    "Weil sie den Anbietern höhere Gewinne garantieren",
+    "Weil sie ausschließlich die Nachfrager begünstigen"
+   ],
+   "a": 1,
+   "e": "Marktkonforme Instrumente verschieben nur Angebot oder Nachfrage; Signal-, Lenkungs- und Ausgleichsfunktion des Preises bleiben funktionsfähig."
+  },
+  {
+   "topic": "Wettbewerbspolitik",
+   "q": "Wann ist für die Prüfung eines Unternehmenszusammenschlusses die EU-Kommission statt des Bundeskartellamts zuständig?",
+   "options": [
+    "Wenn ein beteiligtes Unternehmen seinen Sitz im Ausland hat",
+    "Wenn der Bundeswirtschaftsminister das Verfahren abgibt",
+    "Wenn beide Unternehmen börsennotiert sind",
+    "Wenn der Zusammenschluss unionsweite Bedeutung nach der Fusionskontrollverordnung (FKVO) hat"
+   ],
+   "a": 3,
+   "e": "Bei Zusammenschlüssen mit unionsweiter Bedeutung (hohe weltweite und EU-weite Umsätze) prüft die EU-Kommission nach der FKVO — EU-Recht geht dann vor."
+  },
+  {
+   "topic": "Kartellverbot",
+   "q": "Mehrere kleine Handwerksbetriebe organisieren einen gemeinsamen Einkauf, um gegenüber Großunternehmen bestehen zu können. Wie ist das kartellrechtlich zu beurteilen?",
+   "options": [
+    "Als verbotenes Preiskartell nach § 1 GWB",
+    "Als Mittelstandskartell nach § 3 GWB zulässig, weil es Nachteile gegenüber Großunternehmen ausgleicht",
+    "Nur mit Ministererlaubnis nach § 42 GWB möglich",
+    "Als verbotenes Submissionskartell"
+   ],
+   "a": 1,
+   "e": "Kooperationen kleiner und mittlerer Unternehmen zur Verbesserung ihrer Wettbewerbsfähigkeit sind als Mittelstandskartelle privilegiert — der Wettbewerb wird dadurch eher belebt als beschränkt."
+  },
+  {
+   "topic": "Höchstpreis",
+   "q": "Welche Preisfunktion wird durch einen wirksamen staatlichen Höchstpreis außer Kraft gesetzt?",
+   "options": [
+    "Die Innovationsfunktion des Wettbewerbs",
+    "Die Freiheitsfunktion des Wettbewerbs",
+    "Die Ausgleichsfunktion des Preises",
+    "Die Verteilungsfunktion des Wettbewerbs"
+   ],
+   "a": 2,
+   "e": "Der fixierte Preis kann Angebot und Nachfrage nicht mehr ausgleichen (die Markträumung entfällt) — es bleibt ein dauerhafter Nachfrageüberschuss."
+  },
+  {
+   "topic": "Staatseingriffe",
+   "q": "Wohngeld und Mietpreisbremse verfolgen beide das Ziel bezahlbaren Wohnens. Wie unterscheiden sie sich ordnungspolitisch?",
+   "options": [
+    "Wohngeld ist marktkonform (Transfer an die Nachfrager), die Mietpreisbremse marktkonträr (Höchstpreis)",
+    "Beide sind marktkonträre Eingriffe in die Preisbildung",
+    "Wohngeld ist marktkonträr, die Mietpreisbremse marktkonform",
+    "Beide sind Subventionen an die Anbieter von Wohnraum"
+   ],
+   "a": 0,
+   "e": "Das Wohngeld stärkt die Kaufkraft der Nachfrager und lässt den Preismechanismus intakt; die Mietpreisbremse setzt ihn als Preisobergrenze außer Kraft."
+  },
+  {
+   "topic": "Wettbewerb",
+   "q": "Eine Gründerin kann jederzeit mit einer neuen Geschäftsidee in den Markt eintreten und Kunden abwerben. Welche Wettbewerbsfunktion wird hier deutlich?",
+   "options": [
+    "Verteilungsfunktion",
+    "Kontrollfunktion",
+    "Auslesefunktion",
+    "Freiheitsfunktion"
+   ],
+   "a": 3,
+   "e": "Die Freiheitsfunktion sichert offene Märkte: Jeder darf seine Fähigkeiten und Mittel für frei gewählte Zwecke einsetzen — auch als neuer Anbieter."
   }
  ]
 }

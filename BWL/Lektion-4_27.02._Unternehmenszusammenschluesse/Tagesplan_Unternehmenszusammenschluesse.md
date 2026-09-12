@@ -58,7 +58,7 @@ Die Teilnehmenden können am Ende von Session 2 …
 
 - `Praesentation_Unternehmenszusammenschluesse-Teil-1.html` / `…-Teil-2.html` — Foliensätze der beiden Sessions (Teil 2 inkl. Kursrückblick über alle 7 Lektionen)
 - `Handout_Unternehmenszusammenschluesse-Teil-1.pdf` / `…-Teil-2.pdf` — Skripte zur Nachbereitung (Teil 1 mit Vergleichstabelle Kooperation/Konzentration und Synergieeffekt; Teil 2 mit Fusionskontrolle, Marktanteil & Beteiligungsquote)
-- `Quiz_Unternehmenszusammenschluesse-Teil-1.html` / `…-Teil-2.html` — je 30 Fragen mit sofortiger Selbstkontrolle
+- `Quiz_Unternehmenszusammenschluesse-Teil-1.html` / `…-Teil-2.html` — je 60 Fragen mit sofortiger Selbstkontrolle
 - `Karteikarten_/Wordle_/Hangman_/Memory_…` — Selbstlernmaterial zur Prüfungsvorbereitung (gemeinsames Material)
 - `Aufgabenheft_Unternehmenszusammenschluesse.pdf` — Übungsaufgaben im IHK-Klausurformat mit Musterlösungen
 - `Uebungen_Unternehmenszusammenschluesse.pdf` — Literatur-Auszug (Übungsband-Auszug mit Lösungen; ergänzende Übungen)
@@ -68,7 +68,7 @@ Die Teilnehmenden können am Ende von Session 2 …
 
 Freiwillige Selbstlernangebote auf der Lernplattform:
 
-1. **Quiz Teil 1 & Teil 2** (je 30 Fragen) mit sofortiger Selbstkontrolle bearbeiten — Schwerpunkt Abgrenzung Kooperation/Konzentration.
+1. **Quiz Teil 1 & Teil 2** (je 60 Fragen) mit sofortiger Selbstkontrolle bearbeiten — Schwerpunkt Abgrenzung Kooperation/Konzentration.
 2. **Lernbereich** nutzen — 18 offene Aufgaben mit Lösungshinweisen.
 3. **Prüfungsaufgaben** (`Pruefungsaufgaben_Unternehmenszusammenschluesse.html`) — interaktive Seite mit 13 prüfungsnahen Aufgaben im IHK-Stil: schriftlich lösen, dann mit den Lösungshinweisen vergleichen.
 4. **Aufgabenheft mit Musterlösungen** durcharbeiten, insbesondere die Zuordnungsaufgabe (horizontal/vertikal/diagonal) und die Fallaufgabe Kartell vs. Konzern.

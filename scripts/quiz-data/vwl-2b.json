@@ -178,12 +178,12 @@
    "q": "Wann gilt das Ziel der Preisniveaustabilität nach EZB-Definition als erreicht?",
    "options": [
     "Bei einer Inflationsrate von 0 %",
-    "Bei einer Inflationsrate knapp unter 2 %",
+    "Bei einer Inflationsrate von 2 %",
     "Bei einer Deflation von 2 %",
     "Wenn kein einziger Preis steigt"
    ],
    "a": 1,
-   "e": "Gemessen am (harmonisierten) Verbraucherpreisindex; einzelne Preise dürfen steigen, wenn andere sinken."
+   "e": "Seit Juli 2021 verfolgt die EZB ein symmetrisches Inflationsziel von 2 %, gemessen am harmonisierten Verbraucherpreisindex (HVPI); einzelne Preise dürfen steigen, wenn andere sinken."
   },
   {
    "topic": "Stabilitätspolitik",
@@ -364,6 +364,366 @@
    ],
    "a": 1,
    "e": "Bei indifferenten Zielbeziehungen beeinflussen sich die Ziele nicht — die Verfolgung des einen Ziels wirkt sich weder positiv noch negativ auf das andere aus."
+  },
+  {
+   "topic": "VGR",
+   "q": "Welche Aufgabe erfüllt die Volkswirtschaftliche Gesamtrechnung (VGR)?",
+   "options": [
+    "Sie plant die künftige Produktion aller Unternehmen verbindlich",
+    "Sie bildet die wirtschaftliche Aktivität einer Periode nachträglich zahlenmäßig ab und dient als Konjunkturbarometer",
+    "Sie prüft die Jahresabschlüsse der Kapitalgesellschaften",
+    "Sie legt die Steuersätze für das kommende Jahr fest"
+   ],
+   "a": 1,
+   "e": "Die VGR erfasst ex post die wirtschaftliche Aktivität; sie dient der Messung von Wachstum und Strukturwandel und als Entscheidungsgrundlage für die Wirtschaftspolitik."
+  },
+  {
+   "topic": "VGR",
+   "q": "Wer erstellt in Deutschland die Volkswirtschaftlichen Gesamtrechnungen?",
+   "options": [
+    "Die Deutsche Bundesbank",
+    "Das Bundesministerium der Finanzen",
+    "Der Sachverständigenrat",
+    "Das Statistische Bundesamt"
+   ],
+   "a": 3,
+   "e": "Das Statistische Bundesamt berechnet BIP, BNE und die weiteren VGR-Größen — nach den einheitlichen Regeln des ESVG 2010."
+  },
+  {
+   "topic": "VGR",
+   "q": "Eine polnische Saisonarbeitskraft erntet drei Monate lang Spargel in Brandenburg. Wie wird ihre Wertschöpfung erfasst?",
+   "options": [
+    "Sie zählt zum deutschen BIP, aber nicht zum deutschen BNE",
+    "Sie zählt zum deutschen BNE, aber nicht zum deutschen BIP",
+    "Sie zählt weder zum deutschen BIP noch zum deutschen BNE",
+    "Sie zählt sowohl zum deutschen BIP als auch zum deutschen BNE"
+   ],
+   "a": 0,
+   "e": "Produziert wird im Inland (Inlandskonzept → BIP); das Einkommen fließt aber einer Nichtinländerin zu und fehlt daher im deutschen BNE (Inländerkonzept)."
+  },
+  {
+   "topic": "VGR",
+   "q": "Ein in Freiburg wohnender Arbeitnehmer pendelt täglich zur Arbeit nach Basel in die Schweiz. Wie wird sein Arbeitseinkommen erfasst?",
+   "options": [
+    "Im deutschen BIP, aber nicht im deutschen BNE",
+    "Weder im deutschen BIP noch im deutschen BNE",
+    "Im deutschen BNE, aber nicht im deutschen BIP",
+    "Sowohl im deutschen BIP als auch im deutschen BNE"
+   ],
+   "a": 2,
+   "e": "Er produziert im Ausland (kein deutsches BIP), ist aber Inländer — sein Einkommen zählt nach dem Inländerkonzept zum deutschen BNE."
+  },
+  {
+   "topic": "VGR",
+   "q": "Private Konsumausgaben 1.900 Mrd. €, Staatskonsum 700 Mrd. €, Bruttoinvestitionen 500 Mrd. €, Exporte 1.600 Mrd. €, Importe 1.500 Mrd. €. Wie hoch ist das BIP nach der Verwendungsrechnung?",
+   "options": [
+    "4.700 Mrd. €",
+    "3.200 Mrd. €",
+    "3.100 Mrd. €",
+    "3.000 Mrd. €"
+   ],
+   "a": 1,
+   "e": "BIP = 1.900 + 700 + 500 + Außenbeitrag (1.600 − 1.500 = 100) = 3.200 Mrd. €. Wer die Importe nicht abzieht, kommt fälschlich auf 4.700 Mrd. €."
+  },
+  {
+   "topic": "VGR",
+   "q": "Das nominale BIP ist um 4 % gestiegen, das Preisniveau um 3 %. Wie hoch ist das reale Wachstum näherungsweise?",
+   "options": [
+    "Rund 1 %",
+    "Rund 7 %",
+    "Rund 4 %",
+    "Rund 12 %"
+   ],
+   "a": 0,
+   "e": "Reales Wachstum ≈ nominales Wachstum − Preissteigerungsrate = 4 % − 3 % = 1 % — nur der reale Zuwachs zeigt echtes Mengenwachstum."
+  },
+  {
+   "topic": "Einkommensverteilung",
+   "q": "Arbeitnehmerentgelt: 1.500 Mrd. €, Unternehmens- und Vermögenseinkommen: 500 Mrd. €. Wie hoch ist die Gewinnquote?",
+   "options": [
+    "75 %",
+    "33 %",
+    "25 %",
+    "20 %"
+   ],
+   "a": 2,
+   "e": "Volkseinkommen = 1.500 + 500 = 2.000 Mrd. €; Gewinnquote = 500 ÷ 2.000 × 100 = 25 % — die Lohnquote beträgt entsprechend 75 %."
+  },
+  {
+   "topic": "VGR",
+   "q": "Das BIP beträgt 3.000 Mrd. €, die Abschreibungen belaufen sich auf 450 Mrd. €. Wie hoch ist das Nettoinlandsprodukt?",
+   "options": [
+    "3.450 Mrd. €",
+    "3.000 Mrd. €",
+    "450 Mrd. €",
+    "2.550 Mrd. €"
+   ],
+   "a": 3,
+   "e": "Nettoinlandsprodukt = BIP − Abschreibungen = 3.000 − 450 = 2.550 Mrd. € — netto heißt stets nach Abzug der Abschreibungen."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Wie ermittelt das Statistische Bundesamt die Inflationsrate?",
+   "options": [
+    "Über die Preisentwicklung eines repräsentativen Warenkorbs mit rund 700 Güterarten (Verbraucherpreisindex)",
+    "Über die Preisentwicklung von genau 70 Grundnahrungsmitteln",
+    "Über eine Befragung der Unternehmen zu ihren Gewinnmargen",
+    "Über die Entwicklung der Löhne und Gehälter"
+   ],
+   "a": 0,
+   "e": "Der Verbraucherpreisindex misst die Preisentwicklung eines Warenkorbs von rund 700 Güterarten; seine prozentuale Veränderung zum Vorjahr ist die Inflationsrate."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Was bedeutet das symmetrische Inflationsziel der EZB?",
+   "options": [
+    "Die Inflationsrate soll exakt 0 % betragen",
+    "Nur Inflationsraten über 2 % gelten als problematisch",
+    "Abweichungen unter 2 % sind ebenso unerwünscht wie Abweichungen darüber",
+    "Das Ziel gilt nur in Jahren mit Wirtschaftswachstum"
+   ],
+   "a": 2,
+   "e": "Seit Juli 2021 strebt die EZB mittelfristig 2 % an — zu niedrige Inflation (Deflationsgefahr) ist dabei genauso unerwünscht wie zu hohe."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Woran wird das Ziel „stetiges und angemessenes Wirtschaftswachstum“ gemessen?",
+   "options": [
+    "An der Zuwachsrate des nominalen BIP",
+    "An der jährlichen Zuwachsrate des realen BIP",
+    "An der Entwicklung der Lohnquote",
+    "Am Saldo der Handelsbilanz"
+   ],
+   "a": 1,
+   "e": "Maßstab ist stets das reale (preisbereinigte) BIP; angestrebt wird ein stetiger Zuwachs von durchschnittlich rund 2 % ohne heftige Konjunkturausschläge."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Wie ist die Arbeitslosenquote definiert?",
+   "options": [
+    "Arbeitslose im Verhältnis zur Gesamtbevölkerung",
+    "Arbeitslose im Verhältnis zu den offenen Stellen",
+    "Erwerbstätige im Verhältnis zu den Erwerbspersonen",
+    "Registrierte Arbeitslose im Verhältnis zu den zivilen Erwerbspersonen"
+   ],
+   "a": 3,
+   "e": "Die Arbeitslosenquote der Bundesagentur für Arbeit setzt die registrierten Arbeitslosen ins Verhältnis zu den zivilen Erwerbspersonen."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Warum wird das Zielviereck des Stabilitätsgesetzes als „magisch“ bezeichnet?",
+   "options": [
+    "Weil sich kaum alle vier Ziele gleichzeitig verwirklichen lassen — dazu bedürfte es gleichsam magischer Kräfte",
+    "Weil die Ziele rechtlich unverbindlich sind",
+    "Weil die Zielwerte von der EZB festgelegt werden",
+    "Weil die Ziele nur in Krisenzeiten gelten"
+   ],
+   "a": 0,
+   "e": "Zwischen den Zielen bestehen Konflikte (z. B. Wachstum vs. Preisstabilität); alle vier zugleich zu erreichen, erscheint wie Magie."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Warum gelten Umweltschutz und gerechte Verteilung im magischen Sechseck als qualitative Ziele?",
+   "options": [
+    "Weil sie wichtiger sind als die vier quantitativen Ziele",
+    "Weil sie nur die Bundesländer betreffen",
+    "Weil es für ihre Zielerreichung keinen eindeutigen messbaren Maßstab gibt",
+    "Weil sie bereits vollständig erreicht wurden"
+   ],
+   "a": 2,
+   "e": "Anders als Inflationsrate oder Arbeitslosenquote lassen sich Umweltqualität und Verteilungsgerechtigkeit nicht mit einer einzelnen Messgröße eindeutig beziffern."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Eine boomende Industrie steigert ihre Produktion kräftig, dadurch nehmen Emissionen und Ressourcenverbrauch zu. Welche Zielbeziehung liegt vor?",
+   "options": [
+    "Zielharmonie zwischen Wachstum und Umweltschutz",
+    "Eine indifferente Zielbeziehung",
+    "Zielidentität",
+    "Zielkonflikt zwischen Wirtschaftswachstum und Erhaltung der Umwelt"
+   ],
+   "a": 3,
+   "e": "Wachstum um jeden Preis belastet die Umwelt — ein klassischer Konflikt zwischen dem quantitativen Wachstumsziel und dem qualitativen Umweltziel."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Boomende Unternehmen investieren ihre Gewinne in umweltfreundliche Produktionsverfahren. Was zeigt dieses Beispiel?",
+   "options": [
+    "Dass Wachstum und Umweltschutz immer im Konflikt stehen",
+    "Dass Wirtschaftswachstum und Umweltschutz auch harmonieren können",
+    "Dass Umweltschutz das Wachstum zwingend bremst",
+    "Dass eine indifferente Zielbeziehung vorliegt"
+   ],
+   "a": 1,
+   "e": "Zielbeziehungen sind nicht starr: Wenn Wachstum die Mittel für Umweltinvestitionen schafft, können beide Ziele komplementär sein."
+  },
+  {
+   "topic": "VGR",
+   "q": "Nach einer Sturmflut steigen die Reparaturaufträge, und das BIP wächst. Welche Grenze des BIP als Wohlstandsindikator zeigt sich hier?",
+   "options": [
+    "Die Beseitigung von Schäden erhöht das BIP, obwohl der Wohlstand nicht gestiegen ist",
+    "Naturkatastrophen werden im BIP grundsätzlich nicht erfasst",
+    "Das BIP sinkt automatisch bei jeder Katastrophe",
+    "Reparaturen zählen nur zum BNE, nicht zum BIP"
+   ],
+   "a": 0,
+   "e": "Die Reparatur von Unfall- und Umweltschäden zählt positiv zum BIP; die verlorene Lebensqualität und das zerstörte Vermögen bildet es nicht ab."
+  },
+  {
+   "topic": "VGR",
+   "q": "Wie geht das Statistische Bundesamt mit der Schwarzarbeit bei der BIP-Berechnung um?",
+   "options": [
+    "Sie wird vollständig und exakt erfasst",
+    "Sie wird grundsätzlich nicht berücksichtigt",
+    "Sie wird als Teil der Schattenwirtschaft nur geschätzt",
+    "Sie wird vom BIP abgezogen"
+   ],
+   "a": 2,
+   "e": "Schwarzarbeit gehört zur Schattenwirtschaft und lässt sich nicht direkt messen — das Statistische Bundesamt berücksichtigt sie über Schätzungen."
+  },
+  {
+   "topic": "Einkommensverteilung",
+   "q": "Mit welchen Instrumenten korrigiert der Staat die Primärverteilung des Einkommens?",
+   "options": [
+    "Mit Mindest- und Höchstpreisen auf den Gütermärkten",
+    "Mit der Festsetzung aller Löhne durch Behörden",
+    "Mit dem Verbot von Vermögenseinkommen",
+    "Mit progressiver Einkommensteuer, Sozialversicherung und Transferzahlungen"
+   ],
+   "a": 3,
+   "e": "Die Sekundärverteilung erfolgt über progressive Steuern, Sozialabgaben und Transfers (z. B. Renten, Kindergeld, Bürgergeld) nach dem Bedarfsprinzip."
+  },
+  {
+   "topic": "Einkommensverteilung",
+   "q": "Die Lorenzkurve eines Landes rückt im Zeitverlauf näher an die Diagonale heran. Was bedeutet das?",
+   "options": [
+    "Die Einkommen sind ungleicher verteilt als zuvor",
+    "Die Einkommensverteilung ist gleichmäßiger geworden",
+    "Das Volkseinkommen ist gesunken",
+    "Die Lohnquote ist auf 100 % gestiegen"
+   ],
+   "a": 1,
+   "e": "Die Diagonale steht für die absolute Gleichverteilung — je näher die Lorenzkurve an ihr liegt, desto gleichmäßiger ist das Einkommen verteilt."
+  },
+  {
+   "topic": "Einkommensverteilung",
+   "q": "Was untersucht die funktionale Einkommensverteilung?",
+   "options": [
+    "Die Aufteilung des Volkseinkommens auf die Produktionsfaktoren — Arbeitnehmerentgelt einerseits, Unternehmens- und Vermögenseinkommen andererseits",
+    "Die Verteilung des Volkseinkommens auf einzelne Personen und Haushalte",
+    "Die Verteilung der Steuerlast auf die Bundesländer",
+    "Die Verteilung der Exporte auf die einzelnen Branchen"
+   ],
+   "a": 0,
+   "e": "Die funktionale Verteilung fragt nach der Einkommensquelle (Lohn- vs. Gewinnquote); die personelle Verteilung fragt, wie gleichmäßig Personen am Einkommen beteiligt sind (Lorenzkurve)."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Exporte: 1.650 Mrd. €, Importe: 1.530 Mrd. €, nominales BIP: 3.000 Mrd. €. Ist das Ziel des außenwirtschaftlichen Gleichgewichts erreicht?",
+   "options": [
+    "Ja — der Außenbeitrag von 120 Mrd. € liegt genau im Zielkorridor",
+    "Nein — es liegt ein Außenbeitragsdefizit vor",
+    "Ja — ein Außenbeitrag von 0 % ist erreicht",
+    "Nein — der Außenbeitrag beträgt 120 Mrd. € = 4 % des BIP und liegt über dem Zielkorridor von 1–2 %"
+   ],
+   "a": 3,
+   "e": "Außenbeitrag = 1.650 − 1.530 = 120 Mrd. €; 120 ÷ 3.000 × 100 = 4 % — angestrebt wird aber nur ein positiver Außenbeitrag von 1–2 % des nominalen BIP."
+  },
+  {
+   "topic": "VGR",
+   "q": "Welche Ausgaben zählen in der Verwendungsrechnung zu den Bruttoinvestitionen?",
+   "options": [
+    "Käufe von Maschinen und Bauten sowie Vorratsveränderungen der Unternehmen",
+    "Ausgaben privater Haushalte für langlebige Konsumgüter",
+    "Aktien- und Wertpapierkäufe privater Anleger",
+    "Sozialleistungen des Staates an die Haushalte"
+   ],
+   "a": 0,
+   "e": "Investitionen im Sinne der VGR sind Sachinvestitionen der Unternehmen (Ausrüstungen, Bauten, Vorräte); Wertpapierkäufe sind dagegen nur Finanzanlagen."
+  },
+  {
+   "topic": "VGR",
+   "q": "Warum führen Entstehungs-, Verwendungs- und Verteilungsrechnung zum selben BIP?",
+   "options": [
+    "Weil das Statistische Bundesamt die Ergebnisse nachträglich angleicht",
+    "Weil nur die Entstehungsrechnung tatsächlich berechnet wird",
+    "Weil sie denselben Wertschöpfungsprozess aus drei Blickwinkeln betrachten: Produktion, Verwendung und Einkommensentstehung",
+    "Weil sich Importe und Exporte langfristig immer ausgleichen"
+   ],
+   "a": 2,
+   "e": "Was produziert wird (Entstehung), wird verwendet (Konsum, Investition, Export) und fließt zugleich als Einkommen zu (Verteilung) — drei Sichten auf denselben Kreislauf."
+  },
+  {
+   "topic": "Einkommensverteilung",
+   "q": "Warum zählen Renten und Bürgergeld nicht zum Primäreinkommen der Haushalte?",
+   "options": [
+    "Weil sie steuerfrei sind",
+    "Weil es Transfereinkommen aus der staatlichen Umverteilung sind und keine am Markt erzielten Faktoreinkommen",
+    "Weil sie unter dem Existenzminimum liegen",
+    "Weil sie zum Vermögen und nicht zum Einkommen gerechnet werden"
+   ],
+   "a": 1,
+   "e": "Primäreinkommen entsteht durch Mitwirkung am Marktprozess (Arbeit, Unternehmertätigkeit, Vermögen); Transfers fließen den Haushalten erst in der Sekundärverteilung zu."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Wen verpflichtet § 1 des Stabilitätsgesetzes worauf?",
+   "options": [
+    "Die EZB auf ein jährliches Geldmengenziel",
+    "Die Unternehmen auf Preisdisziplin bei Lohnverhandlungen",
+    "Die Tarifparteien auf moderate Tarifabschlüsse",
+    "Bund und Länder, bei wirtschafts- und finanzpolitischen Maßnahmen das gesamtwirtschaftliche Gleichgewicht zu beachten"
+   ],
+   "a": 3,
+   "e": "Das StabG (1967) bindet die staatliche Wirtschafts- und Finanzpolitik an die vier Ziele des magischen Vierecks — nicht private Akteure wie Unternehmen oder Tarifparteien."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Welche Institution liefert die Messgröße für das Ziel „hoher Beschäftigungsstand“?",
+   "options": [
+    "Das Statistische Bundesamt mit dem Verbraucherpreisindex",
+    "Die EZB mit dem HVPI",
+    "Die Bundesagentur für Arbeit mit der Arbeitslosenquote",
+    "Der Sachverständigenrat mit dem Jahresgutachten"
+   ],
+   "a": 2,
+   "e": "Die Arbeitslosenquote der Bundesagentur für Arbeit misst den Beschäftigungsstand; der Verbraucherpreisindex des Statistischen Bundesamtes misst dagegen die Preisniveaustabilität."
+  },
+  {
+   "topic": "Stabilitätspolitik",
+   "q": "Der Staat kurbelt die Konjunktur mit einem großen Ausgabenprogramm an: Die Beschäftigung steigt, aber auch die Preise ziehen an. Welche Zielbeziehung wird sichtbar?",
+   "options": [
+    "Ein Zielkonflikt zwischen hohem Beschäftigungsstand und Preisniveaustabilität",
+    "Eine Zielharmonie zwischen Beschäftigung und Preisstabilität",
+    "Eine indifferente Zielbeziehung",
+    "Ein Zielkonflikt zwischen Wachstum und Beschäftigung"
+   ],
+   "a": 0,
+   "e": "Mehr Beschäftigung durch Nachfrageimpulse erkauft sich die Politik häufig mit steigenden Preisen — Beschäftigungsziel und Preisstabilität konkurrieren."
+  },
+  {
+   "topic": "VGR",
+   "q": "Wie gelangt man in der Verteilungsrechnung vom Volkseinkommen zum BIP?",
+   "options": [
+    "Durch Abzug der Abschreibungen und der Subventionen",
+    "Durch Addition von Produktions- und Importabgaben (abzüglich Subventionen) und Abschreibungen sowie Abzug des Saldos der Primäreinkommen aus der übrigen Welt",
+    "Durch Addition der Exporte und Abzug der Importe",
+    "Durch Division durch den Preisindex und Multiplikation mit 100"
+   ],
+   "a": 1,
+   "e": "Volkseinkommen + Produktions-/Importabgaben abzüglich Subventionen + Abschreibungen − Saldo der Primäreinkommen aus der übrigen Welt = BIP."
+  },
+  {
+   "topic": "Einkommensverteilung",
+   "q": "Warum kann eine sehr starke staatliche Umverteilung mit dem Wachstumsziel kollidieren?",
+   "options": [
+    "Weil Transferzahlungen das BIP unmittelbar verringern",
+    "Weil die Lorenzkurve dadurch flacher wird",
+    "Weil das Statistische Bundesamt Transfers nicht erfassen darf",
+    "Weil hohe Steuern und Abgaben die Leistungsanreize schwächen und so das Wachstum bremsen können"
+   ],
+   "a": 3,
+   "e": "Gerechte Verteilung und Wachstum können konkurrieren: Zu starke Umverteilung mindert Leistungs- und Investitionsanreize — ein Zielkonflikt im magischen Sechseck."
   }
  ]
 }

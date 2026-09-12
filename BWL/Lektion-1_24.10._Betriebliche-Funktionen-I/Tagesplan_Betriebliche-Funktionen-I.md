@@ -59,7 +59,7 @@ Die Lektion ist in zwei Sessions geteilt — mit jeweils eigenem Foliensatz, Han
 - `Praesentation_Betriebliche-Funktionen-I-Teil-2.html` — Foliensatz Session 2 (Absatz & Marketing)
 - `Handout_Betriebliche-Funktionen-I-Teil-1.pdf` — Skript Session 1 (inkl. Formeln Produktivität, Wirtschaftlichkeit, Lagerkennzahlen)
 - `Handout_Betriebliche-Funktionen-I-Teil-2.pdf` — Skript Session 2 (inkl. Break-even-Rechnung)
-- `Quiz_Betriebliche-Funktionen-I-Teil-1.html` / `Quiz_Betriebliche-Funktionen-I-Teil-2.html` — je 30 Fragen mit Selbstkontrolle
+- `Quiz_Betriebliche-Funktionen-I-Teil-1.html` / `Quiz_Betriebliche-Funktionen-I-Teil-2.html` — je 60 Fragen mit Selbstkontrolle
 - `Aufgabenheft_Betriebliche-Funktionen-I.pdf` — Übungsaufgaben mit Musterlösungen (ganze Lektion)
 - `Karteikarten_/Wordle_/Hangman_/Memory_…` — Selbstlernmaterial (freiwillige Vertiefung, ganze Lektion)
 - Übungsband Betriebswirtschaft, Kap. 1 (mit Lösungsteil; ergänzende Übungen) — **Hinweis:** Der Auszug aus dem Textband Betriebswirtschaft wird nachgereicht, sobald er vorliegt.
@@ -68,7 +68,7 @@ Die Lektion ist in zwei Sessions geteilt — mit jeweils eigenem Foliensatz, Han
 
 Freiwillige Selbstlernangebote auf der Lernplattform:
 
-1. **Quiz Teil 1 und Teil 2** (je 30 Fragen) mit sofortiger Selbstkontrolle bearbeiten.
+1. **Quiz Teil 1 und Teil 2** (je 60 Fragen) mit sofortiger Selbstkontrolle bearbeiten.
 2. **Lernbereich** nutzen — 18 offene Aufgaben mit Lösungshinweisen.
 3. **Prüfungsaufgaben** (`Pruefungsaufgaben_Betriebliche-Funktionen-I.html`) — interaktive Seite mit 14 prüfungsnahen Aufgaben im IHK-Stil: schriftlich lösen, dann mit den Lösungshinweisen vergleichen.
 4. **Aufgabenheft mit Musterlösungen** durcharbeiten, z. B. die Marketing-Mix-Fallaufgabe; Handouts Teil 1 und Teil 2 lesen.

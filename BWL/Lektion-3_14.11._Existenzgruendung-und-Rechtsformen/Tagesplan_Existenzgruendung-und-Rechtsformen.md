@@ -64,7 +64,7 @@ Die Teilnehmenden können am Ende der Session …
 - `Praesentation_Existenzgruendung-und-Rechtsformen-Teil-2.html` — Foliensatz Session 2 (Unternehmensrechtsformen)
 - `Handout_Existenzgruendung-und-Rechtsformen-Teil-1.pdf` — Skript Session 1 (mit Kapitalbedarfsrechnung)
 - `Handout_Existenzgruendung-und-Rechtsformen-Teil-2.pdf` — Skript Session 2 (mit Rechtsformen-Vergleichstabellen, Gewinnverteilung, UG-Rücklage)
-- `Quiz_Existenzgruendung-und-Rechtsformen-Teil-1.html` / `…-Teil-2.html` — je 30 Fragen mit Selbstkontrolle
+- `Quiz_Existenzgruendung-und-Rechtsformen-Teil-1.html` / `…-Teil-2.html` — je 60 Fragen mit Selbstkontrolle
 - `Aufgabenheft_Existenzgruendung-und-Rechtsformen.pdf` — Übungsaufgaben im IHK-Klausurformat mit Musterlösungen
 - `Karteikarten_/Wordle_/Hangman_/Memory_…` — Selbstlernmaterial (freiwillige Vertiefung, ganze Lektion)
 - `Uebungen_Existenzgruendung-und-Rechtsformen.pdf` — Literatur-Auszug (Übungsband Kap. 2)
@@ -74,7 +74,7 @@ Die Teilnehmenden können am Ende der Session …
 
 > **Achtung:** Nach diesem Termin folgt eine **lange Unterrichtspause** — Lektion 4 findet erst am **Samstag, 27.02.2027** statt. Die folgenden Selbstlernangebote der Plattform sind freiwillig, helfen aber gegen das Vergessen in der Pause.
 
-1. **Quiz Teil 1 und Teil 2** (je 30 Fragen) mit sofortiger Selbstkontrolle bearbeiten; Karteikarten digital wiederholen.
+1. **Quiz Teil 1 und Teil 2** (je 60 Fragen) mit sofortiger Selbstkontrolle bearbeiten; Karteikarten digital wiederholen.
 2. **Lernbereich** nutzen — 18 offene Aufgaben mit Lösungshinweisen.
 3. **Prüfungsaufgaben** (`Pruefungsaufgaben_Existenzgruendung-und-Rechtsformen.html`) — interaktive Seite mit 13 prüfungsnahen Aufgaben im IHK-Stil: schriftlich lösen, dann mit den Lösungshinweisen vergleichen.
 4. **Aufgabenheft mit Musterlösungen** durcharbeiten — insbesondere die Fallaufgabe „Welche Rechtsform passt?" und die Businessplan-Aufgabe schriftlich lösen.

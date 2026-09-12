@@ -60,13 +60,13 @@ Die Lektion ist in zwei Sessions geteilt:
 
 - `Praesentation_Betriebliche-Funktionen-II-Teil-1.html` — Foliensatz Session 1
 - `Handout_Betriebliche-Funktionen-II-Teil-1.pdf` — Skript zur Nachbereitung (inkl. Formelteil)
-- `Quiz_Betriebliche-Funktionen-II-Teil-1.html` — 30 Fragen zu Rechnungswesen, Investition & Finanzierung
+- `Quiz_Betriebliche-Funktionen-II-Teil-1.html` — 60 Fragen zu Rechnungswesen, Investition & Finanzierung
 
 **Teil 2:**
 
 - `Praesentation_Betriebliche-Funktionen-II-Teil-2.html` — Foliensatz Session 2
 - `Handout_Betriebliche-Funktionen-II-Teil-2.pdf` — Skript zur Nachbereitung
-- `Quiz_Betriebliche-Funktionen-II-Teil-2.html` — 30 Fragen zu Controlling, Kennzahlen, Personal & Zusammenwirken
+- `Quiz_Betriebliche-Funktionen-II-Teil-2.html` — 60 Fragen zu Controlling, Kennzahlen, Personal & Zusammenwirken
 
 **Gemeinsames Material (ganze Lektion):**
 
@@ -81,7 +81,7 @@ Die Lektion ist in zwei Sessions geteilt:
 
 Freiwillige Selbstlernangebote auf der Lernplattform:
 
-1. **Quiz** (2 × 30 Fragen, je Session eines) mit sofortiger Selbstkontrolle bearbeiten.
+1. **Quiz** (2 × 60 Fragen, je Session eines) mit sofortiger Selbstkontrolle bearbeiten.
 2. **Lernbereich** nutzen — 18 offene Aufgaben mit Lösungshinweisen.
 3. **Prüfungsaufgaben** (`Pruefungsaufgaben_Betriebliche-Funktionen-II.html`) — interaktive Seite mit 13 prüfungsnahen Aufgaben im IHK-Stil: schriftlich lösen, dann mit den Lösungshinweisen vergleichen.
 4. **Aufgabenheft mit Musterlösungen** durcharbeiten — z. B. Zuordnungsaufgabe Finanzierungsarten (Aufgabe 4) und Fallaufgabe Zielkonflikte (Aufgabe 9); Handouts (Teil 1 + Teil 2) lesen.
