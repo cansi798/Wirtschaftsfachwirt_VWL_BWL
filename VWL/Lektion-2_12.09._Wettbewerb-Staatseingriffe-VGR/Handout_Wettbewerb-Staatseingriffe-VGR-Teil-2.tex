@@ -89,6 +89,13 @@ Wachstumsrate des realen BIP zeigt an, um wie viel Prozent die Produktion im Ver
 zum Vorjahr gestiegen ist. Im internationalen Vergleich werden stets die Werte des
 \emph{realen} BIP bzw. BNE zugrunde gelegt.
 
+\begin{achtung}
+Typische Prüfungsfalle: Wirtschaftswachstum wird \emph{immer} an der Zuwachsrate des
+\textbf{realen} BIP gemessen. Ein nominaler BIP-Anstieg von 5~\% bei 5~\% Inflation
+bedeutet: reales Wachstum \textbf{null} --- die Wirtschaft hat nicht mehr produziert,
+nur die Preise sind gestiegen (Rechenweg in Abschnitt~4.4).
+\end{achtung}
+
 \subsection{Entstehung, Verwendung und Verteilung des BIP}
 
 Das BIP kann über drei Rechnungen ermittelt werden --- alle führen zum gleichen Ergebnis:
@@ -111,6 +118,45 @@ den \emph{Kosten der eingesetzten Produktionsfaktoren}. Bei privaten Haushalten 
 Leistungen, für die Produktionskosten durch fremde Personen (z.\,B. Haushaltshilfen)
 entstanden sind. Bei der Verteilungsrechnung wechselt die Bezugsgrundlage vom
 \emph{Inland} zu den \emph{Inländern}.
+
+\begin{center}
+\begin{tikzpicture}[font=\small,
+    rechnung/.style={rounded corners=4pt, thick, align=center, text width=3.9cm,
+                     minimum height=3.1cm, inner sep=6pt}]
+  \node[rechnung, draw=bfwPrimaryDark, fill=bfwBgTeal] (re) at (-4.9,0)
+    {{\color{bfwPrimaryDark}\bfseries Entstehungsrechnung}\\[1pt]
+     {\footnotesize\itshape Wo ist die Leistung entstanden?}\\[4pt]
+     {\footnotesize Bruttowertschöpfung der Wirtschaftsbereiche
+      $+$ Gütersteuern $-$ Gütersubventionen}};
+  \node[rechnung, draw=bfwAccent!85!black, fill=bfwBgAmber] (rv) at (0,0)
+    {{\color{bfwAccent!85!black}\bfseries Verwendungsrechnung}\\[1pt]
+     {\footnotesize\itshape Wofür wurde die Produktion verwendet?}\\[4pt]
+     {\footnotesize privater Konsum $+$ Staatskonsum $+$ Bruttoinvestitionen
+      $+$ Außenbeitrag (Ex $-$ Im)}};
+  \node[rechnung, draw=bfwWarn!85!black, fill=bfwBgRose] (rt) at (4.9,0)
+    {{\color{bfwWarn!85!black}\bfseries Verteilungsrechnung}\\[1pt]
+     {\footnotesize\itshape An wen fließen die Einkommen?}\\[4pt]
+     {\footnotesize Arbeitnehmerentgelt $+$ Unternehmens- und Vermögenseinkommen
+      $=$ Volkseinkommen}};
+  \node[roughbox, minimum width=7.4cm, minimum height=1.05cm, align=center] (bip) at (0,-3.3)
+    {\bfseries BIP --- ein und dasselbe Ergebnis};
+  \draw[roughline] (re.south) to[out=-90, in=180] (bip.west);
+  \draw[roughline] (rv.south) -- (bip.north);
+  \draw[roughline] (rt.south) to[out=-90, in=0] (bip.east);
+  \node[below=3pt of bip, font=\footnotesize, color=bfwInkSoft, align=center]
+    {Alle drei Rechnungen führen zum gleichen Bruttoinlandsprodukt (ESVG 2010)};
+\end{tikzpicture}
+\end{center}
+
+\begin{beispiel}
+\textbf{Verwendungsrechnung durchgerechnet:} Private Konsumausgaben 1.900~Mrd.~€,
+Konsumausgaben des Staates 800~Mrd.~€, Bruttoinvestitionen 500~Mrd.~€, Exporte
+1.600~Mrd.~€, Importe 1.300~Mrd.~€.\\[0.3em]
+\textbf{Schritt 1:} Außenbeitrag $=$ Exporte $-$ Importe $= 1.600 - 1.300 = 300$~Mrd.~€.\\
+\textbf{Schritt 2:} BIP $= 1.900 + 800 + 500 + 300 = \textbf{3.500~Mrd.~€}$.\\[0.3em]
+Dieselben 3.500~Mrd.~€ ergeben sich über die Entstehungs- und die Verteilungsrechnung ---
+und dienen in Abschnitt~4.1 als Ausgangswert für die BNE-Berechnung.
+\end{beispiel}
 
 \subsection{Grenzen der Aussagekraft des BIP}
 
@@ -163,6 +209,46 @@ $\div$ Einwohnerzahl), das häufig als Wohlstandsindikator im Ländervergleich d
 Verteilung wird mit der \textbf{Lorenzkurve} dargestellt: Sie zeigt, wie viel Prozent der
 Einkommensempfänger wie viel Prozent des Volkseinkommens verdienen. Je weiter die Kurve
 von der Diagonalen (Gleichverteilung) entfernt ist, desto ungleicher die Verteilung.
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize]
+  % Fläche A zwischen Diagonale und Lorenzkurve
+  \fill[bfwAccent!30] (0,0) -- (4.5,4.5) .. controls (4.1,2.2) and (2.8,0.5) .. (0,0);
+  % Hilfsrahmen (100 %-Quadrat)
+  \draw[densely dashed, color=bfwInkSoft!60] (4.5,0) -- (4.5,4.5) -- (0,4.5);
+  % Achsen
+  \draw[-{Stealth[length=2.5mm]}, semithick, color=bfwInk] (0,0) -- (0,5.15);
+  \draw[-{Stealth[length=2.5mm]}, semithick, color=bfwInk] (0,0) -- (5.5,0);
+  \node[right, align=left, color=bfwInk] at (0.15,5.05)
+    {Anteil am Einkommen (kumuliert)};
+  \node[below, color=bfwInk] at (3.0,-0.55) {Anteil der Haushalte (kumuliert)};
+  % Gleichverteilungsgerade
+  \draw[color=bfwInkSoft, thick, densely dashed] (0,0) -- (4.5,4.5)
+    node[pos=0.62, sloped, above, color=bfwInkSoft] {Gleichverteilungsgerade (45°)};
+  % Lorenzkurve
+  \draw[bfwPrimaryDark, line width=1.5pt]
+    (0,0) .. controls (2.8,0.5) and (4.1,2.2) .. (4.5,4.5);
+  \node[color=bfwPrimaryDark, font=\footnotesize\bfseries] at (3.55,1.15) {Lorenzkurve};
+  % Flächen-Labels
+  \node[color=bfwAccent!70!black, font=\footnotesize\bfseries] at (2.45,1.7) {$A$};
+  \node[color=bfwInkSoft, font=\footnotesize\bfseries] at (4.05,2.2) {$B$};
+  % Ablesebeispiel: 50 % der Haushalte -> ca. 18 % des Einkommens
+  \draw[densely dashed, color=bfwWarn!80!black] (2.25,0) -- (2.25,0.83) -- (0,0.83);
+  \fill[bfwWarn!80!black] (2.25,0.83) circle (1.5pt);
+  \node[below, color=bfwInkSoft] at (2.25,0) {50\,\%};
+  \node[left, color=bfwWarn!80!black] at (0,0.83) {$\approx$\,18\,\%};
+  \node[below, color=bfwInkSoft] at (4.5,0) {100\,\%};
+  \node[left, color=bfwInkSoft] at (0,4.5) {100\,\%};
+\end{tikzpicture}
+\end{center}
+
+Aus der Lorenzkurve wird der \textbf{Gini-Koeffizient} abgeleitet: das Verhältnis der
+Fläche~$A$ (zwischen Gleichverteilungsgerade und Lorenzkurve) zur gesamten Fläche unter
+der Diagonalen ($A + B$). Er liegt zwischen \textbf{0} (völlige Gleichverteilung ---
+Lorenzkurve und Diagonale fallen zusammen) und \textbf{1} (maximale Ungleichverteilung
+--- ein Haushalt erhält alles). Je größer der Gini-Koeffizient, desto ungleicher die
+Verteilung. Im Ablesebeispiel der Grafik erhalten die „unteren`` 50~\% der Haushalte
+zusammen nur rund 18~\% des Einkommens.
 
 \subsection{Sekundärverteilung: Einkommensumverteilung}
 
@@ -222,6 +308,45 @@ Ziele \textbf{Erhaltung einer lebenswerten Umwelt (Umweltschutz)} und \textbf{ge
 Einkommens- und Vermögensverteilung} spricht man vom \textbf{magischen Sechseck} --- für
 die qualitativen Ziele gibt es keinen klaren Maßstab der Zielerreichung.
 
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+    ziel/.style={rounded corners=4pt, thick, align=center, text width=3.6cm, inner sep=5pt}]
+  \node[ziel, draw=bfwPrimaryDark, fill=bfwBgTeal] (z1) at (0,2.9)
+    {{\bfseries Preisniveaustabilität}\\[1pt]
+     {\scriptsize Inflationsrate 2\,\% (symmetrisches EZB-Ziel)}};
+  \node[ziel, draw=bfwAccent!85!black, fill=bfwBgAmber] (z2) at (5.3,0)
+    {{\bfseries Hoher Beschäftigungsstand}\\[1pt]
+     {\scriptsize Arbeitslosenquote ca. 3--4\,\%}};
+  \node[ziel, draw=bfwWarn!85!black, fill=bfwBgRose] (z3) at (0,-2.9)
+    {{\bfseries Stetiges u. angemessenes Wachstum}\\[1pt]
+     {\scriptsize reales BIP im Schnitt $+2$\,\% p.\,a.}};
+  \node[ziel, draw=bfwPrimaryDark, fill=bfwBgTeal] (z4) at (-5.3,0)
+    {{\bfseries Außenwirtschaftliches Gleichgewicht}\\[1pt]
+     {\scriptsize Außenbeitrag $+1$ bis $2$\,\% des BIP}};
+  % Rautenkanten (Spannungsboegen)
+  \draw[densely dashed, thick, color=bfwInkSoft!65] (z1) -- (z2) -- (z3) -- (z4) -- (z1);
+  \node[align=center, font=\small\bfseries, color=bfwPrimaryDark] at (0,0.4)
+    {Magisches Viereck\\ (\S\,1 StabG)};
+  \node[align=center, font=\scriptsize, color=bfwInkSoft] at (0,-0.55)
+    {alle vier Ziele sind gleichzeitig\\ kaum vollständig erreichbar};
+  % Zielkonflikt: Preisstabilitaet <-> Wachstum
+  \draw[bfwWarn, thick, {Stealth[length=2mm]}-{Stealth[length=2mm]},
+        decorate, decoration={zigzag, segment length=7pt, amplitude=1.3pt,
+                              pre length=6pt, post length=6pt}]
+    (-1.7,2.0) -- (-1.7,-2.0);
+  \node[rotate=90, font=\scriptsize\bfseries, color=bfwWarn] at (-2.05,0) {Zielkonflikt};
+  % Zielharmonie: Wachstum <-> Beschaeftigung
+  \draw[bfwSuccess!65!black, thick, {Stealth[length=2mm]}-{Stealth[length=2mm]}]
+    (1.7,-1.62) -- (3.15,-0.86)
+    node[midway, sloped, above, font=\scriptsize\bfseries] {Zielharmonie};
+  % Legende
+  \node[font=\scriptsize, color=bfwInkSoft, align=center] at (0,-4.15)
+    {gestrichelte Kanten: Spannungsverhältnis („magisch``) \textperiodcentered{}
+     \textcolor{bfwWarn}{Zickzack: konkurrierende Ziele} \textperiodcentered{}
+     \textcolor{bfwSuccess!65!black}{Doppelpfeil: komplementäre Ziele}};
+\end{tikzpicture}
+\end{center}
+
 Der \textbf{Jahreswirtschaftsbericht} (nach \S\,2 StabG zu Jahresbeginn dem Bundestag
 vorzulegen) informiert über die wirtschaftlichen Zukunftserwartungen der Bundesregierung,
 formuliert die wirtschafts- und finanzpolitischen Ziele für das laufende Jahr und nimmt
@@ -235,7 +360,7 @@ Stellung zum Jahresgutachten des \emph{Sachverständigenrates}.
 \textbf{Ziel} & \textbf{Messgröße} & \textbf{Zielwert (Faustregel)}\\
 \midrule
 Hoher Beschäftigungsstand (Vollbeschäftigung) & Arbeitslosenquote (Bundesagentur für Arbeit) & erreicht bei ca. 3--4~\% (Sockelarbeitslosigkeit bleibt)\\
-Preisniveaustabilität & Inflationsrate auf Basis des Verbraucherpreisindex (Warenkorb, Statistisches Bundesamt) & Inflationsrate knapp unter 2~\% (EZB-Definition, HVPI)\\
+Preisniveaustabilität & Inflationsrate auf Basis des Verbraucherpreisindex (Warenkorb, Statistisches Bundesamt) & Inflationsrate von 2~\% (symmetrisches Ziel der EZB seit 2021, HVPI)\\
 Außenwirtschaftliches Gleichgewicht & Außenbeitrag (Saldo aus Handels- und Dienstleistungsbilanz) & positiver Außenbeitrag von 1--2~\% des nominalen BIP\\
 Stetiges und angemessenes Wirtschaftswachstum & jährliche Zuwachsrate des \emph{realen} BIP & Durchschnitt rund 2~\% pro Jahr, ohne heftige Konjunkturausschläge\\
 \bottomrule
@@ -378,10 +503,11 @@ verfügbares Einkommen.
 
 \begin{merksatz}[title={\bfseries Wichtig für die Prüfungsvorbereitung (Teil 2)}]
 Sie sollten sicher können: \emph{BIP und BNE} abgrenzen (Inlands-/Inländerkonzept), die
-\emph{Verwendungs- und Verteilungsrechnung} des BIP schematisch darstellen,
+\emph{Entstehungs-, Verwendungs- und Verteilungsrechnung} des BIP schematisch darstellen,
 \emph{nominales und reales BIP} unterscheiden, Kritikpunkte an der BIP-Berechnung
 aufzählen, die \emph{Lohnquote} berechnen und das \emph{verfügbare Einkommen} ermitteln
-(alle Rechenwege in Abschnitt~4) sowie die Ziele des magischen Vierecks/Sechsecks
+(alle Rechenwege in Abschnitt~4), die \emph{Lorenzkurve} skizzieren und mit dem
+Gini-Koeffizienten interpretieren sowie die Ziele des magischen Vierecks/Sechsecks
 nennen, ihre Messbarkeit beschreiben und Zielkonflikte bzw. Zielharmonien mit Beispielen
 erläutern. Üben Sie mit dem Aufgabenheft (Aufgabe~7: VGR-Rechnung) und dem Quiz zu Teil~2!
 \end{merksatz}

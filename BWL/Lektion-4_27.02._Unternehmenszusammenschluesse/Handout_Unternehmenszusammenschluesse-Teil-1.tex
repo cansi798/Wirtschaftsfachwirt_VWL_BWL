@@ -120,6 +120,36 @@ Kartellrechtliche Sicht & grundsätzlich erlaubt --- \emph{außer} wettbewerbsbe
 \end{tabular}
 \end{center}
 
+\subsection{Die Systematik als Schaubild}
+
+\begin{center}
+\begin{tikzpicture}[
+  pfeil/.style={roughline, shorten <=2pt, shorten >=2pt}
+]
+  \node[roughaccent, font=\footnotesize\bfseries, text=bfwAccent!55!black,
+        text width=5.6cm, align=center, minimum height=0.85cm] (root) at (0,2.9)
+    {Unternehmenszusammenschlüsse};
+  \node[roughbox, text width=6.4cm, align=center, font=\scriptsize] (koop) at (-3.95,0)
+    {{\footnotesize\bfseries Kooperation}\\[1pt]
+     rechtlich \textbf{und} wirtschaftlich selbstständig\\[4pt]
+     Arbeitsgemeinschaft / Konsortium\\
+     Interessengemeinschaft\\
+     Joint Venture \textperiodcentered{} Strategische Allianz\\
+     Verband\\[2pt]
+     \textcolor{bfwWarn!85!black}{\bfseries Kartell --- grundsätzlich verboten (\S\,1 GWB)}};
+  \node[roughbox, fill=bfwBgAmber, draw=bfwAccent, text width=6.4cm, align=center,
+        font=\scriptsize] (konz) at (3.95,0)
+    {{\footnotesize\bfseries Konzentration}\\[1pt]
+     wirtschaftliche Selbstständigkeit geht verloren\\[4pt]
+     Konzern (rechtlich noch selbstständig)\\
+     Fusion/Verschmelzung (mind.\ ein Partner erlischt)\\
+     Trust (vollständige Verschmelzung)\\[2pt]
+     $\rightarrow$ ab Schwellenwerten: Fusionskontrolle (Teil~2)};
+  \draw[pfeil] (root.south) -- (koop.north);
+  \draw[pfeil] (root.south) -- (konz.north);
+\end{tikzpicture}
+\end{center}
+
 \begin{merksatz}[title={\bfseries Merksatz: Die Kernabgrenzung}]
 \textbf{Kooperation} = freiwillige Zusammen\emph{arbeit} rechtlich und wirtschaftlich
 selbstständiger Unternehmen. \textbf{Konzentration} = Zusammen\emph{fassung} von
@@ -128,6 +158,31 @@ die rechtliche Selbstständigkeit bestehen, bei Fusion und Trust geht auch sie v
 \end{merksatz}
 
 \section{Formen der Kooperation}
+
+Die Kooperationsformen unterscheiden sich in ihrer \emph{Bindungsintensität} --- von der
+lockeren Interessenvertretung bis zur gemeinsamen Tochtergesellschaft. Jenseits der
+gestrichelten Grenze beginnt die Konzentration (Teil~2):
+
+\begin{center}
+\begin{tikzpicture}[
+  stufe/.style={roughbox, font=\scriptsize\bfseries, text=bfwPrimaryDark,
+                text width=1.7cm, align=center, minimum height=1.0cm},
+  kstufe/.style={stufe, fill=bfwBgAmber, draw=bfwAccent, text=bfwAccent!55!black}
+]
+  \node[stufe] (s1) at (0,0)     {Verband};
+  \node[stufe] (s2) at (2.2,0.5) {Interessen-\\ gemeinschaft};
+  \node[stufe] (s3) at (4.4,1.0) {ARGE /\\ Konsortium};
+  \node[stufe] (s4) at (6.6,1.5) {Strategische Allianz};
+  \node[stufe] (s5) at (8.8,2.0) {Joint\\ Venture};
+  \node[kstufe] (s6) at (11.4,2.5) {Konzern};
+  \node[kstufe] (s7) at (13.6,3.0) {Fusion /\\ Trust};
+  \draw[roughline, draw=bfwPrimary] (-1.0,-1.0) -- node[below, font=\scriptsize,
+    text=bfwInkSoft, pos=0.5]{zunehmende Bindungsintensität $\longrightarrow$} (14.6,-1.0);
+  \draw[dashed, thick, draw=bfwWarn] (10.1,-0.9) -- (10.1,3.8)
+    node[above, font=\scriptsize, text=bfwWarn!85!black, align=center, pos=1.0]
+    {Grenze: Verlust der wirtschaftl.\\ Selbstständigkeit (Teil~2)};
+\end{tikzpicture}
+\end{center}
 
 \subsection{Arbeitsgemeinschaft (ARGE) und Konsortium}
 
@@ -160,6 +215,27 @@ Gemeinschaftsunternehmen}, an dem sie sich mit Kapital beteiligen und dessen Fü
 Risiko sie gemeinsam tragen (oft 50:50). Typische Motive: Erschließung von
 \emph{Auslandsmärkten} (Partner bringt Marktkenntnis und Vertriebsnetz ein), Teilung hoher
 Entwicklungskosten, Kombination komplementärer Stärken.
+
+\begin{center}
+\begin{tikzpicture}[
+  partner/.style={roughbox, font=\footnotesize\bfseries, text=bfwPrimaryDark,
+                  text width=3.2cm, align=center, minimum height=1.0cm},
+  lab/.style={font=\scriptsize, text=bfwInkSoft, fill=white, inner sep=1.5pt}
+]
+  \node[partner] (a) at (-3.8,2.4) {Partner A\\ \scriptsize\mdseries bleibt selbstständig};
+  \node[partner] (b) at (3.8,2.4)  {Partner B\\ \scriptsize\mdseries bleibt selbstständig};
+  \node[roughaccent, font=\footnotesize\bfseries, text=bfwAccent!55!black,
+        text width=5.4cm, align=center, minimum height=1.1cm] (jv) at (0,0)
+    {Joint Venture\\ \scriptsize\mdseries neue, rechtlich selbstständige\\ \scriptsize\mdseries Gesellschaft (z.\,B. GmbH)};
+  \draw[roughline, dashed] (a) -- node[lab, above]{Kooperationsvertrag} (b);
+  \draw[roughline] (a.south) -- node[lab, below, sloped, align=center, pos=0.45]
+    {50\,\% Kapital,\\ Technologie} (jv.west);
+  \draw[roughline] (b.south) -- node[lab, below, sloped, align=center, pos=0.45]
+    {50\,\% Kapital,\\ Marktzugang} (jv.east);
+  \node[font=\scriptsize, text=bfwInkSoft, align=center] at (0,-1.5)
+    {Führung und Risiko werden gemeinsam getragen --- typisch für den Eintritt in Auslandsmärkte};
+\end{tikzpicture}
+\end{center}
 
 \begin{beispiel}
 Ein deutscher Automobilhersteller und ein chinesischer Partner gründen gemeinsam eine
@@ -199,6 +275,28 @@ Ziel, den \textbf{Wettbewerb zu beschränken} --- z.\,B.:
   \item \textbf{Submissionsabsprachen:} Absprachen bei Ausschreibungen.
 \end{itemize}
 
+\begin{beispiel}[title={\bfseries Kartelle in der Praxis --- bekannte Fälle}]
+\textbf{Bierkartell (2014):} Das Bundeskartellamt verhängte gegen mehrere große
+Brauereien Bußgelder von insgesamt rund 340~Mio.~€ wegen abgestimmter
+Fassbier- und Flaschenbierpreise --- ein klassisches \emph{Preiskartell}.
+\textbf{LKW-Kartell (2016/17):} Die EU-Kommission belegte führende
+LKW-Hersteller mit Geldbußen von zusammen rund 3,8~Mrd.~€ wegen jahrelang
+abgestimmter Bruttolistenpreise. \textbf{Kronzeugenregelung:} Wer ein Kartell als
+Erster bei der Behörde aufdeckt, kann vollständig bußgeldfrei ausgehen --- so
+zerbrechen viele Kartelle von innen.
+\end{beispiel}
+
+\begin{achtung}[title={\bfseries Abgrenzung: erlaubte Kooperation oder verbotenes Kartell?}]
+Entscheidend ist, ob die Zusammenarbeit eine \emph{Wettbewerbsbeschränkung} bezweckt
+oder bewirkt. \textbf{Erlaubt:} ARGE/Konsortium für ein Projekt, das keiner allein
+stemmen könnte; gemeinsame Forschung; Verbandsarbeit ohne Marktabsprachen;
+freigestellte Mittelstandskooperationen (\S\,2 GWB). \textbf{Verboten:} jede Absprache
+über \emph{Preise, Mengen, Gebiete oder Kunden} --- auch informell am Stammtisch oder
+per Chat; schon der \emph{Informationsaustausch} über künftige Preise kann genügen.
+Prüfungs-Faustregel: Sobald die Absprache den Wettbewerb zwischen den Partnern
+ausschaltet, liegt ein Kartell vor.
+\end{achtung}
+
 \begin{merksatz}[title={\bfseries Kartellrechtliche Einordnung (Verweis: VWL-Lektion 2)}]
 Nach \textbf{\S\,1 GWB} (Gesetz gegen Wettbewerbsbeschränkungen) und
 \textbf{Art.\,101 AEUV} sind wettbewerbsbeschränkende Vereinbarungen
@@ -211,6 +309,29 @@ Unternehmen verbessern und den Wettbewerb nicht wesentlich beeinträchtigen. Das
 \emph{grundsätzlich erlaubt}, weil sie den Wettbewerb regelmäßig nicht spürbar
 beschränken.
 \end{merksatz}
+
+\subsection{Kooperationsformen im Vergleich (Prüfungstabelle)}
+
+\begin{center}
+\small
+\begin{tabular}{p{3.0cm} p{2.0cm} p{3.3cm} p{2.2cm} p{3.4cm}}
+\toprule
+\rowcolor{bfwTabHead}\textbf{Form} & \textbf{Dauer} & \textbf{Gegenstand} & \textbf{Rechtsform} & \textbf{Typisches Beispiel}\\
+\midrule
+ARGE / Konsortium & befristet (ein Projekt) & gemeinsame Auftragsdurchführung & regelmäßig GbR & Tunnelbau-ARGE; Emissionskonsortium der Banken\\
+\addlinespace
+\hspace{0pt}Interessengemeinschaft & auf Dauer & einzelne Teilbereiche (z.\,B. F\&E, Patente) & Vertrag, ggf.\ Pool & Gemeinschaftslabor zweier Hersteller\\
+\addlinespace
+Joint Venture & auf Dauer & gemeinsames Tochterunternehmen & neue GmbH/AG & deutsch-chinesisches Produktions-JV\\
+\addlinespace
+Strategische Allianz & mittel- bis langfristig & einzelne strategische Geschäftsfelder & Vertrag, ohne Tochter & Luftfahrt-Allianz (Codesharing)\\
+\addlinespace
+Verband & auf Dauer & Interessenvertretung nach außen & e.\,V. & Branchen-, Arbeitgeberverband\\
+\addlinespace
+Kartell & auf Dauer & \hspace{0pt}Wettbewerbsbeschränkung (Preise, Mengen, Gebiete) & Absprache & \textcolor{bfwWarn!85!black}{verboten, \S\,1 GWB}\\
+\bottomrule
+\end{tabular}
+\end{center}
 
 \section{Formel \& Rechenbeispiel: der Synergieeffekt}
 

@@ -97,6 +97,57 @@ Standmixers 38~Euro kostet --- Grundlage für die Preiskalkulation (internes ReW
 freiwillig).
 \end{beispiel}
 
+\subsection{Bilanz und GuV im Schema}
+
+Kern des externen Rechnungswesens ist der \textbf{Jahresabschluss} mit \textbf{Bilanz}
+und \textbf{Gewinn- und Verlustrechnung (GuV)}:
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize]
+  % Bilanz
+  \node[font=\small\bfseries, color=bfwPrimaryDark] at (3.5,0.5) {Bilanz (Bestandsrechnung, Stichtag)};
+  \draw[thick, bfwPrimaryDark, fill=bfwBgTeal, rounded corners=3pt] (0,0) rectangle (7,-4);
+  \draw[thick, bfwPrimaryDark] (3.5,0) -- (3.5,-4);
+  \node at (1.75,-0.35) {\bfseries Aktiva};
+  \node at (5.25,-0.35) {\bfseries Passiva};
+  \draw[bfwPrimaryDark] (0,-0.7) -- (7,-0.7);
+  \node[align=center] at (1.75,-1.5) {Anlagevermögen\\{\scriptsize Gebäude, Maschinen,}\\{\scriptsize Beteiligungen}};
+  \draw[bfwPrimaryDark!50] (0,-2.35) -- (3.5,-2.35);
+  \node[align=center] at (1.75,-3.15) {Umlaufvermögen\\{\scriptsize Vorräte, Forderungen,}\\{\scriptsize Kasse/Bank}};
+  \node[align=center] at (5.25,-1.35) {Eigenkapital\\{\scriptsize inkl. Rücklagen}};
+  \draw[bfwPrimaryDark!50] (3.5,-2.0) -- (7,-2.0);
+  \node[align=center] at (5.25,-3.0) {Fremdkapital\\{\scriptsize Rückstellungen,}\\{\scriptsize Verbindlichkeiten}};
+  \node[font=\scriptsize, color=bfwInkSoft, align=center] at (1.75,-4.5) {Mittelverwendung\\= Investition};
+  \node[font=\scriptsize, color=bfwInkSoft, align=center] at (5.25,-4.5) {Mittelherkunft\\= Finanzierung};
+  % GuV
+  \node[font=\small\bfseries, color=bfwPrimaryDark] at (12.2,0.5) {GuV (Erfolgsrechnung, Zeitraum)};
+  \draw[thick, bfwAccent!85!black, fill=bfwBgAmber, rounded corners=3pt] (9.2,0) rectangle (15.2,-4);
+  \draw[thick, bfwAccent!85!black] (12.2,0) -- (12.2,-4);
+  \node at (10.7,-0.35) {\bfseries Aufwendungen};
+  \node at (13.7,-0.35) {\bfseries Erträge};
+  \draw[bfwAccent!85!black] (9.2,-0.7) -- (15.2,-0.7);
+  \node[align=center] at (10.7,-1.7) {{\scriptsize Material, Personal,}\\{\scriptsize Abschreibungen,}\\{\scriptsize Zinsen}};
+  \node[align=center] at (13.7,-1.7) {{\scriptsize Umsatzerlöse,}\\{\scriptsize sonstige Erträge}};
+  \draw[bfwAccent!85!black!60] (9.2,-2.9) -- (15.2,-2.9);
+  \node[align=center] at (12.2,-3.45) {\bfseries Saldo: Gewinn oder Verlust};
+  \draw[roughline, dashed] (9.2,-3.45) to[out=180, in=270] (8.1,-2.2)
+    to[out=90, in=0] (7.05,-1.35);
+  \node[font=\scriptsize, color=bfwInkSoft, align=center] at (8.1,-4.0)
+    {Gewinn erhöht,\\Verlust mindert\\das Eigenkapital};
+\end{tikzpicture}\\[0.3em]
+{\small\itshape Bilanz und GuV im Schema --- die GuV erklärt, \emph{warum} sich das
+Eigenkapital verändert hat.}
+\end{center}
+
+\begin{merksatz}
+Die \textbf{Bilanz} ist eine \emph{Bestandsrechnung} zum Stichtag: Die Aktivseite zeigt
+die Mittel\emph{verwendung} (Vermögen = Investition), die Passivseite die
+Mittel\emph{herkunft} (Kapital = Finanzierung) --- beide Seiten sind stets gleich groß
+(Bilanzgleichung: Vermögen $=$ Eigenkapital $+$ Fremdkapital). Die \textbf{GuV} ist
+eine \emph{Zeitraumrechnung}: Ihr Saldo (Gewinn oder Verlust) verändert das
+Eigenkapital in der Bilanz.
+\end{merksatz}
+
 \section{Investition und Finanzierung}
 
 \begin{merksatz}
@@ -105,6 +156,24 @@ freies wird zu gebundenem Kapital). \textbf{Finanzierung} = Mittel\emph{herkunft
 (Beschaffung der finanziellen Mittel). Beide sind zwei Seiten derselben Medaille: Jede
 Investition muss finanziert werden.
 \end{merksatz}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize]
+  \node[roughbox, minimum width=4.2cm, minimum height=1.6cm, align=center] (fin) at (0,0)
+    {\textbf{Finanzierung}\\{\scriptsize Mittelherkunft: Woher}\\{\scriptsize kommt das Kapital?}};
+  \node[roughaccent, minimum width=3.4cm, minimum height=1.6cm, align=center] (unt) at (6.6,0)
+    {\textbf{Unternehmen}\\{\scriptsize verfügbares Kapital}};
+  \node[roughbox, minimum width=4.2cm, minimum height=1.6cm, align=center] (inv) at (13.2,0)
+    {\textbf{Investition}\\{\scriptsize Mittelverwendung: Wofür}\\{\scriptsize wird es eingesetzt?}};
+  \draw[roughline] (fin) -- (unt) node[midway, above, font=\scriptsize] {stellt Mittel bereit};
+  \draw[roughline] (unt) -- (inv) node[midway, above, font=\scriptsize] {bindet Kapital};
+  \draw[roughline, dashed] (inv.south) .. controls (13.2,-2.2) and (0,-2.2) .. (fin.south)
+    node[pos=0.5, below=1mm, font=\scriptsize, color=bfwInkSoft, align=center]
+    {Rückflüsse: Umsatzerlöse, Abschreibungsgegenwerte, Gewinne (Basis der Innenfinanzierung)};
+\end{tikzpicture}\\[0.3em]
+{\small\itshape Finanzierung und Investition als Kreislauf: gebundenes Kapital fließt
+über die Umsätze zurück.}
+\end{center}
 
 \subsection{Investitionsarten}
 
@@ -167,6 +236,41 @@ Vermögens, Rationalisierung}\\
 \end{tabular}
 \end{center}
 
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  ast/.style={draw=bfwInkSoft, thick},
+  wurzel/.style={roughbox, minimum height=0.85cm, align=center, font=\small\bfseries},
+  ebene/.style={roughaccent, minimum height=0.95cm, align=center},
+  ek/.style={draw=bfwPrimaryDark, thick, fill=bfwBgTeal, rounded corners=4pt,
+    inner sep=4pt, minimum height=1.6cm, align=center},
+  fk/.style={draw=bfwAccent!85!black, thick, fill=bfwBgAmber, rounded corners=4pt,
+    inner sep=4pt, minimum height=1.6cm, align=center}]
+  \node[wurzel] (root) at (7.4,0) {Finanzierung};
+  \node[ebene] (aussen) at (3.4,-1.7) {\textbf{Außenfinanzierung}\\{\scriptsize Mittel von außen}};
+  \node[ebene] (innen) at (11.4,-1.7) {\textbf{Innenfinanzierung}\\{\scriptsize aus dem Umsatzprozess}};
+  \node[ek] (bet) at (1.3,-3.9)  {Beteiligungs-/\\Einlagen-\\finanzierung};
+  \node[fk] (kre) at (4.6,-3.9)  {Kredit-\\finanzierung\\{\scriptsize auch Leasing,}\\{\scriptsize Factoring}};
+  \node[ek] (sel) at (8.2,-3.9)  {Selbst-\\finanzierung\\{\scriptsize Gewinn-}\\{\scriptsize thesaurierung}};
+  \node[fk] (rue) at (11.2,-3.9) {aus Rück-\\stellungen};
+  \node[draw=bfwInkSoft, thick, fill=bfwBgSoft, rounded corners=4pt, inner sep=4pt,
+        minimum height=1.6cm, align=center] (kap) at (14.1,-3.9)
+    {aus Kapital-\\freisetzung\\{\scriptsize Abschreibungen,}\\{\scriptsize Verkäufe}};
+  \draw[ast] (root.south) -- (aussen.north);
+  \draw[ast] (root.south) -- (innen.north);
+  \draw[ast] (aussen.south) -- (bet.north);
+  \draw[ast] (aussen.south) -- (kre.north);
+  \draw[ast] (innen.south) -- (sel.north);
+  \draw[ast] (innen.south) -- (rue.north);
+  \draw[ast] (innen.south) -- (kap.north);
+  \node[font=\scriptsize, align=center] at (7.4,-5.35)
+    {\colorbox{bfwBgTeal}{\strut Eigenkapital}\quad
+     \colorbox{bfwBgAmber}{\strut Fremdkapital}\quad
+     \colorbox{bfwBgSoft}{\strut ohne Kapitalart-Zuordnung}};
+\end{tikzpicture}\\[0.3em]
+{\small\itshape Der Finanzierungsarten-Baum: erst nach der Mittelherkunft, dann nach
+der Rechtsstellung der Kapitalgeber ordnen.}
+\end{center}
+
 \begin{merksatz}[title={\bfseries Eigenkapital vs. Fremdkapital --- typische Merkmale}]
 \textbf{Eigenkapital:} Beteiligungsverhältnis, erfolgsabhängige Gewinnbeteiligung, Haftung
 (mindestens in Höhe der Einlage), grundsätzlich Mitbestimmungsrecht, steht unbefristet zur
@@ -175,6 +279,15 @@ Verfügung, kein vorrangiger Rückzahlungsanspruch.\\[0.3em]
 Zinsanspruch (Zinsen sind steuerlich absetzbar), vorrangiger Anspruch auf Rückzahlung,
 befristete Überlassung, grundsätzlich keine Mitbestimmung.
 \end{merksatz}
+
+\begin{achtung}
+\textbf{Rücklagen} $\neq$ \textbf{Rückstellungen} --- ein Dauerbrenner der IHK-Prüfung:
+\emph{Rücklagen} sind \textbf{Eigenkapital} (einbehaltene Gewinne --- das Ergebnis der
+Selbstfinanzierung). \emph{Rückstellungen} sind \textbf{Fremdkapital}: Sie werden für
+dem Grunde oder der Höhe nach \emph{ungewisse Verbindlichkeiten} gebildet (z.\,B.
+Pensionen, Prozessrisiken, Steuernachzahlungen) --- bis zur Fälligkeit stehen die
+Mittel dem Betrieb als Innenfinanzierung zur Verfügung.
+\end{achtung}
 
 \subsection{Leasing und Factoring (kurz)}
 
@@ -224,6 +337,11 @@ Eigenkapital 400.000~Euro, Gesamtkapital 1.000.000~Euro.\\
 kreditwürdiger ist der Betrieb.
 \end{beispiel}
 
+Ergänzende Kapitalstruktur-Kennzahlen: \textbf{Fremdkapitalquote} $=$ Fremdkapital
+$\div$ Gesamtkapital $\times 100\,\%$ (hier: $600.000 \div 1.000.000 = 60\,\%$) und
+\textbf{Verschuldungsgrad} $=$ Fremdkapital $\div$ Eigenkapital $\times 100\,\%$
+(hier: $600.000 \div 400.000 = 150\,\%$).
+
 \subsection{Eigenkapitalrentabilität}
 
 \[
@@ -255,6 +373,22 @@ umfasst.\\
 \textbf{Schritt 3 (Interpretation):} Das gesamte eingesetzte Kapital verzinst sich mit
 5~\%. Liegt dieser Wert über dem Fremdkapitalzinssatz, lohnt sich der Einsatz von
 Fremdkapital (Hebelwirkung).
+\end{beispiel}
+
+\begin{beispiel}[title={Beispiel: Leverage-Effekt (Hebelwirkung des Fremdkapitals)}]
+Gesamtkapital 1.000.000~Euro, Gesamtkapitalrentabilität 8~\% (Gewinn vor Zinsen also
+80.000~Euro), Fremdkapitalzins 5~\%.\\
+\textbf{Fall A --- EK 500.000, FK 500.000:} Zinsen $= 500.000 \times 5\,\% = 25.000$;
+Gewinn $= 80.000 - 25.000 = 55.000$; EK-Rentabilität $= 55.000 \div 500.000
+= 11\,\%$.\\
+\textbf{Fall B --- EK 250.000, FK 750.000:} Zinsen $= 750.000 \times 5\,\% = 37.500$;
+Gewinn $= 80.000 - 37.500 = 42.500$; EK-Rentabilität $= 42.500 \div 250.000
+= 17\,\%$.\\
+\textbf{Interpretation:} Solange die Gesamtkapitalrentabilität (8~\%) über dem
+Fremdkapitalzins (5~\%) liegt, steigert zusätzliches Fremdkapital die
+Eigenkapitalrentabilität (\emph{Leverage-Effekt}). \emph{Achtung:} Fällt die
+Gesamtkapitalrentabilität unter den Zinssatz, kehrt sich der Hebel um --- und mit
+sinkender Eigenkapitalquote steigt das Risiko.
 \end{beispiel}
 
 \subsection{Umsatzrentabilität}
@@ -324,11 +458,13 @@ Zähler) oder auf den Umsatz (Umsatzrentabilität)?
 
 \begin{merksatz}[title={\bfseries Wichtig für die Prüfungsvorbereitung (Teil 1)}]
 Sie sollten sicher können: die \emph{vier Aufgaben} und \emph{vier Teilgebiete} des
-Rechnungswesens (mit Abgrenzung intern/extern), die \emph{Investitionsarten} nach Objekt
+Rechnungswesens (mit Abgrenzung intern/extern), das \emph{Bilanz- und GuV-Schema}, die
+\emph{Investitionsarten} nach Objekt
 und Anlass, die \emph{Finanzierungsmatrix} (Innen-/Außen- $\times$ Eigen-/Fremdfinanzierung)
 mit Beispielen, die Abgrenzung \emph{Rücklagen/Rückstellungen}, \emph{Leasing und
 Factoring}, die \emph{goldene Finanzierungsregel} sowie die \emph{Kennzahlen-Formeln} aus
-Abschnitt~\ref{sec:formeln} (Eigenkapitalquote, Rentabilitäten, Liquiditätsgrade,
+Abschnitt~\ref{sec:formeln} (Eigenkapitalquote, Rentabilitäten samt
+\emph{Leverage-Effekt}, Liquiditätsgrade,
 Cashflow) mit Rechenweg und Interpretation. Üben Sie mit dem Aufgabenheft und dem Quiz
 zu Teil~1!
 \end{merksatz}

@@ -19,7 +19,7 @@ Die Teilnehmenden können am Ende der Lektion …
 - die **Funktionen des Wettbewerbs** (Freiheits-, Kontroll-, Steuerungs-, Innovations-, Auslese-, Verteilungsfunktion) erläutern,
 - Ziele und Instrumente der **Wettbewerbspolitik** beschreiben und die drei Säulen des **GWB** (Kartellverbot, Missbrauchsaufsicht, Fusionskontrolle) mit der Rolle des **Bundeskartellamts** erklären,
 - **Kartellarten** (Preis-, Submissions-, Gebiets-, Quotenkartell) und Ausnahmen vom Kartellverbot benennen,
-- **marktkonforme und marktkonträre Staatseingriffe** unterscheiden und **Höchst-/Mindestpreise, Subventionen und Steuern** im Preis-Mengen-Diagramm darstellen und beurteilen.
+- **marktkonforme und marktkonträre Staatseingriffe** unterscheiden, **Höchst- und Mindestpreise** im Preis-Mengen-Diagramm darstellen und beurteilen sowie die Wirkung von **Steuern und Subventionen** erläutern.
 
 **Teil 2 (Session 2):**
 
@@ -55,13 +55,13 @@ Die Teilnehmenden können am Ende der Lektion …
 
 - `Praesentation_Wettbewerb-Staatseingriffe-VGR-Teil-1.html` — Foliensatz Teil 1
 - `Handout_Wettbewerb-Staatseingriffe-VGR-Teil-1.pdf` — Skript zur Nachbereitung (Teil 1)
-- `Quiz_Wettbewerb-Staatseingriffe-VGR-Teil-1.html` — 30 Fragen zu GWB & Staatseingriffen
+- `Quiz_Wettbewerb-Staatseingriffe-VGR-Teil-1.html` — 60 Fragen zu GWB & Staatseingriffen
 
 **Session 2 (Teil 2):**
 
 - `Praesentation_Wettbewerb-Staatseingriffe-VGR-Teil-2.html` — Foliensatz Teil 2
 - `Handout_Wettbewerb-Staatseingriffe-VGR-Teil-2.pdf` — Skript zur Nachbereitung (Teil 2, inkl. Formeln & Rechenbeispiele)
-- `Quiz_Wettbewerb-Staatseingriffe-VGR-Teil-2.html` — 30 Fragen zu VGR & magischem Viereck
+- `Quiz_Wettbewerb-Staatseingriffe-VGR-Teil-2.html` — 60 Fragen zu VGR & magischem Viereck
 
 **Lektionsübergreifend:**
 
@@ -73,7 +73,7 @@ Die Teilnehmenden können am Ende der Lektion …
 
 Freiwillige Vertiefung mit den Selbstlernmaterialien der Plattform — keine Pflicht, aber sehr empfohlen:
 
-1. **Quiz Teil 1 & Teil 2** (je 30 Fragen mit Selbstkontrolle) bearbeiten — Teil 1: GWB & Staatseingriffe · Teil 2: VGR & magisches Viereck.
+1. **Quiz Teil 1 & Teil 2** (je 60 Fragen mit Selbstkontrolle) bearbeiten — Teil 1: GWB & Staatseingriffe · Teil 2: VGR & magisches Viereck.
 2. **Lernbereich** (18 offene Aufgaben mit Lösungshinweisen) durcharbeiten.
 3. **Prüfungsaufgaben** (`Pruefungsaufgaben_Wettbewerb-Staatseingriffe-VGR.html`) — 13 prüfungsnahe Aufgaben im IHK-Klausurstil: schriftlich üben und mit den Lösungshinweisen selbst prüfen.
 4. **Aufgabenheft** mit Musterlösungen — empfehlenswert: Aufgabe 4 (Mindestpreis) und 7 (VGR-Rechnung).

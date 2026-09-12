@@ -103,7 +103,28 @@ textarea:focus { outline: none; border-color: var(--bfw-primary); background: wh
 .saved-note { font-size: 0.78rem; color: var(--bfw-ink-soft); margin-left: auto; }
 
 footer { text-align: center; margin-top: 2.5rem; color: var(--bfw-ink-soft); font-size: 0.85rem; }
-@media print { .btn, .btn-reset, .self-check { display: none !important; } .loesung { display: block; } }
+
+/* KI-Bewertung */
+.btn-ki { background: var(--bfw-bg-teal); color: var(--bfw-primary-dark); border: 1.5px solid var(--bfw-primary); }
+.btn-ki:hover:not(:disabled) { background: var(--bfw-primary); color: white; }
+.btn-ki:disabled { opacity: 0.55; cursor: wait; }
+.ki-feedback {
+  display: none; margin-top: 1rem; padding: 1rem 1.1rem;
+  background: var(--bfw-bg-soft); border: 1px solid var(--bfw-border); border-left: 4px solid var(--bfw-primary);
+  border-radius: 10px;
+}
+.ki-feedback.show { display: block; }
+.ki-feedback-label { font-weight: 800; color: var(--bfw-primary-dark); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+.ki-feedback-text { font-size: 0.95rem; line-height: 1.6; white-space: pre-line; }
+.ki-feedback-note { font-size: 0.75rem; color: var(--bfw-ink-soft); margin-top: 0.6rem; font-style: italic; }
+.ki-status {
+  display: none; position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%);
+  background: var(--bfw-ink); color: white; padding: 0.6rem 1.2rem; border-radius: 999px;
+  font-size: 0.85rem; z-index: 200; box-shadow: 0 4px 16px rgba(15,23,42,0.25); max-width: 92vw;
+}
+.ki-status.show { display: block; }
+
+@media print { .btn, .btn-reset, .self-check, .ki-feedback, .ki-status { display: none !important; } .loesung { display: block; } }
 </style>
 </head>
 <body>
@@ -112,7 +133,7 @@ footer { text-align: center; margin-top: 2.5rem; color: var(--bfw-ink-soft); fon
   <header>
     <span class="tag-pill">Lektion 2 · Übungsband</span>
     <h1>Übungsband: Betriebliche Funktionen II: Rechnungswesen, Finanzierung, Controlling & Personal</h1>
-    <p class="subtitle">Beantworten Sie die Aufgaben in eigenen Worten im Antwortfeld — Ihre Eingaben werden lokal im Browser gespeichert. Prüfen Sie sich danach mit dem <strong>Lösungshinweis</strong> und bewerten Sie sich selbst. In der IHK-Prüfung zählen ausformulierte Begründungen!</p>
+    <p class="subtitle">Beantworten Sie die Aufgaben in eigenen Worten im Antwortfeld — Ihre Eingaben werden lokal im Browser gespeichert. Prüfen Sie sich danach mit dem <strong>Lösungshinweis</strong> und bewerten Sie sich selbst — oder holen Sie sich zusätzlich <strong>🤖 KI-Feedback</strong>: eine kostenlose KI direkt in Ihrem Browser, Ihre Antworten bleiben auf Ihrem Gerät. In der IHK-Prüfung zählen ausformulierte Begründungen!</p>
   </header>
 
   <div class="progress-wrap">
@@ -153,7 +174,13 @@ function render() {
       <textarea id="answer-${i}" placeholder="Ihre Antwort — in vollständigen Sätzen, wie in der Prüfung …">${esc(st.answer || '')}</textarea>
       <div class="task-actions">
         <button class="btn btn-loesung" onclick="toggleLoesung(${i})">Lösungshinweis anzeigen</button>
+        <button class="btn btn-ki" id="kibtn-${i}" onclick="kiBewerten(${i})" title="Kostenlose KI direkt im Browser bewertet Ihre Antwort — es werden keine Daten an Server gesendet">🤖 KI-Feedback</button>
         <span class="saved-note" id="saved-${i}"></span>
+      </div>
+      <div class="ki-feedback ${st.ki ? 'show' : ''}" id="ki-${i}">
+        <div class="ki-feedback-label">🤖 KI-Feedback</div>
+        <div class="ki-feedback-text" id="kitext-${i}">${esc(st.ki || '')}</div>
+        <div class="ki-feedback-note">Automatische Einschätzung einer lokalen KI — kann irren. Maßgeblich ist der Lösungshinweis.</div>
       </div>
       <div class="loesung ${st.open ? 'show' : ''}" id="loesung-${i}">
         <div class="loesung-label">✓ Lösungshinweis</div>
@@ -225,6 +252,109 @@ function resetAll() {
   state = {};
   save();
   render();
+}
+
+/* ---------- KI-Bewertung (lokal im Browser, kostenlos, ohne Datenübertragung an Server) ----------
+ * Stufe 1: Chrome-eingebaute KI (Prompt API / Gemini Nano) — falls der Browser sie mitbringt.
+ * Stufe 2: Gemma 2 (2B) über WebLLM/WebGPU — einmaliger Modell-Download (~1,4 GB), danach offline.
+ * Stufe 3: Nicht verfügbar → Hinweis, Selbsteinschätzung bleibt der Weg.                        */
+let kiEngine = null;        // { art: 'chrome'|'webllm', frage: async (prompt) => text }
+let kiInitLaeuft = null;
+
+function kiStatus(msg) {
+  let el = document.getElementById('kiStatus');
+  if (!el) { el = document.createElement('div'); el.id = 'kiStatus'; el.className = 'ki-status'; document.body.appendChild(el); }
+  el.textContent = msg;
+  el.classList.toggle('show', !!msg);
+}
+
+const KI_SYSTEM = 'Du bist ein wohlwollender, präziser IHK-Prüfer für den Wirtschaftsfachwirt. '
+  + 'Du bewertest die Antwort eines Teilnehmers auf eine offene Prüfungsaufgabe anhand einer Musterlösung. '
+  + 'Antworte IMMER auf Deutsch, kurz und konkret, in genau diesem Format:\n'
+  + 'Punkte: X von 10\nGut: <1 Satz, was richtig/gelungen ist>\nFehlt: <1-2 Sätze, welche Kernpunkte der Musterlösung fehlen oder falsch sind>\nTipp: <1 Satz für die Prüfung>';
+
+async function kiInitChrome() {
+  const LM = window.LanguageModel || (window.ai && window.ai.languageModel);
+  if (!LM) return null;
+  const avail = await (LM.availability ? LM.availability() : Promise.resolve('available'));
+  if (avail === 'unavailable') return null;
+  if (avail !== 'available') kiStatus('Browser-KI wird einmalig vorbereitet — das kann einige Minuten dauern …');
+  const session = await LM.create({
+    initialPrompts: [{ role: 'system', content: KI_SYSTEM }],
+    monitor(m) { m.addEventListener('downloadprogress', e => kiStatus(`Browser-KI lädt: ${Math.round(e.loaded * 100)} %`)); }
+  });
+  return { art: 'chrome', frage: async (p) => session.prompt(p) };
+}
+
+async function kiInitWebLLM() {
+  if (!navigator.gpu) return null;
+  const ok = confirm('Für das KI-Feedback wird einmalig das freie Sprachmodell Gemma 2 (ca. 1,4 GB) in den Browser geladen. '
+    + 'Es läuft danach komplett lokal auf Ihrem Gerät — kostenlos, Ihre Antworten verlassen den Rechner nicht.\n\nJetzt laden?');
+  if (!ok) return null;
+  kiStatus('KI-Modul wird geladen …');
+  const webllm = await import('https://esm.run/@mlc-ai/web-llm');
+  const engine = await webllm.CreateMLCEngine('gemma-2-2b-it-q4f16_1-MLC', {
+    initProgressCallback: (p) => kiStatus('Gemma wird geladen: ' + (p.text || Math.round((p.progress || 0) * 100) + ' %'))
+  });
+  return {
+    art: 'webllm',
+    frage: async (p) => {
+      const r = await engine.chat.completions.create({
+        messages: [{ role: 'system', content: KI_SYSTEM }, { role: 'user', content: p }],
+        temperature: 0.3, max_tokens: 300
+      });
+      return r.choices[0].message.content;
+    }
+  };
+}
+
+async function kiHole() {
+  if (kiEngine) return kiEngine;
+  if (kiInitLaeuft) return kiInitLaeuft;
+  kiInitLaeuft = (async () => {
+    try { kiEngine = await kiInitChrome(); } catch (e) { console.warn('Chrome-KI:', e); }
+    if (!kiEngine) { try { kiEngine = await kiInitWebLLM(); } catch (e) { console.warn('WebLLM:', e); } }
+    kiStatus('');
+    kiInitLaeuft = null;
+    return kiEngine;
+  })();
+  return kiInitLaeuft;
+}
+
+async function kiBewerten(i) {
+  const antwort = (document.getElementById('answer-' + i).value || '').trim();
+  const panel = document.getElementById('ki-' + i);
+  const out = document.getElementById('kitext-' + i);
+  if (antwort.length < 15) {
+    panel.classList.add('show');
+    out.textContent = 'Bitte schreiben Sie zuerst eine Antwort (mindestens ein bis zwei Sätze) — dann kann die KI sie bewerten.';
+    return;
+  }
+  const btn = document.getElementById('kibtn-' + i);
+  btn.disabled = true; btn.textContent = '🤖 bewertet …';
+  try {
+    const engine = await kiHole();
+    if (!engine) {
+      panel.classList.add('show');
+      out.textContent = 'KI-Feedback ist auf diesem Gerät/Browser leider nicht verfügbar (am besten aktueller Chrome oder Edge auf einem Rechner mit Grafikbeschleunigung). Nutzen Sie den Lösungshinweis und die Selbsteinschätzung.';
+      return;
+    }
+    const t = TASKS[i];
+    const prompt = `Aufgabe (${t.punkte ? t.punkte + ' Punkte' : 'offene Frage'}):\n${t.frage}\n\nMusterlösung:\n${t.loesung}\n\nAntwort des Teilnehmers:\n${antwort}\n\nBewerte die Antwort des Teilnehmers.`;
+    const feedback = (await engine.frage(prompt) || '').trim();
+    state[i] = state[i] || {};
+    state[i].ki = feedback;
+    save();
+    panel.classList.add('show');
+    out.textContent = feedback;
+  } catch (e) {
+    console.error(e);
+    panel.classList.add('show');
+    out.textContent = 'Die KI-Bewertung ist fehlgeschlagen (' + (e.message || e) + '). Bitte später erneut versuchen oder Selbsteinschätzung nutzen.';
+  } finally {
+    btn.disabled = false; btn.textContent = '🤖 KI-Feedback';
+    kiStatus('');
+  }
 }
 
 render();

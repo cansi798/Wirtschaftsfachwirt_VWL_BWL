@@ -51,6 +51,29 @@ zukunftsgerichtet plant und steuert.
     und den Führungskräften bereitstellen (Berichtswesen/Reporting).
 \end{itemize}
 
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  schritt/.style={roughbox, minimum width=3.7cm, minimum height=1.3cm, align=center},
+  fluss/.style={roughline}]
+  \node[roughaccent, ellipse, minimum width=4.0cm, minimum height=1.6cm, align=center]
+    (info) at (0,0) {\textbf{Information}\\{\scriptsize Berichtswesen/Reporting}};
+  \node[schritt] (plan) at (0,2.6)    {\textbf{1. Planung}\\{\scriptsize Ziele, Budgets (Soll)}};
+  \node[schritt] (real) at (5.5,0)    {\textbf{2. Realisierung}\\{\scriptsize Ist-Werte aus dem}\\{\scriptsize Rechnungswesen}};
+  \node[schritt] (kon)  at (0,-2.6)   {\textbf{3. Kontrolle}\\{\scriptsize Soll-Ist-Vergleich,}\\{\scriptsize Abweichungsanalyse}};
+  \node[schritt] (steu) at (-5.5,0)   {\textbf{4. Steuerung}\\{\scriptsize Gegenmaßnahmen,}\\{\scriptsize Plananpassung}};
+  \draw[fluss] (plan.east) to[bend left=35] (real.north);
+  \draw[fluss] (real.south) to[bend left=35] (kon.east);
+  \draw[fluss] (kon.west) to[bend left=35] (steu.south);
+  \draw[fluss] (steu.north) to[bend left=35] (plan.west);
+  \draw[draw=bfwInkSoft, thick, dashed] (info) -- (plan);
+  \draw[draw=bfwInkSoft, thick, dashed] (info) -- (real);
+  \draw[draw=bfwInkSoft, thick, dashed] (info) -- (kon);
+  \draw[draw=bfwInkSoft, thick, dashed] (info) -- (steu);
+\end{tikzpicture}\\[0.3em]
+{\small\itshape Der Controlling-Regelkreis: Die Information versorgt alle Phasen ---
+aus der Steuerung entsteht die nächste, angepasste Planung.}
+\end{center}
+
 \subsection{Strategisches vs. operatives Controlling}
 
 \begin{center}
@@ -112,6 +135,25 @@ wichtigsten Aufgaben des Managements.
     Personal\emph{controlling} (z.\,B. Personalkosten- und Fehlzeitenanalyse).
 \end{itemize}
 
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  phase/.style={roughbox, minimum width=2.5cm, minimum height=1.2cm, align=center, inner sep=3pt},
+  pfeil/.style={roughline}]
+  \node[phase] (p1) at (0,0)    {Personal-\\\textbf{planung}};
+  \node[phase] (p2) at (3.05,0) {Personal-\\\textbf{beschaffung}};
+  \node[phase] (p3) at (6.1,0)  {Personal-\\\textbf{entwicklung}};
+  \node[phase] (p4) at (9.15,0) {Personal-\\\textbf{einsatz}};
+  \node[phase] (p5) at (12.2,0) {Personal-\\\textbf{freisetzung}};
+  \draw[pfeil] (p1) -- (p2); \draw[pfeil] (p2) -- (p3);
+  \draw[pfeil] (p3) -- (p4); \draw[pfeil] (p4) -- (p5);
+  \node[roughaccent, minimum width=14.7cm, minimum height=0.85cm, align=center, font=\scriptsize]
+    at (6.1,-1.55) {laufende Querschnittsaufgaben: Verwaltung $\cdot$ Betreuung $\cdot$
+    Entlohnung $\cdot$ Beurteilung $\cdot$ Personalcontrolling};
+\end{tikzpicture}\\[0.3em]
+{\small\itshape Der Personalprozess von der Planung bis zur Freisetzung --- begleitet
+von den laufenden Querschnittsaufgaben.}
+\end{center}
+
 \begin{eselsbruecke}
 Der Personal-Lebenszyklus: \textbf{P}lanen $\rightarrow$ \textbf{B}eschaffen $\rightarrow$
 \textbf{E}ntwickeln $\rightarrow$ \textbf{E}insetzen $\rightarrow$ \textbf{F}reisetzen ---
@@ -160,6 +202,30 @@ Nach Porter lassen sich die Aktivitäten eines Unternehmens als
     Rechnungswesen, Finanzierung, Controlling), Personalwirtschaft, Technologieentwicklung,
     Beschaffung.
 \end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize,
+  stuetz/.style={roughaccent, minimum width=12.6cm, minimum height=0.62cm, align=center, inner sep=2pt},
+  prim/.style={roughbox, minimum width=2.35cm, minimum height=1.35cm, align=center, inner sep=2pt}]
+  \node[stuetz] at (6.3,0)     {Unternehmensinfrastruktur (u.\,a. Rechnungswesen, Finanzierung, Controlling)};
+  \node[stuetz] at (6.3,-0.78) {Personalwirtschaft};
+  \node[stuetz] at (6.3,-1.56) {Technologieentwicklung};
+  \node[stuetz] at (6.3,-2.34) {Beschaffung};
+  \node[prim] at (1.175,-3.75) {Eingangs-\\logistik};
+  \node[prim] at (3.7375,-3.75){Produktion};
+  \node[prim] at (6.3,-3.75)   {Ausgangs-\\logistik};
+  \node[prim] at (8.8625,-3.75){Marketing \&\\Vertrieb};
+  \node[prim] at (11.425,-3.75){Kunden-\\dienst};
+  \draw[thick, draw=bfwAccent!85!black, fill=bfwBgAmber]
+    (12.85,0.31) -- (15.1,-2.06) -- (12.85,-4.43) -- cycle;
+  \node[font=\footnotesize\bfseries, text=bfwAccent!85!black] at (13.5,-2.06) {Marge};
+  \node[font=\scriptsize, color=bfwInkSoft, align=center] at (6.3,-4.95)
+    {oben: unterstützende Aktivitäten \quad unten: primäre Aktivitäten \quad
+     rechts: Gewinnspanne};
+\end{tikzpicture}\\[0.3em]
+{\small\itshape Die Wertschöpfungskette nach Porter: Jede Aktivität soll mehr Wert
+schaffen, als sie kostet --- der Überschuss ist die Marge.}
+\end{center}
 Wertschöpfung = Wert der erstellten Leistung abzüglich der von außen bezogenen
 Vorleistungen. Jede Funktion soll zur Wertschöpfung beitragen --- Schnittstellen sind
 dabei potenzielle Reibungsverluste.
@@ -189,14 +255,70 @@ Ziele entlang der Wertschöpfungskette. Prüfungsklassiker: „Absatz will Vielf
 Produktion will Standardisierung.``
 \end{merksatz}
 
+\section{Formeln \& Rechenbeispiele}
+
+Zwei kleine Rechen-Werkzeuge aus Controlling und Personalwirtschaft --- nach dem
+bewährten Muster: (1)~Formel notieren, (2)~Zahlen einsetzen, (3)~Ergebnis
+\emph{interpretieren}. (Die Finanz-Kennzahlen finden Sie im Handout zu Teil~1.)
+
+\subsection{Soll-Ist-Abweichung (Controlling)}
+
+\begin{merksatz}[title={\bfseries Formeln: absolute und relative Abweichung}]
+\[
+\text{absolute Abweichung} \;=\; \text{Ist} - \text{Soll}
+\qquad
+\text{relative Abweichung} \;=\; \frac{\text{Ist} - \text{Soll}}{\text{Soll}} \times 100\,\%
+\]
+\end{merksatz}
+
+\begin{beispiel}
+Das Kostenbudget der Fertigung (Soll) beträgt 250.000~€, die Nachkalkulation weist
+Ist-Kosten von 280.000~€ aus.
+\begin{enumerate}
+  \item Absolute Abweichung: $280.000 - 250.000 = +30.000$~€ (Budgetüberschreitung).
+  \item Relative Abweichung: $30.000 \div 250.000 \times 100 = +12\,\%$.
+  \item Interpretieren: Das Controlling analysiert die Ursachen
+    (\emph{Abweichungsanalyse}): Waren die Einkaufspreise höher als geplant
+    (Preisabweichung) oder wurde mehr Material verbraucht (Mengen-/Verbrauchsabweichung)?
+    Erst danach werden Gegensteuerungsmaßnahmen eingeleitet.
+\end{enumerate}
+\end{beispiel}
+
+\subsection{Personalkennzahlen: Fluktuations- und Krankenquote}
+
+\begin{merksatz}[title={\bfseries Formeln: Fluktuationsquote und Krankenquote}]
+\[
+\text{Fluktuationsquote} \;=\; \frac{\text{Personalabgänge}}{\text{Ø Personalbestand}} \times 100\,\%
+\qquad
+\text{Krankenquote} \;=\; \frac{\text{Krankheitstage}}{\text{Soll-Arbeitstage}} \times 100\,\%
+\]
+\end{merksatz}
+
+\begin{beispiel}
+Die Nordwest Küchengeräte AG beschäftigt im Jahresdurchschnitt 250 Mitarbeiter;
+20 verlassen im Laufe des Jahres das Unternehmen. Auf 55.000 Soll-Arbeitstage entfallen
+2.750 Krankheitstage.
+\begin{enumerate}
+  \item Fluktuationsquote: $20 \div 250 \times 100 = 8\,\%$.
+  \item Krankenquote: $2.750 \div 55.000 \times 100 = 5\,\%$.
+  \item Interpretieren: Beide Kennzahlen entfalten ihren Wert erst im Zeit- und
+    Branchenvergleich. Eine steigende Fluktuation verursacht Kosten für Beschaffung und
+    Einarbeitung und lässt Erfahrungswissen abfließen --- ein Frühwarnsignal für das
+    Personalcontrolling (Gegenmaßnahmen: Mitarbeiterbindung, Employer Branding,
+    Austrittsgespräche).
+\end{enumerate}
+\end{beispiel}
+
 \begin{merksatz}[title={\bfseries Wichtig für die Prüfungsvorbereitung (Teil 2)}]
 Sie sollten sicher können: die Abgrenzung \emph{Controlling/Kontrolle} (und zur internen
 Revision) samt \emph{Controlling-Kreislauf} (Planung--Kontrolle--Steuerung--Information),
 die Unterscheidung \emph{strategisches vs. operatives Controlling}, den Einsatz von
 \emph{Kennzahlen} im Vergleich (Formeln: siehe Handout Teil~1), die
 \emph{Aufgabenbereiche und Ziele der Personalwirtschaft} (Planung, Beschaffung,
-Entwicklung, Einsatz, Freisetzung) samt demografischem Wandel sowie typische
-\emph{Zielkonflikte} zwischen Funktionsbereichen und die \emph{Wertschöpfungskette}.
+Entwicklung, Einsatz, Freisetzung) samt demografischem Wandel, typische
+\emph{Zielkonflikte} zwischen Funktionsbereichen und die \emph{Wertschöpfungskette}
+sowie die Formeln aus Abschnitt~4 (\emph{Soll-Ist-Abweichung}, \emph{Fluktuations-} und
+\emph{Krankenquote}).
 Üben Sie mit dem Aufgabenheft und dem Quiz zu Teil~2!
 \end{merksatz}
 

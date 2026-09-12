@@ -122,10 +122,53 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
   font-weight: 700; font-size: 0.95rem;
 }
 
+/* Sprechnotizen: in der Zuschauer-Ansicht (und beim Teilen) immer unsichtbar */
+.notes { display: none !important; }
+
+/* Referentenansicht (?ref=1) */
+body.ref-mode { background: #0F172A; overflow: hidden; }
+body.ref-mode .deck, body.ref-mode .slide-num { display: none; }
+body.ref-mode .nav { display: none; }
+#refUI { display: none; }
+body.ref-mode #refUI {
+  display: grid; height: 100vh; padding: 1rem; gap: 1rem;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  grid-template-rows: auto minmax(0, 1fr);
+}
+.ref-head {
+  grid-column: 1 / -1; display: flex; align-items: center; gap: 1.2rem;
+  color: #E2E8F0; font-size: 1rem;
+}
+.ref-head .ref-title { font-weight: 700; color: white; margin-right: auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ref-head .ref-clock, .ref-head .ref-timer { font-variant-numeric: tabular-nums; background: #1E293B; padding: 0.35rem 0.8rem; border-radius: 8px; }
+.ref-head .ref-timer { color: #FDE68A; cursor: pointer; }
+.ref-head .ref-counter { background: var(--bfw-primary); color: white; font-weight: 700; padding: 0.35rem 0.8rem; border-radius: 8px; }
+.ref-left { display: flex; flex-direction: column; gap: 1rem; min-height: 0; }
+.ref-mini { position: relative; overflow: hidden; border-radius: 10px; background: white; border: 2px solid #334155; flex: 1; min-height: 0; }
+.ref-mini.next { flex: 0 0 32%; opacity: 0.85; }
+.ref-mini .mini-label {
+  position: absolute; top: 0.4rem; left: 0.5rem; z-index: 5;
+  background: rgba(15,23,42,0.75); color: white; font-size: 0.75rem;
+  padding: 0.15rem 0.6rem; border-radius: 999px; letter-spacing: 0.03em;
+}
+.ref-mini .mini-stage { position: absolute; top: 0; left: 0; width: 1280px; height: 800px; transform-origin: top left; pointer-events: none; }
+.ref-mini .mini-stage .slide { display: flex; position: absolute; inset: 0; animation: none; }
+.ref-notes {
+  background: #1E293B; border-radius: 10px; padding: 1.4rem 1.6rem;
+  overflow-y: auto; min-height: 0; color: #F1F5F9;
+}
+.ref-notes h4 { color: #5EEAD4; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.8rem; }
+#refNotes, #refNotes p, #refNotes li { font-size: 1.35rem; line-height: 1.65; color: #F1F5F9; }
+#refNotes ul, #refNotes ol { margin: 0.4rem 0 1rem 1.4rem; }
+#refNotes strong { color: #FDE68A; }
+#refNotes .no-notes { color: #64748B; font-size: 1.1rem; font-style: italic; }
+.ref-hint { grid-column: 1 / -1; color: #475569; font-size: 0.8rem; text-align: center; }
+
 /* Print-friendly */
 @media print {
   .slide { display: flex; page-break-after: always; }
-  .nav, .slide-num { display: none; }
+  .nav, .slide-num, #refUI { display: none; }
+  .notes { display: none !important; }
   html, body { height: auto; overflow: visible; }
 }
 </style>
@@ -145,6 +188,15 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <span><strong>Rahmenplan</strong>1.1.2 · 1.1.3.1</span>
       <span><strong>Quelle</strong>Textband Volkswirtschaft, Kap. 2, 3.1 (S. 19–38)</span>
     </div>
+    <aside class="notes">
+      <p><strong>Begrüßung Session 2:</strong> Kurzer Energie-Check nach der Pause — sind alle wieder da?</p>
+      <ul>
+        <li>Orga: bis 13:15, Pause ca. 12:00; heute wird <strong>gerechnet</strong> — Taschenrechner und Zettel bereitlegen lassen</li>
+        <li>Brücke zu Teil 1: Vormittag = Mikroebene (einzelne Märkte), jetzt <strong>Makroebene</strong> (die ganze Volkswirtschaft)</li>
+        <li>Motivation: BIP und Inflationsrate laufen jede Woche durch die Nachrichten — heute verstehen wir, was dahintersteckt</li>
+        <li>Ablauf nennen: Block 1 VGR, Block 2 Verteilung und magisches Viereck</li>
+      </ul>
+    </aside>
   </section>
 
 
@@ -163,6 +215,14 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <tr><td>7</td><td>Sa 27.02.27</td><td>BWL: Unternehmenszusammenschlüsse</td></tr>
     </table>
     <p class="muted">Alle Materialien auf der Lernplattform — Zugangscode <code>vwl</code>. Pro Lektion: Präsentation, Handout, Quiz, Lernbereich, Prüfungsaufgaben, Übungsband, Karteikarten &amp; Lernspiele.</p>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Nur kurz verorten — Teil 2 des heutigen Tages, danach noch ein VWL-Termin.</p>
+      <ul>
+        <li>Maximal 30 Sekunden — Folie ist aus Session 1 bekannt</li>
+        <li>Betonen: Am <strong>26.09.</strong> schließen wir die VWL ab — das heutige VGR-Wissen ist die Grundlage für Konjunktur und Wirtschaftspolitik dort</li>
+        <li>Erinnern: Plattform-Code <strong>vwl</strong> für alle Materialien</li>
+      </ul>
+    </aside>
   </section>
 
   <!-- 2. Lernziele -->
@@ -170,13 +230,22 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
     <h2>Was Sie in Teil 2 lernen</h2>
     <p class="subtitle">Am Ende dieser Session können Sie …</p>
     <ul class="checklist">
-      <li><strong>BIP und BNE</strong> abgrenzen (Inlands-/Inländerkonzept)</li>
-      <li>die <strong>3 Rechnungen der VGR</strong> (Entstehung, Verwendung, Verteilung) schematisch darstellen</li>
+      <li><strong>Bruttoinlandsprodukt (BIP) und Bruttonationaleinkommen (BNE)</strong> abgrenzen (Inlands-/Inländerkonzept)</li>
+      <li>die <strong>3 Rechnungen der Volkswirtschaftlichen Gesamtrechnung (VGR)</strong> (Entstehung, Verwendung, Verteilung) schematisch darstellen</li>
       <li><strong>nominal/real</strong> unterscheiden und <strong>Grenzen des BIP</strong> nennen</li>
       <li><strong>Lohnquote</strong>, <strong>Gewinnquote</strong> und <strong>verfügbares Einkommen</strong> berechnen</li>
       <li>Primär- und <strong>Sekundärverteilung</strong> des Volkseinkommens erklären</li>
       <li>das <strong>magische Viereck/Sechseck</strong> mit Messgrößen und Zielkonflikten erklären</li>
     </ul>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Sechs Ziele in zwei Blöcken — drei davon sind Rechenziele.</p>
+      <ul>
+        <li>Ankündigen: Heute mit konkreten <strong>Rechenbeispielen</strong> — dieselben Zahlen wie im Handout und im Quiz</li>
+        <li>Beruhigen: Alle Formeln sind einfache Prozent- und Differenzrechnungen, keine höhere Mathematik</li>
+        <li>Schwerpunkt markieren: Das <strong>magische Viereck</strong> ist ein Dauerbrenner in der IHK-Prüfung</li>
+        <li>Teilnehmer fragen: „Wer hat diese Woche eine BIP- oder Inflationszahl gehört?“</li>
+      </ul>
+    </aside>
   </section>
 
   <!-- 3. VGR Einstieg -->
@@ -187,8 +256,17 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <li><strong>Rückschauend:</strong> Entstehung, Verwendung, Verteilung von BIP und BNE</li>
       <li>Grundlage: <strong>Wirtschaftskreislauf</strong> (Haushalte, Unternehmen, Staat, Kapitalsammelstellen, Ausland)</li>
       <li>Genutzt für: Wachstumsmessung, Konjunkturbarometer, Wirtschaftspolitik, Lohnverhandlungen, internationalen Vergleich</li>
-      <li>EU-weit standardisiert: <strong>ESVG 2010</strong></li>
+      <li>EU-weit standardisiert: <strong>Europäisches System Volkswirtschaftlicher Gesamtrechnungen (ESVG) 2010</strong></li>
     </ul>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Die VGR ist die Buchhaltung einer ganzen Volkswirtschaft — rückschauend und EU-weit standardisiert.</p>
+      <ul>
+        <li>Bild verwenden: Was die Gewinn- und Verlustrechnung fürs Unternehmen ist, ist die VGR für die Volkswirtschaft</li>
+        <li><strong>Wirtschaftskreislauf</strong> aus Lektion 1 reaktivieren: „Wer nennt mir die fünf Sektoren?“</li>
+        <li>Nutzer der Zahlen aufzählen: Regierung, EZB, Tarifparteien — deshalb ESVG-Standard</li>
+        <li>Teilnehmer fragen: „Wofür brauchen Gewerkschaften eigentlich das BIP?“ (Lohnverhandlungen)</li>
+      </ul>
+    </aside>
   </section>
 
   <!-- 4. BIP vs BNE -->
@@ -208,6 +286,15 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <span class="merksatz-label">🧮 Formeln</span>
       <strong>Bruttowertschöpfung</strong> = Produktionswerte − Vorleistungen (keine Doppelzählung!). <strong>BNE</strong> = BIP − Inlandseinkommen von Nichtinländern + Auslandseinkommen von Inländern.
     </div>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> BIP fragt „<strong>wo</strong> produziert?“, BNE fragt „<strong>wer</strong> verdient?“.</p>
+      <ul>
+        <li>Standardbeispiele erzählen: Der Pendler aus Frankreich zählt zum deutschen BIP, aber nicht zum deutschen BNE — der deutsche Monteur in Österreich genau umgekehrt</li>
+        <li><strong>Vorleistungsabzug</strong> betonen: keine Doppelzählung — Beispiel Bäcker: Das Mehl steckt schon im Brot</li>
+        <li>Formel nur zeigen, gleich kommt das Rechenbeispiel dazu</li>
+        <li>Typische IHK-Frage: „Grenzen Sie Inlands- und Inländerkonzept ab.“</li>
+      </ul>
+    </aside>
   </section>
 
   <!-- 5. Drei Rechnungen -->
@@ -215,6 +302,14 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
     <h2>Drei Wege zum BIP — ein Ergebnis</h2>
     <div class="figure" id="fig-vgr"></div>
     <p class="caption">Entstehung (wo?), Verwendung (wofür?) und Verteilung (an wen?) führen zum gleichen BIP. Verteilungsrechnung: Arbeitnehmerentgelt + Unternehmens- und Vermögenseinkommen = <strong>Volkseinkommen</strong>.</p>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Drei Blickwinkel, ein Ergebnis — Entstehung, Verwendung, Verteilung.</p>
+      <ul>
+        <li>Merkfragen an die Grafik heften: Entstehung = <strong>wo?</strong> (Branchen), Verwendung = <strong>wofür?</strong> (Konsum, Investitionen, Außenbeitrag), Verteilung = <strong>an wen?</strong> (Löhne, Gewinne)</li>
+        <li>Betonen: Die Verteilungsrechnung führt zum <strong>Volkseinkommen</strong> — die Basis für die Quoten in Block 2</li>
+        <li>Interaktions-Impuls: „In welcher Rechnung tauchen die Exporte auf?“ (Verwendung)</li>
+      </ul>
+    </aside>
   </section>
 
   <!-- 6. Nominal/Real + Grenzen -->
@@ -236,11 +331,21 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <li>Reparatur von Unfall-/Umweltschäden <strong>erhöht</strong> das BIP — ohne Wohlstandsgewinn</li>
       <li>Keine Aussage über <strong>Verteilung, Umwelt, Lebensqualität</strong></li>
     </ul>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Nur das reale BIP zeigt echtes Wachstum — und selbst das misst keinen Wohlstand.</p>
+      <ul>
+        <li>Zahlenbeispiel mündlich: 5 % nominales Plus bei 5 % Inflation = <strong>null</strong> echtes Wachstum</li>
+        <li>Grenzen mit Anekdote: Ein Autounfall <strong>erhöht</strong> das BIP (Werkstatt, Arzt, Anwalt) — Wohlstand sinkt trotzdem</li>
+        <li>Hausarbeit und Ehrenamt: unbezahlt = unsichtbar in der VGR</li>
+        <li>Typische IHK-Frage: „Nennen Sie drei Grenzen der Aussagekraft des BIP.“</li>
+        <li>Danach Pause (ca. 12:00) — Block 2 startet 12:10</li>
+      </ul>
+    </aside>
   </section>
 
   <!-- 7. Lohn-/Gewinnquote -->
   <section class="slide">
-    <h2>Primärverteilung: Lohn- und Gewinnquote</h2>
+    <h2>Block 2: Primärverteilung — Lohn- und Gewinnquote</h2>
     <div class="merksatz">
       <span class="merksatz-label">🧮 Formeln</span>
       <strong>Lohnquote</strong> = Arbeitnehmerentgelt ÷ Volkseinkommen × 100 &nbsp;·&nbsp; <strong>Gewinnquote</strong> = Unternehmens- und Vermögenseinkommen ÷ Volkseinkommen × 100
@@ -251,17 +356,35 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <li>Vorsicht: Zinseinkünfte von Arbeitnehmern → Gewinnquote; Vorstandsgehälter → Lohnquote</li>
       <li><strong>Personelle</strong> Verteilung: Pro-Kopf-Einkommen, <strong>Lorenzkurve</strong> (Abstand zur Diagonale = Ungleichheit)</li>
     </ul>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Primärverteilung = der Markt verteilt nach Leistung; Lohn- und Gewinnquote ergeben zusammen immer 100 %.</p>
+      <ul>
+        <li>Nach der Pause hier einsteigen — kurz die Verteilungsrechnung von vorhin wiederholen</li>
+        <li>Prüfungsfallen betonen: Zinsen eines Arbeitnehmers → <strong>Gewinnquote</strong>, Vorstandsgehalt → <strong>Lohnquote</strong></li>
+        <li><strong>Lorenzkurve</strong> kurz an der Tafel skizzieren: je weiter weg von der Diagonale, desto ungleicher</li>
+        <li>Teilnehmer fragen: „Warum schwankt die Lohnquote im Konjunkturverlauf?“ (Gewinne reagieren schneller als Löhne)</li>
+      </ul>
+    </aside>
   </section>
 
   <!-- 8. Sekundärverteilung -->
   <section class="slide">
     <h2>Sekundärverteilung: Der Staat verteilt um</h2>
-    <p>Die Primärverteilung ist ungleich → der Staat korrigiert nach dem <strong>Bedarfsprinzip</strong>: progressive Einkommensteuer, Sozialversicherungsbeiträge, Sozialleistungen (ALG, Renten, Wohngeld, Kindergeld).</p>
+    <p>Die Primärverteilung ist ungleich → der Staat korrigiert nach dem <strong>Bedarfsprinzip</strong>: progressive Einkommensteuer, Sozialversicherungsbeiträge, Sozialleistungen (Arbeitslosengeld (ALG), Renten, Wohngeld, Kindergeld).</p>
     <div class="merksatz">
       <span class="merksatz-label">🧮 Verfügbares Einkommen</span>
       Primäreinkommen − direkte Steuern − Sozialversicherungsbeiträge + Transferzahlungen = <strong>verfügbares Einkommen</strong> (für Konsum und Sparen).
     </div>
     <p class="muted">Auch Gewerkschaften wirken über die Tarifpolitik auf die Verteilung — zu hohe Abschlüsse können aber Wettbewerbsfähigkeit und Arbeitsplätze gefährden.</p>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Der Staat korrigiert die Marktverteilung — vom Leistungs- zum <strong>Bedarfsprinzip</strong>.</p>
+      <ul>
+        <li>Kette visualisieren: Primäreinkommen − Steuern − Sozialversicherungsbeiträge + Transfers = <strong>verfügbares Einkommen</strong></li>
+        <li>Beispiel erzählen: Familie mit Kindergeld vs. Gutverdiener mit progressiver Einkommensteuer — wer zahlt ein, wer empfängt</li>
+        <li>Gewerkschaften erwähnen: Tarifpolitik wirkt auf die Verteilung — Risiko überzogener Abschlüsse ansprechen</li>
+        <li>Typische IHK-Frage: „Unterscheiden Sie Primär- und Sekundärverteilung.“</li>
+      </ul>
+    </aside>
   </section>
 
   <!-- 9. Formeln & Rechenbeispiele 1/2 -->
@@ -283,6 +406,15 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <strong>Reales BIP</strong> = nominales BIP ÷ Preisindex × 100 (Basisjahr = 100)
     </div>
     <p style="font-size: 0.98rem;"><strong>Beispiel:</strong> nominal 2.100 Mrd. €, Preisindex 105 → 2.100 ÷ 105 × 100 = <strong>2.000 Mrd. €</strong>. Vorjahr real 2.000 Mrd. € → <strong>reales Wachstum 0 %</strong>: Der nominale Zuwachs von 5 % war reine Preissteigerung.</p>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Jetzt aktiv rechnen — genau diese Aufgabentypen kommen in Quiz und Prüfung.</p>
+      <ul>
+        <li>Nicht vorrechnen, sondern <strong>mitrechnen lassen</strong>: Zahlen nennen, 2 Minuten Zeit geben, dann gemeinsam auflösen</li>
+        <li>BNE-Beispiel: auf die Vorzeichen achten — <strong>abziehen</strong>, was Fremde hier verdienen; <strong>addieren</strong>, was unsere Leute draußen verdienen</li>
+        <li>Preisbereinigung betonen: nominal 5 % Plus, real null — der Klassiker</li>
+        <li>Tempo: rund 10 Minuten für beide Formel-Folien einplanen</li>
+      </ul>
+    </aside>
   </section>
 
   <!-- 10. Formeln & Rechenbeispiele 2/2 -->
@@ -298,16 +430,34 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <span class="merksatz-label">🧮 Verfügbares Einkommen</span>
       Primäreinkommen − direkte Steuern − Sozialversicherungsbeiträge + Transferzahlungen = <strong>verfügbares Einkommen</strong>
     </div>
-    <p style="font-size: 0.98rem;"><strong>Beispiel (Haushalt):</strong> 3.000 € Primäreinkommen · 400 € direkte Steuern · 500 € SV-Beiträge · 600 € Transfers (z. B. Kindergeld)<br>
+    <p style="font-size: 0.98rem;"><strong>Beispiel (Haushalt):</strong> 3.000 € Primäreinkommen · 400 € direkte Steuern · 500 € Sozialversicherungsbeiträge (SV-Beiträge) · 600 € Transfers (z. B. Kindergeld)<br>
     Schritt 1: 3.000 − 400 − 500 = 2.100 € &nbsp;·&nbsp; Schritt 2: 2.100 + 600 = <strong>2.700 € für Konsum und Sparen</strong></p>
     <p class="muted">Dieselben Zahlen finden Sie im Handout (Abschnitt „Formeln &amp; Rechenbeispiele“) und im Quiz.</p>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Lohnquote und verfügbares Einkommen — die zwei häufigsten Rechenaufgaben der IHK zu diesem Kapitel.</p>
+      <ul>
+        <li>Kontrolltrick zeigen: <strong>Gewinnquote = 100 − Lohnquote</strong> — spart Zeit in der Klausur</li>
+        <li>Haushaltsbeispiel am eigenen Gehaltszettel festmachen — das kennt jeder aus dem Alltag</li>
+        <li>Hinweis: identische Zahlen in Handout und Quiz — bewusst so gebaut, zum Wiedererkennen</li>
+        <li>Wer schnell fertig ist: Aufgabe 7 (VGR-Rechnung) im Aufgabenheft empfehlen</li>
+      </ul>
+    </aside>
   </section>
 
   <!-- 11. Magisches Viereck -->
   <section class="slide">
-    <h2>Block 2: Das magische Viereck (§ 1 StabG, 1967)</h2>
+    <h2>Das magische Viereck (§ 1 Stabilitätsgesetz (StabG), 1967)</h2>
     <div class="figure" id="fig-viereck"></div>
     <p class="caption">„Magisch“, weil kaum alle vier Ziele gleichzeitig erreichbar sind. Erweitert um <strong>Umweltschutz</strong> und <strong>gerechte Verteilung</strong> → magisches Sechseck (qualitative Ziele, nicht klar messbar).</p>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Vier gesetzlich verankerte Ziele — „magisch“, weil nie alle gleichzeitig erreichbar sind.</p>
+      <ul>
+        <li>Historie kurz: <strong>Stabilitätsgesetz 1967</strong>, Reaktion auf die erste Rezession der Bundesrepublik</li>
+        <li>Wort „magisch“ raten lassen: Teilnehmer vermuten, warum — dann mit den Zielkonflikten auflösen</li>
+        <li>Erweiterung zum <strong>Sechseck</strong> nur nennen: Umwelt + gerechte Verteilung, qualitativ, nicht klar messbar</li>
+        <li>Typische IHK-Frage: „Nennen Sie die vier Ziele des § 1 StabG“ — absolutes Pflichtwissen</li>
+      </ul>
+    </aside>
   </section>
 
   <!-- 12. Messgrößen -->
@@ -315,12 +465,21 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
     <h2>Die vier Ziele und ihre Messgrößen</h2>
     <table>
       <tr><th>Ziel</th><th>Messgröße</th><th>Faustregel</th></tr>
-      <tr><td><strong>Preisniveaustabilität</strong></td><td>Inflationsrate (Verbraucherpreisindex, Warenkorb)</td><td>knapp unter 2 % (EZB, HVPI)</td></tr>
+      <tr><td><strong>Preisniveaustabilität</strong></td><td>Inflationsrate (Verbraucherpreisindex, Warenkorb)</td><td>2 % (symmetrisches Ziel der Europäischen Zentralbank (EZB) seit 2021, Harmonisierter Verbraucherpreisindex (HVPI))</td></tr>
       <tr><td><strong>Hoher Beschäftigungsstand</strong></td><td>Arbeitslosenquote (Bundesagentur für Arbeit)</td><td>erreicht bei ca. 3–4 %</td></tr>
       <tr><td><strong>Außenwirtschaftliches Gleichgewicht</strong></td><td>Außenbeitrag (Exporte − Importe)</td><td>+1 bis 2 % des nominalen BIP</td></tr>
       <tr><td><strong>Stetiges &amp; angemessenes Wachstum</strong></td><td>Zuwachsrate des <em>realen</em> BIP</td><td>ø rund 2 % pro Jahr</td></tr>
     </table>
     <p class="muted">Jahreswirtschaftsbericht (§ 2 StabG): Ziele der Bundesregierung + Stellungnahme zum Gutachten des Sachverständigenrates.</p>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Zu jedem Ziel gehören Messgröße und Faustregel — diese Tabelle muss sitzen.</p>
+      <ul>
+        <li>Zeile für Zeile aktiv: Ziel nennen, Teilnehmer raten die Messgröße, dann Faustregel ergänzen</li>
+        <li>EZB-Ziel betonen: seit 2021 <strong>symmetrisch</strong> 2 % — Abweichung nach unten genauso unerwünscht wie nach oben</li>
+        <li>Klarstellen: Außenbeitrag = Exporte minus Importe, <strong>nicht</strong> die ganze Zahlungsbilanz (kommt am 26.09.)</li>
+        <li>IHK-Klassiker: Dreierpack „Ziel + Messgröße + Zielwert“ abfragen</li>
+      </ul>
+    </aside>
   </section>
 
   <!-- 13. Zielkonflikte -->
@@ -340,6 +499,15 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
         <p style="font-size: 0.98rem;">Ziele beeinflussen sich nicht — z. B. außenwirtschaftliches Gleichgewicht ↔ Erhaltung der Umwelt</p>
       </div>
     </div>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Ziele können sich beißen, verstärken oder ignorieren — konkurrierend, komplementär, indifferent.</p>
+      <ul>
+        <li>Konflikt am Beispiel Boom erzählen: Hochkonjunktur schafft Jobs, treibt aber die Preise — <strong>Wachstum vs. Preisstabilität</strong></li>
+        <li>Harmonie: mehr Produktion braucht mehr Hände — Wachstum und Beschäftigung ziehen meist am selben Strang</li>
+        <li>Interaktion: Zielpaare zurufen lassen, Kurs ordnet gemeinsam zu (konkurrierend/komplementär/indifferent)</li>
+        <li>Typische IHK-Frage: „Erläutern Sie einen Zielkonflikt des magischen Vierecks an einem Beispiel.“</li>
+      </ul>
+    </aside>
   </section>
 
   <!-- 14. Zusammenfassung Teil 2 -->
@@ -351,6 +519,14 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <li>Sekundärverteilung nach dem Bedarfsprinzip: Primäreinkommen − Steuern − SV-Beiträge + Transfers = verfügbares Einkommen.</li>
       <li>Das magische Viereck (StabG) umfasst Preisstabilität, Beschäftigung, außenwirtschaftliches Gleichgewicht und Wachstum — mit Zielkonflikten.</li>
     </ol>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Vier Sätze — das Kondensat des Nachmittags.</p>
+      <ul>
+        <li>Aktiv abschließen: Teilnehmer die Sätze in eigenen Worten wiederholen lassen — pro Person ein Satz</li>
+        <li>Blitzabfrage ohne Folie: „Formel der <strong>Lohnquote</strong>?“ und „Die vier Ziele des magischen Vierecks?“</li>
+        <li>Verbindung zu Teil 1 ziehen: vormittags Mikro (Preise, Märkte), nachmittags Makro (Gesamtrechnung, Ziele) — im Rahmenplan gehört beides zusammen</li>
+      </ul>
+    </aside>
   </section>
 
   <!-- 15. Übungsaufgaben zur Vertiefung & Ausblick -->
@@ -358,7 +534,7 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
     <h2>Übungsaufgaben zur Vertiefung &amp; Ausblick</h2>
     <p class="subtitle">Freiwillige Vertiefung — alle Materialien auf der Lernplattform</p>
     <ul class="checklist">
-      <li><strong>Quiz</strong> (2 × 30 Fragen mit Selbstkontrolle) — Teil 1: GWB &amp; Staatseingriffe · Teil 2: VGR &amp; magisches Viereck</li>
+      <li><strong>Quiz</strong> (2 × 60 Fragen mit Selbstkontrolle) — Teil 1: GWB &amp; Staatseingriffe · Teil 2: VGR &amp; magisches Viereck</li>
       <li><strong>Lernbereich</strong>: 18 offene Aufgaben mit Lösungshinweisen</li>
       <li><strong>Aufgabenheft</strong> mit Musterlösungen — empfehlenswert: Aufgabe 4 (Mindestpreis) und 7 (VGR-Rechnung)</li>
       <li><strong>Karteikarten &amp; Lernspiele</strong> (Wordle, Hängemann, Memory) zur Begriffssicherung</li>
@@ -368,6 +544,14 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <span class="merksatz-label">🔭 Lektion 3 (Sa, 26.09.)</span>
       Konjunktur (Zyklus, Indikatoren, Arbeitslosigkeit, Inflation) · Wirtschaftspolitik (Geld- und Fiskalpolitik, EZB) · Außenwirtschaft (Zahlungsbilanz, Wechselkurse, EU).
     </div>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Tag zusammenfassen, klaren Selbstlern-Auftrag geben, Vorfreude auf den 26.09. wecken.</p>
+      <ul>
+        <li>Empfehlung priorisieren: zuerst die beiden <strong>Quizze</strong> (je 60 Fragen), dann Aufgabe 4 (Mindestpreis) und 7 (VGR-Rechnung) im Aufgabenheft</li>
+        <li>Ausblick <strong>26.09.</strong> schmackhaft machen: Konjunktur (Zyklus, Arbeitslosigkeit, Inflation), Wirtschaftspolitik (EZB, Geld- und Fiskalpolitik), Außenwirtschaft (Zahlungsbilanz, Wechselkurse, EU) — dort zahlt das heutige VGR-Wissen direkt ein</li>
+        <li>Verabschiedung: Dank für die Mitarbeit, Erinnerung an Plattform-Code <strong>vwl</strong>, Fragen gern per Mail</li>
+      </ul>
+    </aside>
   </section>
 
 
@@ -375,10 +559,26 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
 
 <div class="slide-num">© Can Siebert · 2026 · <span id="slideCount">1 / 26</span></div>
 <nav class="nav">
+  <button onclick="openReferent()" title="Referentenansicht öffnen (N) — Notizfenster, für Zuhörer unsichtbar" style="font-size:1rem">🗒</button>
   <button onclick="prev()" title="Zurück (←)">←</button>
   <span class="nav-counter"><span id="slideNum">1</span></span>
   <button onclick="next()" title="Weiter (→)">→</button>
 </nav>
+
+<div id="refUI">
+  <div class="ref-head">
+    <span class="ref-title" id="refTitle"></span>
+    <span class="ref-counter" id="refCounter">1</span>
+    <span class="ref-timer" id="refTimer" title="Klick: Timer zurücksetzen">00:00</span>
+    <span class="ref-clock" id="refClock"></span>
+  </div>
+  <div class="ref-left">
+    <div class="ref-mini" id="miniCurrent"><span class="mini-label">Aktuelle Folie</span><div class="mini-stage" id="stageCurrent"></div></div>
+    <div class="ref-mini next" id="miniNext"><span class="mini-label">Nächste Folie</span><div class="mini-stage" id="stageNext"></div></div>
+  </div>
+  <div class="ref-notes"><h4>🗒 Sprechnotizen</h4><div id="refNotes"></div></div>
+  <div class="ref-hint">←/→ blättert in beiden Fenstern synchron · Dieses Fenster beim Teilen NICHT auswählen</div>
+</div>
 
 <!-- Rough.js für handgezeichnete Diagramme -->
 <script src="https://cdn.jsdelivr.net/npm/roughjs@4.6.6/bundled/rough.min.js"></script>
@@ -386,12 +586,33 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
 const slides = document.querySelectorAll('.slide');
 let current = 0;
 
-function show(i) {
+/* ---- Referentenansicht & Fenster-Synchronisation ---- */
+const isRef = new URLSearchParams(location.search).has('ref');
+const syncKey = 'praes-sync::' + location.pathname.split('/').pop();
+const bc = ('BroadcastChannel' in window) ? new BroadcastChannel(syncKey) : null;
+
+function broadcast(n) {
+  if (bc) bc.postMessage(n);
+  try { localStorage.setItem(syncKey, JSON.stringify({ n, t: Date.now() })); } catch (e) {}
+}
+if (bc) bc.onmessage = (e) => show(e.data, true);
+window.addEventListener('storage', (e) => {
+  if (e.key === syncKey && e.newValue) show(JSON.parse(e.newValue).n, true);
+});
+
+function openReferent() {
+  const url = location.pathname + (location.search ? location.search + '&' : '?') + 'ref=1';
+  window.open(url, 'praesReferent', 'width=1280,height=800');
+}
+
+function show(i, fromRemote) {
   slides.forEach(s => s.classList.remove('active'));
   current = Math.max(0, Math.min(i, slides.length - 1));
   slides[current].classList.add('active');
   document.getElementById('slideNum').textContent = current + 1;
   document.getElementById('slideCount').textContent = `${current + 1} / ${slides.length}`;
+  if (isRef) updateRef();
+  if (!fromRemote) broadcast(current);
 }
 function next() { show(current + 1); }
 function prev() { show(current - 1); }
@@ -400,7 +621,55 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowLeft') prev();
   if (e.key === 'Home') show(0);
   if (e.key === 'End') show(slides.length - 1);
+  if ((e.key === 'n' || e.key === 'N') && !isRef) openReferent();
 });
+
+/* Referentenfenster: Mini-Folien, Notizen, Uhr, Timer */
+function fitStage(stageId, boxId) {
+  const box = document.getElementById(boxId);
+  const stage = document.getElementById(stageId);
+  stage.style.transform = `scale(${box.clientWidth / 1280})`;
+}
+function cloneSlideInto(stageId, idx) {
+  const stage = document.getElementById(stageId);
+  stage.innerHTML = '';
+  if (idx >= slides.length) {
+    stage.innerHTML = '<div style="padding:4rem;font-size:2rem;color:#94A3B8">— Ende der Präsentation —</div>';
+    return;
+  }
+  const c = slides[idx].cloneNode(true);
+  c.classList.add('active');
+  c.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+  stage.appendChild(c);
+}
+let timerStart = Date.now();
+function updateRef() {
+  document.getElementById('refCounter').textContent = `${current + 1} / ${slides.length}`;
+  cloneSlideInto('stageCurrent', current);
+  cloneSlideInto('stageNext', current + 1);
+  fitStage('stageCurrent', 'miniCurrent');
+  fitStage('stageNext', 'miniNext');
+  const notes = slides[current].querySelector('.notes');
+  document.getElementById('refNotes').innerHTML = notes
+    ? notes.innerHTML
+    : '<p class="no-notes">Keine Notizen zu dieser Folie.</p>';
+  if (notes) document.getElementById('refNotes').closest('.ref-notes').scrollTop = 0;
+}
+if (isRef) {
+  document.body.classList.add('ref-mode');
+  document.getElementById('refTitle').textContent = document.title;
+  setInterval(() => {
+    document.getElementById('refClock').textContent =
+      new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+    const s = Math.floor((Date.now() - timerStart) / 1000);
+    document.getElementById('refTimer').textContent =
+      `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+  }, 1000);
+  document.getElementById('refTimer').onclick = () => { timerStart = Date.now(); };
+  window.addEventListener('resize', () => { fitStage('stageCurrent', 'miniCurrent'); fitStage('stageNext', 'miniNext'); });
+  // Figuren (Rough.js) brauchen einen Moment — Mini-Ansicht erst nach Load aufbauen
+  window.addEventListener('load', () => setTimeout(updateRef, 150));
+}
 
 // Rough.js-Skizzen
 function makeRough(svgEl, fn) {

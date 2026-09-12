@@ -122,10 +122,53 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
   font-weight: 700; font-size: 0.95rem;
 }
 
+/* Sprechnotizen: in der Zuschauer-Ansicht (und beim Teilen) immer unsichtbar */
+.notes { display: none !important; }
+
+/* Referentenansicht (?ref=1) */
+body.ref-mode { background: #0F172A; overflow: hidden; }
+body.ref-mode .deck, body.ref-mode .slide-num { display: none; }
+body.ref-mode .nav { display: none; }
+#refUI { display: none; }
+body.ref-mode #refUI {
+  display: grid; height: 100vh; padding: 1rem; gap: 1rem;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  grid-template-rows: auto minmax(0, 1fr);
+}
+.ref-head {
+  grid-column: 1 / -1; display: flex; align-items: center; gap: 1.2rem;
+  color: #E2E8F0; font-size: 1rem;
+}
+.ref-head .ref-title { font-weight: 700; color: white; margin-right: auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ref-head .ref-clock, .ref-head .ref-timer { font-variant-numeric: tabular-nums; background: #1E293B; padding: 0.35rem 0.8rem; border-radius: 8px; }
+.ref-head .ref-timer { color: #FDE68A; cursor: pointer; }
+.ref-head .ref-counter { background: var(--bfw-primary); color: white; font-weight: 700; padding: 0.35rem 0.8rem; border-radius: 8px; }
+.ref-left { display: flex; flex-direction: column; gap: 1rem; min-height: 0; }
+.ref-mini { position: relative; overflow: hidden; border-radius: 10px; background: white; border: 2px solid #334155; flex: 1; min-height: 0; }
+.ref-mini.next { flex: 0 0 32%; opacity: 0.85; }
+.ref-mini .mini-label {
+  position: absolute; top: 0.4rem; left: 0.5rem; z-index: 5;
+  background: rgba(15,23,42,0.75); color: white; font-size: 0.75rem;
+  padding: 0.15rem 0.6rem; border-radius: 999px; letter-spacing: 0.03em;
+}
+.ref-mini .mini-stage { position: absolute; top: 0; left: 0; width: 1280px; height: 800px; transform-origin: top left; pointer-events: none; }
+.ref-mini .mini-stage .slide { display: flex; position: absolute; inset: 0; animation: none; }
+.ref-notes {
+  background: #1E293B; border-radius: 10px; padding: 1.4rem 1.6rem;
+  overflow-y: auto; min-height: 0; color: #F1F5F9;
+}
+.ref-notes h4 { color: #5EEAD4; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.8rem; }
+#refNotes, #refNotes p, #refNotes li { font-size: 1.35rem; line-height: 1.65; color: #F1F5F9; }
+#refNotes ul, #refNotes ol { margin: 0.4rem 0 1rem 1.4rem; }
+#refNotes strong { color: #FDE68A; }
+#refNotes .no-notes { color: #64748B; font-size: 1.1rem; font-style: italic; }
+.ref-hint { grid-column: 1 / -1; color: #475569; font-size: 0.8rem; text-align: center; }
+
 /* Print-friendly */
 @media print {
   .slide { display: flex; page-break-after: always; }
-  .nav, .slide-num { display: none; }
+  .nav, .slide-num, #refUI { display: none; }
+  .notes { display: none !important; }
   html, body { height: auto; overflow: visible; }
 }
 </style>
@@ -140,10 +183,20 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
     <h1>Politikfelder, Außenwirtschaft &amp; EU</h1>
     <p class="subtitle">Von der Tarifautonomie bis zum Euro — und die große Wiederholung des Blocks 1.1</p>
     <div class="cover-meta">
+      <span><strong>Session</strong>Session 2 · 10:55–13:15 Uhr</span>
       <span><strong>Kurs</strong>Wirtschaftsfachwirt — 1.1 Volkswirtschaftliche Grundlagen</span>
       <span><strong>Rahmenplan</strong>1.1.3.2 Wirtschaftspolitische Maßnahmen und Konzeptionen · 1.1.4 Außenwirtschaft</span>
       <span><strong>Quelle</strong>Textband Volkswirtschaft, Kap. 3.2 + 4 (S. 45–64)</span>
     </div>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Willkommen zurück — Session 2 ist das VWL-Finale: Politikfelder, Außenwirtschaft, EU und die große Wiederholung.</p>
+      <ul>
+        <li>Orga: bis 13:15 Uhr, Prüfungstraining ab 12:30 fest einplanen</li>
+        <li>Anknüpfen: an den Vormittag (EZB, Fiskalpolitik) und an Lektion 2 vom <strong>12.09.</strong> (VGR, Stabilitätsziele) — heute weiten wir den Blick über die Grenzen</li>
+        <li>Motivieren: letzter VWL-Termin — wer heute mitzieht, hat Block 1.1 komplett</li>
+      </ul>
+      <p><strong>Impuls:</strong> Offene Fragen aus Teil 1 einsammeln und kurz klären, bevor es losgeht.</p>
+    </aside>
   </section>
 
 
@@ -162,6 +215,14 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <tr><td>7</td><td>Sa 27.02.27</td><td>BWL: Unternehmenszusammenschlüsse</td></tr>
     </table>
     <p class="muted">Alle Materialien auf der Lernplattform — Zugangscode <code>vwl</code>. Pro Lektion: Präsentation, Handout, Quiz, Lernbereich, Prüfungsaufgaben, Übungsband, Karteikarten &amp; Lernspiele.</p>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Mit dem heutigen Tag ist der komplette VWL-Stoff des Rahmenplans behandelt.</p>
+      <ul>
+        <li>Einordnen: Termin 3 von 7 — ab <strong>24.10.</strong> beginnt der BWL-Teil (Block 1.2)</li>
+        <li>Betonen: VWL bleibt bis zur IHK-Prüfung relevant — Wiederholung läuft über die Lernplattform weiter</li>
+        <li>Konkret empfehlen: Karteikarten und Prüfungstraining in den vier Wochen bis zum nächsten Termin</li>
+      </ul>
+    </aside>
   </section>
 
   <!-- 2. Fahrplan -->
@@ -172,12 +233,22 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <tr><th>Zeit</th><th>Block</th></tr>
       <tr><td>10:55–11:25</td><td>Wachstums-, Tarif-, Arbeitsmarkt- &amp; Umweltpolitik</td></tr>
       <tr><td>11:25–11:45</td><td>Nachfrage- vs. angebotsorientierte Wirtschaftspolitik</td></tr>
-      <tr><td>11:45–12:20</td><td>Außenwirtschaft &amp; EU (Binnenmarkt, Euro)</td></tr>
-      <tr><td>12:20–12:45</td><td>Prüfungsaufgaben-Training (interaktiv)</td></tr>
-      <tr><td>12:45–13:10</td><td><strong>Wiederholung &amp; Prüfungstraining Block 1.1</strong> (Lektionen 1–3)</td></tr>
+      <tr><td>11:45–12:15</td><td>Außenwirtschaft &amp; EU (Binnenmarkt, Euro)</td></tr>
+      <tr><td>12:15–12:30</td><td>Zahlungsbilanz &amp; Wechselkurse</td></tr>
+      <tr><td>12:30–12:50</td><td>Prüfungsaufgaben-Training (interaktiv)</td></tr>
+      <tr><td>12:50–13:10</td><td><strong>Wiederholung &amp; Prüfungstraining Block 1.1</strong> (Lektionen 1–3)</td></tr>
       <tr><td>13:10–13:15</td><td>Abschluss &amp; Ausblick BWL</td></tr>
     </table>
     <p class="muted">Letzter VWL-Termin — ab 24.10. startet der BWL-Teil (Block 1.2).</p>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Dichtes Programm: vier Politikfelder, zwei Denkschulen, Außenwirtschaft &amp; EU — und die Wiederholung des Blocks 1.1.</p>
+      <ul>
+        <li>Zeitplan zeigen; besonders auf die neuen Inhalte <strong>Zahlungsbilanz &amp; Wechselkurse</strong> (12:15) hinweisen</li>
+        <li>Das <strong>Prüfungstraining</strong> ab 12:30 als Highlight ankündigen — interaktiv, mit echten IHK-Formaten</li>
+        <li>Tempo ansagen: Politikfelder im Überblick, Vertiefung über Handout und Lernbereich</li>
+      </ul>
+      <p><strong>Impuls:</strong> Fragen, welches Thema die Gruppe am meisten interessiert — dort später etwas mehr Zeit einplanen.</p>
+    </aside>
   </section>
 
   <!-- 3. Lernziele -->
@@ -193,6 +264,15 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <li><strong>Arbeitslosenquote</strong> und <strong>Konvergenzkriterien</strong> (3 % / 60 %) berechnen</li>
       <li>den Stoff des <strong>Blocks 1.1</strong> (Lektionen 1–3) prüfungssicher zusammenfassen</li>
     </ul>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Sieben Ziele — von den Politikfeldern bis zur prüfungssicheren Zusammenfassung des gesamten Blocks 1.1.</p>
+      <ul>
+        <li>Betonen: <strong>Keynes vs. Angebotstheorie</strong> und die <strong>vier Grundfreiheiten</strong> sind IHK-Klassiker</li>
+        <li>Rechenziele entdramatisieren: Arbeitslosenquote und 3-%/60-%-Check folgen dem bekannten Muster „Teil ÷ Ganzes × 100“</li>
+        <li>Typische IHK-Frage ankündigen: „Ordnen Sie die Maßnahme der nachfrage- oder angebotsorientierten Politik zu und begründen Sie“</li>
+      </ul>
+      <p><strong>Impuls:</strong> Handzeichen: Wer kann die vier Grundfreiheiten jetzt schon aufzählen?</p>
+    </aside>
   </section>
 
   <!-- 4. Wachstumspolitik -->
@@ -201,7 +281,7 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
     <div class="cards">
       <div class="card teal">
         <div class="card-title">Quantitatives Wachstum</div>
-        <p style="font-size: 1rem;">Zunahme des realen BIP / Pro-Kopf-Einkommens — zunehmend kritisch gesehen (Umwelt, Wohlstand ≠ BIP)</p>
+        <p style="font-size: 1rem;">Zunahme des realen Bruttoinlandsprodukts (BIP) / Pro-Kopf-Einkommens — zunehmend kritisch gesehen (Umwelt, Wohlstand ≠ BIP)</p>
       </div>
       <div class="card amber">
         <div class="card-title">Qualitatives Wachstum</div>
@@ -213,6 +293,15 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <li>Förderung von <strong>Forschung &amp; Entwicklung</strong> (technischer Fortschritt)</li>
       <li>Förderung von <strong>Bildung</strong> (qualifizierte Arbeitskräfte)</li>
     </ul>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Wachstumspolitik verbessert die Produktionsmöglichkeiten — heute zunehmend qualitativ gedacht.</p>
+      <ul>
+        <li>Abgrenzung betonen: <strong>quantitativ</strong> (reales BIP) vs. <strong>qualitativ</strong> (plus Umweltschonung und Lebensqualität)</li>
+        <li>Drei Hebel mit je einem Beispiel: Investitionen (Abschreibungsbedingungen), Forschung &amp; Entwicklung (Forschungszulage), Bildung (Weiterbildungsförderung)</li>
+        <li>Brücke zu Lektion 2 schlagen: „Wohlstand ≠ BIP“ — Kritik an rein quantitativer Messung</li>
+      </ul>
+      <p><strong>Impuls:</strong> Kurze Diskussion: „Ist Wachstum um jeden Preis sinnvoll?“ — zwei Meinungen einholen.</p>
+    </aside>
   </section>
 
   <!-- 5. Tarifpolitik -->
@@ -221,7 +310,7 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
     <div class="cards">
       <div class="card teal">
         <div class="card-title">Tarifautonomie (Art. 9 III GG)</div>
-        <p style="font-size: 0.95rem;">Tarifpartner (Gewerkschaften ↔ Arbeitgeberverbände, auch einzelner AG = <strong>Haustarifvertrag</strong>) verhandeln <strong>frei von staatlichen Weisungen</strong>. Staat: nur Gesetze mit Mindestansprüchen (Mindestlohn, Urlaub …).</p>
+        <p style="font-size: 0.95rem;">Tarifpartner (Gewerkschaften ↔ Arbeitgeberverbände, auch einzelner Arbeitgeber (AG) = <strong>Haustarifvertrag</strong>) verhandeln <strong>frei von staatlichen Weisungen</strong>. Staat: nur Gesetze mit Mindestansprüchen (Mindestlohn, Urlaub …).</p>
       </div>
       <div class="card amber">
         <div class="card-title">Tarifvertragsarten</div>
@@ -232,6 +321,15 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <span class="merksatz-label">⚖️ Lohnpolitik</span>
       Gewerkschaften: <strong>Kaufkrafttheorie</strong> (höhere Löhne → mehr Nachfrage). Arbeitgeber: <strong>produktivitätsorientierte Lohnpolitik</strong> (Löhne = Kostenfaktor, nicht über Produktivitätsfortschritt).
     </div>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Löhne verhandeln die Tarifpartner ohne staatliche Weisung — das ist <strong>Tarifautonomie</strong> (Art. 9 III GG).</p>
+      <ul>
+        <li>Vertragsarten sauber trennen: <strong>Lohn-/Gehaltstarifvertrag</strong> (Entgelt) vs. <strong>Manteltarifvertrag</strong> (Arbeitsbedingungen) — häufige IHK-Zuordnungsfrage</li>
+        <li>Haustarifvertrag als Sonderfall nennen (einzelner Arbeitgeber statt Verband)</li>
+        <li>Positionen gegenüberstellen: <strong>Kaufkrafttheorie</strong> der Gewerkschaften vs. produktivitätsorientierte Lohnpolitik — aktuelle Tarifrunde als Beispiel erzählen</li>
+      </ul>
+      <p><strong>Impuls:</strong> Frage: „In welchem Vertrag steht die 35-Stunden-Woche?“ (Manteltarifvertrag)</p>
+    </aside>
   </section>
 
   <!-- 6. Arbeitsmarktpolitik -->
@@ -240,7 +338,7 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
     <div class="cards">
       <div class="card amber">
         <div class="card-title">Passiv: Folgen mildern</div>
-        <p style="font-size: 1rem;">Lohnersatzleistungen: <strong>ALG I/II (Bürgergeld)</strong>, <strong>Kurzarbeitergeld</strong>, Insolvenzgeld</p>
+        <p style="font-size: 1rem;">Lohnersatzleistungen: <strong>Arbeitslosengeld I und Bürgergeld (bis 2022: ALG II)</strong>, <strong>Kurzarbeitergeld</strong>, Insolvenzgeld</p>
       </div>
       <div class="card teal">
         <div class="card-title">Aktiv: eingliedern</div>
@@ -252,6 +350,15 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <li>Grundsatz <strong>„Fördern und Fordern“</strong>: zumutbare Jobs annehmen, sonst Kürzungen</li>
       <li>Kritik: geschönte Quoten, ineffiziente Maßnahmen, Leiharbeit/Scheinselbstständigkeit</li>
     </ul>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Passive Arbeitsmarktpolitik mildert die Folgen, aktive bringt Menschen zurück in Arbeit.</p>
+      <ul>
+        <li>Aktualität betonen: Seit 2023 <strong>Bürgergeld</strong> als Nachfolger des ALG II („Hartz IV“) — passive Leistung neben ALG I und Kurzarbeitergeld</li>
+        <li>Beispiel erzählen: Kurzarbeitergeld in der Corona-Krise 2020 — Millionen Jobs gesichert</li>
+        <li><strong>„Fördern und Fordern“</strong> mit Zumutbarkeit und Leistungskürzungen erläutern</li>
+        <li>IHK-Frage: „Nennen Sie je zwei aktive und zwei passive arbeitsmarktpolitische Maßnahmen“</li>
+      </ul>
+    </aside>
   </section>
 
   <!-- 7. Umweltpolitik -->
@@ -275,6 +382,15 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <span class="merksatz-label">🧠 Eselsbrücke</span>
       <strong>A-A-Z</strong>: Auflagen verbieten, Abgaben verteuern, Zertifikate begrenzen &amp; handeln.
     </div>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Umweltpolitik holt externe Kosten zurück zum Verursacher — über Prinzipien und drei Instrumententypen.</p>
+      <ul>
+        <li><strong>Verursacher-</strong> vs. <strong>Gemeinlastprinzip</strong> an Beispielen kontrastieren: Abwasserabgabe vs. staatliche Altlastensanierung</li>
+        <li>Eselsbrücke <strong>A-A-Z</strong> aktiv üben: Auflagen verbieten, Abgaben verteuern, Zertifikate begrenzen &amp; handeln</li>
+        <li>Praxisbeispiel EU-Emissionshandel: sinkende Zertifikatemenge, der Preis lenkt Investitionen</li>
+      </ul>
+      <p><strong>Impuls:</strong> Zuruf-Quiz: Umweltzone? CO₂-Preis? Zuschuss zur Wärmedämmung? — jeweils Auflage, Abgabe oder Subvention/Zertifikat?</p>
+    </aside>
   </section>
 
   <!-- 8. Keynes vs. Angebot -->
@@ -288,6 +404,15 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <tr><td><strong>Rolle des Staates</strong></td><td><strong>aktiv</strong>: Ausgabenprogramme, Deficit Spending</td><td><strong>passiv</strong>: Rahmenbedingungen, Steuersenkung, Deregulierung</td></tr>
       <tr><td><strong>Kritik</strong></td><td>Timelags, Crowding-out, Staatsschulden</td><td>Löhne auch Nachfragefaktor; Investitionsfähigkeit ≠ -bereitschaft</td></tr>
     </table>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Zwei Denkschulen, zwei Staatsrollen: Nachfrage stützen (Keynes) oder Angebotsbedingungen verbessern (Neoklassik).</p>
+      <ul>
+        <li>Tabelle zeilenweise kontrastieren, Vertreter nennen: <strong>Keynes</strong> vs. <strong>Friedman</strong> (Monetarismus)</li>
+        <li>Kritikzeile betonen: <strong>Time-Lags</strong> und <strong>Crowding-out</strong> gegen Keynes; Löhne sind auch Nachfragefaktor gegen die Angebotsseite</li>
+        <li>Absoluter IHK-Klassiker: Fallsituation der richtigen Konzeption zuordnen und <strong>begründen</strong> — wird im Training geübt</li>
+      </ul>
+      <p><strong>Impuls:</strong> Mini-Fall: „Unternehmenssteuern senken plus Deregulierung — welche Schule?“ (angebotsorientiert)</p>
+    </aside>
   </section>
 
   <!-- 9. Freihandel vs. Protektionismus -->
@@ -307,7 +432,16 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <tr><th>Tarifär (über den Preis)</th><th>Nichttarifär (Menge/Verwaltung)</th></tr>
       <tr><td><strong>Importzölle</strong>, Steuertarife, <strong>Exportsubventionen</strong></td><td><strong>Importkontingente</strong>, Ein-/Ausfuhrverbote, <strong>Embargos</strong>, Normen &amp; Genehmigungen</td></tr>
     </table>
-    <p class="muted">Rechtsrahmen: AWG/AWV, Auskunft: BAFA. Die EU verhandelt als WTO-Mitglied Freihandelsabkommen (CETA, JEFTA).</p>
+    <p class="muted">Rechtsrahmen: Außenwirtschaftsgesetz (AWG) / Außenwirtschaftsverordnung (AWV), Auskunft: Bundesamt für Wirtschaft und Ausfuhrkontrolle (BAFA). Die EU verhandelt als Mitglied der Welthandelsorganisation (WTO) Freihandelsabkommen (CETA, JEFTA).</p>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Freihandel schafft Wohlstand durch internationale Arbeitsteilung — Protektionismus schützt, hat aber seinen Preis.</p>
+      <ul>
+        <li>Handelshemmnisse klar trennen: <strong>tarifär</strong> (über den Preis: Zölle, Exportsubventionen) vs. <strong>nichttarifär</strong> (Kontingente, Embargos, Normen) — typische IHK-Zuordnungsfrage</li>
+        <li>Aktuelle Beispiele erzählen: US-Zollpolitik, Russland-Embargos, Schutzzölle auf E-Autos</li>
+        <li>Spezialisierungsvorteile kurz mit der Ricardo-Grundidee (komparative Kostenvorteile) plausibel machen</li>
+      </ul>
+      <p><strong>Impuls:</strong> Pro/Contra sammeln: „Ist ein Importzoll auf E-Autos gut für Deutschland?“</p>
+    </aside>
   </section>
 
   <!-- 10. Binnenmarkt -->
@@ -325,20 +459,38 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <span class="merksatz-label">📌 Chancen &amp; Risiken</span>
       Größerer Markt, sinkende Stückkosten, mehr Wettbewerb und Auswahl — aber: Produktionsverlagerung ins günstigere EU-Ausland möglich.
     </div>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Seit 1993 ein Wirtschaftsraum ohne Binnengrenzen — getragen von den <strong>vier Grundfreiheiten</strong>.</p>
+      <ul>
+        <li>Jede Freiheit mit Alltagsbeispiel erzählen: Job in Österreich, zollfreie Ware aus Italien, Dienstleister aus den Niederlanden, Konto in Frankreich</li>
+        <li>IHK-Klassiker betonen: „Beschreiben Sie die vier Grundfreiheiten je anhand eines Beispiels“</li>
+        <li>Chancen und Risiken abwägen: Skaleneffekte und Wettbewerb vs. Produktionsverlagerung ins EU-Ausland</li>
+      </ul>
+      <p><strong>Impuls:</strong> Teilnehmende eigene Berührungspunkte nennen lassen (Urlaub, Online-Bestellungen, ausländische Kollegen).</p>
+    </aside>
   </section>
 
   <!-- 11. EWWU -->
   <section class="slide">
-    <h2>EWWU: Wer darf den Euro einführen?</h2>
+    <h2>Europäische Wirtschafts- und Währungsunion (EWWU): Wer darf den Euro einführen?</h2>
     <p class="subtitle">Die 5 Konvergenzkriterien (Maastricht)</p>
     <ol class="numlist">
       <li><strong>Inflationsrate</strong>: max. 1,5 %-Punkte über den drei preisstabilsten EU-Staaten</li>
       <li><strong>Neuverschuldung</strong>: max. <strong>3 % des BIP</strong></li>
       <li><strong>Gesamtschuldenstand</strong>: max. <strong>60 % des BIP</strong></li>
       <li><strong>Langfristzins</strong>: max. 2 %-Punkte über den drei preisstabilsten Staaten</li>
-      <li><strong>Wechselkurs</strong>: 2 Jahre stabil im WKM II (keine Abwertung)</li>
+      <li><strong>Wechselkurs</strong>: 2 Jahre stabil im Wechselkursmechanismus II (WKM II) (keine Abwertung)</li>
     </ol>
-    <p class="muted">Nach der Staatsschuldenkrise: Reform des Stabilitäts- und Wachstumspakts (2011) — 3 % und 60 % blieben, Sanktionen greifen früher.</p>
+    <p class="muted">Nach der Staatsschuldenkrise: Reform des Stabilitäts- und Wachstumspakts (SWP) 2011. 2024 grundlegend reformiert (länderspezifische Ausgabenpfade); die Referenzwerte 3 % (Defizit) und 60 % (Schuldenstand) gelten weiter.</p>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Der Euro-Beitritt ist an Bedingungen geknüpft — die fünf <strong>Konvergenzkriterien</strong> von Maastricht.</p>
+      <ul>
+        <li>Die Zahlen <strong>3 %</strong> (Neuverschuldung) und <strong>60 %</strong> (Gesamtschuldenstand) müssen sitzen — Rechenaufgabe folgt gleich</li>
+        <li>Aktualität betonen: <strong>SWP-Reform 2024</strong> mit länderspezifischen Ausgabenpfaden — die Referenzwerte 3 %/60 % gelten unverändert weiter</li>
+        <li>IHK-Frage: „Nennen Sie drei Konvergenzkriterien mit Referenzwerten“ — Kriterien immer mit Zahlen lernen</li>
+      </ul>
+      <p><strong>Impuls:</strong> Schätzfrage: „Wo liegt Deutschlands Schuldenstandsquote aktuell?“ (etwas über 60 % des BIP)</p>
+    </aside>
   </section>
 
   <!-- 12. Euro Vor/Nachteile -->
@@ -358,6 +510,81 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <span class="merksatz-label">📌 Prüfungsklassiker</span>
       IHK-Frage: „Beschreiben Sie die vier Grundfreiheiten je anhand eines Beispiels“ oder „Vor- und Nachteile der gemeinsamen Währung“ — beides heute geübt!
     </div>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Der Euro bringt Transparenz und Handelsvorteile — kostet aber die eigenständige Geld- und Wechselkurspolitik.</p>
+      <ul>
+        <li>Vorteile am Alltag erzählen: Urlaub ohne Umtausch, Export ohne Kurssicherungskosten, Preisvergleich über Grenzen</li>
+        <li>Kernnachteil betonen: <strong>ein Leitzins</strong> für sehr unterschiedliche Volkswirtschaften — Beispiel Eurokrise (Griechenland vs. Deutschland), keine Abwertung möglich</li>
+        <li>Prüfungsklassiker von der Folie aufgreifen — beide Fragen kommen im Training dran</li>
+      </ul>
+      <p><strong>Impuls:</strong> Kurzabstimmung per Handzeichen: „Überwiegen für Deutschland die Vor- oder die Nachteile?“</p>
+    </aside>
+  </section>
+
+  <!-- 12b. Zahlungsbilanz -->
+  <section class="slide">
+    <h2>Zahlungsbilanz</h2>
+    <p class="subtitle">Alle wirtschaftlichen Transaktionen zwischen In- und Ausland — systematisch erfasst</p>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Leistungsbilanz</div>
+        <p style="font-size: 0.95rem;"><strong>Handelsbilanz</strong> (Waren) · <strong>Dienstleistungsbilanz</strong> (z. B. Reiseverkehr) · <strong>Primäreinkommen</strong> (Zinsen, Dividenden) · <strong>Sekundäreinkommen</strong> (Übertragungen)</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Kapitalbilanz</div>
+        <p style="font-size: 0.95rem;">Kapitalex- und -importe: <strong>Direktinvestitionen</strong>, Wertpapieranlagen, Kredite</p>
+      </div>
+      <div class="card rose">
+        <div class="card-title">Devisenbilanz</div>
+        <p style="font-size: 0.95rem;">Veränderung der <strong>Währungsreserven</strong> der Zentralbank</p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="merksatz-label">📌 Merke</span>
+      Die Zahlungsbilanz ist <strong>immer ausgeglichen</strong> (doppelte Verbuchung) — Ungleichgewichte zeigen sich in den <strong>Teilbilanzen</strong>. Deutschland: traditionell hoher <strong>Leistungsbilanzüberschuss</strong> (Exportstärke).
+    </div>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Die Zahlungsbilanz erfasst systematisch alle Transaktionen mit dem Ausland — gegliedert in Teilbilanzen.</p>
+      <ul>
+        <li>Aufbau von links nach rechts durchgehen: <strong>Leistungsbilanz</strong> (Handelsbilanz als größter Posten), <strong>Kapitalbilanz</strong>, <strong>Devisenbilanz</strong></li>
+        <li>Kernsatz betonen: formal <strong>immer ausgeglichen</strong> (doppelte Verbuchung) — Ungleichgewichte zeigen sich nur in den Teilbilanzen</li>
+        <li>Beispiel Deutschland: hoher Leistungsbilanzüberschuss durch Exportstärke — auch die Kritik der Handelspartner erwähnen</li>
+        <li>IHK-Frage: „Ordnen Sie den Geschäftsvorfall der richtigen Teilbilanz zu“ (Urlaubsreise → Dienstleistungsbilanz, Fabrikkauf im Ausland → Kapitalbilanz)</li>
+      </ul>
+    </aside>
+  </section>
+
+  <!-- 12c. Wechselkurse -->
+  <section class="slide">
+    <h2>Wechselkurse</h2>
+    <p class="subtitle">Der Preis einer Währung, ausgedrückt in einer anderen Währung</p>
+    <div class="cards">
+      <div class="card teal">
+        <div class="card-title">Notierung</div>
+        <p style="font-size: 0.95rem;"><strong>Preisnotierung</strong>: 1 USD = 0,90 € · <strong>Mengennotierung</strong> (in der Eurozone üblich): 1 € = 1,10 USD</p>
+      </div>
+      <div class="card amber">
+        <div class="card-title">Auf- &amp; Abwertung</div>
+        <p style="font-size: 0.95rem;"><strong>Aufwertung</strong> des Euro: Importe billiger, Exporte teurer (Wettbewerbsnachteil) · <strong>Abwertung</strong>: Exporte billiger, Importe teurer (importierte Inflation)</p>
+      </div>
+      <div class="card rose">
+        <div class="card-title">Kurssysteme</div>
+        <p style="font-size: 0.95rem;"><strong>Flexibel</strong>: Angebot &amp; Nachfrage am Devisenmarkt · <strong>Fest</strong>: Zentralbank hält die Parität durch Interventionen (z. B. WKM II)</p>
+      </div>
+    </div>
+    <div class="merksatz">
+      <span class="merksatz-label">📌 Kaufkraftparität</span>
+      Langfristig tendiert der Wechselkurs zu dem Kurs, bei dem ein Warenkorb in beiden Währungsräumen gleich viel kostet.
+    </div>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Der Wechselkurs ist der Preis einer Währung — und wirkt unmittelbar auf Export und Import.</p>
+      <ul>
+        <li>Notierungen unterscheiden: <strong>Mengennotierung</strong> (1 € = 1,10 USD, in der Eurozone üblich) vs. <strong>Preisnotierung</strong></li>
+        <li>Merkhilfe zur <strong>Aufwertung</strong>: starker Euro = billige Importe, teure Exporte — am USA-Urlaub und am Maschinenbauer durchspielen</li>
+        <li>Kurssysteme abgrenzen: flexibel (Devisenmarkt) vs. fest (Interventionen der Zentralbank, WKM II) — Brücke zurück zu den Konvergenzkriterien</li>
+      </ul>
+      <p><strong>Impuls:</strong> Mini-Fall: „Der Euro wertet ab — gut oder schlecht für einen deutschen Maschinenexporteur?“ (gut: Exporte billiger)</p>
+    </aside>
   </section>
 
   <!-- 13. Formeln: Arbeitslosenquote & Konvergenz-Check -->
@@ -365,7 +592,7 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
     <h2>Formeln: Arbeitslosenquote &amp; Konvergenz-Check</h2>
     <div class="cards">
       <div class="card teal">
-        <div class="card-title">🧮 Arbeitslosenquote</div>
+        <div class="card-title">🧮 Arbeitslosenquote (ALQ)</div>
         <p style="font-size: 0.95rem;"><strong>ALQ</strong> = registrierte Arbeitslose ÷ alle zivilen Erwerbspersonen × 100<br>
         <strong>Beispiel:</strong> 2,3 Mio. Arbeitslose, 43,7 Mio. Erwerbstätige<br>
         ① Erwerbspersonen: 43,7 + 2,3 = <strong>46 Mio.</strong> · ② 2,3 ÷ 46 = <strong>0,05</strong> · ③ × 100 = <strong>5,0 %</strong></p>
@@ -381,39 +608,66 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <span class="merksatz-label">📌 Merke</span>
       Erwerbspersonen = Erwerbstätige <strong>+</strong> registrierte Arbeitslose. Alle Quoten folgen dem Muster <strong>„Teil ÷ Ganzes × 100“</strong> — Prüfungsklassiker im Block 1.1!
     </div>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Beide Rechnungen folgen dem Muster „Teil ÷ Ganzes × 100“ — das sind sichere Punkte in der Prüfung.</p>
+      <ul>
+        <li>Häufigsten Fehler betonen: <strong>Erwerbspersonen = Erwerbstätige + registrierte Arbeitslose</strong> — erst addieren, dann teilen!</li>
+        <li>Beide Beispiele live vorrechnen lassen, Taschenrechner raus</li>
+        <li>Typische IHK-Aufgabe: BIP und Schuldenzahlen gegeben — Kriterien prüfen und das Ergebnis <strong>begründen</strong> (erfüllt/verletzt)</li>
+      </ul>
+      <p><strong>Impuls:</strong> Variante rechnen lassen: 2,9 Mio. Arbeitslose, 42,1 Mio. Erwerbstätige — Lösung: 6,4 %.</p>
+    </aside>
   </section>
 
   <!-- 14. Wiederholung Block 1.1 -->
   <section class="slide">
-    <h2>Wiederholung — Block 1.1 komplett: das Wichtigste in 8 Sätzen</h2>
+    <h2>Wiederholung — Block 1.1: das Wichtigste in 8 Sätzen</h2>
     <ol class="numlist">
-      <li><strong>L1:</strong> Knappheit zwingt zum Wirtschaften; Preise entstehen im Gleichgewicht von Angebot und Nachfrage (Marktformen, Elastizität, SAAS).</li>
-      <li><strong>L2:</strong> Wettbewerb braucht Schutz (GWB, Kartellverbot); Staatseingriffe (Höchst-/Mindestpreise) erzeugen Überschüsse und Defizite.</li>
-      <li><strong>L2:</strong> Die VGR misst die Wirtschaftsleistung (BIP); magisches Viereck/Sechseck = Ziele der Stabilitätspolitik.</li>
-      <li><strong>L3:</strong> Die Konjunktur verläuft in vier Phasen — Indikatoren: früh, präsent, spät.</li>
-      <li><strong>L3:</strong> Die EZB sichert Preisstabilität über Offenmarktgeschäfte, Fazilitäten und Mindestreserve (Leitzins-Transmission!).</li>
-      <li><strong>L3:</strong> Der Staat steuert antizyklisch (StabG, Deficit Spending, automatische Stabilisatoren).</li>
-      <li><strong>L3:</strong> Keynes setzt auf Nachfrage und aktiven Staat, die Angebotstheorie auf Rahmenbedingungen und passiven Staat.</li>
-      <li><strong>L3:</strong> Die EU bietet Binnenmarkt (4 Freiheiten) und Währungsunion (Konvergenzkriterien, Euro).</li>
+      <li><strong>L1:</strong> Knappheit zwingt zum Wirtschaften; Preise entstehen aus Angebot und Nachfrage (Marktformen, Elastizität).</li>
+      <li><strong>L2:</strong> Wettbewerb braucht Schutz (Gesetz gegen Wettbewerbsbeschränkungen, GWB); Höchst-/Mindestpreise erzeugen Überschüsse und Defizite.</li>
+      <li><strong>L2:</strong> Die Volkswirtschaftliche Gesamtrechnung (VGR) misst das BIP; magisches Viereck/Sechseck = Ziele der Stabilitätspolitik.</li>
+      <li><strong>L3:</strong> Konjunktur = vier Phasen — Indikatoren: früh, präsent, spät.</li>
+      <li><strong>L3:</strong> Die Europäische Zentralbank (EZB) sichert Preisstabilität: Offenmarkt, Fazilitäten, Mindestreserve (Transmission!).</li>
+      <li><strong>L3:</strong> Der Staat steuert antizyklisch nach dem Stabilitätsgesetz (StabG) — Deficit Spending, Stabilisatoren.</li>
+      <li><strong>L3:</strong> Keynes: Nachfrage, aktiver Staat — Angebotstheorie: Rahmenbedingungen, passiver Staat.</li>
+      <li><strong>L3:</strong> EU: Binnenmarkt (4 Freiheiten) und Währungsunion (Konvergenzkriterien, Euro).</li>
     </ol>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Acht Sätze fassen drei Lektionen zusammen — wer sie erklären kann, ist für Block 1.1 gerüstet.</p>
+      <ul>
+        <li>Nicht vorlesen: Sätze reihum von Teilnehmenden <strong>erläutern</strong> lassen, Lücken sofort klären</li>
+        <li>Erfahrungsgemäß vertiefen: Transmissionskette, magisches Viereck, Keynes vs. Angebotstheorie</li>
+        <li>Anschließend direkt ins interaktive Prüfungstraining überleiten (Quiz und Prüfungsaufgaben gemeinsam lösen)</li>
+      </ul>
+      <p><strong>Impuls:</strong> Jede Tischreihe übernimmt zwei Sätze und formuliert dazu je eine eigene Prüfungsfrage für die Nachbarreihe.</p>
+    </aside>
   </section>
 
   <!-- 15. Übungsaufgaben zur Vertiefung & Ausblick -->
   <section class="slide">
-    <h2>Übungsaufgaben zur Vertiefung &amp; Ausblick: Es geht weiter mit BWL</h2>
+    <h2>Übungsaufgaben zur Vertiefung &amp; Ausblick: weiter mit BWL</h2>
     <p class="subtitle">Freiwillige Vertiefung — alle Materialien auf der Lernplattform</p>
     <ul class="checklist">
-      <li><strong>Quiz Teil 1 + Teil 2</strong> (je 30 Fragen mit Selbstkontrolle) — festigt zugleich den Prüfungsstoff Block 1.1</li>
+      <li><strong>Quiz Teil 1 + Teil 2</strong> (je 60 Fragen mit Selbstkontrolle) — festigt den Prüfungsstoff Block 1.1</li>
       <li><strong>Lernbereich</strong>: 18 offene Aufgaben mit Lösungshinweisen</li>
-      <li><strong>Prüfungsaufgaben (pro Lektion)</strong>: schriftlich üben &amp; mit Lösungshinweisen prüfen</li>
-      <li><strong>Aufgabenheft</strong> mit Musterlösungen — empfehlenswert: Aufgabe 3 (EZB) und 8 (Konzeptionen)</li>
-      <li><strong>Karteikarten &amp; Lernspiele</strong> (Wordle, Hängemann, Memory) der Lektionen 1–3 zur Wiederholung</li>
-      <li><strong>Prüfungstraining VWL</strong> auf dem Dashboard — ideal zur Vorbereitung auf die IHK-Prüfung</li>
+      <li><strong>Prüfungsaufgaben</strong>: schriftlich üben &amp; mit Lösungshinweisen prüfen</li>
+      <li><strong>Aufgabenheft</strong> mit Musterlösungen — Tipp: Aufgabe 3 (EZB) und 8 (Konzeptionen)</li>
+      <li><strong>Karteikarten &amp; Lernspiele</strong> der Lektionen 1–3 zur Wiederholung</li>
+      <li><strong>Prüfungstraining VWL</strong> auf dem Dashboard — ideal für die IHK-Vorbereitung</li>
     </ul>
     <div class="merksatz">
       <span class="merksatz-label">🔭 Ab 24.10.: BWL-Teil (Block 1.2)</span>
-      Betriebliche Funktionen I: Zielsysteme, Grundfunktionen des Betriebs, Beschaffung, Produktion, Absatz/Marketing. Danach: Betriebliche Funktionen II, Existenzgründung &amp; Rechtsformen, Unternehmenszusammenschlüsse. Der VWL-Stoff bleibt prüfungsrelevant — dranbleiben!
+      Betriebliche Funktionen I &amp; II, Existenzgründung &amp; Rechtsformen, Unternehmenszusammenschlüsse. Der VWL-Stoff bleibt prüfungsrelevant — dranbleiben!
     </div>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Der VWL-Block ist geschafft — mit den Plattform-Materialien bleibt der Stoff bis zur IHK-Prüfung frisch.</p>
+      <ul>
+        <li>Zusammenfassung in einem Bild: Konjunktur diagnostizieren, EZB und Staat als Therapeuten, Außenwirtschaft und EU als Rahmen</li>
+        <li>Konkrete Empfehlung: beide Quizze (<strong>je 60 Fragen</strong>) zeitnah lösen, Karteikarten wöchentlich, Prüfungstraining vor dem 24.10.</li>
+        <li><strong>Ausblick 24.10.</strong>: Start des BWL-Teils (Block 1.2) mit den betrieblichen Funktionen — Brücke: vom volkswirtschaftlichen Rahmen zur Unternehmensperspektive</li>
+        <li>Verabschiedung: Dank für die Mitarbeit, kurze Feedbackrunde, gute Heimreise</li>
+      </ul>
+    </aside>
   </section>
 
 
@@ -421,10 +675,26 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
 
 <div class="slide-num">© Can Siebert · 2026 · <span id="slideCount">1 / 26</span></div>
 <nav class="nav">
+  <button onclick="openReferent()" title="Referentenansicht öffnen (N) — Notizfenster, für Zuhörer unsichtbar" style="font-size:1rem">🗒</button>
   <button onclick="prev()" title="Zurück (←)">←</button>
   <span class="nav-counter"><span id="slideNum">1</span></span>
   <button onclick="next()" title="Weiter (→)">→</button>
 </nav>
+
+<div id="refUI">
+  <div class="ref-head">
+    <span class="ref-title" id="refTitle"></span>
+    <span class="ref-counter" id="refCounter">1</span>
+    <span class="ref-timer" id="refTimer" title="Klick: Timer zurücksetzen">00:00</span>
+    <span class="ref-clock" id="refClock"></span>
+  </div>
+  <div class="ref-left">
+    <div class="ref-mini" id="miniCurrent"><span class="mini-label">Aktuelle Folie</span><div class="mini-stage" id="stageCurrent"></div></div>
+    <div class="ref-mini next" id="miniNext"><span class="mini-label">Nächste Folie</span><div class="mini-stage" id="stageNext"></div></div>
+  </div>
+  <div class="ref-notes"><h4>🗒 Sprechnotizen</h4><div id="refNotes"></div></div>
+  <div class="ref-hint">←/→ blättert in beiden Fenstern synchron · Dieses Fenster beim Teilen NICHT auswählen</div>
+</div>
 
 <!-- Rough.js für handgezeichnete Diagramme -->
 <script src="https://cdn.jsdelivr.net/npm/roughjs@4.6.6/bundled/rough.min.js"></script>
@@ -432,12 +702,33 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
 const slides = document.querySelectorAll('.slide');
 let current = 0;
 
-function show(i) {
+/* ---- Referentenansicht & Fenster-Synchronisation ---- */
+const isRef = new URLSearchParams(location.search).has('ref');
+const syncKey = 'praes-sync::' + location.pathname.split('/').pop();
+const bc = ('BroadcastChannel' in window) ? new BroadcastChannel(syncKey) : null;
+
+function broadcast(n) {
+  if (bc) bc.postMessage(n);
+  try { localStorage.setItem(syncKey, JSON.stringify({ n, t: Date.now() })); } catch (e) {}
+}
+if (bc) bc.onmessage = (e) => show(e.data, true);
+window.addEventListener('storage', (e) => {
+  if (e.key === syncKey && e.newValue) show(JSON.parse(e.newValue).n, true);
+});
+
+function openReferent() {
+  const url = location.pathname + (location.search ? location.search + '&' : '?') + 'ref=1';
+  window.open(url, 'praesReferent', 'width=1280,height=800');
+}
+
+function show(i, fromRemote) {
   slides.forEach(s => s.classList.remove('active'));
   current = Math.max(0, Math.min(i, slides.length - 1));
   slides[current].classList.add('active');
   document.getElementById('slideNum').textContent = current + 1;
   document.getElementById('slideCount').textContent = `${current + 1} / ${slides.length}`;
+  if (isRef) updateRef();
+  if (!fromRemote) broadcast(current);
 }
 function next() { show(current + 1); }
 function prev() { show(current - 1); }
@@ -446,7 +737,55 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowLeft') prev();
   if (e.key === 'Home') show(0);
   if (e.key === 'End') show(slides.length - 1);
+  if ((e.key === 'n' || e.key === 'N') && !isRef) openReferent();
 });
+
+/* Referentenfenster: Mini-Folien, Notizen, Uhr, Timer */
+function fitStage(stageId, boxId) {
+  const box = document.getElementById(boxId);
+  const stage = document.getElementById(stageId);
+  stage.style.transform = `scale(${box.clientWidth / 1280})`;
+}
+function cloneSlideInto(stageId, idx) {
+  const stage = document.getElementById(stageId);
+  stage.innerHTML = '';
+  if (idx >= slides.length) {
+    stage.innerHTML = '<div style="padding:4rem;font-size:2rem;color:#94A3B8">— Ende der Präsentation —</div>';
+    return;
+  }
+  const c = slides[idx].cloneNode(true);
+  c.classList.add('active');
+  c.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+  stage.appendChild(c);
+}
+let timerStart = Date.now();
+function updateRef() {
+  document.getElementById('refCounter').textContent = `${current + 1} / ${slides.length}`;
+  cloneSlideInto('stageCurrent', current);
+  cloneSlideInto('stageNext', current + 1);
+  fitStage('stageCurrent', 'miniCurrent');
+  fitStage('stageNext', 'miniNext');
+  const notes = slides[current].querySelector('.notes');
+  document.getElementById('refNotes').innerHTML = notes
+    ? notes.innerHTML
+    : '<p class="no-notes">Keine Notizen zu dieser Folie.</p>';
+  if (notes) document.getElementById('refNotes').closest('.ref-notes').scrollTop = 0;
+}
+if (isRef) {
+  document.body.classList.add('ref-mode');
+  document.getElementById('refTitle').textContent = document.title;
+  setInterval(() => {
+    document.getElementById('refClock').textContent =
+      new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+    const s = Math.floor((Date.now() - timerStart) / 1000);
+    document.getElementById('refTimer').textContent =
+      `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+  }, 1000);
+  document.getElementById('refTimer').onclick = () => { timerStart = Date.now(); };
+  window.addEventListener('resize', () => { fitStage('stageCurrent', 'miniCurrent'); fitStage('stageNext', 'miniNext'); });
+  // Figuren (Rough.js) brauchen einen Moment — Mini-Ansicht erst nach Load aufbauen
+  window.addEventListener('load', () => setTimeout(updateRef, 150));
+}
 
 // Rough.js-Skizzen
 function makeRough(svgEl, fn) {

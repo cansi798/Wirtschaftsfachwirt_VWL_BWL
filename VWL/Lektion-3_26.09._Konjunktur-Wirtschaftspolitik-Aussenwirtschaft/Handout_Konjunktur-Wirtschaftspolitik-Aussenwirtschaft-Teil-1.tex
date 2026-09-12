@@ -3,6 +3,10 @@
 % Gemeinsame Style-Definitionen (TEXINPUTS muss templates/ enthalten — siehe scripts/build_tex.py)
 \input{bfw-style.tex}
 
+% Zusatzfarben für die TikZ-Grafiken (Palette wie in den Rough.js-Skizzen der Präsentation)
+\definecolor{bfwRot}{HTML}{EF4444}
+\definecolor{bfwBgGruen}{HTML}{ECFDF5}
+
 \kopfzeile{Handout VWL Lektion 3 \textperiodcentered{} Teil 1}
 
 \begin{document}
@@ -49,6 +53,61 @@ Naturkatastrophen, Krisen).
     niedrige Preise/Zinsen --- Ausgangspunkt für einen neuen Aufschwung.
 \end{enumerate}
 
+\begin{center}
+\begin{tikzpicture}[font=\small, line cap=round]
+  % Achsen
+  \draw[-{Stealth[length=2.5mm]}, thick, bfwInk] (0,0) -- (0,5.3)
+    node[anchor=west, font=\footnotesize\bfseries] {BIP / wirtschaftliche Aktivität};
+  \draw[-{Stealth[length=2.5mm]}, thick, bfwInk] (0,0) -- (13.4,0)
+    node[anchor=north east, font=\footnotesize\bfseries, yshift=-2pt] {Zeit};
+  % Hilfslinien: Boom-zu-Boom-Zyklus
+  \draw[dotted, thick, bfwInkSoft!70] (3.0,3.35) -- (3.0,-0.55);
+  \draw[dotted, thick, bfwInkSoft!70] (9.2,4.25) -- (9.2,-0.55);
+  \draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}, thick, bfwPrimary] (3.0,-0.55) -- (9.2,-0.55)
+    node[midway, below=2pt, font=\scriptsize, text=bfwInkSoft]
+    {ein vollständiger Konjunkturzyklus (z.\,B. von Boom zu Boom gemessen)};
+  % Wachstumstrend (gestrichelt, leicht steigend)
+  \draw[dashed, thick, bfwInkSoft] (0,1.7) -- (12.9,3.5)
+    node[anchor=south east, font=\footnotesize\bfseries, text=bfwInkSoft] {Trend};
+  % Konjunkturwelle um den Trend
+  \draw[line width=1.4pt, bfwPrimaryDark]
+    plot[smooth, tension=0.75] coordinates
+    {(0,1.0) (1.5,1.5) (3.0,3.35) (4.5,2.3) (6.0,1.1) (7.6,2.5) (9.2,4.25) (10.8,3.1) (12.3,2.1)};
+  % Markierung Hoch- und Tiefpunkt
+  \draw[thick, bfwAccent, fill=bfwBgAmber] (3.0,3.35) circle (1.5mm);
+  \draw[thick, bfwRot, fill=bfwBgRose] (6.0,1.1) circle (1.5mm);
+  % Phasenbeschriftung
+  \node[text=bfwSuccess!75!black, font=\small\bfseries, align=center] at (1.3,2.8)
+    {Aufschwung\\{\scriptsize\color{bfwInkSoft}(Expansion)}};
+  \node[text=bfwAccent!85!black, font=\small\bfseries, align=center] at (3.0,4.25)
+    {Boom\\{\scriptsize\color{bfwInkSoft}(Hochkonjunktur)}};
+  \node[text=bfwWarn, font=\small\bfseries, align=center] at (5.05,3.1)
+    {Abschwung\\{\scriptsize\color{bfwInkSoft}(Rezession)}};
+  \node[text=bfwRot, font=\small\bfseries, align=center] at (6.0,0.45)
+    {Tief\\{\scriptsize\color{bfwInkSoft}(Depression)}};
+  \node[text=bfwSuccess!75!black, font=\footnotesize\bfseries, align=center, anchor=east] at (8.2,3.6)
+    {neuer\\Aufschwung};
+\end{tikzpicture}
+\end{center}
+
+\emph{Faustregel:} Sinkt das reale BIP in \textbf{zwei aufeinanderfolgenden Quartalen},
+spricht man von einer \emph{(technischen) Rezession}.
+
+\subsection{Zyklusdauern: kurze, mittlere und lange Wellen}
+
+Nach der Dauer der Schwankungen unterscheidet die Konjunkturforschung drei Wellenarten,
+die sich überlagern:
+
+\begin{itemize}
+  \item \textbf{Kitchin-Zyklen} (kurze Wellen, ca. 3--4 Jahre): Lagerzyklen ---
+    Unternehmen bauen Lagerbestände auf und ab;
+  \item \textbf{Juglar-Zyklen} (mittlere Wellen, ca. 7--11 Jahre): der „klassische``
+    Konjunkturzyklus dieses Kapitels, getragen von den Investitionen der Unternehmen;
+  \item \textbf{Kondratjew-Zyklen} (lange Wellen, ca. 40--60 Jahre): ausgelöst durch
+    \emph{Basisinnovationen}, die ganze Investitionswellen tragen (Dampfmaschine,
+    Eisenbahn, Elektrotechnik/Chemie, Automobil, Informationstechnik).
+\end{itemize}
+
 \subsection{Konjunkturindikatoren}
 
 \begin{itemize}
@@ -68,7 +127,7 @@ Naturkatastrophen, Krisen).
 
 \section{Geldpolitik der Europäischen Zentralbank (EZB)}
 
-Die Geldpolitik der EU liegt seit 1999 in den Händen der \textbf{Europäischen
+Die Geldpolitik der Eurozone liegt seit 1999 in den Händen der \textbf{Europäischen
 Zentralbank (EZB)}. Sie steuert die Geldmengenentwicklung in der Eurozone und unterstützt
 zudem die allgemeine Wirtschaftspolitik in der Gemeinschaft. \textbf{Vorrangiges Ziel}
 ist nach dem Vertrag von Maastricht die \textbf{Preisniveaustabilität}: Der Anstieg des
@@ -77,7 +136,9 @@ Prozent} betragen (seit der Strategieüberprüfung 2021 ein \emph{symmetrisches}
 Inflationsziel; zuvor: „unter, aber nahe zwei Prozent``) --- damit sind sowohl Inflation
 als auch Deflation ausgeschlossen. Die EZB
 berücksichtigt bei ihrer Geldmengensteuerung sowohl die Preisentwicklung als auch die
-Geldmengenentwicklung (\textbf{Zwei-Säulen-Strategie}).
+Geldmengenentwicklung (\textbf{Zwei-Säulen-Strategie}; seit der Strategieüberprüfung 2021
+weiterentwickelt zum integrierten Analyserahmen: wirtschaftliche Analyse + monetäre und
+finanzielle Analyse).
 
 \begin{merksatz}
 Geschäftsbanken benötigen Zentralbankgeld, um Kredite vergeben zu können. Die Beschaffung
@@ -109,8 +170,22 @@ sie, fließt Geld zurück (Geldvernichtung, Zinsen steigen, Nachfrage sinkt). Vi
 Abgewickelt werden die Geschäfte in \textbf{Tenderverfahren} (standardisierte
 Ausschreibungen): nach der Durchführung \emph{Standardtender} (24 Stunden, für Haupt- und
 Basistender) oder \emph{Schnelltender} (wenige Stunden, für Feinsteuerung); nach der
-Zuteilung \emph{Mengentender} (EZB gibt Volumen \emph{und} Zinssatz vor) oder
-\emph{Zinstender} (Banken bieten Zinssätze, Zuteilung nach Höhe des Gebots).
+Zuteilung \emph{Mengentender} (die EZB gibt den Zinssatz vor, die Banken bieten nur die
+gewünschten Beträge; bei Überzeichnung wird anteilig zugeteilt --- \emph{Repartierung})
+oder \emph{Zinstender} (die Banken bieten Zinssatz \emph{und} Betrag; die Zuteilung
+richtet sich nach der Höhe der Zinsgebote).
+
+\begin{beispiel}
+\textbf{Mengentender mit Repartierung (durchgerechnet):} Die EZB schreibt einen
+Haupttender zum Festzinssatz aus und will 50~Mrd.~Euro zuteilen. Die Geschäftsbanken
+bieten zusammen 200~Mrd.~Euro (Überzeichnung).\\[0.3em]
+\textbf{Schritt 1:} Repartierungsquote = Zuteilungsbetrag $\div$ Gebotssumme
+$= 50 \div 200 = 0{,}25 = \textbf{25~\%}$.\\
+\textbf{Schritt 2:} Eine Bank, die 8~Mrd.~Euro geboten hat, erhält
+$8 \times 0{,}25 = \textbf{2~Mrd.~Euro}$ Zentralbankgeld.\\[0.3em]
+\emph{Merke:} Beim Mengentender wird bei Überzeichnung \emph{anteilig} zugeteilt ---
+beim Zinstender entscheidet dagegen die Höhe des gebotenen Zinssatzes.
+\end{beispiel}
 
 \subsection{Instrument 2: Ständige Fazilitäten}
 
@@ -129,6 +204,34 @@ Beide Sätze bilden zusammen den \textbf{Zinskorridor}, in dessen Mitte sich der
 Hauptrefinanzierungssatz bewegt. Diese \textbf{drei Leitzinsen} (Einlagefazilität,
 Hauptrefinanzierungssatz, Spitzenrefinanzierungsfazilität) müssen Sie für die Prüfung
 nennen können.
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize, line cap=round]
+  % Korridor-Band
+  \fill[bfwBgTeal] (0,0) rectangle (11.8,2.6);
+  % Obergrenze
+  \draw[line width=1.2pt, bfwWarn] (0,2.6) -- (11.8,2.6);
+  \node[anchor=south west, text=bfwWarn, font=\footnotesize\bfseries] at (0,2.68)
+    {Spitzenrefinanzierungsfazilität = Obergrenze (Banken leihen über Nacht)};
+  % Mitte
+  \draw[line width=1.2pt, bfwPrimaryDark] (0,1.3) -- (11.8,1.3);
+  \node[anchor=south west, text=bfwPrimaryDark, font=\footnotesize\bfseries] at (0,1.38)
+    {Hauptrefinanzierungssatz = wichtigster Leitzins (Haupttender, 1 Woche)};
+  % Untergrenze
+  \draw[line width=1.2pt, bfwAccent!85!black] (0,0) -- (11.8,0);
+  \node[anchor=north west, text=bfwAccent!85!black, font=\footnotesize\bfseries] at (0,-0.1)
+    {Einlagefazilität = Untergrenze (Banken legen über Nacht an)};
+  % Geldmarktzins als Schlangenlinie im Korridor
+  \draw[thick, bfwInkSoft, decorate, decoration={snake, amplitude=1mm, segment length=10mm}]
+    (0.4,0.72) -- (8.4,0.72);
+  \node[anchor=west, text=bfwInkSoft, font=\scriptsize] at (8.55,0.72) {Geldmarktzins};
+  % Doppelpfeil Zinskorridor
+  \draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}, thick, bfwPrimaryDark]
+    (11.35,0.08) -- (11.35,2.52);
+  \node[anchor=south, rotate=90, text=bfwPrimaryDark, font=\scriptsize\bfseries] at (11.2,1.3)
+    {Zinskorridor};
+\end{tikzpicture}
+\end{center}
 
 \subsection{Instrument 3: Mindestreservepolitik}
 
@@ -153,6 +256,47 @@ den Banken Liquidität (weniger Kreditvergabe möglich), eine \emph{Senkung} wir
     Inflation.
 \end{itemize}
 
+Die folgende Wirkungskette (\textbf{Transmissionsmechanismus}) zeigt die
+\emph{restriktive} Variante --- bei expansiver Geldpolitik drehen sich alle Pfeile um
+(Zinssenkung $\Rightarrow$ billigere Kredite $\Rightarrow$ mehr Investitionen und Konsum
+$\Rightarrow$ Nachfrage und Beschäftigung steigen):
+
+\begin{center}
+\begin{tikzpicture}[font=\small,
+  kette/.style 2 args={draw=#1, fill=#2, thick, rounded corners=4pt, align=center,
+    text width=3.9cm, minimum height=1.25cm, inner sep=5pt},
+  pfeil/.style={-{Stealth[length=3mm]}, line width=1.2pt, bfwPrimaryDark}]
+  % Obere Reihe
+  \node[kette={bfwRot}{bfwBgRose}] (s1) at (0,0)
+    {\textbf{EZB erhöht}\\{\footnotesize die Leitzinsen}};
+  \node[kette={bfwAccent!85!black}{bfwBgAmber}] (s2) at (5.7,0)
+    {\textbf{Refinanzierung}\\{\footnotesize der Banken wird teurer}};
+  \node[kette={bfwAccent!85!black}{bfwBgAmber}] (s3) at (11.4,0)
+    {\textbf{Kreditzinsen steigen}\\{\footnotesize Sparneigung nimmt zu}};
+  % Untere Reihe (von rechts nach links)
+  \node[kette={bfwPrimaryDark}{bfwBgTeal}] (s4) at (11.4,-2.2)
+    {\textbf{Kreditnachfrage sinkt}\\{\footnotesize Unternehmen und Haushalte}};
+  \node[kette={bfwPrimaryDark}{bfwBgTeal}] (s5) at (5.7,-2.2)
+    {\textbf{Investitionen und Konsum}\\{\footnotesize gehen zurück}};
+  \node[kette={bfwPrimaryDark}{bfwBgTeal}] (s6) at (0,-2.2)
+    {\textbf{Gesamtnachfrage sinkt}\\{\footnotesize Konjunktur wird gedämpft}};
+  % Zielbox
+  \node[draw=bfwSuccess!65!black, fill=bfwBgGruen, thick, rounded corners=4pt, align=center,
+        text width=14.6cm, inner sep=6pt] (ziel) at (5.7,-4.2)
+    {\textbf{\color{bfwSuccess!55!black}Ziel erreicht: Der Preisauftrieb lässt nach ---
+      Inflation wird bekämpft}\\
+     {\footnotesize\color{bfwInkSoft}Nebenwirkung: Wachstum und Beschäftigung können
+      leiden (restriktive Geldpolitik)}};
+  % Pfeile
+  \draw[pfeil] (s1) -- (s2);
+  \draw[pfeil] (s2) -- (s3);
+  \draw[pfeil] (s3) -- (s4);
+  \draw[pfeil] (s4) -- (s5);
+  \draw[pfeil] (s5) -- (s6);
+  \draw[pfeil] (s6.south) -- (s6.south |- ziel.north);
+\end{tikzpicture}
+\end{center}
+
 \begin{beispiel}
 Die Inflationsrate liegt deutlich über zwei Prozent. Die EZB \emph{erhöht die Leitzinsen}:
 Die Refinanzierung wird für die Geschäftsbanken teurer, sie geben die höheren Zinsen an
@@ -175,6 +319,14 @@ niedrige Zinsen die Investitions- und Konsumbereitschaft nicht; und die EZB ist 
 einvernehmliche Fiskalpolitik der Regierungen angewiesen (erhöht der Staat in der
 Inflationsbekämpfung gleichzeitig schuldenfinanziert seine Ausgaben, verpufft die
 restriktive Wirkung).
+
+\begin{achtung}
+Klassische Verwechslung in der Prüfung: \textbf{Geldpolitik} betreibt die \emph{EZB}
+(Leitzinsen, Offenmarktgeschäfte, Mindestreserve), \textbf{Fiskalpolitik} betreibt der
+\emph{Staat} (Steuern, Staatsausgaben). Formulierungen wie „der Staat senkt die
+Leitzinsen`` sind immer falsch --- die EZB ist von Weisungen der Regierungen
+\emph{unabhängig}.
+\end{achtung}
 
 \section{Finanzpolitik (Fiskalpolitik)}
 
@@ -217,6 +369,15 @@ Abschreibungserleichterungen (wirkten wie eine Steuererleichterung) und die
 \emph{Umweltprämie (Abwrackprämie)}, die die Nachfrage nach Kraftfahrzeugen fördern sollte.
 \end{beispiel}
 
+\begin{achtung}
+Grenzen der antizyklischen Fiskalpolitik: \textbf{Timelags} (bis Konjunkturprogramme
+wirken, ist die Rezession oft vorbei --- die Maßnahme wirkt dann prozyklisch),
+\textbf{Crowding-out} (kreditfinanzierte Staatsnachfrage verdrängt private Investitionen
+über steigende Zinsen) und die \emph{politische Asymmetrie}: Schuldenmachen in der
+Rezession ist populär, Sparen und Tilgen im Boom nicht --- die Staatsverschuldung steigt
+deshalb tendenziell dauerhaft.
+\end{achtung}
+
 \subsection{Automatische Stabilisatoren}
 
 Neben gezielten Maßnahmen wirken \textbf{automatische (eingebaute) Stabilisatoren} ohne
@@ -232,13 +393,23 @@ Haushaltsdefizits) und die \textbf{Gesamtverschuldung} des Staates. Hohe Schulde
 Zinsverpflichtungen beschränken die Handlungsfähigkeit künftiger Politik. Juristische
 Grenzen: die \textbf{Schuldenbremse} im Grundgesetz (Art.\,109 GG, seit 2009) und der
 \emph{europäische Fiskalpakt} (2013), der die Mitgliedsländer verpflichtet, die
-Schuldenbremse national zu regeln.
+Schuldenbremse national zu regeln. Die Schuldenbremse begrenzt die \emph{strukturelle}
+(konjunkturunabhängige) Neuverschuldung des Bundes auf \textbf{0,35~\%} des BIP; die
+Länder dürfen strukturell keine neuen Kredite aufnehmen. Ausnahmen gelten für
+Naturkatastrophen und außergewöhnliche Notsituationen (z.\,B. Corona-Pandemie 2020).
+
+\begin{beispiel}
+Das BIP beträgt 4.000~Mrd.~Euro. Zulässige strukturelle Neuverschuldung des Bundes:
+$4.000 \times 0{,}0035 = \textbf{14~Mrd.~Euro}$. Plant der Bund 20~Mrd.~Euro neue
+Schulden, liegt er 6~Mrd.~Euro über der Grenze --- zulässig nur bei einer vom Bundestag
+festgestellten Notsituation.
+\end{beispiel}
 
 \section{Formeln \& Rechenbeispiele}
 
-Die folgenden Berechnungen sind Prüfungsklassiker --- beide folgen demselben Muster:
-\emph{(neu $-$ alt) durch alt mal 100}. Prägen Sie sich Formel und Rechenweg anhand der
-einfachen Zahlenbeispiele ein.
+Die folgenden Berechnungen sind Prüfungsklassiker --- die ersten beiden folgen demselben
+Muster: \emph{(neu $-$ alt) durch alt mal 100}. Prägen Sie sich Formel und Rechenweg
+anhand der einfachen Zahlenbeispiele ein.
 
 \begin{merksatz}[title={\bfseries Formel 1: Wirtschaftswachstum (Veränderungsrate des realen BIP)}]
 \[
@@ -274,12 +445,32 @@ Der Verbraucherpreisindex steigt von 110 auf 115,5 Punkte.\\[0.3em]
 fälschlich 5,5~\%.
 \end{beispiel}
 
+\begin{merksatz}[title={\bfseries Formel 3: Deflationierung --- vom nominalen zum realen BIP}]
+\[
+\text{reales BIP} =
+\frac{\text{nominales BIP}}{\text{Preisindex}} \times 100
+\]
+Das nominale BIP wird mit dem Preisindex (Basisjahr $=100$) „preisbereinigt``. Erst das
+reale BIP zeigt, ob tatsächlich mehr Güter produziert wurden.
+\end{merksatz}
+
+\begin{beispiel}
+Vorjahr: BIP 3.000~Mrd.~Euro (Preisindex 100). Aktuelles Jahr: nominales BIP
+3.150~Mrd.~Euro (${}+5~\%$), Preisindex 105.\\[0.3em]
+\textbf{Schritt 1:} Reales BIP $= 3.150 \div 105 \times 100 = 3.000$~Mrd.~Euro.\\
+\textbf{Schritt 2:} Reale Wachstumsrate $= (3.000 - 3.000) \div 3.000 \times 100
+= \textbf{0{,}0~\%}$.\\[0.3em]
+\emph{Interpretation:} Das gesamte nominale „Wachstum`` von 5~\% ist reine Inflation ---
+real wurde nicht mehr produziert. Deshalb immer mit dem \emph{realen} BIP rechnen.
+\end{beispiel}
+
 \begin{merksatz}[title={\bfseries Wichtig für die Prüfungsvorbereitung (Teil 1)}]
 Sie sollten sicher können: den \emph{Konjunkturzyklus} mit Indikatoren (F-P-S), das Ziel
-und die \emph{drei Instrumente der EZB} samt \emph{Leitzinsen} und der Wirkungskette einer
-Leitzinsänderung (Transmission), die Unterscheidung \emph{expansiv vs. restriktiv}, die
-\emph{antizyklische Fiskalpolitik} (Boom vs. Rezession) mit automatischen Stabilisatoren
-sowie die \emph{Formeln} für Wachstumsrate und Inflationsrate (Abschnitt~4). In Teil~2
+und die \emph{drei Instrumente der EZB} samt der drei \emph{Leitzinsen} (Zinskorridor!)
+und der Wirkungskette einer Leitzinsänderung (Transmission), die Unterscheidung
+\emph{expansiv vs. restriktiv}, die \emph{antizyklische Fiskalpolitik} (Boom vs.
+Rezession) mit automatischen Stabilisatoren und Schuldenbremse (0,35~\%) sowie die
+\emph{Formeln} für Wachstumsrate, Inflationsrate und Deflationierung (Abschnitt~4). In Teil~2
 folgen die weiteren Politikfelder, die Konzeptionen sowie Außenwirtschaft und EU ---
 inklusive Wiederholung des gesamten Blocks~1.1.
 \end{merksatz}

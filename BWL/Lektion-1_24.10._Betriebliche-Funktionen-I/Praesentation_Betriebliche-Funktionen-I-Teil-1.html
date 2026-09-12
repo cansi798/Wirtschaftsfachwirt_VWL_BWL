@@ -122,10 +122,53 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
   font-weight: 700; font-size: 0.95rem;
 }
 
+/* Sprechnotizen: in der Zuschauer-Ansicht (und beim Teilen) immer unsichtbar */
+.notes { display: none !important; }
+
+/* Referentenansicht (?ref=1) */
+body.ref-mode { background: #0F172A; overflow: hidden; }
+body.ref-mode .deck, body.ref-mode .slide-num { display: none; }
+body.ref-mode .nav { display: none; }
+#refUI { display: none; }
+body.ref-mode #refUI {
+  display: grid; height: 100vh; padding: 1rem; gap: 1rem;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  grid-template-rows: auto minmax(0, 1fr);
+}
+.ref-head {
+  grid-column: 1 / -1; display: flex; align-items: center; gap: 1.2rem;
+  color: #E2E8F0; font-size: 1rem;
+}
+.ref-head .ref-title { font-weight: 700; color: white; margin-right: auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ref-head .ref-clock, .ref-head .ref-timer { font-variant-numeric: tabular-nums; background: #1E293B; padding: 0.35rem 0.8rem; border-radius: 8px; }
+.ref-head .ref-timer { color: #FDE68A; cursor: pointer; }
+.ref-head .ref-counter { background: var(--bfw-primary); color: white; font-weight: 700; padding: 0.35rem 0.8rem; border-radius: 8px; }
+.ref-left { display: flex; flex-direction: column; gap: 1rem; min-height: 0; }
+.ref-mini { position: relative; overflow: hidden; border-radius: 10px; background: white; border: 2px solid #334155; flex: 1; min-height: 0; }
+.ref-mini.next { flex: 0 0 32%; opacity: 0.85; }
+.ref-mini .mini-label {
+  position: absolute; top: 0.4rem; left: 0.5rem; z-index: 5;
+  background: rgba(15,23,42,0.75); color: white; font-size: 0.75rem;
+  padding: 0.15rem 0.6rem; border-radius: 999px; letter-spacing: 0.03em;
+}
+.ref-mini .mini-stage { position: absolute; top: 0; left: 0; width: 1280px; height: 800px; transform-origin: top left; pointer-events: none; }
+.ref-mini .mini-stage .slide { display: flex; position: absolute; inset: 0; animation: none; }
+.ref-notes {
+  background: #1E293B; border-radius: 10px; padding: 1.4rem 1.6rem;
+  overflow-y: auto; min-height: 0; color: #F1F5F9;
+}
+.ref-notes h4 { color: #5EEAD4; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.8rem; }
+#refNotes, #refNotes p, #refNotes li { font-size: 1.35rem; line-height: 1.65; color: #F1F5F9; }
+#refNotes ul, #refNotes ol { margin: 0.4rem 0 1rem 1.4rem; }
+#refNotes strong { color: #FDE68A; }
+#refNotes .no-notes { color: #64748B; font-size: 1.1rem; font-style: italic; }
+.ref-hint { grid-column: 1 / -1; color: #475569; font-size: 0.8rem; text-align: center; }
+
 /* Print-friendly */
 @media print {
   .slide { display: flex; page-break-after: always; }
-  .nav, .slide-num { display: none; }
+  .nav, .slide-num, #refUI { display: none; }
+  .notes { display: none !important; }
   html, body { height: auto; overflow: visible; }
 }
 </style>
@@ -166,12 +209,12 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
 
   <!-- 2. Brücke VWL -> BWL -->
   <section class="slide">
-    <h2>Willkommen im BWL-Block!</h2>
-    <p class="subtitle">VWL abgeschlossen — jetzt wechseln wir die Perspektive</p>
+    <h2>Willkommen im Block Betriebswirtschaftslehre (BWL)!</h2>
+    <p class="subtitle">Volkswirtschaftslehre (VWL) abgeschlossen — jetzt wechseln wir die Perspektive</p>
     <div class="cards">
       <div class="card teal">
         <div class="card-title">Rückblick VWL (Lektion 1–3)</div>
-        <p style="font-size: 1rem;">Die <strong>Gesamtwirtschaft</strong>: Märkte, Preisbildung, Wettbewerb, VGR, Konjunktur — Blick von außen auf das Zusammenspiel aller Akteure.</p>
+        <p style="font-size: 1rem;">Die <strong>Gesamtwirtschaft</strong>: Märkte, Preisbildung, Wettbewerb, Volkswirtschaftliche Gesamtrechnung (VGR), Konjunktur — Blick von außen auf das Zusammenspiel aller Akteure.</p>
       </div>
       <div class="card amber">
         <div class="card-title">Jetzt BWL (Lektion 1–4)</div>
@@ -191,7 +234,7 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <li><strong>Roh-, Hilfs-, Betriebsstoffe</strong> und Betriebsmittel sicher zuordnen</li>
       <li>die <strong>Fertigungstypen</strong> (Einzel, Serie, Sorte, Masse) unterscheiden</li>
       <li><strong>Produktivität und Wirtschaftlichkeit</strong> berechnen und interpretieren</li>
-      <li>die <strong>Logistikbereiche</strong>, <strong>Lagerfunktionen</strong>, <strong>SCM</strong> und die <strong>6 R</strong> erklären</li>
+      <li>die <strong>Logistikbereiche</strong>, <strong>Lagerfunktionen</strong>, <strong>Supply Chain Management (SCM)</strong> und die <strong>6 R</strong> erklären</li>
       <li>die <strong>Lagerkennzahlen</strong> (Ø Bestand, Umschlagshäufigkeit, Lagerdauer) berechnen</li>
     </ul>
   </section>
@@ -223,7 +266,7 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
   <section class="slide">
     <h2>Die betrieblichen Funktionen im Überblick</h2>
     <div class="figure" id="fig-wertschoepfung"></div>
-    <p class="caption">Funktionale Gliederung entlang des Wertschöpfungsprozesses — Logistik, ReWe, Finanzierung, Personal und Controlling wirken als Querschnitts- und Unterstützungsfunktionen. Alle Bereiche sind miteinander verzahnt.</p>
+    <p class="caption">Funktionale Gliederung entlang des Wertschöpfungsprozesses — Logistik, Rechnungswesen (ReWe), Finanzierung, Personal und Controlling wirken als Querschnitts- und Unterstützungsfunktionen. Alle Bereiche sind miteinander verzahnt.</p>
     <p class="muted">Teil 1 (heute Vormittag): Produktion &amp; Logistik. Teil 2 (ab 10:55): Absatz &amp; Marketing. Lektion 2 (07.11.): ReWe, Finanzierung, Controlling, Personal.</p>
   </section>
 
@@ -284,7 +327,7 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
 
   <!-- 10. Produktionsplanung -->
   <section class="slide">
-    <h2>Produktionsplanung und -steuerung</h2>
+    <h2>Produktionsplanung und -steuerung (PPS)</h2>
     <ul class="checklist">
       <li><strong>Erzeugnisse</strong> — Gegenstand und Ergebnis der Produktion</li>
       <li><strong>Produktionsprogramm</strong> — Art, Menge und Zeitpunkt der Produkte</li>
@@ -430,7 +473,7 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
     </ul>
     <div class="merksatz">
       <span class="merksatz-label">💡 Tipp für die Pause</span>
-      Prägen Sie sich die <strong>RHB-Eselsbrücke</strong> und die <strong>6 R</strong> ein — beides fragen wir in Teil 2 als Warm-up kurz ab.
+      Prägen Sie sich die <strong>RHB-Eselsbrücke</strong> (Roh-, Hilfs-, Betriebsstoffe) und die <strong>6 R</strong> ein — beides fragen wir in Teil 2 als Warm-up kurz ab.
     </div>
   </section>
 
@@ -439,10 +482,26 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
 
 <div class="slide-num">© Can Siebert · 2026 · <span id="slideCount">1 / 26</span></div>
 <nav class="nav">
+  <button onclick="openReferent()" title="Referentenansicht öffnen (N) — Notizfenster, für Zuhörer unsichtbar" style="font-size:1rem">🗒</button>
   <button onclick="prev()" title="Zurück (←)">←</button>
   <span class="nav-counter"><span id="slideNum">1</span></span>
   <button onclick="next()" title="Weiter (→)">→</button>
 </nav>
+
+<div id="refUI">
+  <div class="ref-head">
+    <span class="ref-title" id="refTitle"></span>
+    <span class="ref-counter" id="refCounter">1</span>
+    <span class="ref-timer" id="refTimer" title="Klick: Timer zurücksetzen">00:00</span>
+    <span class="ref-clock" id="refClock"></span>
+  </div>
+  <div class="ref-left">
+    <div class="ref-mini" id="miniCurrent"><span class="mini-label">Aktuelle Folie</span><div class="mini-stage" id="stageCurrent"></div></div>
+    <div class="ref-mini next" id="miniNext"><span class="mini-label">Nächste Folie</span><div class="mini-stage" id="stageNext"></div></div>
+  </div>
+  <div class="ref-notes"><h4>🗒 Sprechnotizen</h4><div id="refNotes"></div></div>
+  <div class="ref-hint">←/→ blättert in beiden Fenstern synchron · Dieses Fenster beim Teilen NICHT auswählen</div>
+</div>
 
 <!-- Rough.js für handgezeichnete Diagramme -->
 <script src="https://cdn.jsdelivr.net/npm/roughjs@4.6.6/bundled/rough.min.js"></script>
@@ -450,12 +509,33 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
 const slides = document.querySelectorAll('.slide');
 let current = 0;
 
-function show(i) {
+/* ---- Referentenansicht & Fenster-Synchronisation ---- */
+const isRef = new URLSearchParams(location.search).has('ref');
+const syncKey = 'praes-sync::' + location.pathname.split('/').pop();
+const bc = ('BroadcastChannel' in window) ? new BroadcastChannel(syncKey) : null;
+
+function broadcast(n) {
+  if (bc) bc.postMessage(n);
+  try { localStorage.setItem(syncKey, JSON.stringify({ n, t: Date.now() })); } catch (e) {}
+}
+if (bc) bc.onmessage = (e) => show(e.data, true);
+window.addEventListener('storage', (e) => {
+  if (e.key === syncKey && e.newValue) show(JSON.parse(e.newValue).n, true);
+});
+
+function openReferent() {
+  const url = location.pathname + (location.search ? location.search + '&' : '?') + 'ref=1';
+  window.open(url, 'praesReferent', 'width=1280,height=800');
+}
+
+function show(i, fromRemote) {
   slides.forEach(s => s.classList.remove('active'));
   current = Math.max(0, Math.min(i, slides.length - 1));
   slides[current].classList.add('active');
   document.getElementById('slideNum').textContent = current + 1;
   document.getElementById('slideCount').textContent = `${current + 1} / ${slides.length}`;
+  if (isRef) updateRef();
+  if (!fromRemote) broadcast(current);
 }
 function next() { show(current + 1); }
 function prev() { show(current - 1); }
@@ -464,7 +544,55 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowLeft') prev();
   if (e.key === 'Home') show(0);
   if (e.key === 'End') show(slides.length - 1);
+  if ((e.key === 'n' || e.key === 'N') && !isRef) openReferent();
 });
+
+/* Referentenfenster: Mini-Folien, Notizen, Uhr, Timer */
+function fitStage(stageId, boxId) {
+  const box = document.getElementById(boxId);
+  const stage = document.getElementById(stageId);
+  stage.style.transform = `scale(${box.clientWidth / 1280})`;
+}
+function cloneSlideInto(stageId, idx) {
+  const stage = document.getElementById(stageId);
+  stage.innerHTML = '';
+  if (idx >= slides.length) {
+    stage.innerHTML = '<div style="padding:4rem;font-size:2rem;color:#94A3B8">— Ende der Präsentation —</div>';
+    return;
+  }
+  const c = slides[idx].cloneNode(true);
+  c.classList.add('active');
+  c.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+  stage.appendChild(c);
+}
+let timerStart = Date.now();
+function updateRef() {
+  document.getElementById('refCounter').textContent = `${current + 1} / ${slides.length}`;
+  cloneSlideInto('stageCurrent', current);
+  cloneSlideInto('stageNext', current + 1);
+  fitStage('stageCurrent', 'miniCurrent');
+  fitStage('stageNext', 'miniNext');
+  const notes = slides[current].querySelector('.notes');
+  document.getElementById('refNotes').innerHTML = notes
+    ? notes.innerHTML
+    : '<p class="no-notes">Keine Notizen zu dieser Folie.</p>';
+  if (notes) document.getElementById('refNotes').closest('.ref-notes').scrollTop = 0;
+}
+if (isRef) {
+  document.body.classList.add('ref-mode');
+  document.getElementById('refTitle').textContent = document.title;
+  setInterval(() => {
+    document.getElementById('refClock').textContent =
+      new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+    const s = Math.floor((Date.now() - timerStart) / 1000);
+    document.getElementById('refTimer').textContent =
+      `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+  }, 1000);
+  document.getElementById('refTimer').onclick = () => { timerStart = Date.now(); };
+  window.addEventListener('resize', () => { fitStage('stageCurrent', 'miniCurrent'); fitStage('stageNext', 'miniNext'); });
+  // Figuren (Rough.js) brauchen einen Moment — Mini-Ansicht erst nach Load aufbauen
+  window.addEventListener('load', () => setTimeout(updateRef, 150));
+}
 
 // Rough.js-Skizzen
 function makeRough(svgEl, fn) {

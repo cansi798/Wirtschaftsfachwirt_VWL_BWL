@@ -83,6 +83,8 @@ Die beiden gesetzlichen Grundlagen in Deutschland:
 \begin{itemize}
   \item \textbf{UWG} --- Gesetz gegen den unlauteren Wettbewerb: garantiert fairen
     Wettbewerb und faire Marktpraktiken (Schutz der \emph{Art und Weise} des Wettbewerbs).
+    Unzulässig sind z.\,B. irreführende und aggressive Werbung, Schleichwerbung oder die
+    gezielte Herabsetzung von Mitbewerbern.
   \item \textbf{GWB} --- Gesetz gegen Wettbewerbsbeschränkungen („Kartellgesetz``):
     unterbindet Kartelle, Absprachen und Preisbindungen und wirkt der Konzentration der
     Wirtschaft entgegen (Schutz des \emph{Bestands} von Wettbewerb).
@@ -95,6 +97,10 @@ europäische \textbf{Fusionskontrollverordnung (FKVO)}. Durch die GWB-Novellen (
 2005: Angleichung an EU-Recht; 8.~Novelle 2013: Neustrukturierung der Missbrauchsaufsicht,
 Angleichung der Fusionskontrolle; 9.~Novelle 2017: Umsetzung der
 EU-Kartellschadenersatzrichtlinie) ähneln sich deutsches und europäisches Recht sehr.
+Jüngere Novellen: Die 10.~Novelle (GWB-Digitalisierungsgesetz 2021) führte u.\,a.
+\S\,19a GWB ein --- erweiterte Aufsicht über marktübergreifend bedeutende
+Digitalkonzerne ---, die 11.~Novelle (2023) erweiterte die Befugnisse für
+Sektoruntersuchungen.
 \emph{EU-Recht steht über nationalem Recht} --- es greift, wenn Wettbewerbsbeschränkungen
 den Handel zwischen Mitgliedstaaten beeinträchtigen. Ein weltweites Wettbewerbsrecht oder
 Kartellamt existiert nicht.
@@ -104,6 +110,40 @@ Kartellamt existiert nicht.
 (\S\S\,19\,ff. GWB) \quad \textbf{3. Fusionskontrolle} (\S\,35 GWB).
 Merkhilfe: \textbf{Ka-Mi-Fu}.
 \end{merksatz}
+
+\begin{center}
+\begin{tikzpicture}[font=\small,
+    saeule/.style={rounded corners=4pt, thick, align=center, text width=3.6cm,
+                   minimum height=2.9cm, inner sep=6pt}]
+  \node[roughbox, minimum width=13.4cm, minimum height=1.05cm, align=center] (dach) at (0,0)
+    {\bfseries GWB --- Gesetz gegen Wettbewerbsbeschränkungen („Kartellgesetz``)};
+  \node[saeule, draw=bfwPrimaryDark, fill=bfwBgTeal] (s1) at (-4.7,-2.9)
+    {{\color{bfwPrimaryDark}\bfseries 1. Kartellverbot}\\[1pt]
+     {\footnotesize \S\,1 GWB}\\[4pt]
+     {\footnotesize Preis-, Submissions-, Gebiets- und Quotenkartelle verboten;
+      Ausnahmen: \S\S\,2--3 GWB, EU-Freistellungen}};
+  \node[saeule, draw=bfwAccent!85!black, fill=bfwBgAmber] (s2) at (0,-2.9)
+    {{\color{bfwAccent!85!black}\bfseries 2. Missbrauchsaufsicht}\\[1pt]
+     {\footnotesize \S\S\,19\,ff. GWB}\\[4pt]
+     {\footnotesize Ausbeutungs- und Behinderungsmissbrauch (z.\,B. Dumping)
+      marktbeherrschender Unternehmen}};
+  \node[saeule, draw=bfwWarn!85!black, fill=bfwBgRose] (s3) at (4.7,-2.9)
+    {{\color{bfwWarn!85!black}\bfseries 3. Fusionskontrolle}\\[1pt]
+     {\footnotesize \S\,35 GWB}\\[4pt]
+     {\footnotesize Anmeldepflicht, Untersagung, Ministererlaubnis (\S\,42 GWB)
+      als Ausnahme}};
+  \node[rounded corners=4pt, thick, draw=bfwInkSoft, fill=bfwBgSoft, align=center,
+        minimum width=13.4cm, minimum height=0.95cm] (amt) at (0,-5.6)
+    {\bfseries Bundeskartellamt {\normalfont\footnotesize --- wacht über das GWB
+     \textperiodcentered{} EU-Ebene: EU-Kommission (Art.~101 AEUV, FKVO)}};
+  \draw[roughline] (s1.north) -- (s1.north |- dach.south);
+  \draw[roughline] (s2.north) -- (s2.north |- dach.south);
+  \draw[roughline] (s3.north) -- (s3.north |- dach.south);
+  \draw[roughline] (amt.north -| s1.south) -- (s1.south);
+  \draw[roughline] (amt.north -| s2.south) -- (s2.south);
+  \draw[roughline] (amt.north -| s3.south) -- (s3.south);
+\end{tikzpicture}
+\end{center}
 
 \subsection{Das Kartellverbot (\S\,1 GWB)}
 
@@ -128,6 +168,15 @@ Quotenkartell & künstliche Verknappung des Angebots durch Absprache von Produkt
 \bottomrule
 \end{tabular}
 \end{center}
+
+\begin{achtung}
+Abgrenzung (beliebte Prüfungsfrage): Beim \textbf{Kartell} bleiben die Unternehmen
+\emph{rechtlich} selbstständig und geben nur einen Teil ihrer \emph{wirtschaftlichen}
+Selbstständigkeit auf. Beim \textbf{Konzern} bleiben sie rechtlich selbstständig, stehen
+aber unter einheitlicher Leitung. Bei der \textbf{Fusion} verschmelzen sie auch
+rechtlich zu einer Einheit --- dann greift die Fusionskontrolle (\S\,35 GWB), nicht das
+Kartellverbot.
+\end{achtung}
 
 \subsubsection{Ausnahmen vom Kartellverbot}
 
@@ -173,7 +222,7 @@ Trotz Wettbewerbspolitik entstehen immer mehr Unternehmen mit erheblicher Marktm
 
 Während die Missbrauchsaufsicht \emph{bestehende} marktbeherrschende Unternehmen betrifft,
 ist die \textbf{Fusionskontrolle} auch eine \emph{vorbeugende} Maßnahme: Geplante Fusionen
-müssen dem Bundeskartellamt \emph{angezeigt} werden. Es kann den Zusammenschluss
+müssen beim Bundeskartellamt \emph{angemeldet} werden. Es kann den Zusammenschluss
 \textbf{untersagen}, wenn die Gefahr besteht, dass eine marktbeherrschende Stellung
 entsteht. Der Bundeswirtschaftsminister kann einen untersagten Zusammenschluss dennoch
 erlauben (\textbf{Ministererlaubnis}, \S\,42 GWB), wenn er von gesamtwirtschaftlichem
@@ -185,7 +234,7 @@ Angebot abgibt und den Auftrag erhält $\Rightarrow$ verbotenes
 \textbf{Submissionskartell} (\S\,1 GWB). Ein marktbeherrschender Onlinehändler verkauft
 gezielt unter Einstandspreis, um einen neuen Konkurrenten zu verdrängen $\Rightarrow$
 \textbf{Behinderungsmissbrauch} (Dumping). Zwei große Lebensmittelketten wollen
-fusionieren und hätten danach regional über 50~\% Marktanteil $\Rightarrow$ Anzeigepflicht,
+fusionieren und hätten danach regional über 50~\% Marktanteil $\Rightarrow$ Anmeldepflicht,
 das Bundeskartellamt kann die Fusion \textbf{untersagen}.
 \end{beispiel}
 
@@ -202,14 +251,28 @@ Marktpreismechanismus außer Kraft zu setzen (z.\,B. Steuern, Zölle, Subvention
 und hebeln den Preismechanismus aus (z.\,B. Höchst- und Mindestpreise).
 \end{merksatz}
 
+\begin{center}
+\begin{tabular}{p{3.2cm} p{5.2cm} p{5.2cm}}
+\toprule
+\rowcolor{bfwTabHead} & \textbf{marktkonform (indirekt)} & \textbf{marktkonträr (direkt)}\\
+\midrule
+Preismechanismus & bleibt in Kraft & wird außer Kraft gesetzt\\
+Ansatzpunkt & Angebot bzw. Nachfrage werden verschoben & Preis wird unmittelbar staatlich festgesetzt\\
+Beispiele & Steuern, Zölle, Subventionen, Transferleistungen, Mengenmaßnahmen & Höchstpreis, Mindestpreis\\
+Typische Folgen & Preissignale bleiben erhalten (aber Verzerrung bei Dauersubventionen) & dauerhafte Überschüsse bzw. Knappheiten, graue und schwarze Märkte, Folgekosten\\
+\bottomrule
+\end{tabular}
+\end{center}
+
 \subsection{Indirekte (marktkonforme) Maßnahmen}
 
 \begin{itemize}
   \item \textbf{Verbrauchssteuern:} Höhere Verbrauchssteuern (z.\,B. Tabaksteuer)
     verteuern das Produkt $\Rightarrow$ höherer Gleichgewichtspreis, geringere
     Gleichgewichtsmenge. So kann Verbraucherverhalten aus umwelt- und
-    gesundheitspolitischen Gründen gelenkt werden (weniger Raucher). Mit der geringeren
-    Menge sinken allerdings auch die Steuereinnahmen. Steuersenkungen wirken umgekehrt:
+    gesundheitspolitischen Gründen gelenkt werden (weniger Raucher). Je nach
+    Nachfragereaktion können die Steuereinnahmen trotz höheren Steuersatzes sinken ---
+    bei unelastischer Nachfrage steigen sie sogar. Steuersenkungen wirken umgekehrt:
     niedrigerer Gleichgewichtspreis, höhere Menge.
   \item \textbf{Zölle:} Senkung von Einfuhrzöllen erhöht die Importe (wirkt gegen
     Preissteigerungen im Inland); Erhöhung von Einfuhrzöllen verteuert Importwaren und
@@ -231,6 +294,74 @@ und hebeln den Preismechanismus aus (z.\,B. Höchst- und Mindestpreise).
 \end{itemize}
 
 \subsection{Direkte (marktkonträre) Maßnahmen: Mindest- und Höchstpreise}
+
+Beide Preisgrenzen lassen sich im Preis-Mengen-Diagramm darstellen --- der staatlich
+festgesetzte Preis „klemmt`` den Markt außerhalb des Gleichgewichts fest:
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize, scale=0.94]
+  % ---------- linkes Diagramm: Mindestpreis ----------
+  \begin{scope}
+    \node[font=\small\bfseries, color=bfwPrimaryDark, align=center] at (2.7,5.3)
+      {Mindestpreis\\[-1pt]{\footnotesize\color{bfwInkSoft}\mdseries Schutz der Anbieter}};
+    \draw[-{Stealth[length=2.5mm]}, semithick, color=bfwInk] (0,0) -- (0,4.55) node[above] {$p$};
+    \draw[-{Stealth[length=2.5mm]}, semithick, color=bfwInk] (0,0) -- (5.3,0) node[right] {$x$};
+    \draw[bfwPrimaryDark, very thick] (0.4,0.5) -- (4.4,3.9) node[above] {$A$};
+    \draw[bfwWarn!90!black, very thick] (0.4,3.9) -- (4.4,0.5) node[right] {$N$};
+    \draw[densely dashed, color=bfwInkSoft] (0,2.2) -- (2.4,2.2) -- (2.4,0);
+    \node[left, color=bfwInkSoft] at (0,2.2) {$p_0$};
+    \node[below, color=bfwInkSoft] at (2.4,0) {$x_0$};
+    \fill[bfwInk] (2.4,2.2) circle (1.7pt);
+    \draw[bfwAccent, line width=1.5pt] (0,3.05) -- (5.05,3.05);
+    \node[left, color=bfwAccent!80!black] at (0,3.05) {$p_{\mathrm{min}}$};
+    \draw[densely dashed, color=bfwInkSoft] (1.4,3.05) -- (1.4,0);
+    \draw[densely dashed, color=bfwInkSoft] (3.4,3.05) -- (3.4,0);
+    \node[below, color=bfwInkSoft] at (1.4,0) {$x_N$};
+    \node[below, color=bfwInkSoft] at (3.4,0) {$x_A$};
+    \fill[bfwAccent!80!black] (1.4,3.05) circle (1.5pt) (3.4,3.05) circle (1.5pt);
+    \draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}, color=bfwAccent!80!black, semithick]
+      (1.4,3.5) -- (3.4,3.5)
+      node[midway, above, align=center] {\bfseries Angebots-\\[-2pt]\bfseries überschuss};
+  \end{scope}
+  % ---------- rechtes Diagramm: Höchstpreis ----------
+  \begin{scope}[xshift=7.5cm]
+    \node[font=\small\bfseries, color=bfwWarn!85!black, align=center] at (2.7,5.3)
+      {Höchstpreis\\[-1pt]{\footnotesize\color{bfwInkSoft}\mdseries Schutz der Nachfrager}};
+    \draw[-{Stealth[length=2.5mm]}, semithick, color=bfwInk] (0,0) -- (0,4.55) node[above] {$p$};
+    \draw[-{Stealth[length=2.5mm]}, semithick, color=bfwInk] (0,0) -- (5.3,0) node[right] {$x$};
+    \draw[bfwPrimaryDark, very thick] (0.4,0.5) -- (4.4,3.9) node[above] {$A$};
+    \draw[bfwWarn!90!black, very thick] (0.4,3.9) -- (4.4,0.5) node[right] {$N$};
+    \draw[densely dashed, color=bfwInkSoft] (0,2.2) -- (2.4,2.2) -- (2.4,0);
+    \node[left, color=bfwInkSoft] at (0,2.2) {$p_0$};
+    \node[below, color=bfwInkSoft] at (2.4,0) {$x_0$};
+    \fill[bfwInk] (2.4,2.2) circle (1.7pt);
+    \draw[bfwAccent, line width=1.5pt] (0,1.35) -- (5.05,1.35);
+    \node[left, color=bfwAccent!80!black] at (0,1.35) {$p_{\mathrm{max}}$};
+    \draw[densely dashed, color=bfwInkSoft] (1.4,1.35) -- (1.4,0);
+    \draw[densely dashed, color=bfwInkSoft] (3.4,1.35) -- (3.4,0);
+    \node[below, color=bfwInkSoft] at (1.4,0) {$x_A$};
+    \node[below, color=bfwInkSoft] at (3.4,0) {$x_N$};
+    \fill[bfwAccent!80!black] (1.4,1.35) circle (1.5pt) (3.4,1.35) circle (1.5pt);
+    \draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}, color=bfwAccent!80!black, semithick]
+      (1.4,0.75) -- (3.4,0.75)
+      node[midway, fill=white, inner sep=1.5pt, align=center]
+      {\bfseries Nachfrage-\\[-2pt]\bfseries überschuss};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{beispiel}
+\textbf{Durchgerechnet:} Auf einem Markt gelte die Nachfragefunktion $x_N = 100 - 2p$
+und die Angebotsfunktion $x_A = -20 + 2p$ ($p$ in €, $x$ in Stück).\\[0.3em]
+\textbf{Schritt 1 --- Gleichgewicht:} $100 - 2p = -20 + 2p \Rightarrow 4p = 120
+\Rightarrow p_0 = 30$~€; eingesetzt: $x_0 = 100 - 60 = 40$ Stück.\\
+\textbf{Schritt 2 --- Mindestpreis 35~€ (über $p_0$):} $x_N = 100 - 70 = 30$,
+$x_A = -20 + 70 = 50$ $\Rightarrow$ \textbf{Angebotsüberschuss von 20 Stück}
+($x_N < x_0 < x_A$).\\
+\textbf{Schritt 3 --- Höchstpreis 25~€ (unter $p_0$):} $x_N = 100 - 50 = 50$,
+$x_A = -20 + 50 = 30$ $\Rightarrow$ \textbf{Nachfrageüberschuss von 20 Stück}
+($x_A < x_0 < x_N$).
+\end{beispiel}
 
 \subsubsection{Mindestpreis}
 

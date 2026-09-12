@@ -58,6 +58,63 @@ $\rightarrow$ \textbf{K}onzeption $\rightarrow$ \textbf{U}msetzung $\rightarrow$
 \textbf{F}estigung. („Gute Organisation kann Unternehmen festigen.``)
 \end{eselsbruecke}
 
+\subsection{Der Gründungsprozess als Zeitstrahl}
+
+\begin{center}
+\begin{tikzpicture}[
+  phase/.style={roughbox, font=\footnotesize\bfseries, text=bfwPrimaryDark,
+                text width=2.35cm, align=center, minimum height=1.15cm},
+  detail/.style={font=\scriptsize, text=bfwInkSoft, text width=2.6cm, align=center},
+  pfeil/.style={roughline, shorten <=2pt, shorten >=2pt}
+]
+  \node[phase] (p1) at (0,0)    {1\\ Geschäftsidee};
+  \node[phase] (p2) at (3.1,0)  {2\\ Orientierung};
+  \node[phase] (p3) at (6.2,0)  {3\\ Konzeption};
+  \node[phase] (p4) at (9.3,0)  {4\\ Umsetzung};
+  \node[phase, fill=bfwBgAmber, draw=bfwAccent] (p5) at (12.4,0) {5\\ Festigung};
+  \draw[pfeil] (p1) -- (p2);
+  \draw[pfeil] (p2) -- (p3);
+  \draw[pfeil] (p3) -- (p4);
+  \draw[pfeil] (p4) -- (p5);
+  \node[detail] at (0,-1.45)    {Marktlücke erkennen, Kundennutzen klären};
+  \node[detail] at (3.1,-1.45)  {Selbstprüfung, Beratung (IHK), Marktüberblick};
+  \node[detail] at (6.2,-1.45)  {Businessplan, Finanzierung, Rechtsformwahl};
+  \node[detail] at (9.3,-1.45)  {Formalitäten, Aufbau, Markteintritt};
+  \node[detail] at (12.4,-1.45) {Kundenstamm, Liquidität, Soll-Ist-Kontrolle};
+  \draw[roughline, draw=bfwPrimary] (-1.3,-2.35) -- (13.7,-2.35)
+    node[midway, below, font=\scriptsize, text=bfwInkSoft]
+    {idealtypischer Zeitverlauf --- in der Praxis mit Rückkopplungen (z.\,B. Konzept nachbessern)};
+\end{tikzpicture}
+\end{center}
+
+\subsection{Gründungsformalitäten der Umsetzungsphase (Behördenfahrplan)}
+
+In der Umsetzungsphase sind mehrere Stellen in sinnvoller Reihenfolge zu durchlaufen ---
+in der Prüfung ein beliebter Aufzählungspunkt:
+
+\begin{center}
+\small
+\begin{tabular}{p{4.6cm} p{9.6cm}}
+\toprule
+\rowcolor{bfwTabHead}\textbf{Stelle} & \textbf{Was dort geschieht}\\
+\midrule
+Notar / Registergericht & bei Kapitalgesellschaften: Beurkundung des Gesellschaftsvertrags, Eintragung ins Handelsregister; bei Kaufleuten: HR-Eintragung\\
+\addlinespace
+Gewerbeamt & Gewerbeanmeldung (Gewerbeschein); Freie Berufe melden sich nur beim Finanzamt\\
+\addlinespace
+Finanzamt & Fragebogen zur steuerlichen Erfassung (elektronisch über ELSTER), Steuernummer, ggf.\ USt-IdNr.\\
+\addlinespace
+IHK / HWK & Pflichtmitgliedschaft kraft Gesetzes; Beratung, Bescheinigungen\\
+\addlinespace
+Berufsgenossenschaft & gesetzliche Unfallversicherung --- Anmeldung binnen einer Woche\\
+\addlinespace
+Agentur für Arbeit & Betriebsnummer, sobald Mitarbeiter beschäftigt werden\\
+\addlinespace
+Krankenkasse & Anmeldung der Beschäftigten zur Sozialversicherung\\
+\bottomrule
+\end{tabular}
+\end{center}
+
 \begin{beispiel}
 Das Gründungsgeschehen in Deutschland schwankt mit der Konjunktur und dem Arbeitsmarkt:
 Der \emph{Hochpunkt 2004} bei den Existenzgründungen wird u.\,a. mit den
@@ -101,6 +158,16 @@ Kapitalbedarfs), realistische Einschätzung des \textbf{Kapitalbedarfs} (Investi
 Anlaufkosten, private Lebenshaltung in der Startphase) sowie Zugang zu
 \textbf{Fremdkapital} und Sicherheiten. Häufigste Ursache des Scheiterns junger
 Unternehmen sind Finanzierungsmängel und unzureichende Planung.
+
+\begin{achtung}[title={\bfseries Warum junge Unternehmen scheitern --- die Klassiker}]
+Typische Pleiteursachen (Prüfungsfrage: „Nennen Sie vier!{}``):
+\textbf{Finanzierungsmängel} (zu wenig Eigenkapital, keine Liquiditätsreserve),
+\textbf{Informationsdefizite} (Markt und Wettbewerb nicht analysiert),
+\textbf{Qualifikationsmängel} (kaufmännische Lücken beim Gründer),
+\textbf{Planungsfehler} (Umsatz überschätzt, Kosten und Anlaufzeit unterschätzt),
+dazu Familien- oder Gesundheitsprobleme. Fast alle Ursachen lassen sich mit einem
+sorgfältigen \emph{Businessplan} früh erkennen --- das ist sein eigentlicher Wert.
+\end{achtung}
 
 \subsection{Tragfähige Geschäftsidee}
 
@@ -157,11 +224,41 @@ Ergebnisse. Er erfüllt drei Funktionen:
 \end{enumerate}
 
 \begin{eselsbruecke}
-Die Kernbestandteile als Kette: \textbf{„Erst GeMMOF-C prüfen!``} ---
+Die Kernbestandteile als Kette: \textbf{„Erst GeMMOF-C prüfen!{}``} ---
 \textbf{E}xecutive Summary, \textbf{Ge}schäftsmodell, \textbf{M}arkt/Wettbewerb,
 \textbf{M}arketing, \textbf{O}rganisation/Rechtsform, \textbf{F}inanzplanung,
 \textbf{C}hancen/Risiken.
 \end{eselsbruecke}
+
+Die Bausteine lassen sich als „Haus`` merken --- das Dach (Executive Summary) wird
+zuerst gelesen, getragen wird alles vom Zahlenfundament:
+
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize]
+  % Fundament
+  \node[roughbox, minimum width=12.6cm, minimum height=0.75cm,
+        font=\footnotesize\bfseries, text=bfwPrimaryDark] (fin) at (0,0)
+    {6~~Finanzplanung \& Kapitalbedarf (Investitions-, Finanzierungs-, Liquiditäts-, Rentabilitätsplan)};
+  \node[draw=bfwInkSoft, thick, fill=bfwBgSoft, rounded corners=4pt, inner sep=6pt,
+        minimum width=12.6cm, minimum height=0.65cm,
+        font=\footnotesize\bfseries, text=bfwInkSoft] (risk) at (0,-1.0)
+    {7~~Chancen \& Risiken (Best/Worst Case, Gegenmaßnahmen)};
+  % Säulen
+  \node[roughbox, text width=2.35cm, align=center, minimum height=1.75cm] (s1) at (-4.65,1.6)
+    {\bfseries 2\\ Geschäftsmodell \& Gründerprofil};
+  \node[roughbox, text width=2.35cm, align=center, minimum height=1.75cm] (s2) at (-1.55,1.6)
+    {\bfseries 3\\ Markt \& Wettbewerb};
+  \node[roughbox, text width=2.35cm, align=center, minimum height=1.75cm] (s3) at (1.55,1.6)
+    {\bfseries 4\\ Marketing \& Vertrieb};
+  \node[roughbox, text width=2.35cm, align=center, minimum height=1.75cm] (s4) at (4.65,1.6)
+    {\bfseries 5\\ Organisation \& Rechtsform};
+  % Dach
+  \draw[draw=bfwAccent, thick, fill=bfwBgAmber, rounded corners=3pt]
+    (-6.6,2.7) -- (6.6,2.7) -- (4.9,3.65) -- (-4.9,3.65) -- cycle;
+  \node[font=\footnotesize\bfseries, text=bfwAccent!55!black] at (0,3.17)
+    {1~~Executive Summary --- wird zuerst gelesen!};
+\end{tikzpicture}
+\end{center}
 
 \subsection{Fördermöglichkeiten (Überblick)}
 
@@ -175,6 +272,43 @@ Die Kernbestandteile als Kette: \textbf{„Erst GeMMOF-C prüfen!``} ---
   \item Daneben: Bürgschaftsbanken (Sicherheiten), Landesförderprogramme,
     Beratungsförderung und Beteiligungskapital.
 \end{itemize}
+
+\subsubsection*{Die beiden Förderwege im Schaubild}
+
+\begin{center}
+\begin{tikzpicture}[
+  box/.style={roughbox, font=\footnotesize\bfseries, text=bfwPrimaryDark,
+              text width=3.0cm, align=center, minimum height=1.0cm},
+  amber/.style={roughaccent, font=\footnotesize\bfseries, text=bfwAccent!55!black,
+              text width=3.0cm, align=center, minimum height=1.0cm},
+  lab/.style={font=\scriptsize, text=bfwInkSoft, fill=white, inner sep=1.5pt}
+]
+  \node[box, text width=3.4cm] (gr)  at (0,0)    {Existenzgründer/-in};
+  \node[box] (hb)  at (5.7,0)  {Hausbank};
+  \node[box] (kfw) at (11.4,0) {KfW (Förderbank)};
+  \draw[roughline] (gr) -- node[lab, above, align=center]
+    {1. Kreditantrag\\ \emph{vor} Gründung} (hb);
+  \draw[roughline] (hb) -- node[lab, above, align=center]
+    {2. leitet Antrag\\ durch} (kfw);
+  \draw[roughline, draw=bfwPrimaryDark] (kfw) to[bend left=32]
+    node[lab, below=6pt, align=center]{3. refinanziert, übernimmt\\ Großteil des Risikos} (hb);
+  \draw[roughline, draw=bfwPrimaryDark] (hb) to[bend left=32]
+    node[lab, below=6pt, align=center]{4. zahlt Gründer-\\ kredit aus} (gr);
+  \node[amber] (afa) at (0,-3.6) {Agentur für Arbeit};
+  \draw[roughline, draw=bfwAccent] (afa) -- node[lab, left=3pt, align=right, pos=0.62]
+    {Gründungszuschuss\\ (nur aus ALG-I-Bezug,\\ Ermessensleistung)} (gr);
+\end{tikzpicture}
+\end{center}
+
+\begin{beispiel}[title={\bfseries Zahlenbeispiel: Gründungszuschuss}]
+Eine Gründerin bezieht 1.200~€ ALG~I monatlich und macht sich hauptberuflich
+selbstständig (Tragfähigkeitsbescheinigung der IHK liegt vor). \textbf{Phase 1
+(6~Monate):} ALG-I-Betrag plus 300~€ Pauschale zur sozialen Absicherung
+$= 1.200 + 300 = 1.500$~€ monatlich. \textbf{Phase 2 (weitere 9~Monate, auf Antrag):}
+nur noch die 300~€-Pauschale, wenn eine intensive Geschäftstätigkeit nachgewiesen wird.
+\emph{Merke:} kein Rechtsanspruch --- die Agentur entscheidet nach Ermessen; Vorrang hat
+die Vermittlung in Arbeit.
+\end{beispiel}
 
 \section{Formel \& Rechenbeispiel: Kapitalbedarfsrechnung}
 
@@ -213,6 +347,16 @@ Schritt~2: Eigenkapital abziehen (110.000 $-$ 22.000 = 88.000~€ Fremdkapitalbe
 Schritt~3: Eigenkapitalquote prüfen: $22.000 \div 110.000 = 20\,\%$ ---
 die Faustregel (15--20\,\%) ist erfüllt.
 \end{beispiel}
+
+\begin{achtung}[title={\bfseries Typische Fehler in der Kapitalbedarfsrechnung}]
+In Prüfungs- und Praxisfällen werden am häufigsten vergessen: die \textbf{private
+Lebenshaltung} der Startphase (der Gründer muss auch ohne Gewinn leben!), die
+\textbf{Anlaufkosten} (Miete, Personal und Werbung laufen, bevor Umsätze fließen), die
+\textbf{Gründungsnebenkosten} (Notar, Register, Beratung) und eine
+\textbf{Liquiditätsreserve} für Unvorhergesehenes. Wer nur die Investitionen ansetzt,
+rechnet den Kapitalbedarf systematisch zu klein --- die häufigste Ursache späterer
+Liquiditätskrisen.
+\end{achtung}
 
 \begin{merksatz}[title={\bfseries Wichtig für die Prüfungsvorbereitung (Teil 1)}]
 Sie sollten sicher können: die \emph{fünf Gründungsphasen} in der richtigen Reihenfolge,

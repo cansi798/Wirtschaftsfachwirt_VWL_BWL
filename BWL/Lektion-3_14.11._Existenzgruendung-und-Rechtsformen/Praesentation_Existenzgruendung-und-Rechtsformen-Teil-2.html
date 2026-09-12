@@ -122,10 +122,53 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
   font-weight: 700; font-size: 0.95rem;
 }
 
+/* Sprechnotizen: in der Zuschauer-Ansicht (und beim Teilen) immer unsichtbar */
+.notes { display: none !important; }
+
+/* Referentenansicht (?ref=1) */
+body.ref-mode { background: #0F172A; overflow: hidden; }
+body.ref-mode .deck, body.ref-mode .slide-num { display: none; }
+body.ref-mode .nav { display: none; }
+#refUI { display: none; }
+body.ref-mode #refUI {
+  display: grid; height: 100vh; padding: 1rem; gap: 1rem;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  grid-template-rows: auto minmax(0, 1fr);
+}
+.ref-head {
+  grid-column: 1 / -1; display: flex; align-items: center; gap: 1.2rem;
+  color: #E2E8F0; font-size: 1rem;
+}
+.ref-head .ref-title { font-weight: 700; color: white; margin-right: auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ref-head .ref-clock, .ref-head .ref-timer { font-variant-numeric: tabular-nums; background: #1E293B; padding: 0.35rem 0.8rem; border-radius: 8px; }
+.ref-head .ref-timer { color: #FDE68A; cursor: pointer; }
+.ref-head .ref-counter { background: var(--bfw-primary); color: white; font-weight: 700; padding: 0.35rem 0.8rem; border-radius: 8px; }
+.ref-left { display: flex; flex-direction: column; gap: 1rem; min-height: 0; }
+.ref-mini { position: relative; overflow: hidden; border-radius: 10px; background: white; border: 2px solid #334155; flex: 1; min-height: 0; }
+.ref-mini.next { flex: 0 0 32%; opacity: 0.85; }
+.ref-mini .mini-label {
+  position: absolute; top: 0.4rem; left: 0.5rem; z-index: 5;
+  background: rgba(15,23,42,0.75); color: white; font-size: 0.75rem;
+  padding: 0.15rem 0.6rem; border-radius: 999px; letter-spacing: 0.03em;
+}
+.ref-mini .mini-stage { position: absolute; top: 0; left: 0; width: 1280px; height: 800px; transform-origin: top left; pointer-events: none; }
+.ref-mini .mini-stage .slide { display: flex; position: absolute; inset: 0; animation: none; }
+.ref-notes {
+  background: #1E293B; border-radius: 10px; padding: 1.4rem 1.6rem;
+  overflow-y: auto; min-height: 0; color: #F1F5F9;
+}
+.ref-notes h4 { color: #5EEAD4; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.8rem; }
+#refNotes, #refNotes p, #refNotes li { font-size: 1.35rem; line-height: 1.65; color: #F1F5F9; }
+#refNotes ul, #refNotes ol { margin: 0.4rem 0 1rem 1.4rem; }
+#refNotes strong { color: #FDE68A; }
+#refNotes .no-notes { color: #64748B; font-size: 1.1rem; font-style: italic; }
+.ref-hint { grid-column: 1 / -1; color: #475569; font-size: 0.8rem; text-align: center; }
+
 /* Print-friendly */
 @media print {
   .slide { display: flex; page-break-after: always; }
-  .nav, .slide-num { display: none; }
+  .nav, .slide-num, #refUI { display: none; }
+  .notes { display: none !important; }
   html, body { height: auto; overflow: visible; }
 }
 </style>
@@ -201,7 +244,7 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
     </div>
     <div class="merksatz">
       <span class="merksatz-label">📌 Merke</span>
-      Kein Mindestkapital. Der Kaufmann wird ins <strong>Handelsregister A</strong> eingetragen und firmiert als <strong>„e. K.“</strong> (eingetragener Kaufmann / eingetragene Kauffrau).
+      Kein Mindestkapital. Der Kaufmann wird ins <strong>Handelsregister A (HR A)</strong> eingetragen und firmiert als <strong>„e. K.“</strong> (eingetragener Kaufmann / eingetragene Kauffrau).
     </div>
   </section>
 
@@ -210,11 +253,11 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
     <h2>GbR &amp; OHG — die Grundformen</h2>
     <div class="cards">
       <div class="card teal">
-        <div class="card-title">GbR (§§ 705 ff. BGB)</div>
+        <div class="card-title">Gesellschaft bürgerlichen Rechts (GbR) — §§ 705 ff. Bürgerliches Gesetzbuch (BGB)</div>
         <p style="font-size: 0.95rem;">Mind. 2 Personen, gemeinsamer Zweck · <strong>formfreier Vertrag</strong>, kein Registerzwang (freiwillig: eGbR) · alle haften <strong>unbeschränkt, gesamtschuldnerisch</strong> · Geschäftsführung/Vertretung <strong>gemeinschaftlich</strong></p>
       </div>
       <div class="card amber">
-        <div class="card-title">OHG (§§ 105 ff. HGB)</div>
+        <div class="card-title">Offene Handelsgesellschaft (OHG) — §§ 105 ff. Handelsgesetzbuch (HGB)</div>
         <p style="font-size: 0.95rem;">Betrieb eines <strong>Handelsgewerbes</strong> · Eintrag ins <strong>HR A</strong> · alle haften <strong>unbeschränkt, unmittelbar, gesamtschuldnerisch</strong> · <strong>Einzelgeschäftsführung</strong> und Einzelvertretung · hohe Kreditwürdigkeit</p>
       </div>
     </div>
@@ -246,7 +289,7 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
   <!-- 7. PartG + Merkmale Personengesellschaften -->
   <section class="slide">
     <h2>PartG &amp; gemeinsame Merkmale der Personengesellschaften</h2>
-    <p><strong>PartG:</strong> Personengesellschaft für <strong>Freie Berufe</strong> (Ärzte, Anwälte, Steuerberater, Architekten) · Eintragung ins <em>Partnerschaftsregister</em> · als <strong>PartG mbB</strong> Haftungsbeschränkung für Berufsfehler (Berufshaftpflicht).</p>
+    <p><strong>Partnerschaftsgesellschaft (PartG):</strong> Personengesellschaft für <strong>Freie Berufe</strong> (Ärzte, Anwälte, Steuerberater, Architekten) · Eintragung ins <em>Partnerschaftsregister</em> · als <strong>PartG mbB (mit beschränkter Berufshaftung)</strong> Haftungsbeschränkung für Berufsfehler (Berufshaftpflicht).</p>
     <ul class="checklist">
       <li><strong>Keine juristischen Personen</strong> — die Gesellschafter stehen im Vordergrund</li>
       <li>Mindestens ein Gesellschafter haftet <strong>unbeschränkt</strong></li>
@@ -269,17 +312,17 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
     </table>
     <div class="merksatz">
       <span class="merksatz-label">⚖️ Vertrag vor Gesetz!</span>
-      Zuerst gilt immer der Gesellschaftsvertrag. Nach neuem Recht (MoPeG, seit 2024) verteilt das Gesetz im Verhältnis der Beteiligungen (2 : 1): A 20.000 €, B 10.000 €.
+      Zuerst gilt immer der Gesellschaftsvertrag. Nach neuem Recht (Gesetz zur Modernisierung des Personengesellschaftsrechts — MoPeG, seit 2024) verteilt das Gesetz im Verhältnis der Beteiligungen (2 : 1): A 20.000 €, B 10.000 €.
     </div>
   </section>
 
   <!-- 9. GmbH -->
   <section class="slide">
-    <h2>Die GmbH</h2>
+    <h2>Die Gesellschaft mit beschränkter Haftung (GmbH)</h2>
     <ul class="checklist">
       <li><strong>Kapitalgesellschaft</strong>, juristische Person — Haftung nur mit dem <strong>Gesellschaftsvermögen</strong></li>
       <li><strong>Stammkapital mind. 25.000 €</strong> (bei Bargründung mind. 12.500 € eingezahlt) — auch <strong>Sacheinlagen</strong> möglich</li>
-      <li><strong>Notariell beurkundeter</strong> Gesellschaftsvertrag · Eintragung ins <strong>HR B</strong> wirkt <strong>konstitutiv</strong></li>
+      <li><strong>Notariell beurkundeter</strong> Gesellschaftsvertrag · Eintragung ins <strong>Handelsregister B (HR B)</strong> wirkt <strong>konstitutiv</strong></li>
       <li>Organe: <strong>Geschäftsführer</strong> (auch Fremd-GF) · <strong>Gesellschafterversammlung</strong> (Kontrollorgan) · bei mehr als <strong>500 Arbeitnehmern</strong> zusätzlich Aufsichtsrat</li>
       <li>Gewinnverteilung nach <strong>Geschäftsanteilen</strong>, wenn der Vertrag nichts anderes regelt</li>
     </ul>
@@ -288,14 +331,14 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
 
   <!-- 10. UG -->
   <section class="slide">
-    <h2>Die UG (haftungsbeschränkt) — „Mini-GmbH“</h2>
+    <h2>Die Unternehmergesellschaft (UG, haftungsbeschränkt) — „Mini-GmbH“</h2>
     <div class="cards">
       <div class="card teal">
         <div class="card-title">Erleichterungen</div>
         <p style="font-size: 1rem;">Gründung ab <strong>1 € Stammkapital</strong> · voller Haftungsschutz wie bei der GmbH · günstiger Einstieg für Gründer mit wenig Kapital</p>
       </div>
       <div class="card amber">
-        <div class="card-title">Auflagen (§ 5a GmbHG)</div>
+        <div class="card-title">Auflagen (§ 5a GmbH-Gesetz/GmbHG)</div>
         <p style="font-size: 1rem;"><strong>Keine Sacheinlagen</strong> bei Gründung · <strong>25 % des Jahresüberschusses</strong> in die gesetzliche Rücklage, bis 25.000 € erreicht sind · Zusatz „UG (haftungsbeschränkt)“ ungekürzt führen</p>
       </div>
     </div>
@@ -346,7 +389,7 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
         <p style="font-size: 0.95rem;">KG, deren einziger <strong>Komplementär eine GmbH</strong> ist → keine natürliche Person haftet unbeschränkt. Kombiniert Flexibilität &amp; Besteuerung der Personengesellschaft mit der <strong>Haftungsbeschränkung</strong> der Kapitalgesellschaft. Verbreitet im Mittelstand.</p>
       </div>
       <div class="card amber">
-        <div class="card-title">Genossenschaft (eG)</div>
+        <div class="card-title">Eingetragene Genossenschaft (eG)</div>
         <p style="font-size: 0.95rem;">Zweck: <strong>Förderung der Mitglieder</strong> (Einkaufs-, Wohnungs-, Kreditgenossenschaften) · mind. <strong>3 Mitglieder</strong> · Genossenschaftsregister · Organe: Vorstand, Aufsichtsrat, Generalversammlung — <strong>ein Mitglied = eine Stimme</strong></p>
       </div>
     </div>
@@ -434,10 +477,26 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
 
 <div class="slide-num">© Can Siebert · 2026 · <span id="slideCount">1 / 26</span></div>
 <nav class="nav">
+  <button onclick="openReferent()" title="Referentenansicht öffnen (N) — Notizfenster, für Zuhörer unsichtbar" style="font-size:1rem">🗒</button>
   <button onclick="prev()" title="Zurück (←)">←</button>
   <span class="nav-counter"><span id="slideNum">1</span></span>
   <button onclick="next()" title="Weiter (→)">→</button>
 </nav>
+
+<div id="refUI">
+  <div class="ref-head">
+    <span class="ref-title" id="refTitle"></span>
+    <span class="ref-counter" id="refCounter">1</span>
+    <span class="ref-timer" id="refTimer" title="Klick: Timer zurücksetzen">00:00</span>
+    <span class="ref-clock" id="refClock"></span>
+  </div>
+  <div class="ref-left">
+    <div class="ref-mini" id="miniCurrent"><span class="mini-label">Aktuelle Folie</span><div class="mini-stage" id="stageCurrent"></div></div>
+    <div class="ref-mini next" id="miniNext"><span class="mini-label">Nächste Folie</span><div class="mini-stage" id="stageNext"></div></div>
+  </div>
+  <div class="ref-notes"><h4>🗒 Sprechnotizen</h4><div id="refNotes"></div></div>
+  <div class="ref-hint">←/→ blättert in beiden Fenstern synchron · Dieses Fenster beim Teilen NICHT auswählen</div>
+</div>
 
 <!-- Rough.js für handgezeichnete Diagramme -->
 <script src="https://cdn.jsdelivr.net/npm/roughjs@4.6.6/bundled/rough.min.js"></script>
@@ -445,12 +504,33 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
 const slides = document.querySelectorAll('.slide');
 let current = 0;
 
-function show(i) {
+/* ---- Referentenansicht & Fenster-Synchronisation ---- */
+const isRef = new URLSearchParams(location.search).has('ref');
+const syncKey = 'praes-sync::' + location.pathname.split('/').pop();
+const bc = ('BroadcastChannel' in window) ? new BroadcastChannel(syncKey) : null;
+
+function broadcast(n) {
+  if (bc) bc.postMessage(n);
+  try { localStorage.setItem(syncKey, JSON.stringify({ n, t: Date.now() })); } catch (e) {}
+}
+if (bc) bc.onmessage = (e) => show(e.data, true);
+window.addEventListener('storage', (e) => {
+  if (e.key === syncKey && e.newValue) show(JSON.parse(e.newValue).n, true);
+});
+
+function openReferent() {
+  const url = location.pathname + (location.search ? location.search + '&' : '?') + 'ref=1';
+  window.open(url, 'praesReferent', 'width=1280,height=800');
+}
+
+function show(i, fromRemote) {
   slides.forEach(s => s.classList.remove('active'));
   current = Math.max(0, Math.min(i, slides.length - 1));
   slides[current].classList.add('active');
   document.getElementById('slideNum').textContent = current + 1;
   document.getElementById('slideCount').textContent = `${current + 1} / ${slides.length}`;
+  if (isRef) updateRef();
+  if (!fromRemote) broadcast(current);
 }
 function next() { show(current + 1); }
 function prev() { show(current - 1); }
@@ -459,7 +539,55 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowLeft') prev();
   if (e.key === 'Home') show(0);
   if (e.key === 'End') show(slides.length - 1);
+  if ((e.key === 'n' || e.key === 'N') && !isRef) openReferent();
 });
+
+/* Referentenfenster: Mini-Folien, Notizen, Uhr, Timer */
+function fitStage(stageId, boxId) {
+  const box = document.getElementById(boxId);
+  const stage = document.getElementById(stageId);
+  stage.style.transform = `scale(${box.clientWidth / 1280})`;
+}
+function cloneSlideInto(stageId, idx) {
+  const stage = document.getElementById(stageId);
+  stage.innerHTML = '';
+  if (idx >= slides.length) {
+    stage.innerHTML = '<div style="padding:4rem;font-size:2rem;color:#94A3B8">— Ende der Präsentation —</div>';
+    return;
+  }
+  const c = slides[idx].cloneNode(true);
+  c.classList.add('active');
+  c.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+  stage.appendChild(c);
+}
+let timerStart = Date.now();
+function updateRef() {
+  document.getElementById('refCounter').textContent = `${current + 1} / ${slides.length}`;
+  cloneSlideInto('stageCurrent', current);
+  cloneSlideInto('stageNext', current + 1);
+  fitStage('stageCurrent', 'miniCurrent');
+  fitStage('stageNext', 'miniNext');
+  const notes = slides[current].querySelector('.notes');
+  document.getElementById('refNotes').innerHTML = notes
+    ? notes.innerHTML
+    : '<p class="no-notes">Keine Notizen zu dieser Folie.</p>';
+  if (notes) document.getElementById('refNotes').closest('.ref-notes').scrollTop = 0;
+}
+if (isRef) {
+  document.body.classList.add('ref-mode');
+  document.getElementById('refTitle').textContent = document.title;
+  setInterval(() => {
+    document.getElementById('refClock').textContent =
+      new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+    const s = Math.floor((Date.now() - timerStart) / 1000);
+    document.getElementById('refTimer').textContent =
+      `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+  }, 1000);
+  document.getElementById('refTimer').onclick = () => { timerStart = Date.now(); };
+  window.addEventListener('resize', () => { fitStage('stageCurrent', 'miniCurrent'); fitStage('stageNext', 'miniNext'); });
+  // Figuren (Rough.js) brauchen einen Moment — Mini-Ansicht erst nach Load aufbauen
+  window.addEventListener('load', () => setTimeout(updateRef, 150));
+}
 
 // Rough.js-Skizzen
 function makeRough(svgEl, fn) {

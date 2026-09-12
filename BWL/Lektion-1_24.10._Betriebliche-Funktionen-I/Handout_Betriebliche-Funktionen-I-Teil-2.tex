@@ -116,6 +116,23 @@ Der \textbf{Marketing-Mix} ist das Ergebnis der strategischen Marketingplanung: 
 aufeinander abgestimmte Einsatz der vier Instrumentalbereiche (englisch: Product, Price,
 Place, Promotion).
 
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  p/.style={roughbox, minimum width=5.9cm, minimum height=1.85cm, align=center, inner sep=5pt},
+  mitte/.style={roughaccent, ellipse, minimum width=3.6cm, minimum height=1.5cm, align=center, font=\small},
+  lin/.style={draw=bfwInkSoft, thick}]
+  \node[mitte] (m) at (7,-1.7) {\textbf{Marketing-Mix}\\{\scriptsize Zielgruppe/Kunde}};
+  \node[p] (prod)  at (2.9,0)    {\textbf{Product --- Produktpolitik}\\{\scriptsize Qualität, Design, Sortiment,}\\{\scriptsize Marke, Service/Kundendienst}};
+  \node[p] (price) at (11.1,0)   {\textbf{Price --- Preis-/Kontrahierungspolitik}\\{\scriptsize Preis, Rabatte, Boni, Skonti,}\\{\scriptsize Liefer- und Zahlungsbedingungen}};
+  \node[p] (place) at (2.9,-3.4) {\textbf{Place --- Distributionspolitik}\\{\scriptsize direkte/indirekte Absatzwege,}\\{\scriptsize Marketinglogistik}};
+  \node[p] (promo) at (11.1,-3.4){\textbf{Promotion --- Kommunikationspolitik}\\{\scriptsize Werbung, Verkaufsförderung, PR,}\\{\scriptsize persönlicher Verkauf, Social Media}};
+  \draw[lin] (m) -- (prod); \draw[lin] (m) -- (price);
+  \draw[lin] (m) -- (place); \draw[lin] (m) -- (promo);
+\end{tikzpicture}\\[0.3em]
+{\small\itshape Die 4P des Marketing-Mix --- alle vier Instrumente müssen aufeinander
+und auf die Zielgruppe abgestimmt sein.}
+\end{center}
+
 \begin{itemize}
   \item \textbf{Produkt- und Leistungspolitik (Product):} Produktgestaltung (Qualität,
     Design, Verpackung), Sortiments-/Programmpolitik, Produktinnovation, -variation,
@@ -139,6 +156,13 @@ Place, Promotion).
     Online-/Social-Media-Marketing.
 \end{itemize}
 
+\begin{eselsbruecke}
+Stufen der Werbewirkung --- \textbf{AIDA}: \textbf{A}ttention (Aufmerksamkeit wecken),
+\textbf{I}nterest (Interesse erzeugen), \textbf{D}esire (Kaufwunsch auslösen),
+\textbf{A}ction (Kaufhandlung herbeiführen). Ein Klassiker für Fragen zur
+Kommunikationspolitik.
+\end{eselsbruecke}
+
 \subsection{Der Produktlebenszyklus}
 
 Grundlage vieler produktpolitischer Entscheidungen ist der \textbf{Produktlebenszyklus}
@@ -147,6 +171,33 @@ Sättigung $\rightarrow$ Degeneration (Rückgang)}: In der Einführungsphase ent
 meist Verluste (hohe Entwicklungs- und Markteinführungskosten bei erst geringen
 Umsätzen), das Umsatzmaximum liegt in der Sättigungsphase --- danach sind
 \textbf{Relaunch} (Neubelebung), \textbf{Variation} oder \textbf{Elimination} angezeigt.
+
+\begin{center}
+\begin{tikzpicture}[x=1.8cm, y=0.85cm, font=\scriptsize]
+  % Achsen
+  \draw[-{Stealth}, thick, bfwInkSoft] (0,-1.4) -- (0,3.9) node[above, font=\footnotesize] {Umsatz / Gewinn};
+  \draw[-{Stealth}, thick, bfwInkSoft] (0,0) -- (7.4,0) node[right, font=\footnotesize] {Zeit};
+  % Phasengrenzen
+  \foreach \x in {1.4,2.8,4.2,5.6} \draw[dashed, bfwInkSoft!50] (\x,-1.2) -- (\x,3.4);
+  \node at (0.7,3.62)  {Einführung};
+  \node at (2.1,3.62)  {Wachstum};
+  \node at (3.5,3.62)  {Reife};
+  \node at (4.9,3.62)  {Sättigung};
+  \node at (6.5,3.62)  {Degeneration};
+  % Umsatzkurve
+  \draw[very thick, bfwPrimaryDark] plot [smooth, tension=0.7] coordinates
+    {(0,0) (1.4,0.7) (2.8,2.2) (4.2,2.95) (5.0,3.05) (5.6,2.9) (7,1.5)};
+  \node[bfwPrimaryDark, font=\footnotesize\bfseries] at (6.65,2.45) {Umsatz};
+  % Gewinnkurve
+  \draw[very thick, dashed, bfwAccent!85!black] plot [smooth, tension=0.7] coordinates
+    {(0,-1.0) (1.4,-0.35) (2.0,0) (2.8,0.8) (4.2,1.35) (5.6,0.9) (7,0.1)};
+  \node[bfwAccent!85!black, font=\footnotesize\bfseries] at (5.15,1.85) {Gewinn};
+  \node[bfwInkSoft, align=left] at (2.6,-1.0) {Verlustzone: hohe Entwicklungs- und Einführungskosten};
+\end{tikzpicture}\\[0.3em]
+{\small\itshape Der Produktlebenszyklus: Der Gewinn wird erst in der Wachstumsphase
+positiv und sinkt vor dem Umsatz --- am Ende stehen Relaunch, Variation oder
+Elimination.}
+\end{center}
 
 \begin{beispiel}
 Die Nordwest Küchengeräte AG bringt einen neuen Mixer auf den Markt (Fixkosten
@@ -187,13 +238,71 @@ variable Kosten 14~€ je Stück.
 \end{enumerate}
 \end{beispiel}
 
+\begin{center}
+\begin{tikzpicture}[x=1.05cm, y=0.72cm, font=\scriptsize]
+  % Achsen
+  \draw[-{Stealth}, thick, bfwInkSoft] (0,0) -- (0,6.7) node[above, font=\footnotesize] {€};
+  \draw[-{Stealth}, thick, bfwInkSoft] (0,0) -- (12.6,0) node[right, font=\footnotesize] {Menge (Stück)};
+  % Fixkosten
+  \draw[thick, bfwInkSoft] (0,1.8) -- (12,1.8) node[pos=0.94, below] {Fixkosten};
+  % Gesamtkosten
+  \draw[very thick, bfwAccent!85!black] (0,1.8) -- (12,5.0)
+    node[pos=0.38, above, sloped] {Gesamtkosten (Fixkosten $+$ variable Kosten)};
+  % Erlöse
+  \draw[very thick, bfwPrimaryDark] (0,0) -- (12,6.3)
+    node[pos=0.97, above, sloped] {Erlöse};
+  % Break-even-Punkt
+  \draw[dashed, bfwInkSoft] (6.97,0) -- (6.97,3.66);
+  \fill[bfwAccent] (6.97,3.66) circle (3pt);
+  \node[align=center, fill=bfwBgAmber, draw=bfwAccent!85!black, rounded corners=3pt,
+        inner sep=3pt] (bep) at (3.6,5.7)
+    {\textbf{Break-even-Punkt (Gewinnschwelle)}\\Erlöse $=$ Gesamtkosten, Gewinn $=$ 0\\hier: 9.375 Stück (Mixer-Beispiel)};
+  \draw[roughline] (bep.south east) -- (6.8,3.9);
+  \node[bfwInkSoft, align=center] at (3.4,2.25) {Verlustzone};
+  \node[bfwInkSoft, align=center] at (10.2,4.95) {Gewinnzone};
+\end{tikzpicture}\\[0.3em]
+{\small\itshape Break-even-Diagramm: Links vom Schnittpunkt liegen die Gesamtkosten
+über den Erlösen (Verlust), rechts davon entsteht Gewinn.}
+\end{center}
+
+\subsection{Deckungsbeitrag und Zielgewinn-Menge}
+
+\begin{merksatz}[title={\bfseries Formeln: Deckungsbeitrag und Zielgewinn-Menge}]
+\[
+\text{Stückdeckungsbeitrag } db \;=\; \text{Verkaufspreis} - \text{variable Stückkosten}
+\]
+\[
+\text{Gesamtdeckungsbeitrag} \;=\; db \times \text{Menge}
+\quad\;
+\text{Menge für einen Zielgewinn} \;=\; \frac{\text{Fixkosten} + \text{Zielgewinn}}{db}
+\]
+Der Deckungsbeitrag „deckt`` zunächst die Fixkosten --- erst wenn diese vollständig
+gedeckt sind (Break-even), entsteht Gewinn. Die Zielgewinn-Formel ist nur die
+Break-even-Formel mit einem Aufschlag im Zähler.
+\end{merksatz}
+
+\begin{beispiel}
+Mixer der Nordwest Küchengeräte AG (Preis 30~€, variable Kosten 14~€, Fixkosten
+150.000~€). Die Geschäftsleitung fordert einen \emph{Zielgewinn von 250.000~€} im
+ersten Jahr.
+\begin{enumerate}
+  \item Stückdeckungsbeitrag: $30 - 14 = 16$~€ je Stück.
+  \item Benötigte Menge: $(150.000 + 250.000) \div 16 = 25.000$ \textbf{Stück}.
+  \item Probe über den Gesamtdeckungsbeitrag: $25.000 \times 16 = 400.000$~€ ---
+    davon 150.000~€ für die Fixkosten, es verbleiben genau 250.000~€ Gewinn.
+  \item Interpretieren: Bei der erwarteten Absatzmenge von 150.000 Stück ist der
+    Zielgewinn realistisch --- schon 25.000 verkaufte Mixer genügen.
+\end{enumerate}
+\end{beispiel}
+
 \begin{merksatz}[title={\bfseries Wichtig für die Prüfungsvorbereitung}]
 Sie sollten aus Teil~2 sicher können: den \emph{Marketingbegriff} (Kundenorientierung,
 Ausgangspunkt Marktinformationen), die Unterscheidung \emph{Primär-/Sekundärforschung}
 mit ihren Methoden, \emph{ökonomische vs. psychografische Marketingziele}, die vier
 Strategien der \emph{Ansoff-Matrix}, den \emph{Marketing-Mix} mit den
 Entscheidungsebenen der vier Instrumente, die Phasen des \emph{Produktlebenszyklus}
-sowie die Formel der \emph{Break-even-Menge} (Abschnitt~2). Üben Sie mit dem
+sowie die Formeln der \emph{Break-even-Menge}, des \emph{Deckungsbeitrags} und der
+\emph{Zielgewinn-Menge} (Abschnitt~2). Üben Sie mit dem
 Aufgabenheft --- z.\,B. der Marketing-Mix-Fallaufgabe --- und dem Quiz zu Teil~2!
 \end{merksatz}
 

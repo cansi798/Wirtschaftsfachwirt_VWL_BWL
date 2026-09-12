@@ -3,6 +3,10 @@
 % Gemeinsame Style-Definitionen (TEXINPUTS muss templates/ enthalten — siehe scripts/build_tex.py)
 \input{bfw-style.tex}
 
+% Zusatzfarben für die TikZ-Grafiken (Palette wie in den Rough.js-Skizzen der Präsentation)
+\definecolor{bfwRot}{HTML}{EF4444}
+\definecolor{bfwBgGruen}{HTML}{ECFDF5}
+
 \kopfzeile{Handout VWL Lektion 3 \textperiodcentered{} Teil 2}
 
 \begin{document}
@@ -16,8 +20,9 @@ Nach Geld- und Finanzpolitik (Teil~1) lernen Sie in Teil~2 die weiteren
 \textbf{wirtschaftspolitischen Maßnahmen} kennen: Wachstums-, Tarif-, Arbeitsmarkt- und
 Umweltpolitik --- sowie die beiden großen \textbf{Konzeptionen} (nachfrage- vs.
 angebotsorientierte Wirtschaftspolitik). Anschließend geht es um die
-\textbf{Außenwirtschaft}: Freihandel und Protektionismus sowie die Besonderheiten der EU
-(Binnenmarkt, Wirtschafts- und Währungsunion). Damit schließen wir den Themenblock~1.1
+\textbf{Außenwirtschaft}: Freihandel und Protektionismus, Zahlungsbilanz und
+Wechselkurse sowie die Besonderheiten der EU (Binnenmarkt, Wirtschafts- und
+Währungsunion). Damit schließen wir den Themenblock~1.1
 des Rahmenplans ab und wiederholen den gesamten Prüfungsstoff der Lektionen~1--3 ---
 alle Themen sind regelmäßig Gegenstand der IHK-Prüfung.
 \end{merksatz}
@@ -44,6 +49,26 @@ Indikatoren der OECD, Net Economic Welfare). Ansatzpunkte der Wachstumspolitik:
   \item im weiteren Sinne auch die \textbf{Wettbewerbspolitik} (funktionierender
     Leistungswettbewerb) und die wirtschaftliche Infrastruktur.
 \end{itemize}
+
+\begin{merksatz}
+\textbf{Quantitativ} = „mehr`` (Zunahme des realen BIP), \textbf{qualitativ} = „besser``
+(Wachstum unter Schonung von Umwelt und Ressourcen, mehr Lebensqualität). Maßstab für den
+Wohlstandsvergleich ist das \emph{BIP pro Kopf}: Wächst die Bevölkerung schneller als das
+BIP, sinkt der materielle Wohlstand \emph{trotz} Wachstums.
+\end{merksatz}
+
+\begin{beispiel}
+Das reale BIP eines Landes steigt von 500 auf 515~Mrd.~Euro (${}+3{,}0~\%$), die
+Bevölkerung wächst von 10,0 auf 10,4~Mio. (${}+4{,}0~\%$).\\[0.3em]
+\textbf{Schritt 1:} BIP pro Kopf alt: $500\,\text{Mrd.} \div 10{,}0\,\text{Mio.}
+= 50.000$~Euro.\\
+\textbf{Schritt 2:} BIP pro Kopf neu: $515\,\text{Mrd.} \div 10{,}4\,\text{Mio.}
+\approx 49.519$~Euro.\\
+\textbf{Schritt 3:} Veränderung: $(49.519 - 50.000) \div 50.000 \times 100 \approx
+\textbf{$-$1{,}0~\%}$.\\[0.3em]
+\emph{Interpretation:} Trotz 3~\% Wachstum sinkt der Wohlstand je Einwohner --- das BIP
+pro Kopf ist der bessere Wohlstandsindikator als das absolute BIP.
+\end{beispiel}
 
 \section{Tarifpolitik}
 
@@ -89,6 +114,25 @@ Arbeit kompensiert werden (\emph{Kosteneinsparungseffekt}). Volkswirtschaftlich 
 sind überhöhte Abschlüsse dann, wenn Unternehmen mit Preiserhöhungen, Rationalisierung oder
 Produktionsverlagerung ins Ausland reagieren.
 
+\begin{merksatz}[title={\bfseries Kostenniveauneutraler Verteilungsspielraum}]
+\[
+\text{Verteilungsspielraum} = \text{Produktivitätsfortschritt} + \text{Zielinflationsrate}
+\]
+Bleiben die Lohnabschlüsse innerhalb dieses Spielraums, steigen die
+\emph{Lohnstückkosten} nicht stärker als das Preisziel der EZB --- es droht keine
+Lohnkosteninflation.
+\end{merksatz}
+
+\begin{beispiel}
+Die Arbeitsproduktivität steigt um 1,5~\%, die Zielinflation der EZB beträgt 2,0~\%.\\[0.3em]
+\textbf{Schritt 1:} Verteilungsspielraum $= 1{,}5 + 2{,}0 = \textbf{3{,}5~\%}$.\\
+\textbf{Schritt 2:} Die Gewerkschaft setzt 5,0~\% durch: $5{,}0 - 3{,}5 =
+1{,}5$~Prozentpunkte über dem Spielraum.\\[0.3em]
+\emph{Folge:} Die Lohnstückkosten steigen --- die Unternehmen reagieren mit
+Preiserhöhungen (Inflationsdruck), Rationalisierung oder Verlagerung
+(lohnkostenbedingte Arbeitslosigkeit).
+\end{beispiel}
+
 \section{Arbeitsmarktpolitik}
 
 Der Arbeitsmarkt ist kein „freier Markt`` im Sinne der Preisbildung: Wegen der hohen
@@ -100,7 +144,7 @@ Regionalagenturen, Arbeitsagenturen und Jobcentern.
 \begin{itemize}
   \item \textbf{Passive Arbeitsmarktpolitik:} mildert die wirtschaftlichen Folgen
     eingetretener oder drohender Arbeitslosigkeit --- \emph{Lohnersatzleistungen} wie
-    Arbeitslosengeld I und II (Bürgergeld), Insolvenzgeld, Kurzarbeitergeld.
+    Arbeitslosengeld I und Bürgergeld (bis 2022: ALG II), Insolvenzgeld, Kurzarbeitergeld.
   \item \textbf{Aktive Arbeitsmarktpolitik:} versetzt Erwerbspersonen in die Lage, im
     Arbeitsprozess zu bleiben oder schnell wieder einzutreten --- Beratung und
     \emph{Vermittlung}, Aktivierung und berufliche Eingliederung (Trainings- und
@@ -114,6 +158,33 @@ bemühen und zumutbare Jobs annehmen, sonst drohen Kürzungen der Lohnersatzleis
 Kritikpunkte an der Arbeitsmarktpolitik: geschönte Arbeitslosenquoten (Geförderte fallen
 aus der Statistik), teils ineffiziente Qualifizierungsmaßnahmen, Verschlechterung der
 Qualität der Arbeitsverhältnisse (Befristung, Leiharbeit, Scheinselbstständigkeit).
+
+\subsection{Formen der Arbeitslosigkeit}
+
+Die richtige Gegenmaßnahme hängt von der \emph{Ursache} der Arbeitslosigkeit ab:
+
+\begin{center}
+\begin{tabular}{p{3.0cm} p{6.0cm} p{4.6cm}}
+\toprule
+\rowcolor{bfwTabHead}\textbf{Form} & \textbf{Ursache} & \textbf{Typische Gegenmaßnahme}\\
+\midrule
+friktionell & kurze Suchphase beim Arbeitsplatzwechsel („Sucharbeitslosigkeit``) & schnellere Vermittlung, Jobbörsen\\
+saisonal & jahreszeitliche Schwankungen (Bau, Tourismus, Landwirtschaft) & Saison-Kurzarbeitergeld, Winterbauförderung\\
+konjunkturell & Nachfragerückgang in der Rezession & expansive Geld- und Fiskalpolitik, Kurzarbeitergeld\\
+strukturell & dauerhafte Diskrepanz zwischen Angebot und Nachfrage: Qualifikation, Region, Branche, technischer Wandel & Qualifizierung, Umschulung, Mobilitätshilfen, Strukturpolitik\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Der „harte Kern``, der auch in der Hochkonjunktur nicht abgebaut wird, heißt
+\textbf{Sockelarbeitslosigkeit} (überwiegend strukturell bedingt).
+
+\begin{eselsbruecke}
+Die vier Formen als \textbf{„vier W``}: friktionell = \textbf{W}echsel, saisonal =
+\textbf{W}etter, konjunkturell = \textbf{W}elle, strukturell = \textbf{W}andel.
+Und: \textbf{Passiv = Portemonnaie} (Geld ersetzt Lohn), \textbf{Aktiv = Arbeit}
+(zurück in den Job).
+\end{eselsbruecke}
 
 \section{Umweltpolitik}
 
@@ -209,6 +280,52 @@ Merkhilfe: „\textbf{K}eynes \textbf{k}auft`` (Staat schafft Nachfrage) ---
 „\textbf{F}riedman \textbf{f}reit die Märkte`` (Deregulierung).
 \end{eselsbruecke}
 
+\subsection{Gemeinsamer Zielrahmen: das magische Viereck (StabG)}
+
+Beide Konzeptionen streben dieselben gesamtwirtschaftlichen Ziele des
+\textbf{Stabilitätsgesetzes (1967)} an --- sie unterscheiden sich nur im \emph{Weg}
+dorthin. Die vier Ziele bilden das \textbf{magische Viereck} (Wiederholung aus
+Lektion~2): „magisch``, weil nie alle vier Ziele gleichzeitig vollständig erreichbar
+sind.
+
+\begin{center}
+\begin{tikzpicture}[font=\small,
+  ziel/.style={draw=bfwPrimaryDark, fill=bfwBgTeal, thick, rounded corners=4pt,
+    align=center, text width=3.6cm, inner sep=5pt}]
+  % Diagonalen (Spannungsbögen zwischen allen Zielen)
+  \draw[dashed, thick, bfwInkSoft!70] (0,3.4) -- (0,-3.4);
+  \draw[dashed, thick, bfwInkSoft!70] (-5.2,0) -- (5.2,0);
+  % Die vier Ziele
+  \node[ziel] (p) at (0,3.4)
+    {\textbf{Preisniveaustabilität}\\{\footnotesize Inflationsrate $\approx$ 2~\% (HVPI)}};
+  \node[ziel] (b) at (5.2,0)
+    {\textbf{hoher Beschäftigungsstand}\\{\footnotesize niedrige Arbeitslosenquote}};
+  \node[ziel] (w) at (0,-3.4)
+    {\textbf{stetiges und angemessenes Wirtschaftswachstum}\\{\footnotesize reales BIP-Wachstum}};
+  \node[ziel] (a) at (-5.2,0)
+    {\textbf{außenwirtschaftliches Gleichgewicht}\\{\footnotesize ausgeglichene Leistungsbilanz}};
+  % Seiten des Vierecks
+  \draw[thick, bfwPrimary] (p) -- (a);
+  \draw[thick, bfwPrimary] (a) -- (w);
+  \draw[thick, bfwPrimary] (w) -- (b);
+  % Klassischer Zielkonflikt als Spannungsbogen
+  \draw[line width=1.2pt, bfwAccent!85!black, decorate,
+        decoration={zigzag, amplitude=0.9mm, segment length=4mm}] (p) -- (b);
+  \node[text=bfwAccent!85!black, font=\scriptsize\bfseries, align=center, anchor=west]
+    at (3.6,2.1) {klassischer\\Zielkonflikt};
+  % Zentrum
+  \node[fill=white, draw=bfwInkSoft!50, rounded corners=3pt, inner sep=4pt, align=center,
+        font=\scriptsize, text=bfwInkSoft] at (0,0)
+    {„magisch``:\\nie alle vier Ziele\\gleichzeitig erreichbar};
+\end{tikzpicture}
+\end{center}
+
+\emph{Klassischer Zielkonflikt:} Preisniveaustabilität $\leftrightarrow$ hoher
+Beschäftigungsstand --- eine expansive Politik schafft Beschäftigung, treibt aber die
+Preise (und umgekehrt). \emph{Zielharmonie:} Wachstum und Beschäftigung stützen sich
+gegenseitig. Erweitert um \emph{gerechte Einkommensverteilung} und \emph{Umweltschutz}
+(bzw. lebenswerte Umwelt) spricht man vom \textbf{magischen Sechseck}.
+
 \section{Außenwirtschaft: Freihandel oder Protektionismus}
 
 Unter \textbf{Außenwirtschaft} versteht man die Gesamtheit aller wirtschaftlichen
@@ -258,11 +375,187 @@ und Kapital sowie weltweite Vernetzung von Unternehmen. Die EU ist Mitglied der
 \textbf{WTO} und schließt Freihandelsabkommen (z.\,B. CETA mit Kanada, JEFTA mit Japan).
 \end{merksatz}
 
+\subsection{Zahlungsbilanz}
+
+Die \textbf{Zahlungsbilanz} erfasst systematisch alle wirtschaftlichen Transaktionen
+zwischen In- und Ausland innerhalb einer Periode. Ihre wichtigsten Teilbilanzen:
+
+\begin{itemize}
+  \item \textbf{Leistungsbilanz:} \emph{Handelsbilanz} (Warenexporte und -importe),
+    \emph{Dienstleistungsbilanz} (z.\,B. Reiseverkehr, Transport),
+    \emph{Primäreinkommen} (Erwerbs- und Vermögenseinkommen, z.\,B. Zinsen und
+    Dividenden) und \emph{Sekundäreinkommen} (laufende Übertragungen ohne Gegenleistung,
+    z.\,B. Überweisungen ausländischer Arbeitskräfte, EU-Beiträge);
+  \item \textbf{Kapitalbilanz:} Kapitalexporte und -importe (Direktinvestitionen,
+    Wertpapieranlagen, Kredite);
+  \item \textbf{Devisenbilanz:} Veränderung der Währungsreserven der Zentralbank.
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize, line cap=round,
+  kasten/.style={draw=bfwPrimaryDark, fill=bfwBgTeal, thick, rounded corners=4pt,
+    align=center, inner sep=5pt, text width=3.6cm},
+  blatt/.style={draw=bfwInkSoft, fill=bfwBgSoft, thick, rounded corners=3pt,
+    align=left, inner sep=4pt, anchor=west, text width=4.9cm}]
+  % Wurzel
+  \node[draw=bfwPrimaryDark, fill=bfwPrimaryDark, text=white, thick, rounded corners=4pt,
+        align=center, inner sep=6pt, font=\footnotesize\bfseries] (z) at (7.0,3.4)
+    {Zahlungsbilanz\\{\scriptsize formal stets ausgeglichen}};
+  % Teilbilanzen
+  \node[kasten] (l) at (2.4,1.6)
+    {\textbf{Leistungsbilanz}\\{\scriptsize realwirtschaftliche Transaktionen}};
+  \node[kasten] (k) at (7.0,1.6)
+    {\textbf{Kapitalbilanz}\\{\scriptsize Direktinvestitionen, Wertpapiere, Kredite}};
+  \node[kasten] (d) at (11.6,1.6)
+    {\textbf{Devisenbilanz}\\{\scriptsize Veränderung der Währungsreserven}};
+  \draw[thick, bfwPrimaryDark] (z.south) -- ++(0,-0.25) -| (l.north);
+  \draw[thick, bfwPrimaryDark] (z.south) -- (k.north);
+  \draw[thick, bfwPrimaryDark] (z.south) -- ++(0,-0.25) -| (d.north);
+  % Unterbilanzen der Leistungsbilanz
+  \node[blatt] (t1) at (2.9,0.3)
+    {\textbf{Handelsbilanz:} Warenexporte und -importe};
+  \node[blatt] (t2) at (2.9,-0.55)
+    {\textbf{Dienstleistungsbilanz:} z.\,B. Reiseverkehr, Transport};
+  \node[blatt] (t3) at (2.9,-1.4)
+    {\textbf{Primäreinkommen:} Löhne, Zinsen, Dividenden};
+  \node[blatt] (t4) at (2.9,-2.25)
+    {\textbf{Sekundäreinkommen:} Übertragungen, z.\,B. EU-Beiträge};
+  \draw[thick, bfwPrimaryDark] (l.south) -- (2.4,-2.25);
+  \draw[thick, bfwPrimaryDark] (2.4,0.3) -- (t1.west);
+  \draw[thick, bfwPrimaryDark] (2.4,-0.55) -- (t2.west);
+  \draw[thick, bfwPrimaryDark] (2.4,-1.4) -- (t3.west);
+  \draw[thick, bfwPrimaryDark] (2.4,-2.25) -- (t4.west);
+\end{tikzpicture}
+\end{center}
+
+\begin{merksatz}
+\textbf{Die Zahlungsbilanz ist formal immer ausgeglichen:} Einem Leistungsbilanzüberschuss
+steht ein entsprechender Kapitalexport gegenüber (doppelte Verbuchung). Ungleichgewichte
+zeigen sich daher in den \emph{Teilbilanzen} --- Deutschland erzielt traditionell hohe
+\textbf{Leistungsbilanzüberschüsse} (Exportstärke), was international auch kritisiert wird.
+\end{merksatz}
+
+\begin{beispiel}
+Für ein Land liegen folgende Werte vor (Mrd.~Euro): Warenexporte 1.560, Warenimporte
+1.320, Saldo der Dienstleistungsbilanz $-20$, Primäreinkommen $+130$, Sekundäreinkommen
+$-60$.\\[0.3em]
+\textbf{Schritt 1:} Handelsbilanzsaldo $= 1.560 - 1.320 = +240$ (Überschuss).\\
+\textbf{Schritt 2:} Leistungsbilanzsaldo $= 240 - 20 + 130 - 60 =
+\textbf{+290~Mrd.~Euro}$ (Überschuss).\\[0.3em]
+\emph{Interpretation:} Dem Überschuss steht spiegelbildlich ein Nettokapitalexport in
+gleicher Höhe gegenüber --- das Land baut Auslandsvermögen auf.
+\end{beispiel}
+
+\begin{achtung}
+\textbf{Handelsbilanz} $\neq$ \textbf{Leistungsbilanz}: Die Handelsbilanz erfasst nur den
+\emph{Warenhandel}; die Leistungsbilanz umfasst zusätzlich Dienstleistungen sowie Primär-
+und Sekundäreinkommen. Wenn Prüfungsaufgaben vom „Exportüberschuss`` sprechen, ist meist
+die Handelsbilanz gemeint --- genau lesen.
+\end{achtung}
+
+\subsection{Wechselkurse}
+
+Der \textbf{Wechselkurs} ist der Preis einer Währung, ausgedrückt in einer anderen
+Währung. \textbf{Preisnotierung:} Preis einer ausländischen Währungseinheit in Inlandswährung
+(z.\,B. 1~USD = 0,90~€); \textbf{Mengennotierung} (in der Eurozone üblich): Menge
+ausländischer Währung je Euro (z.\,B. 1~€ = 1,10~USD).
+
+\begin{itemize}
+  \item \textbf{Aufwertung} des Euro: Importe werden billiger, Exporte verteuern sich ---
+    die preisliche Wettbewerbsfähigkeit der Exporteure sinkt.
+  \item \textbf{Abwertung} des Euro: Exporte werden für ausländische Käufer billiger
+    (Exportförderung), Importe verteuern sich (Gefahr importierter Inflation).
+  \item \textbf{Flexible Wechselkurse} bilden sich frei durch Angebot und Nachfrage am
+    Devisenmarkt (z.\,B. Euro/US-Dollar); bei \textbf{festen Wechselkursen} garantiert
+    die Zentralbank durch Devisenmarktinterventionen eine feste Parität (z.\,B. WKM~II
+    vor dem Euro-Beitritt).
+  \item \textbf{Kaufkraftparität:} Langfristig tendieren Wechselkurse zu dem Kurs, bei
+    dem ein Warenkorb in beiden Währungsräumen gleich viel kostet.
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[font=\small,
+  wk/.style 2 args={draw=#1, fill=#2, thick, rounded corners=4pt, align=center,
+    text width=4.1cm, minimum height=1.35cm, inner sep=5pt},
+  pfeil/.style={-{Stealth[length=3mm]}, line width=1.2pt, bfwInkSoft}]
+  % Aufwertung (obere Kette)
+  \node[wk={bfwAccent!85!black}{bfwBgAmber}] (a1) at (0,0)
+    {\textbf{Aufwertung des Euro}\\{\footnotesize z.\,B. 1~€ = 1,10 $\rightarrow$ 1,25~USD}};
+  \node[wk={bfwAccent!85!black}{bfwBgAmber}] (a2) at (5.85,0)
+    {\textbf{Exporte verteuern sich,}\\\textbf{Importe werden billiger}};
+  \node[wk={bfwAccent!85!black}{bfwBgAmber}] (a3) at (11.7,0)
+    {\textbf{Exportnachfrage sinkt}\\{\footnotesize Wettbewerbsfähigkeit $\downarrow$,
+     dämpft aber die Preise im Inland}};
+  % Abwertung (untere Kette)
+  \node[wk={bfwPrimaryDark}{bfwBgTeal}] (b1) at (0,-2.5)
+    {\textbf{Abwertung des Euro}\\{\footnotesize z.\,B. 1~€ = 1,10 $\rightarrow$ 1,00~USD}};
+  \node[wk={bfwPrimaryDark}{bfwBgTeal}] (b2) at (5.85,-2.5)
+    {\textbf{Exporte werden billiger,}\\\textbf{Importe verteuern sich}};
+  \node[wk={bfwPrimaryDark}{bfwBgTeal}] (b3) at (11.7,-2.5)
+    {\textbf{Exportnachfrage steigt}\\{\footnotesize Exportförderung, aber Gefahr
+     importierter Inflation}};
+  \draw[pfeil] (a1) -- (a2);
+  \draw[pfeil] (a2) -- (a3);
+  \draw[pfeil] (b1) -- (b2);
+  \draw[pfeil] (b2) -- (b3);
+\end{tikzpicture}
+\end{center}
+
+\begin{achtung}
+Rechenregel bei \textbf{Mengennotierung} (1~€ = x~USD): Auslandspreis \textbf{geteilt
+durch} den Kurs = Europreis; Europreis \textbf{mal} Kurs = Auslandspreis. Und:
+\emph{Steigt} die Mengennotierung (mehr Dollar je Euro), wertet der Euro \emph{auf} ---
+bei der Preisnotierung ist es genau umgekehrt. Diese Verwechslung ist ein
+Prüfungsklassiker.
+\end{achtung}
+
+\begin{beispiel}
+Kurs: 1~€ = 1,10~USD (Mengennotierung). Ein deutscher Händler importiert eine
+US-Maschine für 220.000~USD; ein Maschinenbauer exportiert eine Anlage für 200.000~€
+in die USA.\\[0.3em]
+\textbf{Schritt 1 (Import):} $220.000 \div 1{,}10 = 200.000$~€ Einkaufspreis.\\
+\textbf{Schritt 2 (Export):} $200.000 \times 1{,}10 = 220.000$~USD Preis für den
+US-Kunden.\\
+\textbf{Schritt 3 (Aufwertung auf 1~€ = 1,25~USD):} Import: $220.000 \div 1{,}25 =
+176.000$~€ (billiger); Export: $200.000 \times 1{,}25 = 250.000$~USD (teurer).\\[0.3em]
+\emph{Interpretation:} Die Aufwertung entlastet Importeure und Verbraucher, verschlechtert
+aber die preisliche Wettbewerbsfähigkeit der Exporteure --- genau die Wirkungskette aus
+der Grafik oben.
+\end{beispiel}
+
 \section{Besonderheiten der EU}
 
 Die Integration begann 1957 mit der \emph{Europäischen Wirtschaftsgemeinschaft (EWG)}
 (Römische Verträge, sechs Gründungsstaaten); mit dem Vertrag von \textbf{Maastricht} (1993)
 entstand die \emph{Europäische Union (EU)}.
+
+\subsection{Stufen der wirtschaftlichen Integration}
+
+Die europäische Integration verlief über mehrere Stufen --- jede Stufe schließt die
+vorhergehende mit ein:
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  stufe/.style 2 args={draw=#1, fill=#2, thick, rounded corners=4pt, align=center,
+    text width=3.15cm, minimum height=2.0cm, inner sep=4pt, anchor=south west},
+  pfeil/.style={-{Stealth[length=2.5mm]}, thick, bfwInkSoft}]
+  \node[stufe={bfwPrimaryDark}{bfwBgTeal}] (s1) at (0,0)
+    {\textbf{1. Freihandelszone}\\{\scriptsize keine Binnenzölle\\(z.\,B. EFTA)}};
+  \node[stufe={bfwPrimaryDark}{bfwPrimary!25}] (s2) at (4.3,0.7)
+    {\textbf{2. Zollunion}\\{\scriptsize + gemeinsamer Außenzoll\\(EWG ab 1968)}};
+  \node[stufe={bfwPrimaryDark}{bfwPrimary!45}] (s3) at (8.6,1.4)
+    {\textbf{3. Binnenmarkt}\\{\scriptsize + vier Freiheiten\\(EU seit 1993)}};
+  \node[stufe={bfwPrimaryDark}{bfwPrimaryDark}, text=white] (s4) at (12.9,2.1)
+    {\textbf{4. Wirtschafts- und Währungsunion}\\{\scriptsize + Euro und gemeinsame
+     Geldpolitik (seit 1999/2002)}};
+  \draw[pfeil] (s1.east) -- (s2.west);
+  \draw[pfeil] (s2.east) -- (s3.west);
+  \draw[pfeil] (s3.east) -- (s4.west);
+\end{tikzpicture}
+\end{center}
+
+Denkbare Endstufe wäre die \emph{politische Union}. Die Eurozonen-Staaten stehen heute
+auf Stufe~4, alle übrigen EU-Staaten mindestens auf Stufe~3 (Binnenmarkt).
 
 \subsection{Der Europäische Binnenmarkt: die vier Freiheiten}
 
@@ -311,10 +604,18 @@ die ihre Stabilität durch die \textbf{Konvergenzkriterien} bewiesen haben:
     (Teilnahme am Wechselkursmechanismus WKM~II).
 \end{enumerate}
 
+\begin{eselsbruecke}
+Konvergenzkriterien als Zahlenreihe \textbf{„1,5 --- 3 --- 60 --- 2 --- 2``}: höchstens
+\textbf{1,5}~Punkte mehr Inflation, \textbf{3}~\% Neuverschuldung, \textbf{60}~\%
+Schuldenstand, \textbf{2}~Punkte mehr Zinsen, \textbf{2}~Jahre stabiler Wechselkurs.
+\end{eselsbruecke}
+
 Die Einhaltung wurde in der Vergangenheit nicht konsequent überprüft; mit der Euro- und
 Staatsschuldenkrise reformierten EU-Parlament und Finanzminister 2011 den europäischen
 \emph{Stabilitäts- und Wachstumspakt} (härteres Vorgehen gegen „Haushaltssünder``; die
-Referenzwerte 3~\% und 60~\% blieben erhalten).
+Referenzwerte 3~\% und 60~\% blieben erhalten). 2024 wurde der Pakt grundlegend
+reformiert (länderspezifische Ausgabenpfade); die Referenzwerte 3~\% (Defizit) und
+60~\% (Schuldenstand) gelten weiter.
 
 \subsection{Vor- und Nachteile der gemeinsamen Währung}
 
@@ -373,10 +674,14 @@ Ein Beitrittskandidat hat ein BIP von 500~Mrd.~Euro, eine Neuverschuldung von
 
 \begin{merksatz}[title={\bfseries Wichtig für die Prüfungsvorbereitung (Block 1.1 komplett)}]
 Sie sollten sicher können: die Gegenüberstellung \emph{nachfrage- vs. angebotsorientiert}
-(Keynes vs. Friedman), \emph{tarifäre vs. nichttarifäre Handelshemmnisse}, die \emph{vier
-Freiheiten} des Binnenmarkts, die \emph{Konvergenzkriterien} (3~\%~/ 60~\%), die
+(Keynes vs. Friedman) samt dem \emph{magischen Viereck} als gemeinsamem Zielrahmen
+(Abschnitt~5.3), \emph{tarifäre vs. nichttarifäre Handelshemmnisse}, die
+\emph{Zahlungsbilanz} mit ihren Teilbilanzen, \emph{Wechselkurse} (Auf-/Abwertung,
+Mengennotierung, Umrechnung), die \emph{vier Freiheiten} des Binnenmarkts mit den
+\emph{Integrationsstufen}, die \emph{Konvergenzkriterien} (3~\%~/ 60~\%), die
 Prinzipien und Instrumente der \emph{Umweltpolitik} (A-A-Z), \emph{aktive vs. passive
-Arbeitsmarktpolitik}, die \emph{Tarifautonomie} mit den Tarifvertragsarten sowie die
+Arbeitsmarktpolitik} mit den \emph{Formen der Arbeitslosigkeit}, die
+\emph{Tarifautonomie} mit Tarifvertragsarten und Verteilungsspielraum sowie die
 \emph{Formeln} für Arbeitslosenquote und Konvergenzquoten (Abschnitt~8). Wiederholen Sie
 außerdem Teil~1 dieser Lektion (Konjunktur, EZB, Fiskalpolitik),
 Lektion~1 (Preisbildung, Marktformen) und Lektion~2 (Wettbewerb, Staatseingriffe, VGR,

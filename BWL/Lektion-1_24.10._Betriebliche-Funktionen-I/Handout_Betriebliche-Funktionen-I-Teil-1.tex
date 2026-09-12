@@ -80,6 +80,35 @@ Controlling & Planung, Steuerung, Kontrolle, Information (Management-Service)\\
 \end{tabular}
 \end{center}
 
+\begin{center}
+\begin{tikzpicture}[font=\small,
+  markt/.style={draw=bfwInkSoft, thick, dashed, fill=bfwBgSoft, rounded corners=4pt,
+    minimum height=1.35cm, minimum width=2.3cm, align=center},
+  kern/.style={roughbox, minimum height=1.35cm, minimum width=2.7cm, align=center},
+  pfeil/.style={roughline}]
+  \node[font=\scriptsize, color=bfwInkSoft, align=center] at (6.4,1.15)
+    {Güterstrom (Realgüter) $\longrightarrow$ \qquad Geldstrom (Nominalgüter) $\longleftarrow$};
+  \node[markt] (bm) at (0,0)    {Beschaffungs-\\markt};
+  \node[kern]  (be) at (3.2,0)  {\textbf{Beschaffung}};
+  \node[kern]  (pr) at (6.4,0)  {\textbf{Produktion}};
+  \node[kern]  (ab) at (9.6,0)  {\textbf{Absatz/}\\\textbf{Marketing}};
+  \node[markt] (am) at (12.8,0) {Absatz-\\markt};
+  \draw[pfeil] (bm) -- (be);
+  \draw[pfeil] (be) -- (pr);
+  \draw[pfeil] (pr) -- (ab);
+  \draw[pfeil] (ab) -- (am);
+  \node[roughaccent, minimum width=12.6cm, minimum height=1.0cm, align=center, font=\footnotesize]
+    (quer) at (6.4,-2.15)
+    {\textbf{Querschnitts- und Unterstützungsfunktionen}\\
+     Logistik $\cdot$ Rechnungswesen $\cdot$ Finanzierung/Investition $\cdot$ Personal $\cdot$ Controlling};
+  \draw[pfeil] (quer.north -| be) -- (be.south);
+  \draw[pfeil] (quer.north -| pr) -- (pr.south);
+  \draw[pfeil] (quer.north -| ab) -- (ab.south);
+\end{tikzpicture}\\[0.3em]
+{\small\itshape Die Grundfunktionen entlang des Wertschöpfungsprozesses --- die
+Querschnittsfunktionen unterstützen alle Bereiche.}
+\end{center}
+
 \section{Produktion}
 
 Die \textbf{Produktionswirtschaft} hat die Kombination der Produktionsfaktoren zu
@@ -107,6 +136,31 @@ und den \textbf{dispositiven Faktor} eingeteilt:
     Betriebsleitung} mit den Aufgaben \textbf{Planung}, \textbf{Organisation} und
     \textbf{Kontrolle} --- er kombiniert die Elementarfaktoren zielgerichtet.
 \end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  ast/.style={draw=bfwInkSoft, thick},
+  wurzel/.style={roughbox, minimum height=0.9cm, align=center, font=\small\bfseries},
+  ebene/.style={roughaccent, minimum height=0.9cm, align=center},
+  blatt/.style={draw=bfwPrimaryDark, thick, fill=bfwBgSoft, rounded corners=4pt,
+    inner sep=5pt, minimum height=1.25cm, align=center}]
+  \node[wurzel] (root) at (7.2,0) {Produktionsfaktoren nach Gutenberg};
+  \node[ebene]  (elem) at (3.6,-1.8) {\textbf{Elementarfaktoren}\\{\scriptsize unmittelbar am Leistungsprozess beteiligt}};
+  \node[ebene]  (disp) at (11.6,-1.8) {\textbf{Dispositiver Faktor}\\{\scriptsize leitende Arbeit}};
+  \node[blatt]  (arb)  at (0.8,-3.8) {ausführende\\Arbeit};
+  \node[blatt]  (bmit) at (3.6,-3.8) {Betriebsmittel\\{\scriptsize werden \emph{gebraucht}}};
+  \node[blatt]  (werk) at (6.5,-3.8) {Werkstoffe\\{\scriptsize Roh-, Hilfs-,}\\{\scriptsize Betriebsstoffe}};
+  \node[blatt]  (leit) at (11.6,-3.8) {Geschäfts- und Betriebsleitung\\{\scriptsize Planung $\cdot$ Organisation $\cdot$ Kontrolle}};
+  \draw[ast] (root.south) -- (elem.north);
+  \draw[ast] (root.south) -- (disp.north);
+  \draw[ast] (elem.south) -- (arb.north);
+  \draw[ast] (elem.south) -- (bmit.north);
+  \draw[ast] (elem.south) -- (werk.north);
+  \draw[ast] (disp.south) -- (leit.north);
+\end{tikzpicture}\\[0.3em]
+{\small\itshape Die Gutenberg-Systematik auf einen Blick --- der dispositive Faktor
+kombiniert die drei Elementarfaktoren.}
+\end{center}
 
 Die Werkstoffe werden weiter unterteilt:
 
@@ -165,12 +219,23 @@ Kreuzfahrtschiff nach Kundenauftrag: \textbf{Einzelfertigung}. Prüfungsfalle: B
 der \emph{Sortenfertigung} artgleich (Varianten eines Grundprodukts).
 \end{beispiel}
 
-Nach der \emph{Organisation des Fertigungsablaufs} unterscheidet man ergänzend die
-\textbf{Werkstattfertigung} (gleichartige Maschinen räumlich zusammengefasst, flexibel,
-aber lange Transportwege), die \textbf{Fließfertigung} (Anordnung nach dem
-Arbeitsablauf, kurze Durchlaufzeiten, aber störanfällig und unflexibel) und die
-\textbf{Gruppenfertigung} als Mischform (teilautonome Gruppen, verbindet Flexibilität
-und Fließprinzip).
+Nach der \emph{Organisation des Fertigungsablaufs} unterscheidet man ergänzend:
+
+\begin{center}
+\begin{tabular}{p{3.2cm} p{4.6cm} p{3.1cm} p{3.1cm}}
+\textbf{Organisationstyp} & \textbf{Prinzip} & \textbf{Vorteile} & \textbf{Nachteile}\\
+\hline
+Werkstattfertigung & gleichartige Maschinen räumlich zusammengefasst (Dreherei,
+Fräserei, Lackiererei) & flexibel bei Produkt- und Auftragswechsel & lange
+Transportwege, hohe Zwischenlager, lange Durchlaufzeiten\\
+Fließfertigung & Anordnung der Betriebsmittel nach dem Arbeitsablauf (Fließband) &
+kurze Durchlaufzeiten, hohe Auslastung, geringe Stückkosten & unflexibel,
+störanfällig (Bandstillstand), monotone Arbeit\\
+Gruppenfertigung & Mischform: teilautonome Gruppen fertigen komplette Baugruppen &
+verbindet Flexibilität und Fließprinzip, motivierend & höherer Abstimmungs- und
+Planungsaufwand\\
+\end{tabular}
+\end{center}
 
 \subsection{Produktionsplanung und -steuerung}
 
@@ -271,6 +336,32 @@ Unternehmens und zu den Partnern). Der typische Güterdurchlauf: \emph{Lieferant
 $\rightarrow$ Materiallager $\rightarrow$ Produktion $\rightarrow$ Absatzlager
 $\rightarrow$ Versand $\rightarrow$ Kunde}.
 
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  station/.style={roughbox, minimum height=1.15cm, minimum width=2.15cm, align=center, inner sep=3pt},
+  pfeil/.style={roughline},
+  band/.style={draw=bfwAccent!85!black, thick, fill=bfwBgAmber, rounded corners=3pt,
+    minimum height=0.6cm, align=center, font=\scriptsize}]
+  \node[station] (l)  at (0,0)     {Lieferant};
+  \node[station] (ml) at (2.65,0)  {Material-\\lager};
+  \node[station] (p)  at (5.3,0)   {Produktion};
+  \node[station] (al) at (7.95,0)  {Absatz-\\lager};
+  \node[station] (v)  at (10.6,0)  {Versand};
+  \node[station] (k)  at (13.25,0) {Kunde};
+  \draw[pfeil] (l) -- (ml); \draw[pfeil] (ml) -- (p);
+  \draw[pfeil] (p) -- (al); \draw[pfeil] (al) -- (v);
+  \draw[pfeil] (v) -- (k);
+  \node[band, minimum width=3.6cm] at (1.325,-1.3) {Beschaffungslogistik};
+  \node[band, minimum width=2.2cm] at (5.3,-1.3)   {Produktionslogistik};
+  \node[band, minimum width=4.9cm] at (10.6,-1.3)  {Distributionslogistik};
+  \draw[pfeil, dashed] (k.south) .. controls (13.25,-2.9) and (0,-2.9) .. (l.south)
+    node[pos=0.5, below=1mm, font=\scriptsize, color=bfwInkSoft, align=center]
+    {Entsorgungslogistik: Retouren, Verpackungen, Recycling (Kreislaufwirtschaft)};
+\end{tikzpicture}\\[0.3em]
+{\small\itshape Die Logistik-Kette entlang des Güterflusses --- quer dazu: Lager-,
+Transport- und Informationslogistik.}
+\end{center}
+
 \subsection{Funktionen der Lagerhaltung}
 
 \begin{itemize}
@@ -300,6 +391,16 @@ Beteiligten stimmen Güter-, Informations- und Geldflüsse aufeinander ab. Ziele
 Lieferzeiten, geringere Bestände entlang der Kette, Vermeidung des „Peitscheneffekts``
 (aufschaukelnde Bestellmengen), höhere Liefertreue und Kostenvorteile für alle Partner.
 Im Mittelpunkt der Kette steht der \textbf{Kunde}.
+
+\begin{beispiel}
+\textbf{Peitscheneffekt (Bullwhip-Effekt):} Der Einzelhandel verkauft in einer Woche
+10~\% mehr Mixer und bestellt vorsichtshalber 20~\% mehr beim Großhandel; der
+Großhandel erhöht seine Order beim Hersteller um 30~\%, der Hersteller bestellt 40~\%
+mehr Motoren beim Zulieferer. Eine kleine Nachfrageschwankung am Ende der Kette
+schaukelt sich stromaufwärts immer weiter auf --- es entstehen Überbestände und
+anschließend Auftragseinbrüche. \emph{Gegenmittel des SCM:} gemeinsame Absatzplanung
+und der Austausch von Abverkaufsdaten in Echtzeit entlang der gesamten Kette.
+\end{beispiel}
 
 \section{Formeln \& Rechenbeispiele}
 
@@ -373,6 +474,31 @@ Anfangsbestand 40.000~€, Endbestand 20.000~€, Jahresverbrauch 120.000~€.
   \item Durchschnittliche Lagerdauer berechnen: $360 \div 4 = 90$ \textbf{Tage}.
 \end{enumerate}
 \end{beispiel}
+
+\subsection{Kombinierte Übung: Just-in-Time und die Lagerkennzahlen}
+
+\begin{beispiel}
+Die Nordwest Küchengeräte AG stellt die Motorenbeschaffung auf
+\emph{Just-in-Time-Anlieferung} um. Der durchschnittliche Lagerbestand sinkt dadurch
+von 30.000~€ auf 12.000~€; der Jahresverbrauch bleibt bei 120.000~€.
+\begin{enumerate}
+  \item Umschlagshäufigkeit vorher: $120.000 \div 30.000 = 4$; nachher:
+    $120.000 \div 12.000 = 10$.
+  \item Ø Lagerdauer vorher: $360 \div 4 = 90$ Tage; nachher: $360 \div 10 = 36$ Tage.
+  \item Interpretieren: Die Kapitalbindung sinkt um 18.000~€ --- Zins-, Raum- und
+    Versicherungskosten gehen zurück. \emph{Aber:} Die Abhängigkeit von pünktlichen
+    Lieferanten und funktionierenden Verkehrswegen steigt (Risiko von
+    Produktionsstillständen) --- die Sicherungsfunktion des Lagers entfällt weitgehend.
+\end{enumerate}
+\end{beispiel}
+
+\begin{achtung}
+Verwechseln Sie \textbf{Produktivität} (Mengenverhältnis, ohne Euro) nicht mit
+\textbf{Wirtschaftlichkeit} (Wertverhältnis in Euro). Eine hohe Produktivität sagt noch
+nichts über die Kosten: Eine Maschine kann sehr produktiv, wegen hoher Faktorpreise
+aber trotzdem unwirtschaftlich sein. Erster Prüfschritt in der Klausur:
+\emph{Stehen im Zähler und Nenner Mengen oder Euro-Beträge?}
+\end{achtung}
 
 \begin{merksatz}[title={\bfseries Wichtig für die Prüfungsvorbereitung}]
 Sie sollten aus Teil~1 sicher können: die \emph{Gutenberg-Systematik} der

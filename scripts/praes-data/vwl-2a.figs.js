@@ -13,7 +13,7 @@ window.addEventListener('load', () => {
       const saeulen = [
         { t: 'Kartellverbot', s: '§ 1 GWB', d: 'Preis-, Submissions-, Gebiets-, Quotenkartelle', c: '#ECFEFF', st: '#0F766E' },
         { t: 'Missbrauchsaufsicht', s: '§§ 19 ff. GWB', d: 'Ausbeutung / Behinderung (Dumping)', c: '#FEF3C7', st: '#F59E0B' },
-        { t: 'Fusionskontrolle', s: '§ 35 GWB', d: 'Anzeigepflicht, Untersagung, Ministererlaubnis', c: '#FFE4E6', st: '#F97316' }
+        { t: 'Fusionskontrolle', s: '§ 35 GWB', d: 'Anmeldepflicht, Untersagung, Ministererlaubnis', c: '#FFE4E6', st: '#F97316' }
       ];
       let x = 90;
       saeulen.forEach((f) => {

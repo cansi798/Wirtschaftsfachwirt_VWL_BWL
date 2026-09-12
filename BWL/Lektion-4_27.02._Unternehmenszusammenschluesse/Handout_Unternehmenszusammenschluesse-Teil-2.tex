@@ -97,6 +97,57 @@ $\rightarrow$ \textbf{F}usion (ein Unternehmen erlischt) $\rightarrow$ \textbf{T
 \textbf{t}otal zusammen.
 \end{eselsbruecke}
 
+\subsection{Die Intensitätsstufen als Treppe}
+
+\begin{center}
+\begin{tikzpicture}[
+  stufe/.style={roughbox, font=\scriptsize, align=center, text width=3.6cm,
+                minimum height=1.7cm},
+  lab/.style={font=\scriptsize, text=bfwInkSoft}
+]
+  \node[stufe] (k1) at (0,0)
+    {{\footnotesize\bfseries Kooperation}\\[2pt]
+     rechtlich: \textcolor{bfwSuccess!65!black}{\bfseries bleibt}\\
+     wirtschaftlich: \textcolor{bfwSuccess!65!black}{\bfseries bleibt}\\[2pt]
+     ARGE, IG, JV, Allianz, Verband};
+  \node[stufe, fill=bfwBgAmber, draw=bfwAccent] (k2) at (5.3,1.4)
+    {{\footnotesize\bfseries Konzern}\\[2pt]
+     rechtlich: \textcolor{bfwSuccess!65!black}{\bfseries bleibt}\\
+     wirtschaftlich: \textcolor{bfwWarn!85!black}{\bfseries verloren}\\[2pt]
+     einheitliche Leitung, \S\,18 AktG};
+  \node[stufe, fill=bfwWarn!8, draw=bfwWarn!85!black] (k3) at (10.6,2.8)
+    {{\footnotesize\bfseries Fusion / Trust}\\[2pt]
+     rechtlich: \textcolor{bfwWarn!85!black}{\bfseries verloren}\\
+     wirtschaftlich: \textcolor{bfwWarn!85!black}{\bfseries verloren}\\[2pt]
+     Verschmelzung nach UmwG};
+  \draw[roughline] (k1.east) -- (k2.west);
+  \draw[roughline] (k2.east) -- (k3.west);
+  \draw[roughline, draw=bfwPrimary] (-2.0,-1.35) -- node[below, lab]
+    {zunehmende Konzentrationsintensität $\longrightarrow$} (12.6,-1.35);
+\end{tikzpicture}
+\end{center}
+
+\subsection{Konzern, Fusion und Trust im Vergleich}
+
+\begin{center}
+\small
+\begin{tabular}{p{3.4cm} p{3.6cm} p{3.6cm} p{3.4cm}}
+\toprule
+\rowcolor{bfwTabHead}\textbf{Kriterium} & \textbf{Konzern} & \textbf{Fusion} & \textbf{Trust}\\
+\midrule
+Rechtliche Selbstständigkeit & bleibt erhalten & mind.\ ein Partner erlischt & geht bei allen verloren\\
+\addlinespace
+Wirtschaftliche Selbstständigkeit & geht verloren (einheitliche Leitung) & geht verloren & geht verloren\\
+\addlinespace
+Instrument & Mehrheitsbeteiligung, Beherrschungsvertrag & Verschmelzung (UmwG): Aufnahme oder Neugründung & vollständige Verschmelzung\\
+\addlinespace
+Ergebnis & Mutter + rechtlich selbstständige Töchter & ein verbleibender bzw.\ neuer Rechtsträger & marktbeherrschende Einheit\\
+\addlinespace
+Rückgängig machbar? & ja (Beteiligungsverkauf) & praktisch kaum & praktisch nicht\\
+\bottomrule
+\end{tabular}
+\end{center}
+
 \section{Richtungen des Zusammenschlusses}
 
 Unabhängig von der Form (Kooperation oder Konzentration) unterscheidet man, \emph{welche}
@@ -115,6 +166,36 @@ Unternehmen sich verbinden:
     Leistungszusammenhang --- z.\,B. Maschinenbauer + Versicherung. Ziele:
     Risikostreuung (Diversifikation), Kapitalanlage, neue Geschäftsfelder.
 \end{itemize}
+
+Das Standardbeispiel „Brauerei`` als Schaubild --- die Wertschöpfungskette verläuft von
+oben nach unten:
+
+\begin{center}
+\begin{tikzpicture}[
+  firma/.style={roughbox, font=\footnotesize\bfseries, text=bfwPrimaryDark,
+                text width=3.0cm, align=center, minimum height=0.95cm},
+  lab/.style={font=\scriptsize, text=bfwInkSoft, fill=white, inner sep=1.5pt},
+  stufe/.style={font=\scriptsize\itshape, text=bfwInkSoft, align=right}
+]
+  \node[firma] (mae) at (0,4.7) {Mälzerei\\ \scriptsize\mdseries Zulieferer};
+  \node[firma, fill=bfwBgAmber, draw=bfwAccent, text=bfwAccent!55!black] (bra) at (0,2.35)
+    {Brauerei\\ \scriptsize\mdseries Ausgangsunternehmen};
+  \node[firma] (gro) at (0,0) {Getränkegroßhandel\\ \scriptsize\mdseries Abnehmer};
+  \node[firma] (bra2) at (6.9,2.35) {Brauerei B\\ \scriptsize\mdseries Wettbewerber, gleiche Stufe};
+  \node[firma] (ver) at (6.9,4.7) {Versicherung\\ \scriptsize\mdseries branchenfremd};
+  \node[stufe] at (-3.6,4.7)  {vorgelagerte Stufe\\ (Beschaffung)};
+  \node[stufe] at (-3.6,2.35) {eigene\\ Produktionsstufe};
+  \node[stufe] at (-3.6,0)    {nachgelagerte Stufe\\ (Absatz)};
+  \draw[roughline] (bra.north) -- node[lab, right=2pt, align=left]
+    {vertikal:\\ Rückwärtsintegration} (mae.south);
+  \draw[roughline] (bra.south) -- node[lab, right=2pt, align=left]
+    {vertikal:\\ Vorwärtsintegration} (gro.north);
+  \draw[roughline, {Stealth[length=2.5mm]}-{Stealth[length=2.5mm]}]
+    (bra.east) -- node[lab, above]{horizontal} (bra2.west);
+  \draw[roughline, dashed, draw=bfwAccent] (bra.north east) -- node[lab, sloped, above,
+    align=center, pos=0.72]{diagonal / lateral\\ (konglomerat)} (ver.south west);
+\end{tikzpicture}
+\end{center}
 
 \begin{beispiel}[title={Beispiel aus dem Übungsband (Übung 56): Großküchenhersteller}]
 Ein Großküchenhersteller verbindet sich \emph{vertikal vorgelagert} mit seinem
@@ -165,6 +246,64 @@ Zusammenschlüsse der \textbf{präventiven Fusionskontrolle}:
     EU-Fusionskontrollverordnung (FKVO) --- dann ist sie anstelle des Bundeskartellamts
     zuständig („One-Stop-Shop``).
 \end{itemize}
+
+\subsection{Der Ablauf der Fusionskontrolle als Schaubild}
+
+\begin{center}
+\begin{tikzpicture}[
+  schritt/.style={roughbox, font=\scriptsize, align=center, text width=6.4cm,
+                  minimum height=0.9cm},
+  ok/.style={draw=bfwSuccess!65!black, thick, fill=bfwSuccess!10, rounded corners=4pt,
+             inner sep=6pt, font=\scriptsize\bfseries, text=bfwSuccess!40!black,
+             align=center, text width=2.6cm, minimum height=0.85cm},
+  stop/.style={draw=bfwWarn!85!black, thick, fill=bfwWarn!8, rounded corners=4pt,
+             inner sep=6pt, font=\scriptsize\bfseries, text=bfwWarn!70!black,
+             align=center, text width=2.6cm, minimum height=0.85cm},
+  lab/.style={font=\scriptsize, text=bfwInkSoft, fill=white, inner sep=1.5pt},
+  pfeil/.style={roughline, shorten <=2pt, shorten >=2pt}
+]
+  \node[schritt, text width=9.6cm] (s1) at (0.8,0)
+    {{\footnotesize\bfseries 1~~Anmeldung beim Bundeskartellamt (\S\,39 GWB)}\\
+     \emph{vor} dem Vollzug --- bis zur Freigabe gilt das Vollzugsverbot (\S\,41 GWB)};
+  \node[schritt, text width=5.6cm] (s2) at (0.8,-1.7)
+    {{\footnotesize\bfseries 2~~Vorprüfverfahren}\\ Frist: 1 Monat};
+  \node[ok] (f1) at (-4.9,-3.5) {Freigabe\\ \scriptsize\mdseries (Regelfall, oft schon nach Wochen)};
+  \node[schritt, text width=5.0cm] (s3) at (2.6,-3.5)
+    {{\footnotesize\bfseries 3~~Hauptprüfverfahren}\\ Frist: insgesamt 5 Monate};
+  \node[ok] (f2) at (-1.4,-5.5) {Freigabe};
+  \node[ok, text width=3.0cm] (f3) at (2.6,-5.5) {Freigabe mit Nebenbestimmungen\\ \scriptsize\mdseries (z.\,B. Verkauf von Unternehmensteilen)};
+  \node[stop] (f4) at (6.6,-5.5) {Untersagung};
+  \node[roughaccent, font=\scriptsize, text width=6.6cm, align=center] (min) at (3.4,-7.4)
+    {{\footnotesize\bfseries Ministererlaubnis (\S\,42 GWB)}\\
+     Ausnahme durch das Bundeswirtschaftsministerium aus Gemeinwohlgründen --- auf Antrag nach Untersagung};
+  \draw[pfeil] (s1) -- (s2);
+  \draw[pfeil] (s2) -- node[lab, above, sloped]{unbedenklich} (f1);
+  \draw[pfeil] (s2) -- node[lab, right=3pt]{vertiefte Prüfung nötig} (s3);
+  \draw[pfeil] (s3) -- (f2);
+  \draw[pfeil] (s3) -- (f3);
+  \draw[pfeil] (s3) -- (f4);
+  \draw[pfeil, draw=bfwAccent] (f4) -- node[lab, right=2pt]{ausnahmsweise} (min);
+\end{tikzpicture}
+\end{center}
+
+\begin{achtung}[title={\bfseries Prüfungsfalle: „Genehmigung`` vs. Anmeldung}]
+Zusammenschlüsse werden nicht „beantragt``, sondern beim Bundeskartellamt
+\textbf{angemeldet} (\S\,39 GWB). Vor der Freigabe darf der Zusammenschluss
+\emph{nicht vollzogen} werden (\textbf{Vollzugsverbot}, \S\,41 GWB) --- Verstöße
+(„Gun Jumping``) kosten Bußgeld. Merken Sie sich die Fristen: \textbf{1~Monat}
+Vorprüfung, \textbf{5~Monate} insgesamt für das Hauptprüfverfahren. Und: Die
+\emph{Ministererlaubnis} erteilt der Wirtschaftsminister --- nicht das Kartellamt.
+\end{achtung}
+
+\begin{beispiel}[title={\bfseries Praxisfälle zur Fusionskontrolle}]
+\textbf{Edeka/Kaiser's Tengelmann:} Das Bundeskartellamt untersagte 2015 die Übernahme
+(drohende Marktbeherrschung im Lebensmitteleinzelhandel). 2016 erteilte der
+Bundeswirtschaftsminister die \emph{Ministererlaubnis} --- mit Auflagen zum Erhalt der
+Arbeitsplätze. Das Verfahren ist \emph{das} Anschauungsbeispiel für \S\,42 GWB.
+\textbf{E.ON/Ruhrgas (2002):} ebenfalls erst per Ministererlaubnis möglich
+(Begründung: Versorgungssicherheit). Ministererlaubnisse bleiben seltene
+Ausnahmen --- seit 1973 wurden nur wenige erteilt.
+\end{beispiel}
 
 \begin{merksatz}
 Kartell\textbf{verbot} (Teil~1) richtet sich gegen \emph{Absprachen} (Verhalten),

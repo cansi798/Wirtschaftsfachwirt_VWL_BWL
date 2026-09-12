@@ -48,6 +48,41 @@ Konsequenzen verbunden sind, ist besondere Sorgfalt geboten. Grundsystematik:
   \item \textbf{Genossenschaft (eG)} --- Förderung der Mitglieder als Zweck.
 \end{itemize}
 
+\begin{center}
+\begin{tikzpicture}[
+  gruppe/.style={roughbox, text width=3.15cm, align=center, font=\scriptsize,
+                 minimum height=3.0cm},
+  pfeil/.style={roughline, shorten <=2pt, shorten >=2pt}
+]
+  \node[roughaccent, font=\footnotesize\bfseries, text=bfwAccent!55!black,
+        minimum height=0.85cm, text width=4.6cm, align=center] (root) at (0,2.6)
+    {Rechtsformen der Unternehmen};
+  \node[gruppe] (g1) at (-5.85,0)
+    {\bfseries Einzelunternehmen\\[2pt]
+     e.\,K. (HR~A)\\[3pt]
+     Inhaber allein,\\ unbeschränkte Haftung,\\ kein Mindestkapital};
+  \node[gruppe] (g2) at (-1.95,0)
+    {\bfseries Personengesellschaften\\[2pt]
+     GbR/eGbR \textperiodcentered{} OHG \textperiodcentered{} KG \textperiodcentered{} PartG\\[3pt]
+     mind.\ ein Vollhafter,\\ kein Mindestkapital,\\ ESt der Gesellschafter};
+  \node[gruppe] (g3) at (1.95,0)
+    {\bfseries Kapitalgesellschaften\\[2pt]
+     GmbH \textperiodcentered{} UG \textperiodcentered{} AG (HR~B)\\[3pt]
+     juristische Personen,\\ Haftung beschränkt,\\ Mindestkapital, KSt};
+  \node[gruppe] (g4) at (5.85,0)
+    {\bfseries Misch- \& Sonderformen\\[2pt]
+     GmbH \& Co.\ KG\\ Genossenschaft (eG)\\[3pt]
+     kombinieren Elemente\\ bzw.\ Förderzweck};
+  \draw[pfeil] (root.south) -- (g1.north);
+  \draw[pfeil] (root.south) -- (g2.north);
+  \draw[pfeil] (root.south) -- (g3.north);
+  \draw[pfeil] (root.south) -- (g4.north);
+  \draw[roughline, draw=bfwAccent, {Stealth[length=2.5mm]}-{Stealth[length=2.5mm]}, dashed]
+    (g2.south) to[bend right=18] node[below, font=\scriptsize, text=bfwInkSoft, fill=white,
+    inner sep=1.5pt]{GmbH \& Co.\ KG verbindet beide Welten} (g3.south);
+\end{tikzpicture}
+\end{center}
+
 \subsection{Einzelunternehmen}
 
 Der Inhaber führt das Unternehmen allein, trifft alle Entscheidungen selbst, erhält den
@@ -86,6 +121,17 @@ die häufigste Rechtsform in Deutschland.
     berufliche Fehler auf das Gesellschaftsvermögen beschränkt werden
     (Berufshaftpflicht erforderlich).
 \end{itemize}
+
+\begin{achtung}[title={\bfseries Aktuelle Rechtslage: MoPeG und eGbR (seit 1.1.2024)}]
+Das \emph{Gesetz zur Modernisierung des Personengesellschaftsrechts} (MoPeG) hat die GbR
+zum 1.1.2024 grundlegend reformiert: Die (Außen-)GbR ist jetzt ausdrücklich
+\textbf{rechtsfähig}, und es gibt ein neues \textbf{Gesellschaftsregister}. Die
+Eintragung als \textbf{eGbR} ist \emph{freiwillig}, aber faktisch Pflicht, wenn die GbR
+registrierte Rechte erwerben will (Grundstücke im Grundbuch, GmbH-Anteile,
+Marken). Die eingetragene GbR muss den Zusatz „eGbR`` führen. Ältere Lehrbücher
+(„GbR ist nicht rechtsfähig``) sind hier überholt --- in der Prüfung mit der neuen
+Rechtslage argumentieren.
+\end{achtung}
 
 \begin{merksatz}[title={\bfseries Gewinnverteilung bei OHG und KG}]
 Vorrangig gilt der \textbf{Gesellschaftsvertrag}. Fehlt eine Regelung, verteilt das
@@ -133,6 +179,30 @@ Organe der AG: \textbf{V-A-H} --- \textbf{V}orstand führt, \textbf{A}ufsichtsra
 aber 25\,\% Rücklage}.
 \end{eselsbruecke}
 
+Das Zusammenspiel der drei AG-Organe als Schaubild:
+
+\begin{center}
+\begin{tikzpicture}[
+  organ/.style={roughbox, font=\footnotesize, align=center, text width=3.4cm,
+                minimum height=1.25cm},
+  lab/.style={font=\scriptsize, text=bfwInkSoft, fill=white, inner sep=1.5pt}
+]
+  \node[organ, fill=bfwBgAmber, draw=bfwAccent] (v) at (0,4.4)
+    {\bfseries Vorstand\\ \scriptsize leitet eigenverantwortlich\\ \scriptsize (Geschäftsführung \& Vertretung)};
+  \node[organ] (ar) at (-4.6,0)
+    {\bfseries Aufsichtsrat\\ \scriptsize mind.\ 3 Mitglieder\\ \scriptsize Kontrollorgan};
+  \node[organ] (hv) at (4.6,0)
+    {\bfseries Hauptversammlung\\ \scriptsize Aktionäre\\ \scriptsize beschließendes Organ};
+  \draw[roughline] (hv.west) -- node[lab, below]{wählt (Anteilseignerseite)} (ar.east);
+  \draw[roughline] (ar.north) -- node[lab, above, sloped, align=center]
+    {bestellt, überwacht,\\ berät} (v.west);
+  \draw[roughline] (v.east) -- node[lab, above, sloped, align=center]
+    {beruft ein, legt\\ Rechenschaft ab} (hv.north);
+  \draw[roughline, dashed, draw=bfwAccent] (hv.north west) -- node[lab, below, sloped,
+    align=center, pos=0.45]{entlastet, beschließt\\ Gewinnverwendung} (v.south east);
+\end{tikzpicture}
+\end{center}
+
 \subsection{Mischformen und Genossenschaft}
 
 \begin{itemize}
@@ -151,6 +221,25 @@ aber 25\,\% Rücklage}.
     Aufsichtsrat, Generalversammlung (\emph{ein Mitglied = eine Stimme}, unabhängig von
     der Kapitalbeteiligung); Pflichtmitgliedschaft in einem Prüfungsverband.
 \end{itemize}
+
+\begin{achtung}[title={\bfseries Typische Prüfungsfallen bei den Rechtsformen}]
+\begin{itemize}
+  \item Die \textbf{GmbH entsteht erst mit der Eintragung} ins Handelsregister
+    (konstitutive Wirkung) --- vorher haften die Handelnden persönlich
+    (Vor-GmbH/Handelndenhaftung).
+  \item Bei der \textbf{UG} sind \emph{Sacheinlagen unzulässig} und die
+    25-\%-Rücklagepflicht endet erst bei 25.000~€ --- der Zusatz
+    „UG (haftungsbeschränkt)`` darf nicht abgekürzt werden.
+  \item Der \textbf{Kommanditist} ist nicht „von allem`` ausgeschlossen: Er hat
+    \emph{Kontrollrechte} und ein \emph{Widerspruchsrecht} nur bei
+    \emph{außergewöhnlichen} Geschäften; unterscheiden Sie außerdem
+    \emph{Haftsumme} (Außenverhältnis, HR-Eintrag) und \emph{Pflichteinlage}
+    (Innenverhältnis).
+  \item Bei der \textbf{GmbH \& Co.\ KG} haftet keine natürliche Person unbeschränkt ---
+    „unbeschränkt`` haftet nur die Komplementär-GmbH, und zwar mit ihrem
+    Gesellschaftsvermögen.
+\end{itemize}
+\end{achtung}
 
 \section{Rechtsformen im Vergleich}
 
@@ -212,6 +301,35 @@ für alle einsehbar (Firmenöffentlichkeit): Abteilung~A für Einzelkaufleute un
 Personengesellschaften, Abteilung~B für Kapitalgesellschaften.
 \end{merksatz}
 
+\subsection{Steuern im Rechtsformvergleich (Grundzüge)}
+
+Für die Rechtsformwahl genügen in der Prüfung die Grundzüge der laufenden Besteuerung:
+
+\begin{center}
+\small
+\begin{tabular}{p{4.2cm} p{5.0cm} p{5.0cm}}
+\toprule
+\rowcolor{bfwTabHead}\textbf{Kriterium} & \textbf{Einzelunt./Personenges.} & \textbf{Kapitalgesellschaft}\\
+\midrule
+Ertragsteuer & \textbf{Einkommensteuer} der Inhaber/Gesellschafter (transparente Besteuerung, progressiv bis 45\,\%) & \textbf{Körperschaftsteuer} der Gesellschaft (15\,\% zzgl.\ Soli)\\
+\addlinespace
+Gewerbesteuer & ja (Freibetrag 24.500~€; Anrechnung auf die ESt) & ja (kein Freibetrag, keine Anrechnung)\\
+\addlinespace
+Ausschüttung/Entnahme & Entnahmen lösen keine zusätzliche Steuer aus & Ausschüttung beim Gesellschafter zusätzlich steuerpflichtig (Abgeltungsteuer 25\,\%)\\
+\addlinespace
+Geschäftsführergehalt & kein Betriebsausgabenabzug (Unternehmerlohn) & Gehalt des (Gesellschafter-)Geschäftsführers ist Betriebsausgabe\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{merksatz}
+Personengesellschaften werden \emph{transparent} besteuert (der Gewinn landet direkt in
+der ESt-Erklärung der Gesellschafter), Kapitalgesellschaften sind \emph{selbst}
+Steuersubjekt --- und der ausgeschüttete Gewinn wird beim Anteilseigner ein zweites Mal
+erfasst. Welche Variante günstiger ist, hängt von Gewinnhöhe und Ausschüttungsverhalten
+ab --- eine pauschale Antwort gibt es nicht.
+\end{merksatz}
+
 \subsection{Firma und Firmengrundsätze}
 
 Die \textbf{Firma} ist der \emph{Name} des Kaufmanns, unter dem er seine Geschäfte
@@ -239,7 +357,7 @@ dazu kommen Gewerbeamt und Finanzamt.
 
 \subsection{Entscheidungskriterien der Rechtsformwahl}
 
-Bei der Fallfrage „Welche Rechtsform passt?`` prüfen Sie systematisch:
+Bei der Fallfrage „Welche Rechtsform passt?{}`` prüfen Sie systematisch:
 
 \begin{enumerate}
   \item \textbf{Haftung:} Wie viel persönliches Risiko können und wollen die Gründer
@@ -253,6 +371,48 @@ Bei der Fallfrage „Welche Rechtsform passt?`` prüfen Sie systematisch:
   \item \textbf{Aufwand und Publizität:} Gründungskosten (Notar, Register),
     Buchführungs- und Offenlegungspflichten, Image/Kreditwürdigkeit.
 \end{enumerate}
+
+Als Entscheidungsbaum --- so lässt sich die Fallfrage strukturiert lösen:
+
+\begin{center}
+\begin{tikzpicture}[
+  frage/.style={roughaccent, font=\scriptsize\bfseries, text=bfwAccent!55!black,
+                align=center, text width=2.5cm, minimum height=0.85cm},
+  form/.style={roughbox, font=\scriptsize\bfseries, text=bfwPrimaryDark,
+               align=center, text width=2.2cm, minimum height=1.0cm},
+  lab/.style={font=\scriptsize, text=bfwInkSoft, fill=white, inner sep=1.5pt},
+  pfeil/.style={roughline, shorten <=2pt, shorten >=2pt}
+]
+  \node[frage, text width=3.0cm] (q1) at (0,0) {Wie viele Gründer?};
+  \node[frage] (q2a) at (-4.6,-1.9) {Haftung beschränken?};
+  \node[frage] (q2b) at (3.6,-1.9) {Haftung beschränken?};
+  \node[form] (e1) at (-6.5,-4.0) {e.\,K.\\ \scriptsize\mdseries Einzelunternehmen};
+  \node[form] (e2) at (-3.3,-4.0) {Ein-Personen-\\ GmbH / UG};
+  \node[form] (e3) at (0.2,-4.0) {GbR/eGbR\\ \scriptsize\mdseries bzw.\ OHG bei Handelsgewerbe};
+  \node[form] (e4) at (3.4,-4.0) {KG\\ \scriptsize\mdseries Kapitalgeber als Kommanditisten};
+  \node[form] (e5) at (6.6,-4.0) {GmbH / UG\\ \scriptsize\mdseries AG bei hohem Kapitalbedarf};
+  \draw[pfeil] (q1) -- node[lab, above, sloped]{allein} (q2a);
+  \draw[pfeil] (q1) -- node[lab, above, sloped]{mehrere} (q2b);
+  \draw[pfeil] (q2a) -- node[lab, left=2pt]{nein} (e1);
+  \draw[pfeil] (q2a) -- node[lab, right=2pt]{ja} (e2);
+  \draw[pfeil] (q2b) -- node[lab, left=2pt]{nein} (e3);
+  \draw[pfeil] (q2b) -- node[lab, left=1pt]{teilweise} (e4);
+  \draw[pfeil] (q2b) -- node[lab, right=2pt]{ja} (e5);
+\end{tikzpicture}
+\end{center}
+
+\begin{beispiel}[title={\bfseries Fallbeispiel: Welche Rechtsform passt?}]
+Zwei Ingenieurinnen wollen einen Prototypenbau gründen. Das Geschäft ist
+\emph{haftungsträchtig} (teure Maschinen, Produkthaftung), verfügbar sind nur
+8.000~€ Startkapital; ein Onkel würde 30.000~€ geben, will aber \emph{nicht
+mitentscheiden}. \textbf{Lösungsskizze:} Mehrere Gründer $\rightarrow$ keine
+e.\,K.; Haftungsbeschränkung nötig $\rightarrow$ GbR/OHG scheiden aus; 25.000~€
+Stammkapital nicht darstellbar $\rightarrow$ \textbf{UG (haftungsbeschränkt)} als
+Einstieg (mit Rücklagenpflicht) --- der Onkel kann als \emph{stiller Gesellschafter}
+oder über eine spätere \textbf{GmbH \& Co.\ KG} (Onkel als Kommanditist) beteiligt
+werden. Wichtig in der Prüfung: Kriterien nennen, abwägen, \emph{begründet} entscheiden
+--- nicht nur die Rechtsform nennen.
+\end{beispiel}
 
 \section{Formeln \& Rechenbeispiele}
 

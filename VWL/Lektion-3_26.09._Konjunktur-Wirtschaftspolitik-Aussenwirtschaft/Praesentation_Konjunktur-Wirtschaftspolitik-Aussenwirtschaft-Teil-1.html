@@ -122,10 +122,53 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
   font-weight: 700; font-size: 0.95rem;
 }
 
+/* Sprechnotizen: in der Zuschauer-Ansicht (und beim Teilen) immer unsichtbar */
+.notes { display: none !important; }
+
+/* Referentenansicht (?ref=1) */
+body.ref-mode { background: #0F172A; overflow: hidden; }
+body.ref-mode .deck, body.ref-mode .slide-num { display: none; }
+body.ref-mode .nav { display: none; }
+#refUI { display: none; }
+body.ref-mode #refUI {
+  display: grid; height: 100vh; padding: 1rem; gap: 1rem;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  grid-template-rows: auto minmax(0, 1fr);
+}
+.ref-head {
+  grid-column: 1 / -1; display: flex; align-items: center; gap: 1.2rem;
+  color: #E2E8F0; font-size: 1rem;
+}
+.ref-head .ref-title { font-weight: 700; color: white; margin-right: auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ref-head .ref-clock, .ref-head .ref-timer { font-variant-numeric: tabular-nums; background: #1E293B; padding: 0.35rem 0.8rem; border-radius: 8px; }
+.ref-head .ref-timer { color: #FDE68A; cursor: pointer; }
+.ref-head .ref-counter { background: var(--bfw-primary); color: white; font-weight: 700; padding: 0.35rem 0.8rem; border-radius: 8px; }
+.ref-left { display: flex; flex-direction: column; gap: 1rem; min-height: 0; }
+.ref-mini { position: relative; overflow: hidden; border-radius: 10px; background: white; border: 2px solid #334155; flex: 1; min-height: 0; }
+.ref-mini.next { flex: 0 0 32%; opacity: 0.85; }
+.ref-mini .mini-label {
+  position: absolute; top: 0.4rem; left: 0.5rem; z-index: 5;
+  background: rgba(15,23,42,0.75); color: white; font-size: 0.75rem;
+  padding: 0.15rem 0.6rem; border-radius: 999px; letter-spacing: 0.03em;
+}
+.ref-mini .mini-stage { position: absolute; top: 0; left: 0; width: 1280px; height: 800px; transform-origin: top left; pointer-events: none; }
+.ref-mini .mini-stage .slide { display: flex; position: absolute; inset: 0; animation: none; }
+.ref-notes {
+  background: #1E293B; border-radius: 10px; padding: 1.4rem 1.6rem;
+  overflow-y: auto; min-height: 0; color: #F1F5F9;
+}
+.ref-notes h4 { color: #5EEAD4; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.8rem; }
+#refNotes, #refNotes p, #refNotes li { font-size: 1.35rem; line-height: 1.65; color: #F1F5F9; }
+#refNotes ul, #refNotes ol { margin: 0.4rem 0 1rem 1.4rem; }
+#refNotes strong { color: #FDE68A; }
+#refNotes .no-notes { color: #64748B; font-size: 1.1rem; font-style: italic; }
+.ref-hint { grid-column: 1 / -1; color: #475569; font-size: 0.8rem; text-align: center; }
+
 /* Print-friendly */
 @media print {
   .slide { display: flex; page-break-after: always; }
-  .nav, .slide-num { display: none; }
+  .nav, .slide-num, #refUI { display: none; }
+  .notes { display: none !important; }
   html, body { height: auto; overflow: visible; }
 }
 </style>
@@ -140,10 +183,20 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
     <h1>Konjunktur, Geld- &amp; Finanzpolitik</h1>
     <p class="subtitle">Wie EZB und Staat auf die Konjunkturwellen reagieren</p>
     <div class="cover-meta">
+      <span><strong>Session</strong>Session 1 · 08:15–10:40 Uhr</span>
       <span><strong>Kurs</strong>Wirtschaftsfachwirt — 1.1 Volkswirtschaftliche Grundlagen</span>
       <span><strong>Rahmenplan</strong>1.1.3.2 Wirtschaftspolitische Maßnahmen (Geld- &amp; Finanzpolitik)</span>
       <span><strong>Quelle</strong>Textband Volkswirtschaft, Kap. 3.2 (S. 39–52)</span>
     </div>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Herzlich willkommen zum VWL-Finale — heute schließen wir Block 1.1 komplett ab.</p>
+      <ul>
+        <li>Begrüßung &amp; Orga: zwei Sessions bis 13:15 Uhr, Pausenzeiten nennen, Materialien auf der Lernplattform (Code <strong>vwl</strong>)</li>
+        <li><strong>Rückblick 12.09.</strong>: Wettbewerb &amp; GWB, Staatseingriffe, VGR und magisches Viereck kurz abrufen — darauf bauen Konjunktur und Stabilitätspolitik heute auf</li>
+        <li>Roten Faden ankündigen: erst Diagnose (Konjunktur), dann Therapie (EZB und Staat)</li>
+      </ul>
+      <p><strong>Impuls:</strong> Blitzlicht: „Was ist vom 12.09. hängen geblieben?“ — 2–3 Zurufe einsammeln.</p>
+    </aside>
   </section>
 
 
@@ -162,15 +215,24 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <tr><td>7</td><td>Sa 27.02.27</td><td>BWL: Unternehmenszusammenschlüsse</td></tr>
     </table>
     <p class="muted">Alle Materialien auf der Lernplattform — Zugangscode <code>vwl</code>. Pro Lektion: Präsentation, Handout, Quiz, Lernbereich, Prüfungsaufgaben, Übungsband, Karteikarten &amp; Lernspiele.</p>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Heute ist der letzte VWL-Termin — danach wechseln wir in die Betriebswirtschaft.</p>
+      <ul>
+        <li>Einordnen: Termin 3 von 7, mit heute ist der gesamte VWL-Stoff des Rahmenplans abgedeckt</li>
+        <li>Betonen: Der Prüfungsstoff <strong>Block 1.1</strong> wird heute Nachmittag komplett wiederholt</li>
+        <li>Lernplattform kurz zeigen: Quiz, Karteikarten, Prüfungstraining — ideal für die Zeit zwischen den Terminen</li>
+      </ul>
+      <p><strong>Impuls:</strong> Handzeichen: Wer hat die Plattform seit dem 12.09. genutzt? Kurz Erfahrungen abfragen.</p>
+    </aside>
   </section>
 
   <!-- 2. Fahrplan -->
   <section class="slide">
     <h2>Willkommen zu Session 1 des VWL-Finales!</h2>
-    <p class="subtitle">Teil 1 von 2 — heute Vormittag: Konjunktur, EZB &amp; Fiskalpolitik</p>
+    <p class="subtitle">Teil 1 von 2 — heute Vormittag: Konjunktur, Europäische Zentralbank (EZB) &amp; Fiskalpolitik</p>
     <table>
       <tr><th>Zeit</th><th>Block</th></tr>
-      <tr><td>08:15–08:25</td><td>Begrüßung &amp; Rückblick Lektion 2 (VGR, Stabilitätsziele)</td></tr>
+      <tr><td>08:15–08:25</td><td>Begrüßung &amp; Rückblick Lektion 2: Volkswirtschaftliche Gesamtrechnung (VGR), Stabilitätsziele</td></tr>
       <tr><td>08:25–08:50</td><td>Konjunkturzyklus &amp; Indikatoren (kurz)</td></tr>
       <tr><td>08:50–09:45</td><td>Geldpolitik der EZB (Ziel, Instrumente, Transmission)</td></tr>
       <tr><td>09:45–09:55</td><td><strong>Pause</strong></td></tr>
@@ -178,6 +240,14 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <tr><td>10:35–10:40</td><td>Zwischenfazit &amp; Ausblick auf Teil 2</td></tr>
     </table>
     <p class="muted">Teil 2 folgt nach der Pause ab 10:55: Politikfelder, Konzeptionen, Außenwirtschaft &amp; EU + Wiederholung Block 1.1.</p>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Der Vormittag liefert den Werkzeugkasten der Stabilisierungspolitik: erst Konjunktur verstehen, dann Geld- und Finanzpolitik.</p>
+      <ul>
+        <li>Zeitplan transparent machen, Pause um 09:45 fest zusagen</li>
+        <li>Dramaturgie erklären: <strong>Diagnose</strong> (Konjunkturzyklus, Indikatoren) vor <strong>Therapie</strong> (EZB, Fiskalpolitik)</li>
+        <li>Als roten Faden ankündigen: die Zinserhöhungen 2022–2023 gegen die Inflation — daran wird alles konkret</li>
+      </ul>
+    </aside>
   </section>
 
   <!-- 3. Lernziele -->
@@ -192,6 +262,15 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <li><strong>expansive und restriktive Geldpolitik</strong> unterscheiden und Grenzen benennen</li>
       <li>die <strong>antizyklische Fiskalpolitik</strong> und <strong>automatische Stabilisatoren</strong> erklären</li>
     </ul>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Sechs prüfungsrelevante Ziele — zwei Rechenfertigkeiten, der Rest ist Erklärwissen.</p>
+      <ul>
+        <li>Betonen: <strong>Transmissionskette</strong> und die Unterscheidung expansiv/restriktiv sind IHK-Dauerbrenner</li>
+        <li>Bei den Formeln beruhigen: Alles folgt dem Muster „(neu − alt) ÷ alt × 100“</li>
+        <li>Typische IHK-Frage nennen: „Erläutern Sie zwei geldpolitische Instrumente der EZB“</li>
+      </ul>
+      <p><strong>Impuls:</strong> Selbsteinschätzung per Handzeichen: Wer kann die vier Konjunkturphasen jetzt schon aufzählen?</p>
+    </aside>
   </section>
 
   <!-- 4. Konjunkturzyklus -->
@@ -201,8 +280,17 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
     <p class="caption">Die gesamtwirtschaftliche Aktivität schwankt wellenförmig um den Wachstumstrend — vier Phasen, dann beginnt der Zyklus von vorn.</p>
     <div class="merksatz">
       <span class="merksatz-label">📌 Abgrenzung</span>
-      <strong>Konjunkturschwankung</strong> = mehrjährig, wellenförmig. <strong>Saisonschwankung</strong> = regelmäßig, jahreszeitlich (Bau im Winter). Dazu: Zufallsschwankungen (Krisen, Katastrophen).
+      <strong>Konjunkturschwankung</strong> = mehrjährig, wellenförmig. <strong>Saisonschwankung</strong> = regelmäßig, jahreszeitlich (Bau im Winter). Dazu: Zufallsschwankungen (Krisen, Katastrophen). Merke: Sinkt das reale Bruttoinlandsprodukt (BIP) <strong>zwei Quartale in Folge</strong>, spricht man von einer <strong>(technischen) Rezession</strong>.
     </div>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Die Wirtschaft wächst nicht gleichmäßig, sondern in Wellen um den Trend.</p>
+      <ul>
+        <li>Vier Phasen an der Grafik durchgehen: <strong>Aufschwung, Boom, Abschwung, Tief</strong> — Merkmale je Phase (Auslastung, Preise, Beschäftigung)</li>
+        <li>Abgrenzung betonen: Konjunktur- vs. <strong>Saisonschwankung</strong> (Beispiel: Bau im Winter) — beliebte IHK-Zuordnungsaufgabe</li>
+        <li><strong>Technische Rezession</strong> (zwei Minus-Quartale) am Beispiel Deutschland 2023 erzählen</li>
+      </ul>
+      <p><strong>Impuls:</strong> Diskussion: „In welcher Phase befinden wir uns aktuell — und woran machen Sie das fest?“</p>
+    </aside>
   </section>
 
   <!-- 5. Indikatoren -->
@@ -226,6 +314,15 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <span class="merksatz-label">🧠 Eselsbrücke</span>
       <strong>F-P-S</strong>: Früh kündigt an, Präsenz zeigt an, Spät hinkt nach. Die Arbeitslosenquote ist ein <strong>Spät</strong>indikator!
     </div>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Indikatoren unterscheiden sich danach, ob sie die Konjunktur ankündigen, abbilden oder ihr nachhinken.</p>
+      <ul>
+        <li>Eselsbrücke <strong>F-P-S</strong> gemeinsam laut sprechen: Früh kündigt an, Präsenz zeigt an, Spät hinkt nach</li>
+        <li>Stolperstein betonen: Die <strong>Arbeitslosenquote</strong> ist Spätindikator, weil Unternehmen verzögert einstellen und entlassen — Klassiker in IHK-Zuordnungsfragen</li>
+        <li>Beispiel erzählen: der ifo-Geschäftsklimaindex — monatliche Befragung von rund 9.000 Unternehmen, großes Presseecho</li>
+      </ul>
+      <p><strong>Impuls:</strong> Zuruf-Quiz: Baugenehmigungen? Insolvenzen? Kapazitätsauslastung? — jeweils F, P oder S?</p>
+    </aside>
   </section>
 
   <!-- 6. Formeln: Wachstum & Inflation -->
@@ -250,6 +347,15 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <span class="merksatz-label">⚠️ Typische Fehler</span>
       Wachstum immer mit dem <strong>realen</strong> BIP rechnen (sonst misst man Inflation mit). Bei der Inflationsrate durch den <strong>alten Basiswert</strong> (hier 110) teilen — nicht durch 100!
     </div>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Wachstums- und Inflationsrate folgen derselben Grundformel — wer eine beherrscht, kann beide.</p>
+      <ul>
+        <li>Beide Beispiele Schritt für Schritt an der Folie vorrechnen, Teilnehmende mitrechnen lassen</li>
+        <li>Fehlerquellen betonen: mit dem <strong>realen</strong> BIP rechnen und durch den <strong>alten Basiswert</strong> teilen — nicht durch 100</li>
+        <li>Typische IHK-Aufgabe: Zwei Indexwerte gegeben, Inflationsrate berechnen — sichere Punkte!</li>
+      </ul>
+      <p><strong>Impuls:</strong> Zusatzaufgabe in den Raum geben: Index steigt von 105 auf 107,1 — Lösung: 2,0 %.</p>
+    </aside>
   </section>
 
   <!-- 7. EZB Ziel -->
@@ -258,14 +364,23 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
     <ul class="checklist">
       <li>Seit <strong>1999</strong> steuert die <strong>EZB</strong> die Geldmenge in der Eurozone</li>
       <li>Vorrangiges Ziel (Vertrag von Maastricht): <strong>Preisniveaustabilität</strong></li>
-      <li>Erreicht, wenn der <strong>HVPI</strong>-Anstieg mittelfristig <strong>2 %</strong> beträgt (seit 2021 <em>symmetrisches</em> Ziel, zuvor „unter, aber nahe 2 %“) — schließt Inflation <em>und</em> Deflation aus</li>
-      <li><strong>Zwei-Säulen-Strategie</strong>: Preisentwicklung + Geldmengenentwicklung im Blick</li>
+      <li>Erreicht, wenn der Anstieg des <strong>Harmonisierten Verbraucherpreisindex (HVPI)</strong> mittelfristig <strong>2 %</strong> beträgt (seit 2021 <em>symmetrisches</em> Ziel, zuvor „unter, aber nahe 2 %“) — schließt Inflation <em>und</em> Deflation aus</li>
+      <li><strong>Zwei-Säulen-Strategie</strong>: Preisentwicklung + Geldmengenentwicklung im Blick (seit der Strategieüberprüfung 2021 weiterentwickelt zum integrierten Analyserahmen: wirtschaftliche Analyse + monetäre und finanzielle Analyse)</li>
       <li>Banken brauchen Zentralbankgeld (<strong>Refinanzierung</strong>) — hier setzen die Instrumente an</li>
     </ul>
     <div class="merksatz">
       <span class="merksatz-label">📌 Merke</span>
       Zinsen sinken → Kreditnachfrage steigt → Geldmenge steigt. Zinsen steigen → Kreditnachfrage sinkt → Geldmenge sinkt.
     </div>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Vorrangiges Ziel der EZB ist Preisniveaustabilität — definiert als mittelfristig 2 % HVPI-Anstieg.</p>
+      <ul>
+        <li>Aktualität betonen: Seit der Strategieüberprüfung <strong>2021</strong> gilt das <strong>symmetrische 2-%-Ziel</strong> — Abweichungen nach oben und unten sind gleichermaßen unerwünscht (vorher „unter, aber nahe 2 %“)</li>
+        <li>Ebenfalls seit 2021: Aus der Zwei-Säulen-Strategie wurde der <strong>integrierte Analyserahmen</strong> (wirtschaftliche + monetäre/finanzielle Analyse)</li>
+        <li>Die Merkkette Zins → Kreditnachfrage → Geldmenge zweimal wiederholen — Grundlage für alles Folgende</li>
+        <li>IHK-Frage: „Warum ist auch <strong>Deflation</strong> gefährlich?“ (Kaufzurückhaltung, Abwärtsspirale)</li>
+      </ul>
+    </aside>
   </section>
 
   <!-- 8. Instrumente -->
@@ -286,6 +401,15 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       </div>
     </div>
     <p class="muted">Prüfungsklassiker: die drei Leitzinsen = Hauptrefinanzierungssatz + Spitzenrefinanzierungs- und Einlagesatz.</p>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Drei Instrumente steuern die Bankenliquidität — der Haupttender ist das wichtigste.</p>
+      <ul>
+        <li>Den <strong>Zinskorridor</strong> als Bild erklären: Einlagefazilität = Boden, Spitzenrefinanzierung = Decke, Hauptrefinanzierungssatz dazwischen</li>
+        <li>Die <strong>Mindestreserve</strong> als Mengeninstrument abgrenzen: Satz rauf = restriktiv, Satz runter = expansiv</li>
+        <li>IHK-Prüfungsklassiker: die <strong>drei Leitzinsen</strong> nennen und richtig zuordnen können</li>
+      </ul>
+      <p><strong>Impuls:</strong> Frage: „Welcher Zins ist gemeint, wenn es in den Nachrichten heißt: ‚Die EZB erhöht die Zinsen‘?“</p>
+    </aside>
   </section>
 
   <!-- 9. Transmission -->
@@ -293,6 +417,15 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
     <h2>Was passiert bei einer Zinserhöhung?</h2>
     <div class="figure" id="fig-transmission"></div>
     <p class="caption">Die Transmissionskette der restriktiven Geldpolitik: von der Leitzinserhöhung bis zur Inflationsdämpfung (vgl. Abb. 3.9 im Textband).</p>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Der Leitzins wirkt nicht direkt auf die Preise, sondern über eine mehrstufige Kette.</p>
+      <ul>
+        <li>Kette an der Grafik langsam durchsprechen: Leitzins ↑ → Refinanzierung teurer → Kreditzinsen ↑ → Investitionen und Konsum ↓ → Nachfrage ↓ → Preisauftrieb ↓</li>
+        <li>Beispiel 2022/23 erzählen: zehn Zinsschritte gegen die Energiepreis-Inflation — Wirkung kommt mit <strong>Verzögerung</strong> (Time-Lag)</li>
+        <li>IHK-Frage: Transmissionskette als Schaubild oder Lückentext vervollständigen (vgl. Abb. 3.9)</li>
+      </ul>
+      <p><strong>Impuls:</strong> Die Kette rückwärts für eine Zins<strong>senkung</strong> formulieren lassen.</p>
+    </aside>
   </section>
 
   <!-- 10. Expansiv vs. restriktiv -->
@@ -312,6 +445,15 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <span class="merksatz-label">🧠 Eselsbrücke</span>
       „Zins runter — Wirtschaft munter. Zins rauf — Preisbremse drauf.“
     </div>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Die Richtung der Geldpolitik folgt der Konjunkturlage — gegensteuern, nicht verstärken.</p>
+      <ul>
+        <li>Zuordnung betonen: Rezession/Deflation → <strong>expansiv</strong>; Inflation/Überhitzung → <strong>restriktiv</strong></li>
+        <li>Eselsbrücke gemeinsam sprechen: „Zins runter — Wirtschaft munter …“ — bleibt hängen</li>
+        <li>Beispiele erzählen: Null- und Negativzinsphase bis 2022 (expansiv) vs. Zinserhöhungen ab Mitte 2022 (restriktiv)</li>
+      </ul>
+      <p><strong>Impuls:</strong> Mini-Fall: „Inflation bei 6 %, Wirtschaft läuft heiß — was tut die EZB und über welche Kette wirkt das?“</p>
+    </aside>
   </section>
 
   <!-- 11. Grenzen -->
@@ -325,6 +467,15 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <li>EZB braucht eine <strong>einvernehmliche Fiskalpolitik</strong> — schuldenfinanzierte Staatsausgaben konterkarieren die Inflationsbekämpfung</li>
     </ul>
     <p class="muted">Nebenwirkungen der Nullzinspolitik: keine Sparzinsen, „Strafzinsen“, Probleme für Sozialversicherungen und Fonds.</p>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Geldpolitik ist mächtig, aber kein Allheilmittel — sie braucht Mitspieler.</p>
+      <ul>
+        <li>Betonen: Banken geben Zinsänderungen nur <strong>verzögert</strong> weiter; bei Pessimismus nützen selbst Nullzinsen nichts (Investitionszurückhaltung)</li>
+        <li>Hohe <strong>Lohnabschlüsse</strong> und schuldenfinanzierte Staatsausgaben können die EZB konterkarieren — Brücke zur Finanzpolitik gleich</li>
+        <li>Nebenwirkungen anschaulich machen: Sparer ohne Zinsen, Probleme für Lebensversicherer und Altersvorsorge</li>
+        <li>IHK-Frage: „Nennen und erläutern Sie zwei Grenzen der Geldpolitik“</li>
+      </ul>
+    </aside>
   </section>
 
   <!-- 12. Finanzpolitik -->
@@ -341,10 +492,19 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       </div>
       <div class="card rose">
         <div class="card-title">Stabilisieren</div>
-        <p style="font-size: 1rem;">Konjunktursteuerung im Sinne des <strong>Stabilitätsgesetzes (1967)</strong> — antizyklisch nach <strong>Keynes</strong></p>
+        <p style="font-size: 1rem;">Konjunktursteuerung im Sinne des <strong>Stabilitätsgesetzes (StabG, 1967)</strong> — antizyklisch nach <strong>Keynes</strong></p>
       </div>
     </div>
     <p>Grenzen der Verschuldung: <strong>Schuldenbremse</strong> (Art. 109 GG, 2009) und europäischer Fiskalpakt (2013).</p>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Der Staat hat drei finanzpolitische Aufgaben — heute steht das Stabilisieren im Mittelpunkt.</p>
+      <ul>
+        <li>Dreiklang durchgehen: Einnahmen beschaffen, umverteilen (<strong>Distribution</strong>), stabilisieren — Stabilisierung nach <strong>Keynes</strong> im Sinne des StabG 1967</li>
+        <li>Beispiel: Die progressive Einkommensteuer wirkt zugleich umverteilend und stabilisierend</li>
+        <li>Grenzen betonen: <strong>Schuldenbremse</strong> im Grundgesetz (2009) und europäische Fiskalregeln</li>
+      </ul>
+      <p><strong>Impuls:</strong> Frage in den Raum: „Warum darf sich der Staat nicht unbegrenzt verschulden?“ (Zinslast, künftige Generationen)</p>
+    </aside>
   </section>
 
   <!-- 13. Antizyklische Fiskalpolitik -->
@@ -360,6 +520,15 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <span class="merksatz-label">💡 Beispiel + Merke</span>
       Konjunkturpakete I/II (2008/09): Infrastruktur, Abwrackprämie. <strong>Automatische Stabilisatoren</strong> wirken ohne Beschluss: progressive Einkommensteuer &amp; Arbeitslosengeld.
     </div>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Antizyklisch heißt gegen den Strom: im Boom bremsen, in der Rezession Gas geben.</p>
+      <ul>
+        <li>Tabelle zeilenweise durchgehen; <strong>Deficit Spending</strong> als Keynes-Kernbegriff markieren</li>
+        <li>Beispiel erzählen: Konjunkturpakete I/II 2008/09 mit Abwrackprämie — für alle greifbar</li>
+        <li>Abgrenzung betonen: <strong>Automatische Stabilisatoren</strong> wirken ohne politischen Beschluss (Steuerprogression, Arbeitslosengeld) — beliebte IHK-Abgrenzungsfrage zur diskretionären Politik</li>
+      </ul>
+      <p><strong>Impuls:</strong> Diskussion: „Warum fällt das Sparen im Boom politisch so schwer?“ (Wahlgeschenke, Zeitinkonsistenz)</p>
+    </aside>
   </section>
 
   <!-- 14. Zwischenfazit & Ausblick Teil 2 -->
@@ -375,6 +544,15 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
       <span class="merksatz-label">🔭 Teil 2 ab 10:55</span>
       Wachstums-, Tarif-, Arbeitsmarkt- &amp; Umweltpolitik, nachfrage- vs. angebotsorientierte Konzeptionen, Außenwirtschaft &amp; EU — und die große Wiederholung des Blocks 1.1. Kurze Pause, dann geht es weiter!
     </div>
+    <aside class="notes">
+      <p><strong>Kernbotschaft:</strong> Vier Kernaussagen sichern den Vormittag — dann kurze Pause.</p>
+      <ul>
+        <li>Die vier Punkte nicht selbst vorlesen, sondern von Teilnehmenden in eigenen Worten wiederholen lassen (aktive Sicherung)</li>
+        <li>Betonen: <strong>Transmissionskette</strong> und die beiden <strong>Formeln</strong> sind die wahrscheinlichsten Prüfungsaufgaben aus Teil 1</li>
+        <li>Ausblick auf Teil 2 geben: Politikfelder, Keynes vs. Angebotstheorie, Außenwirtschaft &amp; EU plus große Wiederholung des Blocks 1.1</li>
+        <li>Orga: Pause bis 10:55, Handout Teil 2 bereitlegen</li>
+      </ul>
+    </aside>
   </section>
 
 
@@ -382,10 +560,26 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
 
 <div class="slide-num">© Can Siebert · 2026 · <span id="slideCount">1 / 26</span></div>
 <nav class="nav">
+  <button onclick="openReferent()" title="Referentenansicht öffnen (N) — Notizfenster, für Zuhörer unsichtbar" style="font-size:1rem">🗒</button>
   <button onclick="prev()" title="Zurück (←)">←</button>
   <span class="nav-counter"><span id="slideNum">1</span></span>
   <button onclick="next()" title="Weiter (→)">→</button>
 </nav>
+
+<div id="refUI">
+  <div class="ref-head">
+    <span class="ref-title" id="refTitle"></span>
+    <span class="ref-counter" id="refCounter">1</span>
+    <span class="ref-timer" id="refTimer" title="Klick: Timer zurücksetzen">00:00</span>
+    <span class="ref-clock" id="refClock"></span>
+  </div>
+  <div class="ref-left">
+    <div class="ref-mini" id="miniCurrent"><span class="mini-label">Aktuelle Folie</span><div class="mini-stage" id="stageCurrent"></div></div>
+    <div class="ref-mini next" id="miniNext"><span class="mini-label">Nächste Folie</span><div class="mini-stage" id="stageNext"></div></div>
+  </div>
+  <div class="ref-notes"><h4>🗒 Sprechnotizen</h4><div id="refNotes"></div></div>
+  <div class="ref-hint">←/→ blättert in beiden Fenstern synchron · Dieses Fenster beim Teilen NICHT auswählen</div>
+</div>
 
 <!-- Rough.js für handgezeichnete Diagramme -->
 <script src="https://cdn.jsdelivr.net/npm/roughjs@4.6.6/bundled/rough.min.js"></script>
@@ -393,12 +587,33 @@ td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--bfw-border); }
 const slides = document.querySelectorAll('.slide');
 let current = 0;
 
-function show(i) {
+/* ---- Referentenansicht & Fenster-Synchronisation ---- */
+const isRef = new URLSearchParams(location.search).has('ref');
+const syncKey = 'praes-sync::' + location.pathname.split('/').pop();
+const bc = ('BroadcastChannel' in window) ? new BroadcastChannel(syncKey) : null;
+
+function broadcast(n) {
+  if (bc) bc.postMessage(n);
+  try { localStorage.setItem(syncKey, JSON.stringify({ n, t: Date.now() })); } catch (e) {}
+}
+if (bc) bc.onmessage = (e) => show(e.data, true);
+window.addEventListener('storage', (e) => {
+  if (e.key === syncKey && e.newValue) show(JSON.parse(e.newValue).n, true);
+});
+
+function openReferent() {
+  const url = location.pathname + (location.search ? location.search + '&' : '?') + 'ref=1';
+  window.open(url, 'praesReferent', 'width=1280,height=800');
+}
+
+function show(i, fromRemote) {
   slides.forEach(s => s.classList.remove('active'));
   current = Math.max(0, Math.min(i, slides.length - 1));
   slides[current].classList.add('active');
   document.getElementById('slideNum').textContent = current + 1;
   document.getElementById('slideCount').textContent = `${current + 1} / ${slides.length}`;
+  if (isRef) updateRef();
+  if (!fromRemote) broadcast(current);
 }
 function next() { show(current + 1); }
 function prev() { show(current - 1); }
@@ -407,7 +622,55 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowLeft') prev();
   if (e.key === 'Home') show(0);
   if (e.key === 'End') show(slides.length - 1);
+  if ((e.key === 'n' || e.key === 'N') && !isRef) openReferent();
 });
+
+/* Referentenfenster: Mini-Folien, Notizen, Uhr, Timer */
+function fitStage(stageId, boxId) {
+  const box = document.getElementById(boxId);
+  const stage = document.getElementById(stageId);
+  stage.style.transform = `scale(${box.clientWidth / 1280})`;
+}
+function cloneSlideInto(stageId, idx) {
+  const stage = document.getElementById(stageId);
+  stage.innerHTML = '';
+  if (idx >= slides.length) {
+    stage.innerHTML = '<div style="padding:4rem;font-size:2rem;color:#94A3B8">— Ende der Präsentation —</div>';
+    return;
+  }
+  const c = slides[idx].cloneNode(true);
+  c.classList.add('active');
+  c.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+  stage.appendChild(c);
+}
+let timerStart = Date.now();
+function updateRef() {
+  document.getElementById('refCounter').textContent = `${current + 1} / ${slides.length}`;
+  cloneSlideInto('stageCurrent', current);
+  cloneSlideInto('stageNext', current + 1);
+  fitStage('stageCurrent', 'miniCurrent');
+  fitStage('stageNext', 'miniNext');
+  const notes = slides[current].querySelector('.notes');
+  document.getElementById('refNotes').innerHTML = notes
+    ? notes.innerHTML
+    : '<p class="no-notes">Keine Notizen zu dieser Folie.</p>';
+  if (notes) document.getElementById('refNotes').closest('.ref-notes').scrollTop = 0;
+}
+if (isRef) {
+  document.body.classList.add('ref-mode');
+  document.getElementById('refTitle').textContent = document.title;
+  setInterval(() => {
+    document.getElementById('refClock').textContent =
+      new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+    const s = Math.floor((Date.now() - timerStart) / 1000);
+    document.getElementById('refTimer').textContent =
+      `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+  }, 1000);
+  document.getElementById('refTimer').onclick = () => { timerStart = Date.now(); };
+  window.addEventListener('resize', () => { fitStage('stageCurrent', 'miniCurrent'); fitStage('stageNext', 'miniNext'); });
+  // Figuren (Rough.js) brauchen einen Moment — Mini-Ansicht erst nach Load aufbauen
+  window.addEventListener('load', () => setTimeout(updateRef, 150));
+}
 
 // Rough.js-Skizzen
 function makeRough(svgEl, fn) {
