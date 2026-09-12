@@ -13,11 +13,11 @@ Kurs- und Materialorganisation für den Qualifikationsbereich **1. Volks- und Be
 | Lektion | Datum | Thema | Rahmenplan |
 |---------|-------|-------|------------|
 | VWL 1 | Mi 19.08.2026, 18:00–21:15 | Grundbegriffe & Preisbildung am Markt | 1.1.1 |
-| VWL 2 | Sa 22.08.2026, 08:15–13:15 | Wettbewerbspolitik, Staatseingriffe & VGR | 1.1.1–1.1.3 |
-| VWL 3 | Sa 29.08.2026, 08:15–13:15 | Konjunktur, Wirtschaftspolitik & Außenwirtschaft | 1.1.3–1.1.4 |
-| BWL 1 | Sa 05.09.2026, 08:15–13:15 | Betriebliche Funktionen I: Produktion, Logistik, Marketing | 1.2.1 |
-| BWL 2 | Sa 12.09.2026, 08:15–13:15 | Betriebliche Funktionen II: ReWe, Finanzierung, Controlling, Personal | 1.2.1–1.2.2 |
-| BWL 3 | Sa 26.09.2026, 08:15–13:15 | Existenzgründung & Unternehmensrechtsformen | 1.3 |
+| VWL 2 | Sa 12.09.2026, 08:15–13:15 | Wettbewerbspolitik, Staatseingriffe & VGR | 1.1.1–1.1.3 |
+| VWL 3 | Sa 26.09.2026, 08:15–13:15 | Konjunktur, Wirtschaftspolitik & Außenwirtschaft | 1.1.3–1.1.4 |
+| BWL 1 | Sa 24.10.2026, 08:15–13:15 | Betriebliche Funktionen I: Produktion, Logistik, Marketing | 1.2.1 |
+| BWL 2 | Sa 07.11.2026, 08:15–13:15 | Betriebliche Funktionen II: ReWe, Finanzierung, Controlling, Personal | 1.2.1–1.2.2 |
+| BWL 3 | Sa 14.11.2026, 08:15–13:15 | Existenzgründung & Unternehmensrechtsformen | 1.3 |
 | BWL 4 | Sa 27.02.2027, 08:15–13:15 | Unternehmenszusammenschlüsse | 1.4 |
 
 ## Material pro Lektion

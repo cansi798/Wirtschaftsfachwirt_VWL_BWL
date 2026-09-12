@@ -27,7 +27,7 @@ Die Teilnehmenden können am Ende der Lektion …
 | 19:55–20:35 | Block 3: Nachfrage & Angebot | Bestimmungsfaktoren, Nachfrage-/Angebotskurve, Verschiebung vs. Bewegung, Preiselastizität | Präsentation + Skizzenübung |
 | 20:35–20:45 | **Pause** | | |
 | 20:45–21:05 | Block 4: Preisbildung | Marktgleichgewicht, Käufer-/Verkäufermarkt, Preismechanismus, Konsumenten-/Produzentenrente, Preisfunktionen | Präsentation + Abb. 1.3/1.4 |
-| 21:05–21:15 | Abschluss | Zusammenfassung, Hinweis auf Selbstlernmaterial (Quiz & Karteikarten), Ausblick Lektion 2 (22.08.: Wettbewerbspolitik, Staatseingriffe, VGR) | Plenum |
+| 21:05–21:15 | Abschluss | Zusammenfassung, Hinweis auf Selbstlernmaterial (Quiz & Karteikarten), Ausblick Lektion 2 (12.09.: Wettbewerbspolitik, Staatseingriffe, VGR) | Plenum |
 
 ## Material
 

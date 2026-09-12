@@ -6,7 +6,7 @@
 **Rahmenplan:** 1.4 Unternehmenszusammenschlüsse
 **Literatur:** Übungsband Betriebswirtschaft, Kap. Zusammenschlüsse (mit Lösungsteil; ergänzende Übungen) · *Textband-Auszug wird nachgereicht* — bis dahin: die beiden Teil-Handouts als Skriptersatz
 
-> **Hinweis:** Vor diesem Termin liegen rund 5 Monate Kurspause (letzter Termin: 26.09., Rechtsformen).
+> **Hinweis:** Vor diesem Termin liegen rund 5 Monate Kurspause (letzter Termin: 14.11., Rechtsformen).
 > Session 1 beginnt daher mit **Block 0 (Reaktivierung Rechtsformen)**, da Zusammenschlüsse
 > unmittelbar auf Lektion 3 aufbauen (Konzern = rechtlich selbstständige Gesellschaften, Fusion = Verschmelzung
 > von Rechtsträgern, Konsortium = i. d. R. GbR).
