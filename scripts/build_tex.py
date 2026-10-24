@@ -16,7 +16,7 @@ TEMPLATES = ROOT / "templates"
 KURS_DIRS = [ROOT / "VWL", ROOT / "BWL"]
 
 
-def build(tex_file: Path, engine: str = "xelatex") -> bool:
+def build(tex_file: Path, engine: str = "xelatex", runs: int = 2) -> bool:
     tex_file = tex_file.resolve()
     workdir = tex_file.parent
     print(f"  bauen: {tex_file.relative_to(ROOT)}")
@@ -25,8 +25,8 @@ def build(tex_file: Path, engine: str = "xelatex") -> bool:
     sep = ";" if os.name == "nt" else ":"
     env["TEXINPUTS"] = f".{sep}{TEMPLATES}{sep}{env.get('TEXINPUTS', '')}"
 
-    # Zwei Läufe für Inhaltsverzeichnis/Refs
-    for run in (1, 2):
+    # Mehrere Läufe für Inhaltsverzeichnis/Refs (lange Dokumente: 3, weil das TOC die Seitenzahlen verschiebt)
+    for run in range(1, runs + 1):
         result = subprocess.run(
             [engine, "-interaction=nonstopmode", "-halt-on-error", tex_file.name],
             cwd=str(workdir), env=env, capture_output=True, text=True
@@ -49,7 +49,9 @@ def main():
     if len(sys.argv) > 1:
         files = [Path(sys.argv[1])]
     else:
-        files = sorted(f for d in KURS_DIRS if d.is_dir() for f in d.rglob("*.tex"))
+        # Nur eigenständige Dokumente — Fragmente (z. B. Gesamtskript/aufgaben-l1.tex) werden per \input eingebunden
+        files = sorted(f for d in KURS_DIRS if d.is_dir() for f in d.rglob("*.tex")
+                       if "\\documentclass" in f.read_text(encoding="utf-8"))
     if not files:
         print("Keine .tex-Dateien gefunden.")
         return 1
