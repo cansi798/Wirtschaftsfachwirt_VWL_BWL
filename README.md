@@ -4,7 +4,7 @@ Kurs- und Materialorganisation für den Qualifikationsbereich **1. Volks- und Be
 (Wirtschaftsbezogene Qualifikationen, Rahmenplan DIHK).
 
 🌐 **Live über GitHub Pages:** https://cansi798.github.io/Wirtschaftsfachwirt_VWL_BWL/
-(Zugangscodes: `vwl` für den VWL-Kursbereich, `bwl` für den BWL-Kursbereich)
+(Zugangscode: `wak` – öffnet beide Kursbereiche VWL und BWL)
 
 ## Kurs
 
@@ -43,7 +43,7 @@ schriftlichen Beantworten mit Lösungshinweis-Prüfung:
 
 ```
 .
-├── index.html            Kursauswahl mit Zugangscode-Gate (vwl / bwl)
+├── index.html            Kursauswahl mit Zugangscode-Gate (wak → VWL + BWL)
 ├── kurs-vwl.html         Dashboard VWL (3 Lektionen)
 ├── kurs-bwl.html         Dashboard BWL (4 Lektionen)
 ├── VWL/Lektion-N_…/      Material pro VWL-Lektion

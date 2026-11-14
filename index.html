@@ -168,17 +168,17 @@ footer a:hover { text-decoration: underline; }
         </svg>
       </div>
       <h1>Wirtschaftsfachwirt — Lernplattform</h1>
-      <p>Volks- und Betriebswirtschaft (Wirtschaftsbezogene Qualifikationen)<br>Geben Sie Ihren Zugangscode ein, um zu Ihrem Kursbereich zu gelangen.</p>
+      <p>Volks- und Betriebswirtschaft (Wirtschaftsbezogene Qualifikationen)<br>Geben Sie Ihren Zugangscode ein, um zu den Kursbereichen VWL und BWL zu gelangen.</p>
     </div>
 
     <div class="gate" id="gate">
       <p>Bitte geben Sie Ihren Kurs-Zugangscode ein.</p>
       <form class="gate-form" id="gateForm" autocomplete="off">
         <input type="password" id="gateInput" placeholder="Zugangscode" autocomplete="off" required autofocus>
-        <button type="submit">Zum Kurs →</button>
+        <button type="submit">Zu den Kursen →</button>
         <div class="gate-error" id="gateError"></div>
       </form>
-      <div class="gate-hint">Ihr Code öffnet direkt Ihren Kursbereich.</div>
+      <div class="gate-hint">Ihr Code öffnet beide Kursbereiche: VWL und BWL.</div>
     </div>
 
     <div class="kurs-grid" id="kursGrid" style="display:none;">
@@ -210,34 +210,39 @@ footer a:hover { text-decoration: underline; }
 </footer>
 
 <script>
-  // Der eingegebene Zugangscode wählt den Kursbereich:
-  //   "vwl" -> Volkswirtschaftliche Grundlagen
-  //   "bwl" -> Betriebswirtschaftliche Grundlagen
-  // Der passende Kurs wird zugleich freigeschaltet (kein zweiter Code nötig).
-  const KURSE = {
-    'vwl': { card: 'card-vwl', storageKey: 'wfw_vwl_unlocked' },
-    'bwl': { card: 'card-bwl', storageKey: 'wfw_bwl_unlocked' }
-  };
+  // Gemeinsamer Zugangscode "wak" zeigt beide Kursbereiche (VWL + BWL)
+  // und schaltet beide Kurse zugleich frei (kein zweiter Code nötig).
+  const ZUGANGSCODE = 'wak';
+  const KURSE = [
+    { card: 'card-vwl', storageKey: 'wfw_vwl_unlocked' },
+    { card: 'card-bwl', storageKey: 'wfw_bwl_unlocked' }
+  ];
   const gate  = document.getElementById('gate');
   const grid  = document.getElementById('kursGrid');
   const form  = document.getElementById('gateForm');
   const input = document.getElementById('gateInput');
   const error = document.getElementById('gateError');
 
-  function kursZeigen(key) {
-    const kurs = KURSE[key];
-    localStorage.setItem(kurs.storageKey, '1');   // Kurs vorab freischalten
+  function kurseZeigen() {
+    KURSE.forEach(function (kurs) {
+      try { localStorage.setItem(kurs.storageKey, '1'); } catch (e) {}
+      document.getElementById(kurs.card).style.display = 'block';
+    });
     gate.style.display = 'none';
     grid.style.display = 'grid';
-    document.getElementById(kurs.card).style.display = 'block';
   }
+
+  // Schon freigeschaltet (z. B. Rückkehr über „← Kursauswahl“)? Dann direkt beide Kacheln zeigen.
+  try {
+    if (localStorage.getItem('wfw_vwl_unlocked') === '1' && localStorage.getItem('wfw_bwl_unlocked') === '1') kurseZeigen();
+  } catch (e) {}
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     const code = input.value.trim().toLowerCase();
-    if (KURSE[code]) {
+    if (code === ZUGANGSCODE) {
       error.textContent = '';
-      kursZeigen(code);
+      kurseZeigen();
     } else {
       error.textContent = 'Falscher Zugangscode. Bitte erneut versuchen.';
       input.value = '';

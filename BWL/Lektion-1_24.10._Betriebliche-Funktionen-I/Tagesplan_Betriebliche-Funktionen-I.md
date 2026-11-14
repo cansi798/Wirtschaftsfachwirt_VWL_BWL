@@ -37,7 +37,7 @@ Die Lektion ist in zwei Sessions geteilt — mit jeweils eigenem Foliensatz, Han
 
 | Zeit | Block | Inhalt | Methode |
 |------|-------|--------|---------|
-| 08:15–08:35 | Begrüßung & Einstieg | Rückblick VWL-Block, Start BWL (Zugangscode `bwl`), funktionale Gliederung des Betriebs, Zielsystem (Sach-/Formalziele, Zielbeziehungen) | Plenum + Präsentation (Teil 1) |
+| 08:15–08:35 | Begrüßung & Einstieg | Rückblick VWL-Block, Start BWL (Zugangscode `wak`), funktionale Gliederung des Betriebs, Zielsystem (Sach-/Formalziele, Zielbeziehungen) | Plenum + Präsentation (Teil 1) |
 | 08:35–09:35 | Block 1: Produktion | Produktionsfaktoren nach Gutenberg (Elementarfaktoren, dispositiver Faktor), Abgrenzung VWL/BWL, Roh-/Hilfs-/Betriebsstoffe, Fertigungstypen, Produktionsplanung (PPS), Kennzahlen Wirtschaftlichkeit/Produktivität | Präsentation + Prüfungsaufgaben-Training (interaktiv, mit Lösungshinweisen) |
 | 09:35–09:50 | **Pause** | | |
 | 09:50–10:40 | Block 2: Logistik | Logistikbegriff & 6 R, Beschaffungs-/Produktions-/Distributions-/Entsorgungslogistik, Lagerfunktionen & Lagerkennzahlen, Supply Chain Management, Zielbereiche der Logistik; Zusammenfassung Teil 1 | Präsentation + Prüfungsaufgaben-Training (interaktiv, mit Lösungshinweisen) |
