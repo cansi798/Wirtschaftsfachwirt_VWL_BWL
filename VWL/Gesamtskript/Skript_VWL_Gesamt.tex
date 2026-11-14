@@ -1094,7 +1094,7 @@ Pro-Kopf-Einkommen, Lorenzkurve).
 \qquad
 \text{Gewinnquote in \%} = \frac{\text{Unternehmens- und Vermögenseinkommen}}{\text{Volkseinkommen}} \cdot 100
 \]
-2018 betrug die Lohnquote rund 69~\%, die Gewinnquote rund 31~\%. Beide Quoten ergänzen
+2025 betrug die Lohnquote rund 73,5~\%, die Gewinnquote rund 26,5~\%. Beide Quoten ergänzen
 sich stets zu 100~\%.
 \end{merksatz}
 
@@ -1562,7 +1562,9 @@ sie, fließt Geld zurück (Geldvernichtung, Zinsen steigen, Nachfrage sinkt). Vi
   \item \textbf{Hauptrefinanzierungsgeschäfte (Haupttender):} befristete Transaktionen im
     \emph{wöchentlichen} Rhythmus mit einer Laufzeit von \emph{einer Woche}
     (Pensionsgeschäfte bzw. Kredite gegen Verpfändung von Wertpapieren). Der hierfür
-    festgelegte Zinssatz ist der \textbf{wichtigste Leitzins} im Euroraum.
+    festgelegte Zinssatz galt lange als der \textbf{wichtigste Leitzins} im Euroraum
+    (klassischer Lehrbuchstand; seit 2024 steuert die EZB ihren Kurs über den
+    Einlagesatz, siehe Instrument~2).
   \item \textbf{Längerfristige Refinanzierungsgeschäfte (Basistender):} gleiche Technik,
     ursprünglich monatlich mit \emph{drei Monaten} Laufzeit (heute auch länger).
   \item \textbf{Feinsteuerungsoperationen:} gleichen kurzfristige Schwankungen der
@@ -1588,7 +1590,10 @@ $= 50 \div 200 = 0{,}25 = \textbf{25~\%}$.\\
 \textbf{Schritt 2:} Eine Bank, die 8~Mrd.~Euro geboten hat, erhält
 $8 \times 0{,}25 = \textbf{2~Mrd.~Euro}$ Zentralbankgeld.\\[0.3em]
 \emph{Merke:} Beim Mengentender wird bei Überzeichnung \emph{anteilig} zugeteilt ---
-beim Zinstender entscheidet dagegen die Höhe des gebotenen Zinssatzes.
+beim Zinstender entscheidet dagegen die Höhe des gebotenen Zinssatzes.\\[0.3em]
+\emph{Praxis heute:} Seit 2008 führt die EZB den Haupttender als \textbf{Festzinstender
+mit Vollzuteilung} durch --- sie teilt derzeit alle Gebote voll zu. Die Repartierung ist
+deshalb klassisches Lehrbuchwissen, das Sie für die Prüfung trotzdem beherrschen müssen.
 \end{beispiel}
 
 \subsubsection{Instrument 2: Ständige Fazilitäten}
@@ -1604,8 +1609,13 @@ Ausschreibung, Laufzeit: ein Geschäftstag):
     Tag bei der EZB an --- ihr Zinssatz bildet die \emph{Untergrenze}.
 \end{itemize}
 
-Beide Sätze bilden zusammen den \textbf{Zinskorridor}, in dessen Mitte sich der
-Hauptrefinanzierungssatz bewegt. Diese \textbf{drei Leitzinsen} (Einlagefazilität,
+Beide Sätze bilden zusammen den \textbf{Zinskorridor}; der Hauptrefinanzierungssatz liegt
+dazwischen (klassisch: in der Mitte). Seit dem 18.~September 2024 liegt er nur noch
+0,15~Prozentpunkte über dem Einlagesatz, die Spitzenrefinanzierungsfazilität
+0,25~Prozentpunkte über dem Hauptrefinanzierungssatz. Weil die Banken reichlich
+Liquidität halten, liegt der Geldmarktzins nahe am Einlagesatz. Deshalb steuert die EZB
+ihren geldpolitischen Kurs seit 2024 über den \textbf{Einlagesatz} --- er ist heute der
+maßgebliche Leitzins. Diese \textbf{drei Leitzinsen} (Einlagefazilität,
 Hauptrefinanzierungssatz, Spitzenrefinanzierungsfazilität) müssen Sie für die Prüfung
 nennen können.
 
@@ -1617,18 +1627,18 @@ nennen können.
   \draw[line width=1.2pt, bfwWarn] (0,2.6) -- (11.8,2.6);
   \node[anchor=south west, text=bfwWarn, font=\footnotesize\bfseries] at (0,2.68)
     {Spitzenrefinanzierungsfazilität = Obergrenze (Banken leihen über Nacht)};
-  % Mitte
-  \draw[line width=1.2pt, bfwPrimaryDark] (0,1.3) -- (11.8,1.3);
-  \node[anchor=south west, text=bfwPrimaryDark, font=\footnotesize\bfseries] at (0,1.38)
-    {Hauptrefinanzierungssatz = wichtigster Leitzins (Haupttender, 1 Woche)};
+  % Hauptrefinanzierungssatz: seit 2024 nur 0,15 Pp. über der Untergrenze (Korridor 0,40 Pp.)
+  \draw[line width=1.2pt, bfwPrimaryDark] (0,0.975) -- (11.8,0.975);
+  \node[anchor=south west, text=bfwPrimaryDark, font=\footnotesize\bfseries] at (0,1.055)
+    {Hauptrefinanzierungssatz (Haupttender, 1 Woche; 0,15 Pp. über Einlagesatz)};
   % Untergrenze
   \draw[line width=1.2pt, bfwAccent!85!black] (0,0) -- (11.8,0);
   \node[anchor=north west, text=bfwAccent!85!black, font=\footnotesize\bfseries] at (0,-0.1)
-    {Einlagefazilität = Untergrenze (Banken legen über Nacht an)};
+    {Einlagefazilität = Untergrenze = maßgeblicher Leitzins (seit 2024)};
   % Geldmarktzins als Schlangenlinie im Korridor
   \draw[thick, bfwInkSoft, decorate, decoration={snake, amplitude=1mm, segment length=10mm}]
-    (0.4,0.72) -- (8.4,0.72);
-  \node[anchor=west, text=bfwInkSoft, font=\scriptsize] at (8.55,0.72) {Geldmarktzins};
+    (0.4,0.35) -- (8.4,0.35);
+  \node[anchor=west, text=bfwInkSoft, font=\scriptsize] at (8.55,0.35) {Geldmarktzins};
   % Doppelpfeil Zinskorridor
   \draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}, thick, bfwPrimaryDark]
     (11.35,0.08) -- (11.35,2.52);
@@ -1653,7 +1663,9 @@ den Banken Liquidität (weniger Kreditvergabe möglich), eine \emph{Senkung} wir
     Geldmenge steigen $\Rightarrow$ Investitionen und Konsum steigen $\Rightarrow$ BIP
     steigt, Arbeitslosigkeit sinkt --- Mittel gegen Rezession und Deflation.
   \item \textbf{Restriktive Geldpolitik}: Leitzinsen erhöhen, Liquidität verknappen
-    (z.\,B. Mindestreserve erhöhen, Zuteilungsvolumen verringern) $\Rightarrow$ Zinsniveau
+    (z.\,B. Mindestreserve erhöhen, Zuteilungsvolumen verringern --- Letzteres ist
+    Lehrbuchwissen: Seit 2008 teilt die EZB im Haupttender als Festzinstender mit
+    Vollzuteilung derzeit alle Gebote voll zu) $\Rightarrow$ Zinsniveau
     steigt, Sparneigung nimmt zu $\Rightarrow$ kreditfinanzierte Investitionen und
     Konsumentenkredite gehen zurück $\Rightarrow$ gesamtwirtschaftliche Nachfrage sinkt
     $\Rightarrow$ Preisanstieg wird verringert, Konjunktur gedämpft --- Mittel gegen
@@ -2015,7 +2027,8 @@ Regionalagenturen, Arbeitsagenturen und Jobcentern.
 \begin{itemize}
   \item \textbf{Passive Arbeitsmarktpolitik:} mildert die wirtschaftlichen Folgen
     eingetretener oder drohender Arbeitslosigkeit --- \emph{Lohnersatzleistungen} wie
-    Arbeitslosengeld I und Bürgergeld (bis 2022: ALG II), Insolvenzgeld, Kurzarbeitergeld.
+    Arbeitslosengeld I und Grundsicherungsgeld (SGB~II; 2005--2022 ALG~II, 2023--Juni 2026 Bürgergeld),
+    Insolvenzgeld, Kurzarbeitergeld.
   \item \textbf{Aktive Arbeitsmarktpolitik:} versetzt Erwerbspersonen in die Lage, im
     Arbeitsprozess zu bleiben oder schnell wieder einzutreten --- Beratung und
     \emph{Vermittlung}, Aktivierung und berufliche Eingliederung (Trainings- und
@@ -2260,6 +2273,9 @@ zwischen In- und Ausland innerhalb einer Periode. Ihre wichtigsten Teilbilanzen:
   \item \textbf{Kapitalbilanz:} Kapitalexporte und -importe (Direktinvestitionen,
     Wertpapieranlagen, Kredite);
   \item \textbf{Devisenbilanz:} Veränderung der Währungsreserven der Zentralbank.
+    \emph{Hinweis:} Die Bundesbank weist die Veränderung der Währungsreserven heute
+    (BPM6) innerhalb der Kapitalbilanz aus; die „Devisenbilanz`` ist die klassische
+    Lehrbuchgliederung.
 \end{itemize}
 
 \begin{center}

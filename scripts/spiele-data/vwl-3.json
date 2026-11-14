@@ -11,7 +11,7 @@
     { "word": "DEPRESSION", "hint": "Tiefphase des Konjunkturzyklus." },
     { "word": "INDIKATOR", "hint": "Kennzahl zur Beurteilung der Konjunkturlage (früh, präsent, spät)." },
     { "word": "SAISON", "hint": "Jahreszeitlich bedingte Schwankung, z. B. Bau im Winter." },
-    { "word": "LEITZINS", "hint": "Von der EZB festgelegter Zinssatz — der wichtigste stammt aus dem Haupttender." },
+    { "word": "LEITZINS", "hint": "Von der EZB festgelegter Zinssatz — maßgeblich ist seit 2024 der Einlagesatz." },
     { "word": "HAUPTTENDER", "hint": "Hauptrefinanzierungsgeschäft: wöchentlich, eine Woche Laufzeit." },
     { "word": "BASISTENDER", "hint": "Längerfristiges Refinanzierungsgeschäft der EZB (urspr. drei Monate)." },
     { "word": "OFFENMARKT", "hint": "Hier kauft und verkauft die EZB Wertpapiere zur Geldmengensteuerung." },

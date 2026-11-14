@@ -99,7 +99,7 @@
     "Löhne ÷ Gewinne × 100"
    ],
    "a": 1,
-   "e": "Lohnquote = Arbeitnehmerentgelt ÷ Volkseinkommen × 100; 2018 rund 69 %. Gewinnquote entsprechend mit Unternehmens- und Vermögenseinkommen."
+   "e": "Lohnquote = Arbeitnehmerentgelt ÷ Volkseinkommen × 100; 2025 rund 73,5 %. Gewinnquote entsprechend mit Unternehmens- und Vermögenseinkommen."
   },
   {
    "topic": "Einkommensverteilung",
@@ -336,7 +336,7 @@
     "Bei einer Arbeitslosenquote von 0 %",
     "Bei einer Arbeitslosenquote von ca. 3–4 %",
     "Bei einer Erwerbsquote von 100 %",
-    "Wenn die Lohnquote 69 % beträgt"
+    "Wenn die Lohnquote 73,5 % beträgt"
    ],
    "a": 1,
    "e": "Eine Sockelarbeitslosigkeit bleibt stets bestehen — Vollbeschäftigung gilt daher schon bei einer Arbeitslosenquote von rund 3–4 % als erreicht."
@@ -591,7 +591,7 @@
     "Mit progressiver Einkommensteuer, Sozialversicherung und Transferzahlungen"
    ],
    "a": 3,
-   "e": "Die Sekundärverteilung erfolgt über progressive Steuern, Sozialabgaben und Transfers (z. B. Renten, Kindergeld, Bürgergeld) nach dem Bedarfsprinzip."
+   "e": "Die Sekundärverteilung erfolgt über progressive Steuern, Sozialabgaben und Transfers (z. B. Renten, Kindergeld, Grundsicherungsgeld) nach dem Bedarfsprinzip."
   },
   {
    "topic": "Einkommensverteilung",
@@ -655,7 +655,7 @@
   },
   {
    "topic": "Einkommensverteilung",
-   "q": "Warum zählen Renten und Bürgergeld nicht zum Primäreinkommen der Haushalte?",
+   "q": "Warum zählen Renten und Grundsicherungsgeld nicht zum Primäreinkommen der Haushalte?",
    "options": [
     "Weil sie steuerfrei sind",
     "Weil es Transfereinkommen aus der staatlichen Umverteilung sind und keine am Markt erzielten Faktoreinkommen",

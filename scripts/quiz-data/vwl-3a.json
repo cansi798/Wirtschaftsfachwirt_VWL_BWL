@@ -31,7 +31,7 @@
       "a": 1, "e": "Nach dem Vertrag von Maastricht ist die Preisniveaustabilität vorrangig: Der HVPI-Anstieg soll mittelfristig zwei Prozent betragen (seit 2021 symmetrisches Ziel; zuvor „unter, aber nahe zwei Prozent“)." },
     { "topic": "Geldpolitik", "q": "Welche drei Leitzinsen legt die EZB fest?",
       "options": ["Hauptrefinanzierungssatz, Spitzenrefinanzierungsfazilität, Einlagefazilität", "Hypothekenzins, Sparzins, Dispozins", "Mindestreservesatz, Basiszins, Tagesgeldsatz", "Mengentender, Zinstender, Standardtender"],
-      "a": 0, "e": "Der Hauptrefinanzierungssatz ist der wichtigste Leitzins; Spitzenrefinanzierungs- und Einlagefazilität bilden Ober- und Untergrenze des Zinskorridors." },
+      "a": 0, "e": "Alle drei sind Leitzinsen: Spitzenrefinanzierungs- und Einlagefazilität bilden Ober- und Untergrenze des Zinskorridors, der Hauptrefinanzierungssatz liegt dazwischen. Klassisch gilt er als wichtigster Leitzins; seit 2024 steuert die EZB ihren Kurs jedoch über den Einlagesatz (der Hauptrefinanzierungssatz liegt nur 0,15 Prozentpunkte darüber)." },
     { "topic": "Geldpolitik", "q": "Das Hauptrefinanzierungsgeschäft (Haupttender) wird angeboten …",
       "options": ["täglich mit einem Tag Laufzeit", "wöchentlich mit einer Woche Laufzeit", "monatlich mit drei Monaten Laufzeit", "jährlich als Daueremission"],
       "a": 1, "e": "Wöchentlicher Rhythmus, Laufzeit eine Woche — hierüber decken die Banken den größten Teil ihres Refinanzierungsbedarfs." },
