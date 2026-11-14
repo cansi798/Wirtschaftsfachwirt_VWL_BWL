@@ -73,7 +73,7 @@
       "a": 1, "e": "§ 1 GWB verbietet wettbewerbsbeschränkende Vereinbarungen (Verbotsprinzip); auf EU-Ebene gilt Art. 101 AEUV. Vgl. Wettbewerbspolitik, VWL-Lektion 2." },
     { "topic": "Kartell", "q": "Wann sind Kartelle verboten?",
       "options": ["Immer und ohne jede Ausnahme", "Wenn sie zu spürbaren Wettbewerbsbeschränkungen führen — eng begrenzte Freistellungen sind möglich", "Nur wenn ausländische Unternehmen beteiligt sind", "Nur bei schriftlichen Verträgen"],
-      "a": 1, "e": "Das Kartellverbot greift bei spürbarer Wettbewerbsbeschränkung; freigestellt sind z. B. bestimmte Mittelstandskooperationen (§ 2 GWB)." },
+      "a": 1, "e": "Das Kartellverbot greift bei spürbarer Wettbewerbsbeschränkung; freigestellt sind z. B. bestimmte Mittelstandskooperationen (§ 3 GWB)." },
     { "topic": "Kartell", "q": "Warum sind Arbeitsgemeinschaften und Konsortien kartellrechtlich grundsätzlich erlaubt?",
       "options": ["Weil sie im Ausland gegründet werden", "Weil sie den Wettbewerb regelmäßig nicht spürbar beschränken, sondern Projekte erst ermöglichen", "Weil das GWB für die Bauwirtschaft nicht gilt", "Weil sie vom Ministerium genehmigt werden"],
       "a": 1, "e": "ARGE/Konsortium sind projektbezogen und ermöglichen oft erst die Teilnahme am Wettbewerb — daher grundsätzlich erlaubt (vgl. Übungsband Übung 54)." },
@@ -90,8 +90,8 @@
       "options": ["Die Vereinbarung ist nichtig — zusätzlich drohen empfindliche Bußgelder", "Die Vereinbarung bleibt wirksam, nur die Behörde wird informiert", "Es entsteht automatisch ein Konzern", "Die Unternehmen werden verstaatlicht"],
       "a": 0, "e": "Kartellabsprachen sind nichtig (nicht durchsetzbar); dazu kommen Bußgelder des Bundeskartellamts und mögliche Schadensersatzklagen Geschädigter." },
     { "topic": "Kartell", "q": "Nach welcher Vorschrift können Mittelstandskooperationen vom Kartellverbot freigestellt sein?",
-      "options": ["§ 2 GWB", "§ 42 GWB", "§ 18 AktG", "§ 291 AktG"],
-      "a": 0, "e": "§ 2 GWB stellt Vereinbarungen frei, deren Vorteile überwiegen — z. B. Mittelstandskooperationen. § 42 GWB = Ministererlaubnis, § 18 AktG = Konzern, § 291 AktG = Beherrschungsvertrag." },
+      "options": ["§ 3 GWB", "§ 42 GWB", "§ 18 AktG", "§ 291 AktG"],
+      "a": 0, "e": "§ 3 GWB stellt klar: Mittelstandskooperationen, die den Wettbewerb nicht wesentlich beeinträchtigen und die Wettbewerbsfähigkeit kleiner und mittlerer Unternehmen verbessern, erfüllen die Freistellung nach § 2 GWB. § 42 GWB = Ministererlaubnis, § 18 AktG = Konzern, § 291 AktG = Beherrschungsvertrag." },
     { "topic": "Rechnen & Formeln", "q": "A hat Jahreskosten von 60 Mio. €, B von 40 Mio. €. Nach der Fusion betragen die Gesamtkosten 90 Mio. €. Wie hoch ist der Synergieeffekt?",
       "options": ["10 Mio. € Ersparnis", "190 Mio. € Ersparnis", "Es gibt keinen Synergieeffekt", "90 Mio. € Ersparnis"],
       "a": 0, "e": "Kosten vorher: 60 + 40 = 100 Mio. €. Kosten nachher: 90 Mio. €. Synergieeffekt = 100 − 90 = 10 Mio. € (10 % Ersparnis) — das Prinzip „2 + 2 = 5“." },
@@ -183,7 +183,7 @@
       "options": ["60.000 €", "6.000 €", "600.000 €", "20.000 €"],
       "a": 0, "e": "2.000.000 € × 0,03 = 60.000 € Ersparnis pro Jahr — der Rationalisierungsvorteil gebündelter Nachfrage in Zahlen." },
     { "topic": "Rechnen & Formeln", "q": "Zwei mittelständische Speditionen (Marktanteil zusammen unter 10 %) gründen eine gemeinsame Einkaufsgesellschaft für Diesel und Reifen. Wie ist das kartellrechtlich zu beurteilen?",
-      "options": ["Verboten als Preiskartell", "Nur mit Ministererlaubnis möglich", "Verboten, weil Kooperationen unter Wettbewerbern nie erlaubt sind", "Grundsätzlich zulässig — eine Mittelstandskooperation, die die Wettbewerbsfähigkeit verbessert (§ 2 GWB)"],
+      "options": ["Verboten als Preiskartell", "Nur mit Ministererlaubnis möglich", "Verboten, weil Kooperationen unter Wettbewerbern nie erlaubt sind", "Grundsätzlich zulässig — eine Mittelstandskooperation, die die Wettbewerbsfähigkeit verbessert (§ 3 GWB)"],
       "a": 3, "e": "Einkaufskooperationen kleiner und mittlerer Unternehmen mit geringen Marktanteilen verbessern deren Wettbewerbsfähigkeit gegenüber Großkonzernen und sind regelmäßig freigestellt." }
   ]
 }

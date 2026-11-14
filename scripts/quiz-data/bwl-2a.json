@@ -115,7 +115,7 @@
       "a": 0, "e": "Die GuV ist die Erfolgsrechnung des externen ReWe: Erträge minus Aufwendungen = Jahresüberschuss oder Jahresfehlbetrag." },
     { "topic": "Rechnungswesen", "q": "Aus welchen Bestandteilen besteht der Jahresabschluss einer Kapitalgesellschaft mindestens?",
       "options": ["Nur aus der Bilanz", "Aus Bilanz und Inventar", "Aus Bilanz, GuV und Anhang", "Aus GuV und Kassenbuch"],
-      "a": 2, "e": "Kapitalgesellschaften erweitern den Jahresabschluss um den Anhang (Erläuterungen); mittelgroße und große zusätzlich um den Lagebericht." },
+      "a": 2, "e": "Kapitalgesellschaften erweitern den Jahresabschluss um den Anhang (Erläuterungen; Kleinstkapitalgesellschaften dürfen darauf verzichten). Mittelgroße und große müssen zusätzlich einen Lagebericht aufstellen — er gehört aber nicht zum Jahresabschluss (§ 264 HGB)." },
     { "topic": "Investition", "q": "Welche der folgenden Maßnahmen ist eine Sachinvestition?",
       "options": ["Erwerb von Aktien eines Zulieferers", "Ausgaben für den Erwerb eines Patents", "Kauf einer Unternehmensbeteiligung", "Kauf einer neuen CNC-Fräsmaschine"],
       "a": 3, "e": "Sachinvestitionen betreffen körperliche Vermögensgegenstände (Maschinen, Gebäude, Fuhrpark); Aktien und Beteiligungen sind Finanz-, Patente immaterielle Investitionen." },
